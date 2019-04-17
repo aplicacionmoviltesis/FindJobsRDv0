@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "127536450599",
+    "firebase_url": "https://findjobsrd.firebaseio.com",
+    "project_id": "findjobsrd",
+    "storage_bucket": "findjobsrd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127536450599:android:68a45c8d8be9c58a",
+        "android_client_info": {
+          "package_name": "com.example.findjobsrdv0"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127536450599-ft00n1fif73i574r3onju22ta4vive3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.findjobsrdv0",
+            "certificate_hash": "b4cf645040c0956f764db95ed16b7880c2f0ad48"
+          }
+        },
+        {
+          "client_id": "127536450599-61e97pr4pavi3d42u9pd37qa6bag5pno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5fKeAtqmbOZjzMDy0TbchJCWFhG2Dz1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127536450599-61e97pr4pavi3d42u9pd37qa6bag5pno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

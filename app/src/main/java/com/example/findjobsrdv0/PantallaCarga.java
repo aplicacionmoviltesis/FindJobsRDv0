@@ -1,0 +1,29 @@
+package com.example.findjobsrdv0;
+
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.os.Handler;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class PantallaCarga extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_carga);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                Intent intent = new Intent(PantallaCarga.this, PantallaModoUsuario.class);
+                startActivity(intent);
+                finish();
+
+            }
+        },2000);
+
+    }
+}
