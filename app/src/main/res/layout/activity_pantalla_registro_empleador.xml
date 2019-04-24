@@ -17,7 +17,7 @@
             android:text="Registro Empleador"
             android:layout_marginTop="10dp"
             android:textColor="@color/md_white_1000"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -40,7 +40,7 @@
                 app:counterEnabled="true"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/CounterOverFlow"
-                app:counterMaxLength="30"
+                app:counterMaxLength="9"
                 app:counterOverflowTextAppearance="@style/CounterOverFlow"
                 app:counterTextAppearance="@style/Counter"
                 android:textColorHint="@color/md_white_1000">
@@ -80,7 +80,7 @@
                     android:drawableLeft="@drawable/ic_person_black_24dp"
                     android:drawablePadding="10dp"
                     android:textColor="@color/md_white_1000"
-                    android:inputType="text"
+                    android:inputType="textNoSuggestions"
                     android:hint="Nombre Empresa"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -211,7 +211,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:onClick="registrarUsuario"
             android:text="Registrarse" />
 
 
@@ -239,6 +238,21 @@
             android:layout_margin="10dp"
             android:textColor="@color/md_white_1000"
             android:text="Iniciar Sesion" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/EsignInButtonRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <ProgressBar
+        android:id="@+id/EprogressBarRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 
     </android.widget.LinearLayout>
 

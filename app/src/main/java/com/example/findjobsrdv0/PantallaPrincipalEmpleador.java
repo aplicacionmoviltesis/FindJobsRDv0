@@ -1,0 +1,262 @@
+package com.example.findjobsrdv0;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import android.view.View;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class PantallaPrincipalEmpleador extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
+    private ImageView photoImageViewEmpleador;
+    private TextView nameTextViewEmpleador;
+    private TextView emailTextViewEmpleador;
+    private TextView idTextViewEmpleador;
+    FirebaseUser user;
+
+
+    FirebaseAuth mAuthEmpleador;
+    private String klk1Empleador, klk2Empleador;
+    private GoogleApiClient googleApiClientEmpleador;
+
+    private FirebaseAuth firebaseAuthEmpleador;
+    private FirebaseAuth.AuthStateListener firebaseAuthListenerEmpleador;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_principal_empleador);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View header= navigationView.getHeaderView(0);
+
+        photoImageViewEmpleador = (ImageView) header.findViewById(R.id.fotoperfilEmpleador);
+        nameTextViewEmpleador = (TextView) header.findViewById(R.id.nombreTextEmpleador);
+        emailTextViewEmpleador = (TextView) header.findViewById(R.id.CorreoTextEmpleador);
+
+       /* mAuth= FirebaseAuth.getInstance();
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        SharedPreferences preferences= this.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+        String Nombre= preferences.getString("Nombre", "Nombre")+" "+preferences.getString("Apellido", "Apellido");
+
+        nameTextViewEmpleador.setText(Nombre);*/
+        //emailTextView.setText(user.getEmail());
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        googleApiClientEmpleador = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        firebaseAuthEmpleador = FirebaseAuth.getInstance();
+        firebaseAuthListenerEmpleador = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    setUserData(user);
+                } else {
+                    goRegInScreenEmpleador();
+                }
+            }
+        };
+
+    }
+
+    private void setUserData(FirebaseUser user) {
+        nameTextViewEmpleador.setText(user.getDisplayName());
+        emailTextViewEmpleador.setText(user.getEmail());
+        Glide.with(this).load(user.getPhotoUrl()).into(photoImageViewEmpleador);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        firebaseAuthEmpleador.addAuthStateListener(firebaseAuthListenerEmpleador);
+    }
+
+    private void goRegInScreenEmpleador() {
+        Intent intent = new Intent(this, PantallaRegistroEmpleador.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void logOut(View view) {
+        firebaseAuthEmpleador.signOut();
+
+        Auth.GoogleSignInApi.signOut(googleApiClientEmpleador).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+                if (status.isSuccess()) {
+                    goRegInScreenEmpleador();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.not_close_session, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void revoke(View view) {
+        firebaseAuthEmpleador.signOut();
+
+        Auth.GoogleSignInApi.revokeAccess(googleApiClientEmpleador).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+                if (status.isSuccess()) {
+                    goRegInScreenEmpleador();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.not_revoke, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (firebaseAuthListenerEmpleador != null) {
+            firebaseAuthEmpleador.removeAuthStateListener(firebaseAuthListenerEmpleador);
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.pantalla_principal_empleador, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.curriculosfavoritos) {
+
+
+        } else if (id == R.id.navegadorEmpleador) {
+
+
+        } else if (id == R.id.compararEmpleador) {
+
+
+        } else if (id == R.id.ConfiguracionEmpleador) {
+
+
+        } else if (id == R.id.compartirEmpleador) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "Si no tienes empleo, Descarga ---> https://play.google.com/store/apps/details?id=com.FindJobsRD");
+            startActivity(Intent.createChooser(intent, "Share with"));
+
+        } else if (id == R.id.cerrarsesionEmpleador) {
+
+            firebaseAuthEmpleador.signOut();
+
+            Auth.GoogleSignInApi.signOut(googleApiClientEmpleador).setResultCallback(new ResultCallback<Status>() {
+                @Override
+                public void onResult(@NonNull Status status) {
+                    if (status.isSuccess()) {
+                        goRegInScreenEmpleador();
+                    } else {
+                        Toast.makeText(getApplicationContext(), R.string.not_close_session, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+}

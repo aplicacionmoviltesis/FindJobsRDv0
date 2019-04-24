@@ -12,7 +12,7 @@
         android:id="@+id/tvRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="85dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="@string/elegir_modo"
@@ -24,7 +24,7 @@
         android:id="@+id/lyBuscadorEmpleo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="20dp"
         android:background="@drawable/btn_bg"
         android:orientation="vertical">
 
@@ -47,7 +47,7 @@
                     android:layout_toRightOf="@id/imageView"
                     android:text="Buscador de Empleo"
                     android:textColor="@color/md_blue_900"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -78,7 +78,9 @@
         android:id="@+id/lyEmpleador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/btn_bg"
         android:orientation="vertical">
 
@@ -101,7 +103,7 @@
                     android:text="Empresa /
 Empleador"
                     android:textColor="@color/md_blue_900"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <ImageView

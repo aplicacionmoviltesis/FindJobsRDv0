@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:background="@mipmap/fondoblue"
+    android:layout_height="match_parent">
+
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="176dp"
+                android:src="@mipmap/onlylogo" />
+
+            <TextView
+                android:id="@+id/XMLEtvLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/md_blue_grey_600"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:text="LOGIN" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Correo Electronico"
+                android:textColor="@color/md_blue_grey_600"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/XMLEentrada_correoLogin"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/et_bg"
+                android:inputType="text"
+                android:textColor="@color/md_blue_grey_600"
+                android:textStyle="bold"
+                android:ems="10"
+                android:paddingStart="8dp"
+                android:padding="10dp"
+                android:hint="E-mail" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_blue_grey_600"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="50dp"
+                android:textStyle="bold"
+                android:text="Contraseña" />
+
+            <EditText
+                android:id="@+id/XMLEetPassword"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/et_bg"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="@color/md_blue_grey_600"
+                android:textStyle="bold"
+                android:ems="10"
+                android:padding="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
+
+                <CheckBox
+                    android:id="@+id/XMLEsesion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="@color/md_blue_grey_900"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:hint="No cerrar sesion"
+                    android:textColorHint="@color/md_blue_grey_700"/>
+
+                <TextView
+                    android:id="@+id/XMLEtextolvidoContrasenal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:textColor="@color/md_blue_grey_700"
+                    android:shadowColor="@color/md_blue_grey_900"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="55dp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:text="Recuperar Contraseña" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/XMLEbtnIniciarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:textColor="@color/md_blue_grey_700"
+                android:shadowColor="@color/md_blue_grey_900"
+                android:onClick="LoginEmpleador"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Iniciar Sesion"/>
+
+            <ProgressBar
+                android:id="@+id/XMLEprogressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@mipmap/fondoblue"
+    android:orientation="vertical"
+    tools:context=".PantallaRecuperarContrasena">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="222dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:src="@mipmap/onlylogo" />
+
+    <TextView
+        android:id="@+id/textrecuperarPass"
+        android:layout_width="322dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Recuperar Contraseña"
+        android:textColor="#2196F3"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/entracorreoOlvidado"
+        app:layout_constraintTop_toBottomOf="@+id/textrecuperarPass"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="Correo Electronico"
+            android:textAllCaps="true"
+            android:textColor="#757575"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/entracorreoOlvidado"
+        android:layout_width="316dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:padding="10dp"
+        android:background="@drawable/et_bg"
+        android:drawableLeft="@drawable/email_black"
+        android:drawablePadding="10dp"
+        android:hint="Correo Electronico"
+        android:textColor="#757575"
+        android:textColorHint="#757575"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Recibiras un correo con la informacion correspondiente a su cuenta."
+        android:textColor="#757575"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/boton_enviarcorreo"
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_bg"
+        android:baselineAligned="false"
+        android:text="Enviar Correo"
+        android:textColor="#212121" />
+
+
+</android.widget.LinearLayout>
