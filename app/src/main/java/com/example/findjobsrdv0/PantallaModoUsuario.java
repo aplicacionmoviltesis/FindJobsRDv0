@@ -3,6 +3,7 @@ package com.example.findjobsrdv0;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class PantallaModoUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_modo_usuario);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         tvElegirmodo = (TextView) findViewById(R.id.tvRegistrar);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");

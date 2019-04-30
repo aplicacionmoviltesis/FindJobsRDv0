@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0;
+package clasesnopantallas;
 
 import android.content.Context;
 import android.content.SharedPreferences;

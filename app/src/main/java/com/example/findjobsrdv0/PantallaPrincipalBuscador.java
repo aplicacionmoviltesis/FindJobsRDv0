@@ -3,6 +3,8 @@ package com.example.findjobsrdv0;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -40,7 +42,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
     //implements GoogleApiClient.OnConnectionFailedListener{
     private ImageView photoImageView;
-    private TextView nameTextView;
+    private TextView nameTextView,tituloelegiropcion;
     private TextView emailTextView;
     private TextView idTextView;
     FirebaseUser user;
@@ -58,6 +60,8 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal_buscador);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -75,6 +79,10 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        tituloelegiropcion = (TextView) findViewById(R.id.tvelegiropcionBuscador);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
+        tituloelegiropcion.setTypeface(face);
 
         mAuth= FirebaseAuth.getInstance();
 
@@ -224,6 +232,8 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
 
         } else if (id == R.id.navegadorBuscador) {
+            Intent intent= new Intent(this, PantallaNavegador.class);
+            startActivity(intent);
 
 
         } else if (id == R.id.compararBuscador) {

@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -64,6 +65,7 @@ public class PantallaLoginBuscador extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_login_buscador);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         BtvLogin = (TextView) findViewById(R.id.xmlbtvLogin);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".cPantallaExperienciaLaboralCurriculo">
+
+    <TextView
+        android:id="@+id/xmlTituloExperienciaLaboral"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/xmlbregistrarFechafinEL"
+        android:textSize="40sp"
+        android:textColor="@color/md_blue_900"
+        android:text="Experiencia Laboral"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlbregistrarEmpresaEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlbeditRegistrarEmpresaEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Nombre Empresa"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlbregistrarCargoEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlbeditRegistrarCargoEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Cargo Ocupado"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlbregistrarTelefonoEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlbeditRegistrarTelefonoEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="phone"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarFechainicioEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/md_blue_900">
+
+                <EditText
+                    android:id="@+id/xmlbeditRegistrarFechainicioEL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:ems="10"
+                    android:hint="Fecha Entrada"
+                    android:inputType="date"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarFechafinEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/xmlbregistrarFechainicioEL"
+                android:textColorHint="@color/md_blue_900">
+
+                <EditText
+                    android:id="@+id/xmlbeditRegistrarFechafinEL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:ems="10"
+                    android:hint="Fecha Salida"
+                    android:inputType="date"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/cantanos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_below="@id/xmlbregistrarFechafinEL"
+                android:textSize="15sp"
+                android:inputType="numberDecimal"
+                android:textColor="@color/md_blue_900"
+                android:text="  Años"/>
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Añadir Experiencia"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_bg"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</LinearLayout>

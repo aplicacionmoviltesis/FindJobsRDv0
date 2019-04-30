@@ -13,15 +13,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".cPantallaRegistroCurriculo"
+            android:label="@string/title_activity_c_pantalla_registro_curriculo"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".cPantallaFormacionAcademicaCurriculo"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".cPantallaExperienciaLaboralCurriculo"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".cPantallaReferenciasCurriculos"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".PantallaRegistrarCurriculo"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".PantallaNavegador" />
+        <activity
             android:name=".PantallaRecuperarContrasena"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".PantallaPrincipalEmpleador"
             android:label="@string/title_activity_pantalla_principal_empleador"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PantallaLoginEmpleador"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".PantallaPrincipalBuscador"
             android:label="@string/title_activity_pantalla_principal_buscador"

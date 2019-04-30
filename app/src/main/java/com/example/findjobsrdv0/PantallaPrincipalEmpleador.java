@@ -3,6 +3,7 @@ package com.example.findjobsrdv0;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -53,6 +54,8 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal_empleador);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -218,7 +221,8 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
 
         } else if (id == R.id.navegadorEmpleador) {
-
+            Intent intent= new Intent(this, PantallaNavegador.class);
+            startActivity(intent);
 
         } else if (id == R.id.compararEmpleador) {
 

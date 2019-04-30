@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".cPantallaReferenciasCurriculos">
+
+
+    <TextView
+        android:id="@+id/xmlTituloReferencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="40sp"
+        android:textColor="@color/md_blue_900"
+        android:text="Referencias"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlbregistrarEmpresaEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlbeditRegistrarEmpresaEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlbregistrarCargoEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlbeditRegistrarCargoEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Cargo Ocupado"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlbregistrarinstitucionEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlbeditRegistrarinstitucionEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Institucion"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlbregistrarTelefonoEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlbeditRegistrarTelefonoEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="phone"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Añadir Referencia"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_bg"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</LinearLayout>

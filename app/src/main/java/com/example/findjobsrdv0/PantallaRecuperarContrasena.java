@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,6 +30,8 @@ public class PantallaRecuperarContrasena extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_recuperar_contrasena);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         TituloRecuperarPass = (TextView) findViewById(R.id.textrecuperarPass);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
