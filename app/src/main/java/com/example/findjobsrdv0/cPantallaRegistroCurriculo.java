@@ -5,25 +5,52 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.findjobsrdv0.Modelo.RegistrarCurriculo;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
-public class cPantallaRegistroCurriculo extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class cPantallaRegistroCurriculo extends AppCompatActivity  {
+
+    EditText etNombre, etApellido, etCedula, etEmail, etTelefono, etCelular, etDireccion, etOcupacion, etHabilidades;
+    Button btnregistrarC;
+    String Provincia, estadoCivil, GradoMayor, EstadoActual;
+
+    private DatabaseReference Curriculo;
+
+
 
     TextView muestraidioma;
 
+    String[] SPINNERLIST = {"La Vega", "Salcedo", "Espaillat", "Santo Domingo", "Santiago"};
     String[] SPINNERLIST1 = {"soltero", "casado", "Spinner Using Material Library", "Material Spinner Example"};
-    String[] SPINNERLIST = {"Android Material Design", "Material Design Spinner", "Spinner Using Material Library", "Material Spinner Example"};
+    String[] SPINNERLIST2 = {"Maestria","Doctorado"};
+    String[] SPINNERLIST3 = {"Disponible", "Ocupado"};
 
-    private Button btnSimpleList, btnRadioButtonList, btnCheckBoxList,klkproba;
+
+    private Button btnFormacionAcademica, btnReferenciCurriculo,btnExperienciaLaboralCurriculo, bntIdioma;
 
     private String[] listItems = {"Español", "Ingles", "Frances", "Mandarin", "Ruso"};
 
@@ -34,39 +61,91 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, SPINNERLIST);
-        MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner)
-                findViewById(R.id.spinnerProvinciasRegistrarCurriculo);
-        materialDesignSpinner.setAdapter(arrayAdapter);
 
-        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, SPINNERLIST1);
-        MaterialBetterSpinner materialDesignSpinner1 = (MaterialBetterSpinner)
-                findViewById(R.id.spinnerEstadoCivilRegistrarCurriculoklk);
-        materialDesignSpinner1.setAdapter(arrayAdapter1);
+        final MaterialSpinner provincia = (MaterialSpinner) findViewById(R.id.spinnerprovincias);
+        provincia.setItems(SPINNERLIST);
+        provincia.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+                Provincia = item.toString().trim();
 
-        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, SPINNERLIST1);
-        MaterialBetterSpinner materialDesignSpinner2 = (MaterialBetterSpinner)
-                findViewById(R.id.spinnerEstadoCivilRegistrarbueno);
-        materialDesignSpinner2.setAdapter(arrayAdapter2);
+                Log.d( "Provincia", Provincia );
+            }
+        });
 
-        ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, SPINNERLIST1);
-        MaterialBetterSpinner materialDesignSpinner3 = (MaterialBetterSpinner)
-                findViewById(R.id.spinnerlokeraCurriculoklk);
-        materialDesignSpinner3.setAdapter(arrayAdapter3);
+        final MaterialSpinner estadocivil = (MaterialSpinner) findViewById(R.id.spinnerestadocivil);
+        estadocivil.setItems(SPINNERLIST1);
+        estadocivil.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+                estadoCivil = item.toString().trim();
 
-        btnSimpleList = findViewById(R.id.btn_simple_list);
-        btnRadioButtonList = findViewById(R.id.btn_radio_button_list);
-        btnCheckBoxList = findViewById(R.id.btnop);
-        klkproba = findViewById(R.id.btn_check_box_list);
+                Log.d( "EstadoCivil", estadoCivil );
+            }
+        });
+
+        final MaterialSpinner gradomayor = (MaterialSpinner) findViewById(R.id.spinnergradomayor);
+        gradomayor.setItems(SPINNERLIST2);
+        gradomayor.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+                GradoMayor = item.toString().trim();
+
+                Log.d( "GradoMayor", GradoMayor );
+            }
+        });
+
+        final MaterialSpinner estadoactual = (MaterialSpinner) findViewById(R.id.spinnerestadoactual);
+        estadoactual.setItems(SPINNERLIST3);
+        estadoactual.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
+                EstadoActual = item.toString().trim();
+
+                Log.d( "EstadoActual", EstadoActual );
+            }
+        });
+
+
+//----------------------------------------------------------------------------------------------------------------------------
+
+
+        Curriculo = FirebaseDatabase.getInstance().getReference( "Curriculo" );
+
+        etNombre = (EditText)findViewById( R.id.etnombre );
+        etApellido = (EditText)findViewById( R.id.etapellido );
+        etCedula = (EditText)findViewById( R.id.etcedula );
+        etEmail = (EditText)findViewById( R.id.etemail );
+        etTelefono = (EditText)findViewById( R.id.ettelefono );
+        etCelular = (EditText)findViewById( R.id.etcelula );
+        etDireccion = (EditText)findViewById( R.id.etdireccion );
+        etOcupacion = (EditText)findViewById( R.id.etocupacion );
+        etHabilidades = (EditText)findViewById( R.id.ethabilidades );
+
+
+
+        btnregistrarC= findViewById(R.id.xmlBtnRegistrarDatosGC);
+
+        btnregistrarC.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registrarcurriculo();
+
+            }
+        } );
+//-------------------------------------------------------------------------------------------------------------------------------
+
+
+        btnFormacionAcademica = findViewById(R.id.xmlBtnFormacionAcademicaC);
+        btnReferenciCurriculo = findViewById(R.id.xmlBtnReferenciaCurriculoC);
+        btnExperienciaLaboralCurriculo = findViewById(R.id.xmlBntExperienciaLaboralCurriculo);
+        bntIdioma = findViewById(R.id.xmlBtnIdioma);
+
 
         muestraidioma = findViewById(R.id.tvop);
 
 
-        btnSimpleList.setOnClickListener(new View.OnClickListener() {
+        btnFormacionAcademica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cPantallaRegistroCurriculo.this, cPantallaFormacionAcademicaCurriculo.class);
@@ -74,7 +153,7 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity {
             }
         });
 
-        btnRadioButtonList.setOnClickListener(new View.OnClickListener() {
+        btnReferenciCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cPantallaRegistroCurriculo.this, cPantallaReferenciasCurriculos.class);
@@ -82,15 +161,18 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity {
             }
         });
 
-        klkproba.setOnClickListener(new View.OnClickListener() {
+        btnExperienciaLaboralCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cPantallaRegistroCurriculo.this, cPantallaExperienciaLaboralCurriculo.class);
                 startActivity(intent);
+
+
+
             }
         });
 
-        btnCheckBoxList.setOnClickListener(new View.OnClickListener() {
+        bntIdioma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(cPantallaRegistroCurriculo.this);
@@ -116,9 +198,6 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity {
                     }
                 });
 
-
-
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
@@ -131,4 +210,34 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(),"Date Picker");
     }
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------
+    public void registrarcurriculo(){
+        String nombre=etNombre.getText().toString();
+        String apellido=etApellido.getText().toString();
+        String cedula=etCedula.getText().toString();
+        String email=etEmail.getText().toString();
+        String telefono=etTelefono.getText().toString();
+        String celular=etCedula.getText().toString();
+        String direccion=etDireccion.getText().toString();
+        String ocupacion=etOcupacion.getText().toString();
+        String habilidades=etHabilidades.getText().toString();
+
+
+        if (!TextUtils.isEmpty( nombre )){
+            String id = Curriculo.push().getKey();
+            RegistrarCurriculo leccion = new RegistrarCurriculo( id, nombre, apellido, cedula, email, telefono, celular, Provincia, estadoCivil,   direccion,ocupacion,  GradoMayor, EstadoActual, habilidades   );
+            Curriculo.child( "Leccion" ).child( id ).setValue( leccion );
+
+            Toast.makeText( this, "Curriculo registrado", Toast.LENGTH_SHORT ).show();
+
+        }
+        else{
+            Toast.makeText( this, "No se pudo registrar curriculo", Toast.LENGTH_SHORT ).show();
+
+        }
+    }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+
 }
