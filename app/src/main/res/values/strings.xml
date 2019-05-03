@@ -10,6 +10,14 @@
     <string name="action_settings">Settings</string>
 
 
+    <string-array name="FormacionAcademica">
+        <item>Nivel Basico</item>
+        <item>Nivel Secundario</item>
+        <item>Nivel Superior</item>
+        <item>Bachiller</item>
+    </string-array>
+
+
     <string name="not_log_in">No se pudo iniciar sesión</string>
     <string name="log_out">Log Out</string>
     <string name="revoke">Revoke</string>
@@ -107,4 +115,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="title_activity_pantalla_registrar_empleos">PantallaRegistrarEmpleos</string>
 </resources>

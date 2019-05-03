@@ -4,10 +4,14 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 public class cPantallaRegistroCurriculo extends AppCompatActivity {
 
     TextView muestraidioma;
+
 
     String[] SPINNERLIST1 = {"soltero", "casado", "Spinner Using Material Library", "Material Spinner Example"};
     String[] SPINNERLIST = {"Android Material Design", "Material Design Spinner", "Spinner Using Material Library", "Material Spinner Example"};
@@ -116,9 +121,6 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity {
                     }
                 });
 
-
-
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
@@ -131,4 +133,10 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(),"Date Picker");
     }
+
+
 }
+
+
+
+

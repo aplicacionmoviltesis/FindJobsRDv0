@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".PantallaRegistrarEmpleos"
+            android:label="@string/title_activity_pantalla_registrar_empleos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".cPantallaRegistroCurriculo"
             android:label="@string/title_activity_c_pantalla_registro_curriculo"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".cPantallaFormacionAcademicaCurriculo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

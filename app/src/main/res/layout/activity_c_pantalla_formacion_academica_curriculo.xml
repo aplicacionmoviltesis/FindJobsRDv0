@@ -37,14 +37,14 @@
             android:textSize="15sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/xmlbregistrarEmpresaEL"
+            android:id="@+id/xmlTiNivelPrimarioNameFA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textColorHint="@color/md_blue_900">
 
             <EditText
-                android:id="@+id/xmlbeditRegistrarEmpresaEL"
+                android:id="@+id/xmlEditNivelPrimarioNameFA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="3dp"
@@ -64,14 +64,14 @@
             android:textSize="15sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/xmlbregistrarCargoEL"
+            android:id="@+id/xmlTiNivelSecundarioNameFA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textColorHint="@color/md_blue_900">
 
             <EditText
-                android:id="@+id/xmlbeditRegistrarCargoEL"
+                android:id="@+id/xmlEditNivelSecundarioNameFA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="3dp"
@@ -92,14 +92,14 @@
             android:textSize="15sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/xmlbregistrarTelefonoEL"
+            android:id="@+id/xmlTiNivelSuperiorNameFA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textColorHint="@color/md_blue_900">
 
             <EditText
-                android:id="@+id/xmlbeditRegistrarTelefonoEL"
+                android:id="@+id/xmlEditNivelSuperiorNameFA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="3dp"
@@ -110,13 +110,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/xmlbregistrarCarreraFA"
+            android:id="@+id/xmlTiCarreraNameFA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textColorHint="@color/md_blue_900">
             <EditText
-                android:id="@+id/xmlbeditRegistrarCarreraFA"
+                android:id="@+id/xmlEditCarreraNameFA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="3dp"
@@ -127,6 +127,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
         <Button
+            android:id="@+id/xmlbtnAnadirformacionAcademica"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -143,6 +144,7 @@
         android:padding="5dp">
 
         <Button
+            android:id="@+id/AbrirOtrosCursos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
