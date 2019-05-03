@@ -1,8 +1,9 @@
 package com.example.findjobsrdv0;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
+
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -14,8 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
+
 public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private TextView TituloFormacionAcademica;
 
@@ -35,8 +36,6 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity impl
     String sNivelPrimarionombreFA, sNivelSecundarionombreFA,sNivelsuperiornombreFA, sCarreranombreFA;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +183,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity impl
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
 
     }
 }
