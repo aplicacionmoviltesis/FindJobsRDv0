@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,8 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-
-public class PantallaLoginBuscador extends AppCompatActivity implements View.OnClickListener{
+public class PantallaLoginBuscador extends AppCompatActivity {
 
     private TextView BtvLogin, textRecuperar;
 
@@ -46,13 +44,16 @@ public class PantallaLoginBuscador extends AppCompatActivity implements View.OnC
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialogloginBuscador;
+    private FirebaseAuth mAuthBuscador;
+    private DatabaseReference dBReferencesBuscadores;
+    private FirebaseDatabase fDatabaseBuscadores;
+
 
 
 /*
     private FirebaseAuth.AuthStateListener AuthStateListener;
     private FirebaseAuth mAuth;
     private FirebaseUser userCorreo;
-    private FirebaseDatabase fDatabase;
     private DatabaseReference dBReferences;
 
     private boolean Active;
@@ -76,11 +77,19 @@ public class PantallaLoginBuscador extends AppCompatActivity implements View.OnC
         entradaContrasena = findViewById(R.id.etPassword);
         BbtniniciarsesionBuscador = findViewById(R.id.EbtnIniciarSesion);
 
-        firebaseAuth= FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        fDatabaseBuscadores = FirebaseDatabase.getInstance();
+
 
         progressDialogloginBuscador = new ProgressDialog(this);
 
-        BbtniniciarsesionBuscador.setOnClickListener(this);
+        BbtniniciarsesionBuscador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginBuscador();
+
+            }
+        });
 
         textRecuperar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,10 +133,55 @@ public class PantallaLoginBuscador extends AppCompatActivity implements View.OnC
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user.isEmailVerified()) {
 
+                                ///Probando shardpreferences
+                                SharedPreferences preferences = getSharedPreferences("UserPrefBuscadores", Context.MODE_PRIVATE);
+                                final SharedPreferences.Editor editor = preferences.edit();
+
+                                Log.i("Probando", firebaseAuth.getUid());
+                                dBReferencesBuscadores = fDatabaseBuscadores.getReference().child("BuscadoresEmpleos").child(firebaseAuth.getUid());
+
+                                dBReferencesBuscadores.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        String NombreBuscador, ApellidoBuscador, CorreoBuscador, TelefonoBuscador, ImagenBuscador;
+
+
+                                        Log.i("Prueba", dataSnapshot.toString());
+                                        NombreBuscador = "";
+                                        ApellidoBuscador = "";
+                                        CorreoBuscador = "";
+                                        TelefonoBuscador = "";
+                                        ImagenBuscador = "";
+
+
+                                        NombreBuscador = dataSnapshot.child("Nombre").getValue(String.class);
+                                        ApellidoBuscador = dataSnapshot.child("Apellido").getValue(String.class);
+                                        CorreoBuscador = dataSnapshot.child("Correo").getValue(String.class);
+                                        TelefonoBuscador = dataSnapshot.child("Telefono").getValue(String.class);
+                                        ImagenBuscador = dataSnapshot.child("ImagenEmpresa").getValue(String.class);
+
+                                        editor.putString("Nombre", NombreBuscador);
+                                        editor.putString("Apellido", ApellidoBuscador);
+                                        editor.putString("Correo", CorreoBuscador);
+                                        editor.putString("Telefono", TelefonoBuscador);
+                                        editor.putString("ImagenEmpresa", ImagenBuscador);
+                                        editor.commit();
+
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                                // Preferences.Guardar_estado_button(PantallaLoginEmpleador.this, Sesion.isChecked(), Preferences.Preference_button);
+
+
                                 Toast.makeText(PantallaLoginBuscador.this, "Bienvenido: " + entradaCorreo.getText(), Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(PantallaLoginBuscador.this, PantallaPrincipalBuscador.class);
                                 startActivity(intent);
-                            }else {
+                            } else {
 
                                 Toast.makeText(PantallaLoginBuscador.this, "Correo electronico no verificado", Toast.LENGTH_SHORT).show();
 
@@ -146,10 +200,5 @@ public class PantallaLoginBuscador extends AppCompatActivity implements View.OnC
                 });
     }
 
-    @Override
-    public void onClick(View view) {
-        //Invocamos al método:
-        LoginBuscador();
-    }
 
 }

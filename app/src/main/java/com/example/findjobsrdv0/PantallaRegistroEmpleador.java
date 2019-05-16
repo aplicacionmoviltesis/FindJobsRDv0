@@ -192,6 +192,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         final String entrada_paginaweb = "";
         final String entrada_direccion = "";
         final boolean entrada_verificacion = false;
+        final String entrada_imagenEmpleador="";
 
         //Verificamos que las cajas de texto no esten vacías
 
@@ -248,6 +249,8 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Direccion").setValue(entrada_direccion);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Contraseña").setValue(entrada_contrasena);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Verificacion").setValue(entrada_verificacion);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Imagen").setValue(entrada_imagenEmpleador);
+
 
                                 //usas esa variable y usa .sendEmailVerification(); para mandar el correo de verificacion
                                 user.sendEmailVerification();

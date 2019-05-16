@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class PantallaLoginEmpleador extends AppCompatActivity implements View.OnClickListener{
+public class PantallaLoginEmpleador extends AppCompatActivity{
 
     private TextView EtvLogin,ErecuperarPass;
 
@@ -42,15 +43,20 @@ public class PantallaLoginEmpleador extends AppCompatActivity implements View.On
 
     private ProgressDialog EprogressDialog;
 
-
+//pa' probar con lo de shardpreferences
     private FirebaseAuth mAuthEmpleador;
     private FirebaseAuth.AuthStateListener AuthStateListener;
 
     private FirebaseUser userCorreo;
     private FirebaseDatabase fDatabase;
     private DatabaseReference dBReferences;
-    private boolean Active;
-    private CheckBox Sesion;
+    private boolean Activo;
+    private RadioButton Sesion;
+
+    public void PantallaLoginEmpleador(){
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +78,13 @@ public class PantallaLoginEmpleador extends AppCompatActivity implements View.On
 
         EprogressDialog = new ProgressDialog(this);
 
-        EbtnIniciarsesion.setOnClickListener(this);
+        EbtnIniciarsesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginEmpleador();
+
+            }
+        });
 
         ErecuperarPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +94,15 @@ public class PantallaLoginEmpleador extends AppCompatActivity implements View.On
                 finish();
             }
         });
+
+
+        if(Preferences.Obtener_estado_button(PantallaLoginEmpleador.this, Preferences.Preference_button)){
+            LoginEmpleador();
+
+        }
+
+
+
 ///codigo nuevo, pa´verificar correo
        /* AuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -134,9 +155,63 @@ public class PantallaLoginEmpleador extends AppCompatActivity implements View.On
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuthEmpleador.getCurrentUser();
                             if (user.isEmailVerified()) {
+                                    ///Probando shardpreferences
+                                    SharedPreferences preferences= getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
+                                    final SharedPreferences.Editor editor= preferences.edit();
+
+                                Log.i("Probando", mAuthEmpleador.getUid());
+                                    dBReferences= fDatabase.getReference().child("Empleadores").child(mAuthEmpleador.getUid());
+
+                                dBReferences.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            String rncRE, nombreempresaRE,correoRE, telefonoRE,paginawebRE,direccionRE, imagenRE;
+                                            Boolean verificacionRE;
+
+
+                                            Log.i("Prueba", dataSnapshot.toString());
+                                            rncRE = "";
+                                            nombreempresaRE = "";
+                                            correoRE = "";
+                                            telefonoRE = "";
+                                            paginawebRE = "";
+                                            direccionRE = "";
+                                            verificacionRE = false;
+                                            imagenRE = "";
+
+                                            rncRE= dataSnapshot.child("RNC").getValue(String.class);
+                                            nombreempresaRE= dataSnapshot.child("Nombre").getValue(String.class);
+                                            correoRE= dataSnapshot.child("Correo").getValue(String.class);
+                                            telefonoRE= dataSnapshot.child("Telefono").getValue(String.class);
+                                            paginawebRE= dataSnapshot.child("PaginaWeb").getValue(String.class);
+                                            direccionRE= dataSnapshot.child("Direccion").getValue(String.class);
+                                            verificacionRE= dataSnapshot.child("Verificacion").getValue(Boolean.class);
+                                            imagenRE= dataSnapshot.child("ImagenEmpresa").getValue(String.class);
+
+                                            editor.putString("RNC", rncRE);
+                                            editor.putString("Nombre", nombreempresaRE);
+                                            editor.putString("Correo", correoRE);
+                                            editor.putString("Telefono", telefonoRE);
+                                            editor.putString("PaginaWeb", paginawebRE);
+                                            editor.putString("Direccion", direccionRE);
+                                            //editor.putBoolean("Verificacion", verificacionRE);
+                                            editor.putString("ImagenEmpresa", imagenRE);
+                                            editor.commit();
+
+
+                                        }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                               // Preferences.Guardar_estado_button(PantallaLoginEmpleador.this, Sesion.isChecked(), Preferences.Preference_button);
+
+
 
                                 Toast.makeText(PantallaLoginEmpleador.this, "Bienvenido: " + EentradaCorreo.getText(), Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(PantallaLoginEmpleador.this, PantallaPrincipalBuscador.class);
+                                Intent intent = new Intent(PantallaLoginEmpleador.this, PantallaPrincipalEmpleador.class);
                                 startActivity(intent);
                             }else {
 
@@ -159,10 +234,7 @@ public class PantallaLoginEmpleador extends AppCompatActivity implements View.On
                 });
     }
 
-    @Override
-    public void onClick(View view) {
-        //Invocamos al método:
-        LoginEmpleador();
-    }
+
+
 
 }

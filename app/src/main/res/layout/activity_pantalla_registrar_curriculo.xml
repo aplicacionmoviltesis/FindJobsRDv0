@@ -29,7 +29,7 @@
         app:tabMode="fixed"
         app:tabTextColor="@color/md_white_1000"
         app:tabIndicatorColor="@color/Tabindicatorcolor"
-        android:background="@color/colorPrimary">
+        android:background="@color/primary">
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

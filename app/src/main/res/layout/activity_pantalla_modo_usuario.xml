@@ -64,7 +64,7 @@
                     android:layout_below="@id/textViewTitle"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="Encuentra el empleo de tu preferencia, utilizando los filtros que desee."
+                    android:text="Busca el empleo ideal de acuerdo a las caracteristicas de tu preferencia."
                     android:textColor="@color/md_blue_900"
                     android:textStyle="bold" />
 

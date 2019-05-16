@@ -8,167 +8,163 @@
     tools:context=".PantallaRegistrarEmpleos"
     tools:showIn="@layout/activity_pantalla_registrar_empleos">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:padding="2dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="2dp">
 
         <TextView
             android:id="@+id/xmlTiDatosEmpleosE"
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:textSize="30dp"
-            android:gravity="center"
-            android:textStyle="bold"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Datos Generales"
             android:textColor="@color/md_blue_900"
-            android:text="Datos Generales"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/btn_bg"
-            android:layout_margin="5dp"
             android:orientation="vertical"
             android:padding="5dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlTiNombreEmpleoE"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="@color/md_blue_900"
-        app:counterEnabled="true"
-        app:counterMaxLength="30"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:hintAnimationEnabled="true">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlTiNombreEmpleoE"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
 
-        <EditText
-            android:id="@+id/xmlEditNombreEmpleoE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Nombre Empleo"
-            android:inputType="text"
-            android:textColor="@color/md_blue_900" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/xmlEditNombreEmpleoE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:ems="10"
+                    android:hint="Nombre Empleo"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlTiNombreEmpresaE"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="@color/md_blue_900"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:hintAnimationEnabled="true">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlTiNombreEmpresaE"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
 
-        <EditText
-            android:id="@+id/xmlEditNombreEmpresaE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Nombre Empresa"
-            android:inputType="text"
-            android:textColor="@color/md_blue_900" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/xmlEditNombreEmpresaE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:ems="10"
+                    android:hint="Nombre Empresa"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/xmlspinProvinciaF"
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/searchable_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:dropDownSelector="@color/gradStop"
-                android:completionHintView="@color/md_blue_900"
-                android:hint="Provincia "
-                android:textColorHint="@color/md_blue_900"/>
+                android:hint="Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlTiDireccionE"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="@color/md_blue_900"
-        app:counterEnabled="true"
-        app:counterMaxLength="30"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:hintAnimationEnabled="true">
-
-        <EditText
-            android:id="@+id/xmlEditDireccionE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Direccion"
-            android:inputType="text"
-            android:textColor="@color/md_blue_900" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlTiEmailE"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="@color/md_blue_900"
-        app:counterEnabled="true"
-        app:counterMaxLength="30"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:hintAnimationEnabled="true">
-
-        <EditText
-            android:id="@+id/xmlEditEmailE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="text"
-            android:textColor="@color/md_blue_900" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/xmlTiTelefonoE"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900"
-            app:counterEnabled="true"
-            app:counterMaxLength="30"
-            app:counterOverflowTextAppearance="@style/CounterOverFlow"
-            app:counterTextAppearance="@style/Counter"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/CounterOverFlow"
-            app:hintAnimationEnabled="true">
-
-            <EditText
-                android:id="@+id/xmlEditTelefonoE"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlTiDireccionE"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:ems="10"
-                android:hint="Telefono"
-                android:inputType="text"
-                android:textColor="@color/md_blue_900" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/xmlEditDireccionE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:ems="10"
+                    android:hint="Direccion"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlTiEmailE"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/xmlEditEmailE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlTiTelefonoE"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/xmlEditTelefonoE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:ems="10"
+                    android:hint="Telefono"
+                    android:inputType="phone"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/xmlTiPaginaWebE"
@@ -188,227 +184,229 @@
                     android:id="@+id/xmlEditPaginaWebE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="3dp"
                     android:ems="10"
                     android:hint="Pagina Web"
-                    android:inputType="text"
+                    android:inputType="textWebEditText"
                     android:textColor="@color/md_blue_900" />
             </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/xmlTiRequisitosE"
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:textSize="30dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
+            android:text="Requisitos"
             android:textColor="@color/md_blue_900"
-            android:text="Requisitos"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/btn_bg"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="3dp">
-
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/xmlspinAreaF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:dropDownSelector="@color/gradStop"
-            android:completionHintView="@color/md_blue_900"
-            android:layout_marginEnd="30dp"
-            android:hint="Area Requerida"
-            android:textColorHint="@color/md_blue_900" />
-
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/xmlspinFormacionAcademicaF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:dropDownSelector="@color/gradStop"
-            android:hint="Formacion Academica"
-            android:completionHintView="@color/md_blue_900"
-            android:layout_toRightOf="@+id/xmlspinAreaF"
-            android:textColorHint="@color/md_blue_900"/>
-
-    </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/xmlTiIdiomasE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Idiomas"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/xmlTiMostrarIdiomasE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/xmlTiIdiomasE"
-            android:layout_margin="5dp"
-            android:padding="3dp"
-            android:textSize="15dp"
-            android:hint="Español/English"
-            android:textColorHint="@color/md_blue_900"
-            android:textColor="@color/md_blue_900"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
-
-        <Button
-            android:id="@+id/xmlBtnSeleccionarIdiomasE"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Selecionar Idiomas"
-            android:layout_below="@id/xmlTiMostrarIdiomasE"
-            android:layout_margin="5dp" />
-
-        </RelativeLayout>
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp">
+            android:background="@drawable/btn_bg"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/xmlspinSexoRequeridoF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:layout_marginEnd="30dp"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="     Sexo Requerido "
-                android:completionHintView="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/xmlspinRangoEdadF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:dropDownSelector="@color/gradStop"
-                android:completionHintView="@color/md_blue_900"
-                android:hint="       Rango Edad "
-                android:layout_toRightOf="@+id/xmlspinSexoRequeridoF"
-                android:textColorHint="@color/md_blue_900"/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/xmlspinAreaF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:baselineAligned="false"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="Area Requerida"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
 
-        </RelativeLayout>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/xmlspinFormacionAcademicaF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/xmlspinAreaF"
+                    android:baselineAligned="false"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="Formacion Academica"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
 
-    </LinearLayout>
+            </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/xmlTiIdiomasE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Idiomas"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/md_blue_900" />
+
+                <TextView
+                    android:id="@+id/xmlTiMostrarIdiomasE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/xmlTiIdiomasE"
+                    android:hint="Español/English"
+                    android:padding="3dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/xmlBtnSeleccionarIdiomasE"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/xmlTiMostrarIdiomasE"
+                    android:layout_margin="5dp"
+                    android:text="Selecionar Idiomas" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/xmlspinSexoRequeridoF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:baselineAligned="false"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="     Sexo Requerido "
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/xmlspinRangoEdadF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/xmlspinSexoRequeridoF"
+                    android:baselineAligned="false"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="       Rango Edad "
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/xmlTiDatosEspecificosE"
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:textSize="30dp"
-            android:gravity="center"
-            android:textStyle="bold"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:textColor="@color/md_blue_900"
-            android:text="Datos Especificos"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/btn_bg"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/xmlTiHorarioE"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:textSize="15dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:paddingStart="70dp"
+            android:text="Datos Especificos"
             android:textColor="@color/md_blue_900"
-            android:text="Horario"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp">
-
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/xmlspinJornadaF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:dropDownSelector="@color/gradStop"
-                android:completionHintView="@color/md_blue_900"
-                android:hint="Jornada"
-                android:textColorHint="@color/md_blue_900" />
+            android:background="@drawable/btn_bg"
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
-                android:id="@+id/xmlTiMostrarHorarioE"
-                android:layout_height="match_parent"
+                android:id="@+id/xmlTiHorarioE"
                 android:layout_width="match_parent"
-                android:textSize="15dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:paddingTop="10dp"
-                android:textStyle="bold"
+                android:paddingStart="90dp"
+                android:text="Horario"
                 android:textColor="@color/md_blue_900"
-                android:layout_toRightOf="@+id/xmlspinJornadaF"
-                android:text="8:00 AM / 6:00 PM"/>
-        </RelativeLayout>
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/xmlspinTipoContratoF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:dropDownSelector="@color/gradStop"
-            android:completionHintView="@color/md_blue_900"
-            android:hint=" Tipo de Contrato "
-            android:layout_toRightOf="@+id/xmlspinJornadaF"
-            android:textColorHint="@color/md_blue_900"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/xmlspinCantidadVacantesF"
-                android:layout_width="wrap_content"
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/xmlspinJornadaF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="Jornada"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
+
+                <TextView
+                    android:id="@+id/xmlTiMostrarHorarioE"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/xmlspinJornadaF"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="8:00 AM / 6:00 PM"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/xmlspinTipoContratoF"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/xmlspinJornadaF"
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint=" Cantidad Vacantes "
-                android:layout_marginEnd="20dp"
+                android:hint=" Tipo de Contrato "
+                android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/xmlspinAnosExperienciaF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:dropDownSelector="@color/gradStop"
-                android:baselineAligned="false"
-                android:completionHintView="@color/md_blue_900"
-                android:hint="  Años Experiencia"
-                android:layout_toRightOf="@+id/xmlspinCantidadVacantesF"
-                android:textColorHint="@color/md_blue_900"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        </RelativeLayout>
-    </LinearLayout>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/xmlspinCantidadVacantesF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:baselineAligned="false"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint=" Cantidad Vacantes "
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
 
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/xmlspinAnosExperienciaF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/xmlspinCantidadVacantesF"
+                    android:baselineAligned="false"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="  Años Experiencia"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
+
+            </RelativeLayout>
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/xmlTiSalarioE"
@@ -426,15 +424,14 @@
 
             <EditText
                 android:id="@+id/xmlEditSalarioE"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="3dp"
                 android:ems="10"
                 android:hint="Salario"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:textColor="@color/md_blue_900" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/xmlTiOtrosDatosE"
@@ -454,40 +451,43 @@
                 android:id="@+id/xmlEditOtrosRequisitosE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
+                android:drawablePadding="3dp"
                 android:ems="10"
                 android:hint="Otros Datos"
-                android:text="Otros Requisitos, Beneficios, Notas, Aviso, Etc."
                 android:inputType="textMultiLine"
+                android:text="Otros Requisitos, Beneficios, Notas, Aviso, Etc."
                 android:textColor="@color/md_blue_900" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/xmlspinEstadoEmpleoF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:dropDownSelector="@color/gradStop"
-                android:completionHintView="@color/md_blue_900"
-                android:hint="Estado Actual "
-                android:textColorHint="@color/md_blue_900"/>
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/xmlspinEstadoEmpleoF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:completionHintView="@color/md_blue_900"
+            android:dropDownSelector="@color/gradStop"
+            android:hint="Estado Actual "
+            android:textColor="@color/md_blue_900"
+            android:textColorHint="@color/md_blue_900" />
 
         <Button
             android:id="@+id/xmlBtnPersonasAplicaron"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:text="Personas que Aplicaron" />
 
         <TextView
             android:id="@+id/xmlTiFechaPublicacionE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:layout_marginTop="25dp"
-            android:textSize="12sp"
             android:hint="Ultima Actualizacion: 29/04/2019"
+            android:textColor="@color/md_blue_900"
             android:textColorHint="@color/md_black_1000"
+            android:textSize="13sp"
             android:textStyle="bold" />
-</LinearLayout>
+    </LinearLayout>
 
-
-    </androidx.core.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

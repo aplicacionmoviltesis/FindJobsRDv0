@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -13,9 +14,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
@@ -32,15 +32,18 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class PantallaPrincipalEmpleador extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
+
     private ImageView photoImageViewEmpleador;
     private TextView nameTextViewEmpleador;
     private TextView emailTextViewEmpleador;
     private TextView idTextViewEmpleador;
+    private TextView tituloelegiropcionBuscador;
     FirebaseUser user;
 
 
@@ -59,6 +62,10 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        tituloelegiropcionBuscador = (TextView) findViewById(R.id.tvelegiropcionEmpleador);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
+        tituloelegiropcionBuscador.setTypeface(face);
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +73,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -83,6 +90,19 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         nameTextViewEmpleador = (TextView) header.findViewById(R.id.nombreTextEmpleador);
         emailTextViewEmpleador = (TextView) header.findViewById(R.id.CorreoTextEmpleador);
 
+        TextView TextViewEmpleador = (TextView) header.findViewById(R.id.nombreTextEmpleador);
+
+
+        SharedPreferences preferences= this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
+        //-String Nombre= preferences.getString("Nombre", "Nombre");
+        //String foto= preferences.getString("ImagenEmpresa", "ImagenEmpresa");
+
+
+        //TextViewEmpleador.setText(Nombre);
+        //---Log.d("nombreklk",Nombre);
+        //--nameTextViewEmpleador.setText(Nombre);
+        //Log.d("nombreklk",nameTextViewEmpleador.setText(Nombre));
+
        /* mAuth= FirebaseAuth.getInstance();
         user= FirebaseAuth.getInstance().getCurrentUser();
         SharedPreferences preferences= this.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
@@ -90,6 +110,24 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
         nameTextViewEmpleador.setText(Nombre);*/
         //emailTextView.setText(user.getEmail());
+
+        LinearLayout IrAnadirEmpleo = (LinearLayout )findViewById(R.id.lyAnadirEmpleoEmpleador);
+        IrAnadirEmpleo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), PantallaRegistrarEmpleos.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        LinearLayout IrEmpleosAnadidos = (LinearLayout )findViewById(R.id.lyEmpresasAñadidos);
+        IrEmpleosAnadidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), PantallaListaEmpleosAnadidos.class);
+                startActivityForResult(intent, 0);
+            }
+        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -113,9 +151,21 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
             }
         };
 
+
+
     }
 
     private void setUserData(FirebaseUser user) {
+
+        SharedPreferences preferences= this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
+        String Nombre= preferences.getString("Nombre", "Nombre");
+        String foto= preferences.getString("ImagenEmpresa", "ImagenEmpresa");
+
+        nameTextViewEmpleador.setText(Nombre);
+        Glide.with(this).load(foto).into(photoImageViewEmpleador);
+        Log.d("apeklk",Nombre);
+
+
         nameTextViewEmpleador.setText(user.getDisplayName());
         emailTextViewEmpleador.setText(user.getEmail());
         Glide.with(this).load(user.getPhotoUrl()).into(photoImageViewEmpleador);
@@ -233,7 +283,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         } else if (id == R.id.compartirEmpleador) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, "Si no tienes empleo, Descarga ---> https://play.google.com/store/apps/details?id=com.FindJobsRD");
+            intent.putExtra(Intent.EXTRA_TEXT, "Si dispone de una y/o quieres publicar alguna oferta de empleo, Descarga ---> https://play.google.com/store/apps/details?id=com.FindJobsRD");
             startActivity(Intent.createChooser(intent, "Share with"));
 
         } else if (id == R.id.cerrarsesionEmpleador) {
@@ -244,7 +294,10 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
                 @Override
                 public void onResult(@NonNull Status status) {
                     if (status.isSuccess()) {
+                        Toast.makeText(getApplicationContext(), "La sesión se cerro con exito", Toast.LENGTH_SHORT).show();
+
                         goRegInScreenEmpleador();
+
                     } else {
                         Toast.makeText(getApplicationContext(), R.string.not_close_session, Toast.LENGTH_SHORT).show();
                     }

@@ -16,7 +16,14 @@
         <item>Nivel Superior</item>
         <item>Bachiller</item>
     </string-array>
-
+    <string-array name="sIdiomas">
+        <item>Español </item>
+        <item>Inglés </item>
+        <item>Francés</item>
+        <item>Ruso</item>
+        <item>Aleman </item>
+        <item>Otros</item>
+    </string-array>
 
     <string name="not_log_in">No se pudo iniciar sesión</string>
     <string name="log_out">Log Out</string>
@@ -116,4 +123,8 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_pantalla_registrar_empleos">PantallaRegistrarEmpleos</string>
+    <string name="title_activity_pantalla_detalles_empleo">PantallaDetallesEmpleo</string>
+    <string name="title_activity_pantalla_detalles_empleos_anadidos">
+        PantallaDetallesEmpleosAnadidos
+    </string>
 </resources>

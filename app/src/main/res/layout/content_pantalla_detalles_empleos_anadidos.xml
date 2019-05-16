@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".PantallaDetallesEmpleosAnadidos"
+    tools:showIn="@layout/activity_pantalla_detalles_empleos_anadidos">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/btn_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/xmlTvNombreEmpleoDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:layout_margin="10dp"
+                android:hint="Nombre Empleo"
+                android:textSize="45sp"
+                android:textColor="@color/md_blue_900" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/xmlTvNombreEmpresaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="3dp"
+                    android:hint="Nombre Empresa"
+                    android:textSize="25sp"
+                    android:textColor="@color/md_blue_900" />
+
+                <Button
+                    android:id="@+id/xmlBtnVerificacionEmpresaDEB"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/cuentaverificada"
+                    android:visibility="visible"
+                    android:layout_toRightOf="@id/xmlTvNombreEmpresaDEB"
+                    android:textColor="@color/md_blue_900" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/xmlTiDireccionDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:layout_marginTop="30dp"
+                android:dropDownSelector="@color/gradStop"
+                android:completionHintView="@color/md_blue_900"
+                android:textColor="@color/md_blue_900"
+                android:hint="Direccion"
+                android:textColorHint="@color/md_blue_900"/>
+
+            <TextView
+                android:id="@+id/xmlTvProvinciaDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_blue_900"
+                android:layout_marginStart="30dp"
+                android:hint="Provincia"
+                android:textSize="20sp"
+                android:textColorHint="@color/md_blue_900"/>
+
+            <TextView
+                android:id="@+id/xmlTvDireccionDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Direccion"
+                android:textSize="15sp"
+                android:layout_marginStart="15dp"
+                android:inputType="text"
+                android:textColorHint="@color/md_blue_900"
+                android:textColor="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiContactoDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/md_blue_900"
+                android:hint="Contacto"
+                android:textColorHint="@color/md_blue_900"/>
+
+            <TextView
+                android:id="@+id/xmlTvEmailDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:layout_marginStart="30dp"
+                android:hint="Email"
+                android:textSize="20sp"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTvTelefonoDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:hint="Telefono"
+                android:textSize="20sp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTvPaginaWebDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:hint="Pagina Web"
+                android:layout_marginStart="15dp"
+                android:textSize="15sp"
+                android:textColor="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiDatosEspecificosDEB"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Otros Datos"/>
+
+            <TextView
+                android:id="@+id/xmlTiHorarioDEB"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_blue_900"
+                android:text="Horario"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/xmlTvJornadaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Jornada"
+                    android:textSize="20sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
+
+                <TextView
+                    android:id="@+id/xmlTvMostrarHorarioDEB"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/md_blue_900"
+                    android:text="8:00 AM / 6:00 PM"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/xmlTiTipoContratoDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=" Tipo de Contrato "
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"/>
+            <TextView
+                android:id="@+id/xmlTvTipoContratoDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=" Tipo de Contrato "
+                android:textSize="20sp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"/>
+
+            <TextView
+                android:id="@+id/xmlTiCantidadVacantesDEB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=" Cantidad Vacantes "
+                android:textColor="@color/md_blue_900"
+                android:layout_marginEnd="20dp"
+                android:textColorHint="@color/md_blue_900" />
+            <TextView
+                android:id="@+id/xmlTvCantidadVacantesDEB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=" Cantidad Vacantes "
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:layout_marginStart="20dp"
+                android:textColorHint="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiSalarioDEB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Salario"
+                android:textColor="@color/md_black_1000" />
+
+            <TextView
+                android:id="@+id/xmlTvSalarioDEB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Salario"
+                android:textSize="20sp"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/md_black_1000" />
+
+            <TextView
+                android:id="@+id/xmlTiRequisitosDEB"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_red_A700"
+                android:text="Requisitos"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cuadro"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/xmlTiAreaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/md_blue_900"
+                    android:layout_marginEnd="30dp"
+                    android:hint="Area Requerida"
+                    android:textColorHint="@color/md_blue_900" />
+
+                <TextView
+                    android:id="@+id/xmlTvAreaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/md_black_1000"
+                    android:layout_marginStart="30dp"
+                    android:textSize="20sp"
+                    android:hint="Area Requerida"
+                    android:textColorHint="@color/md_black_1000" />
+
+                <TextView
+                    android:id="@+id/xmlTiAnosExperienciaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="  Años Experiencia"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"/>
+
+                <TextView
+                    android:id="@+id/xmlTvAnosExperienciaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Años Experiencia"
+                    android:layout_marginStart="30dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/md_black_1000"
+                    android:textColorHint="@color/md_blue_900"/>
+
+                <TextView
+                    android:id="@+id/xmlTiFormacionAcademicaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Formacion Academica Minima"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"/>
+
+                <TextView
+                    android:id="@+id/xmlTvFormacionAcademicaDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Formacion Academica"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="20sp"
+                    android:layout_marginStart="30dp"
+                    android:textColorHint="@color/md_blue_900"/>
+
+                <TextView
+                    android:id="@+id/xmlTiIdiomasDEB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Idiomas"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/md_blue_900" />
+
+                <TextView
+                    android:id="@+id/xmlTvIdiomasDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/xmlTiIdiomasE"
+                    android:padding="3dp"
+                    android:textSize="20sp"
+                    android:hint="Español/English"
+                    android:layout_marginStart="30dp"
+                    android:textColorHint="@color/md_blue_900"
+                    android:textColor="@color/md_blue_900"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+                <TextView
+                    android:id="@+id/xmlTiSexoRequeridoDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:hint="Sexo Requerido "
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"/>
+
+                <TextView
+                    android:id="@+id/xmlTvSexoRequeridoDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:hint="Sexo Requerido "
+                    android:textSize="20sp"
+                    android:layout_marginStart="30dp"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"/>
+
+                <TextView
+                    android:id="@+id/xmlTiRangoEdadDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Rango Edad"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"/>
+
+                <TextView
+                    android:id="@+id/xmlTvRangoEdadDEB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Rango Edad"
+                    android:textSize="20sp"
+                    android:layout_marginStart="30dp"
+                    android:textColor="@color/md_black_1000"
+                    android:textColorHint="@color/md_blue_900"/>
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/xmlTiNotaDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nota"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"/>
+
+            <TextView
+                android:id="@+id/xmlTvNotaDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginStart="15dp"
+                android:hint="Otros Requisitos, Beneficios, Notas, Aviso, Etc."
+                android:textColor="@color/md_black_1000" />
+
+            <TextView
+                android:id="@+id/xmlTiEstadoEmpleoDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Estado Actual "
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"/>
+
+            <TextView
+                android:id="@+id/xmlTvEstadoEmpleoDEB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Estado Actual "
+                android:layout_marginStart="30dp"
+                android:textSize="20sp"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/xmlBtnAplicarEmpleoDEB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Aplicar" />
+
+        <TextView
+            android:id="@+id/xmlTvFechaPublicacionDEB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textSize="13sp"
+            android:layout_margin="3dp"
+            android:textColor="@color/md_blue_900"
+            android:hint="Ultima Actualizacion: 29/04/2019"
+            android:textColorHint="@color/md_black_1000"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

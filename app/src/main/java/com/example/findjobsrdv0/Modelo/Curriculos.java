@@ -1,9 +1,9 @@
 package com.example.findjobsrdv0.Modelo;
 
-public class RegistrarCurriculo {
+public class Curriculos {
     String codigoid, nombre, apellido, cedula,email,telefono,celular,provincia,estadocivil,direccion,ocupacion,gradomayor,estadoactual,habilidades;
 
-    public RegistrarCurriculo(String codigoid, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadocivil, String direccion, String ocupacion, String gradomayor, String estadoactual, String habilidades) {
+    public Curriculos(String codigoid, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadocivil, String direccion, String ocupacion, String gradomayor, String estadoactual, String habilidades) {
         this.codigoid = codigoid;
         this.nombre = nombre;
         this.apellido = apellido;

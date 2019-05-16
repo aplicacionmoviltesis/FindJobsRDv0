@@ -8,17 +8,14 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.example.findjobsrdv0.Modelo.Curriculos;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.stats.internal.G;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
@@ -35,6 +32,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,20 +63,29 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        LinearLayout IrRegistrarCurriculo = (LinearLayout )findViewById(R.id.lyRegistrarCurriculo);
+        IrRegistrarCurriculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), Curriculos.class);
+                startActivityForResult(intent, 0);
+            }
+        });
 
         tituloelegiropcion = (TextView) findViewById(R.id.tvelegiropcionBuscador);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
@@ -245,7 +252,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         } else if (id == R.id.compartirBuscador) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, "Si no tienes empleo, Descarga ---> https://play.google.com/store/apps/details?id=com.FindJobsRD");
+            intent.putExtra(Intent.EXTRA_TEXT, "Si no tienes empleo y quieres encontrar alguno, Descarga ---> https://play.google.com/store/apps/details?id=com.FindJobsRD");
             startActivity(Intent.createChooser(intent, "Share with"));
 
         } else if (id == R.id.cerrarsesionBuscador) {
@@ -256,6 +263,8 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
                 @Override
                 public void onResult(@NonNull Status status) {
                     if (status.isSuccess()) {
+                        Toast.makeText(getApplicationContext(), "La sesión se cerro con exito", Toast.LENGTH_SHORT).show();
+
                         goRegInScreen();
                     } else {
                         Toast.makeText(getApplicationContext(), R.string.not_close_session, Toast.LENGTH_SHORT).show();

@@ -4,37 +4,26 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.findjobsrdv0.Modelo.RegistrarCurriculo;
+import com.example.findjobsrdv0.Modelo.Curriculos;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.jaredrummler.materialspinner.MaterialSpinner;
-import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class cPantallaRegistroCurriculo extends AppCompatActivity  {
 
@@ -234,7 +223,7 @@ public class cPantallaRegistroCurriculo extends AppCompatActivity  {
 
         if (!TextUtils.isEmpty( nombre )){
             String id = Curriculo.push().getKey();
-            RegistrarCurriculo leccion = new RegistrarCurriculo( id, nombre, apellido, cedula, email, telefono, celular, Provincia, estadoCivil,   direccion,ocupacion,  GradoMayor, EstadoActual, habilidades   );
+            Curriculos leccion = new Curriculos( id, nombre, apellido, cedula, email, telefono, celular, Provincia, estadoCivil,   direccion,ocupacion,  GradoMayor, EstadoActual, habilidades   );
             Curriculo.child( "Leccion" ).child( id ).setValue( leccion );
 
             Toast.makeText( this, "Curriculo registrado", Toast.LENGTH_SHORT ).show();
