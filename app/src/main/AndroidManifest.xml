@@ -12,6 +12,11 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.DetalleCurriculo"></activity>
+        <activity android:name=".VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo" />
+        <activity android:name=".Registro_del_Curriculo.cPantallaReferenciasCurriculo" />
+        <activity android:name=".Registro_del_Curriculo.cPantallaOtrosCursos" />
+        <activity android:name=".Registro_del_Curriculo.cPantallaRegistrarCurriculo" />
         <activity
             android:name=".PantallaActualizarEmpleo"
             android:label="@string/title_activity_pantalla_actualizar_empleo"
@@ -34,17 +39,10 @@
             android:label="@string/title_activity_pantalla_registrar_empleos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".cPantallaRegistroCurriculo"
-            android:label="@string/title_activity_c_pantalla_registro_curriculo"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".cPantallaFormacionAcademicaCurriculo"
+            android:name=".Registro_del_Curriculo.cPantallaFormacionAcademicaCurriculo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".cPantallaExperienciaLaboralCurriculo"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".cPantallaReferenciasCurriculos"
+            android:name=".Registro_del_Curriculo.cPantallaExperienciaLaboralCurriculo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".PantallaNavegador" />
         <activity

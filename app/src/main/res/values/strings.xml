@@ -36,6 +36,7 @@
         <item>Otros</item>
     </string-array>
 
+
     <string-array name="InfoJornada">
         <item>Matutina </item>
         <item>Vespertina </item>
@@ -88,7 +89,30 @@
         <item>Masculino</item>
         <item>Femenino</item>
         <item>Otro</item>
+    </string-array>
 
+
+    <string-array name="Provincia">
+        <item>La Vega</item>
+        <item>Salcedo</item>
+        <item>Espaillat</item>
+        <item>Santo Domingo</item>
+        <item>Santiago</item>
+    </string-array>
+
+    <string-array name="GradoMayor">
+        <item>Maestria</item>
+        <item>Doctorado</item>
+    </string-array>
+
+    <string-array name="EstadoCivil">
+        <item>soltero</item>
+        <item>casado</item>
+    </string-array>
+
+    <string-array name="EstadoActual">
+        <item>Disponible</item>
+        <item>Ocupado</item>
     </string-array>
 
     <string name="not_log_in">No se pudo iniciar sesión</string>

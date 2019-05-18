@@ -180,24 +180,26 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinnerprovincias"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:layout_marginEnd="10dp"
                 android:dropDownSelector="@color/gradStop"
+                android:entries="@array/Provincia"
                 android:hint="Provincias"
                 android:textColorHint="@color/md_blue_900"
                 app:met_floatingLabel="normal" />
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinnerestadocivil"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:baselineAligned="false"
                 android:dropDownSelector="@color/gradStop"
+                android:entries="@array/EstadoCivil"
                 android:hint="  Estado Civil"
                 android:textColorHint="@color/md_blue_900"
                 app:met_floatingLabel="normal" />
@@ -297,23 +299,25 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinnergradomayor"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:layout_marginEnd="10dp"
+                android:entries="@array/GradoMayor"
                 android:dropDownSelector="@color/gradStop"
                 android:hint="Grado Mayor"
                 android:textColorHint="@color/md_blue_900"
                 app:met_floatingLabel="normal" />
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinnerestadoactual"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:baselineAligned="false"
+                android:entries="@array/EstadoActual"
                 android:dropDownSelector="@color/gradStop"
                 android:hint="  Estado Actual"
                 android:textColorHint="@color/md_blue_900"
@@ -435,13 +439,13 @@
                 android:text="Añadir Formacion Academica" />
 
             <Button
-                android:id="@+id/xmlBtnReferenciaCurriculoC"
+                android:id="@+id/xmlBntExperienciaLaboralCurriculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Añadir Experiencias Laborales" />
 
             <Button
-                android:id="@+id/xmlBntExperienciaLaboralCurriculo"
+                android:id="@+id/xmlBtnReferenciaCurriculoC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Añadir Referencias" />
