@@ -72,7 +72,7 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         //Toast.makeText(PantallaListaEmpleosAnadidos.this,""+clickItem.getsNombreEmpleoE(),Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(PantallaListaEmpleosAnadidos.this, PantallaDetallesEmpleosAnadidos.class);
+                        Intent intent = new Intent(PantallaListaEmpleosAnadidos.this, PantallaActualizarEmpleo.class);
                         intent.putExtra("sEmpleoIdAnadidos",adapter.getRef(position).getKey());
                         startActivity(intent);
                     }

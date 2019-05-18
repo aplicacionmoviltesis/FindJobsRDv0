@@ -433,7 +433,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RadioGroup
-            android:id="@+id/xmlRGEstadoActualEmpleoE"
+            android:id="@+id/xmlRGEstadoActualEmpleoAE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

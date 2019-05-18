@@ -29,7 +29,7 @@ public class PantallaCarga extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(PantallaCarga.this, PantallaActualizarEmpleo.class);
+                Intent intent = new Intent(PantallaCarga.this, PantallaModoUsuario.class);
                 startActivity(intent);
                 finish();
 
