@@ -129,6 +129,15 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
             }
         });
 
+        LinearLayout IrBuscarEmpleosBE = (LinearLayout )findViewById(R.id.lyBuscarCurriculosEmpleador);
+        IrBuscarEmpleosBE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), PantallaListaEmpleosBuscados.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();

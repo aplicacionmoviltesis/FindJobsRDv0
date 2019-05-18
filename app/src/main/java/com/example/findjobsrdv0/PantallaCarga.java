@@ -29,12 +29,12 @@ public class PantallaCarga extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(PantallaCarga.this, PantallaRegistrarEmpleos.class);
+                Intent intent = new Intent(PantallaCarga.this, PantallaActualizarEmpleo.class);
                 startActivity(intent);
                 finish();
 
             }
-        },5000);
+        },2000);
 
     }
 }

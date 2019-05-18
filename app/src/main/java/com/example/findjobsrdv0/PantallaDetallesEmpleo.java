@@ -65,10 +65,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         DBempleos = database.getReference("empleos");
 
-
         MostImagen = (ImageView) findViewById(R.id.xmlImagenEmpleoE);
-
-
 
         TvNombreEmpleoDE = (TextView) findViewById(R.id.xmlTvNombreEmpleoDE);
         TvNombreEmpresaDE = (TextView) findViewById(R.id.xmlTvNombreEmpresaDE);
@@ -93,11 +90,6 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         TvFechaPublicacionDE = (TextView) findViewById(R.id.xmlTvFechaPublicacionDE);
 
 
-        //goProvincia();
-
-
-
-
         if(getIntent() != null){
             sEmpleoIdE = getIntent().getStringExtra("sEmpleoIdBuscado");
             if(!sEmpleoIdE.isEmpty()){
@@ -106,29 +98,27 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
             }
         }
 
-
-
-
         BtnAplicarEmpleoDE= (Button) findViewById(R.id.xmlBtnAplicarEmpleoDE);
         TvPaginaWebDE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goProvincia();
+                goPaginaWeb();
             }
         });
 
+        TvAreaDE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goDetalleArea();
+            }
+        });
 
-        //bundle= getIntent().getExtras();
-
-        //TvNombreEmpleoDE.setText(bundle.getString("sNombreEmpleoE"));
-
-
-        //MostImagen.setImageBitmap(bundle.getString("fotoempleo"));
-        //TvNombreEmpresaDE.setText(bundle.getString("NomEmpresa"));
-
-
-
-
+        TvProvinciaDE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goDetalleProvincia();
+            }
+        });
 
 
     }
@@ -149,20 +139,20 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                 TvTelefonoDE.setText(empleos.getsTelefonoE());
                 TvPaginaWebDE.setText(empleos.getsPaginaWebE());
                 TvJornadaDE.setText(empleos.getsJornadaE());
+                TvMostrarHorarioDE.setText(empleos.getsHorarioE());
+                TvTipoContratoDE.setText(empleos.getsTipoContratoE());
+                TvCantidadVacantesDE.setText(empleos.getsCantidadVacantesE());
+                TvSalarioDE.setText(empleos.getsSalarioE());
+                TvAreaDE.setText(empleos.getsAreaE());
+                TvAnosExperienciaDE.setText(empleos.getsAnosExperienciaDE());
+                TvFormacionAcademicaDE.setText(empleos.getsFormacionAcademica());
+                TvIdiomasDE.setText(empleos.getsMostrarIdioma());
+                TvSexoRequeridoDE.setText(empleos.getsSexoRequeridoE());
+                TvRangoEdadDE.setText(empleos.getsRangoE());
+                TvNotaDE.setText(empleos.getsOtrosDatosE());
+                TvEstadoEmpleoDE.setText(empleos.getsEstadoEmpleoE());
+                TvFechaPublicacionDE.setText(empleos.getsFechaPublicacionE());
 
-                /*TvMostrarHorarioDE.setText(bundle.getString("PaginaWeb"));
-                TvTipoContratoDE.setText(bundle.getString("Direccion"));
-                TvCantidadVacantesDE.setText(bundle.getString("Experiencia"));
-                TvSalarioDE.setText(bundle.getString("Descripcion"));
-                TvAreaDE.setText(bundle.getString("FechaPublicaion"));
-                TvAnosExperienciaDE.setText(bundle.getString("Estado"));
-                TvFormacionAcademicaDE.setText(bundle.getString("Telefono"));
-                TvIdiomasDE.setText(bundle.getString("Email"));
-                TvSexoRequeridoDE.setText(bundle.getString("PaginaWeb"));
-                TvRangoEdadDE.setText(bundle.getString("Direccion"));
-                TvNotaDE.setText(bundle.getString("Experiencia"));
-                TvEstadoEmpleoDE.setText(bundle.getString("Descripcion"));
-                TvFechaPublicacionDE.setText(bundle.getString("FechaPublicaion"));*/
 //String klk= empleos.getsProvinciaE();
                 //Log.d("pagina",empleos.getsPaginaWebE());
 
@@ -175,13 +165,35 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         });
     }
 
-    public void goProvincia(){
+    public void goPaginaWeb(){
 
         Intent intent = new Intent(PantallaDetallesEmpleo.this, PantallaNavegador.class);
         intent.putExtra("sPaginaWebDE",TvPaginaWebDE.getText().toString().trim());
 
         String hola=TvPaginaWebDE.getText().toString().trim();
-        Log.d("klk",hola);
+        Log.d("klkpaginaweb",hola);
+        startActivity(intent);
+
+    }
+
+    public void goDetalleProvincia(){
+
+        Intent intent = new Intent(PantallaDetallesEmpleo.this, PantallaDetallesProvincia.class);
+        intent.putExtra("sProvinciaDE",TvProvinciaDE.getText().toString().trim());
+
+        String hola=TvProvinciaDE.getText().toString().trim();
+        Log.d("klkprovincia",hola);
+        startActivity(intent);
+
+    }
+
+    public void goDetalleArea(){
+
+        Intent intent = new Intent(PantallaDetallesEmpleo.this, PantallaDetallesArea.class);
+        intent.putExtra("sAreaDE",TvAreaDE.getText().toString().trim());
+
+        String hola=TvAreaDE.getText().toString().trim();
+        Log.d("klkarea",hola);
         startActivity(intent);
 
     }

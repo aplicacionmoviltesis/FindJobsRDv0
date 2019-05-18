@@ -10,12 +10,12 @@ public class Empleos {
 
 
     String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
-            sHorarioE,sFechaPublicacionE, sMostrarIdioma,sAreaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
+            sHorarioE,sFechaPublicacionE, sMostrarIdioma,sAreaE,sFormacionAcademica,sAnosExperienciaDE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
             sTipoContratoE,sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE, sIdEmpleadorE;
 
     public Empleos(String sIDEmpleo, String sNombreEmpleoE, String sNombreEmpresaE, String sDireccionE,String sProvinciaE,
                    String sTelefonoE, String sPaginaWebE, String sEmailE, String sSalarioE, String sOtrosDatosE,
-                   String sHorarioE, String sFechaPublicacionE, String sMostrarIdioma, String sAreaE,
+                   String sHorarioE, String sFechaPublicacionE, String sMostrarIdioma, String sAreaE,String sAnosExperienciaDE,String sFormacionAcademica,
                    String sSexoRequeridoE, String sRangoE, String sJornadaE, String sCantidadVacantesE,
                    String sTipoContratoE, String sEstadoEmpleoE, String sPersonasAplicaronE,String sImagenEmpleoE, String sIdEmpleadorE) {
 
@@ -33,6 +33,8 @@ public class Empleos {
         this.sFechaPublicacionE = sFechaPublicacionE;
         this.sMostrarIdioma = sMostrarIdioma;
         this.sAreaE = sAreaE;
+        this.sFormacionAcademica = sFormacionAcademica;
+        this.sAnosExperienciaDE = sAnosExperienciaDE;
         this.sSexoRequeridoE = sSexoRequeridoE;
         this.sRangoE = sRangoE;
         this.sJornadaE = sJornadaE;
@@ -135,6 +137,12 @@ public class Empleos {
 
     public String getsIdEmpleador() {
         return sIdEmpleadorE;
+    }
+    public String getsFormacionAcademica() {
+        return sFormacionAcademica;
+    }
+    public String getsAnosExperienciaDE() {
+        return sAnosExperienciaDE;
     }
 
 

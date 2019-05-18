@@ -56,7 +56,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
                     //Log.d("klk",klk);
 
                     String cri= areaSpinner.getSelectedItem().toString();
-                    Log.d("perra", cri);
+                    Log.d("valorSpin", cri);
                 }
                 else {
 

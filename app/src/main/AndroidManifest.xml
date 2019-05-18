@@ -13,9 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".PantallaActualizarEmpleo"
+            android:label="@string/title_activity_pantalla_actualizar_empleo"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PantallaDetallesArea" />
+        <activity
             android:name=".PantallaDetallesEmpleosAnadidos"
             android:label="@string/title_activity_pantalla_detalles_empleos_anadidos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PantallaDetallesProvincia" />
         <activity android:name=".PantallaListaEmpleosAnadidos" />
         <activity android:name=".PantallaBuscarEmpleos" />

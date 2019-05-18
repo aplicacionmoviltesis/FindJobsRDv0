@@ -11,6 +11,8 @@ import android.view.View;
 import com.example.findjobsrdv0.Modelo.EmpleosViewHolder;
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -21,10 +23,11 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
     DatabaseReference DBempleos;
     private RecyclerView listaEmpleosAnadidos;
     RecyclerView.LayoutManager layoutManager;
+    private FirebaseAuth mAuthEmpleador;
 
     FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder> adapter;
 
-
+    String Ukey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +44,26 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         listaEmpleosAnadidos.setHasFixedSize(true);
         listaEmpleosAnadidos.setLayoutManager(new LinearLayoutManager(this));
 
-        cargarEmpleos();
+
+        //FirebaseUser user = mAuthEmpleador.getCurrentUser();
+        //String Ukey = user.getUid();
+        Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        cargarEmpleos(Ukey);
 
     }
 
-    private void cargarEmpleos() {
+    private void cargarEmpleos(String Ukey) {
         adapter = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>
-                (Empleos.class,R.layout.cardview_mostrar_empleo, EmpleosViewHolder.class,DBempleos) {
+                (Empleos.class,R.layout.cardview_mostrar_empleo, EmpleosViewHolder.class,
+                        DBempleos.orderByChild("sIdEmpleador").equalTo(Ukey)) {
             @Override
             protected void populateViewHolder(EmpleosViewHolder empleosViewHolder, Empleos empleos, int i) {
                 empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());
                 empleosViewHolder.NombreEmpresaCardView.setText(empleos.getsNombreEmpresaE());
-
+                empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
+                empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
+                empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
+                empleosViewHolder.FechaPublicacionCardView.setText(empleos.getsFechaPublicacionE());
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
 
                 final Empleos clickItem = empleos;

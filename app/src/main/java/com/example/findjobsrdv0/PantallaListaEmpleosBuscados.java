@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
@@ -18,9 +21,11 @@ import com.example.findjobsrdv0.Modelo.EmpleosViewHolder;
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -50,6 +55,17 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
     FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder> adapterEmpleosFiltrados;
 
     Button botonbuscarprovincia;
+    String Valor= "";
+
+    /////Spinner Provincia
+
+    private Spinner spinProvinciaE;
+    private DatabaseReference provinciasRef;
+    private List<Provincias> provincias;
+    private boolean IsFirstTimeClick = true;
+    private String sProvinciaE;
+
+/////Spinner Provincia
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +85,57 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
         listaEmpleosBuscados.setHasFixedSize(true);
         listaEmpleosBuscados.setLayoutManager(new LinearLayoutManager(this));
 
+        /////Spinner Provincia
+
+        provinciasRef = FirebaseDatabase.getInstance().getReference();
+        spinProvinciaE = (Spinner) findViewById(R.id.xmlspinBuscarPorProvinciaEB);
+
+        spinProvinciaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sProvinciaE = spinProvinciaE.getSelectedItem().toString();
+                    Log.d("valorSpinProv", sProvinciaE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        provinciasRef.child("provincias").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final List<String> ListProvincias = new ArrayList<String>();
+                for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
+                    String provinciaName = provinciaSnapshot.child("nombre").getValue(String.class);
+                    ListProvincias.add(provinciaName);
+                }
+
+                ArrayAdapter<String> provinciasAdapter = new ArrayAdapter<String>(PantallaListaEmpleosBuscados.this, android.R.layout.simple_spinner_item, ListProvincias);
+                provinciasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinProvinciaE.setAdapter(provinciasAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+/////Spinner Provincia
+
         botonbuscarprovincia = (Button) findViewById(R.id.botonbuscarprovincia);
 
         botonbuscarprovincia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    filtro();
+                    filtro(sProvinciaE);
             }
         });
 
@@ -94,6 +155,10 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
                 empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());
                 empleosViewHolder.NombreEmpresaCardView.setText(empleos.getsNombreEmpresaE());
+                empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
+                empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
+                empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
+                empleosViewHolder.FechaPublicacionCardView.setText(empleos.getsFechaPublicacionE());
 
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
                 final Empleos clickItem = empleos;
@@ -111,20 +176,24 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
         listaEmpleosBuscados.setAdapter(adapterEmpleosBuscados);
     }
 
-    private void filtro() {
-        String campo= "sNombreEmpleoE";
-        String Valor= "limpiador";
+    private void filtro(String Valor) {
+        String campo= "sProvinciaE";
+
 
         Query firebaseSearchQuery = DBempleosBuscados.orderByChild(campo).equalTo(Valor);
 
 
-        adapterEmpleosBuscados = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>
+        adapterEmpleosFiltrados = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>
                 (Empleos.class, R.layout.cardview_mostrar_empleo, EmpleosViewHolder.class, firebaseSearchQuery) {
             @Override
             protected void populateViewHolder(EmpleosViewHolder empleosViewHolder, Empleos empleos, int i) {
 
                 empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());
                 empleosViewHolder.NombreEmpresaCardView.setText(empleos.getsNombreEmpresaE());
+                empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
+                empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
+                empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
+                empleosViewHolder.FechaPublicacionCardView.setText(empleos.getsFechaPublicacionE());
 
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
                 final Empleos clickItem = empleos;
@@ -133,13 +202,13 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
 
                         Intent intent = new Intent(PantallaListaEmpleosBuscados.this, PantallaDetallesEmpleo.class);
-                        intent.putExtra("sEmpleoIdBuscado", adapterEmpleosBuscados.getRef(position).getKey());
+                        intent.putExtra("sEmpleoIdBuscado", adapterEmpleosFiltrados.getRef(position).getKey());
                         startActivity(intent);
                     }
                 });
             }
         };
-        listaEmpleosBuscados.setAdapter(adapterEmpleosBuscados);
+        listaEmpleosBuscados.setAdapter(adapterEmpleosFiltrados);
     }
 
 
@@ -218,18 +287,22 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
                 // }
 
-                if (empleos.getsNombreEmpleoE().equals(prov)) {
+                //if (empleos.getsNombreEmpleoE().equals(prov)) {
                     empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());
                     empleosViewHolder.NombreEmpresaCardView.setText(empleos.getsNombreEmpresaE());
+                    empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
+                    empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
+                    empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
+                    empleosViewHolder.FechaPublicacionCardView.setText(empleos.getsFechaPublicacionE());
 
                     Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
 
-                    Log.d("perrobiralata", empleos.getsNombreEmpleoE());
+                   // Log.d("perrobiralata", empleos.getsNombreEmpleoE());
 
-                } else {
-                    Log.d("cabron", empleos.getsNombreEmpleoE());
+                //} else {
+                    //Log.d("cabron", empleos.getsNombreEmpleoE());
 
-                }
+               // }
 
 
                 //empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());

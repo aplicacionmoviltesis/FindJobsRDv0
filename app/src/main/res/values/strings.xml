@@ -16,13 +16,79 @@
         <item>Nivel Superior</item>
         <item>Bachiller</item>
     </string-array>
-    <string-array name="sIdiomas">
+
+    <string-array name="InfoGrado">
+        <item>Nivel Basico</item>
+        <item>Bachiller</item>
+        <item>Licenciado</item>
+        <item>Ingeniero</item>
+        <item>Maestria</item>
+        <item>Doctorado</item>
+
+    </string-array>
+
+    <string-array name="InfoIdiomas">
         <item>Español </item>
         <item>Inglés </item>
         <item>Francés</item>
         <item>Ruso</item>
         <item>Aleman </item>
         <item>Otros</item>
+    </string-array>
+
+    <string-array name="InfoJornada">
+        <item>Matutina </item>
+        <item>Vespertina </item>
+        <item>Nocturna</item>
+        <item>Matutina/Vespertina</item>
+        <item>Vespertina/Nocturna </item>
+        <item>Nocturna/Matutina</item>
+    </string-array>
+
+    <string-array name="InfoNumeros">
+        <item> 1 Vacante </item>
+        <item> 2 Vacantes  </item>
+        <item> 3 Vacantes  </item>
+        <item> 4 Vacantes  </item>
+        <item> 5 Vacantes  </item>
+        <item> 6 Vacantes  </item>
+        <item> 7 Vacantes  </item>
+        <item> 8 Vacantes  </item>
+        <item> 9 Vacantes  </item>
+        <item> 10+ Vacantes  </item>
+    </string-array>
+
+    <string-array name="InfoAnosExperiencia">
+        <item> 1 Años </item>
+        <item> 2 Años </item>
+        <item> 3 Años </item>
+        <item> 4 Años </item>
+        <item> 5 Años </item>
+        <item> 6 Años </item>
+        <item> 7 Años </item>
+        <item> 8 Años </item>
+        <item> 9 Años </item>
+        <item> 10+ Años </item>
+    </string-array>
+
+    <string-array name="infoTipoContratoE">
+        <item>Tiempo Indefinido </item>
+        <item>Temporal </item>
+    </string-array>
+
+    <string-array name="InfoRangoEdad">
+        <item>18-25 Años de Edad</item>
+        <item>26-35 Años de Edad</item>
+        <item>36-45 Años de Edad</item>
+        <item>46-∞) Años de Edad</item>
+    </string-array>
+
+    <string-array name="InfoSexo">
+        <item>Cualquiera</item>
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+
     </string-array>
 
     <string name="not_log_in">No se pudo iniciar sesión</string>
@@ -33,6 +99,13 @@
     <string name="not_firebase_auth">No se pudo autenticar con Firebase</string>
     <string name="title_activity_pantalla_principal_empleador">PantallaPrincipalEmpleador</string>
     <string name="title_activity_c_pantalla_registro_curriculo">cPantallaRegistroCurriculo</string>
+
+    <string name="title_activity_pantalla_registrar_empleos">PantallaRegistrarEmpleos</string>
+    <string name="title_activity_pantalla_detalles_empleo">PantallaDetallesEmpleo</string>
+    <string name="title_activity_pantalla_detalles_empleos_anadidos">
+        PantallaDetallesEmpleosAnadidos
+    </string>
+    <string name="title_activity_pantalla_actualizar_empleo">PantallaActualizarEmpleo</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -121,10 +194,5 @@
         "On the layout level, design your app layout to minimize opportunities for interference. "
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
-    </string>
-    <string name="title_activity_pantalla_registrar_empleos">PantallaRegistrarEmpleos</string>
-    <string name="title_activity_pantalla_detalles_empleo">PantallaDetallesEmpleo</string>
-    <string name="title_activity_pantalla_detalles_empleos_anadidos">
-        PantallaDetallesEmpleosAnadidos
     </string>
 </resources>

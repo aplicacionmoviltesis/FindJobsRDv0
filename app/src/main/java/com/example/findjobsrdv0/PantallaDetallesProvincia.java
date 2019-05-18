@@ -21,12 +21,12 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
 
     TextView TvNombreProvincia, TvDescripcionProvincia, TvCoordenadasProvincia;
     ImageView MostImagenProvincia;
-    String NombreProvinciakey = "";
+    String sNombreProvinciakey = "";
 
     FirebaseDatabase database;
     Query DBprovincia;
 
-    String perro="santiago";
+    String perro = "santiago";
 
 
     @Override
@@ -43,7 +43,13 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         TvCoordenadasProvincia = (TextView) findViewById(R.id.xmlTvDescripcionProvincia);
 
 
+        if(getIntent() != null){
+            sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
+            if(!sNombreProvinciakey.isEmpty()){
 
+                goDetalleProvincia(sNombreProvinciakey);
+            }
+        }
 
 
 
@@ -59,42 +65,40 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
             }
         }*/
 
-        goDetalleProvincia();
+        goDetalleProvincia(sNombreProvinciakey);
 
     }
-    String hola;
-    private void goDetalleProvincia() {
 
-        Query q = DBprovincia.orderByChild("descripcion").equalTo("klk");
+    String hola;
+
+    private void goDetalleProvincia(String sNombreProvinciakey) {
+
+        Query q = DBprovincia.orderByChild("nombre").equalTo(sNombreProvinciakey);
         //.orderByChild("descripcion").equalTo("hola")
-               // .orderByChild("coordenadas").equalTo("3.5");
+        // .orderByChild("coordenadas").equalTo("3.5");
 ///       Query jj= q.orderByChild("coordenadas").equalTo("3.5");
 
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                   // if(dataSnapshot.child("descripcion").equals("descripcion"))
+                    // if(dataSnapshot.child("descripcion").equals("descripcion"))
                     //{
-                        //if(dataSnapshot.child("coordenadas").equals("coordenadas")){
+                    //if(dataSnapshot.child("coordenadas").equals("coordenadas")){
 
-                            Log.d("hola", String.valueOf(dataSnapshot));
-                            // los datos llegan hasta el objeto, pero no se cargan en la clase
+                    Log.d("hola", String.valueOf(dataSnapshot));
+                    // los datos llegan hasta el objeto, pero no se cargan en la clase
 
                     //TvNombreProvincia.setText(dataSnapshot.child("nombre").toString());
 
-                            Provincias Dprovincia = new Provincias();
-                            Dprovincia.setsNombreProvincia(snapshot.child("nombre").getValue().toString());
+                    Provincias Dprovincia = new Provincias();
+                    Dprovincia.setsNombreProvincia(snapshot.child("nombre").getValue().toString());
                     Dprovincia.setsImagenProvincia(snapshot.child("imagen").getValue().toString());
+                    Dprovincia.setsDescripcionProvincia(snapshot.child("descripcion").getValue().toString());
+                    Dprovincia.setsCoordenadasProvincia(snapshot.child("coordenadas").getValue().toString());
 
 
-
-
-
-
-
-
-                            // }
+                    // }
                     //}
                     //---Log.d("hola", String.valueOf(dataSnapshot));
                     // los datos llegan hasta el objeto, pero no se cargan en la clase
@@ -110,14 +114,21 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
                     TvDescripcionProvincia.setText(Dprovincia.getsDescripcionProvincia());
                     TvCoordenadasProvincia.setText(Dprovincia.getsCoordenadasProvincia());
 
-                     //---------hola = Dprovincia.getsNombreProvincia();
+
+
+
+
+
+
+
+                    //---------hola = Dprovincia.getsNombreProvincia();
                     //---------Log.d("holap", TvNombreProvincia.toString());
                     //--------- Log.d("holapp",dataSnapshot.getValue().toString());
                     //--------- Log.d("holappklk",dataSnapshot.child("01").getValue().toString());
                     //--------- Log.d("holappklk",Dprovincia.getsNombreProvincia());
                     //Log.d("hol", String.valueOf(hola));
 
-                    Log.d("probando",Dprovincia.getsNombreProvincia());
+                    Log.d("probando", Dprovincia.getsNombreProvincia());
                 }
 
 

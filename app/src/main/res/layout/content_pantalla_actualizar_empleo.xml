@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".PantallaRegistrarEmpleos"
-    tools:showIn="@layout/activity_pantalla_registrar_empleos">
+    tools:context=".PantallaActualizarEmpleo"
+    tools:showIn="@layout/activity_pantalla_actualizar_empleo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:padding="5dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiNombreEmpleoE"
+                android:id="@+id/xmlTiNombreEmpleoAE"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
@@ -48,7 +48,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/xmlEditNombreEmpleoE"
+                    android:id="@+id/xmlEditNombreEmpleoAE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
@@ -59,7 +59,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiNombreEmpresaE"
+                android:id="@+id/xmlTiNombreEmpresaAE"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
@@ -73,7 +73,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/xmlEditNombreEmpresaE"
+                    android:id="@+id/xmlEditNombreEmpresaAE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
@@ -84,7 +84,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinProvinciaE"
+                android:id="@+id/xmlspinProvinciaAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Provincia"
@@ -92,7 +92,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiDireccionE"
+                android:id="@+id/xmlTiDireccionAE"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
@@ -106,7 +106,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/xmlEditDireccionE"
+                    android:id="@+id/xmlEditDireccionAE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
@@ -117,7 +117,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiEmailE"
+                android:id="@+id/xmlTiEmailAE"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
@@ -131,7 +131,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/xmlEditEmailE"
+                    android:id="@+id/xmlEditEmailAE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -142,7 +142,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiTelefonoE"
+                android:id="@+id/xmlTiTelefonoAE"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
@@ -156,7 +156,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/xmlEditTelefonoE"
+                    android:id="@+id/xmlEditTelefonoAE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
@@ -167,7 +167,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiPaginaWebE"
+                android:id="@+id/xmlTiPaginaWebAE"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
@@ -181,7 +181,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/xmlEditPaginaWebE"
+                    android:id="@+id/xmlEditPaginaWebAE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
@@ -195,7 +195,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/xmlTiDatosEspecificosE"
+            android:id="@+id/xmlTiDatosEspecificosAE"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
@@ -213,7 +213,7 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/xmlTiHorarioE"
+                android:id="@+id/xmlTiHorarioAE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -223,7 +223,7 @@
                 android:textStyle="bold" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinJornadaE"
+                android:id="@+id/xmlspinJornadaAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -234,7 +234,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <TextView
-                android:id="@+id/xmlTiMostrarHorarioE"
+                android:id="@+id/xmlTiMostrarHorarioAE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -244,7 +244,7 @@
                 android:textStyle="bold" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinTipoContratoF"
+                android:id="@+id/xmlspinTipoContratoAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -255,7 +255,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinCantidadVacantesE"
+                android:id="@+id/xmlspinCantidadVacantesAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -266,7 +266,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinAnosExperienciaE"
+                android:id="@+id/xmlspinAnosExperienciaAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -277,7 +277,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiSalarioE"
+                android:id="@+id/xmlTiSalarioAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -292,7 +292,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/xmlEditSalarioE"
+                    android:id="@+id/xmlEditSalarioAE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
@@ -304,7 +304,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/xmlTiRequisitosE"
+            android:id="@+id/xmlTiRequisitosAE"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
@@ -323,7 +323,7 @@
 
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinAreaE"
+                android:id="@+id/xmlspinAreaAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -334,7 +334,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinFormacionAcademicaE"
+                android:id="@+id/xmlspinFormacionAcademicaAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -345,7 +345,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <TextView
-                android:id="@+id/xmlTiIdiomasE"
+                android:id="@+id/xmlTiIdiomasAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -354,7 +354,7 @@
                 android:textColor="@color/md_blue_900" />
 
             <TextView
-                android:id="@+id/xmlTiMostrarIdiomasE"
+                android:id="@+id/xmlTiMostrarIdiomasAE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -366,14 +366,14 @@
                 android:textSize="15sp" />
 
             <Button
-                android:id="@+id/xmlBtnSeleccionarIdiomasE"
+                android:id="@+id/xmlBtnSeleccionarIdiomasAE"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:text="Selecionar Idiomas" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinSexoRequeridoE"
+                android:id="@+id/xmlspinSexoRequeridoAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -384,7 +384,7 @@
                 android:textColorHint="@color/md_blue_900" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinRangoEdadE"
+                android:id="@+id/xmlspinRangoEdadAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -397,7 +397,7 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/xmlTiOtrosDatosE"
+            android:id="@+id/xmlTiOtrosDatosAE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -412,7 +412,7 @@
             app:hintAnimationEnabled="true">
 
             <EditText
-                android:id="@+id/xmlEditOtrosRequisitosE"
+                android:id="@+id/xmlEditOtrosRequisitosAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="3dp"
@@ -424,7 +424,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/xmlTiEstadoActualEmpleoE"
+            android:id="@+id/xmlTiEstadoActualEmpleoAE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -437,11 +437,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/xmlTiEstadoActualEmpleoE"
+            android:layout_below="@+id/xmlTiEstadoActualEmpleoAE"
             android:layout_marginBottom="@dimen/activity_vertical_margin">
 
             <RadioButton
-                android:id="@+id/xmlRdDisponibleE"
+                android:id="@+id/xmlRdDisponibleAE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
@@ -449,7 +449,7 @@
                 android:text="Disponible" />
 
             <RadioButton
-                android:id="@+id/xmlRdNoDisponibleE"
+                android:id="@+id/xmlRdNoDisponibleAE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -458,7 +458,7 @@
 
 
         <TextView
-            android:id="@+id/xmlTiFechaPublicacionE"
+            android:id="@+id/xmlTiFechaPublicacionAE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -469,5 +469,4 @@
             android:textSize="13sp"
             android:textStyle="bold" />
     </LinearLayout>
-
 </androidx.core.widget.NestedScrollView>

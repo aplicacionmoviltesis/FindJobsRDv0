@@ -7,12 +7,47 @@
     android:orientation="vertical"
     tools:context=".PantallaListaEmpleosBuscados">
 
-    <Button
-        android:id="@+id/botonbuscarprovincia"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar por provincia"
-        android:layout_margin="20dp"/>
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filtrar Por Provincias"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:layout_marginTop="0dp"
+            android:textSize="20sp"/>
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/xmlspinBuscarPorProvinciaEB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:completionHintView="@color/md_blue_900"
+            android:dropDownSelector="@color/gradStop"
+            android:hint="Jornada"
+            android:textColor="@color/md_blue_900"
+            android:textColorHint="@color/md_blue_900" />
+
+
+        <Button
+            android:id="@+id/botonbuscarprovincia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar por provincia"
+            android:layout_margin="20dp"/>
+
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListaEmpleosBuscadosR"

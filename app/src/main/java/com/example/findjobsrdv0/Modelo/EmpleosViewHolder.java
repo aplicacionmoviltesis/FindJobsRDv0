@@ -13,6 +13,11 @@ public class EmpleosViewHolder extends RecyclerView.ViewHolder implements View.O
 
     public TextView NombreEmpleoCardView;
     public TextView NombreEmpresaCardView;
+    public TextView ProvinciaCardView;
+    public TextView AreaCardView;
+    public TextView EstadoCardView;
+    public TextView FechaPublicacionCardView;
+
     public ImageView imagenEmpleoCardView;
 
 
@@ -25,6 +30,12 @@ public class EmpleosViewHolder extends RecyclerView.ViewHolder implements View.O
 
         NombreEmpleoCardView = (TextView)itemView.findViewById(R.id.CardNombreempleo);
         NombreEmpresaCardView = (TextView)itemView.findViewById(R.id.CardNombreempresa);
+        ProvinciaCardView = (TextView)itemView.findViewById(R.id.CardProvincia);
+        AreaCardView = (TextView)itemView.findViewById(R.id.Cardarea);
+        EstadoCardView = (TextView)itemView.findViewById(R.id.CardEstado);
+        FechaPublicacionCardView = (TextView)itemView.findViewById(R.id.CardFecha);
+
+
         imagenEmpleoCardView = (ImageView) itemView.findViewById(R.id.CardImageArea);
 
         itemView.setOnClickListener(this);

@@ -2,14 +2,21 @@ package com.example.findjobsrdv0;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,62 +24,74 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
-public class PantallaRegistrarEmpleos extends AppCompatActivity{
-
-    EditText editNombreEmpleoE,editNombreEmpresaE, editDireccionE,editTelefonoE,
-             editPaginaWebE,editEmailE,editSalarioE,editOtrosDatosE;
-
-    TextView tvHorarioE, tvFechaPublicacionE, tvMostrarIDioma;
-
-    Button btnVerPersonasApliE, btnIdiomasE;
-
-    Spinner spinAreaE,spinSexoE,spinRangoE,spinJornadaE,spinCantidadVacantesE,spinTipoContratoE,
-                    spinProvinciaE,spinFormacionAcademicaE,spinAnoExpE,spinEstadoEmpleoE;
+public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
     ImageView fFotoEmpresa;
-    Boolean sVerificacionE=false;
+    Boolean sVerificacionE = false;
 
-    String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
-            sHorarioE,sFechaPublicacionE, sMostrarIdioma,sAreaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,sIdEmpleadorE,
-            sTipoContratoE,sEstadoEmpleoE,sImagenEmpleoE;
+    EditText editNombreEmpleoE, editNombreEmpresaE, editDireccionE, editEmailE,
+            editTelefonoE, editPaginaWebE, editSalarioE, editOtrosDatosE;
 
-    String[] infoEstadoE = {"Disponible", "No Disponible"};
-    String[] infoSexoE = {"Cualquiera", "Masculino","Femenino"};
-    String[] infoCantidadVacantesE = {"1","2","3","4","5","6","7","8","10+"};
-    String[] infoJornadaE = {"Matutina", "Vespertina","Nocturna","Matutina/Vespertina","Vespertina/Nocturna","Nocturna/Matutina"};
-    String[] infoTipoContratoE = {"Fijo", "Temporal"};
+    TextView tvHorarioE, tvMostrarIdiomasE, tvFechaPublicacionE;
 
-    private DatabaseReference DBReferenceEmplos;
 
-    Button mOrder;
+    String sIDEmpleo, sNombreEmpleoE, sNombreEmpresaE, sDireccionE, sEmailE,
+            sTelefonoE, sPaginaWebE, sSalarioE, sOtrosDatosE, sProvinciaE,
+            sJornadaE, sHorarioE, sTipoContratoE, sCantidadVacantesE, sAnoExpE, sAreaE,
+            sFormacionAcademicaE, sMostrarIdioma, sRangoEdadE, sSexoRequeridoE,sEstadoEmpleoE,
+            sFechaPublicacionE, sIdEmpleadorE;
+
+    Spinner spinJornadaE, spinTipoContratoE, spinCantidadVacantesE, spinAnoExpE,
+            spinFormacionAcademicaE, spinRangoEdadE, spinSexoE;
+
+    Button btnIdiomasE;
+
+    ImageButton btnGuardarEmpleoE;
+
+    RadioButton RdbDisponibleE,RdbNoDisponibleE;
+
+/////Spinner Provincia
+
+    Spinner spinProvinciaE;
+    DatabaseReference provinciasRef;
+    List<Provincias> provincias;
+    boolean IsFirstTimeClick = true;
+
+/////Spinner Provincia
+
+/////Spinner Area de Trabajo
+
+    Spinner spinAreaE;
+    DatabaseReference areasRef;
+    List<Provincias> areas;
+    boolean IsFirstTimeClickAreas = true;
+
+/////Spinner Area de Trabajo
+
+/////Checklist para elegir los idiomas
+
     String[] listItems;
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
 
+/////Checklist para elegir los idiomas
 
-    //////////////////////////////////
-    SearchableSpinner searchableSpinner;
 
-    // FirebaseDatabase mFirebaseDatabase;
-    DatabaseReference provinciasRef;
-
-    //IFirebaseLoadDone iFirebaseLoadDone;
-
-    //List<Provincia> provincias;
-
-    boolean IsFirstTimeClick=true;
-
-    /////////////////////////////////
-
+    String  sImagenEmpleoE;
+    private DatabaseReference DBReferenceEmplos;
     private FirebaseAuth mAuthEmpleador;
 
 
@@ -86,34 +105,274 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity{
 
         DBReferenceEmplos = FirebaseDatabase.getInstance().getReference("empleos");
 
-        editNombreEmpleoE= (EditText) findViewById(R.id.xmlEditNombreEmpleoE);
-        editNombreEmpresaE= (EditText) findViewById(R.id.xmlEditNombreEmpresaE);
-        editDireccionE= (EditText) findViewById(R.id.xmlEditDireccionE);
-        editTelefonoE= (EditText) findViewById(R.id.xmlEditTelefonoE);
-        editEmailE= (EditText) findViewById(R.id.xmlEditEmailE);
-        editPaginaWebE= (EditText) findViewById(R.id.xmlEditPaginaWebE);
-        editSalarioE= (EditText) findViewById(R.id.xmlEditSalarioE);
-        editOtrosDatosE= (EditText) findViewById(R.id.xmlEditOtrosRequisitosE);
+        editNombreEmpleoE = (EditText) findViewById(R.id.xmlEditNombreEmpleoE);
+        editNombreEmpresaE = (EditText) findViewById(R.id.xmlEditNombreEmpresaE);
+        editDireccionE = (EditText) findViewById(R.id.xmlEditDireccionE);
+        editEmailE = (EditText) findViewById(R.id.xmlEditEmailE);
+        editTelefonoE = (EditText) findViewById(R.id.xmlEditTelefonoE);
+        editPaginaWebE = (EditText) findViewById(R.id.xmlEditPaginaWebE);
+        editSalarioE = (EditText) findViewById(R.id.xmlEditSalarioE);
+        editOtrosDatosE = (EditText) findViewById(R.id.xmlEditOtrosRequisitosE);
 
-        tvHorarioE= (TextView) findViewById(R.id.xmlTiMostrarHorarioE);
-        tvFechaPublicacionE= (TextView) findViewById(R.id.xmlTiFechaPublicacionE);
-        tvMostrarIDioma= (TextView) findViewById(R.id.xmlTiMostrarIdiomasE);
+        tvHorarioE = (TextView) findViewById(R.id.xmlTiMostrarHorarioE);
+        tvMostrarIdiomasE = (TextView) findViewById(R.id.xmlTiMostrarIdiomasE);
+        tvFechaPublicacionE = (TextView) findViewById(R.id.xmlTiFechaPublicacionE);
 
-        ImageButton btnGuardarEmpleoE= (ImageButton) findViewById(R.id.xmlBtnGuardarEmpleoE);
-        btnVerPersonasApliE= (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
-        btnIdiomasE= (Button) findViewById(R.id.xmlBtnSeleccionarIdiomasE);
+        btnIdiomasE = (Button) findViewById(R.id.xmlBtnSeleccionarIdiomasE);
 
-        searchableSpinner = (SearchableSpinner)findViewById(R.id.searchable_spinner);
+        RdbDisponibleE = (RadioButton) findViewById(R.id.xmlRdDisponibleE);
+        RdbNoDisponibleE = (RadioButton) findViewById(R.id.xmlRdNoDisponibleE);
 
 
-        btnGuardarEmpleoE.setOnClickListener(new View.OnClickListener() {
+
+/////Spinner Provincia
+
+        provinciasRef = FirebaseDatabase.getInstance().getReference();
+        spinProvinciaE = (Spinner) findViewById(R.id.xmlspinProvinciaE);
+
+        spinProvinciaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                RegistrarEmpleos();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sProvinciaE = spinProvinciaE.getSelectedItem().toString();
+                    Log.d("valorSpinProv", sProvinciaE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
-        listItems = getResources().getStringArray(R.array.sIdiomas);
+        provinciasRef.child("provincias").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final List<String> ListProvincias = new ArrayList<String>();
+                for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
+                    String provinciaName = provinciaSnapshot.child("nombre").getValue(String.class);
+                    ListProvincias.add(provinciaName);
+                }
+
+                ArrayAdapter<String> provinciasAdapter = new ArrayAdapter<String>(PantallaRegistrarEmpleos.this, android.R.layout.simple_spinner_item, ListProvincias);
+                provinciasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinProvinciaE.setAdapter(provinciasAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+/////Spinner Provincia
+
+/////Spinner Jornada
+        spinJornadaE = findViewById(R.id.xmlspinJornadaE);
+        spinJornadaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sJornadaE = spinJornadaE.getSelectedItem().toString();
+                    Log.d("valorSpinare", sJornadaE);
+                    if (sJornadaE.equals("Matutina")) {
+                        sHorarioE = "8:00 AM - 12:00 PM";
+                        tvHorarioE.setText(sHorarioE);
+                    }
+                    if (sJornadaE.equals("Vespertina")) {
+                        sHorarioE = "1:00 PM - 6:00 PM";
+                        tvHorarioE.setText(sHorarioE);
+                    }
+                    if (sJornadaE.equals("Nocturna")) {
+                        sHorarioE = "6:00 PM - 12:00 AM";
+                        tvHorarioE.setText(sHorarioE);
+                    }
+                    if (sJornadaE.equals("Matutina/Vespertina")) {
+                        sHorarioE = "8:00 AM - 6:00 PM";
+                        tvHorarioE.setText(sHorarioE);
+                    }
+                    if (sJornadaE.equals("Vespertina/Nocturna")) {
+                        sHorarioE = "1:00 PM - 12:00 AM";
+                        tvHorarioE.setText(sHorarioE);
+                    }
+                    if (sJornadaE.equals("Nocturna/Matutina")) {
+                        sHorarioE = "12:00 AM - 6:00 AM";
+                        tvHorarioE.setText(sHorarioE);
+                    }
+
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterJornada = ArrayAdapter.createFromResource(this,
+                R.array.InfoJornada, android.R.layout.simple_spinner_item);
+        adapterJornada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinJornadaE.setAdapter(adapterJornada);
+/////Spinner Jornada
+
+/////Spinner Tipo de contrato
+        spinTipoContratoE = findViewById(R.id.xmlspinTipoContratoF);
+        spinTipoContratoE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sTipoContratoE = spinTipoContratoE.getSelectedItem().toString();
+                    Log.d("valorSpintipocontrato", sTipoContratoE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterTipoContrato = ArrayAdapter.createFromResource(this,
+                R.array.infoTipoContratoE, android.R.layout.simple_spinner_item);
+        adapterTipoContrato.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinTipoContratoE.setAdapter(adapterTipoContrato);
+/////Spinner Tipo de contrato
+
+/////Spinner Cantidad de vacantes
+        spinCantidadVacantesE = findViewById(R.id.xmlspinCantidadVacantesE);
+        spinCantidadVacantesE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sCantidadVacantesE = spinCantidadVacantesE.getSelectedItem().toString();
+                    Log.d("valorSpincantvacantes", sCantidadVacantesE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterCantidadVacantes = ArrayAdapter.createFromResource(this,
+                R.array.InfoNumeros, android.R.layout.simple_spinner_item);
+        adapterCantidadVacantes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinCantidadVacantesE.setAdapter(adapterCantidadVacantes);
+/////Spinner Cantidad de vacantes
+
+
+/////Spinner Años Experiencia
+        spinAnoExpE = findViewById(R.id.xmlspinAnosExperienciaE);
+        spinAnoExpE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sAnoExpE = spinAnoExpE.getSelectedItem().toString();
+                    Log.d("valorSpinadapteranoexp", sAnoExpE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterAnoExp = ArrayAdapter.createFromResource(this,
+                R.array.InfoAnosExperiencia, android.R.layout.simple_spinner_item);
+        adapterAnoExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinAnoExpE.setAdapter(adapterAnoExp);
+/////Spinner Años Experiencia
+
+
+/////Spinner Area
+
+        areasRef = FirebaseDatabase.getInstance().getReference();
+        spinAreaE = (Spinner) findViewById(R.id.xmlspinAreaE);
+
+        spinAreaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClickAreas) {
+                    sAreaE = spinAreaE.getSelectedItem().toString();
+                    Log.d("valorSpinArea", sAreaE);
+                } else {
+                    IsFirstTimeClickAreas = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        provinciasRef.child("Areas").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final List<String> ListAreas = new ArrayList<String>();
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    String areaName = areaSnapshot.child("nombre").getValue(String.class);
+                    ListAreas.add(areaName);
+                }
+
+                ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(PantallaRegistrarEmpleos.this, android.R.layout.simple_spinner_item, ListAreas);
+                areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinAreaE.setAdapter(areasAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+/////Spinner Area
+
+
+/////Spinner Formacion o grado academico en el area
+        spinFormacionAcademicaE = findViewById(R.id.xmlspinFormacionAcademicaE);
+        spinFormacionAcademicaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sFormacionAcademicaE = spinFormacionAcademicaE.getSelectedItem().toString();
+                    Log.d("valorSpinadapformacion", sFormacionAcademicaE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterFormacionAcademicaE = ArrayAdapter.createFromResource(this,
+                R.array.InfoGrado, android.R.layout.simple_spinner_item);
+        adapterFormacionAcademicaE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinFormacionAcademicaE.setAdapter(adapterFormacionAcademicaE);
+/////Spinner Formacion o grado academico en el area
+
+
+/////Checklist para elegir los idiomas
+
+
+        listItems = getResources().getStringArray(R.array.InfoIdiomas);
         checkedItems = new boolean[listItems.length];
 
         btnIdiomasE.setOnClickListener(new View.OnClickListener() {
@@ -125,9 +384,9 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
 
-                        if(isChecked){
+                        if (isChecked) {
                             mUserItems.add(position);
-                        }else{
+                        } else {
                             mUserItems.remove((Integer.valueOf(position)));
                         }
                     }
@@ -144,7 +403,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity{
                                 item = item + ", ";
                             }
                         }
-                        tvMostrarIDioma.setText(item);
+                        tvMostrarIdiomasE.setText(item);
                     }
                 });
 
@@ -161,7 +420,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity{
                         for (int i = 0; i < checkedItems.length; i++) {
                             checkedItems[i] = false;
                             mUserItems.clear();
-                            tvMostrarIDioma.setText("");
+                            tvMostrarIdiomasE.setText("");
                         }
                     }
                 });
@@ -170,184 +429,169 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity{
                 mDialog.show();
             }
         });
-/*
-        spinEstadoEmpleoE = (MaterialSpinner) findViewById(R.id.xmlspinEstadoEmpleoF);
-        spinEstadoEmpleoE.setItems(infoEstadoE);
-        spinEstadoEmpleoE.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-                sEstadoEmpleoE = item.toString().trim();
-            }
-        });
 
-        spinSexoE = (Spinner) findViewById(R.id.xmlspinSexoRequeridoF);
-        spinSexoE.setItems(infoSexoE);
-        spinSexoE.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-                sSexoRequeridoE = item.toString().trim();
-            }
-        });
+/////Checklist para elegir los idiomas
 
-        spinCantidadVacantesE = (Spinner) findViewById(R.id.xmlspinCantidadVacantesF);
-        spinCantidadVacantesE.setItems(infoCantidadVacantesE);
-        spinCantidadVacantesE.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-                sCantidadVacantesE = item.toString().trim();
-            }
-        });
-
-        spinJornadaE = (MaterialSpinner) findViewById(R.id.xmlspinJornadaF);
-        spinJornadaE.setItems(infoJornadaE);
-        spinJornadaE.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-                sJornadaE = item.toString().trim();
-            }
-        });
-
-        spinTipoContratoE = (MaterialSpinner) findViewById(R.id.xmlspinTipoContratoF);
-        spinTipoContratoE.setItems(infoTipoContratoE);
-        spinTipoContratoE.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-                sTipoContratoE = item.toString().trim();
-            }
-        });
-
-*/
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
-        String currentDateandTime = simpleDateFormat.format(new Date());
-        tvFechaPublicacionE.setText("Ultima Actualizacion: "+currentDateandTime);
-
-        //FirebaseUser user = mAuthEmpleador.getCurrentUser();
-        //String Ukey = user.getUid();
-
-
-        /*
-        ///////////////////////////////////////////////////////////
-
-        //searchableSpinner = (SearchableSpinner)findViewById(R.id.searchable_spinner);
-
-        searchableSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+/////Spinner Sexo requerido
+        spinSexoE = findViewById(R.id.xmlspinSexoRequeridoE);
+        spinSexoE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if(!IsFirstTimeClick){
-                    Provincia provincia= provincias.get(position);
-
-                    String klk= provincia.getName();
-                    Log.d("klk",klk);
-                }
-                else {
-
-                    IsFirstTimeClick=false;
+                if (!IsFirstTimeClick) {
+                    sSexoRequeridoE = spinSexoE.getSelectedItem().toString();
+                    Log.d("valorSpinSexo", sSexoRequeridoE);
+                } else {
+                    IsFirstTimeClick = false;
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
+        ArrayAdapter<CharSequence> adapterSexoRequerido = ArrayAdapter.createFromResource(this,
+                R.array.InfoSexo, android.R.layout.simple_spinner_item);
+        adapterSexoRequerido.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinSexoE.setAdapter(adapterSexoRequerido);
+/////Spinner Sexo requerido
 
-        //  mFirebaseDatabase = FirebaseDatabase.getInstance();
-        //  provinciasRef = mFirebaseDatabase.getReference("Spinner");
-
-        provinciasRef = FirebaseDatabase.getInstance().getReference("empleos");
-
-        iFirebaseLoadDone = this;
-
-        provinciasRef.addListenerForSingleValueEvent(new ValueEventListener() {
+/////Spinner Rango edad
+        spinRangoEdadE = findViewById(R.id.xmlspinRangoEdadE);
+        spinRangoEdadE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<Provincia> provincias = new ArrayList<>();
-                for (DataSnapshot provinciaSnapShot:dataSnapshot.getChildren())
-                {
-                    provincias.add(provinciaSnapShot.getValue(Provincia.class));
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-
+                if (!IsFirstTimeClick) {
+                    sRangoEdadE = spinRangoEdadE.getSelectedItem().toString();
+                    Log.d("valorSpinEdad", sRangoEdadE);
+                } else {
+                    IsFirstTimeClick = false;
                 }
-
-                iFirebaseLoadDone.onFirebaseLoadSuccess(provincias);
-
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                iFirebaseLoadDone.onFirebaseLoadFailed(databaseError.getMessage());
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterRangoEdadE = ArrayAdapter.createFromResource(this,
+                R.array.InfoRangoEdad, android.R.layout.simple_spinner_item);
+        adapterRangoEdadE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinRangoEdadE.setAdapter(adapterRangoEdadE);
+/////Spinner Rango edad
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
+        String currentDateandTime = simpleDateFormat.format(new Date());
+        tvFechaPublicacionE.setText("Ultima Actualizacion: " + currentDateandTime);
+
+
+
+
+        btnGuardarEmpleoE = (ImageButton) findViewById(R.id.xmlBtnGuardarEmpleoE);
+        btnGuardarEmpleoE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegistrarEmpleos();
+            }
+        });
+/*
+        if(RdbDisponibleE.isChecked())
+        {
+            sEstadoEmpleoE = "Disponible";
+        }
+        if(RdbNoDisponibleE.isChecked())
+        {
+            sEstadoEmpleoE = "No Disponible";
+
+        }*/
+
+        RadioGroup RGEstadoActualEmpleoE = (RadioGroup)findViewById(R.id.xmlRGEstadoActualEmpleoE);
+        RGEstadoActualEmpleoE.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.xmlRdDisponibleE:
+                        sEstadoEmpleoE = "Disponible";
+                         //Log.d("Valorestado",sEstadoEmpleoE);
+
+                        break;
+                    case R.id.xmlRdNoDisponibleE:
+                        sEstadoEmpleoE = "No Disponible";
+                         //Log.d("Valorestado",sEstadoEmpleoE);
+
+                        break;
+                }
+                 Log.d("Valorestado",sEstadoEmpleoE);
 
             }
-        } );
+
+            // Log.d("Valorestado",sEstadoEmpleoE);
+
+        });
+
+       // Log.d("Valorestado",sEstadoEmpleoE);
 
 
-
-
-
-        /////////////////////////////////////////////////////////
-        */
-    }
-/*
-    ////////////////////////////////////////////////////////////////////////
-
-
-    @Override
-    public void onFirebaseLoadSuccess(List<Provincia> provinciaList) {
-        provincias = provinciaList;
-
-        List<String> name_list = new ArrayList<>();
-
-        for (Provincia provincia : provinciaList)
-            name_list.add(provincia.getName());
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>( this,android.R.layout.simple_list_item_1,name_list);
-        searchableSpinner.setAdapter(adapter);
-
+        //para obtener el nombre de la empresa automatico
+        mAuthEmpleador = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuthEmpleador.getCurrentUser();
+        SharedPreferences preferences= this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
+        String Nombre= preferences.getString("Nombre", "Nombre");
+        editNombreEmpresaE.setText(Nombre);
+        editNombreEmpresaE.setText(user.getDisplayName());
 
 
     }
 
-    @Override
-    public void onFirebaseLoadFailed(String message) {
-
-    }
 
 
-    ///////////////////////////////////////////////////////////////////////
-*/
-    public void RegistrarEmpleos(){
 
-       // FirebaseUser user = mAuthEmpleador.getCurrentUser();
-        //String Ukey = "klk45";
 
-        //sIDEmpleo = "444";
+
+    public void RegistrarEmpleos() {
+
+        // FirebaseUser user = mAuthEmpleador.getCurrentUser();
+
+
+
         sNombreEmpleoE = editNombreEmpleoE.getText().toString().trim();
         sNombreEmpresaE = editNombreEmpresaE.getText().toString().trim();
-        sProvinciaE = "La Vega";
         sDireccionE = editDireccionE.getText().toString().trim();
+        sEmailE = editEmailE.getText().toString().trim();
         sTelefonoE = editTelefonoE.getText().toString().trim();
         sPaginaWebE = editPaginaWebE.getText().toString().trim();
-        sEmailE = editEmailE.getText().toString().trim();
         sSalarioE = editSalarioE.getText().toString().trim();
         sOtrosDatosE = editOtrosDatosE.getText().toString().trim();
+
         sHorarioE = tvHorarioE.getText().toString().trim();
         sFechaPublicacionE = tvFechaPublicacionE.getText().toString().trim();
-        sMostrarIdioma = tvMostrarIDioma.getText().toString().trim();
+        sMostrarIdioma = tvMostrarIdiomasE.getText().toString().trim();
 
-        sAreaE = "Contabilidad";
-        sSexoRequeridoE = "Hombre";
-        sRangoE = "25-35";
-        sJornadaE = "Matutina/Vespertina";
-        sCantidadVacantesE = "3";
-        sTipoContratoE = "Temporal";
-        sEstadoEmpleoE = "Disponible";
-        sImagenEmpleoE="".toString().trim();
+//spinners
+        //sProvinciaE = "La Vega";
+        //sJornadaE = "Matutina/Vespertina";
+        //sHorarioE="";
+        //sTipoContratoE = "Temporal";
+        //sCantidadVacantesE = "3";
+        //sAnoExpE = "";
+        //sAreaE = "Contabilidad";
+        //sFormacionAcademicaE = "";
+        //sSexoRequeridoE = "Hombre";
+        //sRangoEdadE = "25-35";
+
+//RadioButton
+        //sEstadoEmpleoE = "";
+
+
+
+        //String Ukey = "klk45";
         //sIdEmpleadorE=Ukey;
+        //sIDEmpleo = "444";
 
-        String sPersonasAplicaronE="".toString().trim();
+        sImagenEmpleoE = "".toString().trim();
+        String sPersonasAplicaronE = "".toString().trim();
 
 
         if (TextUtils.isEmpty(sNombreEmpleoE)) {
@@ -370,20 +614,21 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity{
             editEmailE.setError("Campo vacío, por favor escriba el nombre del empleo");
             return;
         }
-        //FirebaseUser user = mAuthEmpleador.getCurrentUser();
+        FirebaseUser user = mAuthEmpleador.getCurrentUser();
         //String Ukey = user.getUid();
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+        sIdEmpleadorE=Ukey;
         String IDEmpleo = DBReferenceEmplos.push().getKey();
-        Empleos empleos = new Empleos(IDEmpleo,sNombreEmpleoE,  sNombreEmpresaE,sProvinciaE,  sDireccionE,
-                sTelefonoE,  sPaginaWebE,  sEmailE,  sSalarioE,  sOtrosDatosE,
-                sHorarioE,  sFechaPublicacionE,  sMostrarIdioma,  sAreaE,
-                sSexoRequeridoE,  sRangoE,  sJornadaE,  sCantidadVacantesE,
-                sTipoContratoE,  sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE,sIdEmpleadorE);
+        Empleos empleos = new Empleos(IDEmpleo, sNombreEmpleoE, sNombreEmpresaE,sDireccionE,sProvinciaE,
+                sTelefonoE, sPaginaWebE, sEmailE, sSalarioE, sOtrosDatosE,
+                sHorarioE, sFechaPublicacionE, sMostrarIdioma, sAreaE,sFormacionAcademicaE,
+                sAnoExpE,sSexoRequeridoE, sRangoEdadE, sJornadaE, sCantidadVacantesE,
+                sTipoContratoE, sEstadoEmpleoE, sPersonasAplicaronE, sImagenEmpleoE, sIdEmpleadorE);
         DBReferenceEmplos.child(IDEmpleo).setValue(empleos);
 
         //DBReferenceEmplos.child("empleos").child(IDEmpleo).setValue(empleos);
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).setValue(empleos);//para registrarlo dentro del usuario que inicio sesion
+        //DBReferenceEmplos.child(Ukey).child(IDEmpleo).child("PersonasAplicaron").setValue("1");//para registrarlo dentro del usuario que inicio sesion
 
     }
 }

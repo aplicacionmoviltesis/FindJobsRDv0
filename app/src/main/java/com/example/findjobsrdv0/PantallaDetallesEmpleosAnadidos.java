@@ -138,22 +138,20 @@ public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
                 TvTelefonoDEB.setText(empleos.getsTelefonoE());
                 TvPaginaWebDEB.setText(empleos.getsPaginaWebE());
                 TvJornadaDEB.setText(empleos.getsJornadaE());
+                TvMostrarHorarioDEB.setText(empleos.getsHorarioE());
+                TvTipoContratoDEB.setText(empleos.getsTipoContratoE());
+                TvCantidadVacantesDEB.setText(empleos.getsCantidadVacantesE());
+                TvSalarioDEB.setText(empleos.getsSalarioE());
+                TvAreaDEB.setText(empleos.getsAreaE());
+                TvAnosExperienciaDEB.setText(empleos.getsAreaE());
+                TvFormacionAcademicaDEB.setText(empleos.getsFormacionAcademica());
+                TvIdiomasDEB.setText(empleos.getsMostrarIdioma());
+                TvSexoRequeridoDEB.setText(empleos.getsSexoRequeridoE());
+                TvRangoEdadDEB.setText(empleos.getsRangoE());
+                TvNotaDEB.setText(empleos.getsOtrosDatosE());
+                TvEstadoEmpleoDEB.setText(empleos.getsEstadoEmpleoE());
+                TvFechaPublicacionDEB.setText(empleos.getsFechaPublicacionE());
 
-                /*TvMostrarHorarioDE.setText(bundle.getString("PaginaWeb"));
-                TvTipoContratoDE.setText(bundle.getString("Direccion"));
-                TvCantidadVacantesDE.setText(bundle.getString("Experiencia"));
-                TvSalarioDE.setText(bundle.getString("Descripcion"));
-                TvAreaDE.setText(bundle.getString("FechaPublicaion"));
-                TvAnosExperienciaDE.setText(bundle.getString("Estado"));
-                TvFormacionAcademicaDE.setText(bundle.getString("Telefono"));
-                TvIdiomasDE.setText(bundle.getString("Email"));
-                TvSexoRequeridoDE.setText(bundle.getString("PaginaWeb"));
-                TvRangoEdadDE.setText(bundle.getString("Direccion"));
-                TvNotaDE.setText(bundle.getString("Experiencia"));
-                TvEstadoEmpleoDE.setText(bundle.getString("Descripcion"));
-                TvFechaPublicacionDE.setText(bundle.getString("FechaPublicaion"));*/
-//String klk= empleos.getsProvinciaE();
-                //Log.d("pagina",empleos.getsPaginaWebE());
 
             }
 
