@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".cPantallaExperienciaLaboralCurriculo">
+    tools:context=".Registro_del_Curriculo.cPantallaExperienciaLaboralCurriculo">
 
     <TextView
         android:id="@+id/xmlTituloExperienciaLaboral"
@@ -131,11 +131,27 @@
                 android:text="  Años"/>
         </RelativeLayout>
 
-        <Button
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Añadir Experiencia"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/xmlBtnRegitrarExperienciaLab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Añadir Experiencia"/>
+
+            <Button
+                android:id="@+id/xmlBtnActualizarExperienciaLab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Actualizar Experiencia"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -149,6 +165,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewExperienciaLaboral"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

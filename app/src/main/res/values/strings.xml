@@ -25,6 +25,29 @@
         <item>Otros</item>
     </string-array>
 
+    <string-array name="Provincia">
+        <item>La Vega</item>
+        <item>Salcedo</item>
+        <item>Espaillat</item>
+        <item>Santo Domingo</item>
+        <item>Santiago</item>
+    </string-array>
+
+    <string-array name="GradoMayor">
+        <item>Maestria</item>
+        <item>Doctorado</item>
+    </string-array>
+
+    <string-array name="EstadoCivil">
+        <item>soltero</item>
+        <item>casado</item>
+    </string-array>
+
+    <string-array name="EstadoActual">
+        <item>Disponible</item>
+        <item>Ocupado</item>
+    </string-array>
+
     <string name="not_log_in">No se pudo iniciar sesión</string>
     <string name="log_out">Log Out</string>
     <string name="revoke">Revoke</string>

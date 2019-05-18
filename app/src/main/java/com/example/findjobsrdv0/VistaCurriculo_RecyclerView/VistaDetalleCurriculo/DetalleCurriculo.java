@@ -1,0 +1,90 @@
+package com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
+import com.example.findjobsrdv0.R;
+import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Modelo.VistaCurriculomodel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class DetalleCurriculo extends AppCompatActivity {
+
+    TextView txtNombreCurr, txtApellidoCurr, txtCedulaCurr, txtEmailCurr, txtTelefonoCurr, txtCelularCurr, txtprovinciaCurr, txtEstadoCivil, txtDireccionCurr, txtOcupacion, txtIdioma,
+            txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha;
+
+    FirebaseDatabase database;
+    DatabaseReference detalelcurriculo;
+
+    String detallecurrid = "";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_detalle_curriculo );
+
+        database = FirebaseDatabase.getInstance();
+        detalelcurriculo = database.getReference( "Curriculos" );
+
+
+        txtNombreCurr = (TextView) findViewById( R.id.xmlTvNombreDetalleCu );
+        txtApellidoCurr = (TextView) findViewById( R.id.xmlTvApellidoDetalleCu );
+        txtCedulaCurr = (TextView) findViewById( R.id.xmlTvCedulaDetalleCu );
+        txtEmailCurr = (TextView) findViewById( R.id.xmlTvEmailDetalleCu );
+        txtTelefonoCurr = (TextView) findViewById( R.id.xmlTvTelefonoDetalleCu );
+        txtCelularCurr = (TextView) findViewById( R.id.xmlTvCelularDetalleCu );
+        txtprovinciaCurr = (TextView) findViewById( R.id.xmlTvProvinciaDetalleCu );
+        txtEstadoCivil = (TextView) findViewById( R.id.xmlTvEstadoCivilDetalleCu );
+        txtDireccionCurr = (TextView) findViewById( R.id.xmlTvDireccionDetalleCu );
+        txtOcupacion = (TextView) findViewById( R.id.xmlTvOcupacionDetalleCu );
+        txtIdioma = (TextView) findViewById( R.id.xmlTvIdiomaDetalleCu );
+        txtEstadoActualCur = (TextView) findViewById( R.id.xmlTvDisponibilidadDetalleCu );
+        txtGradoMayorCurr = (TextView) findViewById( R.id.xmlTvMaestriaDetalleCu );
+        txtHabilidades = (TextView) findViewById( R.id.xmlTvHabilidadesDetalleCu );
+        txtFecha = (TextView) findViewById( R.id.xmlTvFechaNacimientoDetalleCu );
+
+        if (getIntent() != null)
+            detallecurrid = getIntent().getStringExtra( "detallecurrID" );
+
+        if (!detallecurrid.isEmpty()) {
+            goDetailCurriculo( detallecurrid );
+        }
+    }
+
+    private void goDetailCurriculo(String detallecurrid) {
+        detalelcurriculo.child( detallecurrid ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("hola", String.valueOf(dataSnapshot));
+                VistaCurriculomodel vistaCurriculomodel = dataSnapshot.getValue( VistaCurriculomodel.class);
+
+                txtNombreCurr.setText( vistaCurriculomodel.getNombre() );
+                txtApellidoCurr.setText( vistaCurriculomodel.getApellido() );
+                txtCedulaCurr.setText( vistaCurriculomodel.getCedula() );
+                txtEmailCurr.setText( vistaCurriculomodel.getEmail() );
+                txtTelefonoCurr.setText( vistaCurriculomodel.getTelefono() );
+                txtCelularCurr.setText( vistaCurriculomodel.getCelular() );
+                txtprovinciaCurr.setText( vistaCurriculomodel.getProvincia() );
+                txtEstadoCivil.setText( vistaCurriculomodel.getEstadoCivil() );
+                txtDireccionCurr.setText( vistaCurriculomodel.getDireccion() );
+                txtOcupacion.setText( vistaCurriculomodel.getOcupacion() );
+                txtEstadoActualCur.setText( vistaCurriculomodel.getEstadoactual() );
+                txtGradoMayorCurr.setText( vistaCurriculomodel.getGradomayor() );
+                txtHabilidades.setText( vistaCurriculomodel.getHabilidades() );
+                txtFecha.setText( vistaCurriculomodel.getFecha() );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+}

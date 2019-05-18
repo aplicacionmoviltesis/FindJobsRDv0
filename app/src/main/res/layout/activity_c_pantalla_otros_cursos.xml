@@ -49,29 +49,30 @@
                 android:textColor="@color/md_blue_900" />
         </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlTiAreaOC"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTiAreaOC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlEditAreaOC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/md_blue_900">
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Area o Tema"
+                android:inputType="date"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/xmlEditAreaOC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="3dp"
-                    android:ems="10"
-                    android:hint="Area o Tema"
-                    android:inputType="date"
-                    android:textColor="@color/md_blue_900" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/xmlspinTipoEstudioOC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:layout_marginStart="10dp"
+            android:entries="@array/FormacionAcademica"
             android:dropDownSelector="@color/gradStop"
             android:hint="Tipo de Estudio"
             android:textColorHint="@color/md_blue_900"/>
