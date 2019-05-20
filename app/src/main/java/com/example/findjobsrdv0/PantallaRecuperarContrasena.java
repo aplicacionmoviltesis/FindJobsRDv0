@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,6 +32,10 @@ public class PantallaRecuperarContrasena extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_recuperar_contrasena);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
 
         TituloRecuperarPass = (TextView) findViewById(R.id.textrecuperarPass);
@@ -78,5 +83,10 @@ public class PantallaRecuperarContrasena extends AppCompatActivity {
 
 
 
+    }
+
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 }

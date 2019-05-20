@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -76,6 +77,10 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
         //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         databaseEmpleosBuscados = FirebaseDatabase.getInstance();
         DBempleosBuscados = databaseEmpleosBuscados.getReference("empleos");
         DBempleosBuscados.keepSynced(true);
@@ -113,7 +118,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child("nombre").getValue(String.class);
+                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
                     ListProvincias.add(provinciaName);
                 }
 
@@ -143,9 +148,16 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
     }
 
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
+    }
+
     private void firebaseSearch(String TextSearch) {
 
-        Query firebaseSearchQuery = DBempleosBuscados.orderByChild("sNombreEmpleoE").startAt(TextSearch).endAt(TextSearch + "\uf8ff");
+        String query = TextSearch.toLowerCase();
+
+        Query firebaseSearchQuery = DBempleosBuscados.orderByChild("sNombreEmpleoE").startAt(query).endAt(query + "\uf8ff");
 
 
         adapterEmpleosBuscados = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>

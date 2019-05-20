@@ -133,7 +133,8 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(MostImagen);
 
-
+                TvNombreEmpleoDE.setText(empleos.getsNombreEmpleoE().toUpperCase());
+                TvNombreEmpresaDE.setText(empleos.getsNombreEmpresaE());
                 TvProvinciaDE.setText(empleos.getsProvinciaE());
                 TvDireccionDE.setText(empleos.getsDireccionE());
                 TvTelefonoDE.setText(empleos.getsTelefonoE());

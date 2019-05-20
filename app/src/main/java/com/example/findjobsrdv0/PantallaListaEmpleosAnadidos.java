@@ -1,5 +1,6 @@
 package com.example.findjobsrdv0;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +40,10 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         DBempleos= database.getReference("empleos");
         DBempleos.keepSynced(true);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
 
         listaEmpleosAnadidos = (RecyclerView)findViewById(R.id.ListaEmpleosAnadidosR);
         listaEmpleosAnadidos.setHasFixedSize(true);
@@ -50,6 +55,10 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         cargarEmpleos(Ukey);
 
+    }
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 
     private void cargarEmpleos(String Ukey) {

@@ -18,10 +18,11 @@
     </string-array>
 
     <string-array name="InfoGrado">
-        <item>Nivel Basico</item>
-        <item>Bachiller</item>
-        <item>Licenciado</item>
-        <item>Ingeniero</item>
+        <item>Ninguno</item>
+        <item>Primario</item>
+        <item>Secundario</item>
+        <item>Universitario</item>
+        <item>Post-Universitario</item>
         <item>Maestria</item>
         <item>Doctorado</item>
 
@@ -45,6 +46,22 @@
         <item>Vespertina/Nocturna </item>
         <item>Nocturna/Matutina</item>
     </string-array>
+
+    <string-array name="InfoJornada2">
+        <item>Completa </item>
+        <item>Indiferente </item>
+        <item>Parcial</item>
+        <item>Rotativa</item>
+    </string-array>
+
+    <string-array name="InfoHorario">
+        <item>Horario Diurno </item>
+        <item>Horario Matutino</item>
+        <item>Matutino y Diurno</item>
+        <item>Horario Nocturno</item>
+        <item>Indiferente </item>
+    </string-array>
+
 
     <string-array name="InfoNumeros">
         <item> 1 Vacante </item>
@@ -73,9 +90,15 @@
     </string-array>
 
     <string-array name="infoTipoContratoE">
-        <item>Tiempo Indefinido </item>
-        <item>Temporal </item>
+        <item>Aprendizaje </item>
+        <item>Cierto Tiempo </item>
+        <item>Estacional </item>
+        <item>Obra o Servicio Determinado </item>
+        <item>Pasante </item>
+        <item>Por Tiempo Indefinido (Fijo) </item>
     </string-array>
+
+
 
     <string-array name="InfoRangoEdad">
         <item>18-25 Años de Edad</item>

@@ -19,7 +19,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -94,6 +96,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
     private DatabaseReference DBReferenceEmplos;
     private FirebaseAuth mAuthEmpleador;
 
+    String currentDateandTime;
+
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -104,6 +108,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         DBReferenceEmplos = FirebaseDatabase.getInstance().getReference("empleos");
+
+
 
         editNombreEmpleoE = (EditText) findViewById(R.id.xmlEditNombreEmpleoE);
         editNombreEmpresaE = (EditText) findViewById(R.id.xmlEditNombreEmpresaE);
@@ -153,7 +159,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child("nombre").getValue(String.class);
+                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
                     ListProvincias.add(provinciaName);
                 }
 
@@ -325,7 +331,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
                 final List<String> ListAreas = new ArrayList<String>();
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                    String areaName = areaSnapshot.child("nombre").getValue(String.class);
+                    String areaName = areaSnapshot.child("Nombre_Area").getValue(String.class);
                     ListAreas.add(areaName);
                 }
 
@@ -483,7 +489,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 /////Spinner Rango edad
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
-        String currentDateandTime = simpleDateFormat.format(new Date());
+        currentDateandTime = simpleDateFormat.format(new Date());
         tvFechaPublicacionE.setText("Ultima Actualizacion: " + currentDateandTime);
 
 
@@ -493,7 +499,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
         btnGuardarEmpleoE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegistrarEmpleos();
+                RegistrarEmpleos(currentDateandTime);
             }
         });
 /*
@@ -547,10 +553,27 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
 
 
+public void limpiarCampor(){
+    editNombreEmpleoE.setText("");
+    editNombreEmpresaE.setText("");
+    editDireccionE.setText("");
+    editEmailE.setText("");
+    editTelefonoE.setText("");
+    editPaginaWebE.setText("");
+    editSalarioE.setText("");
+    editOtrosDatosE.setText("");
+
+    //sHorarioE = tvHorarioE.getText().toString().trim();
+    //sFechaPublicacionE = tvFechaPublicacionE.getText().toString().trim();
+    tvMostrarIdiomasE.setText("");
 
 
 
-    public void RegistrarEmpleos() {
+}
+
+
+
+    public void RegistrarEmpleos(String currentDateandTime) {
 
         // FirebaseUser user = mAuthEmpleador.getCurrentUser();
 
@@ -566,7 +589,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
         sOtrosDatosE = editOtrosDatosE.getText().toString().trim();
 
         sHorarioE = tvHorarioE.getText().toString().trim();
-        sFechaPublicacionE = tvFechaPublicacionE.getText().toString().trim();
+        sFechaPublicacionE = currentDateandTime;
         sMostrarIdioma = tvMostrarIdiomasE.getText().toString().trim();
 
 //spinners
@@ -626,6 +649,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 sTipoContratoE, sEstadoEmpleoE, sPersonasAplicaronE, sImagenEmpleoE, sIdEmpleadorE);
         DBReferenceEmplos.child(IDEmpleo).setValue(empleos);
 
+        Toast.makeText(this, "El Empleo se registro exitosamente", Toast.LENGTH_LONG).show();
+        limpiarCampor();
         //DBReferenceEmplos.child("empleos").child(IDEmpleo).setValue(empleos);
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).setValue(empleos);//para registrarlo dentro del usuario que inicio sesion
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).child("PersonasAplicaron").setValue("1");//para registrarlo dentro del usuario que inicio sesion

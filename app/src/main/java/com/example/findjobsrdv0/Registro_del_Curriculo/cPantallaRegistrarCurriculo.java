@@ -202,7 +202,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     public void registrarcurriculo() {
 
-        nombre = etNombre.getText().toString().trim();
+        nombre = etNombre.getText().toString().trim().toLowerCase();
         apellido = etApellido.getText().toString().trim();
         cedula = etCedula.getText().toString().trim();
         email = etEmail.getText().toString().trim();

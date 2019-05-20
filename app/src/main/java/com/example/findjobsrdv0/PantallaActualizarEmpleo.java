@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -30,6 +31,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
     Spinner spinJornadaAE, spinTipoContratoAE, spinCantidadVacantesAE, spinAnoExpAE,
             spinFormacionAcademicaAE, spinRangoEdadAE, spinSexoAE;
 
-    Button btnIdiomasAE;
+    Button btnIdiomasAE, btnActivarCampoAE;
 
     ImageButton BtnActualizarEmpleoAE;
 
@@ -111,6 +113,10 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             }
         });*/
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
 
         DBRefEmplosActualizar = FirebaseDatabase.getInstance().getReference("empleos");
 
@@ -130,12 +136,22 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         tvFechaPublicacionAE = (TextView) findViewById(R.id.xmlTiFechaPublicacionAE);
 
         btnIdiomasAE = (Button) findViewById(R.id.xmlBtnSeleccionarIdiomasAE);
+        btnActivarCampoAE = (Button) findViewById(R.id.xmlBtnActivarcampos);
+
 
         RdbDisponibleAE = (RadioButton) findViewById(R.id.xmlRdDisponibleAE);
         RdbNoDisponibleAE = (RadioButton) findViewById(R.id.xmlRdNoDisponibleAE);
 
+        btnActivarCampoAE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivarCampos();
+            }
+        });
+
 
         /////Spinner Provincia
+
 
         provinciasRefActualizar = FirebaseDatabase.getInstance().getReference();
         spinProvinciaAE = (Spinner) findViewById(R.id.xmlspinProvinciaAE);
@@ -163,7 +179,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child("nombre").getValue(String.class);
+                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
                     ListProvincias.add(provinciaName);
                 }
 
@@ -177,6 +193,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
             }
         });
+        spinProvinciaAE.setEnabled(false);
 
 /////Spinner Provincia
 
@@ -228,6 +245,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoJornada, android.R.layout.simple_spinner_item);
         adapterJornada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinJornadaAE.setAdapter(adapterJornada);
+        spinJornadaAE.setEnabled(false);
 /////Spinner Jornada
 
 /////Spinner Tipo de contrato
@@ -253,6 +271,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.infoTipoContratoE, android.R.layout.simple_spinner_item);
         adapterTipoContrato.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinTipoContratoAE.setAdapter(adapterTipoContrato);
+
+        spinTipoContratoAE.setEnabled(false);
+
 /////Spinner Tipo de contrato
 
 /////Spinner Cantidad de vacantes
@@ -278,6 +299,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoNumeros, android.R.layout.simple_spinner_item);
         adapterCantidadVacantes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinCantidadVacantesAE.setAdapter(adapterCantidadVacantes);
+
+        spinCantidadVacantesAE.setEnabled(false);
+
 /////Spinner Cantidad de vacantes
 
 
@@ -304,6 +328,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoAnosExperiencia, android.R.layout.simple_spinner_item);
         adapterAnoExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinAnoExpAE.setAdapter(adapterAnoExp);
+
+        spinAnoExpAE.setEnabled(false);
+
 /////Spinner Años Experiencia
 
 
@@ -335,7 +362,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
                 final List<String> ListAreas = new ArrayList<String>();
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                    String areaName = areaSnapshot.child("nombre").getValue(String.class);
+                    String areaName = areaSnapshot.child("Nombre_Area").getValue(String.class);
                     ListAreas.add(areaName);
                 }
 
@@ -349,6 +376,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
             }
         });
+        spinAreaAE.setEnabled(false);
 
 /////Spinner Area
 
@@ -376,6 +404,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoGrado, android.R.layout.simple_spinner_item);
         adapterFormacionAcademicaE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinFormacionAcademicaAE.setAdapter(adapterFormacionAcademicaE);
+
+        spinFormacionAcademicaAE.setEnabled(false);
+
 /////Spinner Formacion o grado academico en el area
 
 
@@ -465,6 +496,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoSexo, android.R.layout.simple_spinner_item);
         adapterSexoRequerido.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinSexoAE.setAdapter(adapterSexoRequerido);
+
+        spinSexoAE.setEnabled(false);
+
 /////Spinner Sexo requerido
 
 /////Spinner Rango edad
@@ -490,6 +524,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoRangoEdad, android.R.layout.simple_spinner_item);
         adapterRangoEdadE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinRangoEdadAE.setAdapter(adapterRangoEdadE);
+
+        spinRangoEdadAE.setEnabled(false);
+
 /////Spinner Rango edad
 
 
@@ -543,6 +580,37 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 
 
+    }
+
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
+    }
+    public void ActivarCampos(){
+        editNombreEmpleoAE.setEnabled(true);
+        editNombreEmpresaAE.setEnabled(true);
+        editDireccionAE.setEnabled(true);
+        editEmailAE.setEnabled(true);
+        editTelefonoAE.setEnabled(true);
+        editPaginaWebAE.setEnabled(true);
+        editSalarioAE.setEnabled(true);
+        editOtrosDatosAE.setEnabled(true);
+
+        RdbDisponibleAE.setEnabled(true);
+        RdbNoDisponibleAE.setEnabled(true);
+
+        btnIdiomasAE.setEnabled(true);
+        BtnActualizarEmpleoAE.setEnabled(true);
+
+        spinProvinciaAE.setEnabled(true);
+        spinAreaAE.setEnabled(true);
+        spinJornadaAE.setEnabled(true);
+        spinTipoContratoAE.setEnabled(true);
+        spinCantidadVacantesAE.setEnabled(true);
+        spinAnoExpAE.setEnabled(true);
+        spinFormacionAcademicaAE.setEnabled(true);
+        spinRangoEdadAE.setEnabled(true);
+        spinSexoAE.setEnabled(true);
     }
 
     public void CargarEmpleoActualizar(String sEmpleoIdE){
@@ -705,6 +773,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 sTipoContratoAE, sEstadoEmpleoAE, sPersonasAplicaronE, sImagenEmpleoE, sIdEmpleadorAE);
         DBRefEmplosActualizar.child(sEmpleoIdE).setValue(empleos);
                 //setValue(empleos);
+        Toast.makeText(this, "El Empleo se Actualizo exitosamente", Toast.LENGTH_LONG).show();
 
         //DBReferenceEmplos.child("empleos").child(IDEmpleo).setValue(empleos);
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).setValue(empleos);//para registrarlo dentro del usuario que inicio sesion

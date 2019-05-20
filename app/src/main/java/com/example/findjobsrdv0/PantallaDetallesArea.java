@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -32,10 +33,14 @@ public class PantallaDetallesArea extends AppCompatActivity {
         databaseArea = FirebaseDatabase.getInstance();
         DBarea = databaseArea.getReference("Areas");
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         MostImagenArea = (ImageView) findViewById(R.id.xmlImagenArea);
         TvNombreArea = (TextView) findViewById(R.id.xmlTvNombreArea);
-        TvDescripcionArea = (TextView) findViewById(R.id.xmlTvSubAreasA);
-        TvSubAreasA = (TextView) findViewById(R.id.xmlTvDescripcionArea);
+        TvDescripcionArea = (TextView) findViewById(R.id.xmlTvDescripcionArea);
+        TvSubAreasA = (TextView) findViewById(R.id.xmlTvSubAreasA);
 
 
         if(getIntent() != null){
@@ -52,7 +57,7 @@ public class PantallaDetallesArea extends AppCompatActivity {
 
     private void goDetalleArea(String sNombreAreakey) {
 
-        Query queryArea = DBarea.orderByChild("nombre").equalTo(sNombreAreakey);
+        Query queryArea = DBarea.orderByChild("Nombre_Area").equalTo(sNombreAreakey);
         queryArea.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -61,20 +66,19 @@ public class PantallaDetallesArea extends AppCompatActivity {
                     Log.d("hola", String.valueOf(dataSnapshot));
 
                     Areas Dareas = new Areas();
-                    Dareas.setsNombreArea(snapshot.child("nombre").getValue().toString());
-                    Log.d("probando", Dareas.getsNombreArea());
+                    Dareas.setsNombreArea(snapshot.child("Nombre_Area").getValue().toString());
+                    Dareas.setsImagenArea(snapshot.child("Imagen_Area").getValue().toString());
+                    Dareas.setsDescripcionArea(snapshot.child("Descripcion_Area").getValue().toString());
+                    Dareas.setsSubAreas(snapshot.child("Areas_Relacionadas").getValue().toString());
 
-                    Dareas.setsImagenArea(snapshot.child("imagenarea").getValue().toString());
-                    Dareas.setsDescripcionArea(snapshot.child("descripcion").getValue().toString());
-                    Dareas.setsSubAreas(snapshot.child("subarea").getValue().toString());
-
-                    Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);
 
                     TvNombreArea.setText(Dareas.getsNombreArea());
                     TvDescripcionArea.setText(Dareas.getsDescripcionArea());
                     TvSubAreasA.setText(Dareas.getsSubAreas());
 
-                    Log.d("probando", Dareas.getsNombreArea());
+                    Log.d("foto", Dareas.getsImagenArea());
+                    Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);
+
                 }
 
 
@@ -88,5 +92,10 @@ public class PantallaDetallesArea extends AppCompatActivity {
 
 
 
+    }
+
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 }

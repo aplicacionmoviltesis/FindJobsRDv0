@@ -1,5 +1,6 @@
 package com.example.findjobsrdv0;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,12 +10,16 @@ import android.webkit.WebViewClient;
 
 public class PantallaNavegador extends AppCompatActivity {
     private WebView webView;
-    String probandopage="https://www.google.com";
+    String probandopage="www.google.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_navegador);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
         //probandopage = bundle.getString("sPaginaWebDE");
@@ -24,13 +29,13 @@ public class PantallaNavegador extends AppCompatActivity {
         if (bundle != null) {
             if (!probandopage.isEmpty()) {
                 probandopage = getIntent().getStringExtra("sPaginaWebDE");
-                webView.loadUrl(probandopage);
+                webView.loadUrl("https://"+probandopage);
             }
         }
 
 
 //despues tengo que validar la url
-        webView.loadUrl(probandopage);
+        webView.loadUrl("https://"+probandopage);
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -45,6 +50,11 @@ public class PantallaNavegador extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 
 }

@@ -7,58 +7,72 @@
     android:orientation="vertical"
     tools:context=".PantallaDetallesProvincia">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-    <ImageView
-        android:id="@+id/xmlImagenProvincia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@mipmap/buscandoempleo" />
+        <TextView
+            android:id="@+id/xmlTvNombreProvincia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_margin="5dp"
+            android:textSize="40sp"
+            android:hint="Nombre Provincia" />
 
-    <TextView
-    android:id="@+id/xmlTiNombreProvincia"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Nombre Provincia" />
+        <ImageView
+            android:id="@+id/xmlImagenProvincia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp" />
 
-    <TextView
-        android:id="@+id/xmlTvNombreProvincia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="Nombre Provincia" />
+        <TextView
+            android:id="@+id/xmlTiDescripcionProvincia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/md_blue_900"
+            android:layout_margin="5dp"
+            android:text="Descripcion Provincia" />
 
-    <TextView
-        android:id="@+id/xmlTiCoordenadasProvincia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CoordenadasProvincia" />
-    <TextView
-        android:id="@+id/xmlTvCoordenadasProvincia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="CoordenadasProvincia" />
+        <TextView
+            android:id="@+id/xmlTvDescripcionProvincia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:scrollbars = "vertical"
+            android:hint="Descripcion Provincia" />
 
-    <TextView
-        android:id="@+id/xmlTiDescripcionProvincia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Descripcion Provincia" />
+        <TextView
+            android:id="@+id/xmlTiDivisionProvincia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textColor="@color/md_blue_900"
+            android:text="Division Provincial" />
 
-    <TextView
-        android:id="@+id/xmlTvDescripcionProvincia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="Descripcion Provincia" />
+        <TextView
+            android:id="@+id/xmlTvDivisionProvincia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:hint="Division Provincial" />
 
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

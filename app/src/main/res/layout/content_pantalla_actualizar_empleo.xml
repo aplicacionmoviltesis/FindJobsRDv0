@@ -40,7 +40,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColorHint="@color/md_blue_900"
                 app:counterEnabled="true"
-                app:counterMaxLength="20"
+                app:counterMaxLength="30"
                 app:counterOverflowTextAppearance="@style/CounterOverFlow"
                 app:counterTextAppearance="@style/Counter"
                 app:errorEnabled="true"
@@ -53,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:hint="Nombre Empleo"
                     android:inputType="text"
                     android:textColor="@color/md_blue_900" />
@@ -65,7 +66,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColorHint="@color/md_blue_900"
                 app:counterEnabled="true"
-                app:counterMaxLength="15"
+                app:counterMaxLength="30"
                 app:counterOverflowTextAppearance="@style/CounterOverFlow"
                 app:counterTextAppearance="@style/Counter"
                 app:errorEnabled="true"
@@ -78,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:hint="Nombre Empresa"
                     android:inputType="text"
                     android:textColor="@color/md_blue_900" />
@@ -88,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Provincia"
+                android:enabled="false"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -111,6 +114,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:hint="Direccion"
                     android:inputType="text"
                     android:textColor="@color/md_blue_900" />
@@ -136,6 +140,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/md_blue_900" />
@@ -161,6 +166,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:hint="Telefono"
                     android:inputType="phone"
                     android:textColor="@color/md_blue_900" />
@@ -186,6 +192,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:hint="Pagina Web"
                     android:inputType="textWebEditText"
                     android:text="ej. www.findjobs.com.do"
@@ -297,6 +304,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:hint="Salario"
                     android:inputType="numberDecimal"
                     android:textColor="@color/md_blue_900" />
@@ -370,9 +378,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
+                android:enabled="false"
                 android:text="Selecionar Idiomas" />
 
-            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            <Spinner
                 android:id="@+id/xmlspinSexoRequeridoAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -417,6 +426,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="3dp"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="Otros Datos"
                 android:inputType="textMultiLine"
                 android:text="ej. Otros Requisitos, Beneficios, Notas, Aviso."
@@ -445,6 +455,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
+                android:enabled="false"
                 android:checked="true"
                 android:text="Disponible" />
 
@@ -452,6 +463,7 @@
                 android:id="@+id/xmlRdNoDisponibleAE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:checked="false"
                 android:text="No Disponible" />
         </RadioGroup>
@@ -468,5 +480,11 @@
             android:textColorHint="@color/md_black_1000"
             android:textSize="13sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/xmlBtnActivarcampos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualizar"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

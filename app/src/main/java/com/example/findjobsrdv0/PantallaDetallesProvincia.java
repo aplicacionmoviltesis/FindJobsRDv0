@@ -1,17 +1,17 @@
 package com.example.findjobsrdv0;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class PantallaDetallesProvincia extends AppCompatActivity {
 
-    TextView TvNombreProvincia, TvDescripcionProvincia, TvCoordenadasProvincia;
+    TextView TvNombreProvincia, TvDescripcionProvincia, TvDivisionProvincia;
     ImageView MostImagenProvincia;
     String sNombreProvinciakey = "";
 
@@ -37,10 +37,19 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         DBprovincia = database.getReference("provincias");
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         MostImagenProvincia = (ImageView) findViewById(R.id.xmlImagenProvincia);
         TvNombreProvincia = (TextView) findViewById(R.id.xmlTvNombreProvincia);
-        TvDescripcionProvincia = (TextView) findViewById(R.id.xmlTvCoordenadasProvincia);
-        TvCoordenadasProvincia = (TextView) findViewById(R.id.xmlTvDescripcionProvincia);
+        TvDescripcionProvincia = (TextView) findViewById(R.id.xmlTvDescripcionProvincia);
+        TvDivisionProvincia = (TextView) findViewById(R.id.xmlTvDivisionProvincia);
+        TvDivisionProvincia.setMovementMethod(new ScrollingMovementMethod());
+        TvDescripcionProvincia.setMovementMethod(new ScrollingMovementMethod());
+
+
+
 
 
         if(getIntent() != null){
@@ -73,7 +82,7 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
 
     private void goDetalleProvincia(String sNombreProvinciakey) {
 
-        Query q = DBprovincia.orderByChild("nombre").equalTo(sNombreProvinciakey);
+        Query q = DBprovincia.orderByChild("Nombre_Provincia").equalTo(sNombreProvinciakey);
         //.orderByChild("descripcion").equalTo("hola")
         // .orderByChild("coordenadas").equalTo("3.5");
 ///       Query jj= q.orderByChild("coordenadas").equalTo("3.5");
@@ -92,10 +101,10 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
                     //TvNombreProvincia.setText(dataSnapshot.child("nombre").toString());
 
                     Provincias Dprovincia = new Provincias();
-                    Dprovincia.setsNombreProvincia(snapshot.child("nombre").getValue().toString());
-                    Dprovincia.setsImagenProvincia(snapshot.child("imagen").getValue().toString());
-                    Dprovincia.setsDescripcionProvincia(snapshot.child("descripcion").getValue().toString());
-                    Dprovincia.setsCoordenadasProvincia(snapshot.child("coordenadas").getValue().toString());
+                    Dprovincia.setsNombreProvincia(snapshot.child("Nombre_Provincia").getValue().toString());
+                    Dprovincia.setsImagenProvincia(snapshot.child("Imagen_Provincia").getValue().toString());
+                    Dprovincia.setsDescripcionProvincia(snapshot.child("Descripcion_Provincia").getValue().toString());
+                    Dprovincia.setsCoordenadasProvincia(snapshot.child("Division_Provincia").getValue().toString());
 
 
                     // }
@@ -112,7 +121,7 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
 
                     TvNombreProvincia.setText(Dprovincia.getsNombreProvincia());
                     TvDescripcionProvincia.setText(Dprovincia.getsDescripcionProvincia());
-                    TvCoordenadasProvincia.setText(Dprovincia.getsCoordenadasProvincia());
+                    TvDivisionProvincia.setText(Dprovincia.getsCoordenadasProvincia());
 
 
 
@@ -128,7 +137,7 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
                     //--------- Log.d("holappklk",Dprovincia.getsNombreProvincia());
                     //Log.d("hol", String.valueOf(hola));
 
-                    Log.d("probando", Dprovincia.getsNombreProvincia());
+                    Log.d("probando", Dprovincia.getsImagenProvincia());
                 }
 
 
@@ -140,6 +149,11 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 
 }
