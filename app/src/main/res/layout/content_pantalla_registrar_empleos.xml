@@ -65,7 +65,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColorHint="@color/md_blue_900"
                 app:counterEnabled="true"
-                app:counterMaxLength="15"
+                app:counterMaxLength="30"
                 app:counterOverflowTextAppearance="@style/CounterOverFlow"
                 app:counterTextAppearance="@style/Counter"
                 app:errorEnabled="true"
@@ -223,6 +223,17 @@
                 android:textStyle="bold" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/xmlspinHorarioE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:completionHintView="@color/md_blue_900"
+                android:dropDownSelector="@color/gradStop"
+                android:hint="Horario"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinJornadaE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -232,16 +243,6 @@
                 android:hint="Jornada"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTiMostrarHorarioE"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:hint="0:00 AM / 0:00 PM"
-                android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
-                android:textStyle="bold" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinTipoContratoF"
@@ -401,8 +402,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_bg"
             android:textColorHint="@color/md_blue_900"
             android:layout_marginTop="35dp"
+            android:padding="5dp"
             app:counterEnabled="true"
             app:counterMaxLength="300"
             app:counterOverflowTextAppearance="@style/CounterOverFlow"
@@ -436,6 +439,7 @@
             android:id="@+id/xmlRGEstadoActualEmpleoE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_below="@+id/xmlTiEstadoActualEmpleoE"
             android:layout_marginBottom="@dimen/activity_vertical_margin">

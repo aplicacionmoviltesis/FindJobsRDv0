@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -43,7 +44,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
     EditText editNombreEmpleoAE, editNombreEmpresaAE, editDireccionAE, editEmailAE,
             editTelefonoAE, editPaginaWebAE, editSalarioAE, editOtrosDatosAE;
 
-    TextView tvHorarioAE, tvMostrarIdiomasAE, tvFechaPublicacionAE;
+    TextView tvMostrarIdiomasAE, tvFechaPublicacionAE;
 
 
     String sIDEmpleoEA, sNombreEmpleoAE, sNombreEmpresaAE, sDireccionAE, sEmailAE,
@@ -53,7 +54,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             sFechaPublicacionAE, sIdEmpleadorAE;
 
     Spinner spinJornadaAE, spinTipoContratoAE, spinCantidadVacantesAE, spinAnoExpAE,
-            spinFormacionAcademicaAE, spinRangoEdadAE, spinSexoAE;
+            spinFormacionAcademicaAE, spinRangoEdadAE, spinSexoAE,spinHorarioAE;
 
     Button btnIdiomasAE, btnActivarCampoAE;
 
@@ -87,6 +88,13 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 /////Spinner Area de Trabajo
 
+    ////obtener imagen
+
+    private FirebaseDatabase databaseArea;
+    Query DBarea;
+
+    ////obtener imagen
+
 /////Checklist para elegir los idiomas
 
     String[] listItems;
@@ -117,6 +125,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        databaseArea = FirebaseDatabase.getInstance();
+        DBarea = databaseArea.getReference("Areas");
+
 
         DBRefEmplosActualizar = FirebaseDatabase.getInstance().getReference("empleos");
 
@@ -131,7 +142,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         editSalarioAE = (EditText) findViewById(R.id.xmlEditSalarioAE);
         editOtrosDatosAE = (EditText) findViewById(R.id.xmlEditOtrosRequisitosAE);
 
-        tvHorarioAE = (TextView) findViewById(R.id.xmlTiMostrarHorarioAE);
+        //tvHorarioAE = (TextView) findViewById(R.id.xmlTiMostrarHorarioAE);
         tvMostrarIdiomasAE = (TextView) findViewById(R.id.xmlTiMostrarIdiomasAE);
         tvFechaPublicacionAE = (TextView) findViewById(R.id.xmlTiFechaPublicacionAE);
 
@@ -197,6 +208,33 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 /////Spinner Provincia
 
+/////Spinner Horario
+        spinHorarioAE = findViewById(R.id.xmlspinHorarioAE);
+        spinHorarioAE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sHorarioAE = spinHorarioAE.getSelectedItem().toString();
+                    Log.d("valorSpinhorario", sHorarioAE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterHorario = ArrayAdapter.createFromResource(this,
+                R.array.InfoHorario, android.R.layout.simple_spinner_item);
+        adapterHorario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinHorarioAE.setAdapter(adapterHorario);
+        spinHorarioAE.setEnabled(false);
+
+/////Spinner Horario
+
 /////Spinner Jornada
         spinJornadaAE = findViewById(R.id.xmlspinJornadaAE);
         spinJornadaAE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -206,30 +244,6 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 if (!IsFirstTimeClick) {
                     sJornadaAE = spinJornadaAE.getSelectedItem().toString();
                     Log.d("valorSpinare", sJornadaAE);
-                    if (sJornadaAE.equals("Matutina")) {
-                        sHorarioAE = "8:00 AM - 12:00 PM";
-                        tvHorarioAE.setText(sHorarioAE);
-                    }
-                    if (sJornadaAE.equals("Vespertina")) {
-                        sHorarioAE = "1:00 PM - 6:00 PM";
-                        tvHorarioAE.setText(sHorarioAE);
-                    }
-                    if (sJornadaAE.equals("Nocturna")) {
-                        sHorarioAE = "6:00 PM - 12:00 AM";
-                        tvHorarioAE.setText(sHorarioAE);
-                    }
-                    if (sJornadaAE.equals("Matutina/Vespertina")) {
-                        sHorarioAE = "8:00 AM - 6:00 PM";
-                        tvHorarioAE.setText(sHorarioAE);
-                    }
-                    if (sJornadaAE.equals("Vespertina/Nocturna")) {
-                        sHorarioAE = "1:00 PM - 12:00 AM";
-                        tvHorarioAE.setText(sHorarioAE);
-                    }
-                    if (sJornadaAE.equals("Nocturna/Matutina")) {
-                        sHorarioAE = "12:00 AM - 6:00 AM";
-                        tvHorarioAE.setText(sHorarioAE);
-                    }
 
                 } else {
                     IsFirstTimeClick = false;
@@ -345,6 +359,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
                 if (!IsFirstTimeClickAreas) {
                     sAreaAE = spinAreaAE.getSelectedItem().toString();
+                    ObtenerImagen(sAreaAE);
+
                     Log.d("valorSpinArea", sAreaAE);
                 } else {
                     IsFirstTimeClickAreas = false;
@@ -604,6 +620,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
         spinProvinciaAE.setEnabled(true);
         spinAreaAE.setEnabled(true);
+        spinHorarioAE.setEnabled(true);
         spinJornadaAE.setEnabled(true);
         spinTipoContratoAE.setEnabled(true);
         spinCantidadVacantesAE.setEnabled(true);
@@ -631,7 +648,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 editTelefonoAE.setText(empleos.getsTelefonoE());
                 editPaginaWebAE.setText(empleos.getsPaginaWebE());
                 spinJornadaAE.setSelection(obtenerPosicionItem(spinJornadaAE, empleos.getsJornadaE()));
-                tvHorarioAE.setText(empleos.getsHorarioE());//funciona sin el
+                spinHorarioAE.setSelection(obtenerPosicionItem(spinHorarioAE, empleos.getsHorarioE()));
                 spinTipoContratoAE.setSelection(obtenerPosicionItem(spinTipoContratoAE, empleos.getsTipoContratoE()));
                 spinCantidadVacantesAE.setSelection(obtenerPosicionItem(spinCantidadVacantesAE, empleos.getsCantidadVacantesE()));
                 editSalarioAE.setText(empleos.getsSalarioE());
@@ -711,7 +728,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         sSalarioAE = editSalarioAE.getText().toString().trim();
         sOtrosDatosAE = editOtrosDatosAE.getText().toString().trim();
 
-        sHorarioAE = tvHorarioAE.getText().toString().trim();
+        //sHorarioAE = tvHorarioAE.getText().toString().trim();
         sFechaPublicacionAE = tvFechaPublicacionAE.getText().toString().trim();
         sMostrarIdiomaAE = tvMostrarIdiomasAE.getText().toString().trim();
 
@@ -726,6 +743,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         //sFormacionAcademicaE = "";
         //sSexoRequeridoE = "Hombre";
         //sRangoEdadE = "25-35";
+        //sHorarioE = "Diurno";
 
 //RadioButton
         //sEstadoEmpleoE = "";
@@ -781,6 +799,28 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 
 
+    }
+
+    private void ObtenerImagen(String sNombreAreakey) {
+
+        Query queryArea = DBarea.orderByChild("Nombre_Area").equalTo(sNombreAreakey);
+        queryArea.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("hola", String.valueOf(dataSnapshot));
+
+                    Areas Dareas = new Areas();
+                    Dareas.setsImagenArea(snapshot.child("Imagen_Area").getValue().toString());
+                    sImagenEmpleoE = Dareas.getsImagenArea();
+                    Log.d("foto", Dareas.getsImagenArea());
+                    //Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
 }

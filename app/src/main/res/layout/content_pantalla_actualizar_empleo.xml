@@ -230,6 +230,17 @@
                 android:textStyle="bold" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/xmlspinHorarioAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:completionHintView="@color/md_blue_900"
+                android:dropDownSelector="@color/gradStop"
+                android:hint="Horario"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinJornadaAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -240,15 +251,6 @@
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
-            <TextView
-                android:id="@+id/xmlTiMostrarHorarioAE"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:hint="0:00 AM / 0:00 PM"
-                android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
-                android:textStyle="bold" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinTipoContratoAE"
@@ -482,9 +484,20 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/xmlBtnPersonasAplicaron"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="@color/md_blue_900"
+            android:text="Personas que Aplicaron"/>
+
+        <Button
             android:id="@+id/xmlBtnActivarcampos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Actualizar"/>
+            android:drawablePadding="5dp"
+            android:layout_marginStart="10dp"
+            android:drawableLeft="@drawable/ic_edit"
+            android:text="Editar"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

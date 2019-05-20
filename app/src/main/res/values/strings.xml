@@ -38,16 +38,16 @@
     </string-array>
 
 
-    <string-array name="InfoJornada">
+   <!-- <string-array name="InfoJornada">
         <item>Matutina </item>
         <item>Vespertina </item>
         <item>Nocturna</item>
         <item>Matutina/Vespertina</item>
         <item>Vespertina/Nocturna </item>
         <item>Nocturna/Matutina</item>
-    </string-array>
+    </string-array>-->
 
-    <string-array name="InfoJornada2">
+    <string-array name="InfoJornada">
         <item>Completa </item>
         <item>Indiferente </item>
         <item>Parcial</item>

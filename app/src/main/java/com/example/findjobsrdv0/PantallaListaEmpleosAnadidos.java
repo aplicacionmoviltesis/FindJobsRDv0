@@ -72,7 +72,7 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
                 empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
                 empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
                 empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
-                empleosViewHolder.FechaPublicacionCardView.setText(empleos.getsFechaPublicacionE());
+                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: "+empleos.getsFechaPublicacionE());
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
 
                 final Empleos clickItem = empleos;
