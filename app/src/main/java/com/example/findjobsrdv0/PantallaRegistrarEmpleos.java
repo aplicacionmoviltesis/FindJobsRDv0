@@ -670,7 +670,7 @@ public void limpiarCampor(){
         DBReferenceEmplos.child(IDEmpleo).setValue(empleos);
 
         Toast.makeText(this, "El Empleo se registro exitosamente", Toast.LENGTH_LONG).show();
-        limpiarCampor();
+            limpiarCampor();
         //DBReferenceEmplos.child("empleos").child(IDEmpleo).setValue(empleos);
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).setValue(empleos);//para registrarlo dentro del usuario que inicio sesion
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).child("PersonasAplicaron").setValue("1");//para registrarlo dentro del usuario que inicio sesion

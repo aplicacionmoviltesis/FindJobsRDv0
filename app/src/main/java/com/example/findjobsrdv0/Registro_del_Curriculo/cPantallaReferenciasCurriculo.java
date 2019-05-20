@@ -42,10 +42,14 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 
     String detallereferencias = "";
+
+    String idusuarioconectado;
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
+//---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
 
 
+//---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
 
 
     @Override
@@ -63,6 +67,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         recycler_referencia.setLayoutManager( layoutManager );
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
+//---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -94,15 +99,19 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         }
 
 
-        loadReferencias(detallereferencias);
+        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        idusuarioconectado = Ukey;
+
+        loadReferencias(Ukey);
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
     }
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
-    private void loadReferencias(String detallereferencias) {
+    private void loadReferencias(String Ukey) {
         final FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder> adapter = new FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder>( modeloReferencias.class, R.layout.cardview_pantalla_referencias_curriculos_en_los_insert, ReferenciasViewHolder.class,
-                referenciainset.orderByChild( "rBuscadorId" ).equalTo( detallereferencias ) ) {
+                referenciainset.orderByChild( "idusuarioregistrado" ).equalTo( Ukey ) ) {
             @Override
             protected void populateViewHolder(ReferenciasViewHolder ViewHolder, modeloReferencias model, int position) {
 
@@ -118,6 +127,8 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
                 ViewHolder.setItemClickListener( new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
+
+
 
                         //       Toast.makeText( cPantallaRegistroCurriculo.this, "" + clickItem.getOcInstitucionC(), Toast.LENGTH_SHORT ).show();
 
@@ -154,13 +165,12 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             return;
         }
    */
-        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
 
         String IdReferencia = mDatabase.push().getKey();
 
-        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
+        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, idusuarioconectado, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
 
         mDatabase.child( IdReferencia ).setValue( referencias );
 

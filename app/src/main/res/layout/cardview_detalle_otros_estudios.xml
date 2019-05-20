@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/btn_bg"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/xmlTituloReferencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Otros Estudios"
+            android:textColor="@color/md_blue_900"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/btn_bg"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/xmlbregistrarFechafinEL"
+                android:layout_marginTop="5dp"
+                android:inputType="numberDecimal"
+                android:text=" Institucion"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900">
+
+                <TextView
+                    android:id="@+id/xmlTVInstitucionDetalleOtrosEstudios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="Institucion"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"
+                    android:textSize="25sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/xmlbregistrarFechafinEL"
+                android:layout_marginTop="5dp"
+                android:inputType="numberDecimal"
+                android:text=" año"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900">
+
+                <TextView
+                    android:id="@+id/xmlTVanoDetalleOtrosEstudios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="año"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"
+                    android:textSize="25sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/xmlbregistrarFechafinEL"
+                android:layout_marginTop="5dp"
+                android:inputType="numberDecimal"
+                android:text=" Area o Tema"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900">
+
+                <TextView
+                    android:id="@+id/xmlTVAreaoTemaDetalleOtrosEstudios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="Area o tema"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"
+                    android:textSize="25sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/xmlbregistrarFechafinEL"
+                android:layout_marginTop="5dp"
+                android:inputType="numberDecimal"
+                android:text=" Tipo de estudio"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900">
+
+                <TextView
+                    android:id="@+id/xmlTVTipodeEstudioDetalleOtrosEstudios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:completionHintView="@color/md_blue_900"
+                    android:dropDownSelector="@color/gradStop"
+                    android:hint="Tipo de estudio"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900"
+                    android:textSize="25sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

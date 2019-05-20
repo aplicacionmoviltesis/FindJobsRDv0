@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExperienciaLaboral {
-    String   elCodigoId, elBuscadorId ,elNombreEmpresa, elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida;
+    String   elCodigoId, elBuscadorId ,elNombreEmpresa, elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida,elidUsuarioConectado;
 
     public ExperienciaLaboral() {
     }
 
-    public ExperienciaLaboral(String elCodigoId, String elBuscadorId, String elNombreEmpresa, String elCargoOcupado, String elTelefono, String elFechaEntrada, String elFechaSalida) {
+    public ExperienciaLaboral(String elCodigoId, String elBuscadorId, String elNombreEmpresa, String elCargoOcupado, String elTelefono, String elFechaEntrada, String elFechaSalida, String elidUsuarioConectado) {
         this.elCodigoId = elCodigoId;
         this.elBuscadorId = elBuscadorId;
         this.elNombreEmpresa = elNombreEmpresa;
@@ -17,6 +17,7 @@ public class ExperienciaLaboral {
         this.elTelefono = elTelefono;
         this.elFechaEntrada = elFechaEntrada;
         this.elFechaSalida = elFechaSalida;
+        this.elidUsuarioConectado = elidUsuarioConectado;
     }
 
     public String getElCodigoId() {
@@ -75,6 +76,14 @@ public class ExperienciaLaboral {
         this.elFechaSalida = elFechaSalida;
     }
 
+    public String getElidUsuarioConectado() {
+        return elidUsuarioConectado;
+    }
+
+    public void setElidUsuarioConectado(String elidUsuarioConectado) {
+        this.elidUsuarioConectado = elidUsuarioConectado;
+    }
+
     public Map<String, Object> ExpLab(){
 
         HashMap<String,Object> ListExpLab= new HashMap<>();
@@ -83,7 +92,7 @@ public class ExperienciaLaboral {
         ListExpLab.put("Telefono",elTelefono);
         ListExpLab.put("Fecha_Entrada",elFechaEntrada);
         ListExpLab.put("Fecha_Salida",elFechaSalida);
-
+        ListExpLab.put( "IdUsuarioConectado", elidUsuarioConectado );
 
         return ListExpLab;
     }

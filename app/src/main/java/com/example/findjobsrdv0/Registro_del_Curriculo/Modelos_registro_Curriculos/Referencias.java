@@ -5,20 +5,20 @@ import java.util.Map;
 
 public class Referencias {
 
-    String rCodigoId, rBuscadorId, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC;
+    String rCodigoId, rBuscadorId, idusuarioregistrado, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC;
 
     public Referencias() {
     }
 
-    public Referencias(String rCodigoId, String rBuscadorId, String rNombreC, String rCargoOcupadoC, String rInstitucionC, String rTelefonoC) {
+    public Referencias(String rCodigoId, String rBuscadorId, String idusuarioregistrado, String rNombreC, String rCargoOcupadoC, String rInstitucionC, String rTelefonoC) {
         this.rCodigoId = rCodigoId;
         this.rBuscadorId = rBuscadorId;
+        this.idusuarioregistrado = idusuarioregistrado;
         this.rNombreC = rNombreC;
         this.rCargoOcupadoC = rCargoOcupadoC;
         this.rInstitucionC = rInstitucionC;
         this.rTelefonoC = rTelefonoC;
     }
-
 
     public String getrCodigoId() {
         return rCodigoId;
@@ -34,6 +34,14 @@ public class Referencias {
 
     public void setrBuscadorId(String rBuscadorId) {
         this.rBuscadorId = rBuscadorId;
+    }
+
+    public String getIdusuarioregistrado() {
+        return idusuarioregistrado;
+    }
+
+    public void setIdusuarioregistrado(String idusuarioregistrado) {
+        this.idusuarioregistrado = idusuarioregistrado;
     }
 
     public String getrNombreC() {
@@ -71,6 +79,7 @@ public class Referencias {
     public Map<String, Object> Referencia() {
 
         HashMap<String, Object> ListReferencia = new HashMap<>();
+        ListReferencia.put( "idusuarioregistrado", idusuarioregistrado );
         ListReferencia.put( "Nombre", rNombreC );
         ListReferencia.put( "CargoOcupado", rCargoOcupadoC );
         ListReferencia.put( "Institucion", rInstitucionC );
