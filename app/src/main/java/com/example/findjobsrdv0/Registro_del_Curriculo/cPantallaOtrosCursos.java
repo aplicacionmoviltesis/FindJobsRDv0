@@ -21,10 +21,11 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
     SearchableSpinner ssTipodeEstudio;
     Button BtnRegistrarOtrosCursos;
 
-    String ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio;
+    String ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio, ocIdBuscardor;
 
     private DatabaseReference DBOtrosCursosCurriculos;
 
+    String detalleotroscursos = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +43,25 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         BtnRegistrarOtrosCursos.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registrarotroscurriculos();
+                registrarotroscurriculos(detalleotroscursos);
             }
         } );
 
+        if (getIntent() != null)
+            detalleotroscursos = getIntent().getStringExtra( "DetalleOtrosCursosID" );
+
+        if (!detalleotroscursos.isEmpty()) {
+            registrarotroscurriculos( detalleotroscursos );
+        }
+
     }
 
-    private void registrarotroscurriculos() {
+    private void registrarotroscurriculos(String detalleotroscursos) {
         ocInstitucionC = etInstitucion.getText().toString().trim();
         ocAnoC = etAno.getText().toString().trim();
         ocAreaoTemaC = etAreaoTema.getText().toString().trim();
         ocTipoEstudio = ssTipodeEstudio.getSelectedItem().toString().trim();
+        ocIdBuscardor = detalleotroscursos;
 
         if (TextUtils.isEmpty( ocInstitucionC )) {
             etInstitucion.setError( "Campo vacío, por favor escriba la institucion" );
@@ -61,7 +70,6 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        String ocIdBuscardor = Ukey;
 
         String IdCurriculo = DBOtrosCursosCurriculos.push().getKey();
 

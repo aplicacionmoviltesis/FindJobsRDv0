@@ -30,7 +30,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 
     EditText etNombreEmpresa, etCargoOcupado, etTelefono, etFechaEntrada, etFechaSalida;
 
-    String elNombreEmpresa, elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida;
+    String elNombreEmpresa, elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida, elBuscardorId;
 
     Button BtnRegistrarExperienciaLab;
 
@@ -46,6 +46,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
 
 
+    String detalleexperiencialab = "";
 
 
     @Override
@@ -78,24 +79,39 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         etFechaEntrada = (EditText) findViewById( R.id.xmlbeditRegistrarFechainicioEL );
         etFechaSalida = (EditText) findViewById( R.id.xmlbeditRegistrarFechafinEL );
 
+
+
+
         BtnRegistrarExperienciaLab = (Button) findViewById( R.id.xmlBtnRegitrarExperienciaLab );
         BtnRegistrarExperienciaLab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegistrarExperienciaLaboral();
+                RegistrarExperienciaLaboral(detalleexperiencialab);
             }
         } );
 
+        if (getIntent() != null)
+            detalleexperiencialab = getIntent().getStringExtra( "DetalleExperienciaLaboralID" );
+
+        if (!detalleexperiencialab.isEmpty()) {
+            RegistrarExperienciaLaboral( detalleexperiencialab );
+        }
+
+
+
+
+
 
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
-        loadReferencias();
+        loadReferencias(detalleexperiencialab);
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
 
     }
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
 
-    private void loadReferencias() {
-        final FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder> adapter = new FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder>( modeloExperienciaLaboral.class, R.layout.cardview_experienci_laboral_insert, ExperienciaLaboralViewHolder.class, experiencialaboralinset ) {
+    private void loadReferencias(String detalleexperiencialab) {
+        final FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder> adapter = new FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder>( modeloExperienciaLaboral.class, R.layout.cardview_experienci_laboral_insert, ExperienciaLaboralViewHolder.class,
+                experiencialaboralinset.orderByChild( "elBuscadorId" ).equalTo( detalleexperiencialab ) ) {
             @Override
             protected void populateViewHolder(ExperienciaLaboralViewHolder ViewHolder, modeloExperienciaLaboral model, int position) {
 
@@ -129,13 +145,14 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         recycler_experiencialaboral.setAdapter( adapter );
     }
 
-        public void RegistrarExperienciaLaboral(){
+        public void RegistrarExperienciaLaboral(String detalleexperiencialab){
 
 
             elNombreEmpresa = etNombreEmpresa.getText().toString();
             elCargoOcupado = etCargoOcupado.getText().toString();
             elFechaEntrada = etFechaEntrada.getText().toString();
             elFechaSalida = etFechaSalida.getText().toString();
+            elBuscardorId = detalleexperiencialab;
 
 
             if (TextUtils.isEmpty( elNombreEmpresa )) {
@@ -150,7 +167,6 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 
             String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            String elBuscardorId = Ukey;
 
 
             String IdExperienciaLab = mDatabase.push().getKey();

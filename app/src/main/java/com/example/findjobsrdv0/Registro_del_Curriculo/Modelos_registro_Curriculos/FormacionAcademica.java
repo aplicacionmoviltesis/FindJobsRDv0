@@ -4,77 +4,77 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FormacionAcademica {
-    String faCodigoC, faIdBuscadorC, afCarreraC, afNivelprimarioC, afNivelsecundarioC, afNivelsuperiorC;
+    String codigoc, idbuscadorc, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc;
 
     public FormacionAcademica() {
     }
 
-    public FormacionAcademica(String faCodigoC, String faIdBuscadorC, String afCarreraC, String afNivelprimarioC, String afNivelsecundarioC, String afNivelsuperiorC) {
-        this.faCodigoC = faCodigoC;
-        this.faIdBuscadorC = faIdBuscadorC;
-        this.afCarreraC = afCarreraC;
-        this.afNivelprimarioC = afNivelprimarioC;
-        this.afNivelsecundarioC = afNivelsecundarioC;
-        this.afNivelsuperiorC = afNivelsuperiorC;
+    public FormacionAcademica(String codigoc, String idbuscadorc, String carrerac, String nivelprimarioc, String nivelsecundarioc, String nivelsuperiorc) {
+        this.codigoc = codigoc;
+        this.idbuscadorc = idbuscadorc;
+        this.carrerac = carrerac;
+        this.nivelprimarioc = nivelprimarioc;
+        this.nivelsecundarioc = nivelsecundarioc;
+        this.nivelsuperiorc = nivelsuperiorc;
     }
 
-    public String getFaCodigoC() {
-        return faCodigoC;
+    public String getCodigoc() {
+        return codigoc;
     }
 
-    public void setFaCodigoC(String faCodigoC) {
-        this.faCodigoC = faCodigoC;
+    public void setCodigoc(String codigoc) {
+        this.codigoc = codigoc;
     }
 
-    public String getFaIdBuscadorC() {
-        return faIdBuscadorC;
+    public String getIdbuscadorc() {
+        return idbuscadorc;
     }
 
-    public void setFaIdBuscadorC(String faIdBuscadorC) {
-        this.faIdBuscadorC = faIdBuscadorC;
+    public void setIdbuscadorc(String idbuscadorc) {
+        this.idbuscadorc = idbuscadorc;
     }
 
-    public String getAfCarreraC() {
-        return afCarreraC;
+    public String getCarrerac() {
+        return carrerac;
     }
 
-    public void setAfCarreraC(String afCarreraC) {
-        this.afCarreraC = afCarreraC;
+    public void setCarrerac(String carrerac) {
+        this.carrerac = carrerac;
     }
 
-    public String getAfNivelprimarioC() {
-        return afNivelprimarioC;
+    public String getNivelprimarioc() {
+        return nivelprimarioc;
     }
 
-    public void setAfNivelprimarioC(String afNivelprimarioC) {
-        this.afNivelprimarioC = afNivelprimarioC;
+    public void setNivelprimarioc(String nivelprimarioc) {
+        this.nivelprimarioc = nivelprimarioc;
     }
 
-    public String getAfNivelsecundarioC() {
-        return afNivelsecundarioC;
+    public String getNivelsecundarioc() {
+        return nivelsecundarioc;
     }
 
-    public void setAfNivelsecundarioC(String afNivelsecundarioC) {
-        this.afNivelsecundarioC = afNivelsecundarioC;
+    public void setNivelsecundarioc(String nivelsecundarioc) {
+        this.nivelsecundarioc = nivelsecundarioc;
     }
 
-    public String getAfNivelsuperiorC() {
-        return afNivelsuperiorC;
+    public String getNivelsuperiorc() {
+        return nivelsuperiorc;
     }
 
-    public void setAfNivelsuperiorC(String afNivelsuperiorC) {
-        this.afNivelsuperiorC = afNivelsuperiorC;
+    public void setNivelsuperiorc(String nivelsuperiorc) {
+        this.nivelsuperiorc = nivelsuperiorc;
     }
 
     public Map<String, Object> FormAcad(){
 
         HashMap<String,Object> ListFormAcad= new HashMap<>();
-        ListFormAcad.put("faCodigoC",faCodigoC);
-        ListFormAcad.put( "faIdBuscadorC", faIdBuscadorC );
-        ListFormAcad.put("afCarreraC",afCarreraC);
-        ListFormAcad.put("afNivelprimarioC",afNivelprimarioC);
-        ListFormAcad.put("afNivelsecundarioC",afNivelsecundarioC);
-        ListFormAcad.put("afNivelsuperiorC",afNivelsuperiorC);
+        ListFormAcad.put("codigoc",codigoc);
+        ListFormAcad.put( "idbuscadorc", idbuscadorc );
+        ListFormAcad.put("carrerac",carrerac);
+        ListFormAcad.put("nivelprimarioc",nivelprimarioc);
+        ListFormAcad.put("nivelsecundarioc",nivelsecundarioc);
+        ListFormAcad.put("nivelsuperiorc",nivelsuperiorc);
 
         return ListFormAcad;
     }

@@ -39,7 +39,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     String cCodigoId, cIdCurriculo, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
 
-    private Button btnFormacionAcademica, btnReferenciCurriculo, btnExperienciaLaboralCurriculo, bntIdioma;
+    private Button btnFormacionAcademica, btnReferenciCurriculo, btnExperienciaLaboralCurriculo,btnOtrosCursosCurriculo, bntIdioma;
 
     Button mOrder;
     String[] listItems;
@@ -47,12 +47,12 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     ArrayList<Integer> mUserItems = new ArrayList<>();
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_c_pantalla_registrar_curriculo );
-
-
 
 
         DBReferenceCurriculos = FirebaseDatabase.getInstance().getReference( "Curriculos" );
@@ -81,19 +81,46 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         listItems = getResources().getStringArray( R.array.InfoIdiomas );
         checkedItems = new boolean[listItems.length];
 
+
+        final String IdCurriculo = DBReferenceCurriculos.push().getKey();
+        Button btnregistrarC = findViewById( R.id.xmlBtnRegistrarDatosGC );
+        btnregistrarC.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registrarcurriculo(IdCurriculo);
+            }
+        } );
+
+
         btnFormacionAcademica = (Button) findViewById( R.id.xmlBtnFormacionAcademicaC );
         btnFormacionAcademica.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( cPantallaRegistrarCurriculo.this, cPantallaFormacionAcademicaCurriculo.class );
+                intent.putExtra( "DetalleFormacionAcademicaID", IdCurriculo );
+                //  Log.d( "idcurriculo",IdCurriculo );
                 startActivity( intent );
             }
         } );
+
+        btnOtrosCursosCurriculo = ( Button) findViewById( R.id.AbrirOtrosCursos );
+        btnOtrosCursosCurriculo.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( cPantallaRegistrarCurriculo.this, cPantallaOtrosCursos.class );
+                intent.putExtra( "DetalleOtrosCursosID", IdCurriculo );
+                //  Log.d( "idcurriculo",IdCurriculo );
+                startActivity( intent );
+            }
+        } );
+
         btnExperienciaLaboralCurriculo = (Button) findViewById( R.id.xmlBntExperienciaLaboralCurriculo );
         btnExperienciaLaboralCurriculo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( cPantallaRegistrarCurriculo.this, cPantallaExperienciaLaboralCurriculo.class );
+                intent.putExtra( "DetalleExperienciaLaboralID", IdCurriculo );
+                //  Log.d( "idcurriculo",IdCurriculo );
                 startActivity( intent );
             }
         } );
@@ -104,19 +131,19 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( cPantallaRegistrarCurriculo.this, cPantallaReferenciasCurriculo.class );
+                intent.putExtra( "DetalleReferenciasID", IdCurriculo );
+                //  Log.d( "idcurriculo",IdCurriculo );
                 startActivity( intent );
             }
         } );
 
-        Button btnregistrarC = findViewById( R.id.xmlBtnRegistrarDatosGC );
-        btnregistrarC.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registrarcurriculo();
 
-            }
-        } );
+
 //-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
         btnFormacionAcademica = findViewById( R.id.xmlBtnFormacionAcademicaC );
@@ -183,24 +210,15 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             }
         } );
 
-
-
-
-
-
-
     }
-
-
-
-
 
     public void onButtonClicked(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show( getFragmentManager(), "Date Picker" );
     }
 
-    public void registrarcurriculo() {
+    public void registrarcurriculo(String IdCurriculo ) {
+
 
         nombre = etNombre.getText().toString().trim().toLowerCase();
         apellido = etApellido.getText().toString().trim();
@@ -222,6 +240,10 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );
             return;
         }
+
+
+
+
     /*    if (TextUtils.isEmpty( cApellido )) {
             etApellido.setError( "Campo vacío, por favor escriba el apellido" );
             return;
@@ -247,12 +269,14 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         String cIdBuscardor = Ukey;
 
 
-        String IdCurriculo = DBReferenceCurriculos.push().getKey();
+
 
         Curriculos curriculos = new Curriculos( IdCurriculo, cIdBuscardor, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha );
 
 
         DBReferenceCurriculos.child( IdCurriculo ).setValue( curriculos );
+
+
 
         //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
         //   DBReferenceCurriculos.child(Ukey).setValue(curriculos);//para registrarlo dentro del usuario que inicio sesion

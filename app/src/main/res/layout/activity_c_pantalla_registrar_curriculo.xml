@@ -433,10 +433,22 @@
             android:orientation="vertical" >
 
             <Button
+                android:id="@+id/xmlBtnRegistrarDatosGC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Registrar"
+                android:text=" REgistrar curriculo" />
+
+            <Button
                 android:id="@+id/xmlBtnFormacionAcademicaC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Añadir Formacion Academica" />
+            <Button
+                android:id="@+id/AbrirOtrosCursos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Añadir Otros Cursos"/>
 
             <Button
                 android:id="@+id/xmlBntExperienciaLaboralCurriculo"
@@ -450,12 +462,7 @@
                 android:layout_height="wrap_content"
                 android:text="Añadir Referencias" />
 
-            <Button
-                android:id="@+id/xmlBtnRegistrarDatosGC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Registrar"
-                android:text=" REgistrar curriculo" />
+
 
             <TextView
                 android:layout_width="wrap_content"

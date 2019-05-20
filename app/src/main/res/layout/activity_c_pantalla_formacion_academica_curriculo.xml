@@ -143,12 +143,6 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <Button
-            android:id="@+id/AbrirOtrosCursos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Añadir Otros Cursos"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewotroscursos"

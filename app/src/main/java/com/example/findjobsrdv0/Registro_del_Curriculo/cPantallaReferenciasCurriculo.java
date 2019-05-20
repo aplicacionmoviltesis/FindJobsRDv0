@@ -40,7 +40,11 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
     RecyclerView recycler_referencia;
     RecyclerView.LayoutManager layoutManager;
+
+    String detallereferencias = "";
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
@@ -60,6 +64,8 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
 
+
+
         mDatabase = FirebaseDatabase.getInstance().getReference("Referencia");
         mAuth = FirebaseAuth.getInstance();
 
@@ -72,20 +78,31 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         BtnRegistrarReferencia.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegistrarReferencia();
+                RegistrarReferencia(detallereferencias);
             }
         } );
 
 
+
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-        loadReferencias();
+
+        if (getIntent() != null)
+            detallereferencias = getIntent().getStringExtra( "DetalleReferenciasID" );
+
+        if (!detallereferencias.isEmpty()) {
+            RegistrarReferencia( detallereferencias );
+        }
+
+
+        loadReferencias(detallereferencias);
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
     }
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
-    private void loadReferencias() {
-        final FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder> adapter = new FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder>( modeloReferencias.class, R.layout.cardview_pantalla_referencias_curriculos_en_los_insert, ReferenciasViewHolder.class, referenciainset ) {
+    private void loadReferencias(String detallereferencias) {
+        final FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder> adapter = new FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder>( modeloReferencias.class, R.layout.cardview_pantalla_referencias_curriculos_en_los_insert, ReferenciasViewHolder.class,
+                referenciainset.orderByChild( "rBuscadorId" ).equalTo( detallereferencias ) ) {
             @Override
             protected void populateViewHolder(ReferenciasViewHolder ViewHolder, modeloReferencias model, int position) {
 
@@ -120,12 +137,13 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
 
-    public void RegistrarReferencia(){
+    public void RegistrarReferencia(String detallereferencias){
 
         rNombreC = etNombre.getText().toString();
         rCargoOcupadoC = etCargoOcupado.getText().toString();
         rInstitucionC = etInstitucion.getText().toString();
         rTelefonoC = etTelefono.getText().toString();
+        rBuscadorId = detallereferencias;
 
         if (TextUtils.isEmpty( rNombreC )) {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );
@@ -138,11 +156,11 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
    */
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        String rBuscardorId = Ukey;
+
 
         String IdReferencia = mDatabase.push().getKey();
 
-        Referencias referencias = new Referencias( IdReferencia, rBuscardorId, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
+        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
 
         mDatabase.child( IdReferencia ).setValue( referencias );
 
