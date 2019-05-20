@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.ViewHolder;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ public class VistaCurriculoViewHolder extends RecyclerView.ViewHolder implements
 
 
     public TextView txtNombre,  txtCedula, txtProvincia, txtDireccion, txtGradoMayor, txtEstadoActual;
+
+   // public Button btninformacionbasicasCurriculo, btnformacionacadCurriculo;
 
     private ItemClickListener itemClickListener;
 
@@ -30,10 +33,12 @@ public class VistaCurriculoViewHolder extends RecyclerView.ViewHolder implements
         txtEstadoActual = (TextView) itemView.findViewById( R.id.textViewEstadoActualCurr);
         txtGradoMayor = (TextView) itemView.findViewById( R.id.textViewMaestriaC);
         txtProvincia = (TextView) itemView.findViewById( R.id.textViewProvinciaC);
+/*
+        btninformacionbasicasCurriculo = (Button) itemView.findViewById( R.id.xmlBtnirAldetalleinformacionbasicascurriculo );
+        btnformacionacadCurriculo = (Button) itemView.findViewById( R.id.xmlBtnirAldetalleFormacionacdcurriculo );
+*/
         itemView.setOnClickListener( this );
     }
-
-
 
     @Override
     public void onClick(View view) {

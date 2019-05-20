@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.Modelo.Curriculos;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
+import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -79,11 +80,21 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
         LinearLayout IrRegistrarCurriculo = (LinearLayout )findViewById(R.id.lyRegistrarCurriculo);
         IrRegistrarCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (v.getContext(), cPantallaRegistrarCurriculo.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        LinearLayout IrVistaCurriculo = (LinearLayout )findViewById(R.id.lyBuscarEmpleoBuscador);
+        IrVistaCurriculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), VistaCurriculo.class);
                 startActivityForResult(intent, 0);
             }
         });

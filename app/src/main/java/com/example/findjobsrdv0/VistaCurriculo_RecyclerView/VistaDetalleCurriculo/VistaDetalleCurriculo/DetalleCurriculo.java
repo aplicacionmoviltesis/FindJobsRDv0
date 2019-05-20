@@ -1,13 +1,19 @@
-package com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo;
+package com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleCurriculo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.findjobsrdv0.R;
+import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleExperienciaLaboral.DetalleExperienciaLaboral;
+import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleFormacionAcademica.DetalleFormacionAcademica;
+import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleReferencias.DetalleReferencias;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Modelo.VistaCurriculomodel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +29,9 @@ public class DetalleCurriculo extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference detalelcurriculo;
 
+
     String detallecurrid = "";
+    Button btnIrFormacionAcademica,btnIrReferencia,btnIrExperienciaLab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +40,6 @@ public class DetalleCurriculo extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         detalelcurriculo = database.getReference( "Curriculos" );
-
 
         txtNombreCurr = (TextView) findViewById( R.id.xmlTvNombreDetalleCu );
         txtApellidoCurr = (TextView) findViewById( R.id.xmlTvApellidoDetalleCu );
@@ -50,12 +57,46 @@ public class DetalleCurriculo extends AppCompatActivity {
         txtHabilidades = (TextView) findViewById( R.id.xmlTvHabilidadesDetalleCu );
         txtFecha = (TextView) findViewById( R.id.xmlTvFechaNacimientoDetalleCu );
 
+
         if (getIntent() != null)
             detallecurrid = getIntent().getStringExtra( "detallecurrID" );
 
         if (!detallecurrid.isEmpty()) {
             goDetailCurriculo( detallecurrid );
         }
+
+
+        btnIrFormacionAcademica = (Button) findViewById( R.id.xmlBtnFormacionAcademicaDetalleCu );
+        btnIrFormacionAcademica.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( DetalleCurriculo.this, DetalleFormacionAcademica.class );
+                intent.putExtra( "DetalleFormacionAcademicaID", detallecurrid );
+                startActivity( intent );
+            }
+        } );
+
+        btnIrReferencia = (Button) findViewById( R.id.xmlBtnReferenciasDetalleCu );
+        btnIrReferencia.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( DetalleCurriculo.this, DetalleReferencias.class );
+                intent.putExtra( "DetalleReferenciaID", detallecurrid );
+                startActivity( intent );
+            }
+        } );
+
+        btnIrExperienciaLab = (Button) findViewById( R.id.xmlBtnExperienciaLaboralDetalleCu );
+        btnIrExperienciaLab.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( DetalleCurriculo.this, DetalleExperienciaLaboral.class );
+                intent.putExtra( "DetalleExperienciaLabID", detallecurrid );
+                startActivity( intent );
+            }
+        } );
+
+
     }
 
     private void goDetailCurriculo(String detallecurrid) {
@@ -79,6 +120,9 @@ public class DetalleCurriculo extends AppCompatActivity {
                 txtGradoMayorCurr.setText( vistaCurriculomodel.getGradomayor() );
                 txtHabilidades.setText( vistaCurriculomodel.getHabilidades() );
                 txtFecha.setText( vistaCurriculomodel.getFecha() );
+
+
+
             }
 
             @Override

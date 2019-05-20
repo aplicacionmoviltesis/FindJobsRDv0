@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Curriculos {
+
+
     String cCodigoId, cIdBuscador, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
+
+
 
     public Curriculos() {
     }
@@ -184,7 +188,6 @@ public class Curriculos {
         ListCurriculo.put("estadoactual",estadoactual);
         ListCurriculo.put("habilidades",habilidades);
         ListCurriculo.put("fecha",fecha);
-
 
         return ListCurriculo;
     }
