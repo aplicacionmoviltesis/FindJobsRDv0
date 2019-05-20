@@ -58,6 +58,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
 
     String detalleformacad = "";
     String Ukey;
+    String idusuariosregistrado;
 
 
     @Override
@@ -123,14 +124,19 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
 
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
-        loadOtrosEstudios(detalleformacad);
+        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        idusuariosregistrado = Ukey;
+
+
+        loadOtrosEstudios(Ukey);
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
     }
     //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-    private void loadOtrosEstudios(String detalleformacad) {
+    private void loadOtrosEstudios(String Ukey) {
         final FirebaseRecyclerAdapter<modeloOtrosCursos, OtrosEstudiosViewHolder> adapter = new FirebaseRecyclerAdapter<modeloOtrosCursos, OtrosEstudiosViewHolder>( modeloOtrosCursos.class, R.layout.card_view_otros_estudios_en_los_insert, OtrosEstudiosViewHolder.class,
-                otrosestudiosinset.orderByChild( "idbuscador" ).equalTo( detalleformacad )) {
+                otrosestudiosinset.orderByChild( "idusuarioregistrado" ).equalTo( Ukey )) {
             @Override
             protected void populateViewHolder(OtrosEstudiosViewHolder ViewHolder, modeloOtrosCursos model, int position) {
 
@@ -183,11 +189,12 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
         }
    */
 
-        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
 
         String IdFormacionAcademica = mDatabase.push().getKey();
 
-        FormacionAcademica formacionAcademica = new FormacionAcademica( IdFormacionAcademica, idbuscadorc, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
+        FormacionAcademica formacionAcademica = new FormacionAcademica( IdFormacionAcademica, idbuscadorc, idusuariosregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
 
         mDatabase.child( IdFormacionAcademica ).setValue( formacionAcademica );
 

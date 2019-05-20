@@ -11,7 +11,7 @@ import com.example.findjobsrdv0.R;
 
 public class ReferenciasViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtNombre,  txtCargoOcupado, txtInstitucion, txtTelefono;
+    public TextView txtNombre, txtCargoOcupado, txtInstitucion, txtTelefono;
 
     private ItemClickListener itemClickListener;
 
@@ -23,10 +23,10 @@ public class ReferenciasViewHolder extends RecyclerView.ViewHolder implements Vi
 
     public ReferenciasViewHolder(@NonNull View itemView) {
         super( itemView );
-        txtInstitucion = (TextView)itemView.findViewById( R.id.institucion );
-        txtNombre = (TextView)itemView.findViewById( R.id.textViewTitle );
-        txtTelefono = (TextView)itemView.findViewById( R.id.textViewShortDesc );
-        txtCargoOcupado = (TextView)itemView.findViewById( R.id.cargo );
+        txtInstitucion = (TextView) itemView.findViewById( R.id.institucion );
+        txtNombre = (TextView) itemView.findViewById( R.id.textViewTitle );
+        txtTelefono = (TextView) itemView.findViewById( R.id.textViewShortDesc );
+        txtCargoOcupado = (TextView) itemView.findViewById( R.id.cargo );
 
         itemView.setOnClickListener( this );
     }
@@ -34,7 +34,7 @@ public class ReferenciasViewHolder extends RecyclerView.ViewHolder implements Vi
     @Override
     public void onClick(View view) {
 
-        itemClickListener.onClick( view,getAdapterPosition(),false );
+        itemClickListener.onClick( view, getAdapterPosition(), false );
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

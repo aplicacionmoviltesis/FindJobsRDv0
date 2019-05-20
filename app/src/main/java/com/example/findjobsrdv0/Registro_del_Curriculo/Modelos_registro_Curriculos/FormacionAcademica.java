@@ -4,14 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FormacionAcademica {
-    String codigoc, idbuscadorc, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc;
+    String codigoc, idbuscadorc, idusuarioregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc;
 
     public FormacionAcademica() {
     }
 
-    public FormacionAcademica(String codigoc, String idbuscadorc, String carrerac, String nivelprimarioc, String nivelsecundarioc, String nivelsuperiorc) {
+    public FormacionAcademica(String codigoc, String idbuscadorc, String idusuarioregistrado, String carrerac, String nivelprimarioc, String nivelsecundarioc, String nivelsuperiorc) {
         this.codigoc = codigoc;
         this.idbuscadorc = idbuscadorc;
+        this.idusuarioregistrado = idusuarioregistrado;
         this.carrerac = carrerac;
         this.nivelprimarioc = nivelprimarioc;
         this.nivelsecundarioc = nivelsecundarioc;
@@ -32,6 +33,14 @@ public class FormacionAcademica {
 
     public void setIdbuscadorc(String idbuscadorc) {
         this.idbuscadorc = idbuscadorc;
+    }
+
+    public String getIdusuarioregistrado() {
+        return idusuarioregistrado;
+    }
+
+    public void setIdusuarioregistrado(String idusuarioregistrado) {
+        this.idusuarioregistrado = idusuarioregistrado;
     }
 
     public String getCarrerac() {
@@ -71,6 +80,7 @@ public class FormacionAcademica {
         HashMap<String,Object> ListFormAcad= new HashMap<>();
         ListFormAcad.put("codigoc",codigoc);
         ListFormAcad.put( "idbuscadorc", idbuscadorc );
+        ListFormAcad.put( "idusuarioregistrado", idusuarioregistrado );
         ListFormAcad.put("carrerac",carrerac);
         ListFormAcad.put("nivelprimarioc",nivelprimarioc);
         ListFormAcad.put("nivelsecundarioc",nivelsecundarioc);

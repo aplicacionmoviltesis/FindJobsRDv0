@@ -5,14 +5,15 @@ import java.util.Map;
 
 public class OtrosCursos {
 
-    String ocidcodigo, idbuscador,ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio;
+    String ocidcodigo, idbuscador, idusuarioregistrado,ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio;
 
     public OtrosCursos() {
     }
 
-    public OtrosCursos(String ocidcodigo, String idbuscador, String ocInstitucionC, String ocAnoC, String ocAreaoTemaC, String ocTipoEstudio) {
+    public OtrosCursos(String ocidcodigo, String idbuscador, String idusuarioregistrado, String ocInstitucionC, String ocAnoC, String ocAreaoTemaC, String ocTipoEstudio) {
         this.ocidcodigo = ocidcodigo;
         this.idbuscador = idbuscador;
+        this.idusuarioregistrado = idusuarioregistrado;
         this.ocInstitucionC = ocInstitucionC;
         this.ocAnoC = ocAnoC;
         this.ocAreaoTemaC = ocAreaoTemaC;
@@ -33,6 +34,14 @@ public class OtrosCursos {
 
     public void setIdbuscador(String idbuscador) {
         this.idbuscador = idbuscador;
+    }
+
+    public String getIdusuarioregistrado() {
+        return idusuarioregistrado;
+    }
+
+    public void setIdusuarioregistrado(String idusuarioregistrado) {
+        this.idusuarioregistrado = idusuarioregistrado;
     }
 
     public String getOcInstitucionC() {
@@ -71,6 +80,7 @@ public class OtrosCursos {
 
         HashMap<String,Object> ListOtrosCursos= new HashMap<>();
         ListOtrosCursos.put( "idcodigo",ocidcodigo );
+        ListOtrosCursos.put( "idusuarioregistardo", idusuarioregistrado );
         ListOtrosCursos.put("institucion",ocInstitucionC);
         ListOtrosCursos.put("año",ocAnoC);
         ListOtrosCursos.put("areaotema",ocAreaoTemaC);

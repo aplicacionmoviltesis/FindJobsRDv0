@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleExperienciaLaboral.DetalleExperienciaLaboral;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleFormacionAcademica.DetalleFormacionAcademica;
+import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleOtrosCursos.DetalleOtrosEstudios;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleReferencias.DetalleReferencias;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Modelo.VistaCurriculomodel;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,7 @@ public class DetalleCurriculo extends AppCompatActivity {
 
 
     String detallecurrid = "";
-    Button btnIrFormacionAcademica,btnIrReferencia,btnIrExperienciaLab;
+    Button btnIrFormacionAcademica,btnIrReferencia,btnIrExperienciaLab, btnOtrosEstudios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,16 @@ public class DetalleCurriculo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent( DetalleCurriculo.this, DetalleExperienciaLaboral.class );
                 intent.putExtra( "DetalleExperienciaLabID", detallecurrid );
+                startActivity( intent );
+            }
+        } );
+
+        btnOtrosEstudios = (Button) findViewById( R.id.xmlBtnOtrosEstudiosDetalleCu );
+        btnOtrosEstudios.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( DetalleCurriculo.this, DetalleOtrosEstudios.class );
+                intent.putExtra( "DetalleOtrosEstudiosID", detallecurrid );
                 startActivity( intent );
             }
         } );

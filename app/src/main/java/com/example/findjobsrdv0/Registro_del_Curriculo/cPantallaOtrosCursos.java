@@ -27,6 +27,8 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
     String detalleotroscursos = "";
 
+    String idusuarioregistrado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -70,10 +72,11 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        idusuarioregistrado = Ukey;
 
         String IdCurriculo = DBOtrosCursosCurriculos.push().getKey();
 
-        OtrosCursos otrosCursos = new OtrosCursos( IdCurriculo, ocIdBuscardor, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio );
+        OtrosCursos otrosCursos = new OtrosCursos( IdCurriculo, ocIdBuscardor, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio );
 
         DBOtrosCursosCurriculos.child( IdCurriculo ).setValue( otrosCursos );
 

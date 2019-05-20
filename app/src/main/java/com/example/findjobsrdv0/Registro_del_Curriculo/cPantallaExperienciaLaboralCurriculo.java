@@ -25,6 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.Key;
+
 public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
     private TextView TituloExpLab;
 
@@ -45,14 +47,18 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
 
+    String Ukey;
+
+    String usuarioconectado;
 
     String detalleexperiencialab = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_c_pantalla_experiencia_laboral_curriculo );
+
+       // loadReferencias( detalleexperiencialab  );
 
         TituloExpLab = (TextView) findViewById( R.id.xmlTituloExperienciaLaboral );
         Typeface face = Typeface.createFromAsset( getAssets(), "fonts/Chomsky.otf" );
@@ -68,8 +74,6 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         recycler_experiencialaboral.setLayoutManager( layoutManager );
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
 
-
-
         mDatabase = FirebaseDatabase.getInstance().getReference( "Experiencia_Laboral" );
         mAuth = FirebaseAuth.getInstance();
 
@@ -80,13 +84,11 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         etFechaSalida = (EditText) findViewById( R.id.xmlbeditRegistrarFechafinEL );
 
 
-
-
         BtnRegistrarExperienciaLab = (Button) findViewById( R.id.xmlBtnRegitrarExperienciaLab );
         BtnRegistrarExperienciaLab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegistrarExperienciaLaboral(detalleexperiencialab);
+                RegistrarExperienciaLaboral( detalleexperiencialab );
             }
         } );
 
@@ -97,21 +99,20 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
             RegistrarExperienciaLaboral( detalleexperiencialab );
         }
 
+         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-
-
+        usuarioconectado = Ukey;
 
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
-        loadReferencias(detalleexperiencialab);
-//---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
+        loadReferencias( Ukey  );
 
+//---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
     }
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
 
-    private void loadReferencias(String detalleexperiencialab) {
+    private void loadReferencias(String Ukey ) {
         final FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder> adapter = new FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder>( modeloExperienciaLaboral.class, R.layout.cardview_experienci_laboral_insert, ExperienciaLaboralViewHolder.class,
-                experiencialaboralinset.orderByChild( "elBuscadorId" ).equalTo( detalleexperiencialab ) ) {
+                experiencialaboralinset.orderByChild( "elidUsuarioConectado" ).equalTo( Ukey ) ) {
             @Override
             protected void populateViewHolder(ExperienciaLaboralViewHolder ViewHolder, modeloExperienciaLaboral model, int position) {
 
@@ -145,43 +146,38 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         recycler_experiencialaboral.setAdapter( adapter );
     }
 
-        public void RegistrarExperienciaLaboral(String detalleexperiencialab){
+    public void RegistrarExperienciaLaboral(String detalleexperiencialab) {
+
+        elNombreEmpresa = etNombreEmpresa.getText().toString();
+        elCargoOcupado = etCargoOcupado.getText().toString();
+        elFechaEntrada = etFechaEntrada.getText().toString();
+        elFechaSalida = etFechaSalida.getText().toString();
+        elTelefono = etTelefono.getText().toString();
+        elBuscardorId = detalleexperiencialab;
 
 
-            elNombreEmpresa = etNombreEmpresa.getText().toString();
-            elCargoOcupado = etCargoOcupado.getText().toString();
-            elFechaEntrada = etFechaEntrada.getText().toString();
-            elFechaSalida = etFechaSalida.getText().toString();
-            elBuscardorId = detalleexperiencialab;
-
-
-            if (TextUtils.isEmpty( elNombreEmpresa )) {
-                etNombreEmpresa.setError( "Campo vacío, por favor escriba el nombre " );
-                return;
-            }
+        if (TextUtils.isEmpty( elNombreEmpresa )) {
+            etNombreEmpresa.setError( "Campo vacío, por favor escriba el nombre " );
+            return;
+        }
      /*   if (TextUtils.isEmpty( cApellido )) {
             etApellido.setError( "Campo vacío, por favor escriba el apellido" );
             return;
         }
    */
 
-            String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        String IdExperienciaLab = mDatabase.push().getKey();
+
+        ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral
+                ( IdExperienciaLab, elBuscardorId, elNombreEmpresa,
+                        elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida,usuarioconectado );
 
 
+        mDatabase.child( IdExperienciaLab ).setValue( experienciaLaboral );
 
-            String IdExperienciaLab = mDatabase.push().getKey();
+        //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
+        //mDatabase.child(Ukey).push().setValue(experienciaLaboral);//para registrarlo dentro del usuario que inicio sesion
 
-            ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral( IdExperienciaLab, elBuscardorId, elNombreEmpresa, elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida);
-
-
-            mDatabase.child( IdExperienciaLab ).setValue( experienciaLaboral );
-
-            //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
-            //mDatabase.child(Ukey).push().setValue(experienciaLaboral);//para registrarlo dentro del usuario que inicio sesion
-
-
-
-        }
-
-
+    }
 }
