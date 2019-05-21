@@ -56,7 +56,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
     FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder> adapterEmpleosFiltrados;
 
     Button botonbuscarprovincia;
-    String Valor= "";
+    String Valor = "";
 
     /////Spinner Provincia
 
@@ -140,7 +140,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
         botonbuscarprovincia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    filtro(sProvinciaE);
+                filtro(sProvinciaE);
             }
         });
 
@@ -148,7 +148,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
@@ -170,7 +170,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                 empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
                 empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
                 empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
-                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: "+empleos.getsFechaPublicacionE());
+                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: " + empleos.getsFechaPublicacionE());
 
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
                 final Empleos clickItem = empleos;
@@ -189,7 +189,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
     }
 
     private void filtro(String Valor) {
-        String campo= "sProvinciaE";
+        String campo = "sProvinciaE";
 
 
         Query firebaseSearchQuery = DBempleosBuscados.orderByChild(campo).equalTo(Valor);
@@ -205,7 +205,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                 empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
                 empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
                 empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
-                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: "+empleos.getsFechaPublicacionE());
+                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: " + empleos.getsFechaPublicacionE());
 
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
                 final Empleos clickItem = empleos;
@@ -300,21 +300,21 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                 // }
 
                 //if (empleos.getsNombreEmpleoE().equals(prov)) {
-                    empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());
-                    empleosViewHolder.NombreEmpresaCardView.setText(empleos.getsNombreEmpresaE());
-                    empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
-                    empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
-                    empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
-                    empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: "+empleos.getsFechaPublicacionE());
+                empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());
+                empleosViewHolder.NombreEmpresaCardView.setText(empleos.getsNombreEmpresaE());
+                empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
+                empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
+                empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
+                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: " + empleos.getsFechaPublicacionE());
 
-                    Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
+                Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
 
-                   // Log.d("perrobiralata", empleos.getsNombreEmpleoE());
+                // Log.d("perrobiralata", empleos.getsNombreEmpleoE());
 
                 //} else {
-                    //Log.d("cabron", empleos.getsNombreEmpleoE());
+                //Log.d("cabron", empleos.getsNombreEmpleoE());
 
-               // }
+                // }
 
 
                 //empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());

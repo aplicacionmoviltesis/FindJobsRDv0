@@ -1,17 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filtrar Por Provincias"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:layout_marginTop="0dp"
+            android:textSize="20sp"/>
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/xmlspinBuscarPorProvinciaCurriculo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:completionHintView="@color/md_blue_900"
+            android:dropDownSelector="@color/gradStop"
+            android:text="Provincia"
+            android:textColor="@color/md_blue_900"
+            android:textColorHint="@color/md_blue_900" />
+
+
+        <Button
+            android:id="@+id/botonbuscarprovCurriculo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar por provincia"
+            android:layout_margin="20dp"/>
+
+
+    </LinearLayout>
+    
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:padding="5dp"
         android:id="@+id/recyclerViewVistaCurriculo"
         android:scrollbars="vertical">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
