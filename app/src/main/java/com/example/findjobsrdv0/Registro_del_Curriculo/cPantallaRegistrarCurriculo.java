@@ -172,7 +172,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
-        btnFormacionAcademica.setEnabled(false);
+        //btnFormacionAcademica.setEnabled(false);
 
         btnOtrosCursosCurriculo = ( Button) findViewById( R.id.AbrirOtrosCursos );
         btnOtrosCursosCurriculo.setOnClickListener( new View.OnClickListener() {
@@ -184,7 +184,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
-        btnOtrosCursosCurriculo.setEnabled(false);
+        //btnOtrosCursosCurriculo.setEnabled(false);
 
         btnExperienciaLaboralCurriculo = (Button) findViewById( R.id.xmlBntExperienciaLaboralCurriculo );
         btnExperienciaLaboralCurriculo.setOnClickListener( new View.OnClickListener() {
@@ -196,7 +196,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
-        btnExperienciaLaboralCurriculo.setEnabled(false);
+        //btnExperienciaLaboralCurriculo.setEnabled(false);
 
 
         btnReferenciCurriculo = (Button) findViewById( R.id.xmlBtnReferenciaCurriculoC );
@@ -209,7 +209,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
-        btnReferenciCurriculo.setEnabled(false);
+        //btnReferenciCurriculo.setEnabled(false);
 
 
 

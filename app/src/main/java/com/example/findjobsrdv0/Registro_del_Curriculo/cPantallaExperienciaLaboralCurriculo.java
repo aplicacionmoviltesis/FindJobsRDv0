@@ -1,5 +1,6 @@
 package com.example.findjobsrdv0.Registro_del_Curriculo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.findjobsrdv0.Empleos;
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.ExperienciaLaboral;
@@ -22,8 +24,12 @@ import com.example.findjobsrdv0.Vista_recycler_en_los_insert.RecyclerReferencias
 import com.example.findjobsrdv0.Vista_recycler_en_los_insert.RecyclerReferencias.ViewHolder.ReferenciasViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.security.Key;
 
@@ -34,10 +40,12 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 
     String elNombreEmpresa, elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida, elBuscardorId;
 
-    Button BtnRegistrarExperienciaLab;
+    Button BtnRegistrarExperienciaLab, btnActualizar;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
+
+    FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder> adapter;
 
     //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
     FirebaseDatabase database;
@@ -50,6 +58,8 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
     String Ukey;
 
     String usuarioconectado;
+
+    String IDReferencia;
 
     String detalleexperiencialab = "";
 
@@ -84,6 +94,15 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         etFechaSalida = (EditText) findViewById( R.id.xmlbeditRegistrarFechafinEL );
 
 
+
+        btnActualizar = (Button) findViewById( R.id.xmlBtnActualizarExperienciaLab );
+        btnActualizar.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActualizarExperienciaLaboral(IDReferencia);
+            }
+        } );
+
         BtnRegistrarExperienciaLab = (Button) findViewById( R.id.xmlBtnRegitrarExperienciaLab );
         BtnRegistrarExperienciaLab.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -111,7 +130,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------
 
     private void loadReferencias(String Ukey ) {
-        final FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder> adapter = new FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder>( modeloExperienciaLaboral.class, R.layout.cardview_experienci_laboral_insert, ExperienciaLaboralViewHolder.class,
+        adapter = new FirebaseRecyclerAdapter<modeloExperienciaLaboral, ExperienciaLaboralViewHolder>( modeloExperienciaLaboral.class, R.layout.cardview_experienci_laboral_insert, ExperienciaLaboralViewHolder.class,
                 experiencialaboralinset.orderByChild( "elidUsuarioConectado" ).equalTo( Ukey ) ) {
             @Override
             protected void populateViewHolder(ExperienciaLaboralViewHolder ViewHolder, modeloExperienciaLaboral model, int position) {
@@ -130,23 +149,67 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
-                        //       Toast.makeText( cPantallaRegistroCurriculo.this, "" + clickItem.getOcInstitucionC(), Toast.LENGTH_SHORT ).show();
-
-                      /*  Intent CurriculoDetalle = new Intent( VistaCurriculo.this, DetalleCurriculo.class );
-                        CurriculoDetalle.putExtra( "detallecurrID", adapter.getRef( position ).getKey() );
-                        startActivity( CurriculoDetalle );
-*/
-                        //  Log.d("klk id",adapter.getRef( position ).getKey());
-
-                        // Toast.makeText( PantalaVistaCurriculo.this, ""+clickItem.getNombre(), Toast.LENGTH_SHORT ).show();
-                    }
+                        IDReferencia = adapter.getRef(position).getKey();
+                        goActualizarExperiencia(IDReferencia); }
                 } );
             }
         };
         recycler_experiencialaboral.setAdapter( adapter );
     }
 
+    private void goActualizarExperiencia(String sExp) {
+        experiencialaboralinset.child(sExp).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ExperienciaLaboral experienciaLaboralklk= dataSnapshot.getValue(ExperienciaLaboral.class);
+                //Log.d("holap", String.valueOf(empleos));
+
+                //Picasso.get().load(empleos.getsImagenEmpleoE()).into(MostImagen);
+
+                etNombreEmpresa.setText(experienciaLaboralklk.getElNombreEmpresa());
+                etCargoOcupado.setText(experienciaLaboralklk.getElCargoOcupado());
+
+
+//String klk= empleos.getsProvinciaE();
+                //Log.d("pagina",empleos.getsPaginaWebE());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void RegistrarExperienciaLaboral(String detalleexperiencialab) {
+
+        elNombreEmpresa = etNombreEmpresa.getText().toString();
+        elCargoOcupado = etCargoOcupado.getText().toString();
+        elFechaEntrada = etFechaEntrada.getText().toString();
+        elFechaSalida = etFechaSalida.getText().toString();
+        elTelefono = etTelefono.getText().toString();
+        elBuscardorId = detalleexperiencialab;
+
+
+        if (TextUtils.isEmpty( elNombreEmpresa )) {
+            etNombreEmpresa.setError( "Campo vacío, por favor escriba el nombre " );
+            return;
+        }
+
+        String IdExperienciaLab = mDatabase.push().getKey();
+
+        ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral
+                ( IdExperienciaLab, elBuscardorId, elNombreEmpresa,
+                        elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida,usuarioconectado );
+
+
+        mDatabase.child( IdExperienciaLab ).setValue( experienciaLaboral );
+
+    }
+
+    public void ActualizarExperienciaLaboral(String IDReferencia) {
 
         elNombreEmpresa = etNombreEmpresa.getText().toString();
         elCargoOcupado = etCargoOcupado.getText().toString();
@@ -167,7 +230,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
    */
 
 
-        String IdExperienciaLab = mDatabase.push().getKey();
+        String IdExperienciaLab = IDReferencia;
 
         ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral
                 ( IdExperienciaLab, elBuscardorId, elNombreEmpresa,
