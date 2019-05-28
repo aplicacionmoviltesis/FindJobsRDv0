@@ -4,12 +4,13 @@ public class VistaCurriculomodel {
 
 
     String apellido, cedula, celular, cCodigoId, direccion, email, estadoactual, estadoCivil, fecha, gradomayor,
-            habilidades, cIdCurriculo, idioma, nombre, ocupacion, provincia, telefono;
+            habilidades, cIdCurriculo, idioma, nombre, ocupacion, provincia, telefono, imagen;
 
     public VistaCurriculomodel() {
     }
 
-    public VistaCurriculomodel(String apellido, String cedula, String celular, String cCodigoId, String direccion, String email, String estadoactual, String estadoCivil, String fecha, String gradomayor, String habilidades, String cIdCurriculo, String idioma, String nombre, String ocupacion, String provincia, String telefono) {
+
+    public VistaCurriculomodel(String apellido, String cedula, String celular, String cCodigoId, String direccion, String email, String estadoactual, String estadoCivil, String fecha, String gradomayor, String habilidades, String cIdCurriculo, String idioma, String nombre, String ocupacion, String provincia, String telefono, String imagen) {
         this.apellido = apellido;
         this.cedula = cedula;
         this.celular = celular;
@@ -27,6 +28,7 @@ public class VistaCurriculomodel {
         this.ocupacion = ocupacion;
         this.provincia = provincia;
         this.telefono = telefono;
+        this.imagen = imagen;
     }
 
     public String getApellido() {
@@ -163,5 +165,13 @@ public class VistaCurriculomodel {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

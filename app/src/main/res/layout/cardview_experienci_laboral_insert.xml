@@ -20,49 +20,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre empresa"
-                android:textColorHint="@color/md_black_1000"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900"
+                />
 
             <TextView
                 android:id="@+id/textViewCargoOcupado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:hint="Cargo Ocupado"
                 android:layout_below="@+id/textViewNombreEmpresa"
-                android:gravity="center"
                 android:textSize="20sp"
-                android:textColorHint="@color/md_black_1000"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900"
+                android:textStyle="italic"
+                />
 
             <TextView
                 android:id="@+id/textViewTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:hint="Telefono"
                 android:layout_below="@+id/textViewCargoOcupado"
-                android:gravity="center"
                 android:textSize="20sp"
-                android:textColorHint="@color/md_black_1000"
+                android:textColor="@color/md_blue_900"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textStyle="italic"/>
 
             <TextView
                 android:id="@+id/textViewFechaEntrada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewTelefono"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="25dp"
                 android:hint=" Fecha Entrada "
-                android:textColorHint="@color/md_black_1000"
+                android:textSize="20sp"
+                android:textColor="@color/md_blue_900"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/textViewFechaSalida"
@@ -72,9 +68,10 @@
                 android:layout_toRightOf="@+id/textViewFechaEntrada"
                 android:layout_marginLeft="40dp"
                 android:hint="Fecha salida "
-                android:textColorHint="@color/md_black_1000"
+                android:textSize="20sp"
+                android:textColor="@color/md_blue_900"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
+                android:textStyle="italic"/>
 
 
             <TextView
@@ -83,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="150dp"
                 android:textSize="15sp"
                 android:layout_below="@id/textViewFechaSalida"
                 android:hint=" Experiencias Laborales "

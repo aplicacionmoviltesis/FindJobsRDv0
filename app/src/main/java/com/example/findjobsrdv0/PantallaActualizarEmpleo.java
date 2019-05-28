@@ -193,6 +193,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
                     String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);

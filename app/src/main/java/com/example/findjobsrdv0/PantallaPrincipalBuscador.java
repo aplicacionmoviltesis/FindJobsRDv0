@@ -94,7 +94,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         IrVistaCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), VistaCurriculo.class);
+                Intent intent = new Intent (v.getContext(), PantallaListaEmpleosBuscados.class);
                 startActivityForResult(intent, 0);
             }
         });

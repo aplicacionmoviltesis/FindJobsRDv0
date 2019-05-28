@@ -25,7 +25,8 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900"
+                android:textStyle="italic"/>
 
             <TextView
                 android:id="@+id/textViewShortDesc"
@@ -33,11 +34,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewTitle"
                 android:layout_marginLeft="5dp"
-                android:gravity="center"
                 android:textSize="15sp"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 android:text="809-725-2584"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/md_blue_900"
+                />
 
             <TextView
                 android:id="@+id/cargo"
@@ -46,10 +48,11 @@
                 android:layout_marginLeft="5dp"
                 android:text="CARGO"
                 android:layout_below="@+id/textViewShortDesc"
-                android:gravity="center"
                 android:textSize="20sp"
+                android:textStyle="italic"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900"
+                />
 
             <TextView
                 android:id="@+id/institucion"
@@ -58,10 +61,11 @@
                 android:layout_marginLeft="5dp"
                 android:text="Institucion"
                 android:layout_below="@+id/cargo"
-                android:gravity="center"
                 android:textSize="20sp"
+                android:textStyle="italic"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900"
+                />
 
 
             <TextView
@@ -69,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="180dp"
                 android:textSize="15sp"
                 android:layout_below="@id/institucion"
                 android:text=" Referencia Laboral "

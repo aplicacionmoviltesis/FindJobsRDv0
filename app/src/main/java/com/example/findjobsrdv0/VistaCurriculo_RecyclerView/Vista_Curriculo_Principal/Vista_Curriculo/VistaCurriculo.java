@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.Empleos;
 import com.example.findjobsrdv0.Modelo.EmpleosViewHolder;
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
@@ -25,6 +27,7 @@ import com.example.findjobsrdv0.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.PantallaListaEmpleosBuscados;
 import com.example.findjobsrdv0.Provincias;
 import com.example.findjobsrdv0.R;
+import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleCurriculo.DetalleCurriculo;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Modelo.VistaCurriculomodel;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.ViewHolder.VistaCurriculoViewHolder;
@@ -151,6 +154,7 @@ public class VistaCurriculo extends AppCompatActivity {
             @Override
             protected void populateViewHolder(VistaCurriculoViewHolder viewHolder, VistaCurriculomodel model, int position) {
 
+                Picasso.get().load(model.getImagen()).into(viewHolder.imagen);
                 viewHolder.txtNombre.setText(model.getNombre());
                 viewHolder.txtCedula.setText(model.getCedula());
                 viewHolder.txtDireccion.setText(model.getDireccion());

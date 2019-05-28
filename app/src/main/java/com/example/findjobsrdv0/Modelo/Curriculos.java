@@ -1,10 +1,15 @@
 package com.example.findjobsrdv0.Modelo;
 
-public class Curriculos {
-    String codigoid, nombre, apellido, cedula,email,telefono,celular,provincia,estadocivil,direccion,ocupacion,gradomayor,estadoactual,habilidades;
 
-    public Curriculos(String codigoid, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadocivil, String direccion, String ocupacion, String gradomayor, String estadoactual, String habilidades) {
+public class Curriculos {
+    String codigoid, imageview, nombre, apellido, cedula,email,telefono,celular,provincia,estadocivil,direccion,ocupacion,gradomayor,estadoactual,habilidades;
+
+    public Curriculos() {
+    }
+
+    public Curriculos(String codigoid, String imageview, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadocivil, String direccion, String ocupacion, String gradomayor, String estadoactual, String habilidades) {
         this.codigoid = codigoid;
+        this.imageview = imageview;
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
@@ -26,6 +31,14 @@ public class Curriculos {
 
     public void setCodigoid(String codigoid) {
         this.codigoid = codigoid;
+    }
+
+    public String getImageview() {
+        return imageview;
+    }
+
+    public void setImageview(String imageview) {
+        this.imageview = imageview;
     }
 
     public String getNombre() {

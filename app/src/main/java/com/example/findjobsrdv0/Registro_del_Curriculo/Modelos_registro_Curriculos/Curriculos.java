@@ -6,16 +6,15 @@ import java.util.Map;
 public class Curriculos {
 
 
-    String cCodigoId, cIdBuscador, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
-
-
+    String cCodigoId, cIdBuscador, imagen, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
 
     public Curriculos() {
     }
 
-    public Curriculos(String cCodigoId, String cIdBuscador, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadoCivil, String direccion, String ocupacion, String idioma, String gradomayor, String estadoactual, String habilidades, String fecha) {
+    public Curriculos(String cCodigoId, String cIdBuscador, String imagen, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadoCivil, String direccion, String ocupacion, String idioma, String gradomayor, String estadoactual, String habilidades, String fecha) {
         this.cCodigoId = cCodigoId;
         this.cIdBuscador = cIdBuscador;
+        this.imagen = imagen;
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
@@ -33,6 +32,7 @@ public class Curriculos {
         this.fecha = fecha;
     }
 
+
     public String getcCodigoId() {
         return cCodigoId;
     }
@@ -47,6 +47,14 @@ public class Curriculos {
 
     public void setcIdBuscador(String cIdBuscador) {
         this.cIdBuscador = cIdBuscador;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getNombre() {
@@ -173,6 +181,7 @@ public class Curriculos {
 
         HashMap<String,Object> ListCurriculo= new HashMap<>();
         ListCurriculo.put("codigoId",cCodigoId);
+        ListCurriculo.put( "imagen",imagen );
         ListCurriculo.put("nombre",nombre);
         ListCurriculo.put("apellido",apellido);
         ListCurriculo.put("cedula",cedula);

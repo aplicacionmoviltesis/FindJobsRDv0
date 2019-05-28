@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:padding="5dp"
-        android:orientation="vertical">
+        android:background="@drawable/btn_bg"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/xmlTiNombreInstitucionOC"
@@ -45,7 +45,7 @@
                 android:drawablePadding="3dp"
                 android:ems="10"
                 android:hint="Año"
-                android:inputType="phone"
+                android:inputType="date"
                 android:textColor="@color/md_blue_900" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +62,6 @@
                 android:drawablePadding="3dp"
                 android:ems="10"
                 android:hint="Area o Tema"
-                android:inputType="date"
                 android:textColor="@color/md_blue_900" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,18 +69,53 @@
             android:id="@+id/xmlspinTipoEstudioOC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
             android:layout_marginStart="10dp"
-            android:entries="@array/FormacionAcademica"
+            android:baselineAligned="false"
             android:dropDownSelector="@color/gradStop"
+            android:entries="@array/FormacionAcademica"
             android:hint="Tipo de Estudio"
-            android:textColorHint="@color/md_blue_900"/>
+            android:textColorHint="@color/md_blue_900" />
 
-        <Button
-            android:id="@+id/xmlbtnGuardarCursosOC"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Guardar"/>
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/xmlbtnGuardarCursosOC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Guardar" />
+
+            <Button
+                android:id="@+id/xmlbtnActualizarCursosOC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Actualizar" />
+
+        </LinearLayout>
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/btn_bg"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewotroscursos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:padding="5dp" />
+    </LinearLayout>
+
 </LinearLayout>

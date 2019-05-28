@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -133,7 +134,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         IrBuscarEmpleosBE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaListaEmpleosBuscados.class);
+                Intent intent = new Intent (v.getContext(), VistaCurriculo.class);
                 startActivityForResult(intent, 0);
             }
         });

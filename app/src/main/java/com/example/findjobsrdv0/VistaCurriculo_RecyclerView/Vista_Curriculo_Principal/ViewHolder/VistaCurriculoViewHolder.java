@@ -2,6 +2,7 @@ package com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Pri
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,7 @@ public class VistaCurriculoViewHolder extends RecyclerView.ViewHolder implements
 
 
     public TextView txtNombre,  txtCedula, txtProvincia, txtDireccion, txtGradoMayor, txtEstadoActual;
-
-   // public Button btninformacionbasicasCurriculo, btnformacionacadCurriculo;
+    public ImageView  imagen;
 
     private ItemClickListener itemClickListener;
 
@@ -27,16 +27,14 @@ public class VistaCurriculoViewHolder extends RecyclerView.ViewHolder implements
     public VistaCurriculoViewHolder(@NonNull View itemView) {
         super( itemView );
 
+        imagen = (ImageView) itemView.findViewById( R.id.CardImageArea );
         txtNombre = (TextView)itemView.findViewById( R.id.textViewNombreC );
         txtCedula = (TextView) itemView.findViewById( R.id.textViewCedulaC);
         txtDireccion = (TextView) itemView.findViewById( R.id.textViewDireccionC);
         txtEstadoActual = (TextView) itemView.findViewById( R.id.textViewEstadoActualCurr);
         txtGradoMayor = (TextView) itemView.findViewById( R.id.textViewMaestriaC);
         txtProvincia = (TextView) itemView.findViewById( R.id.textViewProvinciaC);
-/*
-        btninformacionbasicasCurriculo = (Button) itemView.findViewById( R.id.xmlBtnirAldetalleinformacionbasicascurriculo );
-        btnformacionacadCurriculo = (Button) itemView.findViewById( R.id.xmlBtnirAldetalleFormacionacdcurriculo );
-*/
+
         itemView.setOnClickListener( this );
     }
 
