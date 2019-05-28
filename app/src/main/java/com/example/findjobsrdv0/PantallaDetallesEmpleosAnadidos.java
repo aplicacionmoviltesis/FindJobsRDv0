@@ -13,9 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
 
@@ -26,12 +31,12 @@ public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
 
     private ImageView MostImagenDEB;
 
-    Button BtnAplicarEmpleoDE,BtnVerificacionEmpresaDE;
+    Button BtnPersonasAplicaronEmpleoDE,BtnVerificacionEmpresaDE;
 
     String sEmpleoIdAnadidos = "";
 
     FirebaseDatabase databaseEmpleosAnadidos;
-    DatabaseReference DBempleosBuscados;
+    DatabaseReference DBempleosBuscados,DBpersonasAplicaron;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,9 @@ public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
 //Firebase
         databaseEmpleosAnadidos = FirebaseDatabase.getInstance();
         DBempleosBuscados = databaseEmpleosAnadidos.getReference("empleos");
+
+        DBpersonasAplicaron = databaseEmpleosAnadidos.getReference();
+
 
 
         MostImagenDEB = (ImageView) findViewById(R.id.xmlImagenEmpleoDEB);
@@ -82,7 +90,13 @@ public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
 
 
         //goProvincia();
-
+        BtnPersonasAplicaronEmpleoDE = (Button) findViewById(R.id.xmlBtnPersonasAplicaronEmpleoDEB);
+        BtnPersonasAplicaronEmpleoDE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VerPersonasAplicaron(sEmpleoIdAnadidos);
+            }
+        });
 
 
 
@@ -160,5 +174,31 @@ public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void VerPersonasAplicaron(String sEmpleoIdE){
+        DBpersonasAplicaron.child("EmpleosConCandidatos").orderByChild("sIdEmpleoAplico").equalTo(sEmpleoIdE).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Is better to use a List, because you don't know the size
+                // of the iterator returned by dataSnapshot.getChildren() to
+                // initialize the array
+                final List<String> areas = new ArrayList<String>();
+                Log.d("holap", String.valueOf(dataSnapshot));
+
+                for (DataSnapshot areaSnapshot: dataSnapshot.getChildren()) {
+
+                    String areaName = areaSnapshot.child("sIdCurriculoAplico").getValue(String.class);
+                    //areas.add(areaName);
+                    Log.d("holap", areaName);
+                    //sIdCurriculoAplico = areaName;
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

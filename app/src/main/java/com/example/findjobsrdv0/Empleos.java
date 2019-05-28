@@ -47,7 +47,9 @@ public class Empleos {
 
     }
 
-
+    public String getsIdEmpleadorE() {
+        return sIdEmpleadorE;
+    }
 
     public String getsIDEmpleo() {
         return sIDEmpleo;
@@ -135,9 +137,7 @@ public class Empleos {
         return sImagenEmpleoE;
 }
 
-    public String getsIdEmpleador() {
-        return sIdEmpleadorE;
-    }
+
     public String getsFormacionAcademica() {
         return sFormacionAcademica;
     }

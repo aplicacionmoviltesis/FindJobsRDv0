@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,15 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
 
     List<Provincias> provincias;
     boolean IsFirstTimeClick=true;
+
+    ////////////////////////////////////////
+    //MultipleSelection spinner object
+    MultipleSelectionSpinner mSpinner;
+
+    //List which hold multiple selection spinner values
+    List<String> list = new ArrayList<String>();
+
+    ////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +80,9 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
 
             }
         });
+        mSpinner = findViewById(R.id.mSpinner);
 
-        provinciasRef.child("provincias").addValueEventListener(new ValueEventListener() {
+        provinciasRef.child("Curriculos").orderByChild("cCodigoId").equalTo("-LffL0E8KKZWBlqfS4LO").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size
@@ -81,14 +93,13 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
 
                 for (DataSnapshot areaSnapshot: dataSnapshot.getChildren()) {
 
-                    String areaName = areaSnapshot.child("nombre").getValue(String.class);
+                    String areaName = areaSnapshot.child("estadoactual").getValue(String.class);
                     areas.add(areaName);
                 }
 
                 ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(PantallaBuscarEmpleos.this, android.R.layout.simple_spinner_item, areas);
                 areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 areaSpinner.setAdapter(areasAdapter);
-
                 String cri= areaSpinner.getSelectedItem().toString();
                 Log.d("seleccionado", cri);
 
@@ -99,7 +110,36 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
 
             }
         });
+        ///////////////////////////////////////////////////
 
+        //casting of spinner
+        mSpinner = findViewById(R.id.mSpinner);
+
+        //adding items to list
+        list.add("Violet");
+        list.add("Indigo");
+        list.add("Brown");
+        list.add("Green");
+        list.add("Yellow");
+        list.add("Orange");
+        list.add("Red");
+
+        //set items to spinner from list
+        mSpinner.setItems(list);
+
+        //onClick listener of button for showing multiple selection spinner values
+        findViewById(R.id.btnelegir).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PantallaBuscarEmpleos.this, "Selected : " + mSpinner.getSelectedItemsAsString() , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+        ///////////////////////////////////////////////////
 
 }
 

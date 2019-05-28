@@ -82,7 +82,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 /////Spinner Area de Trabajo
 
     Spinner spinAreaAE;
-    DatabaseReference areasRefActualizar;
+    DatabaseReference areasRefActualizar,DBpersonasAplicaron;
     List<Provincias> areas;
     boolean IsFirstTimeClickAreas = true;
 
@@ -94,6 +94,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
     Query DBarea;
 
     ////obtener imagen
+
+    Button BtnPersonasAplicaronEmpleoDE;
 
 /////Checklist para elegir los idiomas
 
@@ -130,6 +132,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 
         DBRefEmplosActualizar = FirebaseDatabase.getInstance().getReference("empleos");
+        DBpersonasAplicaron = databaseArea.getReference();
 
         ImageViewAE = (ImageView) findViewById(R.id.xmlImageViewAE);
 
@@ -148,6 +151,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
         btnIdiomasAE = (Button) findViewById(R.id.xmlBtnSeleccionarIdiomasAE);
         btnActivarCampoAE = (Button) findViewById(R.id.xmlBtnActivarcampos);
+
+
 
 
         RdbDisponibleAE = (RadioButton) findViewById(R.id.xmlRdDisponibleAE);
@@ -594,6 +599,14 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             }
         });
 
+        BtnPersonasAplicaronEmpleoDE = (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
+        BtnPersonasAplicaronEmpleoDE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VerPersonasAplicaron(sEmpleoIdE);
+            }
+        });
+
 
 
     }
@@ -821,6 +834,32 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    public void VerPersonasAplicaron(String sEmpleoIdE){
+        DBpersonasAplicaron.child("EmpleosConCandidatos").orderByChild("sIdEmpleoAplico").equalTo(sEmpleoIdE).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Is better to use a List, because you don't know the size
+                // of the iterator returned by dataSnapshot.getChildren() to
+                // initialize the array
+                final List<String> CurriculosAplico = new ArrayList<String>();
+                Log.d("holaperro", String.valueOf(dataSnapshot));
+
+                for (DataSnapshot CurriculosSnapshot: dataSnapshot.getChildren()) {
+
+                    String IdCurriculoAplico = CurriculosSnapshot.child("sIdCurriculoAplico").getValue(String.class);
+                    //areas.add(areaName);
+                    Log.d("holaperro", IdCurriculoAplico);
+                    //sIdCurriculoAplico = areaName;
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 }

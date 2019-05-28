@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.DatePickerFragment;
+import com.example.findjobsrdv0.MultipleSelectionSpinner;
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
 import com.google.firebase.auth.FirebaseAuth;
@@ -103,7 +104,11 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         btnIdiomasc = (Button) findViewById( R.id.xmlBtnIdioma );
 
         /////Spinner Provincia
-        //CargarCurriculoActualizar(userActivo);
+        CargarCurriculoActualizar(userActivo);
+
+
+
+
 
         provinciasRefCurriculo = FirebaseDatabase.getInstance().getReference();
         spinProvinciaCurriculo = (Spinner) findViewById(R.id.spinnerprovincias);

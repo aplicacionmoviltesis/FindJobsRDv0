@@ -86,7 +86,6 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         //.orderByChild("descripcion").equalTo("hola")
         // .orderByChild("coordenadas").equalTo("3.5");
 ///       Query jj= q.orderByChild("coordenadas").equalTo("3.5");
-
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
