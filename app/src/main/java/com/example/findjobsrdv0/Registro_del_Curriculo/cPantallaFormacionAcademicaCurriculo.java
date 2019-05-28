@@ -45,16 +45,6 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
 
 
 
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-    FirebaseDatabase database;
-    DatabaseReference otrosestudiosinset;
-
-
-    RecyclerView recycler_otrosestudios;
-    RecyclerView.LayoutManager layoutManager;
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
 
     String detalleformacad = "";
     String Ukey;
@@ -65,20 +55,6 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_c_pantalla_formacion_academica_curriculo);
-
-
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-        database = FirebaseDatabase.getInstance();
-        otrosestudiosinset = database.getReference( "Otros_Cursos" );
-
-        recycler_otrosestudios = (RecyclerView) findViewById( R.id.recyclerviewotroscursos );
-        recycler_otrosestudios.setHasFixedSize( true );
-        layoutManager = new LinearLayoutManager( this );
-        recycler_otrosestudios.setLayoutManager( layoutManager );
-
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
 
         TituloFormacionAcademica = (TextView) findViewById(R.id.xmlTituloFormacionAcademica);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");
@@ -121,53 +97,15 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
         }
 
 
+    }
 
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        idusuariosregistrado = Ukey;
-
-
-        loadOtrosEstudios(Ukey);
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+    public void limpiarCampor() {
+        etNivelPrimario.setText( "" );
+        etNivelSecundario.setText( "" );
+        etNivelSuperior.setText( "" );
+        etCarrera.setText( "" );
 
     }
-    //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-    private void loadOtrosEstudios(String Ukey) {
-        final FirebaseRecyclerAdapter<modeloOtrosCursos, OtrosEstudiosViewHolder> adapter = new FirebaseRecyclerAdapter<modeloOtrosCursos, OtrosEstudiosViewHolder>( modeloOtrosCursos.class, R.layout.card_view_otros_estudios_en_los_insert, OtrosEstudiosViewHolder.class,
-                otrosestudiosinset.orderByChild( "idusuarioregistrado" ).equalTo( Ukey )) {
-            @Override
-            protected void populateViewHolder(OtrosEstudiosViewHolder ViewHolder, modeloOtrosCursos model, int position) {
-
-                ViewHolder.txtInstitucion.setText( model.getOcInstitucionC() );
-                ViewHolder.txtAno.setText( model.getOcAno() );
-                ViewHolder.txtAreaoTema.setText( model.getOcAreaoTemaC() );
-                ViewHolder.txtTipoEstudio.setText( model.getOcTipoEstudio() );
-
-                Log.d( "hola", String.valueOf( model.getOcInstitucionC() ) );
-
-                final modeloOtrosCursos clickItem = model;
-                ViewHolder.setItemClickListener( new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-
-                        //       Toast.makeText( cPantallaRegistroCurriculo.this, "" + clickItem.getOcInstitucionC(), Toast.LENGTH_SHORT ).show();
-
-                      /*  Intent CurriculoDetalle = new Intent( VistaCurriculo.this, DetalleCurriculo.class );
-                        CurriculoDetalle.putExtra( "detallecurrID", adapter.getRef( position ).getKey() );
-                        startActivity( CurriculoDetalle );
-*/
-                        //  Log.d("klk id",adapter.getRef( position ).getKey());
-
-                        // Toast.makeText( PantalaVistaCurriculo.this, ""+clickItem.getNombre(), Toast.LENGTH_SHORT ).show();
-                    }
-                } );
-            }
-        };
-        recycler_otrosestudios.setAdapter( adapter );
-    }
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
 
     public void RegistrarFormacionAcademica(String detalleformacad) {
@@ -197,6 +135,8 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
         FormacionAcademica formacionAcademica = new FormacionAcademica( IdFormacionAcademica, idbuscadorc, idusuariosregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
 
         mDatabase.child( IdFormacionAcademica ).setValue( formacionAcademica );
+
+        limpiarCampor();
 
         //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
         // mDatabase.child(Ukey).push().setValue(formacionAcademica);//para registrarlo dentro del usuario que inicio sesion

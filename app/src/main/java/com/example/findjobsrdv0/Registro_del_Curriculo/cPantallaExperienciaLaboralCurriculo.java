@@ -59,7 +59,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 
     String usuarioconectado;
 
-    String IDReferencia;
+    String IDExperienciaLab;
 
     String detalleexperiencialab = "";
 
@@ -99,7 +99,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         btnActualizar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActualizarExperienciaLaboral(IDReferencia);
+                ActualizarExperienciaLaboral(IDExperienciaLab);
             }
         } );
 
@@ -149,16 +149,16 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
-                        IDReferencia = adapter.getRef(position).getKey();
-                        goActualizarExperiencia(IDReferencia); }
+                        IDExperienciaLab = adapter.getRef(position).getKey();
+                        goActualizarExperiencia(IDExperienciaLab); }
                 } );
             }
         };
         recycler_experiencialaboral.setAdapter( adapter );
     }
 
-    private void goActualizarExperiencia(String sExp) {
-        experiencialaboralinset.child(sExp).addValueEventListener(new ValueEventListener() {
+    private void goActualizarExperiencia(String ExpLab) {
+        experiencialaboralinset.child(ExpLab).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -169,6 +169,10 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 
                 etNombreEmpresa.setText(experienciaLaboralklk.getElNombreEmpresa());
                 etCargoOcupado.setText(experienciaLaboralklk.getElCargoOcupado());
+                etTelefono.setText( experienciaLaboralklk.getElTelefono());
+                etFechaEntrada.setText( experienciaLaboralklk.getElFechaEntrada() );
+                etFechaSalida.setText( experienciaLaboralklk.getElFechaSalida() );
+
 
 
 //String klk= empleos.getsProvinciaE();
@@ -207,9 +211,23 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
 
         mDatabase.child( IdExperienciaLab ).setValue( experienciaLaboral );
 
+
+        limpiarCampor();
+
     }
 
-    public void ActualizarExperienciaLaboral(String IDReferencia) {
+
+    public void limpiarCampor() {
+        etNombreEmpresa.setText( "" );
+        etCargoOcupado.setText( "" );
+        etTelefono.setText( "" );
+        etFechaEntrada.setText( "" );
+        etFechaSalida.setText( "" );
+
+    }
+
+
+    public void ActualizarExperienciaLaboral(String IDExperienciaLab) {
 
         elNombreEmpresa = etNombreEmpresa.getText().toString();
         elCargoOcupado = etCargoOcupado.getText().toString();
@@ -230,7 +248,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
    */
 
 
-        String IdExperienciaLab = IDReferencia;
+        String IdExperienciaLab = IDExperienciaLab;
 
         ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral
                 ( IdExperienciaLab, elBuscardorId, elNombreEmpresa,
@@ -242,5 +260,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
         //mDatabase.child(Ukey).push().setValue(experienciaLaboral);//para registrarlo dentro del usuario que inicio sesion
 
+
+        limpiarCampor();
     }
 }

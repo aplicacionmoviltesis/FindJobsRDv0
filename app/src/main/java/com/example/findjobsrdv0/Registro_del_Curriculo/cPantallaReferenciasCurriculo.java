@@ -1,5 +1,6 @@
 package com.example.findjobsrdv0.Registro_del_Curriculo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +16,17 @@ import android.widget.TextView;
 
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
 import com.example.findjobsrdv0.R;
+import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.ExperienciaLaboral;
 import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Referencias;
 import com.example.findjobsrdv0.Vista_recycler_en_los_insert.RecyclerReferencias.Modelo.modeloReferencias;
 import com.example.findjobsrdv0.Vista_recycler_en_los_insert.RecyclerReferencias.ViewHolder.ReferenciasViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
@@ -29,10 +34,12 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
     String rCodigoId, rBuscadorId, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC;
 
-    Button BtnRegistrarReferencia;
+    Button BtnRegistrarReferencia, btnActualizarReferencia, btnBorrarReferencia;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
+
+    FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder> adapter;
 
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
     FirebaseDatabase database;
@@ -44,6 +51,10 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
     String detallereferencias = "";
 
     String idusuarioconectado;
+
+    String IdReferenciasss;
+
+
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
 //---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
@@ -87,6 +98,22 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             }
         } );
 
+        btnActualizarReferencia = (Button) findViewById( R.id.xmlBtnAtualizarReferencia );
+        btnActualizarReferencia.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActualizarReferencias( IdReferenciasss);
+            }
+        } );
+
+        btnBorrarReferencia = (Button)findViewById( R.id.xmlBtnBorrarReferencia );
+        btnBorrarReferencia.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BorrarReferencia(IdReferenciasss);
+            }
+        } );
+
 
 
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
@@ -107,10 +134,14 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
     }
+
+
+
+
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
     private void loadReferencias(String Ukey) {
-        final FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder> adapter = new FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder>( modeloReferencias.class, R.layout.cardview_pantalla_referencias_curriculos_en_los_insert, ReferenciasViewHolder.class,
+         adapter = new FirebaseRecyclerAdapter<modeloReferencias, ReferenciasViewHolder>( modeloReferencias.class, R.layout.cardview_pantalla_referencias_curriculos_en_los_insert, ReferenciasViewHolder.class,
                 referenciainset.orderByChild( "idusuarioregistrado" ).equalTo( Ukey ) ) {
             @Override
             protected void populateViewHolder(ReferenciasViewHolder ViewHolder, modeloReferencias model, int position) {
@@ -128,25 +159,50 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
+                        IdReferenciasss = adapter.getRef( position ).getKey();
+                        goActualizarReferencia (IdReferenciasss);
 
 
-                        //       Toast.makeText( cPantallaRegistroCurriculo.this, "" + clickItem.getOcInstitucionC(), Toast.LENGTH_SHORT ).show();
-
-                      /*  Intent CurriculoDetalle = new Intent( VistaCurriculo.this, DetalleCurriculo.class );
-                        CurriculoDetalle.putExtra( "detallecurrID", adapter.getRef( position ).getKey() );
-                        startActivity( CurriculoDetalle );
-*/
-                        //  Log.d("klk id",adapter.getRef( position ).getKey());
-
-                        // Toast.makeText( PantalaVistaCurriculo.this, ""+clickItem.getNombre(), Toast.LENGTH_SHORT ).show();
                     }
                 } );
             }
         };
         recycler_referencia.setAdapter( adapter );
     }
+
+    private void goActualizarReferencia(String Referencia) {
+        referenciainset.child(Referencia).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Referencias referencias= dataSnapshot.getValue(Referencias.class);
+
+                etNombre.setText( referencias.getrNombreC() );
+                etCargoOcupado.setText( referencias.getrCargoOcupadoC() );
+                etInstitucion.setText( referencias.getrInstitucionC() );
+                etTelefono.setText( referencias.getrTelefonoC() );
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
+
+    public void limpiarCampor() {
+        etInstitucion.setText( "" );
+        etCargoOcupado.setText( "" );
+        etNombre.setText( "" );
+        etTelefono.setText( "" );
+
+
+    }
 
     public void RegistrarReferencia(String detallereferencias){
 
@@ -174,7 +230,51 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
         mDatabase.child( IdReferencia ).setValue( referencias );
 
+        limpiarCampor();
+
         //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
         // mDatabase.child(Ukey).push().setValue(referencias);//para registrarlo dentro del usuario que inicio sesion
     }
+
+
+    private void ActualizarReferencias(String IdReferenciasss) {
+        rNombreC = etNombre.getText().toString();
+        rCargoOcupadoC = etCargoOcupado.getText().toString();
+        rInstitucionC = etInstitucion.getText().toString();
+        rTelefonoC = etTelefono.getText().toString();
+        rBuscadorId = detallereferencias;
+
+        if (TextUtils.isEmpty( rNombreC )) {
+            etNombre.setError( "Campo vacío, por favor escriba el nombre " );
+            return;
+        }
+     /*   if (TextUtils.isEmpty( cApellido )) {
+            etApellido.setError( "Campo vacío, por favor escriba el apellido" );
+            return;
+        }
+   */
+
+
+
+        String IdReferencia = IdReferenciasss;
+
+        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, idusuarioconectado, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
+
+        mDatabase.child( IdReferencia ).setValue( referencias );
+
+        //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
+        // mDatabase.child(Ukey).push().setValue(referencias);//para registrarlo dentro del usuario que inicio sesion
+    }
+
+    private void BorrarReferencia(String idReferenciasss) {
+
+        if (idReferenciasss!=null){
+
+        String IdReferencia = IdReferenciasss;
+
+        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, idusuarioconectado, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
+
+        mDatabase.child( IdReferencia ).removeValue(  );
+
+    }}
 }

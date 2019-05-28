@@ -22,6 +22,21 @@
         android:paddingTop="10dp"
         android:paddingEnd="5dp">
 
+        <ImageView
+            android:id="@+id/xmlImageViewimagenenelCurriculo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/icfotocurriculo"/>
+
+
+        <Button
+            android:id="@+id/xmlBtnimagenCurriculo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvop"
+            android:onClick="onButtonClicked"
+            android:text="Imagen" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/xmlbregistrarnombre"
             android:layout_width="match_parent"

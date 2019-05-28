@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content "
+    android:layout_marginTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,17 +11,7 @@
         android:background="@drawable/btn_bg"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:padding="5dp"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:textSize="30sp"
-            android:textColor="@color/md_blue_900"
-            android:text="Experiencia laboral"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -29,9 +19,10 @@
             android:layout_below="@id/xmlbregistrarFechafinEL"
             android:inputType="numberDecimal"
             android:text="  Nombre empresa"
-            android:textColor="@color/md_blue_900"
-            android:layout_marginTop="5dp"
-            android:textSize="20sp" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -44,14 +35,14 @@
                 android:id="@+id/xmlTVNombreEmpresaDetalleExpLab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="25sp"
+                android:layout_marginLeft="25dp"
                 android:dropDownSelector="@color/gradStop"
                 android:completionHintView="@color/md_blue_900"
-                android:textColor="@color/md_blue_900"
                 android:hint="Nombre empresa"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="italic"/>
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:layout_width="match_parent"
@@ -59,9 +50,10 @@
             android:layout_below="@id/xmlbregistrarFechafinEL"
             android:inputType="numberDecimal"
             android:text=" Cargo ocupado"
-            android:textColor="@color/md_blue_900"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -73,14 +65,14 @@
                 android:id="@+id/xmlTVCragoocupadoDetalleExpLab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="25sp"
+                android:layout_marginLeft="25dp"
                 android:dropDownSelector="@color/gradStop"
                 android:completionHintView="@color/md_blue_900"
-                android:textColor="@color/md_blue_900"
                 android:hint="Cargo ocupado"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="italic"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -89,9 +81,10 @@
             android:layout_below="@id/xmlbregistrarFechafinEL"
             android:inputType="numberDecimal"
             android:text=" Telefono"
-            android:textColor="@color/md_blue_900"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15sp"
+            android:textStyle="bold"  />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -103,14 +96,14 @@
                 android:id="@+id/xmlTVTelefonoDetalleExpLab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="25sp"
+                android:layout_marginLeft="25dp"
                 android:dropDownSelector="@color/gradStop"
                 android:completionHintView="@color/md_blue_900"
-                android:textColor="@color/md_blue_900"
                 android:hint="Telefono"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="italic"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -119,9 +112,10 @@
             android:layout_below="@id/xmlbregistrarFechafinEL"
             android:inputType="numberDecimal"
             android:text=" Fecha entrada"
-            android:textColor="@color/md_blue_900"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15sp"
+            android:textStyle="bold"  />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -133,14 +127,14 @@
                 android:id="@+id/xmlTVFechaEntradaDetalleExpLab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="25sp"
+                android:layout_marginLeft="25dp"
                 android:dropDownSelector="@color/gradStop"
                 android:completionHintView="@color/md_blue_900"
-                android:textColor="@color/md_blue_900"
                 android:hint="Fecha entrada"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="italic"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -149,9 +143,10 @@
             android:layout_below="@id/xmlbregistrarFechafinEL"
             android:inputType="numberDecimal"
             android:text=" Fecha salida"
-            android:textColor="@color/md_blue_900"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp" />
+            android:layout_marginTop="5dp"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15sp"
+            android:textStyle="bold"  />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -163,14 +158,14 @@
                 android:id="@+id/xmlTVFechaSalidaDetalleExpLab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="25sp"
+                android:layout_marginLeft="25dp"
                 android:dropDownSelector="@color/gradStop"
                 android:completionHintView="@color/md_blue_900"
-                android:textColor="@color/md_blue_900"
                 android:hint="Fecha salida"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="italic"/>
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>

@@ -114,8 +114,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_registrar_empleos);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarprueba);
-        setSupportActionBar(toolbar);
+
 
 
         databaseArea = FirebaseDatabase.getInstance();
