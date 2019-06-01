@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
@@ -57,6 +59,11 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
     Button botonbuscarprovincia;
     String Valor = "";
+    String sCampoEnEmpleo = "";
+
+    String sReferencia,sCampo;
+    RadioButton RdbProvinciaBE,RdbAreaBE;
+
 
     /////Spinner Provincia
 
@@ -72,6 +79,9 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_lista_empleos_buscados);
+
+        RdbProvinciaBE = (RadioButton) findViewById(R.id.xmlRdProvinciaBE);
+        RdbAreaBE = (RadioButton) findViewById(R.id.xmlRdAreaBE);
 
 
         //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -89,6 +99,57 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
         listaEmpleosBuscados = (RecyclerView) findViewById(R.id.ListaEmpleosBuscadosR);
         listaEmpleosBuscados.setHasFixedSize(true);
         listaEmpleosBuscados.setLayoutManager(new LinearLayoutManager(this));
+
+        //////////////////////////////////////////////
+        //sReferencia = "Areas";
+        //sCampo = "Nombre_Area";
+
+        RadioGroup RGFiltrarEmpleoE = (RadioGroup)findViewById(R.id.xmlRGFiltrarEmpleosBE);
+        RGFiltrarEmpleoE.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.xmlRdAreaBE:
+
+                        sReferencia = "Areas";
+                        sCampo = "Nombre_Area";
+                        sCampoEnEmpleo = "sAreaE";
+
+                        botonbuscarprovincia.setText("Buscar Por Area");
+                        BuscarEmpleoSpinner(sReferencia,sCampo);
+
+                        //sEstadoEmpleoE = "Disponible";
+                        //Log.d("Valorestado",sEstadoEmpleoE);
+                        //--Log.d("Valorcampo",sCampo);
+
+                        break;
+                    case R.id.xmlRdProvinciaBE:
+
+                        sReferencia = "provincias";
+                        sCampo = "Nombre_Provincia";
+                        botonbuscarprovincia.setText("Buscar Por Provincia");
+                        sCampoEnEmpleo = "sProvinciaE";
+
+                        BuscarEmpleoSpinner(sReferencia,sCampo);
+                        //sEstadoEmpleoE = "No Disponible";
+                        //Log.d("Valorestado",sEstadoEmpleoE);
+                        //--Log.d("ValorCampo",sCampo);
+
+                        break;
+                }
+
+               // Log.d("ValorReferencia",sReferencia);
+                Log.d("ValorCampo",sCampo);
+
+
+            }
+
+            // Log.d("Valorestado",sEstadoEmpleoE);
+
+        });
+
+        //////////////////////////////////////////////
+/*
 
         /////Spinner Provincia
 
@@ -111,14 +172,75 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+        Log.d("ValorReferencia",String.valueOf(sReferencia));
 
-        provinciasRef.child("provincias").addValueEventListener(new ValueEventListener() {
+        provinciasRef.child(sReferencia).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
+                    String provinciaName = provinciaSnapshot.child(sCampo).getValue(String.class);
+                    ListProvincias.add(provinciaName);
+                }
+
+                ArrayAdapter<String> provinciasAdapter = new ArrayAdapter<String>(PantallaListaEmpleosBuscados.this, android.R.layout.simple_spinner_item, ListProvincias);
+                provinciasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinProvinciaE.setAdapter(provinciasAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
+
+/////Spinner Provincia
+
+        botonbuscarprovincia = (Button) findViewById(R.id.botonbuscarprovincia);
+
+        botonbuscarprovincia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Log.d("valorprovinciaahora",sProvinciaE);
+                filtro();
+            }
+        });
+
+        cargarEmpleosBuscados();
+
+    }
+
+    private void BuscarEmpleoSpinner(String sReferencia,final String sCampo){
+        provinciasRef = FirebaseDatabase.getInstance().getReference();
+        spinProvinciaE = (Spinner) findViewById(R.id.xmlspinBuscarPorProvinciaEB);
+
+        spinProvinciaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    sProvinciaE = spinProvinciaE.getSelectedItem().toString();
+                    Valor = sProvinciaE;
+                    Log.d("valorSpinProv", sProvinciaE);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        Log.d("ValorReferencia",String.valueOf(sReferencia));
+
+        provinciasRef.child(sReferencia).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final List<String> ListProvincias = new ArrayList<String>();
+                for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
+                    String provinciaName = provinciaSnapshot.child(sCampo).getValue(String.class);
                     ListProvincias.add(provinciaName);
                 }
 
@@ -133,20 +255,9 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
             }
         });
 
-/////Spinner Provincia
-
-        botonbuscarprovincia = (Button) findViewById(R.id.botonbuscarprovincia);
-
-        botonbuscarprovincia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                filtro(sProvinciaE);
-            }
-        });
-
-        cargarEmpleosBuscados();
-
     }
+
+
 
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -188,11 +299,18 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
         listaEmpleosBuscados.setAdapter(adapterEmpleosBuscados);
     }
 
-    private void filtro(String Valor) {
-        String campo = "sProvinciaE";
 
 
-        Query firebaseSearchQuery = DBempleosBuscados.orderByChild(campo).equalTo(Valor);
+    private void filtro() {
+        //String campo = "sProvinciaE";
+
+        Log.d("ValorprCampofiltro",sCampoEnEmpleo);
+
+        Log.d("ValorprValorfiltro",Valor);
+
+
+
+        Query firebaseSearchQuery = DBempleosBuscados.orderByChild(sCampoEnEmpleo).equalTo(Valor);
 
 
         adapterEmpleosFiltrados = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>

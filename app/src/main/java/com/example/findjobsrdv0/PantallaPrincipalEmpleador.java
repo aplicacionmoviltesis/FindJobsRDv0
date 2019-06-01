@@ -54,6 +54,11 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
     private FirebaseAuth firebaseAuthEmpleador;
     private FirebaseAuth.AuthStateListener firebaseAuthListenerEmpleador;
+
+
+    String EmpleadorConectado;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +81,10 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
             }
         });*/
 
+        //firebaseAuthEmpleador = FirebaseAuth.getInstance();
+        EmpleadorConectado = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        //FirebaseUser user = firebaseAuth.getCurrentUser();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -99,6 +108,26 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         //String foto= preferences.getString("ImagenEmpresa", "ImagenEmpresa");
 
 
+        photoImageViewEmpleador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IrPerfilEmpleador(EmpleadorConectado);
+
+            }
+        });
+        nameTextViewEmpleador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IrPerfilEmpleador(EmpleadorConectado);
+            }
+        });
+        emailTextViewEmpleador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IrPerfilEmpleador(EmpleadorConectado);
+
+            }
+        });
         //TextViewEmpleador.setText(Nombre);
         //---Log.d("nombreklk",Nombre);
         //--nameTextViewEmpleador.setText(Nombre);
@@ -179,6 +208,16 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         nameTextViewEmpleador.setText(user.getDisplayName());
         emailTextViewEmpleador.setText(user.getEmail());
         Glide.with(this).load(user.getPhotoUrl()).into(photoImageViewEmpleador);
+    }
+
+    public void IrPerfilEmpleador(String EmpleadorConectado){
+        Intent intent = new Intent(this, PantallaPerfilEmpleador.class);
+        intent.putExtra("EmpleadorConectado",EmpleadorConectado);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+
     }
 
     @Override

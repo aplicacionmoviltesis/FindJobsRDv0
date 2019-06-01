@@ -14,9 +14,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PantallaPerfilEmpleador"></activity>
-
-        <activity android:name=".PantallaPerfilBuscador"></activity>
+        <activity android:name=".PantallaPersonasAplicaronEmpleo"></activity>
+        <activity android:name=".PantallaPerfilEmpleador" />
+        <activity android:name=".PantallaPerfilBuscador" />
         <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleOtrosCursos.DetalleOtrosEstudios" />
         <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleExperienciaLaboral.DetalleExperienciaLaboral" />
         <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleReferencias.DetalleReferencias" />

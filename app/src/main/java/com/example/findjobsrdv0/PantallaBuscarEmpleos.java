@@ -82,7 +82,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
         });
         mSpinner = findViewById(R.id.mSpinner);
 
-        provinciasRef.child("Curriculos").orderByChild("cCodigoId").equalTo("-LffL0E8KKZWBlqfS4LO").addValueEventListener(new ValueEventListener() {
+        provinciasRef.child("Curriculos").orderByChild("cCodigoId").equalTo("-Lg99GPXraUL9ZUxg17e").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size
@@ -93,7 +93,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
 
                 for (DataSnapshot areaSnapshot: dataSnapshot.getChildren()) {
 
-                    String areaName = areaSnapshot.child("estadoactual").getValue(String.class);
+                    String areaName = areaSnapshot.child("nombre").getValue(String.class);
                     areas.add(areaName);
                 }
 

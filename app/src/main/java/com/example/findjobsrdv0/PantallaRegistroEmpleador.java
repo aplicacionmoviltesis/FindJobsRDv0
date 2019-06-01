@@ -241,15 +241,17 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                                 FirebaseUser user = mAuthEmpleador.getCurrentUser();
                                 String Ukey = user.getUid();
 
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("RNC").setValue(entrada_RNC);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Nombre").setValue(entrada_Nombre);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Correo").setValue(entrada_correo);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Telefono").setValue(entrada_telefono);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("PaginaWeb").setValue(entrada_paginaweb);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Direccion").setValue(entrada_direccion);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Contraseña").setValue(entrada_contrasena);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Verificacion").setValue(entrada_verificacion);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Imagen").setValue(entrada_imagenEmpleador);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sRncEmpleador").setValue(entrada_RNC);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sNombreEmpleador").setValue(entrada_Nombre);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sCorreoEmpleador").setValue(entrada_correo);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sTelefonoEmpleador").setValue(entrada_telefono);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sPaginaWebEmpleador").setValue(entrada_paginaweb);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sDireccionEmpleador").setValue(entrada_direccion);
+                                //DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Contraseña").setValue(entrada_contrasena);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sVerificacionEmpleador").setValue(entrada_verificacion);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sImagenEmpleador").setValue(entrada_imagenEmpleador);
+
+
 
 
                                 //usas esa variable y usa .sendEmailVerification(); para mandar el correo de verificacion

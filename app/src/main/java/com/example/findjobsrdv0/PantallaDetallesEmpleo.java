@@ -192,7 +192,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         //SharedPreferences preferences= this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
         //String Nombre= preferences.getString("Nombre", "Nombre");
 
-        CurriculosDataBase.child("Curriculos").orderByChild("cIdBuscador").equalTo("39UKAKAN9NMxPYHWVguMNbnHnoq1").addValueEventListener(new ValueEventListener() {
+        CurriculosDataBase.child("Curriculos").orderByChild("cIdBuscador").equalTo(sIdPersonaAplico).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size
@@ -211,6 +211,8 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(PantallaDetallesEmpleo.this, "Usted No tiene empleo registrados", Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -250,7 +252,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                 TvFechaPublicacionDE.setText(empleos.getsFechaPublicacionE());
 
                 //sIdEmpleador = empleos.getsIdEmpleador();
-                sIdEmpleador = dataSnapshot.child("sIdEmpleador").getValue(String.class);
+                sIdEmpleador = dataSnapshot.child("sIdEmpleadorE").getValue(String.class);
 
 ///String klk= empleos.getsProvinciaE();
                 Log.d("pagina",String.valueOf(sIdEmpleador));
@@ -271,7 +273,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
                 Log.d("holapkkk", String.valueOf(dataSnapshot));
                 //Log.d("h", String.valueOf(dataSnapshot.child("Nombre").getValue(String.class)));
-                sVerificarEmpleador = dataSnapshot.child("Verificacion").getValue(Boolean.class);
+                sVerificarEmpleador = dataSnapshot.child("sVerificacionEmpleador").getValue(Boolean.class);
                 //Log.d("h", String.valueOf(dataSnapshot.child("Nombre").getValue(String.class)));
                 Log.d("holapkkk", String.valueOf(sVerificarEmpleador));
 
@@ -338,8 +340,8 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
     }
 
     public void AplicarEmpleo(String sIdPersonaAplico,String sEmpleoIdE) {
-        final String Curriculo = "39UKAKAN9NMxPYHWVguMNbnHnoq1";
-        String Empleo= "Empleo";
+        //final String Curriculo = "Y9NcTUy9ZwRDtQps7y2INqSzw1v1";
+        //String Empleo= "Empleo";
         //String Fecha= "hoy";
         //String sIdBuscador = "";
 
@@ -402,6 +404,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         sFechadeAplicacion = simpleDateFormat.format(new Date());
 
         String sIdAplicarEmpleo = AplicarEmpleoDataBase.push().getKey();
+
         AplicarEmpleo aplicarEmpleo = new AplicarEmpleo(sIdAplicarEmpleo,sIdCurriculoAplico,sIdEmpleoAplico,sIdPersonaAplico,sFechadeAplicacion);
         AplicarEmpleoDataBase.child(sIdAplicarEmpleo).setValue(aplicarEmpleo);
 

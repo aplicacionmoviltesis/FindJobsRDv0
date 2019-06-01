@@ -2,6 +2,7 @@ package com.example.findjobsrdv0;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,7 +57,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
     Spinner spinJornadaAE, spinTipoContratoAE, spinCantidadVacantesAE, spinAnoExpAE,
             spinFormacionAcademicaAE, spinRangoEdadAE, spinSexoAE,spinHorarioAE;
 
-    Button btnIdiomasAE, btnActivarCampoAE;
+    Button btnIdiomasAE, btnActivarCampoAE,btnPersonasAplicaronAE;
 
     ImageButton BtnActualizarEmpleoAE;
 
@@ -151,6 +152,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
         btnIdiomasAE = (Button) findViewById(R.id.xmlBtnSeleccionarIdiomasAE);
         btnActivarCampoAE = (Button) findViewById(R.id.xmlBtnActivarcampos);
+        btnPersonasAplicaronAE = (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
 
 
 
@@ -162,6 +164,15 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ActivarCampos();
+            }
+        });
+/////////////
+        btnPersonasAplicaronAE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PantallaActualizarEmpleo.this, "klk no entra", Toast.LENGTH_SHORT).show();
+
+                IrPersonasEmpleo();
             }
         });
 
@@ -600,13 +611,13 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             }
         });
 
-        BtnPersonasAplicaronEmpleoDE = (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
+        /*BtnPersonasAplicaronEmpleoDE = (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
         BtnPersonasAplicaronEmpleoDE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 VerPersonasAplicaron(sEmpleoIdE);
             }
-        });
+        });*/
 
 
 
@@ -835,6 +846,17 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    public void IrPersonasEmpleo(){
+
+        Intent intent = new Intent(PantallaActualizarEmpleo.this, PantallaPersonasAplicaronEmpleo.class);
+        intent.putExtra("sEmpleoIdEAplicados",sEmpleoIdE);
+
+        String hola=sEmpleoIdE;
+        Log.d("klkpaginaweb",hola);
+        startActivity(intent);
+
     }
 
     public void VerPersonasAplicaron(String sEmpleoIdE){

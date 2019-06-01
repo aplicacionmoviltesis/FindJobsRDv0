@@ -2,6 +2,7 @@ package com.example.findjobsrdv0;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -54,9 +55,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     private String sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE,
             sDireccionPerfilE, sCorreoPerfilE, sImagenPerfilEmpleador;
 
-    String sIdEmpleador;
+    String sIdEmpleador = "";
 
-    private Boolean sVerificarEmpleador;
+    private Boolean sVerificarEmpleador, sVerificacion;
 
     private FirebaseDatabase database;
     private DatabaseReference DBperfilEmpleadores;
@@ -85,7 +86,11 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         DBperfilEmpleadores = database.getReference("Empleadores");
-        sIdEmpleador = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
+        //sIdEmpleador = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         editNombrePerfilE = (EditText) findViewById(R.id.xmleditNombrePerfilEmpleador);
         editRncPerfilE = (EditText) findViewById(R.id.xmleditRNC);
@@ -145,7 +150,19 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
 
         //sIdEmpleador = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        VerificacionEmpresa(sIdEmpleador);
+        if(getIntent() != null){
+            sIdEmpleador = getIntent().getStringExtra("EmpleadorConectado");
+            if(!sIdEmpleador.isEmpty()){
+
+                VerificacionEmpresa(sIdEmpleador);
+            }
+        }
+
+    }
+
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 
     @Override
@@ -223,6 +240,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                         sTelefonoPerfilE = editTelefonoPerfilE.getText().toString().trim();
                         sDireccionPerfilE = editDireccionPerfilE.getText().toString().trim();
                         sCorreoPerfilE = editCorreoPerfilE.getText().toString().trim();
+                        sVerificacion = false;
                         //sImagenPerfilEmpleador = downloadURL;
                         mProgressDialog.dismiss();
 
@@ -231,7 +249,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                         mProgressDialog.show();
 
                         Toast.makeText(PantallaPerfilEmpleador.this, "Imagen subida exitosamente...", Toast.LENGTH_LONG).show();
-                        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, downloadURL);
+                        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, downloadURL, sVerificacion);
                         DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
                         mProgressDialog.dismiss();
 
@@ -295,26 +313,37 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
     }
 
     public void DeleteImagenAnterior() {
+        if (sImagenPerfilEmpleador != null && !sImagenPerfilEmpleador.isEmpty()) {
+        final StorageReference mPictureRef = getInstance().getReferenceFromUrl(sImagenPerfilEmpleador);
+            mPictureRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(PantallaPerfilEmpleador.this, "Eliminando Imagen...", Toast.LENGTH_LONG).show();
+                    Log.d("link foto",String.valueOf(mPictureRef));
+                    SubirNuevaImagen();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    mProgressDialog.dismiss();
 
-        StorageReference mPictureRef = getInstance().getReferenceFromUrl(sImagenPerfilEmpleador);
-        mPictureRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(PantallaPerfilEmpleador.this, "Eliminando Imagen...", Toast.LENGTH_LONG).show();
-                SubirNuevaImagen();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                mProgressDialog.dismiss();
+                }
+            });
+        }else {
 
-            }
-        });
+            Toast.makeText(PantallaPerfilEmpleador.this, "No hay imagen agregada", Toast.LENGTH_LONG).show();
+            SubirNuevaImagen();
+        }
+
+
+
     }
 
     private void SubirNuevaImagen() {
         String imageName = System.currentTimeMillis() + ".png";
+        //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
+
         StorageReference storageReference2do = mStorageReference.child(mStoragePath + imageName);
 
         Bitmap bitmap = ((BitmapDrawable) ImagePerfilEmpleador.getDrawable()).getBitmap();
@@ -329,7 +358,7 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
 
                 Toast.makeText(PantallaPerfilEmpleador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isSuccessful());
+                while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
                 ActualizarDatosEmpleador(downloadUri.toString());
 
@@ -355,13 +384,12 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
         sTelefonoPerfilE = editTelefonoPerfilE.getText().toString().trim();
         sDireccionPerfilE = editDireccionPerfilE.getText().toString().trim();
         sCorreoPerfilE = editCorreoPerfilE.getText().toString().trim();
+        sVerificacion = false;
 
-
-        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, foto);
+        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, foto, sVerificacion);
         DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
         mProgressDialog.dismiss();
         Toast.makeText(PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
-
 
 
     }
@@ -373,7 +401,9 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 sImagenPerfilEmpleador = dataSnapshot.child("sImagenEmpleador").getValue(String.class);
-                Picasso.get().load(sImagenPerfilEmpleador).into(ImagePerfilEmpleador);
+                if (sImagenPerfilEmpleador != null && !sImagenPerfilEmpleador.isEmpty()) {
+                    Picasso.get().load(sImagenPerfilEmpleador).into(ImagePerfilEmpleador);
+                }
 
 
                 Log.d("holapkkk", String.valueOf(dataSnapshot));

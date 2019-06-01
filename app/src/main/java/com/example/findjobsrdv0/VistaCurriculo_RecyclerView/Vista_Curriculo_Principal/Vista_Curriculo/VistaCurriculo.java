@@ -53,7 +53,6 @@ public class VistaCurriculo extends AppCompatActivity {
     DatabaseReference vistaCurriculo;
 
 
-
     // FirebaseAuth mAuth;
 
     FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder> adapter;
@@ -149,7 +148,7 @@ public class VistaCurriculo extends AppCompatActivity {
 
     }
 
-        private void loadCurriculo() {
+    private void loadCurriculo() {
         adapter = new FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder>(VistaCurriculomodel.class, R.layout.cardview_vista_curriculo, VistaCurriculoViewHolder.class, vistaCurriculo) {
             @Override
             protected void populateViewHolder(VistaCurriculoViewHolder viewHolder, VistaCurriculomodel model, int position) {

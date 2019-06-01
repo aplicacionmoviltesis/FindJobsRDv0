@@ -10,18 +10,19 @@ public class Empleadores {
     String sCorreoEmpleador;
     //String sIdEmpleador;
     String sImagenEmpleador;
+    Boolean sVerificacionEmpleador;
 
     public Empleadores() {
     }
 
-    public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador) {
+    public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador, boolean sVerificacionEmpleador) {
         this.sNombreEmpleador = sNombreEmpleador;
         this.sRncEmpleador = sRncEmpleador;
         this.sPaginaWebEmpleador = sPaginaWebEmpleador;
         this.sTelefonoEmpleador = sTelefonoEmpleador;
         this.sDireccionEmpleador = sDireccionEmpleador;
         this.sCorreoEmpleador = sCorreoEmpleador;
-        //this.sIdEmpleador = sIdEmpleador;
+        this.sVerificacionEmpleador = sVerificacionEmpleador;
         this.sImagenEmpleador = sImagenEmpleador;
     }
 
@@ -72,14 +73,15 @@ public class Empleadores {
     public void setsCorreoEmpleador(String sCorreoEmpleador) {
         this.sCorreoEmpleador = sCorreoEmpleador;
     }
-/*
-    public String getsIdEmpleador() {
-        return sIdEmpleador;
+
+    public boolean getsVerificacionEmpleador() {
+        return sVerificacionEmpleador;
     }
 
-    public void setsIdEmpleador(String sIdEmpleador) {
-        this.sIdEmpleador = sIdEmpleador;
-    }*/
+    public boolean setsVerificacion(boolean sVerificacion) {
+        this.sVerificacionEmpleador = sVerificacion;
+        return sVerificacion;
+    }
 
     public String getsImagenEmpleador() {
         return sImagenEmpleador;
