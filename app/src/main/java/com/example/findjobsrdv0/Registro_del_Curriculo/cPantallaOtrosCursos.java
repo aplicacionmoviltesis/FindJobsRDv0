@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
 import com.example.findjobsrdv0.R;
@@ -35,24 +36,18 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
     String ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio, ocIdBuscardor;
 
 
-    FirebaseRecyclerAdapter<modeloOtrosCursos, OtrosEstudiosViewHolder> adapter;
-
-
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+
+    FirebaseRecyclerAdapter<modeloOtrosCursos, OtrosEstudiosViewHolder> adapter;
 
     FirebaseDatabase database;
     DatabaseReference otrosestudiosinset;
 
-
     RecyclerView recycler_otrosestudios;
     RecyclerView.LayoutManager layoutManager;
 
-
     String idusuariosregistrado;
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-
-
 
     private DatabaseReference DBOtrosCursosCurriculos;
 
@@ -70,7 +65,6 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         DBOtrosCursosCurriculos = FirebaseDatabase.getInstance().getReference( "Otros_Cursos" );
 
-
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
         database = FirebaseDatabase.getInstance();
@@ -82,7 +76,6 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         recycler_otrosestudios.setLayoutManager( layoutManager );
 
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
 
         etInstitucion = (EditText) findViewById( R.id.xmlEditNombreInstitucionOC );
         etAno = (EditText) findViewById( R.id.xmlEditAñoOC );
@@ -106,15 +99,12 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
             }
         } );
 
-
         if (getIntent() != null)
             detalleotroscursos = getIntent().getStringExtra( "DetalleOtrosCursosID" );
 
         if (!detalleotroscursos.isEmpty()) {
-            registrarotroscurriculos( detalleotroscursos );
+           // registrarotroscurriculos( detalleotroscursos );
         }
-
-
 
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
@@ -122,19 +112,11 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         idusuariosregistrado = Ukey;
 
-
         loadOtrosEstudios(Ukey);
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-
-
-
     }
 
-
-
-
-    //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
     private void loadOtrosEstudios(String Ukey) {
          adapter = new FirebaseRecyclerAdapter<modeloOtrosCursos, OtrosEstudiosViewHolder>( modeloOtrosCursos.class, R.layout.card_view_otros_estudios_en_los_insert, OtrosEstudiosViewHolder.class,
                 otrosestudiosinset.orderByChild( "idusuarioregistrado" ).equalTo( Ukey )) {
@@ -142,11 +124,11 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
             protected void populateViewHolder(OtrosEstudiosViewHolder ViewHolder, modeloOtrosCursos model, int position) {
 
                 ViewHolder.txtInstitucion.setText( model.getOcInstitucionC() );
-                ViewHolder.txtAno.setText( model.getOcAno() );
+                ViewHolder.txtAno.setText( model.getOcAnoC() );
                 ViewHolder.txtAreaoTema.setText( model.getOcAreaoTemaC() );
                 ViewHolder.txtTipoEstudio.setText( model.getOcTipoEstudio() );
 
-                Log.d( "hola", String.valueOf( model.getOcInstitucionC() ) );
+             //   Log.d( "hola", String.valueOf( model.getOcInstitucionC() ) );
 
                 final modeloOtrosCursos clickItem = model;
                 ViewHolder.setItemClickListener( new ItemClickListener() {
@@ -163,21 +145,14 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         recycler_otrosestudios.setAdapter( adapter );
     }
 
-
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-
 
     public void limpiarCampor() {
         etInstitucion.setText( "" );
         etAreaoTema.setText( "" );
         etAno.setText( "" );
 
-
     }
-
-
-
 
     private void registrarotroscurriculos(String detalleotroscursos) {
         ocInstitucionC = etInstitucion.getText().toString().trim();
@@ -214,8 +189,24 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
                 etInstitucion.setText( otrosCursos.getOcInstitucionC() );
                 etAno.setText( otrosCursos.getOcAnoC() );
                 etAreaoTema.setText( otrosCursos.getOcAreaoTemaC() );
-              //  ssTipodeEstudio.setSp
+                ssTipodeEstudio.setSelection( obtenerPosicionItem( ssTipodeEstudio, otrosCursos.getOcTipoEstudio() ) );
 
+            }
+
+            public int obtenerPosicionItem(Spinner spinner, String fruta) {
+                //Creamos la variable posicion y lo inicializamos en 0
+                int posicion = 0;
+                //Recorre el spinner en busca del ítem que coincida con el parametro `String fruta`
+                //que lo pasaremos posteriormente
+                for (int i = 0; i < spinner.getCount(); i++) {
+                    //Almacena la posición del ítem que coincida con la búsqueda
+                    if (spinner.getItemAtPosition( i ).toString().equalsIgnoreCase( fruta )) {
+                        posicion = i;
+                    }
+                }
+                //Devuelve un valor entero (si encontro una coincidencia devuelve la
+                // posición 0 o N, de lo contrario devuelve 0 = posición inicial)
+                return posicion;
             }
 
             @Override
@@ -224,7 +215,6 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
             }
         });
     }
-
 
     private void ActualizarOtrosEstudios(String IDOtrosEstudiosss) {
 
@@ -249,8 +239,5 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         DBOtrosCursosCurriculos.child( IdCurriculo ).setValue( otrosCursos );
 
-
     }
-
-
 }

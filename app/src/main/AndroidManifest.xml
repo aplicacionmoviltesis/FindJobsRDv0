@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PantallaPersonasAplicaronEmpleo"></activity>
+        <activity android:name=".ActualizarFormacionAcad.ActualizarFormacionAcad"></activity>
+        <activity android:name=".ActualizarCurriculo.VistaCurriculoActualizar" />
+        <activity android:name=".ActualizarCurriculo.ActualizarCurriculo" />
         <activity android:name=".PantallaPerfilEmpleador" />
         <activity android:name=".PantallaPerfilBuscador" />
         <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleOtrosCursos.DetalleOtrosEstudios" />

@@ -742,8 +742,6 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
         // FirebaseUser user = mAuthEmpleador.getCurrentUser();
 
-
-
         sNombreEmpleoAE = editNombreEmpleoAE.getText().toString().trim();
         sNombreEmpresaAE = editNombreEmpresaAE.getText().toString().trim();
         sDireccionAE = editDireccionAE.getText().toString().trim();

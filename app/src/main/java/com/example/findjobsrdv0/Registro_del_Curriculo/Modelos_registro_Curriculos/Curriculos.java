@@ -5,13 +5,15 @@ import java.util.Map;
 
 public class Curriculos {
 
-
-    String cCodigoId, cIdBuscador, imagen, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
-
     public Curriculos() {
     }
 
-    public Curriculos(String cCodigoId, String cIdBuscador, String imagen, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadoCivil, String direccion, String ocupacion, String idioma, String gradomayor, String estadoactual, String habilidades, String fecha) {
+    String cCodigoId, cIdBuscador, imagen, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
+
+
+    public Curriculos(String cCodigoId, String cIdBuscador, String imagen, String nombre, String apellido, String cedula,
+                      String email, String telefono, String celular, String provincia, String estadoCivil, String direccion,
+                      String ocupacion, String idioma, String gradomayor, String estadoactual, String habilidades, String fecha) {
         this.cCodigoId = cCodigoId;
         this.cIdBuscador = cIdBuscador;
         this.imagen = imagen;

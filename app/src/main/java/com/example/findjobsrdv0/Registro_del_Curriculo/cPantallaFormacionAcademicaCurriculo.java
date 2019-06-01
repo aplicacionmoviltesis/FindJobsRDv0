@@ -1,5 +1,6 @@
 package com.example.findjobsrdv0.Registro_del_Curriculo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,11 +25,14 @@ import com.example.findjobsrdv0.Vista_recycler_en_los_insert.recyclerOtrosEstudi
 import com.example.findjobsrdv0.Vista_recycler_en_los_insert.recyclerOtrosEstudios.ViewHolder.OtrosEstudiosViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
-public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
+public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
     private TextView TituloFormacionAcademica;
 
     EditText etCarrera, etNivelPrimario, etNivelSecundario, etNivelSuperior;
@@ -37,14 +41,10 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
     String codigoc, idbuscadorc, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc;
 
 
-
     TextView textInfo;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-
-
-
 
     String detalleformacad = "";
     String Ukey;
@@ -53,12 +53,12 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_c_pantalla_formacion_academica_curriculo);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_c_pantalla_formacion_academica_curriculo );
 
-        TituloFormacionAcademica = (TextView) findViewById(R.id.xmlTituloFormacionAcademica);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");
-        TituloFormacionAcademica.setTypeface(face);
+        TituloFormacionAcademica = (TextView) findViewById( R.id.xmlTituloFormacionAcademica );
+        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/Chomsky.otf" );
+        TituloFormacionAcademica.setTypeface( face );
 
         mDatabase = FirebaseDatabase.getInstance().getReference( "Formacion_Academica" );
         mAuth = FirebaseAuth.getInstance();
@@ -67,6 +67,8 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
         etNivelSuperior = (EditText) findViewById( R.id.xmlEditNivelSuperiorNameFA );
         etNivelSecundario = (EditText) findViewById( R.id.xmlEditNivelSecundarioNameFA );
         etNivelPrimario = (EditText) findViewById( R.id.xmlEditNivelPrimarioNameFA );
+
+     //   CargarformacadActualizar( detalleformacad );
 
 
 /*
@@ -79,6 +81,8 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
             }
         } );
 */
+
+
         BtnRegistrarFormAcad = (Button) findViewById( R.id.xmlbtnAnadirformacionAcademica );
         BtnRegistrarFormAcad.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -98,6 +102,28 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
 
 
     }
+
+  /*  private void CargarformacadActualizar(String detalleformacad) {
+        mDatabase.orderByChild( "codigoc" ).equalTo( detalleformacad ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                FormacionAcademica formacionAcademica = dataSnapshot.getValue( FormacionAcademica.class );
+
+                Log.d( "klk", String.valueOf( dataSnapshot ) );
+                etCarrera.setText( formacionAcademica.getCarrerac() );
+                etNivelPrimario.setText( formacionAcademica.getNivelprimarioc() );
+                etNivelSecundario.setText( formacionAcademica.getNivelsecundarioc() );
+                etNivelSuperior.setText( formacionAcademica.getNivelsuperiorc() );
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }*/
 
     public void limpiarCampor() {
         etNivelPrimario.setText( "" );
@@ -128,7 +154,9 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
    */
 
 
+        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        idusuariosregistrado = Ukey;
 
         String IdFormacionAcademica = mDatabase.push().getKey();
 
@@ -143,4 +171,6 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity  {
 
 
     }
+
+
 }

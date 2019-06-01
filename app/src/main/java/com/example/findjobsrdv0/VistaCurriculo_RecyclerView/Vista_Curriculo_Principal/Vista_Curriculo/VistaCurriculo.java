@@ -163,7 +163,6 @@ public class VistaCurriculo extends AppCompatActivity {
 
                 //    Log.d( "hola", String.valueOf( viewHolder ) );
 
-
                 final VistaCurriculomodel clickItem = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

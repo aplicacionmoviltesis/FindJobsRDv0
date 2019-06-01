@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <!--tools:showIn="@layout/activity_c_pantalla_registro_curriculo"-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_bg"
+            android:orientation="vertical"
+            android:paddingStart="5dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="5dp">
+
+            <ImageView
+                android:id="@+id/xmlImageViewimagenenelCurriculoActualizar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/icfotocurriculo"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarnombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/etnombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Nombre"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="9"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/etapellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Apellido"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarCedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/etcedula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Cedula"
+                    android:inputType="number"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/etemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlbregistrarTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/ettelefono"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:hint="Telefono"
+                        android:inputType="phone"
+                        android:textColor="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlbregistrarCelular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/etcelula"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:hint="Celular"
+                        android:inputType="number"
+                        android:textColor="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/spinnerprovincias"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:baselineAligned="false"
+                    android:dropDownSelector="@color/gradStop"
+                    android:entries="@array/Provincia"
+                    android:hint="Provincias"
+                    android:textColorHint="@color/md_blue_900"
+                    app:met_floatingLabel="normal" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/spinnerestadocivil"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:dropDownSelector="@color/gradStop"
+                    android:entries="@array/EstadoCivil"
+                    android:hint="Estado Civil"
+                    android:textColorHint="@color/md_blue_900"
+                    app:met_floatingLabel="normal" />
+            </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="9"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/etdireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Direccion"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarocupacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="9"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/etocupacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Ocupacion"
+                    android:inputType="text"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/textVieklwTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Idiomas"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textVieklwTitle"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:hint="Español/English"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_grey_400" />
+
+                <Button
+                    android:id="@+id/xmlBtnIdioma"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/tvop"
+                    android:onClick="onButtonClicked"
+                    android:padding="0dp"
+                    android:text="Selecionar Idiomas" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/spinnergradomayor"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:baselineAligned="false"
+                    android:dropDownSelector="@color/gradStop"
+                    android:entries="@array/GradoMayor"
+                    android:hint="Grado Mayor"
+                    android:textColorHint="@color/md_blue_900"
+                    app:met_floatingLabel="normal" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/spinnerestadoactual"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:dropDownSelector="@color/gradStop"
+                    android:entries="@array/EstadoActual"
+                    android:hint="Estado Actual"
+                    android:textColorHint="@color/md_blue_900"
+                    app:met_floatingLabel="normal" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:paddingStart="5dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Sexo"
+                    android:textSize="15dp" />
+
+                <RadioGroup
+                    android:id="@+id/radiobuttonsexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkedButton="@+id/first"
+                    android:orientation="horizontal"
+                    android:outlineAmbientShadowColor="@color/md_blue_900">
+
+                    <RadioButton
+                        android:id="@+id/first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masculino" />
+
+                    <RadioButton
+                        android:id="@+id/second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Femenino" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/habilidadesyconocimientos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/ethabilidades"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Habilidades"
+                    android:inputType="text"
+                    android:maxLines="3"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/textViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Fecha de Nacimiento"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewTitle"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:hint="30/01/1997"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
+
+                <Button
+                    android:id="@+id/btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/textViewTitle"
+                    android:layout_toRightOf="@id/tv"
+                    android:background="@drawable/ic_cake_black_24dp"
+                    android:onClick="onButtonClicked"
+                    android:padding="0dp" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/xmlBtnActualizarDatosGC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Registrar"
+                android:layout_marginBottom="15dp"
+                android:text="Actualizar Curriculo" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/xmlBtnFormacionAcademicaC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Añadir Formacion Academica" />
+
+            <Button
+                android:id="@+id/AbrirOtrosCursos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Añadir Otros Cursos" />
+
+            <Button
+                android:id="@+id/xmlBntExperienciaLaboralCurriculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Añadir Experiencias Laborales" />
+
+            <Button
+                android:id="@+id/xmlBtnReferenciaCurriculoC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Añadir Referencias" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:hint="Ultima Actualizacion: 29/04/2019"
+            android:padding="5dp"
+            android:textColorHint="@color/md_black_1000"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

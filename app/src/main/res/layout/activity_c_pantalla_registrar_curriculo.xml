@@ -28,15 +28,6 @@
             android:layout_height="150dp"
             android:background="@drawable/icfotocurriculo"/>
 
-
-        <Button
-            android:id="@+id/xmlBtnimagenCurriculo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvop"
-            android:onClick="onButtonClicked"
-            android:text="Imagen" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/xmlbregistrarnombre"
             android:layout_width="match_parent"
@@ -177,7 +168,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColorHint="@color/md_blue_900"
                 app:counterEnabled="true"
-                app:counterMaxLength="9"
+                app:counterMaxLength="10"
                 app:counterOverflowTextAppearance="@style/CounterOverFlow"
                 app:counterTextAppearance="@style/Counter"
                 app:errorEnabled="true"
