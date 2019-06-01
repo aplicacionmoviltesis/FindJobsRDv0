@@ -106,8 +106,6 @@ public class DetalleCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
-
-
     }
 
     private void goDetailCurriculo(String detallecurrid) {
@@ -131,8 +129,6 @@ public class DetalleCurriculo extends AppCompatActivity {
                 txtGradoMayorCurr.setText( vistaCurriculomodel.getGradomayor() );
                 txtHabilidades.setText( vistaCurriculomodel.getHabilidades() );
                 txtFecha.setText( vistaCurriculomodel.getFecha() );
-
-
 
             }
 

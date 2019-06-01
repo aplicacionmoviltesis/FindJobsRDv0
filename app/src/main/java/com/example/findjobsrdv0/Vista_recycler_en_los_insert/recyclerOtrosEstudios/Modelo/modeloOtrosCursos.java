@@ -2,17 +2,17 @@ package com.example.findjobsrdv0.Vista_recycler_en_los_insert.recyclerOtrosEstud
 
 public class modeloOtrosCursos {
 
-    String ocAreaoTemaC, ocInstitucionC, ocTipoEstudio, ocidcodigo, ocAno;
+    String ocAreaoTemaC, ocInstitucionC, ocTipoEstudio, ocidcodigo, ocAnoC;
 
     public modeloOtrosCursos() {
     }
 
-    public modeloOtrosCursos(String ocAreaoTemaC, String ocInstitucionC, String ocTipoEstudio, String ocidcodigo, String ocAno) {
+    public modeloOtrosCursos(String ocAreaoTemaC, String ocInstitucionC, String ocTipoEstudio, String ocidcodigo, String ocAnoC) {
         this.ocAreaoTemaC = ocAreaoTemaC;
         this.ocInstitucionC = ocInstitucionC;
         this.ocTipoEstudio = ocTipoEstudio;
         this.ocidcodigo = ocidcodigo;
-        this.ocAno = ocAno;
+        this.ocAnoC = ocAnoC;
     }
 
     public String getOcAreaoTemaC() {
@@ -47,11 +47,11 @@ public class modeloOtrosCursos {
         this.ocidcodigo = ocidcodigo;
     }
 
-    public String getOcAno() {
-        return ocAno;
+    public String getOcAnoC() {
+        return ocAnoC;
     }
 
-    public void setOcAno(String ocAno) {
-        this.ocAno = ocAno;
+    public void setOcAnoC(String ocAnoC) {
+        this.ocAnoC = ocAnoC;
     }
 }

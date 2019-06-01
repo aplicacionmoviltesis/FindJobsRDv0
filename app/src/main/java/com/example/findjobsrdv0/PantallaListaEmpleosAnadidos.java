@@ -64,7 +64,7 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
     private void cargarEmpleos(String Ukey) {
         adapter = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>
                 (Empleos.class,R.layout.cardview_mostrar_empleo, EmpleosViewHolder.class,
-                        DBempleos.orderByChild("sIdEmpleador").equalTo(Ukey)) {
+                        DBempleos.orderByChild("sIdEmpleadorE").equalTo(Ukey)) {
             @Override
             protected void populateViewHolder(EmpleosViewHolder empleosViewHolder, Empleos empleos, int i) {
                 empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());

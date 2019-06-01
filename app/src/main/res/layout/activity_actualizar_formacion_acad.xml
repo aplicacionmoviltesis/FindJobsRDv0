@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActualizarFormacionAcad.ActualizarFormacionAcad">
+
+    <TextView
+        android:id="@+id/xmlTituloFormacionAcademica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/xmlbregistrarFechafinEL"
+        android:textSize="30sp"
+        android:textColor="@color/md_blue_900"
+        android:text="Formacion Academica"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Acrualizarnivelprimario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xmlbregistrarFechafinEL"
+            android:inputType="numberDecimal"
+            android:text="  Nivel Primario"
+            android:textColor="@color/md_blue_900"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTiNivelPrimarioNameFA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlEditNivelPrimarioNameFAAcrualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Centro"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/Acrualizarnivelsecundario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xmlbregistrarFechafinEL"
+            android:inputType="numberDecimal"
+            android:text="  Nivel Secundario"
+            android:textColor="@color/md_blue_900"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTiNivelSecundarioNameFA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlEditNivelSecundarioNameFAAcrualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Centro"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/Acrualizarnivelsuperior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xmlbregistrarFechafinEL"
+            android:inputType="numberDecimal"
+            android:text="  Nivel Superior"
+            android:textColor="@color/md_blue_900"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTiNivelSuperiorNameFA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+
+            <EditText
+                android:id="@+id/xmlEditNivelSuperiorNameFAAcrualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Centro"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTiCarreraNameFA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/md_blue_900">
+            <EditText
+                android:id="@+id/xmlEditCarreraNameFAAcrualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:ems="10"
+                android:hint="Carrera"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/xmlbtnAnadirformacionAcademicaAcrualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Actualizar Formacion Academica"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/recyclerActualizarFormAcad">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -250,7 +250,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                 TvFechaPublicacionDE.setText(empleos.getsFechaPublicacionE());
 
                 //sIdEmpleador = empleos.getsIdEmpleador();
-                sIdEmpleador = dataSnapshot.child("sIdEmpleador").getValue(String.class);
+                sIdEmpleador = dataSnapshot.child("sIdEmpleadorE").getValue(String.class);
 
 ///String klk= empleos.getsProvinciaE();
                 Log.d("pagina",String.valueOf(sIdEmpleador));
@@ -271,7 +271,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
                 Log.d("holapkkk", String.valueOf(dataSnapshot));
                 //Log.d("h", String.valueOf(dataSnapshot.child("Nombre").getValue(String.class)));
-                sVerificarEmpleador = dataSnapshot.child("Verificacion").getValue(Boolean.class);
+                sVerificarEmpleador = dataSnapshot.child("sVerificacionEmpleador").getValue(Boolean.class);
                 //Log.d("h", String.valueOf(dataSnapshot.child("Nombre").getValue(String.class)));
                 Log.d("holapkkk", String.valueOf(sVerificarEmpleador));
 

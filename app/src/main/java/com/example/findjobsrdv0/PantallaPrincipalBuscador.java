@@ -4,13 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
-import com.example.findjobsrdv0.Modelo.Curriculos;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
-import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo;
+import com.example.findjobsrdv0.ActualizarCurriculo.VistaCurriculoActualizar;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -25,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -33,6 +36,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -81,12 +85,53 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         toggle.syncState();
 
 
+//--------------------------------  dialog para elegir opcion----------------------------------------------------------------------------------------------
         LinearLayout IrRegistrarCurriculo = (LinearLayout )findViewById(R.id.lyRegistrarCurriculo);
         IrRegistrarCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), cPantallaRegistrarCurriculo.class);
-                startActivityForResult(intent, 0);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder( PantallaPrincipalBuscador.this );
+
+                View view1 = getLayoutInflater().inflate( R.layout.dialogo_curriculo, null );
+
+               // builder.getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFF000000, CUSTOM_COLOR));
+
+                //builder.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
+
+               //  view1.getWidth().setBackgroundDrawable(new ColorDrawable( Color.TRANSPARENT ) );
+              //  AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+
+
+                Button irRegistrarCurriculo = (Button)view1.findViewById( R.id.btnRegistrarCurriculoDialog );
+                Button irActualizarCurriculo = (Button)view1.findViewById( R.id.btnActualizarCurriculoDialog );
+
+                irRegistrarCurriculo.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(PantallaPrincipalBuscador.this, cPantallaRegistrarCurriculo.class);
+                        startActivity(intent);
+                    }
+                } );
+
+                irActualizarCurriculo.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(PantallaPrincipalBuscador.this, VistaCurriculoActualizar.class);
+                        startActivity(intent);
+                    }
+                } );
+
+                builder.setView( view1 );
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+                //Intent intent = new Intent (v.getContext(), cPantallaRegistrarCurriculo.class);
+                //  startActivityForResult(intent, 0);
+//--------------------------------  dialog para elegir opcion----------------------------------------------------------------------------------------------
+
             }
         });
 
