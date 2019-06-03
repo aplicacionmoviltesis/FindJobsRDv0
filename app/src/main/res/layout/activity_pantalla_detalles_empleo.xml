@@ -19,11 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="10dp"
-            android:layout_margin="20dp"
+            android:padding="1dp"
+            android:layout_margin="10dp"
             android:src="@mipmap/buscandoempleo"/>
-
-
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".PantallaPrincipalEmpleador"
-    android:background="@mipmap/fondo3"
+    android:background="@mipmap/fondo1"
     android:orientation="vertical"
     tools:showIn="@layout/app_bar_pantalla_principal_empleador">
 
@@ -29,12 +29,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_bg"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -85,12 +85,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_bg"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -137,12 +137,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/btn_bg"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"

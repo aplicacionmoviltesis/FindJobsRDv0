@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +49,37 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_buscar_empleos);
 
+
+        MaterialFavoriteButton favorite = new MaterialFavoriteButton.Builder(this)
+                .create();
+
+        favorite.setOnFavoriteChangeListener(
+                new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                    @Override
+                    public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                        //
+                        if(favorite == true){
+
+                            Log.d("valor boolean",String.valueOf(favorite));
+                        }
+                        if(favorite == false){
+
+                            Log.d("valor boolean",String.valueOf(favorite));
+                        }
+                    }
+                });
+
+        favorite.setOnFavoriteAnimationEndListener(
+                new MaterialFavoriteButton.OnFavoriteAnimationEndListener() {
+                    @Override
+                    public void onAnimationEnd(MaterialFavoriteButton buttonView, boolean favorite) {
+                        //
+                    }
+                });
+
+        //favoriteButton.setFavorite(isFavorite(data.get(position)));
+
+
         //searchableSpinner = (SearchableSpinner)findViewById(R.id.searchable_spinner);
 
         provinciasRef = FirebaseDatabase.getInstance().getReference();//.child("Empleadores");
@@ -82,7 +114,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
         });
         mSpinner = findViewById(R.id.mSpinner);
 
-        provinciasRef.child("Curriculos").orderByChild("cCodigoId").equalTo("-Lg99GPXraUL9ZUxg17e").addValueEventListener(new ValueEventListener() {
+        provinciasRef.child("Curriculos").orderByChild("cCodigoId").equalTo("-LgGKwS2my1D564M4Drg").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size

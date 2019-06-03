@@ -14,8 +14,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PantallaPersonasAplicaronEmpleo"></activity>
-        <activity android:name=".ActualizarFormacionAcad.ActualizarFormacionAcad"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".PantallaPersonasAplicaronEmpleo" />
+        <activity android:name=".ActualizarFormacionAcad.ActualizarFormacionAcad" />
         <activity android:name=".ActualizarCurriculo.VistaCurriculoActualizar" />
         <activity android:name=".ActualizarCurriculo.ActualizarCurriculo" />
         <activity android:name=".PantallaPerfilEmpleador" />
@@ -57,9 +58,7 @@
             android:name=".Registro_del_Curriculo.cPantallaExperienciaLaboralCurriculo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".PantallaNavegador" />
-        <activity
-            android:name=".PantallaRecuperarContrasena"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".PantallaRecuperarContrasena" />
         <activity
             android:name=".PantallaPrincipalEmpleador"
             android:label="@string/title_activity_pantalla_principal_empleador"

@@ -1,8 +1,10 @@
 package com.example.findjobsrdv0;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -43,7 +46,7 @@ import java.util.List;
 public class PantallaActualizarEmpleo extends AppCompatActivity {
 
     EditText editNombreEmpleoAE, editNombreEmpresaAE, editDireccionAE, editEmailAE,
-            editTelefonoAE, editPaginaWebAE, editSalarioAE, editOtrosDatosAE;
+            editTelefonoAE, editPaginaWebAE, editSalarioAE, editOtrosDatosAE,editEdadMaximaAE,editEdadMinimaAE;
 
     TextView tvMostrarIdiomasAE, tvFechaPublicacionAE;
 
@@ -54,7 +57,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             sFormacionAcademicaAE, sMostrarIdiomaAE, sRangoEdadAE, sSexoRequeridoAE,sEstadoEmpleoAE,
             sFechaPublicacionAE, sIdEmpleadorAE;
 
-    Spinner spinJornadaAE, spinTipoContratoAE, spinCantidadVacantesAE, spinAnoExpAE,
+    SearchableSpinner spinJornadaAE, spinTipoContratoAE, spinCantidadVacantesAE, spinAnoExpAE,
             spinFormacionAcademicaAE, spinRangoEdadAE, spinSexoAE,spinHorarioAE;
 
     Button btnIdiomasAE, btnActivarCampoAE,btnPersonasAplicaronAE;
@@ -62,6 +65,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
     ImageButton BtnActualizarEmpleoAE;
 
     RadioButton RdbDisponibleAE,RdbNoDisponibleAE;
+
+    String sEdadMaximaAE,sEdadMinimaAE;
+
 
     ImageView ImageViewAE;
     String sImagenEmpleoAE;
@@ -74,7 +80,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 /////Spinner Provincia
 
-    Spinner spinProvinciaAE;
+    SearchableSpinner spinProvinciaAE;
     DatabaseReference provinciasRefActualizar;
     List<Provincias> provincias;
 
@@ -82,7 +88,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 /////Spinner Area de Trabajo
 
-    Spinner spinAreaAE;
+    SearchableSpinner spinAreaAE;
     DatabaseReference areasRefActualizar,DBpersonasAplicaron;
     List<Provincias> areas;
     boolean IsFirstTimeClickAreas = true;
@@ -107,7 +113,10 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 /////Checklist para elegir los idiomas
 
     String sEmpleoIdE =" ";
+    private TextView tvDatosEmpleoAE,tvDatosEspecificosAE,tvRequisitosAE;
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +136,16 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+
+        tvDatosEmpleoAE = (TextView) findViewById(R.id.xmlTiDatosEmpleosAE);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        tvDatosEmpleoAE.setTypeface(face);
+
+        tvDatosEspecificosAE = (TextView) findViewById(R.id.xmlTiDatosEspecificosAE);
+        tvDatosEspecificosAE.setTypeface(face);
+
+        tvRequisitosAE = (TextView) findViewById(R.id.xmlTiRequisitosAE);
+        tvRequisitosAE.setTypeface(face);
 
         databaseArea = FirebaseDatabase.getInstance();
         DBarea = databaseArea.getReference("Areas");
@@ -155,6 +174,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         btnPersonasAplicaronAE = (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
 
 
+        editEdadMaximaAE = (EditText) findViewById(R.id.xmlEditEdadMaximaAE);
+        editEdadMinimaAE = (EditText) findViewById(R.id.xmlEditEdadMinimaAE);
+
 
 
         RdbDisponibleAE = (RadioButton) findViewById(R.id.xmlRdDisponibleAE);
@@ -181,7 +203,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 
         provinciasRefActualizar = FirebaseDatabase.getInstance().getReference();
-        spinProvinciaAE = (Spinner) findViewById(R.id.xmlspinProvinciaAE);
+        spinProvinciaAE = (SearchableSpinner) findViewById(R.id.xmlspinProvinciaAE);
 
         spinProvinciaAE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -214,6 +236,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 ArrayAdapter<String> provinciasAdapter = new ArrayAdapter<String>(PantallaActualizarEmpleo.this, android.R.layout.simple_spinner_item, ListProvincias);
                 provinciasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinProvinciaAE.setAdapter(provinciasAdapter);
+                spinProvinciaAE.setTitle("Seleccionar Provincia");
+
             }
 
             @Override
@@ -248,7 +272,10 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoHorario, android.R.layout.simple_spinner_item);
         adapterHorario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinHorarioAE.setAdapter(adapterHorario);
+        spinHorarioAE.setTitle("Seleccionar Horario");
+
         spinHorarioAE.setEnabled(false);
+
 
 /////Spinner Horario
 
@@ -276,6 +303,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoJornada, android.R.layout.simple_spinner_item);
         adapterJornada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinJornadaAE.setAdapter(adapterJornada);
+        spinJornadaAE.setTitle("Seleccionar Jornada");
+
         spinJornadaAE.setEnabled(false);
 /////Spinner Jornada
 
@@ -302,6 +331,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.infoTipoContratoE, android.R.layout.simple_spinner_item);
         adapterTipoContrato.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinTipoContratoAE.setAdapter(adapterTipoContrato);
+        spinTipoContratoAE.setTitle("Seleccionar Tipo de Cotrato");
 
         spinTipoContratoAE.setEnabled(false);
 
@@ -330,6 +360,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoNumeros, android.R.layout.simple_spinner_item);
         adapterCantidadVacantes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinCantidadVacantesAE.setAdapter(adapterCantidadVacantes);
+        spinCantidadVacantesAE.setTitle("Seleccionar Cantidad Vacantes");
 
         spinCantidadVacantesAE.setEnabled(false);
 
@@ -359,6 +390,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoAnosExperiencia, android.R.layout.simple_spinner_item);
         adapterAnoExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinAnoExpAE.setAdapter(adapterAnoExp);
+        spinAnoExpAE.setTitle("Seleccionar Años de Experiencia");
 
         spinAnoExpAE.setEnabled(false);
 
@@ -368,7 +400,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 /////Spinner Area
 
         areasRefActualizar = FirebaseDatabase.getInstance().getReference();
-        spinAreaAE = (Spinner) findViewById(R.id.xmlspinAreaAE);
+        spinAreaAE = (SearchableSpinner) findViewById(R.id.xmlspinAreaAE);
 
         spinAreaAE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -389,7 +421,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             }
         });
 
-        provinciasRefActualizar.child("Areas").addValueEventListener(new ValueEventListener() {
+        areasRefActualizar.child("Areas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -402,6 +434,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(PantallaActualizarEmpleo.this, android.R.layout.simple_spinner_item, ListAreas);
                 areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinAreaAE.setAdapter(areasAdapter);
+                spinAreaAE.setTitle("Seleccionar Area");
+
             }
 
             @Override
@@ -437,6 +471,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoGrado, android.R.layout.simple_spinner_item);
         adapterFormacionAcademicaE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinFormacionAcademicaAE.setAdapter(adapterFormacionAcademicaE);
+        spinFormacionAcademicaAE.setTitle("Seleccionar Formacion Academica");
 
         spinFormacionAcademicaAE.setEnabled(false);
 
@@ -529,13 +564,14 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 R.array.InfoSexo, android.R.layout.simple_spinner_item);
         adapterSexoRequerido.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinSexoAE.setAdapter(adapterSexoRequerido);
+        spinSexoAE.setTitle("Seleccionar Sexo");
 
         spinSexoAE.setEnabled(false);
 
 /////Spinner Sexo requerido
 
 /////Spinner Rango edad
-        spinRangoEdadAE = findViewById(R.id.xmlspinRangoEdadAE);
+     /*   spinRangoEdadAE = findViewById(R.id.xmlspinRangoEdadAE);
         spinRangoEdadAE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -559,7 +595,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         spinRangoEdadAE.setAdapter(adapterRangoEdadE);
 
         spinRangoEdadAE.setEnabled(false);
-
+*/
 /////Spinner Rango edad
 
 
@@ -636,6 +672,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         editPaginaWebAE.setEnabled(true);
         editSalarioAE.setEnabled(true);
         editOtrosDatosAE.setEnabled(true);
+        editEdadMaximaAE.setEnabled(true);
+        editEdadMinimaAE.setEnabled(true);
 
         RdbDisponibleAE.setEnabled(true);
         RdbNoDisponibleAE.setEnabled(true);
@@ -651,7 +689,6 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         spinCantidadVacantesAE.setEnabled(true);
         spinAnoExpAE.setEnabled(true);
         spinFormacionAcademicaAE.setEnabled(true);
-        spinRangoEdadAE.setEnabled(true);
         spinSexoAE.setEnabled(true);
     }
 
@@ -682,9 +719,17 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 spinFormacionAcademicaAE.setSelection(obtenerPosicionItem(spinFormacionAcademicaAE, empleos.getsFormacionAcademica()));
                 tvMostrarIdiomasAE.setText(empleos.getsMostrarIdioma());
                 spinSexoAE.setSelection(obtenerPosicionItem(spinSexoAE, empleos.getsRangoE()));
-                spinRangoEdadAE.setSelection(obtenerPosicionItem(spinRangoEdadAE, empleos.getsRangoE()));
+                //spinRangoEdadAE.setSelection(obtenerPosicionItem(spinRangoEdadAE, empleos.getsRangoE()));
                 editOtrosDatosAE.setText(empleos.getsOtrosDatosE());
                 sImagenEmpleoAE = empleos.getsImagenEmpleoE();
+
+                sRangoEdadAE = empleos.getsRangoE();
+                sEdadMinimaAE = sRangoEdadAE.substring(0,2);
+                sEdadMaximaAE = sRangoEdadAE.substring(3,5);
+                editEdadMinimaAE.setText(sEdadMinimaAE);
+                editEdadMaximaAE.setText(sEdadMaximaAE);
+
+
 
                /* if(empleos.getsEstadoEmpleoE().equals("No Disponible")){
 
@@ -755,6 +800,10 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         sFechaPublicacionAE = tvFechaPublicacionAE.getText().toString().trim();
         sMostrarIdiomaAE = tvMostrarIdiomasAE.getText().toString().trim();
 
+        sEdadMaximaAE = editEdadMaximaAE.getText().toString().trim();
+        sEdadMinimaAE = editEdadMinimaAE.getText().toString().trim();
+
+
 //spinners
         //sProvinciaE = "La Vega";
         //sJornadaE = "Matutina/Vespertina";
@@ -801,6 +850,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             editEmailAE.setError("Campo vacío, por favor escriba el nombre del empleo");
             return;
         }
+
+        sRangoEdadAE = editEdadMinimaAE +"-"+editEdadMaximaAE;
+
 //        FirebaseUser user = mAuthEmpleador.getCurrentUser();
         //String Ukey = user.getUid();
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();

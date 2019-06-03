@@ -39,7 +39,7 @@ public class PantallaRecuperarContrasena extends AppCompatActivity {
 
 
         TituloRecuperarPass = (TextView) findViewById(R.id.textrecuperarPass);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
         TituloRecuperarPass.setTypeface(face);
 
         PasswordEmail=(EditText) findViewById(R.id.entracorreoOlvidado);

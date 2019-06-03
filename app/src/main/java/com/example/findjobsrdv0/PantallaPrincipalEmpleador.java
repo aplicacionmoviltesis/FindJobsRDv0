@@ -69,7 +69,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         tituloelegiropcionBuscador = (TextView) findViewById(R.id.tvelegiropcionEmpleador);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
         tituloelegiropcionBuscador.setTypeface(face);
 /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -201,7 +201,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         String foto= preferences.getString("ImagenEmpresa", "ImagenEmpresa");
 
         nameTextViewEmpleador.setText(Nombre);
-        Glide.with(this).load(foto).into(photoImageViewEmpleador);
+        //Glide.with(this).load(foto).into(photoImageViewEmpleador);
         Log.d("apeklk",Nombre);
 
 

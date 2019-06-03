@@ -150,6 +150,7 @@ public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
                 TvProvinciaDEB.setText(empleos.getsProvinciaE());
                 TvDireccionDEB.setText(empleos.getsDireccionE());
                 TvTelefonoDEB.setText(empleos.getsTelefonoE());
+                TvEmailDEB.setText(empleos.getsEmailE());
                 TvPaginaWebDEB.setText(empleos.getsPaginaWebE());
                 TvJornadaDEB.setText(empleos.getsJornadaE());
                 TvMostrarHorarioDEB.setText(empleos.getsHorarioE());

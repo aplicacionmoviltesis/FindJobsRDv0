@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:fillViewport="true"
-    android:background="@mipmap/fondoblue"
+    android:background="@mipmap/fondo1"
     android:layout_height="match_parent">
 
 
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/md_blue_grey_600"
+                android:textColor="@color/white"
                 android:textSize="40dp"
                 android:textStyle="bold"
                 android:text="LOGIN" />
@@ -41,7 +41,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="10dp"
                 android:text="Correo Electronico"
-                android:textColor="@color/md_blue_grey_600"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <EditText
@@ -51,17 +51,18 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/et_bg"
                 android:inputType="text"
-                android:textColor="@color/md_blue_grey_600"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:ems="10"
                 android:paddingStart="8dp"
+                android:textColorHint="@color/md_blue_grey_400"
                 android:padding="10dp"
                 android:hint="E-mail" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_blue_grey_600"
+                android:textColor="@color/white"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
                 android:textStyle="bold"
@@ -75,9 +76,10 @@
                 android:background="@drawable/et_bg"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
-                android:textColor="@color/md_blue_grey_600"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:ems="10"
+                android:textColorHint="@color/md_blue_grey_400"
                 android:padding="8dp" />
 
             <LinearLayout
@@ -90,21 +92,21 @@
                     android:id="@+id/XMLEsesion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:shadowColor="@color/md_blue_grey_900"
+                    android:shadowColor="@color/md_white_1000"
                     android:layout_marginTop="5dp"
                     android:padding="5dp"
                     android:textStyle="bold"
                     android:layout_marginStart="10dp"
                     android:hint="No cerrar sesion"
-                    android:textColorHint="@color/md_blue_grey_700"/>
+                    android:textColorHint="@color/md_white_1000"/>
 
                 <TextView
                     android:id="@+id/XMLEtextolvidoContrasenal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#00000000"
-                    android:textColor="@color/md_blue_grey_700"
-                    android:shadowColor="@color/md_blue_grey_900"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/md_white_1000"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="55dp"
                     android:padding="5dp"
@@ -119,8 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_bg"
-                android:textColor="@color/md_blue_grey_700"
-                android:shadowColor="@color/md_blue_grey_900"
+                android:textColor="@color/white"
+                android:shadowColor="@color/md_white_1000"
                 android:onClick="LoginEmpleador"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"

@@ -83,7 +83,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         tvRegistrar = (TextView) findViewById(R.id.XMLtvRegistrar);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         tvRegistrar.setTypeface(face);
 
         firebaseAuthEmpleador= FirebaseAuth.getInstance();

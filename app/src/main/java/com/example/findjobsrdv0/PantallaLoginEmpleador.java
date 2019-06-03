@@ -65,7 +65,7 @@ public class PantallaLoginEmpleador extends AppCompatActivity{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         EtvLogin = (TextView) findViewById(R.id.XMLEtvLogin);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         EtvLogin.setTypeface(face);
 
         EentradaCorreo = (EditText) findViewById(R.id.XMLEentrada_correoLogin);

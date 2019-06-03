@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -76,6 +77,8 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
     private FirebaseAuth mAuthEmpleador;
     private FirebaseUser user;
 
+    private TextView TvOtrosDatosDE, TvRequisitosDE,TvtiNotaDE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +86,15 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDetalle);
         setSupportActionBar(toolbar);
 
+        TvOtrosDatosDE = (TextView) findViewById(R.id.xmlTiDatosEspecificosDE);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        TvOtrosDatosDE.setTypeface(face);
+
+        TvRequisitosDE = (TextView) findViewById(R.id.xmlTiRequisitosDE);
+        TvRequisitosDE.setTypeface(face);
+
+        TvtiNotaDE = (TextView) findViewById(R.id.xmlTiNotaDE);
+        TvtiNotaDE.setTypeface(face);
 
 
         /*

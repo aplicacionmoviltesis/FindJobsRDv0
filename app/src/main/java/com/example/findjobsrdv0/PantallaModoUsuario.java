@@ -22,7 +22,7 @@ public class PantallaModoUsuario extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         tvElegirmodo = (TextView) findViewById(R.id.tvRegistrar);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
         tvElegirmodo.setTypeface(face);
 
 

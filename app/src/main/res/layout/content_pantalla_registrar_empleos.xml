@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:orientation="vertical"
-        android:padding="2dp">
+        android:padding="3dp">
 
         <TextView
             android:id="@+id/xmlTiDatosEmpleosE"
@@ -82,12 +82,21 @@
                     android:inputType="text"
                     android:textColor="@color/md_blue_900" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/xmlTiProvinciaE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:textStyle="bold" />
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinProvinciaE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Provincia"
+                app:hintText="Seleccionar Provincia"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -229,7 +238,7 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Horario"
+                app:hintText="Horario"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -240,7 +249,7 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Jornada"
+                app:hintText="Jornada"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -251,7 +260,7 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint=" Tipo de Contrato "
+                app:hintText="Tipo de Cotrato"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -262,7 +271,7 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint=" Cantidad Vacantes "
+                app:hintText="Cantidad Vacantes"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -273,8 +282,8 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Años Experiencia"
                 android:textColor="@color/md_blue_900"
+                app:hintText="Años de Experiencia"
                 android:textColorHint="@color/md_blue_900" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -330,7 +339,7 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Area Requerida"
+                app:hintText="Seleccionar Area"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -341,8 +350,8 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Formacion Academica"
                 android:textColor="@color/md_blue_900"
+                app:hintText="Formacion Academica"
                 android:textColorHint="@color/md_blue_900" />
 
             <TextView
@@ -380,11 +389,11 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Sexo Requerido"
+                app:hintText="Sexo Requerido"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
-            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            <!--<com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinRangoEdadE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -393,7 +402,53 @@
                 android:dropDownSelector="@color/gradStop"
                 android:hint="Rango Edad"
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
+                android:textColorHint="@color/md_blue_900" />-->
+
+            <TextView
+                android:id="@+id/xmlTiRangoEdadE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="Rango Edad"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/xmlEditEdadMinimaE"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="18"
+                    android:inputType="number"
+                    android:textColor="@color/md_blue_900" />
+                <TextView
+                    android:id="@+id/xmlTiRangoEdadRayitaE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="--"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/xmlEditEdadMaximaE"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="70"
+                    android:inputType="number"
+                    android:textColor="@color/md_blue_900" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -433,13 +488,13 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="Estado Actual del Empleo"
             android:textColor="@color/md_blue_900"
+            android:layout_marginTop="15dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RadioGroup
             android:id="@+id/xmlRGEstadoActualEmpleoE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_below="@+id/xmlTiEstadoActualEmpleoE"
             android:layout_marginBottom="@dimen/activity_vertical_margin">

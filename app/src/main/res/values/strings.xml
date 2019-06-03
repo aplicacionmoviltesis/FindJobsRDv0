@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">FindJobsRDv0</string>
-    <string name="elegir_modo">Elegir Modo</string>
+    <string name="app_name">FindJobsRD</string>
+    <string name="elegir_modo">ELEGIR MODO</string>
     <string name="title_activity_pantalla_principal_buscador">PantallaPrincipalBuscador</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -77,6 +77,7 @@
     </string-array>
 
     <string-array name="InfoAnosExperiencia">
+        <item> Ninguna </item>
         <item> 1 Años </item>
         <item> 2 Años </item>
         <item> 3 Años </item>
@@ -144,14 +145,14 @@
     <string name="not_revoke">No se pudo revocar el acceso</string>
     <string name="not_firebase_auth">No se pudo autenticar con Firebase</string>
     <string name="title_activity_pantalla_principal_empleador">PantallaPrincipalEmpleador</string>
-    <string name="title_activity_c_pantalla_registro_curriculo">cPantallaRegistroCurriculo</string>
+    <string name="title_activity_c_pantalla_registro_curriculo">Registrar Curriculo</string>
 
-    <string name="title_activity_pantalla_registrar_empleos">PantallaRegistrarEmpleos</string>
-    <string name="title_activity_pantalla_detalles_empleo">PantallaDetallesEmpleo</string>
+    <string name="title_activity_pantalla_registrar_empleos">Registrar Empleo</string>
+    <string name="title_activity_pantalla_detalles_empleo">Detalles Empleo</string>
     <string name="title_activity_pantalla_detalles_empleos_anadidos">
-        PantallaDetallesEmpleosAnadidos
+        Detalles Empleos
     </string>
-    <string name="title_activity_pantalla_actualizar_empleo">PantallaActualizarEmpleo</string>
+    <string name="title_activity_pantalla_actualizar_empleo">Actualizar Empleo</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

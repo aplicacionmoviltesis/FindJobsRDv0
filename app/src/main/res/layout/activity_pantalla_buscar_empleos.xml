@@ -48,4 +48,11 @@
         android:layout_centerVertical="true"
         android:text="elige"/>
 
+    <com.github.ivbaranov.mfb.MaterialFavoriteButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:layout_gravity="center"
+        />
+
 </LinearLayout>

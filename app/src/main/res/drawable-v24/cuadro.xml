@@ -2,13 +2,13 @@
     android:shape="rectangle">
 
     <corners
-        android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="0dp"
-        android:topLeftRadius="0dp"
-        android:topRightRadius="0dp" />
+        android:bottomLeftRadius="20dp"
+        android:bottomRightRadius="20dp"
+        android:topLeftRadius="20dp"
+        android:topRightRadius="20dp" />
 
     <stroke
-        android:width="3dp"
+        android:width="2dp"
         android:color="@color/md_red_A700" />
 
 </shape>

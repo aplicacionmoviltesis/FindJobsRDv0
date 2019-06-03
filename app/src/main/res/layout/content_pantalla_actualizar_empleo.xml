@@ -16,7 +16,7 @@
         android:padding="2dp">
 
         <TextView
-            android:id="@+id/xmlTiDatosEmpleosE"
+            android:id="@+id/xmlTiDatosEmpleosAE"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
@@ -85,12 +85,21 @@
                     android:textColor="@color/md_blue_900" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/xmlTiProvinciaAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
+
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinProvinciaAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Provincia"
                 android:enabled="false"
+                android:hint="Provincia"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -222,12 +231,11 @@
             <TextView
                 android:id="@+id/xmlTiHorarioAE"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Horario"
                 android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinHorarioAE"
@@ -236,9 +244,17 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Horario"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiJornadaAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Jornada"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinJornadaAE"
@@ -247,10 +263,17 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Jornada"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
+            <TextView
+                android:id="@+id/xmlTiTipoContratoAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Tipo Contrato"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinTipoContratoAE"
@@ -259,9 +282,17 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint=" Tipo de Contrato "
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiCantidadVacantesAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Cantidad de Vacantes"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinCantidadVacantesAE"
@@ -270,10 +301,16 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint=" Cantidad Vacantes "
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
-
+            <TextView
+                android:id="@+id/xmlTiAnosExperienciaAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Anos de Experiencia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinAnosExperienciaAE"
                 android:layout_width="match_parent"
@@ -281,7 +318,6 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Años Experiencia"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -321,8 +357,7 @@
             android:gravity="center"
             android:text="Requisitos"
             android:textColor="@color/md_blue_900"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textSize="30sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -330,7 +365,14 @@
             android:background="@drawable/btn_bg"
             android:orientation="vertical"
             android:padding="10dp">
-
+            <TextView
+                android:id="@+id/xmlTiAreaAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Area"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinAreaAE"
@@ -339,10 +381,16 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Area Requerida"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
-
+            <TextView
+                android:id="@+id/xmlTiFormacionAcademicaAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Formacion Academica"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinFormacionAcademicaAE"
                 android:layout_width="match_parent"
@@ -350,7 +398,6 @@
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Formacion Academica"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
@@ -383,18 +430,26 @@
                 android:enabled="false"
                 android:text="Selecionar Idiomas" />
 
-            <Spinner
+            <TextView
+                android:id="@+id/xmlTiSexoRequeridoAE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Sexo Requerido"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinSexoRequeridoAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
-                android:hint="Sexo Requerido"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
-            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            <!--<com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinRangoEdadAE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -403,7 +458,56 @@
                 android:dropDownSelector="@color/gradStop"
                 android:hint="Rango Edad"
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
+                android:textColorHint="@color/md_blue_900" />-->
+
+            <TextView
+                android:id="@+id/xmlTiRangoEdadAE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="Rango Edad"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/xmlEditEdadMinimaAE"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:hint="18"
+                    android:inputType="number"
+                    android:textColor="@color/md_blue_900" />
+
+                <TextView
+                    android:id="@+id/xmlTiRangoEdadRayitaAE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="--"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/xmlEditEdadMaximaAE"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:hint="70"
+                    android:inputType="number"
+                    android:textColor="@color/md_blue_900" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -412,8 +516,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900"
             android:layout_marginTop="35dp"
+            android:textColorHint="@color/md_blue_900"
             app:counterEnabled="true"
             app:counterMaxLength="300"
             app:counterOverflowTextAppearance="@style/CounterOverFlow"
@@ -439,34 +543,35 @@
             android:id="@+id/xmlTiEstadoActualEmpleoAE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="Estado Actual del Empleo"
-            android:textColor="@color/md_blue_900"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/md_blue_900" />
 
         <RadioGroup
             android:id="@+id/xmlRGEstadoActualEmpleoAE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@+id/xmlTiEstadoActualEmpleoAE"
-            android:layout_marginBottom="@dimen/activity_vertical_margin">
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/xmlRdDisponibleAE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
-                android:enabled="false"
                 android:checked="true"
+                android:enabled="false"
                 android:text="Disponible" />
 
             <RadioButton
                 android:id="@+id/xmlRdNoDisponibleAE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:checked="false"
+                android:enabled="false"
                 android:text="No Disponible" />
         </RadioGroup>
 
@@ -488,16 +593,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textColor="@color/md_blue_900"
-            android:text="Personas que Aplicaron"/>
+            android:text="Personas que Aplicaron"
+            android:textColor="@color/md_blue_900" />
 
         <Button
             android:id="@+id/xmlBtnActivarcampos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="5dp"
             android:layout_marginStart="10dp"
             android:drawableLeft="@drawable/ic_edit"
-            android:text="Editar"/>
+            android:drawablePadding="5dp"
+            android:text="Editar" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

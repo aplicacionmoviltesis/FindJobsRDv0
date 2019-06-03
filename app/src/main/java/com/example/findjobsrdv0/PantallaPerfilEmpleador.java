@@ -4,22 +4,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 
 import android.app.ProgressDialog;
 import android.content.ContentQueryMap;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -78,11 +84,16 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     /////////ImagenPerfilEmpleador
 
     final String klk = "";
+    private TextView TvTiPerfilEmpleadorPE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_perfil_empleador);
+
+        TvTiPerfilEmpleadorPE = (TextView) findViewById(R.id.xmlTvTiPerfilEmpleadorPE);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        TvTiPerfilEmpleadorPE.setTypeface(face);
 
         database = FirebaseDatabase.getInstance();
         DBperfilEmpleadores = database.getReference("Empleadores");
@@ -121,7 +132,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         btnVerificacionPerfilEmpleador = (Button) findViewById(R.id.xmlBtnVerificacionEmpresaDE);
         btnVerificacionPerfilEmpleador.setVisibility(View.INVISIBLE);
 
-        btnActualizarPerfilE = (Button) findViewById(R.id.xmlBtnActualizarPerfil);
+        /*btnActualizarPerfilE = (Button) findViewById(R.id.xmlBtnActualizarPerfil);
         btnActualizarPerfilE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +147,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
             public void onClick(View v) {
                 ActivarCampor();
             }
-        });
+        });*/
 
 
         editNombrePerfilE.setEnabled(false);
@@ -146,7 +157,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         editDireccionPerfilE.setEnabled(false);
         editCorreoPerfilE.setEnabled(false);
 
-        btnActualizarPerfilE.setEnabled(false);
+        //btnActualizarPerfilE.setEnabled(false);
 
 
         //sIdEmpleador = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -198,7 +209,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         editDireccionPerfilE.setEnabled(true);
         editCorreoPerfilE.setEnabled(true);
 
-        btnActualizarPerfilE.setEnabled(true);
+        //btnActualizarPerfilE.setEnabled(true);
 
     }
 
@@ -376,6 +387,33 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menuperfil, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.menu_EditarPerfil) {
+            //process your onClick here
+            ActivarCampor();
+            return true;
+        }
+        if (id == R.id.menu_ActualizarPerfil) {
+            //process your onClick here
+            beginUpdate();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void ActualizarDatosEmpleador(String foto) {
 
         sNombrePerfilE = editNombrePerfilE.getText().toString().trim();
@@ -390,7 +428,8 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
         DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
         mProgressDialog.dismiss();
         Toast.makeText(PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
-
+        Intent intent = new Intent(PantallaPerfilEmpleador.this, PantallaPrincipalEmpleador.class);
+        startActivity(intent);
 
     }
 

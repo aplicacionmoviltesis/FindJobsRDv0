@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
     Boolean sVerificacionE = false;
 
     EditText editNombreEmpleoE, editNombreEmpresaE, editDireccionE, editEmailE,
-            editTelefonoE, editPaginaWebE, editSalarioE, editOtrosDatosE;
+            editTelefonoE, editPaginaWebE, editSalarioE, editOtrosDatosE,editEdadMaximaE,editEdadMinimaE;
 
     TextView tvMostrarIdiomasE, tvFechaPublicacionE;
 
@@ -59,10 +61,12 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
             sFormacionAcademicaE, sMostrarIdioma, sRangoEdadE, sSexoRequeridoE,sEstadoEmpleoE,
             sFechaPublicacionE, sIdEmpleadorE;
 
-    Spinner spinJornadaE, spinTipoContratoE, spinCantidadVacantesE, spinAnoExpE,
+    SearchableSpinner spinJornadaE, spinTipoContratoE, spinCantidadVacantesE, spinAnoExpE,
             spinFormacionAcademicaE, spinRangoEdadE, spinSexoE, spinHorarioE;
 
     Button btnIdiomasE;
+
+    int sEdadMaximaE,sEdadMinimaE;
 
     ImageButton btnGuardarEmpleoE;
 
@@ -77,7 +81,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
 /////Spinner Provincia
 
-    Spinner spinProvinciaE;
+    SearchableSpinner spinProvinciaE;
     DatabaseReference provinciasRef;
     List<Provincias> provincias;
     boolean IsFirstTimeClick = true;
@@ -86,7 +90,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
 /////Spinner Area de Trabajo
 
-    Spinner spinAreaE;
+    SearchableSpinner spinAreaE;
     DatabaseReference areasRef;
     List<Provincias> areas;
     boolean IsFirstTimeClickAreas = true;
@@ -107,6 +111,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
     private FirebaseAuth mAuthEmpleador;
 
     String currentDateandTime;
+    private TextView tvDatosEmpleo,tvDatosEspecificos,tvRequisitos;
 
 
     @SuppressLint("WrongViewCast")
@@ -115,6 +120,15 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_registrar_empleos);
 
+        tvDatosEmpleo = (TextView) findViewById(R.id.xmlTiDatosEmpleosE);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        tvDatosEmpleo.setTypeface(face);
+
+        tvDatosEspecificos = (TextView) findViewById(R.id.xmlTiDatosEspecificosE);
+        tvDatosEspecificos.setTypeface(face);
+
+        tvRequisitos = (TextView) findViewById(R.id.xmlTiRequisitosE);
+        tvRequisitos.setTypeface(face);
 
 
         databaseArea = FirebaseDatabase.getInstance();
@@ -141,12 +155,14 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
         RdbDisponibleE = (RadioButton) findViewById(R.id.xmlRdDisponibleE);
         RdbNoDisponibleE = (RadioButton) findViewById(R.id.xmlRdNoDisponibleE);
 
-
+        editEdadMaximaE = (EditText) findViewById(R.id.xmlEditEdadMaximaE);
+        editEdadMinimaE = (EditText) findViewById(R.id.xmlEditEdadMinimaE);
 
 /////Spinner Provincia
 
         provinciasRef = FirebaseDatabase.getInstance().getReference();
-        spinProvinciaE = (Spinner) findViewById(R.id.xmlspinProvinciaE);
+        spinProvinciaE = (SearchableSpinner ) findViewById(R.id.xmlspinProvinciaE);
+
 
         spinProvinciaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -178,6 +194,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 ArrayAdapter<String> provinciasAdapter = new ArrayAdapter<String>(PantallaRegistrarEmpleos.this, android.R.layout.simple_spinner_item, ListProvincias);
                 provinciasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinProvinciaE.setAdapter(provinciasAdapter);
+                spinProvinciaE.setTitle("Seleccionar Provincia");
+
             }
 
             @Override
@@ -211,6 +229,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.InfoHorario, android.R.layout.simple_spinner_item);
         adapterHorario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinHorarioE.setAdapter(adapterHorario);
+        spinHorarioE.setTitle("Seleccionar Horario");
+
 /////Spinner Horario
 
 /////Spinner Jornada
@@ -238,6 +258,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.InfoJornada, android.R.layout.simple_spinner_item);
         adapterJornada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinJornadaE.setAdapter(adapterJornada);
+        spinJornadaE.setTitle("Seleccionar Jornada");
+
 /////Spinner Jornada
 
 /////Spinner Tipo de contrato
@@ -263,6 +285,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.infoTipoContratoE, android.R.layout.simple_spinner_item);
         adapterTipoContrato.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinTipoContratoE.setAdapter(adapterTipoContrato);
+        spinTipoContratoE.setTitle("Seleccionar Tipo de Cotrato");
+
 /////Spinner Tipo de contrato
 
 /////Spinner Cantidad de vacantes
@@ -288,6 +312,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.InfoNumeros, android.R.layout.simple_spinner_item);
         adapterCantidadVacantes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinCantidadVacantesE.setAdapter(adapterCantidadVacantes);
+        spinCantidadVacantesE.setTitle("Seleccionar Cantidad Vacantes");
+
 /////Spinner Cantidad de vacantes
 
 
@@ -314,13 +340,15 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.InfoAnosExperiencia, android.R.layout.simple_spinner_item);
         adapterAnoExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinAnoExpE.setAdapter(adapterAnoExp);
+        spinAnoExpE.setTitle("Seleccionar Años de Experiencia");
+
 /////Spinner Años Experiencia
 
 
 /////Spinner Area
 
         areasRef = FirebaseDatabase.getInstance().getReference();
-        spinAreaE = (Spinner) findViewById(R.id.xmlspinAreaE);
+        spinAreaE = (SearchableSpinner) findViewById(R.id.xmlspinAreaE);
 
         spinAreaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -357,6 +385,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(PantallaRegistrarEmpleos.this, android.R.layout.simple_spinner_item, ListAreas);
                 areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinAreaE.setAdapter(areasAdapter);
+                spinAreaE.setTitle("Seleccionar Area");
+
             }
 
             @Override
@@ -391,6 +421,8 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.InfoGrado, android.R.layout.simple_spinner_item);
         adapterFormacionAcademicaE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinFormacionAcademicaE.setAdapter(adapterFormacionAcademicaE);
+        spinFormacionAcademicaE.setTitle("Seleccionar Formacion Academica");
+
 /////Spinner Formacion o grado academico en el area
 
 
@@ -480,10 +512,12 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.InfoSexo, android.R.layout.simple_spinner_item);
         adapterSexoRequerido.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinSexoE.setAdapter(adapterSexoRequerido);
+        spinSexoE.setTitle("Seleccionar Sexo");
+
 /////Spinner Sexo requerido
 
 /////Spinner Rango edad
-        spinRangoEdadE = findViewById(R.id.xmlspinRangoEdadE);
+        /*spinRangoEdadE = findViewById(R.id.xmlspinRangoEdadE);
         spinRangoEdadE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -505,11 +539,15 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 R.array.InfoRangoEdad, android.R.layout.simple_spinner_item);
         adapterRangoEdadE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinRangoEdadE.setAdapter(adapterRangoEdadE);
+        spinRangoEdadE.setTitle("Seleccionar Rango Edad");*/
+
+
+
 /////Spinner Rango edad
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
         currentDateandTime = simpleDateFormat.format(new Date());
-        tvFechaPublicacionE.setText("Ultima Actualizacion: " + currentDateandTime);
+        tvFechaPublicacionE.setText("Fecha: " + currentDateandTime);
 
 
 
@@ -607,9 +645,15 @@ public void limpiarCampor(){
         sSalarioE = editSalarioE.getText().toString().trim();
         sOtrosDatosE = editOtrosDatosE.getText().toString().trim();
 
+        sEdadMaximaE = Integer.parseInt(editEdadMaximaE.getText().toString().trim());
+        sEdadMinimaE = Integer.parseInt(editEdadMinimaE.getText().toString().trim());
+
+
         //sHorarioE = tvHorarioE.getText().toString().trim();
         sFechaPublicacionE = currentDateandTime;
         sMostrarIdioma = tvMostrarIdiomasE.getText().toString().trim();
+
+
 
 //spinners
         //sProvinciaE = "La Vega";
@@ -656,6 +700,60 @@ public void limpiarCampor(){
             editEmailE.setError("Campo vacío, por favor escriba el nombre del empleo");
             return;
         }
+        if (TextUtils.isEmpty(sProvinciaE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sHorarioE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione un Horario", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sJornadaE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione una Jornada", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sTipoContratoE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione un Tipo de Contrato", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sCantidadVacantesE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione la Cantidad Vacantes disponibles", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sAnoExpE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione los Años de Experiencia requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sAreaE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione el Area de Trabajo", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(sFormacionAcademicaE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione el Nivel Academico Requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sMostrarIdioma)) {
+            Toast.makeText(this, "Campo vacío, por favor seleccione el o los Idioma Requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sSexoRequeridoE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione el Sexo Requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(sEdadMinimaE<18){
+            Toast.makeText(this, "La ley establece que las personas menores de 18 Años de edad, no pueden Aplicar a un Empleo, si autorizacion de sus padres, con un contrato especial.", Toast.LENGTH_LONG).show();
+
+        }
+        if(sEdadMinimaE>sEdadMaximaE){
+            Toast.makeText(this, "La edad Minima, no puede ser mayor que la edad Maxima", Toast.LENGTH_LONG).show();
+
+        }
+
+
+        sRangoEdadE = editEdadMinimaE +"-"+editEdadMaximaE;
+
         FirebaseUser user = mAuthEmpleador.getCurrentUser();
         //String Ukey = user.getUid();
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();

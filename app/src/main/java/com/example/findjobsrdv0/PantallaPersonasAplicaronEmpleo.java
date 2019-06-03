@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleCurriculo.DetalleCurriculo;
@@ -36,7 +37,8 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
     String klkempleo = "-Lg4alOTsAzGLKms6tmu";
     ArrayList<FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder>> arreglo;
 
-
+    //FirebaseRecyclerAdapter klk;
+    FirebaseRecyclerAdapter klk;
 
     // FirebaseAuth mAuth;
 
@@ -82,9 +84,11 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                     loadCurriculo(IdCurriculoAplico);
                     //cargarCurri(IdCurriculoAplico);
                     Log.d("dataidcurriculo", IdCurriculoAplico);
+                    //arreglo.add(adapter);
                     //sIdCurriculoAplico = areaName;
-
+                    //klk = adapter;
                 }
+                recycler_curriculo.setAdapter(klk);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -127,6 +131,8 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                         // Toast.makeText( PantalaVistaCurriculo.this, ""+clickItem.getNombre(), Toast.LENGTH_SHORT ).show();
                     }
                 });
+                //klk[position]= adapter;
+
             }
         };
 
@@ -137,8 +143,9 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
         //arreglo.set(adapter);
         //arreglo.add(adapter);
 
-        recycler_curriculo.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        //recycler_curriculo.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
+        klk= adapter;
     }
 
 
