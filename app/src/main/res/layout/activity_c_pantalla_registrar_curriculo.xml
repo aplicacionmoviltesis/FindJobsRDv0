@@ -365,13 +365,13 @@
                 android:outlineAmbientShadowColor="@color/md_blue_900">
 
                 <RadioButton
-                    android:id="@+id/first"
+                    android:id="@+id/maculinoCurri"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Masculino" />
 
                 <RadioButton
-                    android:id="@+id/second"
+                    android:id="@+id/femeninaCurri"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Femenino" />

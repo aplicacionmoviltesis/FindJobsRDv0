@@ -13,33 +13,47 @@
         android:orientation="vertical">
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:padding="10dp"
             android:background="@drawable/btn_bg"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fab_margin"
-                app:layout_anchor="@id/app_bar"
-                app:layout_anchorGravity="bottom|end"
-                app:srcCompat="@android:drawable/ic_dialog_email" />
+            <ToggleButton
+                android:id="@+id/curriculosfavoritos"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/imagenbutton"
+                android:text=""
+                android:textOff=""
+                android:textOn=""
+
+
+
+
+                />
+
+            <!--      <com.google.android.material.floatingactionbutton.FloatingActionButton
+                      android:id="@+id/fab"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="@dimen/fab_margin"
+                      app:layout_anchor="@id/app_bar"
+                      app:layout_anchorGravity="bottom|end"
+                      app:srcCompat="@android:drawable/ic_dialog_email" />
+                  -->
 
             <TextView
                 android:id="@+id/xmlTvNombreEmpleoDC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="3dp"
                 android:layout_margin="10dp"
+                android:drawablePadding="3dp"
                 android:hint="Nombre Curriculo"
-                android:textSize="35sp"
-                android:textColor="@color/md_blue_900" />
+                android:textColor="@color/md_blue_900"
+                android:textSize="35sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,9 +65,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/md_blue_900"
                     android:hint="Informaciones Basica"
-                    android:textColorHint="@color/md_blue_900"/>
+                    android:textColor="@color/md_blue_900"
+                    android:textColorHint="@color/md_blue_900" />
 
                 <TextView
                     android:id="@+id/xmlTvNombreDetalleCu"
@@ -62,8 +76,9 @@
                     android:layout_marginStart="30dp"
                     android:drawablePadding="3dp"
                     android:hint="Nombre"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_blue_900" />
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/xmlTvApellidoDetalleCu"
                     android:layout_width="wrap_content"
@@ -71,8 +86,8 @@
                     android:layout_marginStart="30dp"
                     android:drawablePadding="3dp"
                     android:hint="Apellido"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_blue_900" />
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/xmlTvFechaNacimientoDetalleCu"
@@ -81,8 +96,9 @@
                     android:layout_marginStart="30dp"
                     android:drawablePadding="3dp"
                     android:hint="Fecha de nacimiento"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_blue_900" />
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/xmlTvEstadoCivilDetalleCu"
                     android:layout_width="wrap_content"
@@ -90,8 +106,8 @@
                     android:layout_marginStart="30dp"
                     android:drawablePadding="3dp"
                     android:hint="Estado Civil"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_blue_900" />
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/xmlTvCedulaDetalleCu"
@@ -100,8 +116,8 @@
                     android:layout_marginStart="30dp"
                     android:drawablePadding="3dp"
                     android:hint="Cedula"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_blue_900" />
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -110,86 +126,86 @@
                 android:id="@+id/xmlTiDireccionDC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
                 android:layout_marginTop="30dp"
-                android:dropDownSelector="@color/gradStop"
+                android:baselineAligned="false"
                 android:completionHintView="@color/md_blue_900"
-                android:textColor="@color/md_blue_900"
+                android:dropDownSelector="@color/gradStop"
                 android:hint="Direccion"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
 
             <TextView
                 android:id="@+id/xmlTvProvinciaDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_blue_900"
                 android:layout_marginStart="30dp"
                 android:hint="Provincia"
-                android:textSize="20sp"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTvDireccionDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:drawablePadding="3dp"
                 android:ems="10"
                 android:hint="Direccion"
-                android:textSize="15sp"
-                android:layout_marginStart="15dp"
                 android:inputType="text"
+                android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
-                android:textColor="@color/md_blue_900" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/xmlTiContactoDC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/md_blue_900"
                 android:hint="Contacto"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
 
             <TextView
                 android:id="@+id/xmlTvEmailDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
                 android:layout_marginStart="30dp"
+                android:drawablePadding="10dp"
                 android:hint="Email"
-                android:textSize="20sp"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/md_blue_900" />
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTvTelefonoDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:drawablePadding="3dp"
                 android:hint="Telefono"
-                android:textSize="20sp"
-                android:layout_marginStart="30dp"
-                android:textColor="@color/md_blue_900" />
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTvCelularDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:drawablePadding="3dp"
                 android:hint="Celular"
-                android:textSize="20sp"
-                android:layout_marginStart="30dp"
-                android:textColor="@color/md_blue_900" />
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTiDatosEspecificosDC"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:textSize="30sp"
-                android:textStyle="bold"
+                android:layout_height="match_parent"
                 android:layout_margin="5dp"
+                android:text="Otros Datos"
                 android:textColor="@color/md_blue_900"
-                android:text="Otros Datos"/>
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/xmlTiIdiomaDC"
@@ -197,16 +213,17 @@
                 android:layout_height="wrap_content"
                 android:hint=" Idioma "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900" />
+
             <TextView
                 android:id="@+id/xmlTvIdiomaDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint=" Idioma "
-                android:textSize="20sp"
                 android:layout_marginStart="30dp"
+                android:hint=" Idioma "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTiOcupacionDC"
@@ -214,16 +231,17 @@
                 android:layout_height="wrap_content"
                 android:hint=" Ocupacion "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900" />
+
             <TextView
                 android:id="@+id/xmlTvOcupacionDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint=" Ocupacion "
-                android:textSize="20sp"
                 android:layout_marginStart="30dp"
+                android:hint=" Ocupacion "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTiMaestriaDC"
@@ -231,16 +249,17 @@
                 android:layout_height="wrap_content"
                 android:hint=" Maestria "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900" />
+
             <TextView
                 android:id="@+id/xmlTvMaestriaDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint=" Maestria "
-                android:textSize="20sp"
                 android:layout_marginStart="30dp"
+                android:hint=" Maestria "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTiDisponibilidadDC"
@@ -248,16 +267,17 @@
                 android:layout_height="wrap_content"
                 android:hint=" Disponibilidad "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900" />
+
             <TextView
                 android:id="@+id/xmlTvDisponibilidadDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint=" Disponibilidad "
-                android:textSize="20sp"
                 android:layout_marginStart="30dp"
+                android:hint=" Disponibilidad "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/xmlTiSexoDC"
@@ -265,32 +285,35 @@
                 android:layout_height="wrap_content"
                 android:hint=" Sexo "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900" />
+
             <TextView
                 android:id="@+id/xmlTvSexoDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint=" Sexo "
-                android:textSize="20sp"
                 android:layout_marginStart="30dp"
+                android:hint=" Sexo "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/xmlTiHabilidadesDC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=" Habilidades "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900" />
+
             <TextView
                 android:id="@+id/xmlTvHabilidadesDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint=" Habilidades "
-                android:textSize="20sp"
                 android:layout_marginStart="30dp"
+                android:hint=" Habilidades "
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"/>
+                android:textColorHint="@color/md_blue_900"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -298,16 +321,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:padding="10dp"
             android:background="@drawable/btn_bg"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <Button
                 android:id="@+id/xmlBtnFormacionAcademicaDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
                 android:text="Formacion Academica" />
@@ -316,8 +339,8 @@
                 android:id="@+id/xmlBtnOtrosEstudiosDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
                 android:text="Otros Estudios" />
@@ -326,8 +349,8 @@
                 android:id="@+id/xmlBtnExperienciaLaboralDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
                 android:text="Experiencia Laboral" />
@@ -336,8 +359,8 @@
                 android:id="@+id/xmlBtnReferenciasDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
                 android:text="Referencias" />
@@ -347,8 +370,8 @@
                 android:id="@+id/xmlBtnAplicarEmpleoDetalleCu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="Aplicar" />
@@ -357,19 +380,16 @@
                 android:id="@+id/xmlTvFechaPublicacionDC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:textSize="13sp"
                 android:layout_margin="3dp"
-                android:textColor="@color/md_blue_900"
+                android:layout_marginTop="25dp"
                 android:hint="Ultima Actualizacion: 29/04/2019"
+                android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_black_1000"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
 
-
-
         </LinearLayout>
-
 
 
     </LinearLayout>

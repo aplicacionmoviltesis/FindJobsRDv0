@@ -29,10 +29,10 @@
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
                 android:hint="Nivel Primario"
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
                 android:textSize="25sp"
-                android:textStyle="italic" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/md_blue_900"
+                android:textStyle="italic"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -49,8 +49,8 @@
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
                 android:hint="Nivel Secunadio"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
                 android:textSize="25sp"
                 android:textStyle="italic" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -70,8 +70,8 @@
                 android:completionHintView="@color/md_blue_900"
                 android:dropDownSelector="@color/gradStop"
                 android:hint="Nivel Superior"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
                 android:textSize="25sp"
                 android:textStyle="italic" />
         </com.google.android.material.textfield.TextInputLayout>
