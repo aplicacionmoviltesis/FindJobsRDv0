@@ -22,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,15 +57,17 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     Button btnIdiomasc;
     SearchableSpinner Provincia, spinEstadoCivil, spinGradoMayor, spinEstadoActual;
 
+    RadioButton RdbDisponibleC, RdbNoDisponibleC;
+
+
     TextView mEtxtFecha, mEtxtIdioma;
 
-    String sexo;
 
     TextView muestraidioma;
 
     FirebaseAuth mAuth;
 
-    String nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
+    String nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, sexo, habilidades, fecha;
     // cCodigoId, cIdCurriculo, imagen,
     private Button btnFormacionAcademica, btnReferenciCurriculo, btnExperienciaLaboralCurriculo, btnOtrosCursosCurriculo, bntIdioma;
 
@@ -72,7 +76,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
 
-    /////Spinner Provincia
+/////Spinner Provincia
 
     private Spinner spinProvinciaCurriculo;
     private DatabaseReference provinciasRefCurriculo;
@@ -191,6 +195,11 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         mEtxtIdioma = (TextView) findViewById( R.id.tvop );
 
 
+        RdbDisponibleC = (RadioButton) findViewById( R.id.maculinoCurri );
+
+        RdbNoDisponibleC = (RadioButton) findViewById( R.id.femeninaCurri );
+
+
         btnIdiomasc = (Button) findViewById( R.id.xmlBtnIdioma );
 
         /////Spinner Provincia
@@ -246,7 +255,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
         final String cIdCurriculo = databaseReferenceCurrilo.push().getKey();
 
-      //  CargarCurriculoActualizar( userActivo );
+        //  CargarCurriculoActualizar( userActivo );
 
         Button btnregistrarC = findViewById( R.id.xmlBtnRegistrarDatosGC );
         btnregistrarC.setOnClickListener( new View.OnClickListener() {
@@ -313,9 +322,9 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 //-------------------------------------------------------------------------------------------------------------------------------
 
 
-       // btnFormacionAcademica = findViewById( R.id.xmlBtnFormacionAcademicaC );
-      //  btnReferenciCurriculo = findViewById( R.id.xmlBtnReferenciaCurriculoC );
-       // btnExperienciaLaboralCurriculo = findViewById( R.id.xmlBntExperienciaLaboralCurriculo );
+        // btnFormacionAcademica = findViewById( R.id.xmlBtnFormacionAcademicaC );
+        //  btnReferenciCurriculo = findViewById( R.id.xmlBtnReferenciaCurriculoC );
+        // btnExperienciaLaboralCurriculo = findViewById( R.id.xmlBntExperienciaLaboralCurriculo );
         bntIdioma = findViewById( R.id.xmlBtnIdioma );
 
 
@@ -378,6 +387,28 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         } );
         Log.d( "useer", userActivo );
         //   CargarCurriculoActualizar(userActivo);
+
+
+        RadioGroup RGRegistrarCurriculo = (RadioGroup) findViewById( R.id.radiobuttonsexo );
+        RGRegistrarCurriculo.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId) {
+                    case R.id.maculinoCurri:
+                        sexo = "Masculino";
+                        //Log.d("Valorestado",sEstadoEmpleoE);
+
+                        break;
+                    case R.id.femeninaCurri:
+                        sexo = "Femenino";
+                        //Log.d("Valorestado",sEstadoEmpleoE);
+
+                        break;
+                }
+
+            }
+
+        } );
     }
 
     public void onButtonClicked(View v) {
@@ -572,7 +603,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                         Log.d( "url", nombre );
 
 
-                //        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        //        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                         String cIdBuscardor = userActivo;
 
@@ -581,7 +612,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
                         Log.d( "klk", cIdCurriculo );
 
-                        Curriculos curriculos = new Curriculos( cIdCurriculo, cIdBuscardor, downloadURL, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha );
+                        Curriculos curriculos = new Curriculos( cIdCurriculo, cIdBuscardor, downloadURL, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, sexo, habilidades, fecha );
 
                         databaseReferenceCurrilo.child( cIdCurriculo ).setValue( curriculos );
 

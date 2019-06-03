@@ -44,7 +44,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/etnombre"
+                    android:id="@+id/etnombreAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -69,7 +69,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/etapellido"
+                    android:id="@+id/etapellidoAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -95,7 +95,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/etcedula"
+                    android:id="@+id/etcedulaAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -120,7 +120,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/etemail"
+                    android:id="@+id/etemailAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -152,7 +152,7 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/ettelefono"
+                        android:id="@+id/ettelefonoAct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
@@ -177,7 +177,7 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/etcelula"
+                        android:id="@+id/etcelulaAct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
@@ -198,7 +198,7 @@
                 android:orientation="horizontal">
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                    android:id="@+id/spinnerprovincias"
+                    android:id="@+id/spinnerprovinciasAct"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -210,7 +210,7 @@
                     app:met_floatingLabel="normal" />
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                    android:id="@+id/spinnerestadocivil"
+                    android:id="@+id/spinnerestadocivilAct"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
@@ -237,7 +237,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/etdireccion"
+                    android:id="@+id/etdireccionAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -262,7 +262,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/etocupacion"
+                    android:id="@+id/etocupacionAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -279,7 +279,7 @@
                 android:padding="3dp">
 
                 <TextView
-                    android:id="@+id/textVieklwTitle"
+                    android:id="@+id/textVieklwTitleAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -288,10 +288,10 @@
                     android:textColor="#000000" />
 
                 <TextView
-                    android:id="@+id/tvop"
+                    android:id="@+id/tvopAct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textVieklwTitle"
+                    android:layout_below="@id/textVieklwTitleAct"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
@@ -301,10 +301,10 @@
                     android:textColorHint="@color/md_blue_grey_400" />
 
                 <Button
-                    android:id="@+id/xmlBtnIdioma"
+                    android:id="@+id/xmlBtnIdiomaAct"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_below="@id/tvop"
+                    android:layout_below="@id/tvopAct"
                     android:onClick="onButtonClicked"
                     android:padding="0dp"
                     android:text="Selecionar Idiomas" />
@@ -317,7 +317,7 @@
                 android:padding="5dp">
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                    android:id="@+id/spinnergradomayor"
+                    android:id="@+id/spinnergradomayorAct"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -329,7 +329,7 @@
                     app:met_floatingLabel="normal" />
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                    android:id="@+id/spinnerestadoactual"
+                    android:id="@+id/spinnerestadoactualAct"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
@@ -358,7 +358,7 @@
                     android:textSize="15dp" />
 
                 <RadioGroup
-                    android:id="@+id/radiobuttonsexo"
+                    android:id="@+id/radiobuttonsexoAct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkedButton="@+id/first"
@@ -366,13 +366,13 @@
                     android:outlineAmbientShadowColor="@color/md_blue_900">
 
                     <RadioButton
-                        android:id="@+id/first"
+                        android:id="@+id/maculinoCurriAct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Masculino" />
 
                     <RadioButton
-                        android:id="@+id/second"
+                        android:id="@+id/femeninaCurriAct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Femenino" />
@@ -395,7 +395,7 @@
                 app:hintAnimationEnabled="true">
 
                 <EditText
-                    android:id="@+id/ethabilidades"
+                    android:id="@+id/ethabilidadesAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
@@ -413,7 +413,7 @@
                 android:padding="3dp">
 
                 <TextView
-                    android:id="@+id/textViewTitle"
+                    android:id="@+id/textViewTitleAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -422,10 +422,10 @@
                     android:textColor="#000000" />
 
                 <TextView
-                    android:id="@+id/tv"
+                    android:id="@+id/tvAct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textViewTitle"
+                    android:layout_below="@id/textViewTitleAct"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
@@ -435,18 +435,18 @@
                     android:textColorHint="@color/md_blue_900" />
 
                 <Button
-                    android:id="@+id/btn"
+                    android:id="@+id/btnAct"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_below="@id/textViewTitle"
-                    android:layout_toRightOf="@id/tv"
+                    android:layout_below="@id/textViewTitleAct"
+                    android:layout_toRightOf="@id/tvAct"
                     android:background="@drawable/ic_cake_black_24dp"
                     android:onClick="onButtonClicked"
                     android:padding="0dp" />
             </RelativeLayout>
 
             <Button
-                android:id="@+id/xmlBtnActualizarDatosGC"
+                android:id="@+id/xmlBtnActualizarDatosGCAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Registrar"
@@ -465,25 +465,25 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/xmlBtnFormacionAcademicaC"
+                android:id="@+id/xmlBtnFormacionAcademicaCAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Añadir Formacion Academica" />
 
             <Button
-                android:id="@+id/AbrirOtrosCursos"
+                android:id="@+id/AbrirOtrosCursosAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Añadir Otros Cursos" />
 
             <Button
-                android:id="@+id/xmlBntExperienciaLaboralCurriculo"
+                android:id="@+id/xmlBntExperienciaLaboralCurriculoAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Añadir Experiencias Laborales" />
 
             <Button
-                android:id="@+id/xmlBtnReferenciaCurriculoC"
+                android:id="@+id/xmlBtnReferenciaCurriculoCAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Añadir Referencias" />

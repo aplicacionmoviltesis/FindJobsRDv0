@@ -128,10 +128,11 @@
         </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/xmlbtnAnadirformacionAcademicaAcrualizar"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Actualizar Formacion Academica"/>
+            android:layout_gravity="center"
+            android:text="Actualizar"/>
     </LinearLayout>
 
 

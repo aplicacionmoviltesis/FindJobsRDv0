@@ -2,13 +2,18 @@ package com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurricu
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleExperienciaLaboral.DetalleExperienciaLaboral;
@@ -32,7 +37,11 @@ public class DetalleCurriculo extends AppCompatActivity {
 
 
     String detallecurrid = "";
-    Button btnIrFormacionAcademica,btnIrReferencia,btnIrExperienciaLab, btnOtrosEstudios;
+    Button btnIrFormacionAcademica, btnIrReferencia, btnIrExperienciaLab, btnOtrosEstudios;
+
+
+   // ToggleButton btnfavorito;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,14 +115,42 @@ public class DetalleCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
+
+
+      /*  btnfavorito = (ToggleButton) findViewById( R.id.curriculosfavoritos );
+        btnfavorito.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    lanzaM( "ON" );
+                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.holo_red_dark );
+                } else {
+                    lanzaM( "OFF" );
+                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.black );
+                }
+
+            }
+        } );
+
     }
 
+    private void cambiarColorTB(int color1, int color2) {
+        this.btnfavorito.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color1 ) );
+        this.btnfavorito.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color2 ) );
+    }
+
+    private void lanzaM(String m) {
+        Toast.makeText( getBaseContext(), m, Toast.LENGTH_SHORT ).show();
+
+    }
+*/
+    }
     private void goDetailCurriculo(String detallecurrid) {
         detalelcurriculo.child( detallecurrid ).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("hola", String.valueOf(dataSnapshot));
-                VistaCurriculomodel vistaCurriculomodel = dataSnapshot.getValue( VistaCurriculomodel.class);
+                Log.d( "hola", String.valueOf( dataSnapshot ) );
+                VistaCurriculomodel vistaCurriculomodel = dataSnapshot.getValue( VistaCurriculomodel.class );
 
                 txtNombreCurr.setText( vistaCurriculomodel.getNombre() );
                 txtApellidoCurr.setText( vistaCurriculomodel.getApellido() );
@@ -136,6 +173,6 @@ public class DetalleCurriculo extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        } );
     }
 }

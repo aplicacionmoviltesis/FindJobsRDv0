@@ -17,6 +17,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,9 +32,9 @@ import com.example.findjobsrdv0.DatePickerFragment;
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaExperienciaLaboralCurriculo;
-import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaFormacionAcademicaCurriculo;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaOtrosCursos;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaReferenciasCurriculo;
+import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,6 +52,7 @@ import com.squareup.picasso.Picasso;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ActualizarCurriculo extends AppCompatActivity {
 
@@ -59,29 +62,30 @@ public class ActualizarCurriculo extends AppCompatActivity {
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
 
-    /////Spinner Provincia
 
-    private Spinner spinProvinciaCurriculo;
-    private DatabaseReference provinciasRefCurriculo;
+    /////Spinner ProvinciaAct
+
+    private Spinner spinProvinciaCurriculoAct;
+    private DatabaseReference provinciasRefCurriculoAct;
     private boolean IsFirstTimeClick = true;
-    private String sProvinciaCurriculoB;
+    private String sProvinciaCurriculoBAct;
 
-/////Spinner Provincia
+/////Spinner ProvinciaAct
 
     String userActivo;
 
 
-    EditText etNombre, etApellido, etCedula, etEmail, etTelefono, etCelular,
-            etDireccion, etOcupacion, etHabilidades;
+    EditText etNombreAct, etApellidoAct, etCedulaAct, etEmailAct, etTelefonoAct, etCelularAct,
+            etDireccionAct, etOcupacionAct, etHabilidadesAct;
 
-    Button btnIdiomasc;
-    SearchableSpinner Provincia, spinEstadoCivil, spinGradoMayor, spinEstadoActual;
+    Button btnIdiomascAct;
+    SearchableSpinner ProvinciaAct, spinEstadoCivilAct, spinGradoMayorAct, spinEstadoActualAct;
 
-    TextView mEtxtFecha, mEtxtIdioma;
+    TextView mEtxtFechaAct, mEtxtIdiomaAct;
 
     String sexo;
 
-    TextView muestraidioma;
+    TextView muestraidiomaAct;
 
     //  FirebaseAuth mAuth;
 
@@ -92,7 +96,7 @@ public class ActualizarCurriculo extends AppCompatActivity {
     String idcurriculoact = "";
     //  curriculoactualizarID
 
-    private Button btnActualizarFormacionAcademica, btnReferenciCurriculo, btnExperienciaLaboralCurriculo, btnOtrosCursosCurriculo, bntIdioma;
+    private Button btnActualizarFormacionAcademica, btnActualizarReferenciCurriculo, btnActualizarExperienciaLaboralCurriculo, btnActualizarOtrosCursosCurriculo, bntActualizarIdioma;
 
 
     DatabaseReference vistaCurriculoactualizar;
@@ -104,9 +108,9 @@ public class ActualizarCurriculo extends AppCompatActivity {
 
     ImageView imageViewcurriculoActualizar;
 
-    Uri mFilePathUri;
+    Uri mFilePathUriAct;
 
-    StorageReference mStorageReference;
+    StorageReference mStorageReferenceAct;
 
    /* DatabaseReference databaseReferenceCurrilo;
     FirebaseDatabase database;*/
@@ -143,7 +147,7 @@ public class ActualizarCurriculo extends AppCompatActivity {
             }
         } );
 
-        mStorageReference = FirebaseStorage.getInstance().getReference();
+        mStorageReferenceAct = FirebaseStorage.getInstance().getReference();
 
         mProgressDialog = new ProgressDialog( ActualizarCurriculo.this );
 /*
@@ -153,27 +157,66 @@ public class ActualizarCurriculo extends AppCompatActivity {
 //----------------imagen en el curriculo----------------------------------------------------------------------------------------------------------------
 
 
-        etNombre = (EditText) findViewById( R.id.etnombre );
-        etApellido = (EditText) findViewById( R.id.etapellido );
-        etCedula = (EditText) findViewById( R.id.etcedula );
-        etEmail = (EditText) findViewById( R.id.etemail );
-        etTelefono = (EditText) findViewById( R.id.ettelefono );
-        etCelular = (EditText) findViewById( R.id.etcelula );
-        etDireccion = (EditText) findViewById( R.id.etdireccion );
-        etOcupacion = (EditText) findViewById( R.id.etocupacion );
-        etHabilidades = (EditText) findViewById( R.id.ethabilidades );
-        Provincia = (SearchableSpinner) findViewById( R.id.spinnerprovincias );
-        spinEstadoCivil = (SearchableSpinner) findViewById( R.id.spinnerestadocivil );
-        spinGradoMayor = (SearchableSpinner) findViewById( R.id.spinnergradomayor );
-        spinEstadoActual = (SearchableSpinner) findViewById( R.id.spinnerestadoactual );
+        etNombreAct = (EditText) findViewById( R.id.etnombreAct );
+        etApellidoAct = (EditText) findViewById( R.id.etapellidoAct );
+        etCedulaAct = (EditText) findViewById( R.id.etcedulaAct );
+        etEmailAct = (EditText) findViewById( R.id.etemailAct );
+        etTelefonoAct = (EditText) findViewById( R.id.ettelefonoAct );
+        etCelularAct = (EditText) findViewById( R.id.etcelulaAct );
+        etDireccionAct = (EditText) findViewById( R.id.etdireccionAct );
+        etOcupacionAct = (EditText) findViewById( R.id.etocupacionAct );
+        etHabilidadesAct = (EditText) findViewById( R.id.ethabilidadesAct );
+        // ProvinciaAct = (SearchableSpinner) findViewById( R.id.spinnerprovinciasAct );
+        spinEstadoCivilAct = (SearchableSpinner) findViewById( R.id.spinnerestadocivilAct );
+        spinGradoMayorAct = (SearchableSpinner) findViewById( R.id.spinnergradomayorAct );
+        spinEstadoActualAct = (SearchableSpinner) findViewById( R.id.spinnerestadoactualAct );
 
-        mEtxtFecha = (TextView) findViewById( R.id.tv );
-        mEtxtIdioma = (TextView) findViewById( R.id.tvop );
+        mEtxtFechaAct = (TextView) findViewById( R.id.tvAct );
+        mEtxtIdiomaAct = (TextView) findViewById( R.id.tvopAct );
 
-        provinciasRefCurriculo = FirebaseDatabase.getInstance().getReference();
-        spinProvinciaCurriculo = (Spinner) findViewById( R.id.spinnerprovincias );
+        provinciasRefCurriculoAct = FirebaseDatabase.getInstance().getReference();
+        spinProvinciaCurriculoAct = (Spinner) findViewById( R.id.spinnerprovinciasAct );
 
-        btnIdiomasc = (Button) findViewById( R.id.xmlBtnIdioma );
+        spinProvinciaCurriculoAct.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (!IsFirstTimeClick) {
+                    sProvinciaCurriculoBAct = spinProvinciaCurriculoAct.getSelectedItem().toString();
+                    Log.d( "valorSpinProv", sProvinciaCurriculoBAct );
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        } );
+
+        provinciasRefCurriculoAct.child( "provincias" ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> ListProvinciasCurriAct = new ArrayList<String>();
+                for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
+                    String provinciaNameAct = provinciaSnapshot.child( "Nombre_Provincia" ).getValue( String.class );
+                    ListProvinciasCurriAct.add( provinciaNameAct );
+                }
+
+                ArrayAdapter<String> provinciasAdapterCurriculo = new ArrayAdapter<String>( ActualizarCurriculo.this, android.R.layout.simple_spinner_item, ListProvinciasCurriAct );
+                provinciasAdapterCurriculo.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                spinProvinciaCurriculoAct.setAdapter( provinciasAdapterCurriculo );
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+
+
+        btnIdiomascAct = (Button) findViewById( R.id.xmlBtnIdiomaAct );
 
 
         userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -181,7 +224,7 @@ public class ActualizarCurriculo extends AppCompatActivity {
         final String cIdCurriculo = vistaCurriculoactualizar.push().getKey();
 
 //-------------botones para ir a registrar las otras informaciones hacia abajo ↓↓↓↓↓↓↓↓↓↓↓↓↓↓---------------------------------------------------------------------------------------------
-        btnActualizarFormacionAcademica = (Button) findViewById( R.id.xmlBtnFormacionAcademicaC );
+        btnActualizarFormacionAcademica = (Button) findViewById( R.id.xmlBtnFormacionAcademicaCAct );
         btnActualizarFormacionAcademica.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,8 +236,8 @@ public class ActualizarCurriculo extends AppCompatActivity {
         } );
         //btnFormacionAcademica.setEnabled(false);
 
-        btnOtrosCursosCurriculo = (Button) findViewById( R.id.AbrirOtrosCursos );
-        btnOtrosCursosCurriculo.setOnClickListener( new View.OnClickListener() {
+        btnActualizarOtrosCursosCurriculo = (Button) findViewById( R.id.AbrirOtrosCursosAct );
+        btnActualizarOtrosCursosCurriculo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( ActualizarCurriculo.this, cPantallaOtrosCursos.class );
@@ -203,10 +246,10 @@ public class ActualizarCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
-        //btnOtrosCursosCurriculo.setEnabled(false);
+        //btnActualizarOtrosCursosCurriculo.setEnabled(false);
 
-        btnExperienciaLaboralCurriculo = (Button) findViewById( R.id.xmlBntExperienciaLaboralCurriculo );
-        btnExperienciaLaboralCurriculo.setOnClickListener( new View.OnClickListener() {
+        btnActualizarExperienciaLaboralCurriculo = (Button) findViewById( R.id.xmlBntExperienciaLaboralCurriculoAct );
+        btnActualizarExperienciaLaboralCurriculo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( ActualizarCurriculo.this, cPantallaExperienciaLaboralCurriculo.class );
@@ -215,11 +258,11 @@ public class ActualizarCurriculo extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
-        //btnExperienciaLaboralCurriculo.setEnabled(false);
+        //btnActualizarExperienciaLaboralCurriculo.setEnabled(false);
 
 
-        btnReferenciCurriculo = (Button) findViewById( R.id.xmlBtnReferenciaCurriculoC );
-        btnReferenciCurriculo.setOnClickListener( new View.OnClickListener() {
+        btnActualizarReferenciCurriculo = (Button) findViewById( R.id.xmlBtnReferenciaCurriculoCAct );
+        btnActualizarReferenciCurriculo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( ActualizarCurriculo.this, cPantallaReferenciasCurriculo.class );
@@ -230,11 +273,11 @@ public class ActualizarCurriculo extends AppCompatActivity {
         } );
 //-------------botones para ir a registrar las otras informaciones ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑---------------------------------------------------------------------------------------------
 
-        bntIdioma = findViewById( R.id.xmlBtnIdioma );
+        bntActualizarIdioma = findViewById( R.id.xmlBtnIdiomaAct );
 
-        muestraidioma = findViewById( R.id.tvop );
+        muestraidiomaAct = findViewById( R.id.tvop );
 
-        btnIdiomasc.setOnClickListener( new View.OnClickListener() {
+        btnIdiomascAct.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder( ActualizarCurriculo.this );
@@ -262,7 +305,7 @@ public class ActualizarCurriculo extends AppCompatActivity {
                                 item = item + ", ";
                             }
                         }
-                        mEtxtIdioma.setText( item );
+                        mEtxtIdiomaAct.setText( item );
                     }
                 } );
 
@@ -279,7 +322,7 @@ public class ActualizarCurriculo extends AppCompatActivity {
                         for (int i = 0; i < checkedItems.length; i++) {
                             checkedItems[i] = false;
                             mUserItems.clear();
-                            mEtxtIdioma.setText( "" );
+                            mEtxtIdiomaAct.setText( "" );
                         }
                     }
                 } );
@@ -307,7 +350,7 @@ public class ActualizarCurriculo extends AppCompatActivity {
         }
 
 
-        Button btnActualizarC = findViewById( R.id.xmlBtnActualizarDatosGC );
+        Button btnActualizarC = findViewById( R.id.xmlBtnActualizarDatosGCAct );
         btnActualizarC.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -335,39 +378,39 @@ public class ActualizarCurriculo extends AppCompatActivity {
 
                 Picasso.get().load( curriculos.getImagen() ).into( imageViewcurriculoActualizar );
 
-                etNombre.setText( curriculos.getNombre() );
-                etApellido.setText( curriculos.getApellido() );
-                etCedula.setText( curriculos.getCedula() );
-                etEmail.setText( curriculos.getEmail() );
-                etTelefono.setText( curriculos.getTelefono() );
-                etCelular.setText( curriculos.getCelular() );
+                etNombreAct.setText( curriculos.getNombre() );
+                etApellidoAct.setText( curriculos.getApellido() );
+                etCedulaAct.setText( curriculos.getCedula() );
+                etEmailAct.setText( curriculos.getEmail() );
+                etTelefonoAct.setText( curriculos.getTelefono() );
+                etCelularAct.setText( curriculos.getCelular() );
 
-                spinProvinciaCurriculo.setSelection( obtenerPosicionItem( spinProvinciaCurriculo, curriculos.getProvincia() ) );
-                spinEstadoCivil.setSelection( obtenerPosicionItem( spinEstadoCivil, curriculos.getEstadoCivil() ) );
+                spinProvinciaCurriculoAct.setSelection( obtenerPosicionItem( spinProvinciaCurriculoAct, curriculos.getProvincia() ) );
+                spinEstadoCivilAct.setSelection( obtenerPosicionItem( spinEstadoCivilAct, curriculos.getEstadoCivil() ) );
 
-                etDireccion.setText( curriculos.getDireccion() );
-                etOcupacion.setText( curriculos.getOcupacion() );
-                mEtxtIdioma.setText( curriculos.getIdioma() );
+                etDireccionAct.setText( curriculos.getDireccion() );
+                etOcupacionAct.setText( curriculos.getOcupacion() );
+                mEtxtIdiomaAct.setText( curriculos.getIdioma() );
 
-                spinGradoMayor.setSelection( obtenerPosicionItem( spinGradoMayor, curriculos.getGradomayor() ) );
-                spinEstadoActual.setSelection( obtenerPosicionItem( spinEstadoActual, curriculos.getEstadoactual() ) );
+                spinGradoMayorAct.setSelection( obtenerPosicionItem( spinGradoMayorAct, curriculos.getGradomayor() ) );
+                spinEstadoActualAct.setSelection( obtenerPosicionItem( spinEstadoActualAct, curriculos.getEstadoactual() ) );
 
-                mEtxtFecha.setText( curriculos.getFecha() );
-                etHabilidades.setText( curriculos.getHabilidades() );
+                mEtxtFechaAct.setText( curriculos.getFecha() );
+                etHabilidadesAct.setText( curriculos.getHabilidades() );
 
 
                 //Picasso.get().load(curriculos.getImageview()).into(ImageView);
 
-                RadioGroup RGsexo = (RadioGroup) findViewById( R.id.radiobuttonsexo );
+                RadioGroup RGsexo = (RadioGroup) findViewById( R.id.radiobuttonsexoAct );
                 RGsexo.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
                         switch (checkedId) {
-                            case R.id.first:
+                            case R.id.maculinoCurriAct:
                                 sexo = "Masculino";
                                 //Log.d("Valorestado",sEstadoEmpleoAE);
                                 break;
-                            case R.id.second:
+                            case R.id.femeninaCurriAct:
                                 sexo = "Femenino";
                                 //Log.d("Valorestado",sEstadoEmpleoAE);
                                 break;
@@ -411,11 +454,11 @@ public class ActualizarCurriculo extends AppCompatActivity {
                 && data != null
                 && data.getData() != null) {
 
-            mFilePathUri = data.getData();
+            mFilePathUriAct = data.getData();
 
             try {
 
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap( getContentResolver(), mFilePathUri );
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap( getContentResolver(), mFilePathUriAct );
                 imageViewcurriculoActualizar.setImageBitmap( bitmap );
             } catch (Exception e) {
 
@@ -430,13 +473,13 @@ public class ActualizarCurriculo extends AppCompatActivity {
 
     private void actualizarcurriculo(final String idcurriculoact) {
 
-        if (mFilePathUri != null) {
+        if (mFilePathUriAct != null) {
             mProgressDialog.setTitle( "Subiendo Actualizacion..." );
             mProgressDialog.show();
 
-            final StorageReference StorageReference2nd = mStorageReference.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUri ) );
+            final StorageReference StorageReference2nd = mStorageReferenceAct.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUriAct ) );
 
-            UploadTask uploadTask = StorageReference2nd.putFile( mFilePathUri );
+            UploadTask uploadTask = StorageReference2nd.putFile( mFilePathUriAct );
 
             Task<Uri> urlTask = uploadTask.continueWithTask( new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
@@ -455,21 +498,21 @@ public class ActualizarCurriculo extends AppCompatActivity {
                         String downloadURL = downloadUri.toString();
                         Log.d( "url", downloadURL );
                         // String imagen = imageViewcurriculo.getImageMatrix().toString();
-                        nombre = etNombre.getText().toString().trim().toLowerCase();
-                        apellido = etApellido.getText().toString().trim();
-                        cedula = etCedula.getText().toString().trim();
-                        email = etEmail.getText().toString().trim();
-                        celular = etCelular.getText().toString().trim();
-                        telefono = etTelefono.getText().toString().trim();
-                        provincia = Provincia.getSelectedItem().toString();
-                        estadoCivil = spinEstadoCivil.getSelectedItem().toString();
-                        direccion = etDireccion.getText().toString().trim();
-                        ocupacion = etOcupacion.getText().toString().trim();
-                        idioma = mEtxtIdioma.getText().toString().trim();
-                        gradomayor = spinGradoMayor.getSelectedItem().toString();
-                        estadoactual = spinEstadoActual.getSelectedItem().toString();
-                        habilidades = etHabilidades.getText().toString().trim();
-                        fecha = mEtxtFecha.getText().toString().trim();
+                        nombre = etNombreAct.getText().toString().trim().toLowerCase();
+                        apellido = etApellidoAct.getText().toString().trim();
+                        cedula = etCedulaAct.getText().toString().trim();
+                        email = etEmailAct.getText().toString().trim();
+                        celular = etCelularAct.getText().toString().trim();
+                        telefono = etTelefonoAct.getText().toString().trim();
+                        provincia = spinProvinciaCurriculoAct.getSelectedItem().toString();
+                        estadoCivil = spinEstadoCivilAct.getSelectedItem().toString();
+                        direccion = etDireccionAct.getText().toString().trim();
+                        ocupacion = etOcupacionAct.getText().toString().trim();
+                        idioma = mEtxtIdiomaAct.getText().toString().trim();
+                        gradomayor = spinGradoMayorAct.getSelectedItem().toString();
+                        estadoactual = spinEstadoActualAct.getSelectedItem().toString();
+                        habilidades = etHabilidadesAct.getText().toString().trim();
+                        fecha = mEtxtFechaAct.getText().toString().trim();
 
                         mProgressDialog.dismiss();
 
@@ -482,7 +525,7 @@ public class ActualizarCurriculo extends AppCompatActivity {
 
                         // Log.d( "klk", idcurriculoact );
 
-                        Curriculos curriculos = new Curriculos( idcurriculoact, cIdBuscardor, downloadURL, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha );
+                        Curriculos curriculos = new Curriculos( idcurriculoact, cIdBuscardor, downloadURL, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, sexo, habilidades, fecha );
 
                         vistaCurriculoactualizar.child( idcurriculoact ).setValue( curriculos );
 
@@ -518,18 +561,18 @@ public class ActualizarCurriculo extends AppCompatActivity {
 
 /*
     public void limpiarCampo() {
-        etNombre.setText( "" );
-        etApellido.setText( "" );
-        etCedula.setText( "" );
-        etEmail.setText( "" );
-        etCelular.setText( "" );
-        etTelefono.setText( "" );
-        etDireccion.setText( "" );
+        etNombreAct.setText( "" );
+        etApellidoAct.setText( "" );
+        etCedulaAct.setText( "" );
+        etEmailAct.setText( "" );
+        etCelularAct.setText( "" );
+        etTelefonoAct.setText( "" );
+        etDireccionAct.setText( "" );
 
-        etOcupacion.setText( "" );
-        mEtxtIdioma.setText( "" );
-        etHabilidades.setText( "" );
-        mEtxtFecha.setText( "" );
+        etOcupacionAct.setText( "" );
+        mEtxtIdiomaAct.setText( "" );
+        etHabilidadesAct.setText( "" );
+        mEtxtFechaAct.setText( "" );
     }
 */
 

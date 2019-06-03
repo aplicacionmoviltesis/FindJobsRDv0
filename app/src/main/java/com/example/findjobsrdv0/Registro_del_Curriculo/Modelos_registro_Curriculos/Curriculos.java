@@ -8,12 +8,9 @@ public class Curriculos {
     public Curriculos() {
     }
 
-    String cCodigoId, cIdBuscador, imagen, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, habilidades, fecha;
+    String cCodigoId, cIdBuscador, imagen, nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual, sexo, habilidades, fecha;
 
-
-    public Curriculos(String cCodigoId, String cIdBuscador, String imagen, String nombre, String apellido, String cedula,
-                      String email, String telefono, String celular, String provincia, String estadoCivil, String direccion,
-                      String ocupacion, String idioma, String gradomayor, String estadoactual, String habilidades, String fecha) {
+    public Curriculos(String cCodigoId, String cIdBuscador, String imagen, String nombre, String apellido, String cedula, String email, String telefono, String celular, String provincia, String estadoCivil, String direccion, String ocupacion, String idioma, String gradomayor, String estadoactual, String sexo, String habilidades, String fecha) {
         this.cCodigoId = cCodigoId;
         this.cIdBuscador = cIdBuscador;
         this.imagen = imagen;
@@ -30,10 +27,10 @@ public class Curriculos {
         this.idioma = idioma;
         this.gradomayor = gradomayor;
         this.estadoactual = estadoactual;
+        this.sexo = sexo;
         this.habilidades = habilidades;
         this.fecha = fecha;
     }
-
 
     public String getcCodigoId() {
         return cCodigoId;
@@ -163,6 +160,14 @@ public class Curriculos {
         this.estadoactual = estadoactual;
     }
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
     public String getHabilidades() {
         return habilidades;
     }
@@ -197,6 +202,7 @@ public class Curriculos {
         ListCurriculo.put("idioma",idioma);
         ListCurriculo.put("gradomayor",gradomayor);
         ListCurriculo.put("estadoactual",estadoactual);
+        ListCurriculo.put( "sexo", sexo );
         ListCurriculo.put("habilidades",habilidades);
         ListCurriculo.put("fecha",fecha);
 
