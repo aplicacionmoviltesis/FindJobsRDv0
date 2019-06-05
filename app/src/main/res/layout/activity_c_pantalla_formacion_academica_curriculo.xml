@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_below="@id/xmlbregistrarFechafinEL"
-        android:textSize="30sp"
+        android:gravity="center"
+        android:textSize="35sp"
         android:textColor="@color/md_blue_900"
-        android:text="Formacion Academica"/>
+        android:text="Formacion Acad."/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -126,12 +127,35 @@
                 android:textColor="@color/md_blue_900" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
         <Button
             android:id="@+id/xmlbtnAnadirformacionAcademica"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+
+            android:padding="3dp"
             android:layout_margin="10dp"
-            android:text="Añadir Formacion Academica"/>
+            android:text="Registrar"/>
+
+            <Button
+                android:id="@+id/xmlbtnActualizarformacionAcademica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/btn_bg"
+
+                android:padding="5dp"
+                android:text=" Actualizar"/>
+
+
+        </LinearLayout>
     </LinearLayout>
 
 

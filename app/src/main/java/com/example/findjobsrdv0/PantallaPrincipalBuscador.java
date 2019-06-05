@@ -4,15 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.graphics.LightingColorFilter;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.example.findjobsrdv0.PerfilBuscador.PerfilBuscador;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
-import com.example.findjobsrdv0.ActualizarCurriculo.VistaCurriculoActualizar;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -27,7 +24,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -36,7 +32,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -59,6 +54,8 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
+    String buscadoresconectados;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +75,20 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
             }
         });*/
 
+       buscadoresconectados = FirebaseAuth.getInstance().getCurrentUser().getUid();
+/*
+        View header= navigationView.getHeaderView(0);
+       photoImageView = (ImageView)header.findViewById( R.id.fotoperfilbuscador );
+       nameTextView = (TextView)header.findViewById( R.id.nombreperfilbuscador);
+       emailTextView = (TextView)header.findViewById( R.id.correoperfilbuscador );
+
+        TextView TextViewEmpleador = (TextView) header.findViewById(R.id.nombreperfilbuscador);
+
+
+*/
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -85,52 +96,13 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         toggle.syncState();
 
 
-//--------------------------------  dialog para elegir opcion----------------------------------------------------------------------------------------------
         LinearLayout IrRegistrarCurriculo = (LinearLayout )findViewById(R.id.lyRegistrarCurriculo);
         IrRegistrarCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder( PantallaPrincipalBuscador.this );
-
-                View view1 = getLayoutInflater().inflate( R.layout.dialogo_curriculo, null );
-
-               // builder.getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFF000000, CUSTOM_COLOR));
-
-                //builder.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
-
-               //  view1.getWidth().setBackgroundDrawable(new ColorDrawable( Color.TRANSPARENT ) );
-              //  AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
-
-
-                Button irRegistrarCurriculo = (Button)view1.findViewById( R.id.btnRegistrarCurriculoDialog );
-                Button irActualizarCurriculo = (Button)view1.findViewById( R.id.btnActualizarCurriculoDialog );
-
-                irRegistrarCurriculo.setOnClickListener( new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(PantallaPrincipalBuscador.this, cPantallaRegistrarCurriculo.class);
-                        startActivity(intent);
-                    }
-                } );
-
-                irActualizarCurriculo.setOnClickListener( new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(PantallaPrincipalBuscador.this, VistaCurriculoActualizar.class);
-                        startActivity(intent);
-                    }
-                } );
-
-                builder.setView( view1 );
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-
-
-                //Intent intent = new Intent (v.getContext(), cPantallaRegistrarCurriculo.class);
-                //  startActivityForResult(intent, 0);
-//--------------------------------  dialog para elegir opcion----------------------------------------------------------------------------------------------
+                Intent intent = new Intent (v.getContext(), cPantallaRegistrarCurriculo.class);
+                startActivityForResult(intent, 0);
 
             }
         });
@@ -168,6 +140,32 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         nameTextView.setText(Nombre);
         //emailTextView.setText(user.getEmail());
 
+
+        photoImageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                irPerfilBuscador(buscadoresconectados);
+            }
+        } );
+
+        nameTextView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                irPerfilBuscador(buscadoresconectados);
+
+            }
+        } );
+
+        emailTextView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                irPerfilBuscador(buscadoresconectados);
+
+            }
+        } );
+
+
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -189,6 +187,15 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
                 }
             }
         };
+    }
+
+    private void irPerfilBuscador(String buscadorconectado) {
+        Intent intent = new Intent(this, PerfilBuscador.class);
+        intent.putExtra("BuscadorConectado", buscadorconectado );
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
     }
 
     private void setUserData(FirebaseUser user) {

@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_below="@id/xmlbregistrarFechafinEL"
-        android:textSize="40sp"
+        android:gravity="center"
+        android:textSize="35sp"
         android:textColor="@color/md_blue_900"
-        android:text="Experiencia Laboral"/>
+        android:text="Experiencia Lab."/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,21 +135,28 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/xmlBtnRegitrarExperienciaLab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+
+                android:padding="3dp"
                 android:layout_margin="5dp"
-                android:text="Añadir Experiencia"/>
+                android:text="Registrar"/>
 
             <Button
                 android:id="@+id/xmlBtnActualizarExperienciaLab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+
+                android:padding="4dp"
                 android:layout_margin="5dp"
-                android:text="Actualizar Experiencia"/>
+                android:text="Actualizar "/>
 
         </LinearLayout>
 

@@ -29,7 +29,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.security.Key;
 
 
 public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
@@ -47,8 +50,14 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     String detalleformacad = "";
-    String Ukey;
+   // String Ukey;
     String idusuariosregistrado;
+
+
+    String idActualizar;
+
+    String Ukey;
+
 
 
     @Override
@@ -56,8 +65,11 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_c_pantalla_formacion_academica_curriculo );
 
+        Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
         TituloFormacionAcademica = (TextView) findViewById( R.id.xmlTituloFormacionAcademica );
-        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/Chomsky.otf" );
+        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
         TituloFormacionAcademica.setTypeface( face );
 
         mDatabase = FirebaseDatabase.getInstance().getReference( "Formacion_Academica" );
@@ -71,16 +83,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
      //   CargarformacadActualizar( detalleformacad );
 
 
-/*
-        BtnAñadirOtrosCursos = (Button) findViewById( R.id.AbrirOtrosCursos );
-        BtnAñadirOtrosCursos.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent( cPantallaFormacionAcademicaCurriculo.this, cPantallaOtrosCursos.class );
-                startActivity( intent );
-            }
-        } );
-*/
+        cardarcamposformacionacad( Ukey );
 
 
         BtnRegistrarFormAcad = (Button) findViewById( R.id.xmlbtnAnadirformacionAcademica );
@@ -89,6 +92,14 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
             public void onClick(View view) {
 
                 RegistrarFormacionAcademica( detalleformacad );
+            }
+        } );
+
+        Button btnactualizarformacionacad = findViewById( R.id.xmlbtnActualizarformacionAcademica );
+        btnactualizarformacionacad.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AcrualizarFormacionAcad(detalleformacad);
             }
         } );
 
@@ -103,18 +114,30 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
 
     }
 
-  /*  private void CargarformacadActualizar(String detalleformacad) {
-        mDatabase.orderByChild( "codigoc" ).equalTo( detalleformacad ).addValueEventListener( new ValueEventListener() {
+
+    private void cardarcamposformacionacad(String ukey) {
+
+        mDatabase = FirebaseDatabase.getInstance().getReference( "Formacion_Academica" );
+        Query q = mDatabase.orderByChild( "idusuarioregistrado" ).equalTo( ukey );
+
+        q.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                FormacionAcademica formacionAcademica = dataSnapshot.getValue( FormacionAcademica.class );
+                for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
+                    Log.d( "holapdddddd", String.valueOf( dataSnapshot ) );
 
-                Log.d( "klk", String.valueOf( dataSnapshot ) );
-                etCarrera.setText( formacionAcademica.getCarrerac() );
-                etNivelPrimario.setText( formacionAcademica.getNivelprimarioc() );
-                etNivelSecundario.setText( formacionAcademica.getNivelsecundarioc() );
-                etNivelSuperior.setText( formacionAcademica.getNivelsuperiorc() );
+                    com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.FormacionAcademica formacionAcademica = datasnapshot.getValue(com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.FormacionAcademica.class);
+                    etNivelPrimario.setText( formacionAcademica.getNivelprimarioc() );
+                    etNivelSecundario.setText( formacionAcademica.getNivelsecundarioc() );
+                    etNivelSuperior.setText( formacionAcademica.getNivelsuperiorc() );
+                    etCarrera.setText( formacionAcademica.getCarrerac() );
+
+                    idActualizar = formacionAcademica.getCodigoc();
+
+
+                }
+
 
             }
 
@@ -123,7 +146,8 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
 
             }
         } );
-    }*/
+
+    }
 
     public void limpiarCampor() {
         etNivelPrimario.setText( "" );
@@ -133,7 +157,6 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
 
     }
 
-
     public void RegistrarFormacionAcademica(String detalleformacad) {
 
         carrerac = etCarrera.getText().toString().trim();
@@ -141,7 +164,6 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
         nivelsecundarioc = etNivelSecundario.getText().toString().trim();
         nivelsuperiorc = etNivelSuperior.getText().toString().trim();
         idbuscadorc = detalleformacad;
-
 
         if (TextUtils.isEmpty( carrerac )) {
             etCarrera.setError( "Campo vacío, por favor escriba el nombre " );
@@ -152,9 +174,6 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
             return;
         }
    */
-
-
-        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         idusuariosregistrado = Ukey;
 
@@ -169,6 +188,37 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
         //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
         // mDatabase.child(Ukey).push().setValue(formacionAcademica);//para registrarlo dentro del usuario que inicio sesion
 
+
+    }
+
+
+    private void AcrualizarFormacionAcad(String ukey) {
+
+        carrerac = etCarrera.getText().toString().trim();
+        nivelprimarioc = etNivelPrimario.getText().toString().trim();
+        nivelsecundarioc = etNivelSecundario.getText().toString().trim();
+        nivelsuperiorc = etNivelSuperior.getText().toString().trim();
+        idbuscadorc = ukey;
+
+        if (TextUtils.isEmpty( carrerac )) {
+            etCarrera.setError( "Campo vacío, por favor escriba el nombre " );
+            return;
+        }
+     /*   if (TextUtils.isEmpty( cApellido )) {
+            etApellido.setError( "Campo vacío, por favor escriba el apellido" );
+            return;
+        }
+   */
+
+        idusuariosregistrado = Ukey;
+
+        //String IdFormacionAcademica = mDatabase.push().getKey();
+
+        FormacionAcademica formacionAcademica = new FormacionAcademica( idActualizar, idbuscadorc, idusuariosregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
+
+        mDatabase.child( idActualizar ).setValue( formacionAcademica );
+
+      //  limpiarCampor();
 
     }
 

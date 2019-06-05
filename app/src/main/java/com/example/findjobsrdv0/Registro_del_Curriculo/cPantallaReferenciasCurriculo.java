@@ -68,6 +68,10 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_c_pantalla_referencias_curriculo );
 
+        TextView titulo = findViewById( R.id.xmlTituloReferencia );
+        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
+        titulo.setTypeface( face );
+
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
         database = FirebaseDatabase.getInstance();
         referenciainset = database.getReference( "Referencia" );
@@ -106,13 +110,13 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             }
         } );
 
-        btnBorrarReferencia = (Button)findViewById( R.id.xmlBtnBorrarReferencia );
+      /*  btnBorrarReferencia = (Button)findViewById( R.id.xmlBtnBorrarReferencia );
         btnBorrarReferencia.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 BorrarReferencia(IdReferenciasss);
             }
-        } );
+        } );*/
 
 
 
@@ -266,7 +270,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         // mDatabase.child(Ukey).push().setValue(referencias);//para registrarlo dentro del usuario que inicio sesion
     }
 
-    private void BorrarReferencia(String idReferenciasss) {
+   /* private void BorrarReferencia(String idReferenciasss) {
 
         if (idReferenciasss!=null){
 
@@ -276,5 +280,5 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
         mDatabase.child( IdReferencia ).removeValue(  );
 
-    }}
+    }}*/
 }
