@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu   xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".PantallaReportarProblemas">
+
+    <item
+        android:id="@+id/menu_EnviarProblema"
+        app:showAsAction="always"
+        android:iconTint="@color/md_white_1000"
+        app:itemTextColor="@color/md_white_1000"
+
+        android:title="Enviar" />
+</menu>

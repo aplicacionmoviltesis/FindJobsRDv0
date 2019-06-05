@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:background="@mipmap/fondo1"
+    tools:context=".PantallaCambiarContrasena">
+
+    <TextView
+        android:id="@+id/xmltvCambiarContraseña"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:text="Cambiar Contraseña" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/xmlTiEmailCambiarContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/md_blue_grey_100"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        app:counterOverflowTextAppearance="@style/CounterOverFlow"
+        app:counterTextAppearance="@style/Counter"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/CounterOverFlow"
+        app:hintAnimationEnabled="true">
+
+        <EditText
+            android:id="@+id/xmlEditEmailCambiarContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@drawable/email_white"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="text"
+            android:textColor="@color/md_white_1000" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/xmlTiViejaPassCambiarContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/md_blue_grey_100"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        app:counterOverflowTextAppearance="@style/CounterOverFlow"
+        app:counterTextAppearance="@style/Counter"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/CounterOverFlow"
+        app:hintAnimationEnabled="true">
+
+        <EditText
+            android:id="@+id/xmlEditViejaPassCambiarContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:ems="10"
+            android:hint="Contraseña Actual"
+            android:inputType="text"
+            android:textColor="@color/md_white_1000" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/xmlTiNuevaPassCambiarContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/md_blue_grey_100"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        app:counterOverflowTextAppearance="@style/CounterOverFlow"
+        app:counterTextAppearance="@style/Counter"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/CounterOverFlow"
+        app:hintAnimationEnabled="true">
+
+        <EditText
+            android:id="@+id/xmlEditNuevaPassCambiarContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:ems="10"
+            android:hint="Nueva Contraseña"
+            android:inputType="text"
+            android:textColor="@color/md_white_1000" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/xmlBtnActualizarPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:background="@color/transparent"
+        android:textColor="@color/md_white_1000"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:text="Actualizar Contraseña"/>
+</LinearLayout>

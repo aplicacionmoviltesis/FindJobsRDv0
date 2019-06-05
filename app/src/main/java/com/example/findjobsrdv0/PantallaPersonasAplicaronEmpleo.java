@@ -41,6 +41,8 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
     FirebaseRecyclerAdapter klk;
 
     // FirebaseAuth mAuth;
+    ArrayAdapter<String> adaptador;
+
 
     FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder> adapter;
 
@@ -89,6 +91,8 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                     //klk = adapter;
                 }
                 recycler_curriculo.setAdapter(klk);
+                //recycler_curriculo.setAdapter(adaptador);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -118,6 +122,9 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
 
                 //    Log.d( "hola", String.valueOf( viewHolder ) );
 
+                ArrayList<FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder>> listado = new ArrayList<>();
+                listado.add(adapter);
+
                 final VistaCurriculomodel clickItem = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -132,10 +139,10 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                     }
                 });
                 //klk[position]= adapter;
+                adaptador = new ArrayAdapter<String>(PantallaPersonasAplicaronEmpleo.this,android.R.layout.simple_list_item_1,(ArrayList)listado);
 
             }
         };
-
         //ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>();
         //areasAdapter.add(adapter);
         //ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(PantallaPersonasAplicaronEmpleo.this, android.R.layout.simple_spinner_item, adapter );

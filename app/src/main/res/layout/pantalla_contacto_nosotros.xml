@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textColor="@color/md_blue_900"
+            android:text="Creadores" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/md_blue_900"
+            android:text="Emails" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/email_black"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
+            android:textColor="@color/md_blue_900"
+            android:text="LiferMayi23@gmail.com" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/email_black"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
+            android:textColor="@color/md_blue_900"
+            android:text="enmanuelc31hotmail@gmail.com" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/md_blue_900"
+            android:text="Telefonos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
+            android:textColor="@color/md_blue_900"
+            android:text="+1 (829)-821-1208" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
+            android:textColor="@color/md_blue_900"
+            android:text="+1 (809) 978-5468" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:textColor="@color/md_blue_900"
+            android:text="Si tiene alguna pregunta, necesita ayuda o quiere darnos su opinión, contáctenos hoy mismo." />
+
+    </LinearLayout>
+
+
+</LinearLayout>

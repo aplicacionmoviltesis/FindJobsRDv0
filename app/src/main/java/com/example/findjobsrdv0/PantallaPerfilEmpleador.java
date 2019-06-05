@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,6 +87,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     final String klk = "";
     private TextView TvTiPerfilEmpleadorPE;
 
+    FirebaseAuth firebaseAuth;
+    String telefonoEmpleador,EmailEmpleador,NombreEmpleador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +106,14 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+
+
+        FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+
+        telefonoEmpleador = user.getPhoneNumber();
+        Log.d("telefono",telefonoEmpleador);
+        EmailEmpleador = user.getEmail();
+        NombreEmpleador = user.getDisplayName();
 
         editNombrePerfilE = (EditText) findViewById(R.id.xmleditNombrePerfilEmpleador);
         editRncPerfilE = (EditText) findViewById(R.id.xmleditRNC);
@@ -447,7 +459,15 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
 
                 Log.d("holapkkk", String.valueOf(dataSnapshot));
                 sNombrePerfilE = dataSnapshot.child("sNombreEmpleador").getValue(String.class);
-                editNombrePerfilE.setText(sNombrePerfilE);
+                if(sNombrePerfilE==""){
+                    editNombrePerfilE.setText(NombreEmpleador);
+
+                }
+                else {
+                    editNombrePerfilE.setText(sNombrePerfilE);
+
+                }
+
 
                 sRncPerfilE = dataSnapshot.child("sRncEmpleador").getValue(String.class);
                 editRncPerfilE.setText(sRncPerfilE);
@@ -456,13 +476,27 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
                 editPaginaWebPerfilE.setText(sPaginaWebPerfilE);
 
                 sTelefonoPerfilE = dataSnapshot.child("sTelefonoEmpleador").getValue(String.class);
-                editTelefonoPerfilE.setText(sTelefonoPerfilE);
+                if(sTelefonoPerfilE==""){
+                    editTelefonoPerfilE.setText(telefonoEmpleador);
+
+                }
+                else {
+                    editTelefonoPerfilE.setText(sTelefonoPerfilE);
+
+                }
 
                 sDireccionPerfilE = dataSnapshot.child("sDireccionEmpleador").getValue(String.class);
                 editDireccionPerfilE.setText(sDireccionPerfilE);
 
                 sCorreoPerfilE = dataSnapshot.child("sCorreoEmpleador").getValue(String.class);
-                editCorreoPerfilE.setText(sCorreoPerfilE);
+                if(sCorreoPerfilE==""){
+                    editCorreoPerfilE.setText(EmailEmpleador);
+
+                }
+                else {
+                    editCorreoPerfilE.setText(sCorreoPerfilE);
+
+                }
 
                 sVerificarEmpleador = dataSnapshot.child("Verificacion").getValue(Boolean.class);
                 Log.d("verificacion", String.valueOf(sVerificarEmpleador));

@@ -14,7 +14,14 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".PantallaReportarProblemas"></activity>
+        <activity
+            android:name=".PantallaAcercadeApp"
+            android:theme="@style/AppTheme.NoActionBarPrueba"></activity>
+        <activity android:name=".PantallaTerminosyCondiciones" />
+        <activity android:name=".PantallaCambiarContrasena" />
+        <activity android:name=".PantallaConfiguracion" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".PantallaPersonasAplicaronEmpleo" />
         <activity android:name=".ActualizarFormacionAcad.ActualizarFormacionAcad" />
         <activity android:name=".ActualizarCurriculo.VistaCurriculoActualizar" />
@@ -81,10 +88,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".PantallaModoUsuario"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBarPrueba" />
         <activity
             android:name=".PantallaCarga"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBarPrueba">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

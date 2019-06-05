@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    tools:context=".PantallaConfiguracion">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="100dp"
+        android:padding="2dp">
+
+    <Button
+        android:id="@+id/xmlBtnCambiarContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="fill_vertical"
+        android:textSize="12dp"
+        android:layout_weight="1"
+        android:drawablePadding="15dp"
+        android:paddingStart="20dp"
+        android:elevation="25dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/ic_pass"
+        android:text="Cambiar Contraseña"/>
+
+    <Button
+        android:id="@+id/xmlBtnAyuda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="fill_vertical"
+        android:textSize="12dp"
+        android:layout_weight="1"
+        android:drawablePadding="15dp"
+        android:paddingStart="20dp"
+        android:elevation="25dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/ic_ayuda"
+        android:text="Ayuda"/>
+
+    <Button
+        android:id="@+id/xmlBtnAcercaDe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="fill_vertical"
+        android:textSize="12dp"
+        android:layout_weight="1"
+        android:drawablePadding="15dp"
+        android:paddingStart="20dp"
+        android:elevation="25dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/ic_acerca"
+        android:text="Acerca De la App"/>
+
+    <Button
+        android:id="@+id/xmlBtnReportarProblema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="fill_vertical"
+        android:textSize="12dp"
+        android:layout_weight="1"
+        android:drawablePadding="15dp"
+        android:paddingStart="20dp"
+        android:elevation="25dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/ic_reportproblem"
+        android:text="Reportar Problema"/>
+
+        <Button
+            android:id="@+id/xmlBtnContactoNosotros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_contactocorreo"
+            android:drawablePadding="15dp"
+            android:elevation="25dp"
+            android:gravity="fill_vertical"
+            android:paddingStart="20dp"
+            android:text="Contacto con Nosotros"
+            android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/xmlBtnPoliticasPrivacidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="fill_vertical"
+        android:textSize="12dp"
+        android:layout_weight="1"
+        android:drawablePadding="15dp"
+        android:paddingStart="20dp"
+        android:elevation="25dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/ic_documentos"
+        android:text="Politicas de Privacidad"/>
+
+    <Button
+        android:id="@+id/xmlBtnTerminosCondiciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="fill_vertical"
+        android:textSize="12dp"
+        android:layout_weight="1"
+        android:drawablePadding="15dp"
+        android:paddingStart="20dp"
+        android:elevation="25dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/ic_documentos"
+        android:text="Terminos y Condiciones"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.DatePickerFragment;
+import com.example.findjobsrdv0.PantallaBuscarEmpleos;
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
 import com.google.android.gms.tasks.Continuation;
@@ -40,6 +41,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -103,6 +105,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     ProgressDialog mProgressDialog;
 
     int IMAGE_REQUEST_CODE = 5;
+    DatabaseReference bbdd;
 
 
 //----------------imagen en el curriculo----------------------------------------------------------------------------------------------------------------
@@ -318,7 +321,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         } );
         //btnReferenciCurriculo.setEnabled(false);
 
-
+        subirEmpleo();
 //-------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -518,6 +521,63 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
 
         }
+    }
+
+    private void subirEmpleo() {
+
+        bbdd = FirebaseDatabase.getInstance().getReference("Curriculos");
+
+        Query q = bbdd.orderByChild("cIdBuscador").equalTo("probandousuario");
+
+        q.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                ArrayAdapter<String> adaptador;
+                ArrayList<String> listado = new ArrayList<String>();
+
+                for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
+                    Log.d("holapdddddd", String.valueOf(dataSnapshot));
+
+                    com.example.findjobsrdv0.Modelo.Curriculos curriculos = datasnapshot.getValue(com.example.findjobsrdv0.Modelo.Curriculos.class);
+
+                    String titulo = curriculos.getNombre();
+                    Log.d("adaptador", titulo);
+
+                    listado.add(titulo);
+
+                    etNombre.setText(curriculos.getNombre());
+                    etApellido.setText(curriculos.getApellido());
+                    etCedula.setText(curriculos.getCedula());
+                    etEmail.setText(curriculos.getEmail());
+                    etTelefono.setText(curriculos.getTelefono());
+                    etCelular.setText(curriculos.getCelular());
+
+                    //spinProvinciaCurriculoAct.setSelection( obtenerPosicionItem( spinProvinciaCurriculoAct, curriculos.getProvincia() ) );
+                    //spinEstadoCivilAct.setSelection( obtenerPosicionItem( spinEstadoCivilAct, curriculos.getEstadoCivil() ) );
+
+                    etDireccion.setText(curriculos.getDireccion());
+                    etOcupacion.setText(curriculos.getOcupacion());
+                    //mEtxtIdiomaAct.setText( curriculos.getIdioma() );
+
+                    //spinGradoMayorAct.setSelection( obtenerPosicionItem( spinGradoMayorAct, curriculos.getGradomayor() ) );
+                    //spinEstadoActualAct.setSelection( obtenerPosicionItem( spinEstadoActualAct, curriculos.getEstadoactual() ) );
+
+                    //mEtxtFechaAct.setText( curriculos.getFecha() );
+                    etHabilidades.setText(curriculos.getHabilidades());
+                }
+
+                adaptador = new ArrayAdapter<String>(cPantallaRegistrarCurriculo.this, android.R.layout.simple_list_item_1, listado);
+                //lista.setAdapter(adaptador);
+                Log.d("adaptador", String.valueOf(adaptador));
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

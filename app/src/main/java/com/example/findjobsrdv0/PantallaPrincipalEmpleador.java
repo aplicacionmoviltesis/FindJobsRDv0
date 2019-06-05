@@ -304,6 +304,8 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent (this, PantallaConfiguracion.class);
+            startActivityForResult(intent, 0);
             return true;
         }
 
@@ -327,6 +329,9 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
 
         } else if (id == R.id.ConfiguracionEmpleador) {
+
+            Intent intent = new Intent (this, PantallaConfiguracion.class);
+            startActivityForResult(intent, 0);
 
 
         } else if (id == R.id.compartirEmpleador) {

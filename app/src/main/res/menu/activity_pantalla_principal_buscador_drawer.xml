@@ -19,7 +19,7 @@
         <item
             android:id="@+id/ConfiguracionBuscador"
             android:icon="@drawable/iconajuste"
-            android:title="Configuracion" />
+            android:title="Ajuste" />
 
     </group>
 

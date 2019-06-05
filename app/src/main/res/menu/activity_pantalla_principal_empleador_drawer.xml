@@ -19,7 +19,7 @@
         <item
             android:id="@+id/ConfiguracionEmpleador"
             android:icon="@drawable/iconajuste"
-            android:title="Configuracion" />
+            android:title="Ajuste" />
 
     </group>
 

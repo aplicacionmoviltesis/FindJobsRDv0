@@ -10,12 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.findjobsrdv0.Modelo.Curriculos;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
@@ -31,6 +33,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
     // FirebaseDatabase mFirebaseDatabase;
     DatabaseReference provinciasRef;
 
+    DatabaseReference bbdd;
 
     List<Provincias> provincias;
     boolean IsFirstTimeClick=true;
@@ -113,7 +116,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
             }
         });
         mSpinner = findViewById(R.id.mSpinner);
-
+/*
         provinciasRef.child("Curriculos").orderByChild("cCodigoId").equalTo("-LgGKwS2my1D564M4Drg").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -141,8 +144,42 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
         ///////////////////////////////////////////////////
+
+        bbdd = FirebaseDatabase.getInstance().getReference("Curriculos");
+
+        Query q = bbdd.orderByChild("cIdBuscador").equalTo("probandousuario");
+
+        q.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                ArrayAdapter<String> adaptador;
+                ArrayList<String> listado = new ArrayList<String>();
+
+                for(DataSnapshot datasnapshot: dataSnapshot.getChildren()){
+                    Log.d("holapdddddd", String.valueOf(dataSnapshot));
+
+                    Curriculos curriculos = datasnapshot.getValue(Curriculos.class);
+
+                    String titulo = curriculos.getNombre();
+                    Log.d("adaptador",titulo);
+
+                    listado.add(titulo);
+                }
+
+                adaptador = new ArrayAdapter<String>(PantallaBuscarEmpleos.this,android.R.layout.simple_list_item_1,listado);
+                //lista.setAdapter(adaptador);
+                Log.d("adaptador",String.valueOf(adaptador));
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         //casting of spinner
         mSpinner = findViewById(R.id.mSpinner);
