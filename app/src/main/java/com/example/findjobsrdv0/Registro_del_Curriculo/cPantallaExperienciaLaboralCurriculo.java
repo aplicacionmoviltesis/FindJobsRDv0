@@ -71,7 +71,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
        // loadReferencias( detalleexperiencialab  );
 
         TituloExpLab = (TextView) findViewById( R.id.xmlTituloExperienciaLaboral );
-        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/Chomsky.otf" );
+        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
         TituloExpLab.setTypeface( face );
 
 //---------------------codigo de la vista de la experiencia laboral en el insert----------------------------------------------------------------------------------------------------------------------

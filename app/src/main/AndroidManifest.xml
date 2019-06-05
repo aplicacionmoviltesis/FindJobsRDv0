@@ -14,6 +14,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".PantallaReportarProblemas"></activity>
         <activity
             android:name=".PantallaAcercadeApp"
@@ -21,11 +22,10 @@
         <activity android:name=".PantallaTerminosyCondiciones" />
         <activity android:name=".PantallaCambiarContrasena" />
         <activity android:name=".PantallaConfiguracion" />
+
+        <activity android:name=".PerfilBuscador.PerfilBuscador"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".PantallaPersonasAplicaronEmpleo" />
-        <activity android:name=".ActualizarFormacionAcad.ActualizarFormacionAcad" />
-        <activity android:name=".ActualizarCurriculo.VistaCurriculoActualizar" />
-        <activity android:name=".ActualizarCurriculo.ActualizarCurriculo" />
         <activity android:name=".PantallaPerfilEmpleador" />
         <activity android:name=".PantallaPerfilBuscador" />
         <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleOtrosCursos.DetalleOtrosEstudios" />

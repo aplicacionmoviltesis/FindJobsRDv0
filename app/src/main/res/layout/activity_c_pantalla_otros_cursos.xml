@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/xmlTituloReferencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/xmlbregistrarFechafinEL"
+        android:gravity="center"
+        android:text="Otros Cursos"
+        android:textColor="@color/md_blue_900"
+        android:textSize="35sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,6 +90,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
 
@@ -87,13 +99,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Guardar" />
+                android:background="@drawable/btn_bg"
+
+                android:padding="3dp"
+                android:text="Registrar" />
 
             <Button
                 android:id="@+id/xmlbtnActualizarCursosOC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@drawable/btn_bg"
+
+                android:padding="5dp"
                 android:text="Actualizar" />
 
         </LinearLayout>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PerfilBuscador.PerfilBuscador">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@mipmap/fondo1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/xmlTvTiPerfilBuscador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Perfil Buscador"
+            android:textColor="@color/md_white_1000"
+            android:textSize="20sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image_Buscador"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/md_blue_100"
+            android:padding="2dp"
+            android:src="@mipmap/onlylogo"
+            app:civ_border_color="@color/transparent"
+            app:civ_border_width="2dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTieditRNC"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_bg"
+            android:padding="3dp"
+            android:textColorHint="@color/md_blue_900"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterOverflowTextAppearance="@style/CounterOverFlow"
+            app:counterTextAppearance="@style/Counter"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/CounterOverFlow"
+            app:hintAnimationEnabled="true">
+
+            <EditText
+                android:id="@+id/xmleditNombreperfilBuscado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_nombre"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTieditDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_bg"
+            android:padding="3dp"
+            android:textColorHint="@color/md_blue_900"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterOverflowTextAppearance="@style/CounterOverFlow"
+            app:counterTextAppearance="@style/Counter"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/CounterOverFlow"
+            app:hintAnimationEnabled="true">
+
+            <EditText
+                android:id="@+id/xmleditDireccionperfilBuscado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_nombre"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Apellido"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTieditCorreoElectronico"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_bg"
+            android:padding="3dp"
+            android:textColorHint="@color/md_blue_900"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterOverflowTextAppearance="@style/CounterOverFlow"
+            app:counterTextAppearance="@style/Counter"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/CounterOverFlow"
+            app:hintAnimationEnabled="true">
+
+            <EditText
+                android:id="@+id/xmleditCorreoElectronicoperfilBuscado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email_black"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Correo Electronico"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xmlTieditTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_bg"
+            android:padding="3dp"
+            android:textColorHint="@color/md_blue_900"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:counterOverflowTextAppearance="@style/CounterOverFlow"
+            app:counterTextAppearance="@style/Counter"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/CounterOverFlow"
+            app:hintAnimationEnabled="true">
+
+            <EditText
+                android:id="@+id/xmleditTelefonoperfilBuscado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="text"
+                android:textColor="@color/md_blue_900"
+                android:textColorHint="@color/md_blue_900" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/xmlBtnActivarperfilBuscador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Activar" />
+
+            <Button
+                android:id="@+id/xmlBtnActualizarPerfilBuscador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Actualizar" />
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

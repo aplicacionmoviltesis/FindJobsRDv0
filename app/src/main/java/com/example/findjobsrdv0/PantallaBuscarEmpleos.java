@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Modelo.Curriculos;
+import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
 import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.database.DataSnapshot;
