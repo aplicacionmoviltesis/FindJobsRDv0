@@ -11,9 +11,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
+import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleCurriculo.DetalleCurriculo;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Modelo.VistaCurriculomodel;
 import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.ViewHolder.VistaCurriculoViewHolder;
+import com.example.findjobsrdv0.adaptador.MyAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +31,7 @@ import java.util.List;
 public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
 
     RecyclerView recycler_curriculo;
-    RecyclerView.LayoutManager layoutManager;
+//    RecyclerView.LayoutManager layoutManager;
 
     FirebaseDatabase database;
     DatabaseReference vistaCurriculo,DBpersonasAplicaron;
@@ -42,10 +44,14 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
 
     // FirebaseAuth mAuth;
     ArrayAdapter<String> adaptador;
-
+    ArrayList<FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder>> listado = new ArrayList<>();
 
     FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder> adapter;
 
+    private RecyclerView recyclerView;
+    private MyAdapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    ArrayList<Curriculos> mDataset = new ArrayList<Curriculos>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,17 +60,42 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         vistaCurriculo = database.getReference();
         DBpersonasAplicaron = database.getReference("EmpleosConCandidatos");
+//
+//
+//        recycler_curriculo = (RecyclerView) findViewById(R.id.ListaCurriculosAplicaronR);
+//        recycler_curriculo.setHasFixedSize(true);
+//        layoutManager = new LinearLayoutManager(this);
+//        recycler_curriculo.setLayoutManager(layoutManager);
+        recyclerView = (RecyclerView) findViewById(R.id.ListaCurriculosAplicaronR);
 
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
 
-        recycler_curriculo = (RecyclerView) findViewById(R.id.ListaCurriculosAplicaronR);
-        recycler_curriculo.setHasFixedSize(true);
+        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
-        recycler_curriculo.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+//        ArrayList<String> gfgf= new ArrayList<String>();
+//        gfgf.add("dad");
+//        String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+
+//        mDataset.add("elmento 1");
+//        mDataset.add("elmento 2asdfa");
+        mAdapter = new MyAdapter(PantallaPersonasAplicaronEmpleo.this, mDataset);
+        recyclerView.setAdapter(mAdapter);
+//        setLis
+//        (mAdapter.getCount() == 0)
 
 
         //loadCurriculo();
-        TraerAplicaciones(klkempleo);
+        TraerAplicaciones(this.klkempleo);
         //recycler_curriculo.setAdapter(adapter);
+
+//        mDataset.add("ELEMENTO 3");
+
+
     }
 
     public void TraerAplicaciones(String sEmpleoIdE){
@@ -90,7 +121,7 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                     //sIdCurriculoAplico = areaName;
                     //klk = adapter;
                 }
-                recycler_curriculo.setAdapter(klk);
+//                recycler_curriculo.setAdapter(klk);
                 //recycler_curriculo.setAdapter(adaptador);
 
             }
@@ -104,45 +135,100 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
 
 
     private void loadCurriculo(String sPersonasAplicaron) {
-        adapter = new FirebaseRecyclerAdapter<VistaCurriculomodel,
-                VistaCurriculoViewHolder>(VistaCurriculomodel.class,
-                R.layout.cardview_vista_curriculo, VistaCurriculoViewHolder.class,
-                vistaCurriculo.child("Curriculos").orderByChild("cCodigoId").equalTo(sPersonasAplicaron)) {
-            //for()
+        vistaCurriculo.child("Curriculos").orderByChild("cCodigoId").equalTo(sPersonasAplicaron).addValueEventListener(new ValueEventListener() {
             @Override
-            protected void populateViewHolder(VistaCurriculoViewHolder viewHolder, VistaCurriculomodel model, int position) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Picasso.get().load(model.getImagen()).into(viewHolder.imagen);
-                viewHolder.txtNombre.setText(model.getNombre());
-                viewHolder.txtCedula.setText(model.getCedula());
-                viewHolder.txtDireccion.setText(model.getDireccion());
-                viewHolder.txtEstadoActual.setText(model.getEstadoactual());
-                viewHolder.txtProvincia.setText(model.getProvincia());
-                viewHolder.txtGradoMayor.setText(model.getGradomayor());
+                for(DataSnapshot datasnapshot: dataSnapshot.getChildren()){
 
-                //    Log.d( "hola", String.valueOf( viewHolder ) );
+                    Log.d("DATOS::::",datasnapshot.child("cedula").getValue(String.class));
+                    Curriculos cv =  new Curriculos("ASDFASDFASD", "ASDFASDFASD","ASDFASDFASD",datasnapshot.child("nombre").getValue(String.class),"ASDFASDFASD",datasnapshot.child("cedula").getValue(String.class),
+                            "ASDFASDFASD", "ASDFASDFASD","ASDFASDFASD","ASDFASDFASD","ASDFASDFASD","ASDFASDFASD",
+                            "ASDFASDFASD", "ASDFASDFASD","ASDFASDFASD","ASDFASDFASD","ASDFASDFASD","ASDFASDFASD",
+                            "DSADADAD"
 
-                ArrayList<FirebaseRecyclerAdapter<VistaCurriculomodel, VistaCurriculoViewHolder>> listado = new ArrayList<>();
-                listado.add(adapter);
+                    );
+                    PantallaPersonasAplicaronEmpleo.this.mDataset.add(cv);
+                    mAdapter.notifyDataSetChanged();
+                }
 
-                final VistaCurriculomodel clickItem = model;
-                viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Intent CurriculoDetalle = new Intent(PantallaPersonasAplicaronEmpleo.this, DetalleCurriculo.class);
-                        CurriculoDetalle.putExtra("detallecurrID", adapter.getRef(position).getKey());
-                        startActivity(CurriculoDetalle);
+                Log.d("CVPERSONAS::::",String.valueOf(dataSnapshot));
 
-                        //  Log.d("klk id",adapter.getRef( position ).getKey());
+//                this.m
+//                PantallaPersonasAplicaronEmpleo.this.mDataset.add(String.valueOf(dataSnapshot));
 
-                        // Toast.makeText( PantalaVistaCurriculo.this, ""+clickItem.getNombre(), Toast.LENGTH_SHORT ).show();
-                    }
-                });
-                //klk[position]= adapter;
-                adaptador = new ArrayAdapter<String>(PantallaPersonasAplicaronEmpleo.this,android.R.layout.simple_list_item_1,(ArrayList)listado);
+//                Curriculos curriculos = dataSnapshot.getValue(Curriculos.class);
+//                PantallaPersonasAplicaronEmpleo.this.mDataset.add(cv);
+//                Log.d("NOMBRE PERSONA::::", model.getNombre());
+
+//                ArrayAdapter<String> adaptador;
+//                ArrayList<String> listado = new ArrayList<String>();
+//
+//                for(DataSnapshot datasnapshot: dataSnapshot.getChildren()){
+//                    Log.d("holapdddddd", String.valueOf(dataSnapshot));
+//
+//                    Curriculos curriculos = datasnapshot.getValue(Curriculos.class);
+//
+//                    String titulo = curriculos.getNombre();
+//                    Log.d("adaptador",titulo);
+//
+////                    listado.add(titulo);
+//                }
+//
+//                adaptador = new ArrayAdapter<String>(PantallaBuscarEmpleos.this,android.R.layout.simple_list_item_1,listado);
+//                //lista.setAdapter(adaptador);
+//                Log.d("adaptador",String.valueOf(adaptador));
 
             }
-        };
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+//        adapter = new FirebaseRecyclerAdapter<VistaCurriculomodel,
+//                VistaCurriculoViewHolder>(VistaCurriculomodel.class,
+//                R.layout.cardview_vista_curriculo, VistaCurriculoViewHolder.class,
+//                vistaCurriculo.child("Curriculos").orderByChild("cCodigoId").equalTo(sPersonasAplicaron)) {
+//            //for()
+//            @Override
+//            protected void populateViewHolder(VistaCurriculoViewHolder viewHolder, VistaCurriculomodel model, int position) {
+//
+//                PantallaPersonasAplicaronEmpleo.this.mDataset.add(model.getNombre());
+//                Log.d("NOMBRE PERSONA::::", model.getNombre());
+//                mAdapter.notifyDataSetChanged();
+////                this.mDataset.add
+//                Picasso.get().load(model.getImagen()).into(viewHolder.imagen);
+//                viewHolder.txtNombre.setText(model.getNombre());
+//                viewHolder.txtCedula.setText(model.getCedula());
+//                viewHolder.txtDireccion.setText(model.getDireccion());
+//                viewHolder.txtEstadoActual.setText(model.getEstadoactual());
+//                viewHolder.txtProvincia.setText(model.getProvincia());
+//                viewHolder.txtGradoMayor.setText(model.getGradomayor());
+//
+//                //    Log.d( "hola", String.valueOf( viewHolder ) );
+//
+//
+//                listado.add(adapter);
+//
+//                final VistaCurriculomodel clickItem = model;
+//                viewHolder.setItemClickListener(new ItemClickListener() {
+//                    @Override
+//                    public void onClick(View view, int position, boolean isLongClick) {
+//                        Intent CurriculoDetalle = new Intent(PantallaPersonasAplicaronEmpleo.this, DetalleCurriculo.class);
+//                        CurriculoDetalle.putExtra("detallecurrID", adapter.getRef(position).getKey());
+//                        startActivity(CurriculoDetalle);
+//
+//                        //  Log.d("klk id",adapter.getRef( position ).getKey());
+//
+//                        // Toast.makeText( PantalaVistaCurriculo.this, ""+clickItem.getNombre(), Toast.LENGTH_SHORT ).show();
+//                    }
+//                });
+//                //klk[position]= adapter;
+//                adaptador = new ArrayAdapter<String>(PantallaPersonasAplicaronEmpleo.this,android.R.layout.simple_list_item_1,(ArrayList)listado);
+//
+//            }
+//        };
         //ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>();
         //areasAdapter.add(adapter);
         //ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(PantallaPersonasAplicaronEmpleo.this, android.R.layout.simple_spinner_item, adapter );
@@ -152,7 +238,7 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
 
         //recycler_curriculo.setAdapter(adapter);
         //adapter.notifyDataSetChanged();
-        klk= adapter;
+//        klk= adapter;
     }
 
 
