@@ -14,16 +14,15 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".PantallaReportarProblemas"></activity>
+        <activity android:name=".PantallaEmpleosAplicado"></activity>
+        <activity android:name=".PantallaReportarProblemas" />
         <activity
             android:name=".PantallaAcercadeApp"
-            android:theme="@style/AppTheme.NoActionBarPrueba"></activity>
+            android:theme="@style/AppTheme.NoActionBarPrueba" />
         <activity android:name=".PantallaTerminosyCondiciones" />
         <activity android:name=".PantallaCambiarContrasena" />
         <activity android:name=".PantallaConfiguracion" />
-
-        <activity android:name=".PerfilBuscador.PerfilBuscador"></activity>
+        <activity android:name=".PerfilBuscador.PerfilBuscador" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PantallaPersonasAplicaronEmpleo" />
         <activity android:name=".PantallaPerfilEmpleador" />
