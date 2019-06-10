@@ -36,6 +36,7 @@ public class VistaCurriculoViewHolder extends RecyclerView.ViewHolder implements
         txtProvincia = (TextView) itemView.findViewById( R.id.textViewProvinciaC);
 
         itemView.setOnClickListener( this );
+
     }
 
     @Override

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter {
     ArrayList<Curriculos> mDataset;
     Context context;
-//    ArrayList<Minute> mDataset;
 
     public MyAdapter(Context context, ArrayList<Curriculos> mDataset) {
         this.context = context;
@@ -64,32 +63,5 @@ public class MyAdapter extends RecyclerView.Adapter {
         }
     }
 
-//    @Override
-//    public View getView(int position, View view, ViewGroup parent) {
-//
-//        ViewHolder viewHolder;
-//
-//
-//        if (view==null){
-//
-//            view = LayoutInflater.from(context).inflate(R.layout.cardview_vista_curriculo,parent,false);
-//            Log.d(TAG,"Crendo vista desde 0");
-//            viewHolder=new ViewHolder();
-//            viewHolder.dayTitle=(TextView) view.findViewById(R.id.textViewNombreC);
-////            viewHolder.dayDescription= (TextView) view.findViewById(R.id.dailyListDescription);
-////            viewHolder.dayProbability=(TextView) view.findViewById(R.id.dailyListProbability);
-//
-//            view.setTag(viewHolder);
-//        }else {
-//            viewHolder = (ViewHolder) view.getTag();
-//        }
-//
-////        Day day= mDataSet.get(position);
-//        viewHolder.dayTitle.setText(this.mDataset.get(position));
-////        viewHolder.dayDescription.setText(day.getWeatherDescription());
-////        viewHolder.dayProbability.setText(day.getRainProbability());
-//
-//        return view;
-//    }
 
 }
