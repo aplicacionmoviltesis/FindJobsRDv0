@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -77,13 +77,13 @@ public class AdapterCurriculo extends RecyclerView.Adapter{
 
         public void onBind(int position){
 
-            String ImagenCurriculo = mDatasetCurriculo.get(position).getImagen();
-            String NombreCurriculo = mDatasetCurriculo.get(position).getApellido();
-            String CedulaCurriculo = mDatasetCurriculo.get(position).getCedula();
-            String DireccionCurriculo = mDatasetCurriculo.get(position).getDireccion();
-            String EstadoActualCurriculo = mDatasetCurriculo.get(position).getEstadoactual();
-            String GradoMayorCurriculo = mDatasetCurriculo.get(position).getGradomayor();
-            String ProvinciaCurriculo = mDatasetCurriculo.get(position).getProvincia();
+            String ImagenCurriculo = mDatasetCurriculo.get(position).getsImagenC();
+            String NombreCurriculo = mDatasetCurriculo.get(position).getsApellidoC();
+            String CedulaCurriculo = mDatasetCurriculo.get(position).getsCedulaC();
+            String DireccionCurriculo = mDatasetCurriculo.get(position).getsDireccionC();
+            String EstadoActualCurriculo = mDatasetCurriculo.get(position).getsEstadoActualC();
+            String GradoMayorCurriculo = mDatasetCurriculo.get(position).getsGradoMayorC();
+            String ProvinciaCurriculo = mDatasetCurriculo.get(position).getsProvinciaC();
 
 
             txtNombre.setText(NombreCurriculo);

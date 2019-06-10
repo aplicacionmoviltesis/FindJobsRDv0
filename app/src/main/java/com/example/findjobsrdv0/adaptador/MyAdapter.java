@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 
 import java.util.ArrayList;
 
@@ -57,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter {
 
         public void onBind(int position){
 
-            String minute = mDataset.get(position).getNombre();
+            String minute = mDataset.get(position).getsNombreC();
             titleTextView.setText(minute);
 //            rainProbabilityTextView.setText(minute.getRainProbability());
         }

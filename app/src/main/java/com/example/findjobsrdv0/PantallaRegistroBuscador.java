@@ -228,11 +228,11 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             String Ukey = user.getUid();
 
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("Nombre").setValue(entrada_bNombre);
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("Apellido").setValue(entrada_bApellido);
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("Correo").setValue(bemail);
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("Telefono").setValue(entrada_btelefono);
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("Contraseña").setValue(bpassword);
+                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sNombrePerfilB").setValue(entrada_bNombre);
+                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sApellidoperfilB").setValue(entrada_bApellido);
+                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sEmailPerfilB").setValue(bemail);
+                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sTelefonoPerfilB").setValue(entrada_btelefono);
+                           // DBReference.child("BuscadoresEmpleos").child(Ukey).child("Contraseña").setValue(bpassword);
 
                             //usas esa variable y usa .sendEmailVerification(); para mandar el correo de verificacion
                             user.sendEmailVerification();

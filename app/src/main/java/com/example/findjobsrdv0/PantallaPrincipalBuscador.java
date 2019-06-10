@@ -8,8 +8,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
-import com.example.findjobsrdv0.PerfilBuscador.PerfilBuscador;
-import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaPerfilBuscador;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.cPantallaRegistrarCurriculo;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -138,7 +138,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         String Nombre= preferences.getString("Nombre", "Nombre")+" "+preferences.getString("Apellido", "Apellido");
 
         nameTextView.setText(Nombre);
-        //emailTextView.setText(user.getEmail());
+        //emailTextView.setText(user.getsEmailC());
 
 
         photoImageView.setOnClickListener( new View.OnClickListener() {
@@ -190,7 +190,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
     }
 
     private void irPerfilBuscador(String buscadorconectado) {
-        Intent intent = new Intent(this, PerfilBuscador.class);
+        Intent intent = new Intent(this, PantallaPerfilBuscador.class);
         intent.putExtra("BuscadorConectado", buscadorconectado );
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

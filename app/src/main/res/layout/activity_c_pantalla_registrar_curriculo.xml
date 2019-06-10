@@ -32,10 +32,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
+                android:background="@color/md_blue_100"
                 android:padding="2dp"
+                android:src="@mipmap/onlylogo"
                 app:civ_border_color="@color/transparent"
                 app:civ_border_width="2dp"
-                android:background="@drawable/icfotocurriculo" />
+                 />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/xmlbregistrarnombre"
@@ -201,12 +203,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="5dp">
+
+
+                <TextView
+                    android:id="@+id/xmlTiProvinciaAC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Provincia"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="15sp" />
+
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/spinnerprovincias"
-                    android:layout_width="190dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:baselineAligned="false"
@@ -215,9 +228,18 @@
                     android:textColorHint="@color/md_blue_900"
                     app:met_floatingLabel="normal" />
 
+                <TextView
+                    android:id="@+id/xmlTiEstadoCivilAC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Estado Civil"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="15sp" />
+
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/spinnerestadocivil"
-                    android:layout_width="180dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
                     android:dropDownSelector="@color/gradStop"
@@ -225,6 +247,7 @@
                     android:textColorHint="@color/md_blue_900"
                     app:met_floatingLabel="normal" />
             </LinearLayout>
+
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -318,12 +341,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/xmlTiGradoMayorAC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Grado Mayor"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="15sp" />
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/spinnergradomayor"
-                    android:layout_width="200dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:baselineAligned="false"
@@ -333,9 +365,18 @@
                     android:textColorHint="@color/md_blue_900"
                     app:met_floatingLabel="normal" />
 
+                <TextView
+                    android:id="@+id/xmlTiEstadoActualAC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Estado Actual"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="15sp" />
+
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/spinnerestadoactual"
-                    android:layout_width="200dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
                     android:dropDownSelector="@color/gradStop"

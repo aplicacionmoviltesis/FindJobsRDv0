@@ -71,7 +71,7 @@
             android:id="@+id/botonbuscarprovincia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buscar por provincia"
+            android:text="Buscar por sProvinciaC"
             android:layout_margin="20dp"/>
 
 

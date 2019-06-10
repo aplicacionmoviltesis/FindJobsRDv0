@@ -11,9 +11,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.Modelo.ItemClickListener;
-import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
-import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleCurriculo.DetalleCurriculo;
-import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.DetalleCurriculo;
 import com.example.findjobsrdv0.adaptador.AdapterCurriculo;
 import com.example.findjobsrdv0.adaptador.MyAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -135,7 +134,8 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                             EmailCurriculoPAE, TelefonoCurriculoPAE, CelularCurriculoPAE,
                             ProvinciaCurriculoPAE, EstadoCivilCurriculoPAE, DireccionCurriculoPAE,
                             OcupacionCurriculoPAE, IdiomaCurriculoPAE, GradomayorCurriculoPAE,
-                            EstadoactualCurriculoPAE, SexoCurriculoPAE, HabilidadesCurriculoPAE, FechaCurriculoPAE);
+                            EstadoactualCurriculoPAE, SexoCurriculoPAE, HabilidadesCurriculoPAE,
+                            FechaCurriculoPAE,"aun no funciona");
 
 
                     PantallaPersonasAplicaronEmpleo.this.mDatasetCurriculo.add(cv);

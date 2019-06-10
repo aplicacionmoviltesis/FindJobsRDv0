@@ -8,7 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
-import com.example.findjobsrdv0.VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.VistaCurriculo;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -139,7 +139,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         String Nombre= preferences.getString("Nombre", "Nombre")+" "+preferences.getString("Apellido", "Apellido");
 
         nameTextViewEmpleador.setText(Nombre);*/
-        //emailTextView.setText(user.getEmail());
+        //emailTextView.setText(user.getsEmailC());
 
         LinearLayout IrAnadirEmpleo = (LinearLayout )findViewById(R.id.lyAnadirEmpleoEmpleador);
         IrAnadirEmpleo.setOnClickListener(new View.OnClickListener() {
