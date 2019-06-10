@@ -7,7 +7,7 @@ android:layout_height="match_parent"
 android:background="@mipmap/fondo1"
 android:gravity="center"
 android:orientation="vertical"
-tools:context=".PantallaRegistroBuscador">
+tools:context=".Pantallas_CurriculosCompleto.PantallaRegistroBuscador">
 
 <TextView
     android:id="@+id/xmlbtvRegistrar"

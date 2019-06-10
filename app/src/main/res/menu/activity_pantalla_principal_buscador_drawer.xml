@@ -8,6 +8,11 @@
             android:id="@+id/empleosfavoritos"
             android:icon="@drawable/iconfavorito"
             android:title="Empleos Favoritos" />
+
+        <item
+            android:id="@+id/empleosAplicadoBuscador"
+            android:icon="@drawable/ic_empleos_aplico"
+            android:title="Empleos Aplicado" />
         <item
             android:id="@+id/navegadorBuscador"
             android:icon="@drawable/iconnavegador"

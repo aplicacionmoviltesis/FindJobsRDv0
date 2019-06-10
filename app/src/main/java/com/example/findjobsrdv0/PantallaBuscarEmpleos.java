@@ -10,8 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Registro_del_Curriculo.Modelos_registro_Curriculos.Curriculos;
-import com.example.findjobsrdv0.Registro_del_Curriculo.cPantallaRegistrarCurriculo;
+import com.example.findjobsrdv0.GeneralesApp.MultipleSelectionSpinner;
+import com.example.findjobsrdv0.GeneralesApp.Provincias;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -163,7 +164,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
 
                     Curriculos curriculos = datasnapshot.getValue(Curriculos.class);
 
-                    String titulo = curriculos.getNombre();
+                    String titulo = curriculos.getsNombreC();
                     Log.d("adaptador",titulo);
 
                     listado.add(titulo);

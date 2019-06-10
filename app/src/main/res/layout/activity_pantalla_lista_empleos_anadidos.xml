@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".PantallaListaEmpleosAnadidos">
+    tools:context=".Clases_EmpleoCompleto.PantallaListaEmpleosAnadidos">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListaEmpleosAnadidosR"

@@ -2,6 +2,7 @@ package com.example.findjobsrdv0;
 
 import android.os.Bundle;
 
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleos;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

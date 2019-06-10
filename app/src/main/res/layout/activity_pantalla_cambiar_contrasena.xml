@@ -8,7 +8,7 @@
     android:gravity="center"
     android:layout_gravity="center"
     android:background="@mipmap/fondo1"
-    tools:context=".PantallaCambiarContrasena">
+    tools:context=".GeneralesApp.PantallaCambiarContrasena">
 
     <TextView
         android:id="@+id/xmltvCambiarContraseña"

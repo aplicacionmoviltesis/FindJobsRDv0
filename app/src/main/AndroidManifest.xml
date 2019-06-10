@@ -14,82 +14,83 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PantallaEmpleosAplicado"></activity>
-        <activity android:name=".PantallaReportarProblemas" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaEmpleosAplicado"></activity>
+        <activity android:name=".GeneralesApp.PantallaReportarProblemas" />
         <activity
-            android:name=".PantallaAcercadeApp"
+            android:name=".GeneralesApp.PantallaAcercadeApp"
             android:theme="@style/AppTheme.NoActionBarPrueba" />
-        <activity android:name=".PantallaTerminosyCondiciones" />
-        <activity android:name=".PantallaCambiarContrasena" />
-        <activity android:name=".PantallaConfiguracion" />
-        <activity android:name=".PerfilBuscador.PerfilBuscador" />
+        <activity android:name=".GeneralesApp.PantallaTerminosyCondiciones" />
+        <activity android:name=".GeneralesApp.PantallaCambiarContrasena" />
+        <activity android:name=".GeneralesApp.PantallaConfiguracion" />
+
+
+        <activity android:name=".Pantallas_CurriculosCompleto.PantallaPerfilBuscador"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".PantallaPersonasAplicaronEmpleo" />
-        <activity android:name=".PantallaPerfilEmpleador" />
-        <activity android:name=".PantallaPerfilBuscador" />
-        <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleOtrosCursos.DetalleOtrosEstudios" />
-        <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleExperienciaLaboral.DetalleExperienciaLaboral" />
-        <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleReferencias.DetalleReferencias" />
-        <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleFormacionAcademica.DetalleFormacionAcademica" />
-        <activity android:name=".VistaCurriculo_RecyclerView.VistaDetalleCurriculo.VistaDetalleCurriculo.DetalleCurriculo" />
-        <activity android:name=".VistaCurriculo_RecyclerView.Vista_Curriculo_Principal.Vista_Curriculo.VistaCurriculo" />
-        <activity android:name=".Registro_del_Curriculo.cPantallaReferenciasCurriculo" />
-        <activity android:name=".Registro_del_Curriculo.cPantallaOtrosCursos" />
-        <activity android:name=".Registro_del_Curriculo.cPantallaRegistrarCurriculo" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaPersonasAplicaronEmpleo" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador" />
+        <activity android:name=".Pantallas_CurriculosCompleto.DetalleOtrosEstudios" />
+        <activity android:name=".Pantallas_CurriculosCompleto.DetalleExperienciaLaboral" />
+        <activity android:name=".Pantallas_CurriculosCompleto.DetalleReferencias" />
+        <activity android:name=".Pantallas_CurriculosCompleto.DetalleFormacionAcademica" />
+        <activity android:name=".Pantallas_CurriculosCompleto.DetalleCurriculo" />
+        <activity android:name=".Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados" />
+        <activity android:name=".Pantallas_CurriculosCompleto.cPantallaReferenciasCurriculo" />
+        <activity android:name=".Pantallas_CurriculosCompleto.cPantallaOtrosCursos" />
+        <activity android:name=".Pantallas_CurriculosCompleto.cPantallaRegistrarCurriculo" />
         <activity
-            android:name=".PantallaActualizarEmpleo"
+            android:name=".Clases_EmpleoCompleto.PantallaActualizarEmpleo"
             android:label="@string/title_activity_pantalla_actualizar_empleo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PantallaDetallesArea" />
+        <activity android:name=".GeneralesApp.PantallaDetallesArea" />
         <activity
             android:name=".PantallaDetallesEmpleosAnadidos"
             android:label="@string/title_activity_pantalla_detalles_empleos_anadidos"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PantallaDetallesProvincia" />
-        <activity android:name=".PantallaListaEmpleosAnadidos" />
+        <activity android:name=".GeneralesApp.PantallaDetallesProvincia" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaListaEmpleosAnadidos" />
         <activity android:name=".PantallaBuscarEmpleos" />
-        <activity android:name=".PantallaListaEmpleosBuscados" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaListaEmpleosBuscados" />
         <activity
-            android:name=".PantallaDetallesEmpleo"
+            android:name=".Clases_EmpleoCompleto.PantallaDetallesEmpleo"
             android:label="@string/title_activity_pantalla_detalles_empleo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PantallaRegistrarEmpleos"
+            android:name=".Clases_EmpleoCompleto.PantallaRegistrarEmpleos"
             android:label="@string/title_activity_pantalla_registrar_empleos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Registro_del_Curriculo.cPantallaFormacionAcademicaCurriculo"
+            android:name=".Pantallas_CurriculosCompleto.cPantallaFormacionAcademicaCurriculo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Registro_del_Curriculo.cPantallaExperienciaLaboralCurriculo"
+            android:name=".Pantallas_CurriculosCompleto.cPantallaExperienciaLaboralCurriculo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".PantallaNavegador" />
-        <activity android:name=".PantallaRecuperarContrasena" />
+        <activity android:name=".GeneralesApp.PantallaNavegador" />
+        <activity android:name=".GeneralesApp.PantallaRecuperarContrasena" />
         <activity
-            android:name=".PantallaPrincipalEmpleador"
+            android:name=".Clases_EmpleoCompleto.PantallaPrincipalEmpleador"
             android:label="@string/title_activity_pantalla_principal_empleador"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PantallaLoginEmpleador"
+            android:name=".Clases_EmpleoCompleto.PantallaLoginEmpleador"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".PantallaPrincipalBuscador"
+            android:name=".Pantallas_CurriculosCompleto.PantallaPrincipalBuscador"
             android:label="@string/title_activity_pantalla_principal_buscador"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PantallaLoginBuscador"
+            android:name=".Pantallas_CurriculosCompleto.PantallaLoginBuscador"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".PantallaRegistroBuscador"
+            android:name=".Pantallas_CurriculosCompleto.PantallaRegistroBuscador"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".PantallaRegistroEmpleador"
+            android:name=".Clases_EmpleoCompleto.PantallaRegistroEmpleador"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".PantallaModoUsuario"
+            android:name=".GeneralesApp.PantallaModoUsuario"
             android:theme="@style/AppTheme.NoActionBarPrueba" />
         <activity
-            android:name=".PantallaCarga"
+            android:name=".GeneralesApp.PantallaCarga"
             android:theme="@style/AppTheme.NoActionBarPrueba">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

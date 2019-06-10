@@ -333,6 +333,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
                 android:text="Formacion Academica" />
 
             <Button
@@ -343,6 +344,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
                 android:text="Otros Estudios" />
 
             <Button
@@ -353,6 +355,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
                 android:text="Experiencia Laboral" />
 
             <Button
@@ -363,6 +366,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
                 android:text="Referencias" />
 
 
@@ -374,6 +378,8 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_bg"
+
                 android:text="Aplicar" />
 
             <TextView

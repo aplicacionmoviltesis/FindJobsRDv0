@@ -7,7 +7,7 @@
         android:background="@mipmap/fondo1"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".PantallaRegistroEmpleador">
+        tools:context=".Clases_EmpleoCompleto.PantallaRegistroEmpleador">
 
         <TextView
             android:id="@+id/XMLtvRegistrar"

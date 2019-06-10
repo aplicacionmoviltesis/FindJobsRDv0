@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/fondo2"
     android:orientation="vertical"
-    tools:context=".PantallaModoUsuario">
+    tools:context=".GeneralesApp.PantallaModoUsuario">
 
     <TextView
         android:id="@+id/tvRegistrar"

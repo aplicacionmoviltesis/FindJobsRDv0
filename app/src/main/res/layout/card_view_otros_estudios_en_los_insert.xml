@@ -27,7 +27,7 @@
                 android:id="@+id/textViewInstitucionOC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="nombre Institucion"
+                android:hint="sNombreC Institucion"
                 android:textColor="@color/md_blue_900"
                 android:gravity="center"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
