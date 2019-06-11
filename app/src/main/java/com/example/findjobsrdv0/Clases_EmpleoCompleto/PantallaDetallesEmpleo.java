@@ -1,6 +1,8 @@
 package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesArea;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesProvincia;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.cPantallaRegistrarCurriculo;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +36,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static android.app.PendingIntent.getActivity;
 
 public class PantallaDetallesEmpleo extends AppCompatActivity {
 
@@ -251,8 +256,8 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                 TvSalarioDE.setText(empleos.getsSalarioE());
                 TvAreaDE.setText(empleos.getsAreaE());
                 TvAnosExperienciaDE.setText(empleos.getsAnosExperienciaE());
-                TvFormacionAcademicaDE.setText(empleos.getsFormacionAcademica());
-                TvIdiomasDE.setText(empleos.getsMostrarIdioma());
+                TvFormacionAcademicaDE.setText(empleos.getsFormacionAcademicaE());
+                TvIdiomasDE.setText(empleos.getsMostrarIdiomaE());
                 TvSexoRequeridoDE.setText(empleos.getsSexoRequeridoE());
                 TvRangoEdadDE.setText(empleos.getsRangoE());
                 TvNotaDE.setText(empleos.getsOtrosDatosE());
@@ -410,14 +415,51 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
         sFechadeAplicacion = simpleDateFormat.format(new Date());
+        Log.d("klkcurri",String.valueOf(sIdCurriculoAplico));
 
-        String sIdAplicarEmpleo = AplicarEmpleoDataBase.push().getKey();
+        if(sIdCurriculoAplico!= null){
 
-        AplicarEmpleo aplicarEmpleo = new AplicarEmpleo(sIdAplicarEmpleo,sIdCurriculoAplico,sIdEmpleoAplico,sIdPersonaAplico,sFechadeAplicacion);
-        AplicarEmpleoDataBase.child(sIdAplicarEmpleo).setValue(aplicarEmpleo);
+            if(!sIdCurriculoAplico.isEmpty()){
 
-        Toast.makeText(this, "Su Aplicacion se realizo exitosamente", Toast.LENGTH_LONG).show();
+                String sIdAplicarEmpleo = AplicarEmpleoDataBase.push().getKey();
+
+                AplicarEmpleo aplicarEmpleo = new AplicarEmpleo(sIdAplicarEmpleo,sIdCurriculoAplico,sIdEmpleoAplico,sIdPersonaAplico,sFechadeAplicacion);
+                AplicarEmpleoDataBase.child(sIdAplicarEmpleo).setValue(aplicarEmpleo);
+
+                Toast.makeText(this, "Su Aplicacion se realizo exitosamente", Toast.LENGTH_LONG).show();
+            }
+
+        }else {
+            Toast.makeText(this, "Usted Aun No tiene Ningun Empleo Registrado", Toast.LENGTH_LONG).show();
+            BtnAplicarEmpleoDE.setEnabled(false);
+
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(PantallaDetallesEmpleo.this);
+            builder1.setMessage("Desea Registrar su Curriculo?");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent (PantallaDetallesEmpleo.this, cPantallaRegistrarCurriculo.class);
+                            startActivityForResult(intent, 0);                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
+        }
+
+
 
 
     }
-}
+

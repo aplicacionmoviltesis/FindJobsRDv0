@@ -69,6 +69,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
     RadioButton RdbDisponibleAE,RdbNoDisponibleAE;
 
     String sEdadMaximaAE,sEdadMinimaAE;
+    int sEdadMaxAE,sEdadMinAE;
+
 
 
     ImageView ImageViewAE;
@@ -718,8 +720,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 editSalarioAE.setText(empleos.getsSalarioE());
                 spinAreaAE.setSelection(obtenerPosicionItem(spinAreaAE, empleos.getsAreaE()));
                 spinAnoExpAE.setSelection(obtenerPosicionItem(spinAnoExpAE, empleos.getsAnosExperienciaE()));
-                spinFormacionAcademicaAE.setSelection(obtenerPosicionItem(spinFormacionAcademicaAE, empleos.getsFormacionAcademica()));
-                tvMostrarIdiomasAE.setText(empleos.getsMostrarIdioma());
+                spinFormacionAcademicaAE.setSelection(obtenerPosicionItem(spinFormacionAcademicaAE, empleos.getsFormacionAcademicaE()));
+                tvMostrarIdiomasAE.setText(empleos.getsMostrarIdiomaE());
                 spinSexoAE.setSelection(obtenerPosicionItem(spinSexoAE, empleos.getsRangoE()));
                 //spinRangoEdadAE.setSelection(obtenerPosicionItem(spinRangoEdadAE, empleos.getsRangoE()));
                 editOtrosDatosAE.setText(empleos.getsOtrosDatosE());
@@ -758,6 +760,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
                 String currentDateandTime = simpleDateFormat.format(new Date());
                 tvFechaPublicacionAE.setText("Ultima Actualizacion: " + currentDateandTime);
+                sFechaPublicacionAE = currentDateandTime;
             }
 
             public int obtenerPosicionItem(Spinner spinner, String fruta) {
@@ -799,7 +802,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         sOtrosDatosAE = editOtrosDatosAE.getText().toString().trim();
 
         //sHorarioAE = tvHorarioAE.getText().toString().trim();
-        sFechaPublicacionAE = tvFechaPublicacionAE.getText().toString().trim();
+        //sFechaPublicacionAE = tvFechaPublicacionAE.getText().toString().trim();
         sMostrarIdiomaAE = tvMostrarIdiomasAE.getText().toString().trim();
 
         sEdadMaximaAE = editEdadMaximaAE.getText().toString().trim();
@@ -852,8 +855,65 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             editEmailAE.setError("Campo vacío, por favor escriba el nombre del empleo");
             return;
         }
+        if (TextUtils.isEmpty(sProvinciaAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sHorarioAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione un Horario", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sJornadaAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione una Jornada", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sTipoContratoAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione un Tipo de Contrato", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sCantidadVacantesAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione la Cantidad Vacantes disponibles", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sAnoExpAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione los Años de Experiencia requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sAreaAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione el Area de Trabajo", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        sRangoEdadAE = editEdadMinimaAE +"-"+editEdadMaximaAE;
+        if (TextUtils.isEmpty(sFormacionAcademicaAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione el Nivel Academico Requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sMostrarIdiomaAE)) {
+            Toast.makeText(this, "Campo vacío, por favor seleccione el o los Idioma Requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(sSexoRequeridoAE)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione el Sexo Requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+        sEdadMaxAE = Integer.parseInt(editEdadMaximaAE.getText().toString().trim());
+        sEdadMinAE = Integer.parseInt(editEdadMinimaAE.getText().toString().trim());
+
+        if(sEdadMinAE<18){
+            Toast.makeText(this, "La ley establece que las personas menores de 18 Años de edad, no pueden Aplicar a un Empleo, si autorizacion de sus padres, con un contrato especial.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(sEdadMinAE>sEdadMaxAE){
+            Toast.makeText(this, "La edad Minima, no puede ser mayor que la edad Maxima", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        sRangoEdadAE = sEdadMinAE +"-"+sEdadMaxAE;
+        Log.d("ValorMax",String.valueOf(sEdadMaxAE));
+        Log.d("ValorMin",String.valueOf(sEdadMinAE));
+        Log.d("Valortotal",String.valueOf(sRangoEdadAE));
+
 
 //        FirebaseUser user = mAuthEmpleador.getCurrentUser();
         //String Ukey = user.getUid();

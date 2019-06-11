@@ -608,7 +608,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
 
         String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
-                sHorarioE,sFechaPublicacionE, sMostrarIdioma,sAreaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
+                sHorarioE,sFechaPublicacionE, sMostrarIdiomaE,sAreaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
                 sTipoContratoE,sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE, sIdEmpleadorE;
 
         int espacio= ListBusqueda.size();
@@ -637,7 +637,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                         sHorarioE = "";
                         sTipoContratoE = "";
                         sHorarioE = "";
-                        sMostrarIdioma = "";
+                        sMostrarIdiomaE = "";
                         sSexoRequeridoE = "";
                         sRangoE = "";
                         sPersonasAplicaronE = "";
@@ -647,7 +647,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
 
 
                         ListBusqueda.add(new Empleos(sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
-                                sHorarioE,sFechaPublicacionE, sMostrarIdioma,sAreaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
+                                sHorarioE,sFechaPublicacionE, sMostrarIdiomaE,sAreaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
                                 sTipoContratoE,sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE, sIdEmpleadorE));
                         firebaseRecyclerAdapter.notifyDataSetChanged();
 

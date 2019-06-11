@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,7 @@ public class AdapterCurriculo extends RecyclerView.Adapter{
         public void onBind(int position){
 
             String ImagenCurriculo = mDatasetCurriculo.get(position).getsImagenC();
-            String NombreCurriculo = mDatasetCurriculo.get(position).getsApellidoC();
+            String NombreCurriculo = mDatasetCurriculo.get(position).getsNombreC();
             String CedulaCurriculo = mDatasetCurriculo.get(position).getsCedulaC();
             String DireccionCurriculo = mDatasetCurriculo.get(position).getsDireccionC();
             String EstadoActualCurriculo = mDatasetCurriculo.get(position).getsEstadoActualC();
@@ -91,6 +92,8 @@ public class AdapterCurriculo extends RecyclerView.Adapter{
             txtEstadoActual.setText(EstadoActualCurriculo);
             txtGradoMayor.setText(GradoMayorCurriculo);
             txtProvincia.setText(ProvinciaCurriculo);
+            Log.d("FOTO::::", ImagenCurriculo);
+
             Picasso.get().load(ImagenCurriculo).into(imagen);
 
         }

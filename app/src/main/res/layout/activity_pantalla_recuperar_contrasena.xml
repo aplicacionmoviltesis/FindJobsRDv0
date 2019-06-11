@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@mipmap/fondoblue"
+    android:background="@mipmap/fondo1"
     android:orientation="vertical"
     tools:context=".GeneralesApp.PantallaRecuperarContrasena">
 
@@ -15,7 +15,7 @@
         android:layout_height="170dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
@@ -32,7 +32,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-black"
         android:text="Recuperar Contraseña"
-        android:textColor="#2196F3"
+        android:textColor="@color/md_white_1000"
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -54,7 +54,8 @@
             android:fontFamily="sans-serif-light"
             android:text="Correo Electronico"
             android:textAllCaps="true"
-            android:textColor="#757575"
+            android:padding="3dp"
+            android:textColor="@color/md_white_1000"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -70,11 +71,11 @@
         android:layout_marginEnd="8dp"
         android:padding="10dp"
         android:background="@drawable/et_bg"
-        android:drawableLeft="@drawable/email_black"
+        android:drawableLeft="@drawable/email_white"
         android:drawablePadding="10dp"
         android:hint="Correo Electronico"
-        android:textColor="#757575"
-        android:textColorHint="#757575"
+        android:textColor="@color/md_white_1000"
+        android:textColorHint="@color/md_blue_grey_400"
         android:textStyle="bold" />
 
     <TextView
@@ -86,7 +87,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="Recibiras un correo con la informacion correspondiente a su cuenta."
-        android:textColor="#757575"
+        android:textColor="@color/md_white_1000"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -98,10 +99,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/btn_bg"
         android:baselineAligned="false"
         android:text="Enviar Correo"
-        android:textColor="#212121" />
+        android:background="@color/transparent"
+        android:textStyle="bold"
+        android:textColor="@color/md_white_1000" />
 
 
 </android.widget.LinearLayout>

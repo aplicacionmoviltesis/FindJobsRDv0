@@ -10,12 +10,12 @@ public class Empleos {
 
 
     String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
-            sHorarioE,sFechaPublicacionE, sMostrarIdioma,sAreaE,sFormacionAcademica, sAnosExperienciaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
+            sHorarioE,sFechaPublicacionE, sMostrarIdiomaE,sAreaE, sFormacionAcademicaE, sAnosExperienciaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
             sTipoContratoE,sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE, sIdEmpleadorE;
 
     public Empleos(String sIDEmpleo, String sNombreEmpleoE, String sNombreEmpresaE, String sDireccionE, String sProvinciaE,
                    String sTelefonoE, String sPaginaWebE, String sEmailE, String sSalarioE, String sOtrosDatosE,
-                   String sHorarioE, String sFechaPublicacionE, String sMostrarIdioma, String sAreaE, String sAnosExperienciaE, String sFormacionAcademica,
+                   String sHorarioE, String sFechaPublicacionE, String sMostrarIdiomaE, String sAreaE, String sAnosExperienciaE, String sFormacionAcademicaE,
                    String sSexoRequeridoE, String sRangoE, String sJornadaE, String sCantidadVacantesE,
                    String sTipoContratoE, String sEstadoEmpleoE, String sPersonasAplicaronE, String sImagenEmpleoE, String sIdEmpleadorE) {
 
@@ -31,9 +31,9 @@ public class Empleos {
         this.sOtrosDatosE = sOtrosDatosE;
         this.sHorarioE = sHorarioE;
         this.sFechaPublicacionE = sFechaPublicacionE;
-        this.sMostrarIdioma = sMostrarIdioma;
+        this.sMostrarIdiomaE = sMostrarIdiomaE;
         this.sAreaE = sAreaE;
-        this.sFormacionAcademica = sFormacionAcademica;
+        this.sFormacionAcademicaE = sFormacionAcademicaE;
         this.sAnosExperienciaE = sAnosExperienciaE;
         this.sSexoRequeridoE = sSexoRequeridoE;
         this.sRangoE = sRangoE;
@@ -98,8 +98,8 @@ public class Empleos {
         return sFechaPublicacionE;
     }
 
-    public String getsMostrarIdioma() {
-        return sMostrarIdioma;
+    public String getsMostrarIdiomaE() {
+        return sMostrarIdiomaE;
     }
 
     public String getsAreaE() {
@@ -138,8 +138,8 @@ public class Empleos {
 }
 
 
-    public String getsFormacionAcademica() {
-        return sFormacionAcademica;
+    public String getsFormacionAcademicaE() {
+        return sFormacionAcademicaE;
     }
     public String getsAnosExperienciaE() {
         return sAnosExperienciaE;
@@ -161,7 +161,7 @@ public class Empleos {
         ListEmpleoss.put("sSalarioE",sSalarioE);
         ListEmpleoss.put("sOtrosDatosE",sOtrosDatosE);
         ListEmpleoss.put("sHorarioE",sHorarioE);
-        ListEmpleoss.put("sMostrarIdioma",sMostrarIdioma);
+        ListEmpleoss.put("sMostrarIdiomaE", sMostrarIdiomaE);
         ListEmpleoss.put("EXPERIENCIA",sAreaE);//-------------------------------------resolver, antes de
         ListEmpleoss.put("ESTADO",sSexoRequeridoE);//-------------------------------------resolver, antes de
         ListEmpleoss.put("DIRECCION",sRangoE);//-------------------------------------resolver, antes de

@@ -1,10 +1,12 @@
 package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +54,11 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_personas_aplicaron_empleo);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         database = FirebaseDatabase.getInstance();
         vistaCurriculo = database.getReference();
@@ -73,9 +80,11 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                 TraerAplicaciones(sEmpleoIdPersonasAplicaron);
             }
         }
+    }
 
-        //TraerAplicaciones(this.klkempleo);
-
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 
     public void TraerAplicaciones(String sEmpleoIdE) {
@@ -108,30 +117,30 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
             public void onDataChange(final DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
-                    NombreCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    ApellidoCurriculoPAE = datasnapshot.child("apellido").getValue(String.class);
-                    CedulaCurriculoPAE = datasnapshot.child("estadoCivil").getValue(String.class);
-                    EmailCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    TelefonoCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    CedulaCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    ProvinciaCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    EstadoCivilCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    DireccionCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    OcupacionCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    IdiomaCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    GradomayorCurriculoPAE = datasnapshot.child("gradomayor").getValue(String.class);
-                    EstadoactualCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    SexoCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    HabilidadesCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    FechaCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
 
-                    IdCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    IdBuscadorCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
-                    ImagenCurriculoPAE = datasnapshot.child("nombre").getValue(String.class);
+                    Curriculos DatosCurriculo = datasnapshot.getValue(Curriculos.class);
+
+                    ApellidoCurriculoPAE = DatosCurriculo.getsApellidoC();
+                    NombreCurriculoPAE = DatosCurriculo.getsNombreC();
+                    CedulaCurriculoPAE = DatosCurriculo.getsCedulaC();
+                    EmailCurriculoPAE = DatosCurriculo.getsEmailC();
+                    TelefonoCurriculoPAE = DatosCurriculo.getsTelefonoC();
+                    ProvinciaCurriculoPAE = DatosCurriculo.getsProvinciaC();
+                    EstadoCivilCurriculoPAE = DatosCurriculo.getsEstadoCivilC();
+                    DireccionCurriculoPAE = DatosCurriculo.getsDireccionC();
+                    OcupacionCurriculoPAE = DatosCurriculo.getsOcupacionC();
+                    IdiomaCurriculoPAE = DatosCurriculo.getsIdiomaC();
+                    GradomayorCurriculoPAE = DatosCurriculo.getsGradoMayorC();
+                    EstadoactualCurriculoPAE = DatosCurriculo.getsEstadoActualC();
+                    SexoCurriculoPAE = DatosCurriculo.getsSexoC();
+                    HabilidadesCurriculoPAE = DatosCurriculo.getsHabilidadesC();
+                    FechaCurriculoPAE = DatosCurriculo.getsFechaC();
+                    IdCurriculoPAE = DatosCurriculo.getsIdCurriculo();
+                    IdBuscadorCurriculoPAE = DatosCurriculo.getsIdBuscadorEmpleo();
+                    ImagenCurriculoPAE = DatosCurriculo.getsImagenC();
 
 
-                    Log.d("DATOS::::", datasnapshot.child("sCedulaC").getValue(String.class));
-                    final Curriculos cv = new Curriculos(IdCurriculoPAE,IdBuscadorCurriculoPAE,"imgen",NombreCurriculoPAE, ApellidoCurriculoPAE, CedulaCurriculoPAE,
+                    final Curriculos cv = new Curriculos(IdCurriculoPAE,IdBuscadorCurriculoPAE,ImagenCurriculoPAE,NombreCurriculoPAE, ApellidoCurriculoPAE, CedulaCurriculoPAE,
                             EmailCurriculoPAE, TelefonoCurriculoPAE, CelularCurriculoPAE,
                             ProvinciaCurriculoPAE, EstadoCivilCurriculoPAE, DireccionCurriculoPAE,
                             OcupacionCurriculoPAE, IdiomaCurriculoPAE, GradomayorCurriculoPAE,

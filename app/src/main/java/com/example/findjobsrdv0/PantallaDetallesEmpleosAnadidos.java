@@ -160,8 +160,8 @@ public class PantallaDetallesEmpleosAnadidos extends AppCompatActivity {
                 TvSalarioDEB.setText(empleos.getsSalarioE());
                 TvAreaDEB.setText(empleos.getsAreaE());
                 TvAnosExperienciaDEB.setText(empleos.getsAreaE());
-                TvFormacionAcademicaDEB.setText(empleos.getsFormacionAcademica());
-                TvIdiomasDEB.setText(empleos.getsMostrarIdioma());
+                TvFormacionAcademicaDEB.setText(empleos.getsFormacionAcademicaE());
+                TvIdiomasDEB.setText(empleos.getsMostrarIdiomaE());
                 TvSexoRequeridoDEB.setText(empleos.getsSexoRequeridoE());
                 TvRangoEdadDEB.setText(empleos.getsRangoE());
                 TvNotaDEB.setText(empleos.getsOtrosDatosE());

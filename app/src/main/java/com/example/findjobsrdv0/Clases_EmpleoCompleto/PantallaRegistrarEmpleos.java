@@ -752,7 +752,7 @@ public void limpiarCampor(){
         }
 
 
-        sRangoEdadE = editEdadMinimaE +"-"+editEdadMaximaE;
+        sRangoEdadE = sEdadMinimaE +"-"+sEdadMaximaE;
 
         FirebaseUser user = mAuthEmpleador.getCurrentUser();
         //String Ukey = user.getUid();
