@@ -1,4 +1,5 @@
-package com.example.findjobsrdv0.Clases_EmpleoCompleto;
+package com.example.findjobsrdv0;
+
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -7,11 +8,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.AplicarEmpleo;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesArea;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesProvincia;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.cPantallaRegistrarCurriculo;
-import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +31,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,7 +43,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PantallaDetallesEmpleo extends AppCompatActivity { //implements CompoundButton.OnCheckedChangeListener {
+import static android.app.PendingIntent.getActivity;
+
+public class PantallaDetallesEmpleoPrueba extends AppCompatActivity { //implements CompoundButton.OnCheckedChangeListener {
 
     TextView Notificacion;
     ProgressDialog progressDialog;
@@ -83,12 +88,42 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 //---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
     FirebaseDatabase prueba;
+    DatabaseReference DbLikesFavorito;
+    String sEmpleoIdFavoritos;
+
+    CheckBox checkBoxFav;
+
+    String userActivo;
+
+    //----------- para los favoritos  -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//    private DatabaseReference favoritos;
+//    ImageButton mImageButton;
+//    private boolean mProcessLike = false;
+
+    //    DatabaseReference mDatabaseLike;
+//    FirebaseAuth mFirebaseAuth;
     ToggleButton btnfavorito;
 
-//----------- para los favoritos  -------------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
+    private ImageView mcolorRed;
+    private ImageView mcolorWhile;
 
+    private GestureDetector mgesturedetector;
 
+    private HeartFavorito mHeartFavorito;*/
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    List<Category> categoryList;
+    RecyclerView recyclerView;
+    WallpapersAdapter adapter;
+
+    DatabaseReference dbWallpapers;
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -96,24 +131,115 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
         Toolbar toolbar = (Toolbar) findViewById( R.id.toolbarDetalle );
         setSupportActionBar( toolbar );
 
+//        favoritos = FirebaseDatabase.getInstance().getReference().child( "EmpleosConFavoritos" );
+//        favoritos.keepSynced( true );
+
+
+//        mDatabaseLike = FirebaseDatabase.getInstance().getReference().child( "EmpleosConFavoritos" );
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+//
+//        mDatabaseLike.keepSynced( true );
+
+        // mImageButton = (ImageButton) findViewById( R.id.ImageButtomfav );
+
+//        mImageButton.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //marcarFavorito();
+//            }
+//        } );
+
+        /*checkBoxFav.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(checkBoxFav.isChecked()){
+                    Log.d("activo", String.valueOf( b ) );
+                }
+                else {
+                    Log.d("inactivo", String.valueOf( b ) );
+
+                }
+            }
+        } );*/
+
+//        checkBoxFav.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                // update your model (or other business logic) based on isChecked
+//            }
+//        } );
+
+
 //----------- para los favoritos  -------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         prueba = FirebaseDatabase.getInstance();
         DbLikes = prueba.getReference();
         DbLikes.keepSynced( true );
+
+        //  checkBoxFav = (CheckBox) findViewById( R.id.checkboxFavoritoEmpleoklk );
+        //this.checkBoxFav.setSelected(true);
+        //checkBoxFav.setSelected( true );
 
         btnfavorito = (ToggleButton) findViewById( R.id.empleosfavoritos );
         btnfavorito.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 Log.d( "estado", String.valueOf( b ) );
+                //boolean x = b;
+                //b= !b;
+                //  Log.d("estado2", String.valueOf( b ) );
 
                 if (b) {
+//                    if (b != true) {
                     marcarFavorito();
+//
+//                    }
+                    /*final Query q = DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
+                            .child( sIdPersonaAplico )//referencia usuario
+                            .child( "likes" )//referencia likes
+                            .orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+                    Log.d( "fav", String.valueOf( sEmpleoIdE ) );
+                    Log.d( "fav", String.valueOf( sIdPersonaAplico ) );
+
+                    q.addListenerForSingleValueEvent( new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Log.d( "fav", String.valueOf( dataSnapshot ) );
+                            for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+
+                                if (FavdataSnapshot != null) {
+//                                    mImageButton.setImageResource( R.mipmap.likerojo );
+//                                    checkBoxFav.setChecked( true );
+//                                    btnfavorito.setChecked( true );
+                                    marcarFavorito();
+
+
+                                } else {
+//                                    mImageButton.setImageResource( R.mipmap.likegris );
+//                                    checkBoxFav.setChecked( false );
+//                                    btnfavorito.setChecked( false );
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    } );*/
+
                     Log.d( "estado activo", String.valueOf( b ) );
+
+                    //lanzaM( "ON" );
+                    //cambiarColorTB( android.R.color.holo_red_dark, android.R.color.holo_red_dark );
                 } else {
-                    final Query prueba = DbLikes.child( "BuscadoresEmpleos" ).child( sIdPersonaAplico )
-                            .child( "likes" ).orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+
+                    final Query prueba = DbLikes.child("BuscadoresEmpleos").child(userActivo)
+                            .child("likes").orderByChild("IdEmpleoLike").equalTo(sEmpleoIdE);
 
                     prueba.addListenerForSingleValueEvent( new ValueEventListener() {
                         @Override
@@ -126,17 +252,91 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            Toast.makeText( PantallaDetallesEmpleo.this, "no funciono", Toast.LENGTH_SHORT ).show();
+                            Toast.makeText( PantallaDetallesEmpleoPrueba.this, "no funciono", Toast.LENGTH_SHORT ).show();
                         }
                     } );
 
+
                     Log.d( "estado inactivo", String.valueOf( b ) );
 
+                    //lanzaM( "OFF" );
+                    //cambiarColorTB( android.R.color.holo_red_dark, android.R.color.black );
                 }
+
             }
         } );
 
+
 //----------- para los favoritos  -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+/*
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+      //  categoryList = new ArrayList<>(  );
+        recyclerView = findViewById( R.id.recyclerViewfavorito );
+        recyclerView.setHasFixedSize( true );
+        recyclerView.setLayoutManager( new LinearLayoutManager( this ) );
+        adapter = new WallpapersAdapter(this, categoryList );
+
+        recyclerView.setAdapter( adapter );
+
+        categoryList = new ArrayList<>(  );
+        dbWallpapers = FirebaseDatabase.getInstance().getReference("imagenfav").child( "ImagenFavorito" );
+
+        dbWallpapers.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot wallpaperSnapshot: dataSnapshot.getChildren()){
+//                       Category w = wallpaperSnapshot.getValue(Category.class);
+//                        categoryList.add( w );
+
+                        String imagen =  wallpaperSnapshot.child( "imagen" ).getValue(String.class);
+                        String nombre = wallpaperSnapshot.child( "nombre" ).getValue(String.class);
+
+                        Category c = new Category(imagen,nombre);
+                        categoryList.add( c );
+
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+/*
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        checkBoxFav = (CheckBox)findViewById( R.id.checkboxFavoritoEmpleo );
+        checkBoxFav.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        } );
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*/
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
+        mcolorRed = (ImageView)findViewById( R.id.imagen_roja );
+        mcolorWhile = (ImageView)findViewById( R.id.imagen_blanca );
+
+        mcolorRed.setVisibility( View.GONE );
+        mcolorRed.setVisibility( View.VISIBLE );
+        mHeartFavorito = new HeartFavorito( mcolorWhile, mcolorRed );
+        mgesturedetector = new GestureDetector( this , new GestureListener() );
+
+*/
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         TvOtrosDatosDE = (TextView) findViewById( R.id.xmlTiDatosEspecificosDE );
@@ -276,7 +476,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText( PantallaDetallesEmpleo.this, "Usted No tiene empleo registrados", Toast.LENGTH_LONG ).show();
+                Toast.makeText( PantallaDetallesEmpleoPrueba.this, "Usted No tiene empleo registrados", Toast.LENGTH_LONG ).show();
 
 
             }
@@ -449,7 +649,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
                 Log.d( "holapkkk", String.valueOf( sVerificarEmpleador ) );
 
                 if (sVerificarEmpleador == null) {
-                    Toast.makeText( PantallaDetallesEmpleo.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG ).show();
+                    Toast.makeText( PantallaDetallesEmpleoPrueba.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG ).show();
 
                 } else {
 
@@ -470,7 +670,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( PantallaDetallesEmpleo.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG ).show();
+                Toast.makeText( PantallaDetallesEmpleoPrueba.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG ).show();
 
             }
         } );
@@ -479,7 +679,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
     public void goPaginaWeb() {
 
-        Intent intent = new Intent( PantallaDetallesEmpleo.this, PantallaNavegador.class );
+        Intent intent = new Intent( PantallaDetallesEmpleoPrueba.this, PantallaNavegador.class );
         intent.putExtra( "sPaginaWebDE", TvPaginaWebDE.getText().toString().trim() );
 
         String hola = TvPaginaWebDE.getText().toString().trim();
@@ -490,7 +690,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
     public void goDetalleProvincia() {
 
-        Intent intent = new Intent( PantallaDetallesEmpleo.this, PantallaDetallesProvincia.class );
+        Intent intent = new Intent( PantallaDetallesEmpleoPrueba.this, PantallaDetallesProvincia.class );
         intent.putExtra( "sProvinciaDE", TvProvinciaDE.getText().toString().trim() );
 
         String hola = TvProvinciaDE.getText().toString().trim();
@@ -501,7 +701,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
     public void goDetalleArea() {
 
-        Intent intent = new Intent( PantallaDetallesEmpleo.this, PantallaDetallesArea.class );
+        Intent intent = new Intent( PantallaDetallesEmpleoPrueba.this, PantallaDetallesArea.class );
         intent.putExtra( "sAreaDE", TvAreaDE.getText().toString().trim() );
 
         String hola = TvAreaDE.getText().toString().trim();
@@ -591,7 +791,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
             Toast.makeText( this, "Usted Aun No tiene Ningun Empleo Registrado", Toast.LENGTH_LONG ).show();
             BtnAplicarEmpleoDE.setEnabled( false );
 
-            AlertDialog.Builder builder1 = new AlertDialog.Builder( PantallaDetallesEmpleo.this );
+            AlertDialog.Builder builder1 = new AlertDialog.Builder( PantallaDetallesEmpleoPrueba.this );
             builder1.setMessage( "Desea Registrar su Curriculo?" );
             builder1.setCancelable( true );
 
@@ -599,7 +799,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
                     "Yes",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent( PantallaDetallesEmpleo.this, cPantallaRegistrarCurriculo.class );
+                            Intent intent = new Intent( PantallaDetallesEmpleoPrueba.this, cPantallaRegistrarCurriculo.class );
                             startActivityForResult( intent, 0 );
                         }
                     } );
@@ -622,8 +822,8 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
                 .child( sIdPersonaAplico )//referencia usuario
                 .child( "likes" )//referencia likes
                 .orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
-//        Log.d( "fav", String.valueOf( sEmpleoIdE ) );
-//        Log.d( "fav", String.valueOf( sIdPersonaAplico ) );
+        Log.d( "fav", String.valueOf( sEmpleoIdE ) );
+        Log.d( "fav", String.valueOf( sIdPersonaAplico ) );
 
         q.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
@@ -632,10 +832,14 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
                 for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
 
                     if (FavdataSnapshot != null) {
+                        // mImageButton.setImageResource( R.mipmap.likerojo );
+                        // checkBoxFav.setChecked( true );
                         btnfavorito.setChecked( true );
 
 
                     } else {
+                        // mImageButton.setImageResource( R.mipmap.likegris );
+                        // checkBoxFav.setChecked( false );
                         btnfavorito.setChecked( false );
 
                     }
@@ -647,16 +851,263 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
             }
         } );
+
+
     }
 
     private void marcarFavorito() {
         String newLikeID = DbLikes.push().getKey();
 
         DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
-                .child( sIdPersonaAplico )//referencia usuario
+                .child( userActivo )//referencia usuario
                 .child( "likes" )//referencia likes
                 .child( newLikeID )
                 .child( "IdEmpleoLike" )
                 .setValue( sEmpleoIdE );
+        //  mImageButton.setImageResource( R.mipmap.likerojo );
+        // checkBoxFav.setChecked( true );
+
+
+    }
+
+    public void onClick(View view) {
     }
 }
+
+//    private void marcarFavorito() {
+//
+//        mProcessLike = true;
+//        String newLikeID = DbLikes.push().getKey();
+//
+//        if (mProcessLike) {
+//            DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
+//                    .child( userActivo )//referencia usuario
+//                    .child( "likes" )//referencia likes
+//                     .child( newLikeID )
+//                    .child( "IdEmpleoLike" )
+//                    .setValue( sEmpleoIdE );
+//        }else {
+//
+//            final Query prueba = DbLikes.child( "BuscadoresEmpleos" ).child( userActivo )
+//                    .child( "likes" ).orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+//
+//            prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+//                        pruebadataSnapshot.getRef().removeValue();
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    Toast.makeText( PantallaDetallesEmpleoPrueba.this, "no funciono", Toast.LENGTH_SHORT ).show();
+//                }
+//            } );
+//        }
+
+// String newLikeID = DbLikes.push().getKey();
+
+//        mDatabaseLike.addListenerForSingleValueEvent( new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (mProcessLike){
+//                    if (dataSnapshot.child( userActivo  ).hasChild( "UsuarioQueMarcx" )){
+//
+//                        mDatabaseLike.child( userActivo ).child(  "UsuarioQueMarcx").removeValue();
+//                        mImageButton.setImageResource( R.mipmap.likegris );
+//
+//                        mProcessLike = false;
+//
+//                  }else {
+////
+////                        Query prueba2 = mDatabaseLike.child( sEmpleoIdE ).orderByChild( "UsuarioQueMarcx" ).equalTo(  userActivo );
+////
+////                        prueba2.addListenerForSingleValueEvent( new ValueEventListener() {
+////                            @Override
+////                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+////                                for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+////
+////                                    if (pruebadataSnapshot != null){
+////                                        mImageButton.setImageResource( R.mipmap.likerojo );
+////
+////                                    }
+////
+////                                }
+////
+////                            }
+////
+////                            @Override
+////                            public void onCancelled(@NonNull DatabaseError databaseError) {
+////
+////                            }
+////                        } );
+//
+//
+//                        favoritos.child( userActivo ).child( "UsuarioQueMarcx" ).setValue(sEmpleoIdE   );
+//                        mImageButton.setImageResource( R.mipmap.likerojo );
+//
+//                        mProcessLike = false;
+//
+//                    }
+//                }
+//
+//}
+
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        } );
+//
+//    }
+//
+//    public void mantenercolor(){
+//
+//        favoritos.addListenerForSingleValueEvent( new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.child( sEmpleoIdE ).hasChild( userActivo )){
+//
+//                    mImageButton.setImageResource( R.mipmap.likerojo );
+//                }else {
+//                    mImageButton.setImageResource( R.mipmap.likegris );
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        } );
+//
+//    }
+///
+    /*
+                String newLikeID = DbLikes.push().getKey();
+        DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
+                .child( userActivo )//referencia usuario
+                .child( "likes" )//referencia likes
+                .child( newLikeID )
+                .child( "IdEmpleoLike" )
+                .setValue( sEmpleoIdE );
+
+        mProcessLike = false;
+
+
+
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        final Query prueba = DbLikes.child( "BuscadoresEmpleos" ).child( userActivo )
+                .child( "likes" ).orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+
+        prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+                    pruebadataSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText( PantallaDetallesEmpleoPrueba.this, "no funciono", Toast.LENGTH_SHORT ).show();
+            }
+        } );
+
+        mProcessLike = false;
+
+    }
+/*
+
+
+/*
+    public void onClick(View view) {
+
+        // mantenerRojo ();
+
+
+        String newLikeID = DbLikes.push().getKey();
+
+
+        if (view.getId() == R.id.checkboxFavoritoEmpleo) {
+            if (checkBoxFav.isChecked()) {
+
+                DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
+                        .child( userActivo )//referencia usuario
+                        .child( "likes" )//referencia likes
+                        .child( newLikeID )
+                        .child( "IdEmpleoLike" )
+                        .setValue( sEmpleoIdE );
+            } else {
+                final Query prueba = DbLikes.child( "BuscadoresEmpleos" ).child( userActivo )
+                        .child( "likes" ).orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+
+                prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+                            pruebadataSnapshot.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        Toast.makeText( PantallaDetallesEmpleoPrueba.this, "no funciono", Toast.LENGTH_SHORT ).show();
+                    }
+                } );
+
+            }
+
+        }
+    }
+*/
+/*
+    public void mantenerRojo() {
+//        String newLikeID = DbLikes.push().getKey();
+//        Query manterRojo = DbLikes.child( "BuscadoresEmpleos" ).child( userActivo ).child("likes").child( newLikeID ).child("IdEmpleoLike");
+
+        Query prueba2 = DbLikes.child( "BuscadoresEmpleos" ).child( userActivo )
+                .child( "likes" ).orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+
+        prueba2.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+                    //pruebadataSnapshot.getRef().removeValue();
+                    if (pruebadataSnapshot != null) {
+
+                        Log.d( "favotito", String.valueOf( pruebadataSnapshot ) );
+                        //checkBoxFav.isChecked(this);
+
+                        Toast.makeText( PantallaDetallesEmpleoPrueba.this, "estaba dada el like", Toast.LENGTH_SHORT ).show();
+                    }
+                    if (String.valueOf( pruebadataSnapshot ) == "") {
+                        Log.d( "favotito no dado", String.valueOf( pruebadataSnapshot ) );
+
+                    }
+                    if (pruebadataSnapshot.getValue() == "") {
+                        Log.d( "favotito dont dado", String.valueOf( pruebadataSnapshot ) );
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                // Toast.makeText( PantallaDetallesEmpleoPrueba.this, "no funciono", Toast.LENGTH_SHORT ).show();
+            }
+        } );
+
+    }*/
+
+

@@ -8,10 +8,50 @@
     tools:context=".Clases_EmpleoCompleto.PantallaDetallesEmpleo"
     tools:showIn="@layout/activity_pantalla_detalles_empleo">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+<!--
+            <ImageButton
+                android:id="@+id/ImageButtomfav"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@mipmap/likegris" />
+
+            <CheckBox
+                android:id="@+id/checkboxFavoritoEmpleoklk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="onClick"
+                android:button="@drawable/checkbox_selector_favorito" />
+-->
+            <ToggleButton
+                android:id="@+id/empleosfavoritos"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/checkbox_selector_favorito"
+                android:text=""
+                android:textOff=""
+                android:textOn=""
+                />
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,6 +60,36 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <!--     <RelativeLayout
+                    android:id="@+id/relatylayoufavorito"
+                    android:layout_width="60dp"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:src="@drawable/favorito_imagen"
+                        android:visibility="invisible"
+                        android:id="@+id/imagen_roja"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        />
+
+                    <ImageView
+                        android:src="@drawable/favorito_imagen_blanca"
+                        android:visibility="visible"
+                        android:layout_centerInParent="true"
+                        android:id="@+id/imagen_blanca"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+
+
+                </RelativeLayout>
+
+    -->
             <TextView
                 android:id="@+id/xmlTvNombreEmpleoDE"
                 android:layout_width="match_parent"
@@ -31,7 +101,7 @@
                 android:hint="Nombre Empleo"
                 android:textColor="@color/md_blue_900"
                 android:textSize="45sp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold|italic" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -61,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Direccion"
-                android:textColor="@color/md_black_1000"/>
+                android:textColor="@color/md_black_1000" />
 
             <TextView
                 android:id="@+id/xmlTvProvinciaDE"
@@ -131,14 +201,15 @@
                 android:textColor="@color/md_blue_900"
                 android:textSize="20sp"
                 android:textStyle="bold|italic" />
+
             <TextView
                 android:id="@+id/xmlTvPaginaWebAviso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Click en el link, Para visitar la pagina."
                 android:textColor="@color/md_blue_grey_400"
                 android:textSize="10sp"
-                android:layout_marginBottom="5dp"
                 android:textStyle="bold|italic" />
 
             <TextView
@@ -484,8 +555,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/btn_bg"
-            android:padding="2dp"
             android:gravity="center"
+            android:padding="2dp"
             android:text="Aplicar" />
 
         <TextView
@@ -493,8 +564,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
             android:text="Ultima Actualizacion: 29/04/2019"
             android:textColor="@color/md_blue_900"
             android:textSize="13sp"

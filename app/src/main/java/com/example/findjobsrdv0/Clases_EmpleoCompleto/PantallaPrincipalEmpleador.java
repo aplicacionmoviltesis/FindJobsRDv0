@@ -321,7 +321,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.curriculosfavoritos) {
+        if (id == R.id.empleosfavoritos) {
 
 
         } else if (id == R.id.navegadorEmpleador) {

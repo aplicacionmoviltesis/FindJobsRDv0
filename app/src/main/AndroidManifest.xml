@@ -24,7 +24,7 @@
         <activity android:name=".GeneralesApp.PantallaConfiguracion" />
 
 
-        <activity android:name=".Pantallas_CurriculosCompleto.PantallaPerfilBuscador"></activity>
+        <activity android:name=".Pantallas_CurriculosCompleto.PerfilBuscador"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaPersonasAplicaronEmpleo" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador" />

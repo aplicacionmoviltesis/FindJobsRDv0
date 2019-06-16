@@ -8,14 +8,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class DetalleCurriculo extends AppCompatActivity {
@@ -30,14 +37,74 @@ public class DetalleCurriculo extends AppCompatActivity {
     String detallecurrid = "";
     Button btnIrFormacionAcademica, btnIrReferencia, btnIrExperienciaLab, btnOtrosEstudios;
 
+//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-   // ToggleButton btnfavorito;
+    ToggleButton btnfavoritoCurriculo;
+    FirebaseDatabase prueba;
+    DatabaseReference DbLikesFavCurri;
+
+    FirebaseAuth mFirebaseAuth;
+    FirebaseUser userActivo;
+
+    String sIdPersonaMarco;
+//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_detalle_curriculo );
+
+//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        prueba = FirebaseDatabase.getInstance();
+        DbLikesFavCurri = prueba.getReference();
+        DbLikesFavCurri.keepSynced( true );
+
+        btnfavoritoCurriculo = (ToggleButton) findViewById( R.id.Curriculosfavoritos );
+        btnfavoritoCurriculo.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                if (b) {
+                    marcarFavorito();
+                    Log.d( "estado activo", String.valueOf( b ) );
+                }else {
+                    final Query prueba = DbLikesFavCurri.child( "Empleadores" ).child( sIdPersonaMarco )
+                            .child( "likes" ).orderByChild( "IdEmpleoLike" ).equalTo( detallecurrid );
+
+                    prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+                                pruebadataSnapshot.getRef().removeValue();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            Toast.makeText( DetalleCurriculo.this, "no funciono", Toast.LENGTH_SHORT ).show();
+                        }
+                    } );
+
+                    Log.d( "estado inactivo", String.valueOf( b ) );
+
+                }
+
+
+            }
+        } );
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        userActivo = mFirebaseAuth.getCurrentUser();
+        sIdPersonaMarco = userActivo.getUid();
+
+
+//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
         database = FirebaseDatabase.getInstance();
         detalelcurriculo = database.getReference( "Curriculos" );
@@ -64,6 +131,8 @@ public class DetalleCurriculo extends AppCompatActivity {
 
         if (!detallecurrid.isEmpty()) {
             goDetailCurriculo( detallecurrid );
+
+            VerificarFavorito();
         }
 
 
@@ -108,34 +177,37 @@ public class DetalleCurriculo extends AppCompatActivity {
         } );
 
 
-      /*  btnfavorito = (ToggleButton) findViewById( R.id.curriculosfavoritos );
-        btnfavorito.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    lanzaM( "ON" );
-                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.holo_red_dark );
-                } else {
-                    lanzaM( "OFF" );
-                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.black );
-                }
-
-            }
-        } );
-
-    }
-
-    private void cambiarColorTB(int color1, int color2) {
-        this.btnfavorito.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color1 ) );
-        this.btnfavorito.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color2 ) );
-    }
-
-    private void lanzaM(String m) {
-        Toast.makeText( getBaseContext(), m, Toast.LENGTH_SHORT ).show();
+//        btnfavoritoCurriculo = (ToggleButton) findViewById( R.id.curriculosfavoritos );
+//        btnfavoritoCurriculo.setChecked( true );
+//        btnfavoritoCurriculo.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if (b) {
+//                    lanzaM( "ON" );
+//                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.holo_red_dark );
+//                } else {
+//                    lanzaM( "OFF" );
+//                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.black );
+//                }
+//
+//            }
+//        } );
+//
 
     }
-*/
-    }
+
+//
+//    private void cambiarColorTB(int color1, int color2) {
+//        this.btnfavoritoCurriculo.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color1 ) );
+//        this.btnfavoritoCurriculo.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color2 ) );
+//    }
+//
+//    private void lanzaM(String m) {
+//        Toast.makeText( getBaseContext(), m, Toast.LENGTH_SHORT ).show();
+//
+//    }
+
+
     private void goDetailCurriculo(String detallecurrid) {
         detalelcurriculo.child( detallecurrid ).addValueEventListener( new ValueEventListener() {
             @Override
@@ -166,4 +238,48 @@ public class DetalleCurriculo extends AppCompatActivity {
             }
         });
     }
+
+
+    private void VerificarFavorito() {
+        final Query q = DbLikesFavCurri.child( "Empleadores" )//referencia empleadores
+                .child( sIdPersonaMarco )//referencia usuario
+                .child( "likes" )//referencia likes
+                .orderByChild( "IdEmpleoLike" ).equalTo( detallecurrid );
+//        Log.d( "fav", String.valueOf( sEmpleoIdE ) );
+//        Log.d( "fav", String.valueOf( sIdPersonaAplico ) );
+
+        q.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d( "fav", String.valueOf( dataSnapshot ) );
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+
+                    if (FavdataSnapshot != null) {
+                        btnfavoritoCurriculo.setChecked( true );
+
+                    } else {
+                        btnfavoritoCurriculo.setChecked( false );
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }
+
+    private void marcarFavorito() {
+        String newLikeID = DbLikesFavCurri.push().getKey();
+
+        DbLikesFavCurri.child( "Empleadores" )//referencia empleadores
+                .child( sIdPersonaMarco )//referencia usuario
+                .child( "likes" )//referencia likes
+                .child( newLikeID )
+                .child( "IdEmpleoLike" )
+                .setValue( detallecurrid );
+    }
+
+
 }

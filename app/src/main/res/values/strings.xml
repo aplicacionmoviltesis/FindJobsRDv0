@@ -10,6 +10,15 @@
     <string name="action_settings">Settings</string>
 
 
+
+
+    <!-- prueba de los favorito
+    <string name="datos_buscador"></string>
+    <string name="field_likes">likes</string>
+
+-->
+
+
     <string-array name="FormacionAcademica">
         <item>Nivel Basico</item>
         <item>Nivel Secundario</item>
