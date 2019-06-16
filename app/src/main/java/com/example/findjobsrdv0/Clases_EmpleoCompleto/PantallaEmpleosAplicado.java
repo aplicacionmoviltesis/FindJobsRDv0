@@ -10,11 +10,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.DetalleCurriculo;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,7 +40,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
     private FirebaseUser user;
 
     private String sIDEmpleoPEA,sNombreEmpleoPEA, sNombreEmpresaPEA,sProvinciaPEA,
-            sDireccionPEA, sTelefonoPEA,sPaginaWebE,sEmailPEA,sSalarioPEA,sOtrosDatosPEA,
+            sDireccionPEA, sTelefonoPEA, sPaginaWebPEA,sEmailPEA,sSalarioPEA,sOtrosDatosPEA,
             sHorarioPEA,sFechaPublicacionPEA, sMostrarIdiomaPEA,sAreaPEA,
             sFormacionAcademicaPEA, sAnosExperienciaPEA,sSexoRequeridoPEA,sRangoPEA,
             sJornadaPEA,sCantidadVacantesPEA, sTipoContratoPEA,sEstadoEmpleoPEA,
@@ -124,13 +121,13 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                     Empleos DatosEmpleos = datasnapshot.getValue(Empleos.class);
 
 
-                    sIDEmpleoPEA = datasnapshot.child("nombre").getValue(String.class);
+                    sIDEmpleoPEA = DatosEmpleos.getsIDEmpleo();
                     sNombreEmpleoPEA = DatosEmpleos.getsNombreEmpleoE();
                     sNombreEmpresaPEA = DatosEmpleos.getsNombreEmpresaE();
                     sProvinciaPEA = DatosEmpleos.getsProvinciaE();
                     sDireccionPEA = DatosEmpleos.getsDireccionE();
                     sTelefonoPEA = DatosEmpleos.getsTelefonoE();
-                    sPaginaWebE = DatosEmpleos.getsPaginaWebE();
+                    sPaginaWebPEA = DatosEmpleos.getsPaginaWebE();
                     sEmailPEA = DatosEmpleos.getsEmailE();
                     sSalarioPEA = DatosEmpleos.getsSalarioE();
                     sOtrosDatosPEA = DatosEmpleos.getsOtrosDatosE();
@@ -154,7 +151,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                     Log.d("DATOS::::", sNombreEmpleoPEA);
 
                     final Empleos empleos = new Empleos(sIDEmpleoPEA,sNombreEmpleoPEA, sNombreEmpresaPEA,sProvinciaPEA,
-                            sDireccionPEA, sTelefonoPEA,sPaginaWebE,sEmailPEA,sSalarioPEA,sOtrosDatosPEA,
+                            sDireccionPEA, sTelefonoPEA, sPaginaWebPEA,sEmailPEA,sSalarioPEA,sOtrosDatosPEA,
                             sHorarioPEA,sFechaPublicacionPEA, sMostrarIdiomaPEA,sAreaPEA,
                             sFormacionAcademicaPEA, sAnosExperienciaPEA,sSexoRequeridoPEA,sRangoPEA,
                             sJornadaPEA,sCantidadVacantesPEA, sTipoContratoPEA,sEstadoEmpleoPEA,
@@ -169,7 +166,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                         @Override
                         public void onClick(View view, int position, boolean isLongClick) {
                             Intent intent = new Intent(PantallaEmpleosAplicado.this, PantallaDetallesEmpleo.class);
-                            intent.putExtra("sEmpleoIdBuscado", sIDEmpleo);
+                            intent.putExtra("sEmpleoIdBuscado", adapterEmpleo.mDatasetEmpleo.get(position).getsIDEmpleo());
                             startActivity(intent);
                         }
                     });

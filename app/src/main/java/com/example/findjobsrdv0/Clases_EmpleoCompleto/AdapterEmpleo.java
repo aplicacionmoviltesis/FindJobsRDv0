@@ -78,6 +78,8 @@ public class AdapterEmpleo extends RecyclerView.Adapter{
 
             itemView.setOnClickListener(this);
 
+
+
         }
 
         public void onBind(int position){
@@ -98,6 +100,8 @@ public class AdapterEmpleo extends RecyclerView.Adapter{
             EstadoCardViewAplicado.setText(EstadoEmpleo);
             FechaPublicacionCardViewAplicado.setText(FechaEmpleo);
             Picasso.get().load(ImagenEmpleo).into(imagenEmpleoCardViewAplicado);
+
+
 
         }
 

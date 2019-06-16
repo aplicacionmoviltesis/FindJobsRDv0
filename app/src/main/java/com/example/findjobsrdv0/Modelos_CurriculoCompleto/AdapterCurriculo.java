@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class AdapterCurriculo extends RecyclerView.Adapter{
 
-    ArrayList<Curriculos> mDatasetCurriculo;
+    public ArrayList<Curriculos> mDatasetCurriculo;
     Context context;
 
     private ItemClickListener itemClickListener;

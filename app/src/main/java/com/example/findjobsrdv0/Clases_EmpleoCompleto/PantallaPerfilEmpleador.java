@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -83,7 +84,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     private TextView TvTiPerfilEmpleadorPE;
 
     FirebaseAuth firebaseAuth;
-    String telefonoEmpleador,EmailEmpleador,NombreEmpleador;
+    String telefonoEmpleador,EmailEmpleador,NombreEmpleador, FotoPerfilCorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +107,12 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
 
         telefonoEmpleador = user.getPhoneNumber();
-        Log.d("telefono",telefonoEmpleador);
+        Log.d("telefono",String.valueOf(telefonoEmpleador));
         EmailEmpleador = user.getEmail();
+        Log.d("telefono",String.valueOf(EmailEmpleador));
+
         NombreEmpleador = user.getDisplayName();
+        FotoPerfilCorreo = user.getPhotoUrl().toString();
 
         editNombrePerfilE = (EditText) findViewById(R.id.xmleditNombrePerfilEmpleador);
         editRncPerfilE = (EditText) findViewById(R.id.xmleditRNC);
@@ -267,7 +271,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                         mProgressDialog.show();
 
                         Toast.makeText(PantallaPerfilEmpleador.this, "Imagen subida exitosamente...", Toast.LENGTH_LONG).show();
-                        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, downloadURL, sVerificacion);
+                        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, downloadURL, sVerificacion,sIdEmpleador);
                         DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
                         mProgressDialog.dismiss();
 
@@ -431,7 +435,7 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
         sCorreoPerfilE = editCorreoPerfilE.getText().toString().trim();
         sVerificacion = false;
 
-        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, foto, sVerificacion);
+        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, foto, sVerificacion,sIdEmpleador);
         DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
         mProgressDialog.dismiss();
         Toast.makeText(PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
@@ -447,22 +451,25 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 sImagenPerfilEmpleador = dataSnapshot.child("sImagenEmpleador").getValue(String.class);
-                if (sImagenPerfilEmpleador != null && !sImagenPerfilEmpleador.isEmpty()) {
+                if(sImagenPerfilEmpleador != null && sImagenPerfilEmpleador!=""){
                     Picasso.get().load(sImagenPerfilEmpleador).into(ImagePerfilEmpleador);
-                }
-
-
-                Log.d("holapkkk", String.valueOf(dataSnapshot));
-                sNombrePerfilE = dataSnapshot.child("sNombreEmpleador").getValue(String.class);
-                if(sNombrePerfilE==""){
-                    editNombrePerfilE.setText(NombreEmpleador);
 
                 }
                 else {
-                    editNombrePerfilE.setText(sNombrePerfilE);
+                    //Picasso.get().load(sImagenPerfilEmpleador).into(ImagePerfilEmpleador);
+                    Glide.with(PantallaPerfilEmpleador.this).load(FotoPerfilCorreo).into(ImagePerfilEmpleador);
 
                 }
 
+                Log.d("holapkkk", String.valueOf(dataSnapshot));
+                sNombrePerfilE = dataSnapshot.child("sNombreEmpleador").getValue(String.class);
+                if(sNombrePerfilE != null && sNombrePerfilE!=""){
+                    editNombrePerfilE.setText(sNombrePerfilE);
+                }
+                else {
+                    editNombrePerfilE.setText(NombreEmpleador);
+                    Log.d("nombrecorreo", String.valueOf(NombreEmpleador));
+                }
 
                 sRncPerfilE = dataSnapshot.child("sRncEmpleador").getValue(String.class);
                 editRncPerfilE.setText(sRncPerfilE);
@@ -470,27 +477,26 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
                 sPaginaWebPerfilE = dataSnapshot.child("sPaginaWebEmpleador").getValue(String.class);
                 editPaginaWebPerfilE.setText(sPaginaWebPerfilE);
 
-                sTelefonoPerfilE = dataSnapshot.child("sTelefonoEmpleador").getValue(String.class);
-                if(sTelefonoPerfilE==""){
-                    editTelefonoPerfilE.setText(telefonoEmpleador);
 
+                sTelefonoPerfilE = dataSnapshot.child("sTelefonoEmpleador").getValue(String.class);
+                if(sTelefonoPerfilE != null && sTelefonoPerfilE!=""){
+                    editTelefonoPerfilE.setText(sTelefonoPerfilE);
                 }
                 else {
-                    editTelefonoPerfilE.setText(sTelefonoPerfilE);
-
+                    editTelefonoPerfilE.setText(telefonoEmpleador);
+                    Log.d("nombrecorreo", String.valueOf(NombreEmpleador));
                 }
 
                 sDireccionPerfilE = dataSnapshot.child("sDireccionEmpleador").getValue(String.class);
                 editDireccionPerfilE.setText(sDireccionPerfilE);
 
                 sCorreoPerfilE = dataSnapshot.child("sCorreoEmpleador").getValue(String.class);
-                if(sCorreoPerfilE==""){
-                    editCorreoPerfilE.setText(EmailEmpleador);
-
+                if(sCorreoPerfilE != null && sCorreoPerfilE!=""){
+                    editCorreoPerfilE.setText(sCorreoPerfilE);
                 }
                 else {
-                    editCorreoPerfilE.setText(sCorreoPerfilE);
-
+                    editCorreoPerfilE.setText(EmailEmpleador);
+                    Log.d("nombrecorreo", String.valueOf(NombreEmpleador));
                 }
 
                 sVerificarEmpleador = dataSnapshot.child("Verificacion").getValue(Boolean.class);

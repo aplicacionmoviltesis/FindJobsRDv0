@@ -12,6 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_like"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="like"/>
+
+        <Button
+            android:id="@+id/btn_dislike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="dislike"/>
 
         <LinearLayout
             android:layout_width="match_parent"

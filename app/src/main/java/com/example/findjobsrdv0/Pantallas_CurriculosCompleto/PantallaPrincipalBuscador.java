@@ -9,7 +9,9 @@ import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaEmpleosAplicado;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaEmpresasAplicaronMiCurriculo;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscados;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 import com.example.findjobsrdv0.R;
@@ -115,6 +117,15 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (v.getContext(), PantallaListaEmpleosBuscados.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        LinearLayout IrEmpresaInteresadas = (LinearLayout )findViewById(R.id.lyEmpresasInteresadas);
+        IrEmpresaInteresadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), PantallaEmpresasAplicaronMiCurriculo.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -303,6 +314,9 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.empleosfavoritos) {
+
+            Intent intent= new Intent(this, PantallaListaEmpleosFavoritos.class);
+            startActivity(intent);
 
         } else if (id == R.id.empleosAplicadoBuscador) {
             Intent intent= new Intent(this, PantallaEmpleosAplicado.class);

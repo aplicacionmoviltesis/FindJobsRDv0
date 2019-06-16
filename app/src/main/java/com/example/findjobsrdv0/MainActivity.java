@@ -1,29 +1,29 @@
 package com.example.findjobsrdv0;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
-
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    SearchableSpinner spcountries;
-    ArrayList arraycountires;
-    ArrayAdapter adapter;
+/*
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        spcountries=(SearchableSpinner) findViewById(R.id.spcountries);
-        arraycountires=new ArrayList<String>(Arrays.asList("India", "Pakistan", "US", "China", "UK", "Itely", "France"));
-        adapter=new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,arraycountires);
-        spcountries.setAdapter(adapter);
-        spcountries.setTitle("Select Countries");
-        spcountries.setPositiveButton("Done");
-
-    }
+    public View onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setContentView(R.layout.activity_main2);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        List<Person> persons = Arrays.asList(new Person("Larry"),
+                new Person("Moe"),
+                new Person("Curly"));
+        //basic yak shaving required
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new PersonAdapter(MainActivity.this, persons));
+        return null;
+    }*/
 }

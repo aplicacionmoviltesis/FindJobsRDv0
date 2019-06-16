@@ -14,7 +14,22 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Clases_EmpleoCompleto.PantallaEmpleosAplicado"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".Clases_EmpleoCompleto.PantallaCompararEmpleos"
+            android:label="@string/title_activity_pantalla_comparar_empleos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Pantallas_CurriculosCompleto.PantallaListaCurriculosFavoritos" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos" />
+        <activity
+            android:name=".Clases_EmpleoCompleto.PantallaDetallePerfilEmpresa"
+            android:label="@string/title_activity_pantalla_detalle_perfil_empresa"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaListaEmpleosEmpresa" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaDetalleEmpresa" />
+        <activity android:name=".Pantallas_CurriculosCompleto.PantallaCurriculosAplicados" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaEmpresasAplicaronMiCurriculo" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaEmpleosAplicado" />
         <activity android:name=".GeneralesApp.PantallaReportarProblemas" />
         <activity
             android:name=".GeneralesApp.PantallaAcercadeApp"
@@ -22,10 +37,8 @@
         <activity android:name=".GeneralesApp.PantallaTerminosyCondiciones" />
         <activity android:name=".GeneralesApp.PantallaCambiarContrasena" />
         <activity android:name=".GeneralesApp.PantallaConfiguracion" />
-
-
-        <activity android:name=".Pantallas_CurriculosCompleto.PantallaPerfilBuscador"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Pantallas_CurriculosCompleto.PantallaPerfilBuscador" />
+        <activity android:name=".like.MainActivity" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaPersonasAplicaronEmpleo" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleOtrosEstudios" />

@@ -10,7 +10,9 @@ import android.os.Bundle;
 import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaCurriculosAplicados;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosFavoritos;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -72,7 +74,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         tituloelegiropcionBuscador = (TextView) findViewById(R.id.tvelegiropcionEmpleador);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         tituloelegiropcionBuscador.setTypeface(face);
 /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -97,7 +99,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View header= navigationView.getHeaderView(0);
+        View header = navigationView.getHeaderView(0);
 
         photoImageViewEmpleador = (ImageView) header.findViewById(R.id.fotoperfilEmpleador);
         nameTextViewEmpleador = (TextView) header.findViewById(R.id.nombreTextEmpleador);
@@ -106,7 +108,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         TextView TextViewEmpleador = (TextView) header.findViewById(R.id.nombreTextEmpleador);
 
 
-        SharedPreferences preferences= this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
+        SharedPreferences preferences = this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
         //-String Nombre= preferences.getString("Nombre", "Nombre");
         //String foto= preferences.getString("ImagenEmpresa", "ImagenEmpresa");
 
@@ -144,29 +146,29 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         nameTextViewEmpleador.setText(Nombre);*/
         //emailTextView.setText(user.getsEmailC());
 
-        LinearLayout IrAnadirEmpleo = (LinearLayout )findViewById(R.id.lyAnadirEmpleoEmpleador);
+        LinearLayout IrAnadirEmpleo = (LinearLayout) findViewById(R.id.lyAnadirEmpleoEmpleador);
         IrAnadirEmpleo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaRegistrarEmpleos.class);
+                Intent intent = new Intent(v.getContext(), PantallaRegistrarEmpleos.class);
                 startActivityForResult(intent, 0);
             }
         });
 
-        LinearLayout IrEmpleosAnadidos = (LinearLayout )findViewById(R.id.lyEmpresasAñadidos);
+        LinearLayout IrEmpleosAnadidos = (LinearLayout) findViewById(R.id.lyEmpresasAñadidos);
         IrEmpleosAnadidos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaListaEmpleosAnadidos.class);
+                Intent intent = new Intent(v.getContext(), PantallaListaEmpleosAnadidos.class);
                 startActivityForResult(intent, 0);
             }
         });
 
-        LinearLayout IrBuscarEmpleosBE = (LinearLayout )findViewById(R.id.lyBuscarCurriculosEmpleador);
+        LinearLayout IrBuscarEmpleosBE = (LinearLayout) findViewById(R.id.lyBuscarCurriculosEmpleador);
         IrBuscarEmpleosBE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaListaCurriculosBuscados.class);
+                Intent intent = new Intent(v.getContext(), PantallaListaCurriculosBuscados.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -194,18 +196,17 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         };
 
 
-
     }
 
     private void setUserData(FirebaseUser user) {
 
-        SharedPreferences preferences= this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
-        String Nombre= preferences.getString("Nombre", "Nombre");
-        String foto= preferences.getString("ImagenEmpresa", "ImagenEmpresa");
+        SharedPreferences preferences = this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
+        String Nombre = preferences.getString("Nombre", "Nombre");
+        String foto = preferences.getString("ImagenEmpresa", "ImagenEmpresa");
 
         nameTextViewEmpleador.setText(Nombre);
         //Glide.with(this).load(foto).into(photoImageViewEmpleador);
-        Log.d("apeklk",Nombre);
+        Log.d("apeklk", Nombre);
 
 
         nameTextViewEmpleador.setText(user.getDisplayName());
@@ -213,9 +214,9 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         Glide.with(this).load(user.getPhotoUrl()).into(photoImageViewEmpleador);
     }
 
-    public void IrPerfilEmpleador(String EmpleadorConectado){
+    public void IrPerfilEmpleador(String EmpleadorConectado) {
         Intent intent = new Intent(this, PantallaPerfilEmpleador.class);
-        intent.putExtra("EmpleadorConectado",EmpleadorConectado);
+        intent.putExtra("EmpleadorConectado", EmpleadorConectado);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -307,7 +308,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent (this, PantallaConfiguracion.class);
+            Intent intent = new Intent(this, PantallaConfiguracion.class);
             startActivityForResult(intent, 0);
             return true;
         }
@@ -322,18 +323,27 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.curriculosfavoritos) {
+            Intent intent = new Intent(this, PantallaListaCurriculosFavoritos.class);
+            startActivity(intent);
+
+        } else if (id == R.id.curriculosMarcadoInteres) {
+            Intent intent = new Intent(this, PantallaCurriculosAplicados.class);
+            startActivity(intent);
 
 
         } else if (id == R.id.navegadorEmpleador) {
-            Intent intent= new Intent(this, PantallaNavegador.class);
+            Intent intent = new Intent(this, PantallaNavegador.class);
             startActivity(intent);
 
         } else if (id == R.id.compararEmpleador) {
 
+            Intent intent = new Intent(this, PantallaCompararEmpleos.class);
+            startActivity(intent);
+
 
         } else if (id == R.id.ConfiguracionEmpleador) {
 
-            Intent intent = new Intent (this, PantallaConfiguracion.class);
+            Intent intent = new Intent(this, PantallaConfiguracion.class);
             startActivityForResult(intent, 0);
 
 

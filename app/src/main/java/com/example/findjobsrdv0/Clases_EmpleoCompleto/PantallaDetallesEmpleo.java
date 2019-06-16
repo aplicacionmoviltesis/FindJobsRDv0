@@ -80,6 +80,8 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
     private TextView TvOtrosDatosDE, TvRequisitosDE,TvtiNotaDE;
 
+    private Button btndDislike,btnLike;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +98,10 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
         TvtiNotaDE = (TextView) findViewById(R.id.xmlTiNotaDE);
         TvtiNotaDE.setTypeface(face);
+
+        btndDislike = (Button) findViewById(R.id.btn_dislike);
+        btnLike = (Button) findViewById(R.id.btn_like);
+
 
 
         /*
@@ -188,6 +194,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         mAuthEmpleador = FirebaseAuth.getInstance();
         user = mAuthEmpleador.getCurrentUser();
         sIdPersonaAplico= user.getUid();
+
         Log.d("usuario",sIdPersonaAplico);
 
         BtnAplicarEmpleoDE= (Button) findViewById(R.id.xmlBtnAplicarEmpleoDE);

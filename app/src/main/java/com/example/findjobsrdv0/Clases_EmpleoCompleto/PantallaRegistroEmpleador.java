@@ -246,6 +246,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                                 //DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Contraseña").setValue(entrada_contrasena);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sVerificacionEmpleador").setValue(entrada_verificacion);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sImagenEmpleador").setValue(entrada_imagenEmpleador);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sIdEmpleador").setValue(Ukey);
 
 
 

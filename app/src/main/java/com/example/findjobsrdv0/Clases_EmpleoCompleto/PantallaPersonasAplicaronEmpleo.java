@@ -41,8 +41,8 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
-    private MyAdapter mAdapter;
-    ArrayList<Curriculos> mDataset = new ArrayList<Curriculos>();
+    //private MyAdapter mAdapter;
+    //ArrayList<Curriculos> mDataset = new ArrayList<Curriculos>();
 
     private String IdCurriculoPAE, IdBuscadorCurriculoPAE,ImagenCurriculoPAE,NombreCurriculoPAE, ApellidoCurriculoPAE, CedulaCurriculoPAE,
             EmailCurriculoPAE, TelefonoCurriculoPAE, CelularCurriculoPAE,
@@ -125,6 +125,7 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                     CedulaCurriculoPAE = DatosCurriculo.getsCedulaC();
                     EmailCurriculoPAE = DatosCurriculo.getsEmailC();
                     TelefonoCurriculoPAE = DatosCurriculo.getsTelefonoC();
+                    CelularCurriculoPAE = DatosCurriculo.getsCelularC();
                     ProvinciaCurriculoPAE = DatosCurriculo.getsProvinciaC();
                     EstadoCivilCurriculoPAE = DatosCurriculo.getsEstadoCivilC();
                     DireccionCurriculoPAE = DatosCurriculo.getsDireccionC();
@@ -158,7 +159,7 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                             Toast.makeText(PantallaPersonasAplicaronEmpleo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(PantallaPersonasAplicaronEmpleo.this, DetalleCurriculo.class);
-                            intent.putExtra("detallecurrID", sPersonasAplicaron);
+                            intent.putExtra("detallecurrID", adapterCurriculo.mDatasetCurriculo.get(position).getsIdCurriculo());
                             //Log.d("klk",dataSnapshot.getRef().getKey());
                             startActivity(intent);
                         }

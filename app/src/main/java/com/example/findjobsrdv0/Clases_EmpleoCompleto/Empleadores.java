@@ -8,14 +8,24 @@ public class Empleadores {
     String sTelefonoEmpleador;
     String sDireccionEmpleador;
     String sCorreoEmpleador;
-    //String sIdEmpleador;
+
+    public String getsIdEmpleador() {
+        return sIdEmpleador;
+    }
+
+    public void setsIdEmpleador(String sIdEmpleador) {
+        this.sIdEmpleador = sIdEmpleador;
+    }
+
+    String sIdEmpleador;
     String sImagenEmpleador;
     Boolean sVerificacionEmpleador;
+
 
     public Empleadores() {
     }
 
-    public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador, boolean sVerificacionEmpleador) {
+    public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador, boolean sVerificacionEmpleador,String sIdEmpleador) {
         this.sNombreEmpleador = sNombreEmpleador;
         this.sRncEmpleador = sRncEmpleador;
         this.sPaginaWebEmpleador = sPaginaWebEmpleador;
@@ -24,6 +34,8 @@ public class Empleadores {
         this.sCorreoEmpleador = sCorreoEmpleador;
         this.sVerificacionEmpleador = sVerificacionEmpleador;
         this.sImagenEmpleador = sImagenEmpleador;
+        this.sIdEmpleador = sIdEmpleador;
+
     }
 
     public String getsNombreEmpleador() {

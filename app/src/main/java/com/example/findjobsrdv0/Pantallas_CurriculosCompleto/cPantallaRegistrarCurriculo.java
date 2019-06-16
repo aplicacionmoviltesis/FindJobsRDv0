@@ -307,7 +307,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
 //----------------------Spinner  estado actual-------------------------------------------------------------------------------------
 
-        listItems = getResources().getStringArray( R.array.InfoIdiomas );
+        listItems = getResources().getStringArray(R.array.InfoIdiomas );
         checkedItems = new boolean[listItems.length];
 
 
