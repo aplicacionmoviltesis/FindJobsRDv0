@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
+import com.example.findjobsrdv0.PantallaDetallesEmpleoPrueba;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -383,6 +384,9 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
             @Override
             protected void populateViewHolder(EmpleosViewHolder empleosViewHolder, Empleos empleos, int i) {
                 String prov = "hola";
+
+
+
                 //String valorProvincia = empleos.getsNombreEmpleoE();
 /*
                 if(empleos.getsNombreEmpleoE().equals(prov))
@@ -494,7 +498,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
                         //Toast.makeText(PantallaListaEmpleosAnadidos.this,""+clickItem.getsNombreEmpleoE(),Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(PantallaListaEmpleosBuscados.this, PantallaDetallesEmpleo.class);
+                        Intent intent = new Intent(PantallaListaEmpleosBuscados.this, PantallaDetallesEmpleoPrueba.class);
                         intent.putExtra("sEmpleoIdBuscado", adapterEmpleosFiltrados.getRef(position).getKey());
                         startActivity(intent);
 

@@ -322,6 +322,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.curriculosfavoritos) {
             Intent intent = new Intent(this, PantallaListaCurriculosFavoritos.class);
             startActivity(intent);
@@ -329,7 +330,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         } else if (id == R.id.curriculosMarcadoInteres) {
             Intent intent = new Intent(this, PantallaCurriculosAplicados.class);
             startActivity(intent);
-
 
         } else if (id == R.id.navegadorEmpleador) {
             Intent intent = new Intent(this, PantallaNavegador.class);

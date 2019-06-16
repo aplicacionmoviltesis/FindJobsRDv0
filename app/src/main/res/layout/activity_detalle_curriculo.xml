@@ -21,14 +21,14 @@
             android:padding="10dp">
 
             <ToggleButton
-                android:id="@+id/curriculosfavoritos"
+                android:id="@+id/btn_CurriculosFavoritos"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/imagenbutton"
+                android:layout_margin="10dp"
+                android:background="@drawable/checkbox_selector_favorito"
                 android:text=""
                 android:textOff=""
                 android:textOn=""
-
 
 
 

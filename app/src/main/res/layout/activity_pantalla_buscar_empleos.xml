@@ -22,10 +22,10 @@
         android:id="@+id/mSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:layout_centerVertical="true">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="100dp">
 
 
     </com.example.findjobsrdv0.GeneralesApp.MultipleSelectionSpinner>
@@ -42,11 +42,11 @@
         android:id="@+id/btnelegir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/mSpinner"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="elige"/>
+        android:layout_marginTop="20dp"
+        android:text="elige" />
 
     <com.github.ivbaranov.mfb.MaterialFavoriteButton
         android:layout_width="37dp"
@@ -58,11 +58,39 @@
         android:id="@+id/mierda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="probando"/>
 
     <CheckBox
         android:id="@+id/checkbox_para_votar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/mierda1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="unlike" />
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:button="@drawable/checkbox_selector_favorito"
+                android:id="@+id/checkboxFavoritoEmpleo"
+                android:onClick="onClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
 
 </LinearLayout>

@@ -6,12 +6,8 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetalleEmpresa;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallePerfilEmpresa;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosEmpresa;
-import com.example.findjobsrdv0.PantallaBuscarEmpleos;
+
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.like.MainActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;

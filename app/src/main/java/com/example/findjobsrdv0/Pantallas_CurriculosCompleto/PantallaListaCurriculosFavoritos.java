@@ -61,7 +61,7 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
 
         databaseCurriculoFav = FirebaseDatabase.getInstance();
         vistaCurriculoFavoritos = databaseCurriculoFav.getReference();
-        DBCurriculoFavoritos = databaseCurriculoFav.getReference("CurriculosConSolicitudes");
+        DBCurriculoFavoritos = databaseCurriculoFav.getReference();
 
         recyclerViewCurriculosFav = (RecyclerView) findViewById(R.id.ListaCurriculosFavoritosR);
 
@@ -79,6 +79,7 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
         //sEmpresaIdFav = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
         if (sEmpresaIdFav != null) {
             if (!sEmpresaIdFav.isEmpty()) {
+                Log.d("dataAplicacionesempresa", String.valueOf(sEmpresaIdFav));
 
                 TraerCurriculosFav(sEmpresaIdFav);
             }

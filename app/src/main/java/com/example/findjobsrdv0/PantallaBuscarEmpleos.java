@@ -1,5 +1,6 @@
 package com.example.findjobsrdv0;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+
+import android.widget.CompoundButton;
+
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,7 +35,7 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PantallaBuscarEmpleos extends AppCompatActivity{
+public class PantallaBuscarEmpleos extends AppCompatActivity {
 
     SearchableSpinner searchableSpinner;
 
@@ -40,7 +44,6 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
     FirebaseDatabase prueba;
     // FirebaseDatabase mFirebaseDatabase;
     DatabaseReference provinciasRef,DbLikes;
-    Button btn_mierda;
 
     DatabaseReference bbdd;
 
@@ -57,10 +60,25 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
     //List which hold multiple selection spinner values
     List<String> list = new ArrayList<String>();
 
+
+    // FirebaseDatabase mFirebaseDatabase;
+
+
+
+    String sEmpleoIdE;
+    Button btn_mierda,btn_mierda1;
     ////////////////////////////////////////
     CheckBox mLikeBtn;
     DatabaseReference mDatabaseLike; //Para usarse en el metodo de los likes
     FirebaseAuth mAuth;  //Para usarse en el metodo de los likes
+
+
+
+
+
+    CheckBox checkBoxFav;
+
+
 
 
 
@@ -69,7 +87,30 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_buscar_empleos);
 
+        checkBoxFav = (CheckBox) findViewById( R.id.checkboxFavoritoEmpleo );
+      //  checkBoxFav.setOnCheckedChangeListener( this );
 
+
+       prueba = FirebaseDatabase.getInstance();
+        DbLikes = prueba.getReference();
+/*
+        btn_mierda = (Button) findViewById(R.id.mierda);
+        btn_mierda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewLike();
+            }
+        });
+
+        btn_mierda1 = (Button) findViewById(R.id.mierda1);
+        btn_mierda1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeleteLike();
+            }
+        });
+
+<<<<<<< HEAD
 
 //        mDatabase4Like = FirebaseDatabase.getInstance().getReference().child("Likes");
 //        mLikeBtn.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +163,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
                 //addNewLike();
             }
         });
+
 
 
         MaterialFavoriteButton favorite = new MaterialFavoriteButton.Builder(this)
@@ -311,12 +353,15 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
 
 
 
+        sEmpleoIdE = "-Lg4YqLFDOwMHBe7RNbz";
 
 
         ///////////////////////////////////////////////////
 
 }
+/*
 
+<<<<<<< HEAD
     public void setmLikeBtn(final String postId) {
 
         mDatabaseLike.addValueEventListener(new ValueEventListener() {
@@ -470,6 +515,117 @@ public class PantallaBuscarEmpleos extends AppCompatActivity{
         }
     }*/
 
+/*
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+        String newLikeID = DbLikes.push().getKey();
+
+        if (b){
+            DbLikes.child("Empleadores")//referencia empleadores
+                    .child("HmAtSRSnxdfxb0Z1kM2qoW1OvNo1")//referencia usuario
+                    .child("likes")//referencia likes
+                    .child(newLikeID)
+                    .child("IdEmpleoLike")
+                    .setValue(sEmpleoIdE);
+
+        }else {
+            DbLikes.child("Empleadores")
+                    .child("HmAtSRSnxdfxb0Z1kM2qoW1OvNo1")
+                    .child("likes")
+                    .child("-LhCgqilQ0DPJLZgOu_4")
+                    .removeValue();
+        }
+
+    }*/
+
+
+
+    public void onClick(View view) {
+
+        String newLikeID = DbLikes.push().getKey();
+        if (view.getId()==R.id.checkboxFavoritoEmpleo){
+            if (checkBoxFav.isChecked()){
+                DbLikes.child("BuscadoresEmpleos")//referencia empleadores
+                        .child("owd7TZZ5JRTFSUR7RTe00AcIVdy2")//referencia usuario
+                        .child("likes")//referencia likes
+                        .child(newLikeID)
+                        .child("IdEmpleoLike")
+                        .setValue(sEmpleoIdE);
+            }else {
+                final Query prueba = DbLikes.child( "BuscadoresEmpleos" ).child("owd7TZZ5JRTFSUR7RTe00AcIVdy2")
+                        .child("likes").orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+
+                prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot pruebadataSnapshot: dataSnapshot.getChildren()){
+                            pruebadataSnapshot.getRef().removeValue();
+                        }
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        Toast.makeText( PantallaBuscarEmpleos.this, "no funciono", Toast.LENGTH_SHORT ).show();
+                    }
+                } );
+
+            }
+
+        }
+
+    }
+
+/*
+    private void addNewLike(){
+
+        String newLikeID = DbLikes.push().getKey();
+
+
+
+        DbLikes.child("Empleadores")//referencia empleadores
+                .child("HmAtSRSnxdfxb0Z1kM2qoW1OvNo1")//referencia usuario
+                .child("likes")//referencia likes
+                .child(newLikeID)
+                .child("IdEmpleoLike")
+                .setValue(sEmpleoIdE);
 
 
     }
+
+    private void DeleteLike(){
+        String newLikeID = DbLikes.push().getKey();
+
+
+        final Query prueba = DbLikes.child( "Empleadores" ).child("HmAtSRSnxdfxb0Z1kM2qoW1OvNo1")
+                .child("likes").orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+
+        prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot pruebadataSnapshot: dataSnapshot.getChildren()){
+                    pruebadataSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText( PantallaBuscarEmpleos.this, "no funciono", Toast.LENGTH_SHORT ).show();
+            }
+        } );
+*/
+/*
+        String klk = newLikeID;
+        DbLikes.child("Empleadores")
+                .child("HmAtSRSnxdfxb0Z1kM2qoW1OvNo1")
+                .child("likes")
+                .orderByChild( "IdEmpleoLike" ).equalTo( klk )
+                .setValue( null );
+*/
+
+
+
+}

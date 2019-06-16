@@ -37,8 +37,10 @@
         <activity android:name=".GeneralesApp.PantallaTerminosyCondiciones" />
         <activity android:name=".GeneralesApp.PantallaCambiarContrasena" />
         <activity android:name=".GeneralesApp.PantallaConfiguracion" />
-        <activity android:name=".Pantallas_CurriculosCompleto.PantallaPerfilBuscador" />
+
+        <activity android:name=".Pantallas_CurriculosCompleto.PerfilBuscador" />
         <activity android:name=".like.MainActivity" />
+
         <activity android:name=".Clases_EmpleoCompleto.PantallaPersonasAplicaronEmpleo" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleOtrosEstudios" />
