@@ -1,25 +1,36 @@
 package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
 
 public class PerfilBuscador {
-    String sImagenPerfilB, sNombrePerfilB, sApellidoperfilB, sEmailPerfilB, sTelefonoPerfilB;
+    String sImagenPerfilB, sIdBuscador, sNombrePerfilB,
+            sApellidoperfilB, sEmailPerfilB, sTelefonoPerfilB;
+
 
     public PerfilBuscador() {
     }
 
-    public PerfilBuscador(String sImagenPerfilB, String sNombrePerfilB, String sApellidoperfilB, String correoelectronicoperfilB, String sTelefonoPerfilB) {
+    public PerfilBuscador(String sImagenPerfilB, String sIdBuscador, String sNombrePerfilB, String sApellidoperfilB, String sEmailPerfilB, String sTelefonoPerfilB) {
         this.sImagenPerfilB = sImagenPerfilB;
+        this.sIdBuscador = sIdBuscador;
         this.sNombrePerfilB = sNombrePerfilB;
         this.sApellidoperfilB = sApellidoperfilB;
-        this.sEmailPerfilB = correoelectronicoperfilB;
+        this.sEmailPerfilB = sEmailPerfilB;
         this.sTelefonoPerfilB = sTelefonoPerfilB;
     }
 
-    public String getImagenperfilB() {
+    public String getsImagenPerfilB() {
         return sImagenPerfilB;
     }
 
-    public void setImagenperfilB(String imagenperfilB) {
-        this.sImagenPerfilB = imagenperfilB;
+    public void setsImagenPerfilB(String sImagenPerfilB) {
+        this.sImagenPerfilB = sImagenPerfilB;
+    }
+
+    public String getsIdBuscador() {
+        return sIdBuscador;
+    }
+
+    public void setsIdBuscador(String sIdBuscador) {
+        this.sIdBuscador = sIdBuscador;
     }
 
     public String getsNombrePerfilB() {
@@ -38,12 +49,12 @@ public class PerfilBuscador {
         this.sApellidoperfilB = sApellidoperfilB;
     }
 
-    public String getCorreoelectronicoperfilB() {
+    public String getsEmailPerfilB() {
         return sEmailPerfilB;
     }
 
-    public void setCorreoelectronicoperfilB(String correoelectronicoperfilB) {
-        this.sEmailPerfilB = correoelectronicoperfilB;
+    public void setsEmailPerfilB(String sEmailPerfilB) {
+        this.sEmailPerfilB = sEmailPerfilB;
     }
 
     public String getsTelefonoPerfilB() {

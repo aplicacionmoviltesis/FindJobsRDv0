@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
@@ -58,6 +60,14 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
     String IDOtrosEstudiosss;
 
+
+    DatabaseReference databaseReferenceCurriloAct;
+    FirebaseDatabase databaseCurriculoAct;
+
+    String id;
+
+    String Ukey;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -67,12 +77,7 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
         titulootrosCursos.setTypeface( face );
 
-
-
-
-        DBOtrosCursosCurriculos = FirebaseDatabase.getInstance().getReference( "Otros_Cursos" );
-
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+        //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
         database = FirebaseDatabase.getInstance();
         otrosestudiosinset = database.getReference( "Otros_Cursos" );
@@ -84,6 +89,54 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
+
+//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+
+         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        idusuariosregistrado = Ukey;
+
+        loadOtrosEstudios(Ukey);
+//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+
+//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+
+        databaseCurriculoAct = FirebaseDatabase.getInstance();
+        databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
+
+        Query query = databaseReferenceCurriloAct.orderByChild( "sIdBuscadorEmpleo" ).equalTo( Ukey );
+        query.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+                    Log.d( "datosdatasnapsht", String.valueOf( dataSnapshot ) );
+
+                    id = FavdataSnapshot.child( "sIdCurriculo" ).getValue( String.class );
+                    Log.d( "datoscurriculos", String.valueOf( id ) );
+//                Curriculos datoscurriculos = dataSnapshot.getValue(Curriculos.class);
+//                id = perro.getsIdCurriculo();
+
+//                Log.d( "datoscurriculos", String.valueOf( datoscurriculos ) );
+//                Log.d( "datosid", String.valueOf( id ) );
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+
+
+
+
+
+        DBOtrosCursosCurriculos = FirebaseDatabase.getInstance().getReference( "Otros_Cursos" );
+
+
         etInstitucion = (EditText) findViewById( R.id.xmlEditNombreInstitucionOC );
         etAno = (EditText) findViewById( R.id.xmlEditAñoOC );
         etAreaoTema = (EditText) findViewById( R.id.xmlEditAreaOC );
@@ -93,7 +146,7 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         BtnRegistrarOtrosCursos.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registrarotroscurriculos(detalleotroscursos);
+                registrarotroscurriculos(id);
             }
         } );
 
@@ -101,7 +154,7 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         btnAcualizarOtrosCursos.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActualizarOtrosEstudios(IDOtrosEstudiosss);
+                ActualizarOtrosEstudios(IDOtrosEstudiosss, id);
 
             }
         } );
@@ -113,14 +166,6 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
            // registrarotroscurriculos( detalleotroscursos );
         }
 
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        idusuariosregistrado = Ukey;
-
-        loadOtrosEstudios(Ukey);
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
     }
 
 //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
@@ -161,12 +206,12 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
     }
 
-    private void registrarotroscurriculos(String detalleotroscursos) {
+    private void registrarotroscurriculos(String id) {
         ocInstitucionC = etInstitucion.getText().toString().trim();
         ocAnoC = etAno.getText().toString().trim();
         ocAreaoTemaC = etAreaoTema.getText().toString().trim();
         ocTipoEstudio = ssTipodeEstudio.getSelectedItem().toString().trim();
-        ocIdBuscardor = detalleotroscursos;
+        ocIdBuscardor = id;
 
         if (TextUtils.isEmpty( ocInstitucionC )) {
             etInstitucion.setError( "Campo vacío, por favor escriba la institucion" );
@@ -179,7 +224,7 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         String IdCurriculo = DBOtrosCursosCurriculos.push().getKey();
 
-        OtrosCursos otrosCursos = new OtrosCursos( IdCurriculo, ocIdBuscardor, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio );
+        OtrosCursos otrosCursos = new OtrosCursos( IdCurriculo, id, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio );
 
         DBOtrosCursosCurriculos.child( IdCurriculo ).setValue( otrosCursos );
 
@@ -223,13 +268,13 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         });
     }
 
-    private void ActualizarOtrosEstudios(String IDOtrosEstudiosss) {
+    private void ActualizarOtrosEstudios(String IDOtrosEstudiosss, String id) {
 
         ocInstitucionC = etInstitucion.getText().toString().trim();
         ocAnoC = etAno.getText().toString().trim();
         ocAreaoTemaC = etAreaoTema.getText().toString().trim();
         ocTipoEstudio = ssTipodeEstudio.getSelectedItem().toString().trim();
-        ocIdBuscardor = detalleotroscursos;
+        ocIdBuscardor = id;
 
         if (TextUtils.isEmpty( ocInstitucionC )) {
             etInstitucion.setError( "Campo vacío, por favor escriba la institucion" );

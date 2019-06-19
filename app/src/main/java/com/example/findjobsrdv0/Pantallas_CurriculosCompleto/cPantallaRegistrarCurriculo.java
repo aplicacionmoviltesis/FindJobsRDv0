@@ -118,10 +118,27 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     //  private String cIdBuscardor;
 
 
+
+
+
+
+    FirebaseDatabase databaseCeula;
+
+    DatabaseReference campoCedula;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_c_pantalla_registrar_curriculo );
+
+
+        databaseCeula = FirebaseDatabase.getInstance();
+        campoCedula = databaseCeula.getReference();
+
+
 
         // userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -305,6 +322,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         spinEstadoActual.setAdapter(adapterEstadoActual);
         spinEstadoActual.setTitle("Seleccionar el Estado Actual");
 
+
+
 //----------------------Spinner  estado actual-------------------------------------------------------------------------------------
 
         listItems = getResources().getStringArray(R.array.InfoIdiomas );
@@ -321,11 +340,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             public void onClick(View view) {
 
                 registrarcurriculo( cIdCurriculo );
-
-
             }
         } );
-
 
         Button btnActualizarC = findViewById( R.id.xmlBtnActualizarDatosGC );
         btnActualizarC.setOnClickListener( new View.OnClickListener() {
@@ -494,7 +510,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     //-------------------Codigo de la Actualizacion del curriculo--------------------------------------------------------------------------------------------
    /* public void CargarCurriculoActualizar(String userActivo) {
-        databaseReferenceCurrilo.orderByChild( "cIdBuscador" ).equalTo( userActivo ).addValueEventListener( new ValueEventListener() {
+        databaseReferenceCurriloAct.orderByChild( "cIdBuscador" ).equalTo( userActivo ).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -771,9 +787,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             // mProgressDialog.dismiss();
             final StorageReference StorageReference2nd = mStorageReference.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUri ) );
 
-
             ////////////////////////////////////////
-
 
             //final StorageReference storageReference2do = storageReference2do.child("your_REF");
             UploadTask uploadTask = StorageReference2nd.putFile( mFilePathUri );
@@ -808,17 +822,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                         habilidades = etHabilidades.getText().toString().trim();
                         fecha = mEtxtFecha.getText().toString().trim();
 
-
-                        //  camposvacios();
-
-
-
-
-
-
                         mProgressDialog.dismiss();
-
-
 
                         Log.d( "url", nombre );
 
@@ -827,10 +831,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
                         String cIdBuscardor = userActivo;
 
-
-
-
-                        // String idCurriculo  = databaseReferenceCurrilo.push().getKey();
+                        // String idCurriculo  = databaseReferenceCurriloAct.push().getKey();
                         //  idCurriculo  = cIdCurriculo;
                         // String cIdCurriculo;
 
@@ -847,7 +848,6 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                         ActivarCampor();
                         limpiarCampor();
                         Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo subida exitosamente...", Toast.LENGTH_LONG ).show();
-
 
                     } else {
                         // Handle failures
@@ -867,10 +867,38 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
         }
 
-
     }
 
 
+//    private void chequearCedula(){
+//       final String cedula = etCedula.getText().toString().toLowerCase().trim();
+//
+//        boolean flag = false;
+//
+//        campoCedula.child( "Curriculos" );
+//        campoCedula.addValueEventListener( new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot probandoCedula : dataSnapshot.getChildren()) {
+//                    String cedulacampo = probandoCedula.child( "sCedulaC" ).getValue( String.class );
+//                    if (cedula.equals( cedulacampo.toLowerCase() )) {
+//                        flag = true;
+//
+//                    }
+//
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        } );
+//
+//
+//    }
 
     private void registrarcurriculo(final String cIdCurriculo) {
 
@@ -923,14 +951,42 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
                         //  camposvacios();
 
+/*
+
+                        Query query  = databaseReferenceCurriloAct.child( "Curriculo" )//referencia empleadores
+                                .orderByChild( "sCedulaC" ).equalTo( cedula );
+                        query.addListenerForSingleValueEvent( new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()){
+                                    etCedula.setError( "error " );
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        } );
+
+                        databaseReferenceCurriloAct.addListenerForSingleValueEvent( new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists(  )){
+                                    etCedula.setError( "error " );
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        } );
 
 
-
-
-
+*/
                         mProgressDialog.dismiss();
-
-
 
                         Log.d( "url", nombre );
 

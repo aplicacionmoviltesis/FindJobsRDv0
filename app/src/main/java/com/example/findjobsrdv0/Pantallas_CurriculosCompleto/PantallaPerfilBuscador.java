@@ -15,21 +15,26 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.modeloPerfilBuscadores;
+
+import com.bumptech.glide.Glide;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.PerfilBuscador;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,15 +48,15 @@ import java.io.ByteArrayOutputStream;
 
 import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
-public class PerfilBuscador extends AppCompatActivity {
+public class PantallaPerfilBuscador extends AppCompatActivity {
 
     private EditText ETnombreperfilB, ETapellidoperfilB, ETcorreoelectronicoperfilB, ETtelefonoperfilB;
     private ImageView imageViewperfilB;
-    private Button btnactivarcamposperfilB, btnactualizarcamposperfilB;
+   // private Button btnactivarcamposperfilB, btnactualizarcamposperfilB;
 
-    private String imagenperfilB,  nombreperfilB, apellidoperfilB, correoelectronicoperfilB,  telefonoperfilB;
+    private String sImagenPerfilB, sNombrePerfilB, sApellidoperfilB, sEmailPerfilB, sTelefonoPerfilB;
 
-    String idBuscadorConectado = "";
+    String sIdBuscador = "";
 
     private FirebaseDatabase database;
     private DatabaseReference DBperfilBuscadores;
@@ -68,25 +73,33 @@ public class PerfilBuscador extends AppCompatActivity {
 
     int IMAGE_REQUEST_CODE = 5;
 
+    private TextView TvTiPerfilBuscador;
 
-    private TextView TvTiPerfilBuscadores;
+    FirebaseAuth firebaseAuth;
+    String TelefonoBuscador,EmailBuscador, NombreBuscador, FotoPerfilCorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_perfil_buscador );
 
-        TvTiPerfilBuscadores = (TextView) findViewById( R.id.xmlTvTiPerfilBuscador );
+        TvTiPerfilBuscador = (TextView) findViewById( R.id.xmlTvTiPerfilBuscador );
         Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
-        TvTiPerfilBuscadores.setTypeface( face );
+        TvTiPerfilBuscador.setTypeface( face );
 
         database = FirebaseDatabase.getInstance();
         DBperfilBuscadores = database.getReference( "BuscadoresEmpleos" );
-        //sIdEmpleador = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled( true );
         actionBar.setDisplayShowHomeEnabled( true );
+
+        FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+
+        TelefonoBuscador = user.getPhoneNumber();
+        EmailBuscador = user.getEmail();
+        NombreBuscador = user.getDisplayName();
+        FotoPerfilCorreo = user.getPhotoUrl().toString();
 
         ETnombreperfilB = (EditText) findViewById( R.id.xmleditNombreperfilBuscado );
         ETapellidoperfilB = (EditText) findViewById( R.id.xmleditDireccionperfilBuscado );
@@ -104,7 +117,9 @@ public class PerfilBuscador extends AppCompatActivity {
             }
         } );
 
-        btnactivarcamposperfilB = (Button)findViewById( R.id.xmlBtnActivarperfilBuscador );
+
+
+ /*       btnactivarcamposperfilB = (Button)findViewById( R.id.xmlBtnActivarperfilBuscador );
         btnactivarcamposperfilB.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,12 +135,12 @@ public class PerfilBuscador extends AppCompatActivity {
 
             }
         } );
-
+*/
 
         mStorageReference = getInstance().getReference();
         //mDatabaseReference = FirebaseDatabase.getInstance().getReference(mDatabasePath);
 
-        mProgressDialog = new ProgressDialog( PerfilBuscador.this );
+        mProgressDialog = new ProgressDialog( PantallaPerfilBuscador.this );
 
 
         ETnombreperfilB.setEnabled( false );
@@ -134,11 +149,11 @@ public class PerfilBuscador extends AppCompatActivity {
         ETtelefonoperfilB.setEnabled( false );
 
         if (getIntent() != null) {
-            idBuscadorConectado = getIntent().getStringExtra( "BuscadorConectado" );
+            sIdBuscador = getIntent().getStringExtra( "BuscadorConectado" );
 
-            if(!idBuscadorConectado.isEmpty()){
+            if(!sIdBuscador.isEmpty()){
 
-                cargarcampos(idBuscadorConectado);
+                VerificarBuscador( sIdBuscador );
             }
         }
 
@@ -184,7 +199,7 @@ public class PerfilBuscador extends AppCompatActivity {
 
     }
 
-    public void ActualizarPerfilBuscador(final String idBuscadorConectado) {
+    public void ActualizarPerfilBuscador(final String sIdBuscador) {
         if (mFilePathUri != null) {
             mProgressDialog.setTitle( "Subiendo Imagen..." );
             mProgressDialog.show();
@@ -211,20 +226,20 @@ public class PerfilBuscador extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         String downloadURL = downloadUri.toString();
-                        nombreperfilB = ETnombreperfilB.getText().toString().trim();
-                        apellidoperfilB = ETapellidoperfilB.getText().toString().trim();
-                        correoelectronicoperfilB = ETcorreoelectronicoperfilB.getText().toString().trim();
-                        telefonoperfilB = ETtelefonoperfilB.getText().toString().trim();
+                        sNombrePerfilB = ETnombreperfilB.getText().toString().trim();
+                        sApellidoperfilB = ETapellidoperfilB.getText().toString().trim();
+                        sEmailPerfilB = ETcorreoelectronicoperfilB.getText().toString().trim();
+                        sTelefonoPerfilB = ETtelefonoperfilB.getText().toString().trim();
 
                         mProgressDialog.dismiss();
 
                         mProgressDialog.setTitle( "Actualizando..." );
                         mProgressDialog.show();
 
-                        Toast.makeText( PerfilBuscador.this, "Imagen subida exitosamente...", Toast.LENGTH_LONG ).show();
+                        Toast.makeText( PantallaPerfilBuscador.this, "Imagen subida exitosamente...", Toast.LENGTH_LONG ).show();
 
-                        modeloPerfilBuscadores modeloperfilbuscador = new modeloPerfilBuscadores( downloadUri , nombreperfilB, apellidoperfilB, correoelectronicoperfilB, telefonoperfilB);
-                        DBperfilBuscadores.child( idBuscadorConectado ).setValue( modeloperfilbuscador );
+                        PerfilBuscador perfilBuscador = new PerfilBuscador( downloadURL,sIdBuscador, sNombrePerfilB, sApellidoperfilB, sEmailPerfilB, sTelefonoPerfilB);
+                        DBperfilBuscadores.child( sIdBuscador ).setValue( perfilBuscador );
                         mProgressDialog.dismiss();
                     } else {
                         // Handle failures
@@ -236,14 +251,14 @@ public class PerfilBuscador extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     mProgressDialog.dismiss();
-                    Toast.makeText( PerfilBuscador.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                    Toast.makeText( PantallaPerfilBuscador.this, e.getMessage(), Toast.LENGTH_LONG ).show();
 
                 }
             } );
 
 
         } else {
-            Toast.makeText( PerfilBuscador.this, "Por favor, Seleccionar una Imagen", Toast.LENGTH_LONG ).show();
+            Toast.makeText( PantallaPerfilBuscador.this, "Por favor, Seleccionar una Imagen", Toast.LENGTH_LONG ).show();
 
         }
 
@@ -264,24 +279,24 @@ public class PerfilBuscador extends AppCompatActivity {
     }
 
     private void DeleteImagenAnterior() {
-        if (imagenperfilB != null && ! imagenperfilB.isEmpty()){
-            final StorageReference mPitureRef = getInstance().getReferenceFromUrl(imagenperfilB);
+        if (sImagenPerfilB != null && ! sImagenPerfilB.isEmpty()){
+            final StorageReference mPitureRef = getInstance().getReferenceFromUrl(sImagenPerfilB);
             mPitureRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(PerfilBuscador.this, "Eliminando Imagen...", Toast.LENGTH_LONG).show();
+                    Toast.makeText( PantallaPerfilBuscador.this, "Eliminando Imagen...", Toast.LENGTH_LONG).show();
                     Log.d("link foto",String.valueOf(mPitureRef));
                     SubirNuevaImagen();
                 }
             } ).addOnFailureListener( new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(PerfilBuscador.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText( PantallaPerfilBuscador.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     mProgressDialog.dismiss();
                 }
             } );
         } else {
-            Toast.makeText(PerfilBuscador.this, "No hay imagen agregada", Toast.LENGTH_LONG).show();
+            Toast.makeText( PantallaPerfilBuscador.this, "No hay imagen agregada", Toast.LENGTH_LONG).show();
             SubirNuevaImagen();
         }
     }
@@ -301,57 +316,104 @@ public class PerfilBuscador extends AppCompatActivity {
         uploadTask.addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(PerfilBuscador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
+                Toast.makeText( PantallaPerfilBuscador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
-                ActualizarDatosEmpleador(downloadUri.toString());
+                ActualizarDatosBuscador(downloadUri.toString());
 
             }
         }).addOnFailureListener( new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(PerfilBuscador.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText( PantallaPerfilBuscador.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 mProgressDialog.dismiss();
             }
         } );
     }
 
-    private void ActualizarDatosEmpleador(String foto) {
-        nombreperfilB = ETnombreperfilB.getText().toString().trim();
-        apellidoperfilB = ETapellidoperfilB.getText().toString().trim();
-        correoelectronicoperfilB = ETcorreoelectronicoperfilB.getText().toString().trim();
-        telefonoperfilB = ETtelefonoperfilB.getText().toString().trim();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menuperfil, menu);
+        return true;
+    }
 
-        modeloPerfilBuscadores modeloperfilbuscador = new modeloPerfilBuscadores(foto, nombreperfilB, apellidoperfilB, correoelectronicoperfilB,telefonoperfilB);
-        DBperfilBuscadores.child( idBuscadorConectado ).setValue( modeloperfilbuscador );
-        Toast.makeText(PerfilBuscador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(PerfilBuscador.this, PantallaPrincipalBuscador.class);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.menu_EditarPerfil) {
+            //process your onClick here
+            ActivarCampor();
+            return true;
+        }
+        if (id == R.id.menu_ActualizarPerfil) {
+            //process your onClick here
+            beginUpdate();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void ActualizarDatosBuscador(String foto) {
+        sNombrePerfilB = ETnombreperfilB.getText().toString().trim();
+        sApellidoperfilB = ETapellidoperfilB.getText().toString().trim();
+        sEmailPerfilB = ETcorreoelectronicoperfilB.getText().toString().trim();
+        sTelefonoPerfilB = ETtelefonoperfilB.getText().toString().trim();
+
+        PerfilBuscador perfilBuscador = new PerfilBuscador(foto, sIdBuscador, sNombrePerfilB, sApellidoperfilB, sEmailPerfilB, sTelefonoPerfilB);
+        DBperfilBuscadores.child( sIdBuscador ).setValue( perfilBuscador );
+        Toast.makeText( PantallaPerfilBuscador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent( PantallaPerfilBuscador.this, PantallaPrincipalBuscador.class);
         startActivity(intent);
     }
 
-    private void cargarcampos(String idBuscadorConectado) {
-        DBperfilBuscadores.child(idBuscadorConectado).addListenerForSingleValueEvent( new ValueEventListener() {
+    private void VerificarBuscador(String sIdBuscador) {
+        DBperfilBuscadores.child(sIdBuscador).addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                imagenperfilB = dataSnapshot.child("imagenperfilB").getValue(String.class);
-                if (imagenperfilB != null && !imagenperfilB.isEmpty()) {
-                    Picasso.get().load(imagenperfilB).into(imageViewperfilB);
 
-                    nombreperfilB = dataSnapshot.child( "nombreperfilB" ).getValue(String.class);
-                    ETnombreperfilB.setText( nombreperfilB );
+                sImagenPerfilB = dataSnapshot.child("sImagenPerfilB").getValue(String.class);
+                if (sImagenPerfilB != null && !sImagenPerfilB.isEmpty()) {
+                    Picasso.get().load( sImagenPerfilB ).into( imageViewperfilB );
+                }else
+                    {
+                        Glide.with( PantallaPerfilBuscador.this ).load( FotoPerfilCorreo ).into( imageViewperfilB );
+                    }
 
-                    apellidoperfilB = dataSnapshot.child( "apellidoperfilB" ).getValue(String.class);
-                    ETapellidoperfilB.setText( apellidoperfilB );
+                sNombrePerfilB = dataSnapshot.child( "sNombrePerfilB" ).getValue( String.class );
+                if (sNombrePerfilB != null && sNombrePerfilB != ""){
+                    ETnombreperfilB.setText( sNombrePerfilB );
+                }else
+                    {
+                        ETnombreperfilB.setText( NombreBuscador );
+                    }
 
-                    correoelectronicoperfilB = dataSnapshot.child( "correoelectronicoperfilB" ).getValue(String.class);
-                    ETcorreoelectronicoperfilB.setText( correoelectronicoperfilB );
-
-                    telefonoperfilB = dataSnapshot.child( "telefonoperfilB" ).getValue(String.class);
-                    ETtelefonoperfilB.setText( telefonoperfilB );
-
-
+                sApellidoperfilB = dataSnapshot.child( "sApellidoperfilB" ).getValue(String.class);
+                if (sApellidoperfilB != null && sApellidoperfilB != ""){
+                    ETapellidoperfilB.setText( sApellidoperfilB );
                 }
+
+                sEmailPerfilB = dataSnapshot.child( "sEmailPerfilB" ).getValue(String.class);
+                if (sEmailPerfilB != null && sEmailPerfilB != ""){
+                    ETcorreoelectronicoperfilB.setText( sEmailPerfilB );
+                }else
+                    {
+                        ETcorreoelectronicoperfilB.setText( EmailBuscador );
+                    }
+
+                sTelefonoPerfilB = dataSnapshot.child( "sTelefonoPerfilB" ).getValue(String.class);
+                if (sTelefonoPerfilB != null && sTelefonoPerfilB != ""){
+                    ETtelefonoperfilB.setText( sTelefonoPerfilB );
+                }else
+                    {
+                        ETtelefonoperfilB.setText( TelefonoBuscador );
+                    }
 
             }
 
