@@ -22,6 +22,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
     private DatabaseReference DBEmpleadores, dbAplicacionesCurriculo, dbCurriculos;
 
     private AdapterEmpresa adapterEmpresa;
+    private AdapterEmpresa adapterEmpresaVacio;
     private ArrayList<Empleadores> mDatasetEmpleadores = new ArrayList<Empleadores>();
 
     private String sIdEmpresaAplico = "";
@@ -74,6 +76,9 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
         dbCurriculos = dbCurriculosSolicitudes.getReference("Curriculos");
         DBEmpleadores = dbCurriculosSolicitudes.getReference();
 
+        //mDatasetEmpleadores.clear();
+        //HashSet hs = new HashSet();
+
 
         recyclerViewEmpleadores = (RecyclerView) findViewById(R.id.ListaEmpresasAplicaronR);
 
@@ -83,8 +88,10 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 
         adapterEmpresa = new AdapterEmpresa(PantallaEmpresasAplicaronMiCurriculo.this, mDatasetEmpleadores);
         adapterEmpresa.notifyDataSetChanged();
-
         recyclerViewEmpleadores.setAdapter(adapterEmpresa);
+
+
+
 
         //mDatasetEmpleadores.clear();
 
@@ -129,6 +136,7 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 
                         for (DataSnapshot CurriculoSnapshot : dataSnapshot.getChildren()) {
                             String IdCurriculoExistente = CurriculoSnapshot.child("sIdCurriculo").getValue(String.class);
+                            //recyclerViewEmpleadores.setAdapter(adapterEmpresaVacio);
 
                             TraerAplicacionesCurriculo(IdCurriculoExistente);
 
@@ -141,6 +149,7 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 //                            Log.d("dataCurriculoId", String.valueOf(IdCurriculo));
                         }
 
+
                     }
 
                     @Override
@@ -148,7 +157,7 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 
                     }
                 });
-
+                //mDatasetEmpleadores.clear();
                 //ObtenerCurriculo(sIdEmpresaAplico);
             }
         }
@@ -231,6 +240,7 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 
     private void loadEmpresa(final String sIDEmpresa) {
         Log.d("dataEmpresaAplic", String.valueOf(sIDEmpresa));
+        //adapterEmpresa.notifyDataSetChanged();
 
         DBEmpleadores.child("Empleadores").orderByChild("sIdEmpleador").equalTo(sIDEmpresa).addValueEventListener(new ValueEventListener() {
             @Override
@@ -256,9 +266,9 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 
                     final Empleadores empleadores = new Empleadores(sNombreEAplicoCurriculo,sRncEmpleadorAplicoCurriculo,
                             sPaginaWebEAplicoCurriculo,sTelefonoEAplicoCurriculo,sDireccionEAplicoCurriculo,
-                            sCorreoEAplicoCurriculo,sImagenEAplicoCurriculo,sVerificacionEAplicoCurriculo,sIdEmpleadorEAplicoCurriculo);
+                            sCorreoEAplicoCurriculo,sImagenEAplicoCurriculo,sVerificacionEAplicoCurriculo,sIdEmpleadorEAplicoCurriculo,"descripcion","provincia");
 
-
+                    //mDatasetEmpleadores.clear();
                     PantallaEmpresasAplicaronMiCurriculo.this.mDatasetEmpleadores.add(empleadores);
                     //mDatasetEmpleadores.clear();
                     adapterEmpresa.notifyDataSetChanged();
@@ -274,6 +284,7 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
                     });
                 }
                 Log.d("CVEMPLEADORES::::", String.valueOf(dataSnapshot));
+//mDatasetEmpleadores.clear();
             }
 
             @Override

@@ -62,6 +62,8 @@ public class AdapterEmpresa extends RecyclerView.Adapter {
         if (mDatasetEmpleadores ==null){
             return 0;
         }else {
+            //mDatasetEmpleadores.clear();
+
             return mDatasetEmpleadores.size();
         }
     }
@@ -114,6 +116,7 @@ public class AdapterEmpresa extends RecyclerView.Adapter {
                     VerificacionEAplico.setVisibility(View.INVISIBLE);
                 }
             }
+
 
         }
 

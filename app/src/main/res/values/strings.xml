@@ -10,8 +10,6 @@
     <string name="action_settings">Settings</string>
 
 
-
-
     <!-- prueba de los favorito
     <string name="datos_buscador"></string>
     <string name="field_likes">likes</string>
@@ -254,5 +252,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_pantalla_comparar_empleos">PantallaCompararEmpleos</string>
+    <string name="title_activity_pantalla_perfil_empleador_">PantallaPerfilEmpleador_</string>
 
 </resources>

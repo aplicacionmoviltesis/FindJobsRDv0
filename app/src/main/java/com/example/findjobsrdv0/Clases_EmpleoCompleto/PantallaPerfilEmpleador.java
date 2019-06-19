@@ -112,7 +112,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         Log.d("telefono",String.valueOf(EmailEmpleador));
 
         NombreEmpleador = user.getDisplayName();
-        FotoPerfilCorreo = user.getPhotoUrl().toString();
+        FotoPerfilCorreo = String.valueOf(user.getPhotoUrl());
+        Log.d("FotoPerfilCorreo",String.valueOf(FotoPerfilCorreo));
+
 
         editNombrePerfilE = (EditText) findViewById(R.id.xmleditNombrePerfilEmpleador);
         editRncPerfilE = (EditText) findViewById(R.id.xmleditRNC);
@@ -271,7 +273,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                         mProgressDialog.show();
 
                         Toast.makeText(PantallaPerfilEmpleador.this, "Imagen subida exitosamente...", Toast.LENGTH_LONG).show();
-                        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, downloadURL, sVerificacion,sIdEmpleador);
+                        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, downloadURL, sVerificacion,sIdEmpleador,"descripcion","provincia");
                         DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
                         mProgressDialog.dismiss();
 
@@ -435,7 +437,7 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
         sCorreoPerfilE = editCorreoPerfilE.getText().toString().trim();
         sVerificacion = false;
 
-        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, foto, sVerificacion,sIdEmpleador);
+        Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, foto, sVerificacion,sIdEmpleador,"descripcion","provincia");
         DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
         mProgressDialog.dismiss();
         Toast.makeText(PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
@@ -449,17 +451,21 @@ Empleadores empleadores = new Empleadores(sNombrePerfilE,sRncPerfilE,sPaginaWebP
         DBperfilEmpleadores.child(sIdEmpleador).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("FotoPerfilCorreoklk",String.valueOf(sImagenPerfilEmpleador));
 
                 sImagenPerfilEmpleador = dataSnapshot.child("sImagenEmpleador").getValue(String.class);
                 if(sImagenPerfilEmpleador != null && sImagenPerfilEmpleador!=""){
+                    Log.d("FotoPerfilCorreoklk",sImagenPerfilEmpleador);
+
                     Picasso.get().load(sImagenPerfilEmpleador).into(ImagePerfilEmpleador);
 
                 }
-                else {
+                if(FotoPerfilCorreo!= null && FotoPerfilCorreo!="") {
                     //Picasso.get().load(sImagenPerfilEmpleador).into(ImagePerfilEmpleador);
                     Glide.with(PantallaPerfilEmpleador.this).load(FotoPerfilCorreo).into(ImagePerfilEmpleador);
 
                 }
+
 
                 Log.d("holapkkk", String.valueOf(dataSnapshot));
                 sNombrePerfilE = dataSnapshot.child("sNombreEmpleador").getValue(String.class);

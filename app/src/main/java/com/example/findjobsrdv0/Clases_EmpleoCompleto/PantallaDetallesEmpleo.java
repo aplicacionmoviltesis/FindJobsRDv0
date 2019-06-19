@@ -88,71 +88,38 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 //----------- para los favoritos  -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-    private Button btndDislike,btnLike;
+    private Button btndDislike, btnLike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_pantalla_detalles_empleo );
-        Toolbar toolbar = (Toolbar) findViewById( R.id.toolbarDetalle );
-        setSupportActionBar( toolbar );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_detalles_empleo);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDetalle);
+        setSupportActionBar(toolbar);
 
 //----------- para los favoritos  -------------------------------------------------------------------------------------------------------------------------------------------------------
 
         prueba = FirebaseDatabase.getInstance();
         DbLikes = prueba.getReference();
-        DbLikes.keepSynced( true );
+        DbLikes.keepSynced(true);
 
-        btnfavorito = (ToggleButton) findViewById( R.id.empleosfavoritos );
-        btnfavorito.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Log.d( "estado", String.valueOf( b ) );
 
-                if (b) {
-                    marcarFavorito();
-                    Log.d( "estado activo", String.valueOf( b ) );
-                } else {
-                    final Query prueba = DbLikes.child( "BuscadoresEmpleos" ).child( sIdPersonaAplico )
-                            .child( "likes" ).orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
-
-                    prueba.addListenerForSingleValueEvent( new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
-                                pruebadataSnapshot.getRef().removeValue();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            Toast.makeText( PantallaDetallesEmpleo.this, "no funciono", Toast.LENGTH_SHORT ).show();
-                        }
-                    } );
-
-                    Log.d( "estado inactivo", String.valueOf( b ) );
-
-                }
-            }
-        } );
 
 //----------- para los favoritos  -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        TvOtrosDatosDE = (TextView) findViewById( R.id.xmlTiDatosEspecificosDE );
-        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
-        TvOtrosDatosDE.setTypeface( face );
+        TvOtrosDatosDE = (TextView) findViewById(R.id.xmlTiDatosEspecificosDE);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        TvOtrosDatosDE.setTypeface(face);
 
-        TvRequisitosDE = (TextView) findViewById( R.id.xmlTiRequisitosDE );
-        TvRequisitosDE.setTypeface( face );
+        TvRequisitosDE = (TextView) findViewById(R.id.xmlTiRequisitosDE);
+        TvRequisitosDE.setTypeface(face);
 
-        TvtiNotaDE = (TextView) findViewById( R.id.xmlTiNotaDE );
-        TvtiNotaDE.setTypeface( face );
+        TvtiNotaDE = (TextView) findViewById(R.id.xmlTiNotaDE);
+        TvtiNotaDE.setTypeface(face);
 
-       // btndDislike = (Button) findViewById(R.id.btn_dislike);
-       // btnLike = (Button) findViewById(R.id.btn_like);
+        // btndDislike = (Button) findViewById(R.id.btn_dislike);
+        // btnLike = (Button) findViewById(R.id.btn_like);
 
 
 
@@ -169,97 +136,131 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
         //Firebase
         database = FirebaseDatabase.getInstance();
-        DBempleos = database.getReference( "empleos" );
-        AplicarEmpleoDataBase = database.getReference( "EmpleosConCandidatos" );
+        DBempleos = database.getReference("empleos");
+        AplicarEmpleoDataBase = database.getReference("EmpleosConCandidatos");
         DbLikes = database.getReference();
         CurriculosDataBase = database.getReference();
 
         //Firebase
         //database = FirebaseDatabase.getInstance();
         //verificacionEmpleadores = database.getReference("Empleadores");
-        verificacionEmpleadores = database.getReference( "Empleadores" );
+        verificacionEmpleadores = database.getReference("Empleadores");
         //verificacionEmpleadores.orderByChild("Nombre").equalTo("La Sirena");
 
 
-        MostImagen = (ImageView) findViewById( R.id.xmlImagenEmpleoE );
+        MostImagen = (ImageView) findViewById(R.id.xmlImagenEmpleoE);
 
-        TvNombreEmpleoDE = (TextView) findViewById( R.id.xmlTvNombreEmpleoDE );
-        TvNombreEmpresaDE = (TextView) findViewById( R.id.xmlTvNombreEmpresaDE );
-        TvProvinciaDE = (TextView) findViewById( R.id.xmlTvProvinciaDE );
-        TvDireccionDE = (TextView) findViewById( R.id.xmlTvDireccionDE );
-        TvTelefonoDE = (TextView) findViewById( R.id.xmlTvTelefonoDE );
-        TvEmailDE = (TextView) findViewById( R.id.xmlTvEmailDE );
-        TvPaginaWebDE = (TextView) findViewById( R.id.xmlTvPaginaWebDE );
-        TvJornadaDE = (TextView) findViewById( R.id.xmlTvJornadaDE );
-        TvMostrarHorarioDE = (TextView) findViewById( R.id.xmlTvMostrarHorarioDE );
-        TvTipoContratoDE = (TextView) findViewById( R.id.xmlTvTipoContratoDE );
-        TvCantidadVacantesDE = (TextView) findViewById( R.id.xmlTvCantidadVacantesDE );
-        TvSalarioDE = (TextView) findViewById( R.id.xmlTvSalarioDE );
-        TvAreaDE = (TextView) findViewById( R.id.xmlTvAreaDE );
-        TvAnosExperienciaDE = (TextView) findViewById( R.id.xmlTvAnosExperienciaDE );
-        TvFormacionAcademicaDE = (TextView) findViewById( R.id.xmlTvFormacionAcademicaDE );
-        TvIdiomasDE = (TextView) findViewById( R.id.xmlTvIdiomasDE );
-        TvSexoRequeridoDE = (TextView) findViewById( R.id.xmlTvSexoRequeridoDE );
-        TvRangoEdadDE = (TextView) findViewById( R.id.xmlTvRangoEdadDE );
-        TvNotaDE = (TextView) findViewById( R.id.xmlTvNotaDE );
-        TvEstadoEmpleoDE = (TextView) findViewById( R.id.xmlTvEstadoEmpleoDE );
-        TvFechaPublicacionDE = (TextView) findViewById( R.id.xmlTvFechaPublicacionDE );
+        TvNombreEmpleoDE = (TextView) findViewById(R.id.xmlTvNombreEmpleoDE);
+        TvNombreEmpresaDE = (TextView) findViewById(R.id.xmlTvNombreEmpresaDE);
+        TvProvinciaDE = (TextView) findViewById(R.id.xmlTvProvinciaDE);
+        TvDireccionDE = (TextView) findViewById(R.id.xmlTvDireccionDE);
+        TvTelefonoDE = (TextView) findViewById(R.id.xmlTvTelefonoDE);
+        TvEmailDE = (TextView) findViewById(R.id.xmlTvEmailDE);
+        TvPaginaWebDE = (TextView) findViewById(R.id.xmlTvPaginaWebDE);
+        TvJornadaDE = (TextView) findViewById(R.id.xmlTvJornadaDE);
+        TvMostrarHorarioDE = (TextView) findViewById(R.id.xmlTvMostrarHorarioDE);
+        TvTipoContratoDE = (TextView) findViewById(R.id.xmlTvTipoContratoDE);
+        TvCantidadVacantesDE = (TextView) findViewById(R.id.xmlTvCantidadVacantesDE);
+        TvSalarioDE = (TextView) findViewById(R.id.xmlTvSalarioDE);
+        TvAreaDE = (TextView) findViewById(R.id.xmlTvAreaDE);
+        TvAnosExperienciaDE = (TextView) findViewById(R.id.xmlTvAnosExperienciaDE);
+        TvFormacionAcademicaDE = (TextView) findViewById(R.id.xmlTvFormacionAcademicaDE);
+        TvIdiomasDE = (TextView) findViewById(R.id.xmlTvIdiomasDE);
+        TvSexoRequeridoDE = (TextView) findViewById(R.id.xmlTvSexoRequeridoDE);
+        TvRangoEdadDE = (TextView) findViewById(R.id.xmlTvRangoEdadDE);
+        TvNotaDE = (TextView) findViewById(R.id.xmlTvNotaDE);
+        TvEstadoEmpleoDE = (TextView) findViewById(R.id.xmlTvEstadoEmpleoDE);
+        TvFechaPublicacionDE = (TextView) findViewById(R.id.xmlTvFechaPublicacionDE);
 
-        BtnVerificacionEmpresaDE = (Button) findViewById( R.id.xmlBtnVerificacionEmpresaDE );
-        BtnVerificacionEmpresaDE.setVisibility( View.INVISIBLE );
+        BtnVerificacionEmpresaDE = (Button) findViewById(R.id.xmlBtnVerificacionEmpresaDE);
+        BtnVerificacionEmpresaDE.setVisibility(View.INVISIBLE);
 
         mAuthEmpleador = FirebaseAuth.getInstance();
         user = mAuthEmpleador.getCurrentUser();
         sIdPersonaAplico = user.getUid();
-        Log.d( "usuario", sIdPersonaAplico );
+        Log.d("usuario", sIdPersonaAplico);
 
         if (getIntent() != null) {
-            sEmpleoIdE = getIntent().getStringExtra( "sEmpleoIdBuscado" );
+            sEmpleoIdE = getIntent().getStringExtra("sEmpleoIdBuscado");
             if (!sEmpleoIdE.isEmpty()) {
 
-                goDetalleEmpleo( sEmpleoIdE );
+                goDetalleEmpleo(sEmpleoIdE);
                 VerificarFavorito();
             }
         }
 
+        btnfavorito = (ToggleButton) findViewById(R.id.empleosfavoritos);
+        btnfavorito.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Log.d("estado", String.valueOf(b));
 
-        TvPaginaWebDE.setOnClickListener( new View.OnClickListener() {
+                if (b) {
+                    marcarFavorito(sEmpleoIdE);
+                    Log.d("estado activo", String.valueOf(b));
+                } else {
+                    final Query prueba = DbLikes.child("BuscadoresEmpleos").child(sIdPersonaAplico)
+                            .child("likes").orderByChild("IdEmpleoLike").equalTo(sEmpleoIdE);
+
+                    prueba.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+                                pruebadataSnapshot.getRef().removeValue();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            Toast.makeText(PantallaDetallesEmpleo.this, "no funciono", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    Log.d("estado inactivo", String.valueOf(b));
+
+                }
+            }
+        });
+
+
+        TvPaginaWebDE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goPaginaWeb();
             }
-        } );
+        });
 
-        TvAreaDE.setOnClickListener( new View.OnClickListener() {
+        TvAreaDE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goDetalleArea();
             }
-        } );
+        });
 
-        TvProvinciaDE.setOnClickListener( new View.OnClickListener() {
+        TvProvinciaDE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goDetalleProvincia();
             }
-        } );
+        });
 
-        Log.d( "hamaca", sIdEmpleador );
+        Log.d("hamaca", sIdEmpleador);
 
         mAuthEmpleador = FirebaseAuth.getInstance();
         user = mAuthEmpleador.getCurrentUser();
-        sIdPersonaAplico= user.getUid();
+        sIdPersonaAplico = user.getUid();
 
-        Log.d("usuario",sIdPersonaAplico);
+        Log.d("usuario", sIdPersonaAplico);
 
 
-        BtnAplicarEmpleoDE = (Button) findViewById( R.id.xmlBtnAplicarEmpleoDE );
-        BtnAplicarEmpleoDE.setOnClickListener( new View.OnClickListener() {
+        BtnAplicarEmpleoDE = (Button) findViewById(R.id.xmlBtnAplicarEmpleoDE);
+        BtnAplicarEmpleoDE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AplicarEmpleo( sIdPersonaAplico, sEmpleoIdE );
+                AplicarEmpleo(sIdPersonaAplico, sEmpleoIdE);
             }
-        } );
+        });
 
         //VerificacionEmpresa(sIdEmpleador);
 
@@ -268,31 +269,31 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
         //SharedPreferences preferences= this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
         //String Nombre= preferences.getString("Nombre", "Nombre");
 
-        CurriculosDataBase.child( "Curriculos" ).orderByChild( "sIdBuscadorEmpleo" ).equalTo( sIdPersonaAplico ).addValueEventListener( new ValueEventListener() {
+        CurriculosDataBase.child("Curriculos").orderByChild("sIdBuscadorEmpleo").equalTo(sIdPersonaAplico).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size
                 // of the iterator returned by dataSnapshot.getChildren() to
                 // initialize the array
                 final List<String> areas = new ArrayList<String>();
-                Log.d( "holap", String.valueOf( dataSnapshot ) );
+                Log.d("holap", String.valueOf(dataSnapshot));
 
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
 
-                    String areaName = areaSnapshot.child( "sIdCurriculo" ).getValue( String.class );
+                    String areaName = areaSnapshot.child("sIdCurriculo").getValue(String.class);
                     //areas.add(areaName);
-                    Log.d( "holap", areaName );
+                    Log.d("holap", areaName);
                     sIdCurriculoAplico = areaName;
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText( PantallaDetallesEmpleo.this, "Usted No tiene empleo registrados", Toast.LENGTH_LONG ).show();
+                Toast.makeText(PantallaDetallesEmpleo.this, "Usted No tiene empleo registrados", Toast.LENGTH_LONG).show();
 
 
             }
-        } );
+        });
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //   sEmpleoIdE = "-Lg4YqLFDOwMHBe7RNbz";
 
@@ -404,72 +405,72 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 */
 
     private void goDetalleEmpleo(String sEmpleoIdE) {
-        DBempleos.child( sEmpleoIdE ).addValueEventListener( new ValueEventListener() {
+        DBempleos.child(sEmpleoIdE).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Empleos empleos = dataSnapshot.getValue( Empleos.class );
-                Log.d( "klk", String.valueOf( dataSnapshot ) );
+                Empleos empleos = dataSnapshot.getValue(Empleos.class);
+                Log.d("klk", String.valueOf(dataSnapshot));
 
-                Picasso.get().load( empleos.getsImagenEmpleoE() ).into( MostImagen );
+                Picasso.get().load(empleos.getsImagenEmpleoE()).into(MostImagen);
 
-                TvNombreEmpleoDE.setText( empleos.getsNombreEmpleoE().toUpperCase() );
-                TvNombreEmpresaDE.setText( empleos.getsNombreEmpresaE() );
-                TvProvinciaDE.setText( empleos.getsProvinciaE() );
-                TvDireccionDE.setText( empleos.getsDireccionE() );
-                TvTelefonoDE.setText( empleos.getsTelefonoE() );
-                TvPaginaWebDE.setText( empleos.getsPaginaWebE() );
-                TvJornadaDE.setText( empleos.getsJornadaE() );
-                TvMostrarHorarioDE.setText( empleos.getsHorarioE() );
-                TvTipoContratoDE.setText( empleos.getsTipoContratoE() );
-                TvCantidadVacantesDE.setText( empleos.getsCantidadVacantesE() );
-                TvSalarioDE.setText( empleos.getsSalarioE() );
-                TvAreaDE.setText( empleos.getsAreaE() );
-                TvAnosExperienciaDE.setText( empleos.getsAnosExperienciaE() );
-                TvFormacionAcademicaDE.setText( empleos.getsFormacionAcademicaE() );
-                TvIdiomasDE.setText( empleos.getsMostrarIdiomaE() );
-                TvSexoRequeridoDE.setText( empleos.getsSexoRequeridoE() );
-                TvRangoEdadDE.setText( empleos.getsRangoE() );
-                TvNotaDE.setText( empleos.getsOtrosDatosE() );
-                TvEstadoEmpleoDE.setText( empleos.getsEstadoEmpleoE() );
-                TvFechaPublicacionDE.setText( empleos.getsFechaPublicacionE() );
+                TvNombreEmpleoDE.setText(empleos.getsNombreEmpleoE().toUpperCase());
+                TvNombreEmpresaDE.setText(empleos.getsNombreEmpresaE());
+                TvProvinciaDE.setText(empleos.getsProvinciaE());
+                TvDireccionDE.setText(empleos.getsDireccionE());
+                TvTelefonoDE.setText(empleos.getsTelefonoE());
+                TvPaginaWebDE.setText(empleos.getsPaginaWebE());
+                TvJornadaDE.setText(empleos.getsJornadaE());
+                TvMostrarHorarioDE.setText(empleos.getsHorarioE());
+                TvTipoContratoDE.setText(empleos.getsTipoContratoE());
+                TvCantidadVacantesDE.setText(empleos.getsCantidadVacantesE());
+                TvSalarioDE.setText(empleos.getsSalarioE());
+                TvAreaDE.setText(empleos.getsAreaE());
+                TvAnosExperienciaDE.setText(empleos.getsAnosExperienciaE());
+                TvFormacionAcademicaDE.setText(empleos.getsFormacionAcademicaE());
+                TvIdiomasDE.setText(empleos.getsMostrarIdiomaE());
+                TvSexoRequeridoDE.setText(empleos.getsSexoRequeridoE());
+                TvRangoEdadDE.setText(empleos.getsRangoE());
+                TvNotaDE.setText(empleos.getsOtrosDatosE());
+                TvEstadoEmpleoDE.setText(empleos.getsEstadoEmpleoE());
+                TvFechaPublicacionDE.setText(empleos.getsFechaPublicacionE());
 
                 //sIdEmpleador = empleos.getsIdEmpleador();
-                sIdEmpleador = dataSnapshot.child( "sIdEmpleadorE" ).getValue( String.class );
+                sIdEmpleador = dataSnapshot.child("sIdEmpleadorE").getValue(String.class);
 
 ///String klk= empleos.getsProvinciaE();
-                Log.d( "pagina", String.valueOf( sIdEmpleador ) );
-                VerificacionEmpresa( sIdEmpleador );
+                Log.d("pagina", String.valueOf(sIdEmpleador));
+                VerificacionEmpresa(sIdEmpleador);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
+        });
     }
 
     public void VerificacionEmpresa(String sIdEmpleador) {
-        verificacionEmpleadores.child( sIdEmpleador ).addListenerForSingleValueEvent( new ValueEventListener() {
+        verificacionEmpleadores.child(sIdEmpleador).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Log.d( "holapkkk", String.valueOf( dataSnapshot ) );
+                Log.d("holapkkk", String.valueOf(dataSnapshot));
                 //Log.d("h", String.valueOf(dataSnapshot.child("Nombre").getValue(String.class)));
-                sVerificarEmpleador = dataSnapshot.child( "sVerificacionEmpleador" ).getValue( Boolean.class );
+                sVerificarEmpleador = dataSnapshot.child("sVerificacionEmpleador").getValue(Boolean.class);
                 //Log.d("h", String.valueOf(dataSnapshot.child("Nombre").getValue(String.class)));
-                Log.d( "holapkkk", String.valueOf( sVerificarEmpleador ) );
+                Log.d("holapkkk", String.valueOf(sVerificarEmpleador));
 
                 if (sVerificarEmpleador == null) {
-                    Toast.makeText( PantallaDetallesEmpleo.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG ).show();
+                    Toast.makeText(PantallaDetallesEmpleo.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG).show();
 
                 } else {
 
                     if (sVerificarEmpleador == true) {
-                        BtnVerificacionEmpresaDE.setVisibility( View.VISIBLE );
+                        BtnVerificacionEmpresaDE.setVisibility(View.VISIBLE);
                     }
                     if (sVerificarEmpleador == false) {
-                        BtnVerificacionEmpresaDE.setVisibility( View.INVISIBLE );
+                        BtnVerificacionEmpresaDE.setVisibility(View.INVISIBLE);
                     }
                 }
                 //String perro1 = dataSnapshot.child("Verificacion").getValue(String.class);
@@ -482,43 +483,43 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( PantallaDetallesEmpleo.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG ).show();
+                Toast.makeText(PantallaDetallesEmpleo.this, "No se realizo correctamente su aplicacion al empleo", Toast.LENGTH_LONG).show();
 
             }
-        } );
+        });
 
     }
 
     public void goPaginaWeb() {
 
-        Intent intent = new Intent( PantallaDetallesEmpleo.this, PantallaNavegador.class );
-        intent.putExtra( "sPaginaWebDE", TvPaginaWebDE.getText().toString().trim() );
+        Intent intent = new Intent(PantallaDetallesEmpleo.this, PantallaNavegador.class);
+        intent.putExtra("sPaginaWebDE", TvPaginaWebDE.getText().toString().trim());
 
         String hola = TvPaginaWebDE.getText().toString().trim();
-        Log.d( "klkpaginaweb", hola );
-        startActivity( intent );
+        Log.d("klkpaginaweb", hola);
+        startActivity(intent);
 
     }
 
     public void goDetalleProvincia() {
 
-        Intent intent = new Intent( PantallaDetallesEmpleo.this, PantallaDetallesProvincia.class );
-        intent.putExtra( "sProvinciaDE", TvProvinciaDE.getText().toString().trim() );
+        Intent intent = new Intent(PantallaDetallesEmpleo.this, PantallaDetallesProvincia.class);
+        intent.putExtra("sProvinciaDE", TvProvinciaDE.getText().toString().trim());
 
         String hola = TvProvinciaDE.getText().toString().trim();
-        Log.d( "klkprovincia", hola );
-        startActivity( intent );
+        Log.d("klkprovincia", hola);
+        startActivity(intent);
 
     }
 
     public void goDetalleArea() {
 
-        Intent intent = new Intent( PantallaDetallesEmpleo.this, PantallaDetallesArea.class );
-        intent.putExtra( "sAreaDE", TvAreaDE.getText().toString().trim() );
+        Intent intent = new Intent(PantallaDetallesEmpleo.this, PantallaDetallesArea.class);
+        intent.putExtra("sAreaDE", TvAreaDE.getText().toString().trim());
 
         String hola = TvAreaDE.getText().toString().trim();
-        Log.d( "klkarea", hola );
-        startActivity( intent );
+        Log.d("klkarea", hola);
+        startActivity(intent);
 
     }
 
@@ -583,9 +584,9 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
         //sIdCurriculoAplico = sIdBuscador;
         sIdEmpleoAplico = sEmpleoIdE;
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "EEE dd MMM yyyy" );
-        sFechadeAplicacion = simpleDateFormat.format( new Date() );
-        Log.d( "klkcurri", String.valueOf( sIdCurriculoAplico ) );
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
+        sFechadeAplicacion = simpleDateFormat.format(new Date());
+        Log.d("klkcurri", String.valueOf(sIdCurriculoAplico));
 
         if (sIdCurriculoAplico != null) {
 
@@ -593,28 +594,28 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
 
                 String sIdAplicarEmpleo = AplicarEmpleoDataBase.push().getKey();
 
-                AplicarEmpleo aplicarEmpleo = new AplicarEmpleo( sIdAplicarEmpleo, sIdCurriculoAplico, sIdEmpleoAplico, sIdPersonaAplico, sFechadeAplicacion );
-                AplicarEmpleoDataBase.child( sIdAplicarEmpleo ).setValue( aplicarEmpleo );
+                AplicarEmpleo aplicarEmpleo = new AplicarEmpleo(sIdAplicarEmpleo, sIdCurriculoAplico, sIdEmpleoAplico, sIdPersonaAplico, sFechadeAplicacion);
+                AplicarEmpleoDataBase.child(sIdAplicarEmpleo).setValue(aplicarEmpleo);
 
-                Toast.makeText( this, "Su Aplicacion se realizo exitosamente", Toast.LENGTH_LONG ).show();
+                Toast.makeText(this, "Su Aplicacion se realizo exitosamente", Toast.LENGTH_LONG).show();
             }
 
         } else {
-            Toast.makeText( this, "Usted Aun No tiene Ningun Empleo Registrado", Toast.LENGTH_LONG ).show();
-            BtnAplicarEmpleoDE.setEnabled( false );
+            Toast.makeText(this, "Usted Aun No tiene Ningun Empleo Registrado", Toast.LENGTH_LONG).show();
+            BtnAplicarEmpleoDE.setEnabled(false);
 
-            AlertDialog.Builder builder1 = new AlertDialog.Builder( PantallaDetallesEmpleo.this );
-            builder1.setMessage( "Desea Registrar su Curriculo?" );
-            builder1.setCancelable( true );
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(PantallaDetallesEmpleo.this);
+            builder1.setMessage("Desea Registrar su Curriculo?");
+            builder1.setCancelable(true);
 
             builder1.setPositiveButton(
                     "Yes",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent( PantallaDetallesEmpleo.this, cPantallaRegistrarCurriculo.class );
-                            startActivityForResult( intent, 0 );
+                            Intent intent = new Intent(PantallaDetallesEmpleo.this, cPantallaRegistrarCurriculo.class);
+                            startActivityForResult(intent, 0);
                         }
-                    } );
+                    });
 
             builder1.setNegativeButton(
                     "No",
@@ -622,7 +623,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                         }
-                    } );
+                    });
 
             AlertDialog alert11 = builder1.create();
             alert11.show();
@@ -630,25 +631,25 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
     }
 
     private void VerificarFavorito() {
-        final Query q = DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
-                .child( sIdPersonaAplico )//referencia usuario
-                .child( "likes" )//referencia likes
-                .orderByChild( "IdEmpleoLike" ).equalTo( sEmpleoIdE );
+        final Query q = DbLikes.child("BuscadoresEmpleos")//referencia empleadores
+                .child(sIdPersonaAplico)//referencia usuario
+                .child("likes")//referencia likes
+                .orderByChild("IdEmpleoLike").equalTo(sEmpleoIdE);
 //        Log.d( "fav", String.valueOf( sEmpleoIdE ) );
 //        Log.d( "fav", String.valueOf( sIdPersonaAplico ) );
 
-        q.addListenerForSingleValueEvent( new ValueEventListener() {
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d( "fav", String.valueOf( dataSnapshot ) );
+                Log.d("fav", String.valueOf(dataSnapshot));
                 for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
 
                     if (FavdataSnapshot != null) {
-                        btnfavorito.setChecked( true );
+                        btnfavorito.setChecked(true);
 
 
                     } else {
-                        btnfavorito.setChecked( false );
+                        btnfavorito.setChecked(false);
 
                     }
                 }
@@ -658,10 +659,59 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
+        });
     }
 
-    private void marcarFavorito() {
+    private void marcarFavorito(String sEmpleoIdEFav) {
+
+//        Query query  = DbLikes.child("BuscadoresEmpleos")
+//                .child(sIdPersonaAplico)
+//                .child("likes")
+//                .orderByChild("IdEmpleoLike").equalTo("-Lg4alOTsAzGLKms6tmu");
+//        query.addListenerForSingleValueEvent( new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Log.d( "favValidacion", String.valueOf( dataSnapshot ) );
+//                Log.d( "favValidacion", String.valueOf( dataSnapshot.getValue() ) );
+//                Log.d( "favValidacionB", String.valueOf( dataSnapshot.getValue() ) );
+//
+//                String prueba = dataSnapshot.getValue().toString();
+//                Log.d( "favValidacionpru", prueba);
+//
+//                if (prueba.equals("null")){
+//                    //etCedula.setError( "error " );
+//
+//                    String newLikeID = DbLikes.push().getKey();
+//
+//                    DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
+//                            .child( sIdPersonaAplico )//referencia usuario
+//                            .child( "likes" )//referencia likes
+//                            .child( newLikeID )
+//                            .child( "IdEmpleoLike" )
+//                            .setValue( sEmpleoIdE );
+//
+//                }
+//                else {
+//                    Toast.makeText( PantallaDetallesEmpleo.this, "Favorito repetido", Toast.LENGTH_LONG ).show();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        } );
+
+        Query q = DbLikes.child("BuscadoresEmpleos")
+                .child(sIdPersonaAplico)
+                .child("likes")
+                .orderByChild("IdEmpleoLike").equalTo(sEmpleoIdEFav);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    //Toast.makeText(PantallaDetallesEmpleo.this, "Favorito si", Toast.LENGTH_LONG).show();
         String newLikeID = DbLikes.push().getKey();
 
         DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
@@ -670,5 +720,30 @@ public class PantallaDetallesEmpleo extends AppCompatActivity { //implements Com
                 .child( newLikeID )
                 .child( "IdEmpleoLike" )
                 .setValue( sEmpleoIdE );
+                }
+                //existe
+                else {
+                    //Toast.makeText(PantallaDetallesEmpleo.this, "Favorito repetido", Toast.LENGTH_LONG).show();
+
+                }
+            }
+            //no existe
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+//        String newLikeID = DbLikes.push().getKey();
+//
+//        DbLikes.child( "BuscadoresEmpleos" )//referencia empleadores
+//                .child( sIdPersonaAplico )//referencia usuario
+//                .child( "likes" )//referencia likes
+//                .child( newLikeID )
+//                .child( "IdEmpleoLike" )
+//                .setValue( sEmpleoIdE );
     }
 }

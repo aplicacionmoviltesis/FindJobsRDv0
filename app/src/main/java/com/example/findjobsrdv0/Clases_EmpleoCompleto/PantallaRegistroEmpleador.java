@@ -187,8 +187,10 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         final String entrada_contrasena2 = registroPass2.getText().toString().trim();
         final String entrada_paginaweb = "";
         final String entrada_direccion = "";
+        final String entrada_provincia = "";
+        final String entrada_descripcion = "";
         final boolean entrada_verificacion = false;
-        final String entrada_imagenEmpleador="";
+        final String entrada_imagenEmpleador="https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesGenerales%2Fonlylogo.png?alt=media&token=0a3e2044-5fe3-4df5-a1b3-a85336c12747";
 
         //Verificamos que las cajas de texto no esten vacías
 
@@ -246,6 +248,8 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                                 //DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Contraseña").setValue(entrada_contrasena);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sVerificacionEmpleador").setValue(entrada_verificacion);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sImagenEmpleador").setValue(entrada_imagenEmpleador);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sProvinciaEmpleador").setValue(entrada_provincia);
+                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sDescripcionEmpleador").setValue(entrada_descripcion);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sIdEmpleador").setValue(Ukey);
 
 

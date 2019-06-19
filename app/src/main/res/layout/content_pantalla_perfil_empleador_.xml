@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Clases_EmpleoCompleto.PantallaDetallePerfilEmpresa"
-    tools:showIn="@layout/activity_pantalla_detalle_perfil_empresa">
+    tools:context=".Clases_EmpleoCompleto.PantallaPerfilEmpleador_"
+    tools:showIn="@layout/activity_pantalla_perfil_empleador_">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:background="@mipmap/fondo1"
-            android:layout_margin="15dp"
+            android:layout_margin="0dp"
             android:elevation="100dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile_image"
+                    android:id="@+id/xmlImagePerfilEmpleador"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
@@ -42,7 +42,7 @@
                     android:padding="2dp"
                     android:src="@mipmap/onlylogo"
                     android:background="@color/transparent"
-                    app:civ_border_color="@color/transparent"
+                    app:civ_border_color="@color/white"
                     app:civ_border_width="2dp" />
 
                 <androidx.cardview.widget.CardView
@@ -61,19 +61,18 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:id="@+id/xmleditNombrePerfilEmpleador"
+                            android:id="@+id/xmleditNombreEmpleador"
                             android:layout_width="wrap_content"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:enabled="false"
                             android:inputType="text"
-                            android:textColor="@color/md_white_1000"
                             android:text="Nombre Empresa"
+                            android:textColor="@color/md_white_1000"
                             android:textSize="30sp" />
 
                         <Button
-                            android:id="@+id/xmlBtnVerificacionEmpresaDE"
+                            android:id="@+id/xmlBtnVerificacionPerfEmp"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:background="@drawable/cuentaverificada"
@@ -84,7 +83,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/xmlTieditDescEmpresa"
+                    android:id="@+id/xmlTieditDescEmpleador"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -102,12 +101,11 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/xmleditDescEmpresa"
+                        android:id="@+id/xmleditDescEmpleador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
-                        android:enabled="false"
                         android:hint="Descripcion Empresa"
                         android:drawableLeft="@drawable/ic_acerca"
                         android:inputType="text"
@@ -138,7 +136,7 @@
                 app:cardCornerRadius="5dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/xmlTieditRNC"
+                    android:id="@+id/xmlTieditRNCEmpleador"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -153,13 +151,12 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/xmleditRNC"
+                        android:id="@+id/xmleditRNCEmpleador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
                         android:hint="RNC"
-                        android:enabled="false"
                         android:drawableLeft="@drawable/ic_rnc"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900"
@@ -179,7 +176,7 @@
                 app:cardCornerRadius="5dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/xmlTieditPaginaWeb"
+                    android:id="@+id/xmlTiPaginaWebEmpleador"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -194,13 +191,12 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/xmleditPagWebPE"
+                        android:id="@+id/xmleditPagWebEmpleador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
                         android:hint="Pagina Web"
-                        android:enabled="false"
                         android:drawableLeft="@drawable/icon_pagina_web"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900"
@@ -218,7 +214,7 @@
                 android:elevation="100dp"
                 app:cardCornerRadius="5dp">
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/xmlTieditCorreoElectronico"
+                    android:id="@+id/xmlTieditEmailEmpleador"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -233,12 +229,11 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/xmleditCorreoElectronico"
+                        android:id="@+id/xmleditEmailEmpleador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
-                        android:enabled="false"
                         android:drawableLeft="@drawable/email_black"
                         android:hint="Correo Electronico"
                         android:inputType="text"
@@ -257,7 +252,7 @@
                 android:elevation="150dp"
                 app:cardCornerRadius="5dp">
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/xmlTieditTelefono"
+                    android:id="@+id/xmlTieditTelefonoEmpleador"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -273,12 +268,11 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/xmleditTelefono"
+                        android:id="@+id/xmleditTelefonoEmpleador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
-                        android:enabled="false"
                         android:hint="Telefono"
                         android:drawableLeft="@drawable/ic_phone_black_24dp"
                         android:inputType="text"
@@ -299,7 +293,7 @@
                 app:cardCornerRadius="5dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/xmlTieditProvincia"
+                    android:id="@+id/xmlTieditProvEmpleador"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -315,12 +309,11 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/xmleditProvincia"
+                        android:id="@+id/xmleditProvEmpleador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
-                        android:enabled="false"
                         android:hint="Provincia"
                         android:drawableLeft="@drawable/ic_directions_black_24dp"
                         android:inputType="text"
@@ -341,7 +334,7 @@
                 app:cardCornerRadius="5dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/xmlTieditDireccion"
+                    android:id="@+id/xmlTieditDireccionEmpleador"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -357,12 +350,11 @@
                     app:hintAnimationEnabled="true">
 
                     <EditText
-                        android:id="@+id/xmleditDireccion"
+                        android:id="@+id/xmleditDireccionEmpleador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
-                        android:enabled="false"
                         android:hint="Direccion"
                         android:drawableLeft="@drawable/ic_directions_black_24dp"
                         android:inputType="text"
@@ -373,6 +365,5 @@
 
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.core.widget.NestedScrollView>

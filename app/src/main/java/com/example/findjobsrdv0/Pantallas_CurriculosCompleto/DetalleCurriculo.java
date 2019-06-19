@@ -15,6 +15,7 @@ import android.widget.ToggleButton;
 
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.AplicarCurriculo;
 
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,40 +77,7 @@ public class DetalleCurriculo extends AppCompatActivity {
         DbLikesFavCurri = prueba.getReference();
         DbLikesFavCurri.keepSynced( true );
 
-        btnfavoritoCurriculo = (ToggleButton) findViewById(R.id.btn_CurriculosFavoritos);
-        btnfavoritoCurriculo.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                if (b) {
-                    marcarFavorito();
-                    Log.d( "estado activo", String.valueOf( b ) );
-                }else {
-                    final Query prueba = DbLikesFavCurri.child( "Empleadores" ).child( sIdPersonaMarco )
-                            .child( "likes" ).orderByChild( "IdCurriculoLike" ).equalTo( detallecurrid );
-
-                    prueba.addListenerForSingleValueEvent( new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
-                                pruebadataSnapshot.getRef().removeValue();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            Toast.makeText( DetalleCurriculo.this, "no funciono", Toast.LENGTH_SHORT ).show();
-                        }
-                    } );
-
-                    Log.d( "estado inactivo", String.valueOf( b ) );
-
-                }
-
-
-            }
-        } );
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         userActivo = mFirebaseAuth.getCurrentUser();
@@ -151,6 +119,41 @@ public class DetalleCurriculo extends AppCompatActivity {
 
             VerificarFavorito();
         }
+
+        btnfavoritoCurriculo = (ToggleButton) findViewById(R.id.btn_CurriculosFavoritos);
+        btnfavoritoCurriculo.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if (b) {
+                    marcarFavorito(detallecurrid);
+                    Log.d( "estado activo", String.valueOf( b ) );
+                }else {
+                    final Query prueba = DbLikesFavCurri.child( "Empleadores" ).child( sIdPersonaMarco )
+                            .child( "likes" ).orderByChild( "IdCurriculoLike" ).equalTo( detallecurrid );
+
+                    prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
+                                pruebadataSnapshot.getRef().removeValue();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            Toast.makeText( DetalleCurriculo.this, "no funciono", Toast.LENGTH_SHORT ).show();
+                        }
+                    } );
+
+                    Log.d( "estado inactivo", String.valueOf( b ) );
+
+                }
+
+
+            }
+        } );
 
         mAuthEmpresa_Empleador = FirebaseAuth.getInstance();
         user = mAuthEmpresa_Empleador.getCurrentUser();
@@ -321,15 +324,40 @@ public class DetalleCurriculo extends AppCompatActivity {
         } );
     }
 
-    private void marcarFavorito() {
-        String newLikeID = DbLikesFavCurri.push().getKey();
+    private void marcarFavorito(String sIdCurriculoFav) {
 
-        DbLikesFavCurri.child( "Empleadores" )//referencia empleadores
-                .child( sIdPersonaMarco )//referencia usuario
-                .child( "likes" )//referencia likes
-                .child( newLikeID )
-                .child( "IdCurriculoLike" )
-                .setValue( detallecurrid );
+        Query q = DbLikesFavCurri.child("Empleadores")
+                .child(sIdPersonaMarco)
+                .child("likes")
+                .orderByChild("IdCurriculoLike").equalTo(sIdCurriculoFav);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    Toast.makeText(DetalleCurriculo.this, "Favorito si", Toast.LENGTH_LONG).show();
+                    String newLikeID = DbLikesFavCurri.push().getKey();
+
+                    DbLikesFavCurri.child( "Empleadores" )//referencia empleadores
+                            .child( sIdPersonaMarco )//referencia usuario
+                            .child( "likes" )//referencia likes
+                            .child( newLikeID )
+                            .child( "IdCurriculoLike" )
+                            .setValue( detallecurrid );
+                }
+                //existe
+                else {
+                    Toast.makeText(DetalleCurriculo.this, "Favorito repetido", Toast.LENGTH_LONG).show();
+
+                }
+            }
+            //no existe
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

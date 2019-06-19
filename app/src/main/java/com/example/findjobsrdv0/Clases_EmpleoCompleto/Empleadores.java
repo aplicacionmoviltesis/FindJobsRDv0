@@ -8,15 +8,8 @@ public class Empleadores {
     String sTelefonoEmpleador;
     String sDireccionEmpleador;
     String sCorreoEmpleador;
-
-    public String getsIdEmpleador() {
-        return sIdEmpleador;
-    }
-
-    public void setsIdEmpleador(String sIdEmpleador) {
-        this.sIdEmpleador = sIdEmpleador;
-    }
-
+    String sDescripcionEmpleador;
+    String sProvinciaEmpleador;
     String sIdEmpleador;
     String sImagenEmpleador;
     Boolean sVerificacionEmpleador;
@@ -25,7 +18,7 @@ public class Empleadores {
     public Empleadores() {
     }
 
-    public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador, boolean sVerificacionEmpleador,String sIdEmpleador) {
+    public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador, boolean sVerificacionEmpleador, String sIdEmpleador, String sDescripcionEmpleador, String sProvinciaEmpleador) {
         this.sNombreEmpleador = sNombreEmpleador;
         this.sRncEmpleador = sRncEmpleador;
         this.sPaginaWebEmpleador = sPaginaWebEmpleador;
@@ -35,7 +28,34 @@ public class Empleadores {
         this.sVerificacionEmpleador = sVerificacionEmpleador;
         this.sImagenEmpleador = sImagenEmpleador;
         this.sIdEmpleador = sIdEmpleador;
+        this.sProvinciaEmpleador = sProvinciaEmpleador;
+        this.sDescripcionEmpleador = sDescripcionEmpleador;
 
+    }
+
+    public String getsProvinciaEmpleador() {
+        return sProvinciaEmpleador;
+    }
+
+    public void setsProvinciaEmpleador(String sProvinciaEmpleador) {
+        this.sProvinciaEmpleador = sProvinciaEmpleador;
+    }
+
+    public String getsDescripcionEmpleador() {
+        return sDescripcionEmpleador;
+    }
+
+    public void setsDescripcionEmpleador(String sDescripcionEmpleador) {
+        this.sDescripcionEmpleador = sDescripcionEmpleador;
+    }
+
+
+    public String getsIdEmpleador() {
+        return sIdEmpleador;
+    }
+
+    public void setsIdEmpleador(String sIdEmpleador) {
+        this.sIdEmpleador = sIdEmpleador;
     }
 
     public String getsNombreEmpleador() {
