@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class cPantallaReferenciasCurriculo extends AppCompatActivity {
@@ -57,6 +58,12 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
 //---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
 
+    DatabaseReference databaseReferenceCurriloAct;
+    FirebaseDatabase databaseCurriculoAct;
+
+    String id;
+
+    String Ukey;
 
 //---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
 
@@ -80,6 +87,46 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         recycler_referencia.setLayoutManager( layoutManager );
 //---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
+
+        Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        idusuarioconectado = Ukey;
+
+        loadReferencias(Ukey);
+
+
+        //----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+
+        databaseCurriculoAct = FirebaseDatabase.getInstance();
+        databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
+
+        Query query = databaseReferenceCurriloAct.orderByChild( "sIdBuscadorEmpleo" ).equalTo( Ukey );
+        query.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+                    Log.d( "datosdatasnapsht", String.valueOf( dataSnapshot ) );
+
+                    id = FavdataSnapshot.child( "sIdCurriculo" ).getValue( String.class );
+                    Log.d( "datoscurriculos", String.valueOf( id ) );
+//                Curriculos datoscurriculos = dataSnapshot.getValue(Curriculos.class);
+//                id = perro.getsIdCurriculo();
+
+//                Log.d( "datoscurriculos", String.valueOf( datoscurriculos ) );
+//                Log.d( "datosid", String.valueOf( id ) );
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+
+
 //---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
 
 
@@ -96,7 +143,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         BtnRegistrarReferencia.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegistrarReferencia(detallereferencias);
+                RegistrarReferencia(id);
             }
         } );
 
@@ -104,7 +151,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         btnActualizarReferencia.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActualizarReferencias( IdReferenciasss);
+                ActualizarReferencias( IdReferenciasss, id);
             }
         } );
 
@@ -127,8 +174,6 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             RegistrarReferencia( detallereferencias );
         }
 
-
-        String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         idusuarioconectado = Ukey;
 
@@ -206,13 +251,13 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
     }
 
-    public void RegistrarReferencia(String detallereferencias){
+    public void RegistrarReferencia(String id){
 
         rNombreC = etNombre.getText().toString();
         rCargoOcupadoC = etCargoOcupado.getText().toString();
         rInstitucionC = etInstitucion.getText().toString();
         rTelefonoC = etTelefono.getText().toString();
-        rBuscadorId = detallereferencias;
+        rBuscadorId =  id;
 
         if (TextUtils.isEmpty( rNombreC )) {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );
@@ -239,12 +284,12 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
     }
 
 
-    private void ActualizarReferencias(String IdReferenciasss) {
+    private void ActualizarReferencias(String IdReferenciasss, String id) {
         rNombreC = etNombre.getText().toString();
         rCargoOcupadoC = etCargoOcupado.getText().toString();
         rInstitucionC = etInstitucion.getText().toString();
         rTelefonoC = etTelefono.getText().toString();
-        rBuscadorId = detallereferencias;
+        rBuscadorId =  id;
 
         if (TextUtils.isEmpty( rNombreC )) {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );

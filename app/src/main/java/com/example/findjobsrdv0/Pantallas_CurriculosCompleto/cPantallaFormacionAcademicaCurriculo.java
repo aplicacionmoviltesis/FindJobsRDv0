@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import android.widget.TextView;
 
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
 
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.FormacionAcademica;
@@ -32,10 +33,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
     EditText etCarrera, etNivelPrimario, etNivelSecundario, etNivelSuperior;
     private Button BtnRegistrarFormAcad;
 
-    String codigoc, idbuscadorc, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc;
-
-
-    TextView textInfo;
+    String codigoc, idCurriculo, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -44,11 +42,15 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
    // String Ukey;
     String idusuariosregistrado;
 
-
     String idActualizar;
 
     String Ukey;
 
+
+    DatabaseReference databaseReferenceCurrilo;
+    FirebaseDatabase database;
+
+   String id;
 
 
     @Override
@@ -56,8 +58,12 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_c_pantalla_formacion_academica_curriculo );
 
-        Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        database = FirebaseDatabase.getInstance();
+        databaseReferenceCurrilo = database.getReference( "Curriculos" );
 
+
+
+        Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         TituloFormacionAcademica = (TextView) findViewById( R.id.xmlTituloFormacionAcademica );
         Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
@@ -74,7 +80,35 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
      //   CargarformacadActualizar( detalleformacad );
 
 
-        cardarcamposformacionacad( Ukey );
+//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+
+
+        Query query = databaseReferenceCurrilo.orderByChild( "sIdBuscadorEmpleo" ).equalTo( Ukey );
+        query.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+                    Log.d( "datosdatasnapsht", String.valueOf( dataSnapshot ) );
+
+                   id = FavdataSnapshot.child( "sIdCurriculo" ).getValue( String.class );
+                    Log.d( "datoscurriculos", String.valueOf( id ) );
+//                Curriculos datoscurriculos = dataSnapshot.getValue(Curriculos.class);
+//                id = perro.getsIdCurriculo();
+
+//                Log.d( "datoscurriculos", String.valueOf( datoscurriculos ) );
+//                Log.d( "datosid", String.valueOf( id ) );
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+
 
 
         BtnRegistrarFormAcad = (Button) findViewById( R.id.xmlbtnAnadirformacionAcademica );
@@ -82,7 +116,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                RegistrarFormacionAcademica( detalleformacad );
+                RegistrarFormacionAcademica( id );
             }
         } );
 
@@ -90,7 +124,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
         btnactualizarformacionacad.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AcrualizarFormacionAcad(detalleformacad);
+                ActualizarFormacionAcad(Ukey, id);
             }
         } );
 
@@ -99,12 +133,12 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
             detalleformacad = getIntent().getStringExtra( "DetalleFormacionAcademicaID" );
 
         if (!detalleformacad.isEmpty()) {
-            RegistrarFormacionAcademica( detalleformacad );
+            RegistrarFormacionAcademica( id );
         }
 
+        cardarcamposformacionacad( Ukey );
 
     }
-
 
     private void cardarcamposformacionacad(String ukey) {
 
@@ -126,9 +160,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
 
                     idActualizar = formacionAcademica.getsIdFormacionAcademica();
 
-
                 }
-
 
             }
 
@@ -148,48 +180,19 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
 
     }
 
-    public void RegistrarFormacionAcademica(String detalleformacad) {
+    private void ActualizarFormacionAcad(final String Ukey, final String id) {
 
+
+        Log.d( "cuando lo recive", String.valueOf(detalleformacad) );
         carrerac = etCarrera.getText().toString().trim();
         nivelprimarioc = etNivelPrimario.getText().toString().trim();
         nivelsecundarioc = etNivelSecundario.getText().toString().trim();
         nivelsuperiorc = etNivelSuperior.getText().toString().trim();
-        idbuscadorc = detalleformacad;
+        idCurriculo = id;
 
-        if (TextUtils.isEmpty( carrerac )) {
-            etCarrera.setError( "Campo vacío, por favor escriba el nombre " );
-            return;
-        }
-     /*   if (TextUtils.isEmpty( cApellido )) {
-            etApellido.setError( "Campo vacío, por favor escriba el apellido" );
-            return;
-        }
-   */
-
-        idusuariosregistrado = Ukey;
-
-        String IdFormacionAcademica = mDatabase.push().getKey();
-
-        FormacionAcademica formacionAcademica = new FormacionAcademica( IdFormacionAcademica, idbuscadorc, idusuariosregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
-
-        mDatabase.child( IdFormacionAcademica ).setValue( formacionAcademica );
-
-        limpiarCampor();
-
-        //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
-        // mDatabase.child(Ukey).push().setValue(formacionAcademica);//para registrarlo dentro del usuario que inicio sesion
+        Log.d( "cuando ya lo tiene", String.valueOf(idCurriculo) );
 
 
-    }
-
-
-    private void AcrualizarFormacionAcad(String ukey) {
-
-        carrerac = etCarrera.getText().toString().trim();
-        nivelprimarioc = etNivelPrimario.getText().toString().trim();
-        nivelsecundarioc = etNivelSecundario.getText().toString().trim();
-        nivelsuperiorc = etNivelSuperior.getText().toString().trim();
-        idbuscadorc = ukey;
 
         if (TextUtils.isEmpty( carrerac )) {
             etCarrera.setError( "Campo vacío, por favor escriba el nombre " );
@@ -205,13 +208,45 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
 
         //String IdFormacionAcademica = mDatabase.push().getKey();
 
-        FormacionAcademica formacionAcademica = new FormacionAcademica( idActualizar, idbuscadorc, idusuariosregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
+        FormacionAcademica formacionAcademica = new FormacionAcademica( idActualizar, idCurriculo, idusuariosregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
 
         mDatabase.child( idActualizar ).setValue( formacionAcademica );
 
-      //  limpiarCampor();
+        //  limpiarCampor();
 
     }
 
+    public void RegistrarFormacionAcademica(String id) {
+
+        carrerac = etCarrera.getText().toString().trim();
+        nivelprimarioc = etNivelPrimario.getText().toString().trim();
+        nivelsecundarioc = etNivelSecundario.getText().toString().trim();
+        nivelsuperiorc = etNivelSuperior.getText().toString().trim();
+        idCurriculo = id;
+
+        if (TextUtils.isEmpty( carrerac )) {
+            etCarrera.setError( "Campo vacío, por favor escriba el nombre " );
+            return;
+        }
+     /*   if (TextUtils.isEmpty( cApellido )) {
+            etApellido.setError( "Campo vacío, por favor escriba el apellido" );
+            return;
+        }
+   */
+
+        idusuariosregistrado = Ukey;
+
+        String IdFormacionAcademica = mDatabase.push().getKey();
+
+        FormacionAcademica formacionAcademica = new FormacionAcademica( IdFormacionAcademica, idCurriculo, idusuariosregistrado, carrerac, nivelprimarioc, nivelsecundarioc, nivelsuperiorc );
+
+        mDatabase.child( IdFormacionAcademica ).setValue( formacionAcademica );
+
+        limpiarCampor();
+
+        //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
+        // mDatabase.child(Ukey).push().setValue(formacionAcademica);//para registrarlo dentro del usuario que inicio sesion
+
+    }
 
 }
