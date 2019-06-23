@@ -44,22 +44,8 @@ public class PantallaLoginBuscador extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialogloginBuscador;
-    private FirebaseAuth mAuthBuscador;
     private DatabaseReference dBReferencesBuscadores;
     private FirebaseDatabase fDatabaseBuscadores;
-
-
-
-/*
-    private FirebaseAuth.AuthStateListener AuthStateListener;
-    private FirebaseAuth mAuth;
-    private FirebaseUser userCorreo;
-    private DatabaseReference dBReferences;
-
-    private boolean Active;
-    private CheckBox Sesion;
-
-    private FirebaseAuth.AuthStateListener firebaseAuthListener;*/
 
 
     @Override
@@ -102,10 +88,6 @@ public class PantallaLoginBuscador extends AppCompatActivity {
 
     }
 
-    private void gotoPantallaCentral() {
-        Intent intent = new Intent(this, PantallaPrincipalBuscador.class);
-        startActivity(intent);
-    }
 
     public void LoginBuscador() {
         String entrada_correo = entradaCorreo.getText().toString().trim();
@@ -153,7 +135,6 @@ public class PantallaLoginBuscador extends AppCompatActivity {
                                         TelefonoBuscador = "";
                                         ImagenBuscador = "";
 
-
                                         NombreBuscador = dataSnapshot.child("Nombre").getValue(String.class);
                                         ApellidoBuscador = dataSnapshot.child("Apellido").getValue(String.class);
                                         CorreoBuscador = dataSnapshot.child("Correo").getValue(String.class);
@@ -167,7 +148,6 @@ public class PantallaLoginBuscador extends AppCompatActivity {
                                         editor.putString("ImagenEmpresa", ImagenBuscador);
                                         editor.commit();
 
-
                                     }
 
                                     @Override
@@ -175,8 +155,6 @@ public class PantallaLoginBuscador extends AppCompatActivity {
 
                                     }
                                 });
-                                // Preferences.Guardar_estado_button(PantallaLoginEmpleador.this, Sesion.isChecked(), Preferences.Preference_button);
-
 
                                 Toast.makeText(PantallaLoginBuscador.this, "Bienvenido: " + entradaCorreo.getText(), Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(PantallaLoginBuscador.this, PantallaPrincipalBuscador.class);
@@ -199,6 +177,4 @@ public class PantallaLoginBuscador extends AppCompatActivity {
                     }
                 });
     }
-
-
 }

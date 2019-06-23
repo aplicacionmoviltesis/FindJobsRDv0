@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -82,6 +83,7 @@ public class PantallaPerfilBuscador extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_perfil_buscador );
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         TvTiPerfilBuscador = (TextView) findViewById( R.id.xmlTvTiPerfilBuscador );
         Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );

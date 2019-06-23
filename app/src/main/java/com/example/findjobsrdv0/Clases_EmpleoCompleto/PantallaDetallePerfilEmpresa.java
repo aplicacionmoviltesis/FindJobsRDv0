@@ -41,16 +41,16 @@ import com.squareup.picasso.Picasso;
 public class PantallaDetallePerfilEmpresa extends AppCompatActivity {
 
     private EditText editNombrePerfilE, editRncPerfilE, editPaginaWebPerfilE, editTelefonoPerfilE,
-            editDireccionPerfilE, editCorreoPerfilE;
-    private Button btnVerificacionPerfilEmpleador, btnActualizarPerfilE, btnActivarPerfilE;
+            editDireccionPerfilE, editCorreoPerfilE,editProvinciaPerfilE,editDescripcionPerfilE;
+    private Button btnVerificacionPerfilEmpleador;
     private ImageView ImagePerfilEmpleador;
 
     private String sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE,
-            sDireccionPerfilE, sCorreoPerfilE, sImagenPerfilEmpleador;
+            sDireccionPerfilE, sCorreoPerfilE, sImagenPerfilEmpleador,sProvinciaPerfilE,sDescripcionPerfilE;
 
     String sIdEmpleador = "";
 
-    private Boolean sVerificarEmpleador, sVerificacion;
+    private Boolean sVerificarEmpleador;
 
     private FirebaseDatabase database;
     private DatabaseReference DBperfilEmpleadores;
@@ -83,14 +83,14 @@ public class PantallaDetallePerfilEmpresa extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         database = FirebaseDatabase.getInstance();
         DBperfilEmpleadores = database.getReference("Empleadores");
@@ -116,6 +116,9 @@ public class PantallaDetallePerfilEmpresa extends AppCompatActivity {
         editTelefonoPerfilE = (EditText) findViewById(R.id.xmleditTelefono);
         editDireccionPerfilE = (EditText) findViewById(R.id.xmleditDireccion);
         editCorreoPerfilE = (EditText) findViewById(R.id.xmleditCorreoElectronico);
+        editProvinciaPerfilE = (EditText) findViewById(R.id.xmleditProvincia);
+        editDescripcionPerfilE = (EditText) findViewById(R.id.xmleditDescEmpresa);
+
         ImagePerfilEmpleador = (ImageView) findViewById(R.id.profile_image);
 
         btnVerificacionPerfilEmpleador = (Button) findViewById(R.id.xmlBtnVerificacionEmpresaDE);
@@ -165,6 +168,12 @@ public class PantallaDetallePerfilEmpresa extends AppCompatActivity {
 
                 sDireccionPerfilE = Datosempleadores.getsDireccionEmpleador();
                 editDireccionPerfilE.setText(sDireccionPerfilE);
+
+                sProvinciaPerfilE = Datosempleadores.getsProvinciaEmpleador();
+                editProvinciaPerfilE.setText(sProvinciaPerfilE);
+
+                sDescripcionPerfilE = Datosempleadores.getsDescripcionEmpleador();
+                editDescripcionPerfilE.setText(sDescripcionPerfilE);
 
                 sVerificarEmpleador = Datosempleadores.getsVerificacionEmpleador();
                 Log.d("verificacion", String.valueOf(sVerificarEmpleador));

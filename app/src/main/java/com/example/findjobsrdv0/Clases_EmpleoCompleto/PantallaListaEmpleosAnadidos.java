@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,21 +20,20 @@ import com.squareup.picasso.Picasso;
 
 public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
 
-    FirebaseDatabase database;
-    DatabaseReference DBempleos;
+    private FirebaseDatabase database;
+    private DatabaseReference DBempleos;
     private RecyclerView listaEmpleosAnadidos;
-    RecyclerView.LayoutManager layoutManager;
-    private FirebaseAuth mAuthEmpleador;
+    private RecyclerView.LayoutManager layoutManager;
 
-    FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder> adapter;
+    private FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder> adapter;
 
-    String Ukey;
+    private String Ukey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_lista_empleos_anadidos);
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
         DBempleos= database.getReference("empleos");
@@ -49,8 +49,6 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         listaEmpleosAnadidos.setLayoutManager(new LinearLayoutManager(this));
 
 
-        //FirebaseUser user = mAuthEmpleador.getCurrentUser();
-        //String Ukey = user.getUid();
         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         cargarEmpleos(Ukey);
 
@@ -78,7 +76,6 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
                 empleosViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        //Toast.makeText(PantallaListaEmpleosAnadidos.this,""+clickItem.getsNombreEmpleoE(),Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(PantallaListaEmpleosAnadidos.this, PantallaActualizarEmpleo.class);
                         intent.putExtra("sEmpleoIdAnadidos",adapter.getRef(position).getKey());

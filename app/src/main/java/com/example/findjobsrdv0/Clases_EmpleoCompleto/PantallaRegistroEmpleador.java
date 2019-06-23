@@ -42,35 +42,26 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
 
     private TextView tvRegistrar;
 
-    private TextInputLayout CtilRNC,Ctilregistrarnombre,Ctilregistraremail,Ctilregistrartelefono,
-            Ctilregistrarcontrasena,Ctilconfirmarcontrasena;
+    private TextInputLayout CtilRNC, Ctilregistrarnombre, Ctilregistraremail, Ctilregistrartelefono,
+            Ctilregistrarcontrasena, Ctilconfirmarcontrasena;
 
-    private EditText registroRNC, registroNombreempresa, registroCorreo, registroTelefono, registroPass,registroPass2;
+    private EditText registroRNC, registroNombreempresa, registroCorreo, registroTelefono, registroPass, registroPass2;
 
     private Button EbtnRegistrar, EbtnIniciarsesion;
 
-    private Boolean Verificacion;
-    private String PaginaWeb, Direccion;
     private SignInButton EsignInButton;
     private ProgressBar EprogressBar;
 
     private DatabaseReference DBReferenceEmpleador;
     private ProgressDialog progressDialogEmpleador;
 
-
-    //Declaramos un objeto firebaseAuth
     private FirebaseAuth firebaseAuthEmpleador;
-
-    /////iniciar con google
 
     private GoogleApiClient googleApiClientEmpleador;
     public static final int SIGN_IN_CODE = 777;
     private FirebaseAuth mAuthEmpleador;
     private FirebaseAuth.AuthStateListener firebaseAuthListenerEmpleador;
 
-
-
-/////iniciar con google
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +73,8 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         tvRegistrar.setTypeface(face);
 
-        firebaseAuthEmpleador= FirebaseAuth.getInstance();
-        DBReferenceEmpleador=FirebaseDatabase.getInstance().getReference();
+        firebaseAuthEmpleador = FirebaseAuth.getInstance();
+        DBReferenceEmpleador = FirebaseDatabase.getInstance().getReference();
 
         EsignInButton = (SignInButton) findViewById(R.id.EsignInButtonRegistro);
         EsignInButton.setSize(SIZE_WIDE);
@@ -108,20 +99,9 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         EbtnRegistrar = (Button) findViewById(R.id.XMLbtnRegistrarBuscador);
         EbtnIniciarsesion = (Button) findViewById(R.id.XMLbtniniciarsesion);
 
-//inicializamos el objeto firebaseAuth
-        //firebaseAuth = FirebaseAuth.getInstance();
-
-        //Referenciamos los views
-        //TextEmail = (EditText) findViewById(R.id.xmlbeditregistraremail);
-        //TextPassword = (EditText) findViewById(R.id.xmlbeditregistrarcontrasena);
-
-        //btnRegistrar = (Button) findViewById(R.id.xmlbbtnRegistrarBuscador);
         progressDialogEmpleador = new ProgressDialog(this);
 
-        //attaching listener to button
         EbtnRegistrar.setOnClickListener(this);
-
-        ////////////iniciar con google
 
         EsignInButton = (SignInButton) findViewById(R.id.EsignInButtonRegistro);
         EsignInButton.setSize(SignInButton.SIZE_WIDE);
@@ -162,13 +142,10 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
 
         EprogressBar = (ProgressBar) findViewById(R.id.EprogressBarRegistro);
 
-
-        ////////////iniciar con google
-
         EbtnIniciarsesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaLoginEmpleador.class);
+                Intent intent = new Intent(v.getContext(), PantallaLoginEmpleador.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -176,8 +153,6 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
     }
 
     private void registrarUsuarioEmpleador() {
-
-        //Obtenemos el email y la contraseña desde las cajas de texto
 
         final String entrada_RNC = registroRNC.getText().toString().trim();
         final String entrada_Nombre = registroNombreempresa.getText().toString().trim();
@@ -190,9 +165,8 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         final String entrada_provincia = "";
         final String entrada_descripcion = "";
         final boolean entrada_verificacion = false;
-        final String entrada_imagenEmpleador="https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesGenerales%2Fonlylogo.png?alt=media&token=0a3e2044-5fe3-4df5-a1b3-a85336c12747";
+        final String entrada_imagenEmpleador = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesGenerales%2Fonlylogo.png?alt=media&token=0a3e2044-5fe3-4df5-a1b3-a85336c12747";
 
-        //Verificamos que las cajas de texto no esten vacías
 
         if (TextUtils.isEmpty(entrada_RNC)) {
             registroRNC.setError("Campo vacío, por favor escriba el RNC");
@@ -228,7 +202,6 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
             progressDialogEmpleador.setMessage("Realizando registro en linea...");
             progressDialogEmpleador.show();
 
-            //creating a new user
             mAuthEmpleador.createUserWithEmailAndPassword(entrada_correo, entrada_contrasena)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -252,15 +225,11 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sDescripcionEmpleador").setValue(entrada_descripcion);
                                 DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sIdEmpleador").setValue(Ukey);
 
-
-
-
-                                //usas esa variable y usa .sendEmailVerification(); para mandar el correo de verificacion
                                 user.sendEmailVerification();
                                 mAuthEmpleador.signOut();
 
 
-                                Toast.makeText(PantallaRegistroEmpleador.this, "Se ha registrado el usuario con el email: " + registroCorreo.getText()+" Espere el correo de verificacion", Toast.LENGTH_LONG).show();
+                                Toast.makeText(PantallaRegistroEmpleador.this, "Se ha registrado el usuario con el email: " + registroCorreo.getText() + " Espere el correo de verificacion", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(PantallaRegistroEmpleador.this, PantallaLoginEmpleador.class);
                                 startActivity(intent);
                             } else {
@@ -270,8 +239,8 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                             progressDialogEmpleador.dismiss();
                         }
                     });
-        }else{
-            Toast.makeText(this,"La confirmacion de contraseña no es correcta",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "La confirmacion de contraseña no es correcta", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -279,17 +248,8 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        //Invocamos al método:
         registrarUsuarioEmpleador();
     }
-
-    private void goMainScreenLoginEmpleador() {
-        Intent intent = new Intent(this, PantallaLoginEmpleador.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    //////////////inicio de sesion con google
 
     @Override
     protected void onStart() {
@@ -349,9 +309,5 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
             mAuthEmpleador.removeAuthStateListener(firebaseAuthListenerEmpleador);
         }
     }
-
-    /////////////inicio de sesion con google
-
-
 }
 

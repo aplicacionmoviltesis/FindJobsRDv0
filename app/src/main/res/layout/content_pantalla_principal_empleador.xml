@@ -14,10 +14,10 @@
         android:id="@+id/tvelegiropcionEmpleador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:text="Elija Opcion a Realizar"
+        android:text="Elija Opción"
         android:textColor="@color/md_white_1000"
         android:textSize="35sp"
         android:textStyle="bold" />
@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -68,7 +67,7 @@
                     android:layout_below="@id/textViewTitle"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="Aqui puedes registrar todos los datos de tu oferta de empleo."
+                    android:text="Aquí puedes registrar todos los datos de tu oferta de empleo."
                     android:textColor="@color/md_blue_900"
                     android:textStyle="bold" />
 
@@ -123,7 +122,7 @@
                     android:layout_below="@id/textViewTitle1"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="Aqui podras buscar los curriculos de tu preferencia, de acorde a la necesidad de tu empresa."
+                    android:text="Aquí podras buscar los currículo de tu preferencia, de acorde a la necesidad de tu empresa."
                     android:textColor="@color/md_blue_900"
                     android:textStyle="bold" />
 
@@ -175,12 +174,11 @@
                     android:layout_below="@id/textViewTitle2"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="Aqui encontraras todos los empleos añadidos, los cuales pueden ser actualizados"
+                    android:text="Aquí encontraras todos los empleos añadidos, los cuáles pueden ser actualizados"
                     android:textColor="@color/md_blue_900"
                     android:textStyle="bold" />
 
             </RelativeLayout>
-
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 

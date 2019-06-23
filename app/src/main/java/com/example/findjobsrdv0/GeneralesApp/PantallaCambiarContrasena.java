@@ -21,11 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PantallaCambiarContrasena extends AppCompatActivity {
-    private FirebaseUser user;
 
+    private FirebaseUser user;
     private TextView TvTiCambiarPassword;
     private String email, sNuevaContrasena, sViejaContrasena;
-    private EditText editEmail,editViejaContrasena,editNuevaContrasena;
+    private EditText editEmail, editViejaContrasena, editNuevaContrasena;
     private Button btnUpdatePassword;
 
 
@@ -35,17 +35,15 @@ public class PantallaCambiarContrasena extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_cambiar_contrasena);
 
         TvTiCambiarPassword = (TextView) findViewById(R.id.xmltvCambiarContraseña);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         TvTiCambiarPassword.setTypeface(face);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         email = user.getEmail();
-
 
         editEmail = (EditText) findViewById(R.id.xmlEditEmailCambiarContrasena);
         editViejaContrasena = (EditText) findViewById(R.id.xmlEditViejaPassCambiarContrasena);
@@ -63,52 +61,35 @@ public class PantallaCambiarContrasena extends AppCompatActivity {
                 UpdatePassword();
             }
         });
-
-
-
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
 
-    public void UpdatePassword(){
-        AuthCredential credential = EmailAuthProvider.getCredential(email,sViejaContrasena);
+    public void UpdatePassword() {
+        AuthCredential credential = EmailAuthProvider.getCredential(email, sViejaContrasena);
 
         user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     user.updatePassword(sNuevaContrasena).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(!task.isSuccessful()){
-                               /* View view;
-                                Snackbar snackbar_fail = Snackbar
-                                        .make(coordinatorLayout, "Something went wrong. Please try again later", Snackbar.LENGTH_LONG);
-                                snackbar_fail.show();*/
+                            if (!task.isSuccessful()) {
                                 Toast.makeText(PantallaCambiarContrasena.this, "Something went wrong. Please try again later", Toast.LENGTH_LONG).show();
-
-
-                            }else {
-                                /*Snackbar snackbar_su = Snackbar
-                                        .make(coordinatorLayout, "Password Successfully Modified", Snackbar.LENGTH_LONG);
-                                snackbar_su.show();*/
+                            } else {
                                 Toast.makeText(PantallaCambiarContrasena.this, "Password Successfully Modified", Toast.LENGTH_LONG).show();
-
                             }
                         }
                     });
-                }else {
-                    /*Snackbar snackbar_su = Snackbar
-                            .make(coordinatorLayout, "Authentication Failed", Snackbar.LENGTH_LONG);
-                    snackbar_su.show();*/
-                    Toast.makeText(PantallaCambiarContrasena.this, "Authentication Failed", Toast.LENGTH_LONG).show();
+                } else {
 
+                    Toast.makeText(PantallaCambiarContrasena.this, "Authentication Failed", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
     }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +50,7 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_lista_empleos_favoritos);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -88,15 +90,10 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
 
     public void TraerEmpleosFavoritos(String sPersonaIdE) {
 
-        //DbLikes.child("BuscadoresEmpleos")//referencia empleadores
-
-
         Query q = EmpleosFavoritosDB.child("BuscadoresEmpleos")
                 .child(sPersonaIdE)
                 .child("likes");//referencia likes
-                //.orderByChild("IdEmpleoLike")
 
-                //.setValue(sEmpleoIdE);;
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

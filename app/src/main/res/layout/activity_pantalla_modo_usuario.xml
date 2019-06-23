@@ -37,7 +37,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#70FFFFFF"
-
                 android:padding="8dp">
 
                 <TextView
@@ -65,7 +64,7 @@
                     android:layout_below="@id/textViewTitle"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="Busca el empleo ideal de acuerdo a las caracteristicas de tu preferencia."
+                    android:text="Busca el empleo ideal de acuerdo a las característica de tu preferencia."
                     android:textColor="@color/md_blue_900"
                     android:textStyle="bold" />
 

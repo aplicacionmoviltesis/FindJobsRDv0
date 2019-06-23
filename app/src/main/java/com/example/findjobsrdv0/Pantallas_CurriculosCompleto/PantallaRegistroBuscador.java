@@ -47,17 +47,9 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
 
     private Button BbtnRegistrar, BbtnIniciarsesion;
 
-//defining view objects
-    //private EditText TextEmail;
-    //private EditText TextPassword;
-    //private Button btnRegistrar;
     private ProgressDialog progressDialog;
 
-
-//Declaramos un objeto firebaseAuth
     private FirebaseAuth firebaseAuth;
-
-    /////iniciar con google
 
     private GoogleApiClient googleApiClient;
     public static final int SIGN_IN_CODE = 777;
@@ -66,8 +58,6 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
     private ProgressBar BprogressBar;
     private SignInButton BsignInButton;
 
-
-/////iniciar con google
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +69,8 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");
         tvBRegistrar.setTypeface(face);
 
-        firebaseAuth= FirebaseAuth.getInstance();
-        DBReference=FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        DBReference = FirebaseDatabase.getInstance().getReference();
 
         BregistroNombre = (EditText) findViewById(R.id.xmlbeditRegistrarnombre);
         BregistroApellido = (EditText) findViewById(R.id.xmlbeditRegistrarApellido);
@@ -99,20 +89,9 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         BbtnRegistrar = (Button) findViewById(R.id.xmlbbtnRegistrarBuscador);
         BbtnIniciarsesion = (Button) findViewById(R.id.xmlbbtniniciarsesion);
 
-        //inicializamos el objeto firebaseAuth
-        //firebaseAuth = FirebaseAuth.getInstance();
-
-        //Referenciamos los views
-        //TextEmail = (EditText) findViewById(R.id.xmlbeditregistraremail);
-        //TextPassword = (EditText) findViewById(R.id.xmlbeditregistrarcontrasena);
-
-        //btnRegistrar = (Button) findViewById(R.id.xmlbbtnRegistrarBuscador);
         progressDialog = new ProgressDialog(this);
 
-        //attaching listener to button
         BbtnRegistrar.setOnClickListener(this);
-
-        ////////////iniciar con google
 
         BsignInButton = (SignInButton) findViewById(R.id.BsignInButtonRegistro);
         BsignInButton.setSize(SignInButton.SIZE_WIDE);
@@ -154,12 +133,10 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         BprogressBar = (ProgressBar) findViewById(R.id.BprogressBarRegistro);
 
 
-        ////////////iniciar con google
-
         BbtnIniciarsesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaLoginBuscador.class);
+                Intent intent = new Intent(v.getContext(), PantallaLoginBuscador.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -168,17 +145,12 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
 
     private void registrarUsuarioBuscador() {
 
-        //Obtenemos el email y la contraseña desde las cajas de texto
-
-
         final String entrada_bNombre = BregistroNombre.getText().toString().trim();
         final String entrada_bApellido = BregistroApellido.getText().toString().trim();
         final String bemail = BregistroCorreo.getText().toString().trim();
         final String entrada_btelefono = BregistroTelefono.getText().toString().trim();
         final String bpassword = BregistroPass.getText().toString().trim();
         final String entrada_bcontrasena2 = BregistroPass2.getText().toString().trim();
-
-        //Verificamos que las cajas de texto no esten vacías
 
         if (TextUtils.isEmpty(entrada_bNombre)) {
             BregistroNombre.setError("Campo vacío, por favor escriba el nombre");
@@ -210,65 +182,56 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         }
         if (bpassword.equals(entrada_bcontrasena2)) {
 
-        progressDialog.setMessage("Realizando registro en linea...");
-        progressDialog.show();
+            progressDialog.setMessage("Realizando registro en linea...");
+            progressDialog.show();
 
-        //creating a new user
-        firebaseAuth.createUserWithEmailAndPassword(bemail, bpassword)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //checking if success
-                        if (task.isSuccessful()) {
+            firebaseAuth.createUserWithEmailAndPassword(bemail, bpassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            String Ukey = user.getUid();
+                                FirebaseUser user = firebaseAuth.getCurrentUser();
+                                String Ukey = user.getUid();
 
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sNombrePerfilB").setValue(entrada_bNombre);
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sApellidoperfilB").setValue(entrada_bApellido);
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sEmailPerfilB").setValue(bemail);
-                            DBReference.child("BuscadoresEmpleos").child(Ukey).child("sTelefonoPerfilB").setValue(entrada_btelefono);
-                           // DBReference.child("BuscadoresEmpleos").child(Ukey).child("Contraseña").setValue(bpassword);
+                                DBReference.child("BuscadoresEmpleos").child(Ukey).child("sNombrePerfilB").setValue(entrada_bNombre);
+                                DBReference.child("BuscadoresEmpleos").child(Ukey).child("sApellidoPerfilB").setValue(entrada_bApellido);
+                                DBReference.child("BuscadoresEmpleos").child(Ukey).child("sEmailPerfilB").setValue(bemail);
+                                DBReference.child("BuscadoresEmpleos").child(Ukey).child("sTelefonoPerfilB").setValue(entrada_btelefono);
+                                // DBReference.child("BuscadoresEmpleos").child(Ukey).child("Contraseña").setValue(bpassword);
 
-                            //usas esa variable y usa .sendEmailVerification(); para mandar el correo de verificacion
-                            user.sendEmailVerification();
-                            firebaseAuth.signOut();
+                                user.sendEmailVerification();
+                                firebaseAuth.signOut();
 
-                            Toast.makeText(PantallaRegistroBuscador.this, "Se ha registrado el usuario con el email: " + BregistroCorreo.getText()+" Espere el correo de verificacion", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(PantallaRegistroBuscador.this, PantallaLoginBuscador.class);
-                            startActivity(intent);
-                        } else {
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                Toast.makeText(PantallaRegistroBuscador.this, "El usuario ya existe", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(PantallaRegistroBuscador.this, "Se ha registrado el usuario con el email: " + BregistroCorreo.getText() + " Espere el correo de verificacion", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(PantallaRegistroBuscador.this, PantallaLoginBuscador.class);
+                                startActivity(intent);
                             } else {
+                                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                    Toast.makeText(PantallaRegistroBuscador.this, "El usuario ya existe", Toast.LENGTH_LONG).show();
 
-                                Toast.makeText(PantallaRegistroBuscador.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(PantallaRegistroBuscador.this, "No se pudo registrar el usuario ", Toast.LENGTH_LONG).show();
+                                }
                             }
+                            progressDialog.dismiss();
                         }
-                        progressDialog.dismiss();
-                    }
-                });
-    }else{
-            Toast.makeText(this,"La confirmacion de contraseña no es correcta",Toast.LENGTH_LONG).show();
+                    });
+        } else {
+            Toast.makeText(this, "La confirmacion de contraseña no es correcta", Toast.LENGTH_LONG).show();
 
         }
     }
 
 
-
     @Override
     public void onClick(View view) {
-        //Invocamos al método:
         registrarUsuarioBuscador();
     }
-
-    //////////////inicio de sesion con google
 
     @Override
     protected void onStart() {
         super.onStart();
-
         mAuthBuscador.addAuthStateListener(firebaseAuthListener);
     }
 
@@ -323,7 +286,4 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
             mAuthBuscador.removeAuthStateListener(firebaseAuthListener);
         }
     }
-
-    /////////////inicio de sesion con google
-
 }

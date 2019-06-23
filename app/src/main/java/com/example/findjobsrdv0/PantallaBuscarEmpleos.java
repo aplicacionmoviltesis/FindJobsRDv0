@@ -1,36 +1,25 @@
 package com.example.findjobsrdv0;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-
-import android.widget.CompoundButton;
-
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaRegistrarEmpleos;
-import com.example.findjobsrdv0.GeneralesApp.Areas;
 import com.example.findjobsrdv0.GeneralesApp.MultipleSelectionSpinner;
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
-import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
@@ -67,7 +56,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity {
     // FirebaseDatabase mFirebaseDatabase;
 
 
-    String sEmpleoIdE,sAreaE;
+    String sEmpleoIdE, sAreaE;
     Button btn_mierda, btn_mierda1;
     ////////////////////////////////////////
     CheckBox mLikeBtn;
@@ -76,6 +65,14 @@ public class PantallaBuscarEmpleos extends AppCompatActivity {
 
 
     CheckBox checkBoxFav;
+    /////Spinner Universidades
+
+    SearchableSpinner spinUniversidadesC;
+    DatabaseReference UniversidadesRef;
+    List<String> ListUniversidades;
+    String UniversidadesNombre;
+
+/////Spinner Universidades
 
 
     @Override
@@ -83,6 +80,54 @@ public class PantallaBuscarEmpleos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_buscar_empleos);
         mSpinner = findViewById(R.id.mSpinner);
+
+        /////Spinner Universidades
+
+        UniversidadesRef = FirebaseDatabase.getInstance().getReference();
+        spinUniversidadesC = (SearchableSpinner) findViewById(R.id.xmlspinUniversidadesC);
+
+
+        spinUniversidadesC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (!IsFirstTimeClick) {
+                    UniversidadesNombre = spinUniversidadesC.getSelectedItem().toString();
+                    Log.d("valorSpinUni", UniversidadesNombre);
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        UniversidadesRef.child("Universidades").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final List<String> ListUniversidades = new ArrayList<String>();
+                for (DataSnapshot UniversidadSnapshot : dataSnapshot.getChildren()) {
+                    String UniversidadName = UniversidadSnapshot.child("Nombre").getValue(String.class);
+                    ListUniversidades.add(UniversidadName);
+                }
+
+                ArrayAdapter<String> UniversidadesAdapter = new ArrayAdapter<String>(PantallaBuscarEmpleos.this, android.R.layout.simple_spinner_item, ListUniversidades);
+                UniversidadesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinUniversidadesC.setAdapter(UniversidadesAdapter);
+                spinUniversidadesC.setTitle("Seleccionar Universidad");
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+/////Spinner Universidades
 
         /////Spinner Area
 

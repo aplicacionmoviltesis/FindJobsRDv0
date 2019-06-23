@@ -24,7 +24,7 @@
         <item
             android:id="@+id/ConfiguracionBuscador"
             android:icon="@drawable/iconajuste"
-            android:title="Ajuste" />
+            android:title="Ajustes" />
 
     </group>
 
@@ -38,7 +38,7 @@
             <item
                 android:id="@+id/cerrarsesionBuscador"
                 android:icon="@drawable/iconcerrarsesion"
-                android:title="Cerrar Sesion" />
+                android:title="Cerrar Sesión " />
         </menu>
     </item>
 

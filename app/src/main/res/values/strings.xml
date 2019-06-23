@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FindJobsRD</string>
-    <string name="elegir_modo">ELEGIR MODO</string>
-    <string name="title_activity_pantalla_principal_buscador">PantallaPrincipalBuscador</string>
+    <string name="elegir_modo">Elegir Modo</string>
+    <string name="title_activity_pantalla_principal_buscador">FindJobsRD</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -151,7 +151,7 @@
     <string name="not_close_session">No se pudo cerrar sesión</string>
     <string name="not_revoke">No se pudo revocar el acceso</string>
     <string name="not_firebase_auth">No se pudo autenticar con Firebase</string>
-    <string name="title_activity_pantalla_principal_empleador">PantallaPrincipalEmpleador</string>
+    <string name="title_activity_pantalla_principal_empleador">FindJobsRD</string>
     <string name="title_activity_c_pantalla_registro_curriculo">Registrar Curriculo</string>
 
     <string name="title_activity_pantalla_registrar_empleos">Registrar Empleo</string>

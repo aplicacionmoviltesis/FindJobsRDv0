@@ -48,13 +48,10 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     private ImageView photoImageViewEmpleador;
     private TextView nameTextViewEmpleador;
     private TextView emailTextViewEmpleador;
-    private TextView idTextViewEmpleador;
     private TextView tituloelegiropcionBuscador;
     FirebaseUser user;
 
 
-    FirebaseAuth mAuthEmpleador;
-    private String klk1Empleador, klk2Empleador;
     private GoogleApiClient googleApiClientEmpleador;
 
     private FirebaseAuth firebaseAuthEmpleador;
@@ -86,10 +83,8 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
             }
         });*/
 
-        //firebaseAuthEmpleador = FirebaseAuth.getInstance();
         EmpleadorConectado = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        //FirebaseUser user = firebaseAuth.getCurrentUser();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -109,8 +104,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
 
         SharedPreferences preferences = this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
-        //-String Nombre= preferences.getString("Nombre", "Nombre");
-        //String foto= preferences.getString("ImagenEmpresa", "ImagenEmpresa");
 
 
         photoImageViewEmpleador.setOnClickListener(new View.OnClickListener() {
@@ -133,18 +126,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
             }
         });
-        //TextViewEmpleador.setText(Nombre);
-        //---Log.d("nombreklk",Nombre);
-        //--nameTextViewEmpleador.setText(Nombre);
-        //Log.d("nombreklk",nameTextViewEmpleador.setText(Nombre));
 
-       /* mAuth= FirebaseAuth.getInstance();
-        user= FirebaseAuth.getInstance().getCurrentUser();
-        SharedPreferences preferences= this.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
-        String Nombre= preferences.getString("Nombre", "Nombre")+" "+preferences.getString("Apellido", "Apellido");
-
-        nameTextViewEmpleador.setText(Nombre);*/
-        //emailTextView.setText(user.getsEmailC());
 
         LinearLayout IrAnadirEmpleo = (LinearLayout) findViewById(R.id.lyAnadirEmpleoEmpleador);
         IrAnadirEmpleo.setOnClickListener(new View.OnClickListener() {
@@ -220,14 +202,11 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         firebaseAuthEmpleador.addAuthStateListener(firebaseAuthListenerEmpleador);
     }
 
@@ -237,21 +216,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void logOut(View view) {
-        firebaseAuthEmpleador.signOut();
-
-        Auth.GoogleSignInApi.signOut(googleApiClientEmpleador).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                if (status.isSuccess()) {
-                    goRegInScreenEmpleador();
-                } else {
-                    Toast.makeText(getApplicationContext(), R.string.not_close_session, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
+//elimina el usuario de la base de datos
     public void revoke(View view) {
         firebaseAuthEmpleador.signOut();
 

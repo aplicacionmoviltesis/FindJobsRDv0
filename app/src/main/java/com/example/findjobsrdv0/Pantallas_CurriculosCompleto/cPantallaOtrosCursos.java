@@ -31,94 +31,55 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 public class cPantallaOtrosCursos extends AppCompatActivity {
 
-    EditText etInstitucion, etAno, etAreaoTema;
-    SearchableSpinner ssTipodeEstudio;
-    Button BtnRegistrarOtrosCursos, btnAcualizarOtrosCursos;
+    private EditText etInstitucion, etAno, etAreaoTema;
+    private SearchableSpinner ssTipodeEstudio;
+    private Button BtnRegistrarOtrosCursos, btnAcualizarOtrosCursos;
 
-    String ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio, ocIdBuscardor;
+    private String ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio, ocIdBuscardor, idusuariosregistrado, IDOtrosEstudiosss, idusuarioregistrado, id, Ukey;
 
+    private FirebaseRecyclerAdapter<OtrosCursos, OtrosEstudiosViewHolder> adapter;
 
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+    private FirebaseDatabase database, databaseCurriculoAct;
+    private DatabaseReference otrosestudiosinset, DBOtrosCursosCurriculos, databaseReferenceCurriloAct;
 
-    FirebaseRecyclerAdapter<OtrosCursos, OtrosEstudiosViewHolder> adapter;
+    private RecyclerView recycler_otrosestudios;
+    private RecyclerView.LayoutManager layoutManager;
 
-    FirebaseDatabase database;
-    DatabaseReference otrosestudiosinset;
-
-    RecyclerView recycler_otrosestudios;
-    RecyclerView.LayoutManager layoutManager;
-
-    String idusuariosregistrado;
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
-    private DatabaseReference DBOtrosCursosCurriculos;
-
-    String detalleotroscursos = "";
-
-    String idusuarioregistrado;
-
-
-    String IDOtrosEstudiosss;
-
-
-    DatabaseReference databaseReferenceCurriloAct;
-    FirebaseDatabase databaseCurriculoAct;
-
-    String id;
-
-    String Ukey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_c_pantalla_otros_cursos );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_c_pantalla_otros_cursos);
 
-        TextView titulootrosCursos = findViewById( R.id.xmlTituloReferencia );
-        Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
-        titulootrosCursos.setTypeface( face );
-
-        //---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+        TextView tituloOtrosCursos = findViewById(R.id.xmlTituloReferencia);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        tituloOtrosCursos.setTypeface(face);
 
         database = FirebaseDatabase.getInstance();
-        otrosestudiosinset = database.getReference( "Otros_Cursos" );
-
-        recycler_otrosestudios = (RecyclerView) findViewById( R.id.recyclerviewotroscursos );
-        recycler_otrosestudios.setHasFixedSize( true );
-        layoutManager = new LinearLayoutManager( this );
-        recycler_otrosestudios.setLayoutManager( layoutManager );
-
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+        otrosestudiosinset = database.getReference("Otros_Cursos");
+        databaseCurriculoAct = FirebaseDatabase.getInstance();
+        databaseReferenceCurriloAct = databaseCurriculoAct.getReference("Curriculos");
 
 
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
+        recycler_otrosestudios = (RecyclerView) findViewById(R.id.recyclerviewotroscursos);
+        recycler_otrosestudios.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recycler_otrosestudios.setLayoutManager(layoutManager);
 
-         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         idusuariosregistrado = Ukey;
 
         loadOtrosEstudios(Ukey);
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
 
-//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
-
-        databaseCurriculoAct = FirebaseDatabase.getInstance();
-        databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
-
-        Query query = databaseReferenceCurriloAct.orderByChild( "sIdBuscadorEmpleo" ).equalTo( Ukey );
-        query.addValueEventListener( new ValueEventListener() {
+        Query query = databaseReferenceCurriloAct.orderByChild("sIdBuscadorEmpleo").equalTo(Ukey);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
-                    Log.d( "datosdatasnapsht", String.valueOf( dataSnapshot ) );
-
-                    id = FavdataSnapshot.child( "sIdCurriculo" ).getValue( String.class );
-                    Log.d( "datoscurriculos", String.valueOf( id ) );
-//                Curriculos datoscurriculos = dataSnapshot.getValue(Curriculos.class);
-//                id = perro.getsIdCurriculo();
-
-//                Log.d( "datoscurriculos", String.valueOf( datoscurriculos ) );
-//                Log.d( "datosid", String.valueOf( id ) );
-
+                    Log.d("datosdatasnapsht", String.valueOf(dataSnapshot));
+                    id = FavdataSnapshot.child("sIdCurriculo").getValue(String.class);
+                    Log.d("datoscurriculos", String.valueOf(id));
                 }
             }
 
@@ -126,83 +87,64 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
+        });
 
-//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+        DBOtrosCursosCurriculos = FirebaseDatabase.getInstance().getReference("Otros_Cursos");
 
+        etInstitucion = (EditText) findViewById(R.id.xmlEditNombreInstitucionOC);
+        etAno = (EditText) findViewById(R.id.xmlEditAñoOC);
+        etAreaoTema = (EditText) findViewById(R.id.xmlEditAreaOC);
+        ssTipodeEstudio = (SearchableSpinner) findViewById(R.id.xmlspinTipoEstudioOC);
 
-
-
-
-        DBOtrosCursosCurriculos = FirebaseDatabase.getInstance().getReference( "Otros_Cursos" );
-
-
-        etInstitucion = (EditText) findViewById( R.id.xmlEditNombreInstitucionOC );
-        etAno = (EditText) findViewById( R.id.xmlEditAñoOC );
-        etAreaoTema = (EditText) findViewById( R.id.xmlEditAreaOC );
-        ssTipodeEstudio = (SearchableSpinner) findViewById( R.id.xmlspinTipoEstudioOC );
-
-        BtnRegistrarOtrosCursos = (Button) findViewById( R.id.xmlbtnGuardarCursosOC );
-        BtnRegistrarOtrosCursos.setOnClickListener( new View.OnClickListener() {
+        BtnRegistrarOtrosCursos = (Button) findViewById(R.id.xmlbtnGuardarCursosOC);
+        BtnRegistrarOtrosCursos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 registrarotroscurriculos(id);
             }
-        } );
+        });
 
-        btnAcualizarOtrosCursos = (Button)findViewById( R.id.xmlbtnActualizarCursosOC );
-        btnAcualizarOtrosCursos.setOnClickListener( new View.OnClickListener() {
+        btnAcualizarOtrosCursos = (Button) findViewById(R.id.xmlbtnActualizarCursosOC);
+        btnAcualizarOtrosCursos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ActualizarOtrosEstudios(IDOtrosEstudiosss, id);
 
             }
-        } );
-
-        if (getIntent() != null)
-            detalleotroscursos = getIntent().getStringExtra( "DetalleOtrosCursosID" );
-
-        if (!detalleotroscursos.isEmpty()) {
-           // registrarotroscurriculos( detalleotroscursos );
-        }
+        });
 
     }
 
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
     private void loadOtrosEstudios(String Ukey) {
-         adapter = new FirebaseRecyclerAdapter<OtrosCursos, OtrosEstudiosViewHolder>( OtrosCursos.class, R.layout.card_view_otros_estudios_en_los_insert, OtrosEstudiosViewHolder.class,
-                otrosestudiosinset.orderByChild( "sIdBuscadorEmpleoOtrosCursos" ).equalTo( Ukey )) {
+        adapter = new FirebaseRecyclerAdapter<OtrosCursos, OtrosEstudiosViewHolder>(OtrosCursos.class, R.layout.card_view_otros_estudios_en_los_insert, OtrosEstudiosViewHolder.class,
+                otrosestudiosinset.orderByChild("sIdBuscadorEmpleoOtrosCursos").equalTo(Ukey)) {
             @Override
             protected void populateViewHolder(OtrosEstudiosViewHolder ViewHolder, OtrosCursos model, int position) {
 
-                ViewHolder.txtInstitucion.setText( model.getsInstitucionOtrosCursos() );
-                ViewHolder.txtAno.setText( model.getsAnoOtrosCursos() );
-                ViewHolder.txtAreaoTema.setText( model.getsAreaoTemaOtrosCursos() );
-                ViewHolder.txtTipoEstudio.setText( model.getsTipoEstudioOtrosCursos() );
-
-             //   Log.d( "hola", String.valueOf( model.getsInstitucionOtrosCursos() ) );
+                ViewHolder.txtInstitucion.setText(model.getsInstitucionOtrosCursos());
+                ViewHolder.txtAno.setText(model.getsAnoOtrosCursos());
+                ViewHolder.txtAreaoTema.setText(model.getsAreaoTemaOtrosCursos());
+                ViewHolder.txtTipoEstudio.setText(model.getsTipoEstudioOtrosCursos());
 
                 final OtrosCursos clickItem = model;
-                ViewHolder.setItemClickListener( new ItemClickListener() {
+                ViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
-                        IDOtrosEstudiosss = adapter.getRef( position ).getKey();
+                        IDOtrosEstudiosss = adapter.getRef(position).getKey();
                         goActualizarOtrosCursos(IDOtrosEstudiosss);
 
                     }
-                } );
+                });
             }
         };
-        recycler_otrosestudios.setAdapter( adapter );
+        recycler_otrosestudios.setAdapter(adapter);
     }
 
-//---------------------codigo de la vista de otros estudios en el insert----------------------------------------------------------------------------------------------------------------------
-
     public void limpiarCampor() {
-        etInstitucion.setText( "" );
-        etAreaoTema.setText( "" );
-        etAno.setText( "" );
+        etInstitucion.setText("");
+        etAreaoTema.setText("");
+        etAno.setText("");
 
     }
 
@@ -213,8 +155,8 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         ocTipoEstudio = ssTipodeEstudio.getSelectedItem().toString().trim();
         ocIdBuscardor = id;
 
-        if (TextUtils.isEmpty( ocInstitucionC )) {
-            etInstitucion.setError( "Campo vacío, por favor escriba la institucion" );
+        if (TextUtils.isEmpty(ocInstitucionC)) {
+            etInstitucion.setError("Campo vacío, por favor escriba la institucion");
             return;
         }
 
@@ -224,24 +166,24 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         String IdCurriculo = DBOtrosCursosCurriculos.push().getKey();
 
-        OtrosCursos otrosCursos = new OtrosCursos( IdCurriculo, id, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio );
+        OtrosCursos otrosCursos = new OtrosCursos(IdCurriculo, id, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio);
 
-        DBOtrosCursosCurriculos.child( IdCurriculo ).setValue( otrosCursos );
+        DBOtrosCursosCurriculos.child(IdCurriculo).setValue(otrosCursos);
 
         limpiarCampor();
 
     }
 
     private void goActualizarOtrosCursos(String idOtrosEstudiosss) {
-        otrosestudiosinset.child( idOtrosEstudiosss ).addValueEventListener( new ValueEventListener() {
+        otrosestudiosinset.child(idOtrosEstudiosss).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 OtrosCursos otrosCursos = dataSnapshot.getValue(OtrosCursos.class);
 
-                etInstitucion.setText( otrosCursos.getsInstitucionOtrosCursos() );
-                etAno.setText( otrosCursos.getsAnoOtrosCursos() );
-                etAreaoTema.setText( otrosCursos.getsAreaoTemaOtrosCursos() );
-                ssTipodeEstudio.setSelection( obtenerPosicionItem( ssTipodeEstudio, otrosCursos.getsTipoEstudioOtrosCursos() ) );
+                etInstitucion.setText(otrosCursos.getsInstitucionOtrosCursos());
+                etAno.setText(otrosCursos.getsAnoOtrosCursos());
+                etAreaoTema.setText(otrosCursos.getsAreaoTemaOtrosCursos());
+                ssTipodeEstudio.setSelection(obtenerPosicionItem(ssTipodeEstudio, otrosCursos.getsTipoEstudioOtrosCursos()));
 
             }
 
@@ -252,7 +194,7 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
                 //que lo pasaremos posteriormente
                 for (int i = 0; i < spinner.getCount(); i++) {
                     //Almacena la posición del ítem que coincida con la búsqueda
-                    if (spinner.getItemAtPosition( i ).toString().equalsIgnoreCase( fruta )) {
+                    if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(fruta)) {
                         posicion = i;
                     }
                 }
@@ -276,20 +218,15 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         ocTipoEstudio = ssTipodeEstudio.getSelectedItem().toString().trim();
         ocIdBuscardor = id;
 
-        if (TextUtils.isEmpty( ocInstitucionC )) {
-            etInstitucion.setError( "Campo vacío, por favor escriba la institucion" );
+        if (TextUtils.isEmpty(ocInstitucionC)) {
+            etInstitucion.setError("Campo vacío, por favor escriba la Institucion");
             return;
         }
 
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         idusuarioregistrado = Ukey;
-
         String IdCurriculo = IDOtrosEstudiosss;
-
-        OtrosCursos otrosCursos = new OtrosCursos( IdCurriculo, ocIdBuscardor, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio );
-
-        DBOtrosCursosCurriculos.child( IdCurriculo ).setValue( otrosCursos );
-
+        OtrosCursos otrosCursos = new OtrosCursos(IdCurriculo, ocIdBuscardor, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio);
+        DBOtrosCursosCurriculos.child(IdCurriculo).setValue(otrosCursos);
     }
 }

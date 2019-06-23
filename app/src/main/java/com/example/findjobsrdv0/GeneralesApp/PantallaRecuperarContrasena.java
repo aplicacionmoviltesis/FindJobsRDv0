@@ -56,7 +56,6 @@ public class PantallaRecuperarContrasena extends AppCompatActivity {
                     PasswordEmail.setError("Campo vacío, por favor escriba el correo");
                     return;
                 }else {
-
                     firebaseAuth.sendPasswordResetEmail(usercorreo).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -64,26 +63,16 @@ public class PantallaRecuperarContrasena extends AppCompatActivity {
 
                                 Toast.makeText(PantallaRecuperarContrasena.this, "Reset enviada al correo", Toast.LENGTH_SHORT).show();
                                 finish();
-                                //startActivities(new Intent(pantalla_olvidosucontrasena.this, pantallaLogin.class));
                                 Intent intent = new Intent(PantallaRecuperarContrasena.this, PantallaModoUsuario.class);
                                 startActivity(intent);
-
                             }else {
-
                                 Toast.makeText(PantallaRecuperarContrasena.this, "Error al Mandar el Reset password al correo", Toast.LENGTH_SHORT).show();
-
                             }
-
                         }
                     });
                 }
-
-
             }
         });
-
-
-
     }
 
     public boolean onSupportNavigateUp(){

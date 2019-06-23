@@ -7,33 +7,23 @@
     android:orientation="vertical"
     tools:context=".Pantallas_CurriculosCompleto.cPantallaFormacionAcademicaCurriculo">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/xmlTituloFormAcad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/btn_bg"
-        android:orientation="vertical"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:padding="5dp"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Formacion academica"
-            android:textColor="@color/md_blue_900"
-            android:gravity="center"
-            android:textStyle="italic"
-            android:textSize="30sp" />
-    </LinearLayout>
+        android:text="Formacion Academica"
+        android:textColor="@color/md_blue_900"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDetalleFormAcad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:scrollbars="vertical"/>
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

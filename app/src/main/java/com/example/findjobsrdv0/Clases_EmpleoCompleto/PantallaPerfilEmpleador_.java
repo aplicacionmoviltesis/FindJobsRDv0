@@ -313,12 +313,15 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
 
                 Empleadores Datosempleadores = dataSnapshot.getValue(Empleadores.class);
                 Log.d("verificacion", String.valueOf(dataSnapshot));
+                Log.d("verificaciondat", String.valueOf(Datosempleadores));
 
-                sImagenPEmpleador = Datosempleadores.getsImagenEmpleador();
+
+                //sImagenPEmpleador = String.valueOf(Datosempleadores.getsImagenEmpleador());
+                sImagenPEmpleador = dataSnapshot.child("sImagenEmpleador").getValue(String.class);
 
                 Log.d("Imagenklk", String.valueOf(sImagenPEmpleador));
                 Log.d("Imagenklk", sImagenPEmpleador+"  /");
-                Log.d("Imagenklk", sImagenPEmpleador);
+                //Log.d("Imagenklk", sImagenPEmpleador);
 
                 if (sImagenPEmpleador != null && sImagenPEmpleador != "") {
                     Picasso.get().load(sImagenPEmpleador).into(ImagePerfilPEmpleador);
@@ -327,8 +330,8 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
                         Glide.with(PantallaPerfilEmpleador_.this).load(FotoPerfilCorreo).into(ImagePerfilPEmpleador);
                     }
                 }
-
-                sNombrePEmpleador = Datosempleadores.getsNombreEmpleador();
+                sNombrePEmpleador = dataSnapshot.child("sNombreEmpleador").getValue(String.class);
+                //sNombrePEmpleador = Datosempleadores.getsNombreEmpleador();
                 if (sNombrePEmpleador != null && sNombrePEmpleador != "") {
                     editNombrePEmpleador.setText(sNombrePEmpleador);
                 }else {
@@ -336,18 +339,18 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
                         editNombrePEmpleador.setText(NombreEmpleador);
                     }
                 }
-
-                sRncPEmpleador = Datosempleadores.getsRncEmpleador();
+                sRncPEmpleador = dataSnapshot.child("sRncEmpleador").getValue(String.class);
+                //sRncPEmpleador = Datosempleadores.getsRncEmpleador();
                 if (sRncPEmpleador != null && sRncPEmpleador != "") {
                     editRncPEmpleador.setText(sRncPEmpleador);
                 }
 
-                sPaginaWebPEmpleador = Datosempleadores.getsPaginaWebEmpleador();
+                //sPaginaWebPEmpleador = Datosempleadores.getsPaginaWebEmpleador();
                 if (sPaginaWebPEmpleador != null && sPaginaWebPEmpleador != "") {
                     editPaginaWebPEmpleador.setText(sPaginaWebPEmpleador);
                 }
 
-                sTelefonoPEmpleador = Datosempleadores.getsTelefonoEmpleador();
+                //sTelefonoPEmpleador = Datosempleadores.getsTelefonoEmpleador();
                 if (sTelefonoPEmpleador != null && sTelefonoPEmpleador != "") {
                     editTelefonoPEmplador.setText(sTelefonoPEmpleador);
                 }else {
@@ -357,7 +360,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
                 }
 
 
-                sCorreoPEmpleador = Datosempleadores.getsCorreoEmpleador();
+                //sCorreoPEmpleador = Datosempleadores.getsCorreoEmpleador();
                 if (sCorreoPEmpleador != null && sCorreoPEmpleador != "") {
                     editCorreoPEmpleador.setText(sCorreoPEmpleador);
                 }else {
@@ -367,24 +370,24 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
                 }
 
 
-                sDireccionPEmpleador = Datosempleadores.getsDireccionEmpleador();
+                //sDireccionPEmpleador = Datosempleadores.getsDireccionEmpleador();
                 if (sDireccionPEmpleador != null && sDireccionPEmpleador != "") {
                     editDireccionPEmpleador.setText(sDireccionPEmpleador);
                 }
 
-                sProvinciaPEmpleador = Datosempleadores.getsProvinciaEmpleador();
+                //sProvinciaPEmpleador = Datosempleadores.getsProvinciaEmpleador();
                 if (sProvinciaPEmpleador != null && sProvinciaPEmpleador != "") {
                     editProvinciaPEmpleador.setText(sProvinciaPEmpleador);
                 }
 
 
-                sDescripcionPEmpleador = Datosempleadores.getsDescripcionEmpleador();
+                //sDescripcionPEmpleador = Datosempleadores.getsDescripcionEmpleador();
                 if (sDescripcionPEmpleador != null && sDescripcionPEmpleador != "") {
                     editDescripcionPEmpleador.setText(sDescripcionPEmpleador);
                 }
 
 
-                sVerificacionPEmpleador = Datosempleadores.getsVerificacionEmpleador();
+                //sVerificacionPEmpleador = Datosempleadores.getsVerificacionEmpleador();
                 Log.d("verificacion", String.valueOf(sVerificacionPEmpleador));
 
                 if (sVerificacionPEmpleador != null) {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -9,392 +8,478 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@mipmap/fondo1"
         android:orientation="vertical">
 
+        <!--<ToggleButton-->
+        <!--android:id="@+id/btn_CurriculosFavoritos"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="@drawable/checkbox_selector_favorito"-->
+        <!--android:text=""-->
+        <!--android:textOff=""-->
+        <!--android:textOn="" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/xmlImagenPerfilCurriculo"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
             android:layout_margin="10dp"
-            android:background="@drawable/btn_bg"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="1dp"
+            android:src="@mipmap/buscandoempleo" />
 
-            <ToggleButton
-                android:id="@+id/btn_CurriculosFavoritos"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/checkbox_selector_favorito"
-                android:text=""
-                android:textOff=""
-                android:textOn=""
-
-
-
-                />
-
-            <!--      <com.google.android.material.floatingactionbutton.FloatingActionButton
-                      android:id="@+id/fab"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_margin="@dimen/fab_margin"
-                      app:layout_anchor="@id/app_bar"
-                      app:layout_anchorGravity="bottom|end"
-                      app:srcCompat="@android:drawable/ic_dialog_email" />
-                  -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/xmlTvNombreEmpleoDC"
-                android:layout_width="match_parent"
+                android:id="@+id/xmlTvNombreDetalleCu"
+                android:layout_width="295dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:drawablePadding="3dp"
-                android:hint="Nombre Curriculo"
-                android:textColor="@color/md_blue_900"
-                android:textSize="35sp" />
+                android:hint="Nombre"
+                android:textColor="@color/md_white_1000"
+                android:textSize="45sp"
+                android:textStyle="bold|italic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/xmlTvNombreDetalleCu"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/xmlTiInformacionBasicaDC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="Informaciones Basica"
-                    android:textColor="@color/md_blue_900"
-                    android:textColorHint="@color/md_blue_900" />
-
-                <TextView
-                    android:id="@+id/xmlTvNombreDetalleCu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:drawablePadding="3dp"
-                    android:hint="Nombre"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/xmlTvApellidoDetalleCu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:drawablePadding="3dp"
-                    android:hint="Apellido"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/xmlTvFechaNacimientoDetalleCu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:drawablePadding="3dp"
-                    android:hint="Fecha de nacimiento"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/xmlTvEstadoCivilDetalleCu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:drawablePadding="3dp"
-                    android:hint="Estado Civil"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/xmlTvCedulaDetalleCu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:drawablePadding="3dp"
-                    android:hint="Cedula"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="20sp" />
-
+            <ToggleButton
+                android:id="@+id/btn_CurriculosFavoritos"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/checkbox_selector_favorito"
+                android:text=""
+                android:textOff=""
+                android:textOn="" />
             </LinearLayout>
+        </RelativeLayout>
 
-
-            <TextView
-                android:id="@+id/xmlTiDireccionDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:baselineAligned="false"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="Direccion"
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvProvinciaDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint="Provincia"
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTvDireccionDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:drawablePadding="3dp"
-                android:ems="10"
-                android:hint="Direccion"
-                android:inputType="text"
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/xmlTiContactoDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="Contacto"
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvEmailDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:drawablePadding="10dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTvTelefonoDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:drawablePadding="3dp"
-                android:hint="Telefono"
-                android:textColor="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTvCelularDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:drawablePadding="3dp"
-                android:hint="Celular"
-                android:textColor="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTiDatosEspecificosDC"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:text="Otros Datos"
-                android:textColor="@color/md_blue_900"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/xmlTiIdiomaDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint=" Idioma "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvIdiomaDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint=" Idioma "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTiOcupacionDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint=" Ocupacion "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvOcupacionDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint=" Ocupacion "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTiMaestriaDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint=" Maestria "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvMaestriaDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint=" Maestria "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTiDisponibilidadDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint=" Disponibilidad "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvDisponibilidadDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint=" Disponibilidad "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTiSexoDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint=" Sexo "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvSexoDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint=" Sexo "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/xmlTiHabilidadesDC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint=" Habilidades "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900" />
-
-            <TextView
-                android:id="@+id/xmlTvHabilidadesDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:hint=" Habilidades "
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_blue_900"
-                android:textSize="20sp" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/xmlTvApellidoDetalleCu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="3dp"
+            android:hint="Apellido"
+            android:textColor="@color/md_white_1000"
+            android:textSize="45sp"
+            android:textStyle="bold|italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@drawable/btn_bg"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/xmlBtnFormacionAcademicaDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/btn_bg"
-                android:text="Formacion Academica" />
-
-            <Button
-                android:id="@+id/xmlBtnOtrosEstudiosDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/btn_bg"
-                android:text="Otros Estudios" />
-
-            <Button
-                android:id="@+id/xmlBtnExperienciaLaboralDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/btn_bg"
-                android:text="Experiencia Laboral" />
-
-            <Button
-                android:id="@+id/xmlBtnReferenciasDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/btn_bg"
-                android:text="Referencias" />
-
-
-            <Button
-                android:id="@+id/xmlBtnAplicarEmpleoDetalleCu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/btn_bg"
-
-                android:text="Aplicar" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/xmlTvFechaPublicacionDC"
-                android:layout_width="wrap_content"
+                android:id="@+id/xmlTiDatosPersonalesDC"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:layout_marginTop="25dp"
-                android:hint="Ultima Actualizacion: 29/04/2019"
-                android:textColor="@color/md_blue_900"
-                android:textColorHint="@color/md_black_1000"
-                android:textSize="13sp"
+                android:gravity="center"
+                android:text="Datos Personales"
+                android:textColor="@color/md_white_1000"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_bg"
+                android:elevation="100dp"
+                app:cardCornerRadius="25dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/xmlTiCedulaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cedula:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvCedulaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Cedula"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiProvinciaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Provincia:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvProvinciaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Provincia"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiDireccionDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Direccion:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvDireccionDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Direccion"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiEmailDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="E-mail:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvEmailDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Correo Electronico"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiTelefonoDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Telefono:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvTelefonoDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Telefono"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiCelularDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Celular:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvCelularDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Celular"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiSexoDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sexo:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvSexoDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Sexo"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiEstadoCivilDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estado Civil:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvEstadoCivilDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Estado Civil"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiFechaNacimientoDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha de nacimiento:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvFechaNacimientoDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Fecha de nacimiento"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/xmlTiInformacionesBasicasDC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Informaciones Basicas"
+                android:textColor="@color/md_white_1000"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_bg"
+                android:elevation="100dp"
+                app:cardCornerRadius="25dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/xmlTiIdiomaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Idiomas:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvIdiomaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Idiomas"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiOcupacionDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ocupacion:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvOcupacionDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Ocupacion"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiMaestriaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Maestria:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvMaestriaDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Maestria"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiDisponibilidadDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Disponibilidad:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvDisponibilidadDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Disponibilidad"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/xmlTiHabilidadesDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Habilidades:"
+                        android:textColor="@color/md_black_1000" />
+
+                    <TextView
+                        android:id="@+id/xmlTvHabilidadesDetalleCu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Habilidades"
+                        android:textColor="@color/md_blue_900"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/transparent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/xmlBtnFormacionAcademicaDetalleCu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@color/transparent"
+                    android:text="Ver Formacion Academica"
+                    android:textColor="@color/md_white_1000" />
+
+                <Button
+                    android:id="@+id/xmlBtnOtrosEstudiosDetalleCu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@color/transparent"
+                    android:elevation="100dp"
+                    android:text="Ver Otros Estudios"
+                    android:textColor="@color/md_white_1000" />
+
+                <Button
+                    android:id="@+id/xmlBtnExperienciaLaboralDetalleCu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@color/transparent"
+                    android:elevation="100dp"
+                    android:text="Ver Experiencia Laboral"
+                    android:textColor="@color/md_white_1000" />
+
+                <Button
+                    android:id="@+id/xmlBtnReferenciasDetalleCu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@color/transparent"
+                    android:elevation="100dp"
+                    android:text="Ver Referencias"
+                    android:textColor="@color/md_white_1000" />
+
+                <Button
+                    android:id="@+id/xmlBtnAplicarEmpleoDetalleCu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Aplicar"
+                    android:textColor="@color/md_blue_900" />
+                <TextView
+                    android:id="@+id/xmlTvYaaplicasteCurriculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Usted ya aplico Anteriormente a este Curriculo."
+                    android:textColor="@color/md_red_500"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/xmlTvFechaPublicacionDC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_marginTop="35dp"
+            android:hint="Ultima Actualizacion: 29/04/2019"
+            android:textColor="@color/md_white_1000"
+            android:textColorHint="@color/md_white_1000"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>

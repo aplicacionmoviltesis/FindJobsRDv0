@@ -7,12 +7,12 @@
         <item
             android:id="@+id/curriculosfavoritos"
             android:icon="@drawable/iconfavorito"
-            android:title="Curriculos Favoritos" />
+            android:title="Currículos Favoritos" />
 
         <item
             android:id="@+id/curriculosMarcadoInteres"
             android:icon="@drawable/ic_empleos_aplico"
-            android:title="Curriculos Solicitados" />
+            android:title="Currículos Solicitados" />
         <item
             android:id="@+id/navegadorEmpleador"
             android:icon="@drawable/iconnavegador"
@@ -20,11 +20,11 @@
         <item
             android:id="@+id/compararEmpleador"
             android:icon="@drawable/iconcompare"
-            android:title="Comparar Curriculos" />
+            android:title="Comparar Currículos" />
         <item
             android:id="@+id/ConfiguracionEmpleador"
             android:icon="@drawable/iconajuste"
-            android:title="Ajuste" />
+            android:title="Ajustes" />
 
     </group>
 
@@ -37,7 +37,7 @@
             <item
                 android:id="@+id/cerrarsesionEmpleador"
                 android:icon="@drawable/iconcerrarsesion"
-                android:title="Cerrar Sesion" />
+                android:title="Cerrar Sesión " />
         </menu>
     </item>
 

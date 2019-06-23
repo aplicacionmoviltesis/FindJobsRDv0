@@ -44,23 +44,17 @@ import android.widget.Toast;
 
 public class PantallaPrincipalBuscador extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
-    //implements GoogleApiClient.OnConnectionFailedListener{
     private ImageView photoImageView;
     private TextView nameTextView,tituloelegiropcion;
     private TextView emailTextView;
-    private TextView idTextView;
     FirebaseUser user;
-
-
     FirebaseAuth mAuth;
-    private String klk1, klk2;
     private GoogleApiClient googleApiClient;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
     String buscadoresconectados;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,24 +76,21 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
        buscadoresconectados = FirebaseAuth.getInstance().getCurrentUser().getUid();
 /*
-        View header= navigationView.getHeaderView(0);
+       View header= navigationView.getHeaderView(0);
        photoImageView = (ImageView)header.findViewById( R.id.fotoperfilbuscador );
        nameTextView = (TextView)header.findViewById( R.id.nombreperfilbuscador);
        emailTextView = (TextView)header.findViewById( R.id.correoperfilbuscador );
 
-        TextView TextViewEmpleador = (TextView) header.findViewById(R.id.nombreperfilbuscador);
+       TextView TextViewEmpleador = (TextView) header.findViewById(R.id.nombreperfilbuscador);
 
 
 */
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
 
         LinearLayout IrRegistrarCurriculo = (LinearLayout )findViewById(R.id.lyRegistrarCurriculo);
         IrRegistrarCurriculo.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +122,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         });
 
         tituloelegiropcion = (TextView) findViewById(R.id.tvelegiropcionBuscador);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Chomsky.otf");
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
         tituloelegiropcion.setTypeface(face);
 
         mAuth= FirebaseAuth.getInstance();
@@ -152,7 +143,6 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         String Nombre= preferences.getString("Nombre", "Nombre")+" "+preferences.getString("Apellido", "Apellido");
 
         nameTextView.setText(Nombre);
-        //emailTextView.setText(user.getsEmailC());
 
 
         photoImageView.setOnClickListener( new View.OnClickListener() {
@@ -301,6 +291,8 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, PantallaConfiguracion.class);
+            startActivityForResult(intent, 0);
             return true;
         }
 

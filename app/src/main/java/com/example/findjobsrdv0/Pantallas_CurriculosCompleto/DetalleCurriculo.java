@@ -1,21 +1,23 @@
 package com.example.findjobsrdv0.Pantallas_CurriculosCompleto;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.AplicarCurriculo;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,71 +28,61 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DetalleCurriculo extends AppCompatActivity {
 
-    TextView txtNombreCurr, txtApellidoCurr, txtCedulaCurr, txtEmailCurr, txtTelefonoCurr, txtCelularCurr, txtprovinciaCurr, txtEstadoCivil, txtDireccionCurr, txtOcupacion, txtIdioma,
-            txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha;
+    private TextView txtNombreCurr, txtApellidoCurr, txtCedulaCurr, txtEmailCurr, txtTelefonoCurr, txtCelularCurr, txtprovinciaCurr, txtEstadoCivil, txtDireccionCurr, txtOcupacion, txtIdioma,
+            txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha,TvYaAplicoCurriculo;
 
-    FirebaseDatabase database;
-    DatabaseReference detalelcurriculo;
+    private FirebaseDatabase database,prueba;
+    private DatabaseReference detalelcurriculo, DbLikesFavCurri;
     private DatabaseReference AplicarInteresCurriculoDataBase;
 
+    private String detallecurrid = "";
+    private Button btnIrFormacionAcademica, btnIrReferencia, btnIrExperienciaLab, btnOtrosEstudios, btnAplicarCurriculo;
 
-    String detallecurrid = "";
-    Button btnIrFormacionAcademica, btnIrReferencia, btnIrExperienciaLab, btnOtrosEstudios, btnAplicarCurriculo;
-
-
-
-    // ToggleButton btnfavorito;
-
-    private FirebaseAuth mAuthEmpresa_Empleador;
-    private FirebaseUser user;
+    private FirebaseAuth mAuthEmpresa_Empleador,mFirebaseAuth;
+    private FirebaseUser user,userActivo;
 
     private String sIdAplicarCurriculo, sIdCurriculoAplico, sIdEmpresaAplico, sFechadeAplicacion;
 
-//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
+    private ToggleButton btnfavoritoCurriculo;
 
-    ToggleButton btnfavoritoCurriculo;
-    FirebaseDatabase prueba;
-    DatabaseReference DbLikesFavCurri;
+    private String sIdPersonaMarco;
 
-    FirebaseAuth mFirebaseAuth;
-    FirebaseUser userActivo;
-
-    String sIdPersonaMarco;
-//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+    private ImageView FotoCurriculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_curriculo);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        TvYaAplicoCurriculo = (TextView) findViewById(R.id.xmlTvYaaplicasteCurriculo);
+        TvYaAplicoCurriculo.setVisibility(View.INVISIBLE);
 
         prueba = FirebaseDatabase.getInstance();
         DbLikesFavCurri = prueba.getReference();
         DbLikesFavCurri.keepSynced( true );
-
-
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         userActivo = mFirebaseAuth.getCurrentUser();
         sIdPersonaMarco = userActivo.getUid();
 
 
-//---------  para los favoritos ---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
         database = FirebaseDatabase.getInstance();
         detalelcurriculo = database.getReference("Curriculos");
         AplicarInteresCurriculoDataBase = database.getReference("CurriculosConSolicitudes");
+
+        FotoCurriculo = (ImageView) findViewById(R.id.xmlImagenPerfilCurriculo);
 
         txtNombreCurr = (TextView) findViewById(R.id.xmlTvNombreDetalleCu);
         txtApellidoCurr = (TextView) findViewById(R.id.xmlTvApellidoDetalleCu);
@@ -109,6 +101,7 @@ public class DetalleCurriculo extends AppCompatActivity {
         txtFecha = (TextView) findViewById(R.id.xmlTvFechaNacimientoDetalleCu);
 
 
+
         if (getIntent() != null)
             detallecurrid = getIntent().getStringExtra("detallecurrID");
 
@@ -119,6 +112,8 @@ public class DetalleCurriculo extends AppCompatActivity {
 
             VerificarFavorito();
         }
+
+        VerificarAplicacionCurriculoExiste(sIdPersonaMarco);
 
         btnfavoritoCurriculo = (ToggleButton) findViewById(R.id.btn_CurriculosFavoritos);
         btnfavoritoCurriculo.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
@@ -148,10 +143,7 @@ public class DetalleCurriculo extends AppCompatActivity {
                     } );
 
                     Log.d( "estado inactivo", String.valueOf( b ) );
-
                 }
-
-
             }
         } );
 
@@ -209,42 +201,12 @@ public class DetalleCurriculo extends AppCompatActivity {
 
             }
         });
-
-
-//        btnfavoritoCurriculo = (ToggleButton) findViewById( R.id.curriculosfavoritos );
-//        btnfavoritoCurriculo.setChecked( true );
-//        btnfavoritoCurriculo.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if (b) {
-//                    lanzaM( "ON" );
-//                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.holo_red_dark );
-//                } else {
-//                    lanzaM( "OFF" );
-//                    cambiarColorTB( android.R.color.holo_red_dark, android.R.color.black );
-//                }
-//
-//            }
-//        } );
-//
-
     }
 
-//
-//    private void cambiarColorTB(int color1, int color2) {
-//        this.btnfavoritoCurriculo.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color1 ) );
-//        this.btnfavoritoCurriculo.setBackgroundColor( ContextCompat.getColor( getBaseContext(), color2 ) );
-//    }
-//
-//    private void lanzaM(String m) {
-//        Toast.makeText( getBaseContext(), m, Toast.LENGTH_SHORT ).show();
-//
-//    }
-
-
-
-
-
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
+    }
 
     private void AplicarInteresCurriculo(String sIdEmpleadorAplico,String Interes) {
 
@@ -268,6 +230,8 @@ public class DetalleCurriculo extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d("hola", String.valueOf(dataSnapshot));
                 Curriculos vistaCurriculomodel = dataSnapshot.getValue(Curriculos.class);
+
+                Picasso.get().load(vistaCurriculomodel.getsImagenC()).into(FotoCurriculo);
 
                 txtNombreCurr.setText(vistaCurriculomodel.getsNombreC());
                 txtApellidoCurr.setText(vistaCurriculomodel.getsApellidoC());
@@ -293,14 +257,11 @@ public class DetalleCurriculo extends AppCompatActivity {
         });
     }
 
-
     private void VerificarFavorito() {
         final Query q = DbLikesFavCurri.child( "Empleadores" )//referencia empleadores
                 .child( sIdPersonaMarco )//referencia usuario
                 .child( "likes" )//referencia likes
                 .orderByChild( "IdCurriculoLike" ).equalTo( detallecurrid );
-//        Log.d( "fav", String.valueOf( sEmpleoIdE ) );
-//        Log.d( "fav", String.valueOf( sIdPersonaAplico ) );
 
         q.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
@@ -344,14 +305,10 @@ public class DetalleCurriculo extends AppCompatActivity {
                             .child( "IdCurriculoLike" )
                             .setValue( detallecurrid );
                 }
-                //existe
                 else {
                     Toast.makeText(DetalleCurriculo.this, "Favorito repetido", Toast.LENGTH_LONG).show();
-
                 }
             }
-            //no existe
-
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -360,5 +317,33 @@ public class DetalleCurriculo extends AppCompatActivity {
         });
     }
 
+    public void VerificarAplicacionCurriculoExiste(String sPersonaIdE) {
 
+        Query q = AplicarInteresCurriculoDataBase.orderByChild("sIdEmpresaAplico").equalTo(sPersonaIdE);
+        q.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
+
+                    String IdCurriculoAplico = CurriculosSnapshot.child("sIdCurriculoAplico").getValue(String.class);
+                    if(IdCurriculoAplico.equals(detallecurrid)){
+                        btnAplicarCurriculo.setEnabled(false);
+                        TvYaAplicoCurriculo.setVisibility(View.VISIBLE);
+
+                        //btnAplicarCurriculo.setTextColor(getResources().getColor(R.color.md_red_900));
+                        //Toast.makeText(PantallaDetallesEmpleo.this, "Usted ha Aplicado anteriormente a este empleo", Toast.LENGTH_LONG).show();
+
+                    }else{
+                        Log.d("dataidEmpleosAplicar", IdCurriculoAplico);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

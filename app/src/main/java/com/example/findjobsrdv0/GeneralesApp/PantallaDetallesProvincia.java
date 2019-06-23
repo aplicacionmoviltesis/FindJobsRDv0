@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -23,82 +25,51 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
     TextView TvNombreProvincia, TvDescripcionProvincia, TvDivisionProvincia;
     ImageView MostImagenProvincia;
     String sNombreProvinciakey = "";
-
     FirebaseDatabase database;
     Query DBprovincia;
-
-    String perro = "santiago";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_detalles_provincia);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
         DBprovincia = database.getReference("provincias");
+
+        TvNombreProvincia = (TextView) findViewById(R.id.xmlTvNombreProvincia);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        TvNombreProvincia.setTypeface(face);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
         MostImagenProvincia = (ImageView) findViewById(R.id.xmlImagenProvincia);
-        TvNombreProvincia = (TextView) findViewById(R.id.xmlTvNombreProvincia);
         TvDescripcionProvincia = (TextView) findViewById(R.id.xmlTvDescripcionProvincia);
         TvDivisionProvincia = (TextView) findViewById(R.id.xmlTvDivisionProvincia);
         TvDivisionProvincia.setMovementMethod(new ScrollingMovementMethod());
         TvDescripcionProvincia.setMovementMethod(new ScrollingMovementMethod());
 
-
-
-
-
-        if(getIntent() != null){
+        if (getIntent() != null) {
             sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
-            if(!sNombreProvinciakey.isEmpty()){
-
+            if (!sNombreProvinciakey.isEmpty()) {
                 goDetalleProvincia(sNombreProvinciakey);
             }
         }
-
-
-
-
-
-
-/*
-        if (getIntent() != null) {
-            NombreProvinciakey = getIntent().getStringExtra("sNombreProvinciakey");
-            if (!NombreProvinciakey.isEmpty()) {
-
-                goDetalleEmpleo(NombreProvinciakey);
-            }
-        }*/
-
-        goDetalleProvincia(sNombreProvinciakey);
-
     }
 
-    String hola;
 
     private void goDetalleProvincia(String sNombreProvinciakey) {
 
         Query q = DBprovincia.orderByChild("Nombre_Provincia").equalTo(sNombreProvinciakey);
-        //.orderByChild("descripcion").equalTo("hola")
-        // .orderByChild("coordenadas").equalTo("3.5");
-///       Query jj= q.orderByChild("coordenadas").equalTo("3.5");
+
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // if(dataSnapshot.child("descripcion").equals("descripcion"))
-                    //{
-                    //if(dataSnapshot.child("coordenadas").equals("coordenadas")){
 
                     Log.d("hola", String.valueOf(dataSnapshot));
-                    // los datos llegan hasta el objeto, pero no se cargan en la clase
-
-                    //TvNombreProvincia.setText(dataSnapshot.child("nombre").toString());
 
                     Provincias Dprovincia = new Provincias();
                     Dprovincia.setsNombreProvincia(snapshot.child("Nombre_Provincia").getValue().toString());
@@ -106,41 +77,14 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
                     Dprovincia.setsDescripcionProvincia(snapshot.child("Descripcion_Provincia").getValue().toString());
                     Dprovincia.setsCoordenadasProvincia(snapshot.child("Division_Provincia").getValue().toString());
 
-
-                    // }
-                    //}
-                    //---Log.d("hola", String.valueOf(dataSnapshot));
-                    // los datos llegan hasta el objeto, pero no se cargan en la clase
-
-                    //----Provincias Dprovincia = dataSnapshot.getValue(Provincias.class);
-
-                    //Log.d("holap", String.valueOf(Dprovincia));
-
-
                     Picasso.get().load(Dprovincia.getsImagenProvincia()).into(MostImagenProvincia);
 
                     TvNombreProvincia.setText(Dprovincia.getsNombreProvincia());
                     TvDescripcionProvincia.setText(Dprovincia.getsDescripcionProvincia());
                     TvDivisionProvincia.setText(Dprovincia.getsCoordenadasProvincia());
 
-
-
-
-
-
-
-
-                    //---------hola = Dprovincia.getsNombreProvincia();
-                    //---------Log.d("holap", TvNombreProvincia.toString());
-                    //--------- Log.d("holapp",dataSnapshot.getValue().toString());
-                    //--------- Log.d("holappklk",dataSnapshot.child("01").getValue().toString());
-                    //--------- Log.d("holappklk",Dprovincia.getsNombreProvincia());
-                    //Log.d("hol", String.valueOf(hola));
-
                     Log.d("probando", Dprovincia.getsImagenProvincia());
                 }
-
-
             }
 
             @Override
@@ -148,13 +92,11 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
 
             }
         });
-
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
-
 }
 

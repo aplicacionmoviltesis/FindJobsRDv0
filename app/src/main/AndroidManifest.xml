@@ -18,7 +18,6 @@
             android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador_"
             android:label="@string/title_activity_pantalla_perfil_empleador_"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MainActivity" />
         <activity
             android:name=".Clases_EmpleoCompleto.PantallaCompararEmpleos"
             android:label="@string/title_activity_pantalla_comparar_empleos"
@@ -45,7 +44,6 @@
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaPerfilBuscador" />
         <activity android:name=".like.MainActivity" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaPersonasAplicaronEmpleo" />
-        <activity android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleOtrosEstudios" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleExperienciaLaboral" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleReferencias" />
@@ -60,10 +58,6 @@
             android:label="@string/title_activity_pantalla_actualizar_empleo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GeneralesApp.PantallaDetallesArea" />
-        <activity
-            android:name=".PantallaDetallesEmpleosAnadidos"
-            android:label="@string/title_activity_pantalla_detalles_empleos_anadidos"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GeneralesApp.PantallaDetallesProvincia" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaListaEmpleosAnadidos" />
         <activity android:name=".PantallaBuscarEmpleos" />

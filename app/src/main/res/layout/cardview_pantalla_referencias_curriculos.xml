@@ -8,13 +8,16 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="5dp"
-        android:layout_margin="5dp">
+        android:clickable="true"
+        android:background="@color/accent"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="5dp"
+        android:elevation="100dp"
+        app:cardCornerRadius="25dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
             android:padding="8dp">
 
             <TextView
@@ -24,8 +27,9 @@
                 android:text="NOMBRE/APELLIDO"
                 android:gravity="center"
                 android:textSize="20sp"
+                android:textStyle="italic"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900" />
 
             <TextView
                 android:id="@+id/textViewShortDesc"
@@ -37,6 +41,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:text="809-725-2584"
+                android:textColor="@color/md_blue_900"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             <TextView
@@ -49,7 +54,7 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900" />
 
             <TextView
                 android:id="@+id/institucion"
@@ -60,8 +65,9 @@
                 android:layout_below="@+id/cargo"
                 android:gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="@color/md_blue_900" />
 
 
             <TextView
@@ -72,7 +78,8 @@
                 android:layout_marginLeft="5dp"
                 android:textSize="15sp"
                 android:layout_below="@id/institucion"
-                android:text=" Referencia Laboral "
+                android:text="Referencia Laboral"
+                android:textColor="@color/md_blue_900"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
         </RelativeLayout>

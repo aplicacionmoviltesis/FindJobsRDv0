@@ -1,142 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content "
-    android:layout_marginTop="10dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:background="@color/accent"
+    android:layout_margin="5dp"
+    android:elevation="100dp"
+    app:cardCornerRadius="25dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/btn_bg"
-        android:orientation="vertical"
-        >
+        android:layout_margin="5dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text=" Institucion"
+            android:inputType="text"
+            android:text="Institución"
+            android:gravity="center"
             android:textColorHint="@color/md_black_1000"
             android:textSize="15sp"
-            android:textStyle="bold"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
+            android:textStyle="normal"/>
 
             <TextView
                 android:id="@+id/xmlTVInstitucionDetalleOtrosEstudios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="Institucion"
+                android:hint="Institución"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold|italic"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text=" Año"
+            android:inputType="text"
+            android:text="Año"
+            android:gravity="center"
             android:textColorHint="@color/md_black_1000"
             android:textSize="15sp"
             android:textStyle="bold"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
 
             <TextView
                 android:id="@+id/xmlTVanoDetalleOtrosEstudios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="año"
-                android:layout_marginLeft="25dp"
+                android:hint="Año"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold|italic"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text=" Area o Tema"
+            android:gravity="center"
+            android:inputType="text"
+            android:text="Área o Tema"
             android:textColorHint="@color/md_black_1000"
             android:textSize="15sp"
             android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
 
             <TextView
                 android:id="@+id/xmlTVAreaoTemaDetalleOtrosEstudios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="Area o tema"
+                android:hint="Área o Tema"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold|italic"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text=" Tipo de estudio"
+            android:inputType="text"
+            android:gravity="center"
+            android:text="Tipo de estudio"
             android:textColorHint="@color/md_black_1000"
             android:textSize="15sp"
             android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
 
             <TextView
                 android:id="@+id/xmlTVTipodeEstudioDetalleOtrosEstudios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
                 android:hint="Tipo de estudio"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold|italic"/>
     </LinearLayout>
 
 

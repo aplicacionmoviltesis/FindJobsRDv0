@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -20,17 +22,22 @@ import com.squareup.picasso.Picasso;
 
 public class PantallaDetallesArea extends AppCompatActivity {
 
-    TextView TvNombreArea, TvDescripcionArea, TvSubAreasA;
-    ImageView MostImagenArea;
-    String sNombreAreakey = "";
+    private TextView TvNombreArea, TvDescripcionArea, TvSubAreasA;
+    private ImageView MostImagenArea;
+    private String sNombreAreakey = "";
 
     private FirebaseDatabase databaseArea;
-    Query DBarea;
+    private Query DBarea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_detalles_area);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        TvNombreArea = (TextView) findViewById(R.id.xmlTvNombreArea);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        TvNombreArea.setTypeface(face);
 
         databaseArea = FirebaseDatabase.getInstance();
         DBarea = databaseArea.getReference("Areas");
@@ -40,21 +47,16 @@ public class PantallaDetallesArea extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         MostImagenArea = (ImageView) findViewById(R.id.xmlImagenArea);
-        TvNombreArea = (TextView) findViewById(R.id.xmlTvNombreArea);
         TvDescripcionArea = (TextView) findViewById(R.id.xmlTvDescripcionArea);
         TvSubAreasA = (TextView) findViewById(R.id.xmlTvSubAreasA);
 
 
-        if(getIntent() != null){
+        if (getIntent() != null) {
             sNombreAreakey = getIntent().getStringExtra("sAreaDE");
-            if(!sNombreAreakey.isEmpty()){
-
+            if (!sNombreAreakey.isEmpty()) {
                 goDetalleArea(sNombreAreakey);
             }
         }
-
-
-        goDetalleArea(sNombreAreakey);
     }
 
     private void goDetalleArea(String sNombreAreakey) {
@@ -73,17 +75,13 @@ public class PantallaDetallesArea extends AppCompatActivity {
                     Dareas.setsDescripcionArea(snapshot.child("Descripcion_Area").getValue().toString());
                     Dareas.setsSubAreas(snapshot.child("Areas_Relacionadas").getValue().toString());
 
-
                     TvNombreArea.setText(Dareas.getsNombreArea());
                     TvDescripcionArea.setText(Dareas.getsDescripcionArea());
                     TvSubAreasA.setText(Dareas.getsSubAreas());
 
                     Log.d("foto", Dareas.getsImagenArea());
                     Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);
-
                 }
-
-
             }
 
             @Override
@@ -91,12 +89,9 @@ public class PantallaDetallesArea extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }

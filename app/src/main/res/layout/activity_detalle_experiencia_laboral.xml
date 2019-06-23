@@ -7,35 +7,24 @@
     android:orientation="vertical"
     tools:context=".Pantallas_CurriculosCompleto.DetalleExperienciaLaboral">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/btn_bg"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="5dp"
-        tools:ignore="MissingConstraints">
-
         <TextView
-            android:id="@+id/xmlTituloReferencia"
+            android:id="@+id/xmlTituloExpLab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Experiencias laborales"
+            android:text="Experiencias Laborales"
             android:textColor="@color/md_blue_900"
             android:textSize="30sp"
-            android:textStyle="italic" />
-    </LinearLayout>
+            android:textStyle="bold" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDetalleExperienciaLab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
+        android:layout_margin="10dp"
+        android:padding="5dp"
         android:scrollbars="vertical" />
 
 

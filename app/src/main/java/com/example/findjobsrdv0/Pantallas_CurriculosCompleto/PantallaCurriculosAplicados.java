@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,6 +56,8 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_curriculos_aplicados);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
@@ -76,7 +79,6 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
         user = mAuthEmpresa.getCurrentUser();
         sEmpresaId = user.getUid();
 
-        //sEmpresaId = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
         if (sEmpresaId != null) {
             if (!sEmpresaId.isEmpty()) {
 

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.RadioAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class AdapterEmpleosComparar extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.cardview_mostrar_empleo,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.cardview_mostrar_empleo_seleccionado,parent,false);
         AdapterEmpleosComparar.EmpleoViewHolder empleoViewHolder = new AdapterEmpleosComparar.EmpleoViewHolder(view);
         return empleoViewHolder;
     }

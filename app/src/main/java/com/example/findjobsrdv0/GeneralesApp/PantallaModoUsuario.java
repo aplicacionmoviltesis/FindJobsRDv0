@@ -18,7 +18,6 @@ public class PantallaModoUsuario extends AppCompatActivity {
 
     private TextView tvElegirmodo;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

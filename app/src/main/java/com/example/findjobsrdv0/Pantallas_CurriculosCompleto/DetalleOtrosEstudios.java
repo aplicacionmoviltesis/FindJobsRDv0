@@ -1,11 +1,15 @@
 package com.example.findjobsrdv0.Pantallas_CurriculosCompleto;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.OtrosCursos;
@@ -25,61 +29,66 @@ public class DetalleOtrosEstudios extends AppCompatActivity {
 
     String detalleotrosestudios = "";
 
+    private TextView tvTiOtrosCursos;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_detalle_otros_estudios );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detalle_otros_estudios);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        tvTiOtrosCursos = (TextView) findViewById(R.id.xmlTituloOtrosCursos);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        tvTiOtrosCursos.setTypeface(face);
 
         database = FirebaseDatabase.getInstance();
-        detotrosestudios = database.getReference( "Otros_Cursos" );
+        detotrosestudios = database.getReference("Otros_Cursos");
 
-        recycler_detalle_otrosestudios = (RecyclerView) findViewById( R.id.recyclerViewOtrosEstudiosLab );
-        recycler_detalle_otrosestudios.setHasFixedSize( true );
-        layoutManager = new LinearLayoutManager( this );
-        recycler_detalle_otrosestudios.setLayoutManager( layoutManager );
+        recycler_detalle_otrosestudios = (RecyclerView) findViewById(R.id.recyclerViewOtrosEstudiosLab);
+        recycler_detalle_otrosestudios.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recycler_detalle_otrosestudios.setLayoutManager(layoutManager);
 
-        if (getIntent() != null)
-            detalleotrosestudios = getIntent().getStringExtra( "DetalleOtrosEstudiosID" );
-
-        if (!detalleotrosestudios.isEmpty()) {
-            loadOtrosEstudios( detalleotrosestudios );
+        if (getIntent() != null) {
+            detalleotrosestudios = getIntent().getStringExtra("DetalleOtrosEstudiosID");
+            if (!detalleotrosestudios.isEmpty()) {
+                loadOtrosEstudios(detalleotrosestudios);
+            }
         }
+    }
 
-        loadOtrosEstudios( detalleotrosestudios );
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 
     private void loadOtrosEstudios(String detalleotrosestudios) {
-        final FirebaseRecyclerAdapter<OtrosCursos, DetalleOtrosEstudiosViewHolder> adapter = new FirebaseRecyclerAdapter<OtrosCursos, DetalleOtrosEstudiosViewHolder>( OtrosCursos.class,
+        final FirebaseRecyclerAdapter<OtrosCursos, DetalleOtrosEstudiosViewHolder> adapter = new FirebaseRecyclerAdapter<OtrosCursos, DetalleOtrosEstudiosViewHolder>(OtrosCursos.class,
                 R.layout.cardview_detalle_otros_estudios, DetalleOtrosEstudiosViewHolder.class,
-                detotrosestudios.orderByChild( "sIdCurriculosOtrosCursos" ).equalTo( detalleotrosestudios ) ) {
+                detotrosestudios.orderByChild("sIdCurriculosOtrosCursos").equalTo(detalleotrosestudios)) {
             @Override
             protected void populateViewHolder(DetalleOtrosEstudiosViewHolder ViewHolder, OtrosCursos modelo, int position) {
 
-                ViewHolder.txtInstitucion.setText( modelo.getsInstitucionOtrosCursos() );
-                ViewHolder.txtAno.setText( modelo.getsAnoOtrosCursos() );
-                ViewHolder.txtAreaoTema.setText( modelo.getsAreaoTemaOtrosCursos() );
-                ViewHolder.txtTipodeEstudio.setText( modelo.getsTipoEstudioOtrosCursos() );
+                ViewHolder.txtInstitucion.setText(modelo.getsInstitucionOtrosCursos());
+                ViewHolder.txtAno.setText(modelo.getsAnoOtrosCursos());
+                ViewHolder.txtAreaoTema.setText(modelo.getsAreaoTemaOtrosCursos());
+                ViewHolder.txtTipodeEstudio.setText(modelo.getsTipoEstudioOtrosCursos());
 
                 final OtrosCursos clickItem = modelo;
 
-                ViewHolder.setItemClickListener( new ItemClickListener() {
+                ViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
-                        //       Toast.makeText( cPantallaRegistroCurriculo.this, "" + clickItem.getsInstitucionOtrosCursos(), Toast.LENGTH_SHORT ).show();
-
-                      /*  Intent CurriculoDetalle = new Intent( PantallaListaCurriculosBuscados.this, DetalleCurriculo.class );
-                        CurriculoDetalle.putExtra( "detallecurrID", adapter.getRef( position ).getKey() );
-                        startActivity( CurriculoDetalle );
-*/
-                        //  Log.d("klk id",adapter.getRef( position ).getKey());
-
-                        // Toast.makeText( PantalaVistaCurriculo.this, ""+clickItem.getsNombreC(), Toast.LENGTH_SHORT ).show();
                     }
-                } );
+                });
             }
         };
-        recycler_detalle_otrosestudios.setAdapter( adapter );
-
+        recycler_detalle_otrosestudios.setAdapter(adapter);
     }
 }

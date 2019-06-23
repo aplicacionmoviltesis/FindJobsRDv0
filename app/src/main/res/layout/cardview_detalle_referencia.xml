@@ -2,143 +2,106 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:orientation="vertical">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:background="@color/accent"
+    android:layout_margin="5dp"
+    android:elevation="100dp"
+    app:cardCornerRadius="25dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:background="@drawable/btn_bg"
         android:orientation="vertical"
         android:padding="5dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text="  Nombre"
+            android:inputType="text"
+            android:text="Nombre"
+            android:gravity="center"
             android:textColor="@color/md_black_1000"
             android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
+            android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/xmlTVNombreDetalleReferencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:dropDownSelector="@color/gradStop"
                 android:hint="Nombre"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold|italic" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
             android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text="  Cargo ocupado"
+            android:inputType="text"
+            android:text="Cargo Ocupado"
+            android:gravity="center"
             android:textColor="@color/md_black_1000"
             android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
+            android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/xmlTVCargoOcupadoDetalleReferencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="Cargo ocupado"
+                android:hint="Cargo Ocupado"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold|italic" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text="  Institucion"
+            android:inputType="text"
+            android:text="Institución"
+            android:gravity="center"
             android:textColor="@color/md_black_1000"
             android:textColorHint="@color/md_black_1000"
             android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
+            android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/xmlTVInstitucionDetalleReferencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="Institucion"
+                android:hint="Institución"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textStyle="bold|italic" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/xmlbregistrarFechafinEL"
-            android:layout_marginTop="5dp"
-            android:inputType="numberDecimal"
-            android:text="  Telefono"
+            android:inputType="text"
+            android:text="Teléfono"
+            android:gravity="center"
             android:textColor="@color/md_black_1000"
             android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/md_blue_900">
+            android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/xmlTVTelefonoDetalleReferencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:completionHintView="@color/md_blue_900"
-                android:dropDownSelector="@color/gradStop"
-                android:hint="Telefono"
+                android:hint="Teléfono"
+                android:gravity="center"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900"
                 android:textSize="20sp"
-                android:textStyle="italic" />
-        </com.google.android.material.textfield.TextInputLayout>
-
+                android:textStyle="bold|italic" />
 
     </LinearLayout>
 

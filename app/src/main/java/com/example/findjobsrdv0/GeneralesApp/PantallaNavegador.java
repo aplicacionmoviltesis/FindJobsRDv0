@@ -12,7 +12,7 @@ import com.example.findjobsrdv0.R;
 
 public class PantallaNavegador extends AppCompatActivity {
     private WebView webView;
-    String probandopage="www.google.com";
+    private String probandopage="www.google.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,6 @@ public class PantallaNavegador extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
-        //probandopage = bundle.getString("sPaginaWebDE");
         webView =(WebView) findViewById(R.id.navegador);
         webView.setWebViewClient(new WebViewClient());
 
@@ -34,15 +33,10 @@ public class PantallaNavegador extends AppCompatActivity {
                 webView.loadUrl("https://"+probandopage);
             }
         }
-
-
 //despues tengo que validar la url
         webView.loadUrl("https://"+probandopage);
-
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
-
     }
 
     @Override
