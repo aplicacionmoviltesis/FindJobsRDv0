@@ -55,7 +55,7 @@ public class PantallaLoginBuscador extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         BtvLogin = (TextView) findViewById(R.id.xmlbtvLogin);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         BtvLogin.setTypeface(face);
 
         textRecuperar = findViewById(R.id.textolvidoContrasenal);

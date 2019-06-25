@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class AdapterEmpleo extends RecyclerView.Adapter{
 
-    ArrayList<Empleos> mDatasetEmpleo;
+    public ArrayList<Empleos> mDatasetEmpleo;
     Context context;
 
     private TextView NombreEmpleoCardViewAplicado;

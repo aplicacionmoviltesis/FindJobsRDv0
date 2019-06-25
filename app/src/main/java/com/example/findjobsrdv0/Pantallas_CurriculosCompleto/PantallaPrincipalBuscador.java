@@ -14,6 +14,7 @@ import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscad
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
+import com.example.findjobsrdv0.Main3ActivityProbando;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -307,7 +308,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
         if (id == R.id.empleosfavoritos) {
 
-            Intent intent= new Intent(this, PantallaListaEmpleosFavoritos.class);
+            Intent intent= new Intent(this, Main3ActivityProbando.class);
             startActivity(intent);
 
         } else if (id == R.id.empleosAplicadoBuscador) {
