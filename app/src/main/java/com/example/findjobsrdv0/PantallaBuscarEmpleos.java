@@ -132,29 +132,29 @@ public class PantallaBuscarEmpleos extends AppCompatActivity {
         /////Spinner Area
 
         areasRef = FirebaseDatabase.getInstance().getReference();
-        spinAreaE = (SearchableSpinner) findViewById(R.id.searchable_spinner);
-
-        spinAreaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if (!IsFirstTimeClickAreas) {
-                    sAreaE = spinAreaE.getSelectedItem().toString();
-                    Log.d("valorSpinArea", sAreaE);
-
-                    //ObtenerImagen(sAreaE);
-
-                    //Log.d("fotolista", sIdEmpleadorE);
-
-                } else {
-                    IsFirstTimeClickAreas = false;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+//        spinAreaE = (SearchableSpinner) findViewById(R.id.searchable_spinner);
+//
+//        spinAreaE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//                if (!IsFirstTimeClickAreas) {
+//                    sAreaE = spinAreaE.getSelectedItem().toString();
+//                    Log.d("valorSpinArea", sAreaE);
+//
+//                    //ObtenerImagen(sAreaE);
+//
+//                    //Log.d("fotolista", sIdEmpleadorE);
+//
+//                } else {
+//                    IsFirstTimeClickAreas = false;
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
 
         areasRef.child("Areas").addValueEventListener(new ValueEventListener() {
             @Override
@@ -169,8 +169,8 @@ public class PantallaBuscarEmpleos extends AppCompatActivity {
 
                 ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(PantallaBuscarEmpleos.this, android.R.layout.simple_spinner_item, ListAreas);
                 areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinAreaE.setAdapter(areasAdapter);
-                spinAreaE.setTitle("Seleccionar Area");
+                //spinAreaE.setAdapter(areasAdapter);
+             //   spinAreaE.setTitle("Seleccionar Area");
                 mSpinner.setItems(list);
                 list.clear();
 
