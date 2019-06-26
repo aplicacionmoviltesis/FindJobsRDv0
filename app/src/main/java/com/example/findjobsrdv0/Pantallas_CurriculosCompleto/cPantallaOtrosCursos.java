@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.OtrosCursos;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.OtrosEstudiosViewHolder;
+import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.DetalleOtrosEstudiosViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -37,14 +37,13 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
     private String ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio, ocIdBuscardor, idusuariosregistrado, IDOtrosEstudiosss, idusuarioregistrado, id, Ukey;
 
-    private FirebaseRecyclerAdapter<OtrosCursos, OtrosEstudiosViewHolder> adapter;
+    private FirebaseRecyclerAdapter<OtrosCursos, DetalleOtrosEstudiosViewHolder> adapter;
 
     private FirebaseDatabase database, databaseCurriculoAct;
     private DatabaseReference otrosestudiosinset, DBOtrosCursosCurriculos, databaseReferenceCurriloAct;
 
     private RecyclerView recycler_otrosestudios;
     private RecyclerView.LayoutManager layoutManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +59,15 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         databaseCurriculoAct = FirebaseDatabase.getInstance();
         databaseReferenceCurriloAct = databaseCurriculoAct.getReference("Curriculos");
 
-
         recycler_otrosestudios = (RecyclerView) findViewById(R.id.recyclerviewotroscursos);
         recycler_otrosestudios.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_otrosestudios.setLayoutManager(layoutManager);
 
-
         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         idusuariosregistrado = Ukey;
 
-        loadOtrosEstudios(Ukey);
+        loadOtrosEstudios(idusuariosregistrado);
 
         Query query = databaseReferenceCurriloAct.orderByChild("sIdBuscadorEmpleo").equalTo(Ukey);
         query.addValueEventListener(new ValueEventListener() {
@@ -115,16 +112,16 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
     }
 
-    private void loadOtrosEstudios(String Ukey) {
-        adapter = new FirebaseRecyclerAdapter<OtrosCursos, OtrosEstudiosViewHolder>(OtrosCursos.class, R.layout.card_view_otros_estudios_en_los_insert, OtrosEstudiosViewHolder.class,
-                otrosestudiosinset.orderByChild("sIdBuscadorEmpleoOtrosCursos").equalTo(Ukey)) {
+    private void loadOtrosEstudios(String idusuariosregistrado) {
+        adapter = new FirebaseRecyclerAdapter<OtrosCursos, DetalleOtrosEstudiosViewHolder>(OtrosCursos.class, R.layout.cardview_detalle_otros_estudios, DetalleOtrosEstudiosViewHolder.class,
+                otrosestudiosinset.orderByChild("sIdBuscadorEmpleoOtrosCursos").equalTo(idusuariosregistrado)) {
             @Override
-            protected void populateViewHolder(OtrosEstudiosViewHolder ViewHolder, OtrosCursos model, int position) {
+            protected void populateViewHolder(DetalleOtrosEstudiosViewHolder ViewHolder, OtrosCursos model, int position) {
 
                 ViewHolder.txtInstitucion.setText(model.getsInstitucionOtrosCursos());
                 ViewHolder.txtAno.setText(model.getsAnoOtrosCursos());
                 ViewHolder.txtAreaoTema.setText(model.getsAreaoTemaOtrosCursos());
-                ViewHolder.txtTipoEstudio.setText(model.getsTipoEstudioOtrosCursos());
+                ViewHolder.txtTipodeEstudio.setText(model.getsTipoEstudioOtrosCursos());
 
                 final OtrosCursos clickItem = model;
                 ViewHolder.setItemClickListener(new ItemClickListener() {

@@ -6,12 +6,12 @@ import java.util.Map;
 public class FormacionAcademica {
 
    private String sIdFormacionAcademica, sIdCurriculoFormAcad, sIdBuscadorEmpleoFormAcad, sCarreraFormAcad, sNivelPrimarioFormAcad,
-           sNivelSecundarioFormAcad, sNivelSuperiorFormAcad;
+           sNivelSecundarioFormAcad, sNivelSuperiorFormAcad, sUniversidadFormAcad;
 
     public FormacionAcademica() {
     }
 
-    public FormacionAcademica(String sIdFormacionAcademica, String sIdCurriculoFormAcad, String sIdBuscadorEmpleoFormAcad, String sCarreraFormAcad, String sNivelPrimarioFormAcad, String sNivelSecundarioFormAcad, String sNivelSuperiorFormAcad) {
+    public FormacionAcademica(String sIdFormacionAcademica, String sIdCurriculoFormAcad, String sIdBuscadorEmpleoFormAcad, String sCarreraFormAcad, String sNivelPrimarioFormAcad, String sNivelSecundarioFormAcad, String sNivelSuperiorFormAcad, String sUniversidadFormAcad) {
         this.sIdFormacionAcademica = sIdFormacionAcademica;
         this.sIdCurriculoFormAcad = sIdCurriculoFormAcad;
         this.sIdBuscadorEmpleoFormAcad = sIdBuscadorEmpleoFormAcad;
@@ -19,6 +19,7 @@ public class FormacionAcademica {
         this.sNivelPrimarioFormAcad = sNivelPrimarioFormAcad;
         this.sNivelSecundarioFormAcad = sNivelSecundarioFormAcad;
         this.sNivelSuperiorFormAcad = sNivelSuperiorFormAcad;
+        this.sUniversidadFormAcad = sUniversidadFormAcad;
     }
 
     public String getsIdFormacionAcademica() {
@@ -77,6 +78,14 @@ public class FormacionAcademica {
         this.sNivelSuperiorFormAcad = sNivelSuperiorFormAcad;
     }
 
+    public String getsUniversidadFormAcad() {
+        return sUniversidadFormAcad;
+    }
+
+    public void setsUniversidadFormAcad(String sUniversidadFormAcad) {
+        this.sUniversidadFormAcad = sUniversidadFormAcad;
+    }
+
     public Map<String, Object> FormAcad(){
 
         HashMap<String,Object> ListFormAcad= new HashMap<>();
@@ -87,6 +96,7 @@ public class FormacionAcademica {
         ListFormAcad.put("sNivelPrimarioFormAcad", sNivelPrimarioFormAcad );
         ListFormAcad.put("sNivelSecundarioFormAcad", sNivelSecundarioFormAcad );
         ListFormAcad.put("sNivelSuperiorFormAcad", sNivelSuperiorFormAcad );
+        ListFormAcad.put( "sUniversidadFormAcad", sUniversidadFormAcad );
 
         return ListFormAcad;
     }

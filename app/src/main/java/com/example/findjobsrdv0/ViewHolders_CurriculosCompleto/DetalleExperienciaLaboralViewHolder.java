@@ -35,7 +35,7 @@ public class DetalleExperienciaLaboralViewHolder extends RecyclerView.ViewHolder
 
     @Override
     public void onClick(View view) {
-
+        itemClickListener.onClick( view,getAdapterPosition(),false );
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

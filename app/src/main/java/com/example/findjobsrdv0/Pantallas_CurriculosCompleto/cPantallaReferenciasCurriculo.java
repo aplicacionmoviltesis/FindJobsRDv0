@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Referencias;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.ReferenciasViewHolder;
+import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.DetalleReferenciaViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,44 +29,29 @@ import com.google.firebase.database.ValueEventListener;
 
 public class cPantallaReferenciasCurriculo extends AppCompatActivity {
 
-    EditText etNombre, etCargoOcupado, etInstitucion, etTelefono;
+    private EditText etNombre, etCargoOcupado, etInstitucion, etTelefono;
 
-    String rCodigoId, rBuscadorId, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC;
+    private String rBuscadorId, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC;
 
-    Button BtnRegistrarReferencia, btnActualizarReferencia, btnBorrarReferencia;
+    private Button BtnRegistrarReferencia, btnActualizarReferencia;
 
     private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
 
-    FirebaseRecyclerAdapter<Referencias, ReferenciasViewHolder> adapter;
+    FirebaseRecyclerAdapter<Referencias, DetalleReferenciaViewHolder> adapter;
 
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-    FirebaseDatabase database;
-    DatabaseReference referenciainset;
+    private RecyclerView recycler_referencia;
+    private RecyclerView.LayoutManager layoutManager;
 
-    RecyclerView recycler_referencia;
-    RecyclerView.LayoutManager layoutManager;
+    private String detallereferencias = "";
 
-    String detallereferencias = "";
+    private String IdReferenciasss;
 
-    String idusuarioconectado;
+    private DatabaseReference databaseReferenceCurriloAct;
+    private FirebaseDatabase databaseCurriculoAct;
 
-    String IdReferenciasss;
+    private String id;
 
-
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-
-//---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
-
-    DatabaseReference databaseReferenceCurriloAct;
-    FirebaseDatabase databaseCurriculoAct;
-
-    String id;
-
-    String Ukey;
-
-//---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
-
+    private String Ukey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,25 +62,12 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         Typeface face = Typeface.createFromAsset( getAssets(), "fonts/robotoslab.bold.ttf" );
         titulo.setTypeface( face );
 
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-        database = FirebaseDatabase.getInstance();
-        referenciainset = database.getReference( "Referencia" );
-
         recycler_referencia = (RecyclerView) findViewById( R.id.recyclerViewReferenciaInsert );
         recycler_referencia.setHasFixedSize( true );
         layoutManager = new LinearLayoutManager( this );
         recycler_referencia.setLayoutManager( layoutManager );
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-
 
         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        idusuarioconectado = Ukey;
-
-        loadReferencias(Ukey);
-
-
-        //----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
 
         databaseCurriculoAct = FirebaseDatabase.getInstance();
         databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
@@ -105,16 +77,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
-                    Log.d( "datosdatasnapsht", String.valueOf( dataSnapshot ) );
-
                     id = FavdataSnapshot.child( "sIdCurriculo" ).getValue( String.class );
-                    Log.d( "datoscurriculos", String.valueOf( id ) );
-//                Curriculos datoscurriculos = dataSnapshot.getValue(Curriculos.class);
-//                id = perro.getsIdCurriculo();
-
-//                Log.d( "datoscurriculos", String.valueOf( datoscurriculos ) );
-//                Log.d( "datosid", String.valueOf( id ) );
-
                 }
             }
 
@@ -124,26 +87,18 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             }
         } );
 
-//----------------------query para obtener el id del curriculo-------------------------------------------------------------------------------------
+        mDatabase = FirebaseDatabase.getInstance().getReference( "Referencia" );
 
+        etNombre = (EditText) findViewById( R.id.xmlbeditRegistrarEmpresaEL );
+        etCargoOcupado = (EditText) findViewById( R.id.xmlbeditRegistrarCargoEL );
+        etInstitucion = (EditText) findViewById( R.id.xmlbeditRegistrarinstitucionEL );
+        etTelefono = (EditText) findViewById( R.id.xmlbeditRegistrarTelefonoEL );
 
-//---------------------codigo para actualizar los datos----------------------------------------------------------------------------------------------------------------------
-
-
-
-        mDatabase = FirebaseDatabase.getInstance().getReference("Referencia");
-        mAuth = FirebaseAuth.getInstance();
-
-        etNombre = (EditText)findViewById( R.id.xmlbeditRegistrarEmpresaEL );
-        etCargoOcupado = (EditText)findViewById( R.id.xmlbeditRegistrarCargoEL );
-        etInstitucion = (EditText)findViewById( R.id.xmlbeditRegistrarinstitucionEL );
-        etTelefono = (EditText)findViewById( R.id.xmlbeditRegistrarTelefonoEL );
-
-        BtnRegistrarReferencia = (Button)findViewById( R.id.xmlBtnregistrarReferencia );
+        BtnRegistrarReferencia = (Button) findViewById( R.id.xmlBtnregistrarReferencia );
         BtnRegistrarReferencia.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegistrarReferencia(id);
+                RegistrarReferencia( id );
             }
         } );
 
@@ -151,21 +106,9 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         btnActualizarReferencia.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActualizarReferencias( IdReferenciasss, id);
+                ActualizarReferencias( IdReferenciasss, id );
             }
         } );
-
-      /*  btnBorrarReferencia = (Button)findViewById( R.id.xmlBtnBorrarReferencia );
-        btnBorrarReferencia.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                BorrarReferencia(IdReferenciasss);
-            }
-        } );*/
-
-
-
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
 
         if (getIntent() != null)
             detallereferencias = getIntent().getStringExtra( "DetalleReferenciasID" );
@@ -174,42 +117,26 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             RegistrarReferencia( detallereferencias );
         }
 
-
-        idusuarioconectado = Ukey;
-
-        loadReferencias(Ukey);
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-
+        loadReferencias( Ukey );
     }
 
-
-
-
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-
     private void loadReferencias(String Ukey) {
-         adapter = new FirebaseRecyclerAdapter<Referencias, ReferenciasViewHolder>( Referencias.class, R.layout.cardview_pantalla_referencias_curriculos_en_los_insert, ReferenciasViewHolder.class,
-                referenciainset.orderByChild( "sBuscadorEmpleoRef" ).equalTo( Ukey ) ) {
+        adapter = new FirebaseRecyclerAdapter<Referencias, DetalleReferenciaViewHolder>( Referencias.class, R.layout.cardview_detalle_referencia, DetalleReferenciaViewHolder.class,
+                mDatabase.orderByChild( "sBuscadorEmpleoRef" ).equalTo( Ukey ) ) {
             @Override
-            protected void populateViewHolder(ReferenciasViewHolder ViewHolder, Referencias model, int position) {
-
+            protected void populateViewHolder(DetalleReferenciaViewHolder ViewHolder, Referencias model, int position) {
                 ViewHolder.txtInstitucion.setText( model.getsInstitucionRef() );
                 ViewHolder.txtTelefono.setText( model.getsTelefonoRef() );
                 ViewHolder.txtCargoOcupado.setText( model.getsCargoOcupadoRef() );
                 ViewHolder.txtNombre.setText( model.getsNombrePersonaRef() );
-
-                Log.d( "hola", String.valueOf( ViewHolder ) );
 
                 final Referencias clickItem = model;
 
                 ViewHolder.setItemClickListener( new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
                         IdReferenciasss = adapter.getRef( position ).getKey();
-                        goActualizarReferencia (IdReferenciasss);
-
-
+                        goActualizarReferencia( IdReferenciasss );
                     }
                 } );
             }
@@ -218,46 +145,38 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
     }
 
     private void goActualizarReferencia(String Referencia) {
-        referenciainset.child(Referencia).addValueEventListener( new ValueEventListener() {
+        mDatabase.child( Referencia ).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Referencias referencias= dataSnapshot.getValue(Referencias.class);
+                Referencias referencias = dataSnapshot.getValue( Referencias.class );
 
                 etNombre.setText( referencias.getsNombrePersonaRef() );
                 etCargoOcupado.setText( referencias.getsCargoOcupadoRef() );
                 etInstitucion.setText( referencias.getsInstitucionRef() );
                 etTelefono.setText( referencias.getsTelefonoRef() );
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        } );
     }
-
-
-
-//---------------------codigo de la vista de la referencias en el insert----------------------------------------------------------------------------------------------------------------------
-
 
     public void limpiarCampor() {
         etInstitucion.setText( "" );
         etCargoOcupado.setText( "" );
         etNombre.setText( "" );
         etTelefono.setText( "" );
-
-
     }
 
-    public void RegistrarReferencia(String id){
+    public void RegistrarReferencia(String id) {
 
         rNombreC = etNombre.getText().toString();
         rCargoOcupadoC = etCargoOcupado.getText().toString();
         rInstitucionC = etInstitucion.getText().toString();
         rTelefonoC = etTelefono.getText().toString();
-        rBuscadorId =  id;
+        rBuscadorId = id;
 
         if (TextUtils.isEmpty( rNombreC )) {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );
@@ -268,28 +187,19 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             return;
         }
    */
-
-
-
         String IdReferencia = mDatabase.push().getKey();
 
-        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, idusuarioconectado, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
-
+        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
         mDatabase.child( IdReferencia ).setValue( referencias );
-
         limpiarCampor();
-
-        //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
-        // mDatabase.child(Ukey).push().setValue(referencias);//para registrarlo dentro del usuario que inicio sesion
     }
-
 
     private void ActualizarReferencias(String IdReferenciasss, String id) {
         rNombreC = etNombre.getText().toString();
         rCargoOcupadoC = etCargoOcupado.getText().toString();
         rInstitucionC = etInstitucion.getText().toString();
         rTelefonoC = etTelefono.getText().toString();
-        rBuscadorId =  id;
+        rBuscadorId = id;
 
         if (TextUtils.isEmpty( rNombreC )) {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );
@@ -300,28 +210,9 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             return;
         }
    */
-
-
-
         String IdReferencia = IdReferenciasss;
 
-        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, idusuarioconectado, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
-
+        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
         mDatabase.child( IdReferencia ).setValue( referencias );
-
-        //DBReferenceCurriculos.child("empleos").child(IDEmpleo).setValue(empleos);
-        // mDatabase.child(Ukey).push().setValue(referencias);//para registrarlo dentro del usuario que inicio sesion
     }
-
-   /* private void BorrarReferencia(String idReferenciasss) {
-
-        if (idReferenciasss!=null){
-
-        String IdReferencia = IdReferenciasss;
-
-        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, idusuarioconectado, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC);
-
-        mDatabase.child( IdReferencia ).removeValue(  );
-
-    }}*/
 }
