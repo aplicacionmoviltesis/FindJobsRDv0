@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos"
+    tools:showIn="@layout/activity_pantalla_vista_comparacion_empleos">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/et_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/xmlCompararEmpleos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:gravity="center"
+            android:textColor="@color/md_blue_900"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="Comparacion Empleos" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:elevation="100dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text=" " />
+
+                <TextView
+                    android:id="@+id/xmlNombreE1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="Empleo 1" />
+
+                <TextView
+                    android:id="@+id/xmlNombreE2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="Empleo 2" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:elevation="100dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="Provincia" />
+
+                <TextView
+                    android:id="@+id/xmlProvinciaE1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Provincia Empleo 1" />
+
+                <TextView
+                    android:id="@+id/xmlProvinciaE2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Provincia Empleo 2" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:elevation="100dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="Horario" />
+
+                <TextView
+                    android:id="@+id/xmlHorarioE1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Horario Empleo 1" />
+
+                <TextView
+                    android:id="@+id/xmlHorarioE2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Horario Empleo 2" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:elevation="100dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="Tipo de Contrato" />
+
+                <TextView
+                    android:id="@+id/xmlTipodeContratoE1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Tipo de Contrato Empleo 1" />
+
+                <TextView
+                    android:id="@+id/xmlTipodeContratoE2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Tipo de Contrato Empleo 2" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:elevation="100dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="Salario" />
+
+                <TextView
+                    android:id="@+id/xmlSalarioE1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Salario Empleo 1" />
+
+                <TextView
+                    android:id="@+id/xmlSalarioE2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Salario Empleo 2" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:elevation="100dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="Otros Datos" />
+
+                <TextView
+                    android:id="@+id/xmlOtrosdatosE1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Otros Datos Empleo 1" />
+
+                <TextView
+                    android:id="@+id/xmlOtrosdatosE2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="Otros Datos Empleo 2" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:elevation="100dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="20dp"
+                    android:text="" />
+
+                <Button
+                    android:id="@+id/xmlVerMasE1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="2dp"
+                    android:background="@color/transparent"
+                    android:textColor="@color/md_blue_900"
+                    android:text="Ver Detalle 1" />
+
+                <Button
+                    android:id="@+id/xmlVerMasE2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="2dp"
+                    android:background="@color/transparent"
+                    android:textColor="@color/md_blue_900"
+                    android:text="Ver Detalle 2" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -14,7 +14,11 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main3ActivityProbandoBusqueda"></activity>
+        <activity
+            android:name=".Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos"
+            android:label="@string/title_activity_pantalla_vista_comparacion_empleos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Main3ActivityProbandoBusqueda" />
         <activity android:name=".Main3ActivityProbando" />
         <activity
             android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador_"

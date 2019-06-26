@@ -18,13 +18,13 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/CardImageArea"
-            android:layout_width="139dp"
+            android:id="@+id/CardImageAreaSelect"
+            android:layout_width="140dp"
             android:layout_height="140dp"
             android:contentDescription="TODO" />
 
         <LinearLayout
-            android:layout_width="220dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:orientation="vertical"
@@ -32,7 +32,7 @@
             android:radius="20dp">
 
             <TextView
-                android:id="@+id/CardNombreempleo"
+                android:id="@+id/CardNombreempleoSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -44,7 +44,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/CardNombreempresa"
+                android:id="@+id/CardNombreEmpresaSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -55,7 +55,7 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/CardProvincia"
+                android:id="@+id/CardProvinciaSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -66,7 +66,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Cardarea"
+                android:id="@+id/CardAreaSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -77,7 +77,7 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/CardEstado"
+                android:id="@+id/CardEstadoSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -87,7 +87,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/CardFecha"
+                android:id="@+id/CardFechaSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -99,10 +99,14 @@
 
         </LinearLayout>
 
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:checked="false"/>
+        <ImageView
+            android:id="@+id/imageViewSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_empleos_aplico"
+            android:visibility="visible" />
 
     </LinearLayout>
 

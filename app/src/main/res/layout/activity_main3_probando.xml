@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Main3ActivityProbando">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGetSelected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:text="get"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListaEmpleosPruebasR"

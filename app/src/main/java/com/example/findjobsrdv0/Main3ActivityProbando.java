@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,11 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.AdapterEmpleo;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleos;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +33,7 @@ public class Main3ActivityProbando extends AppCompatActivity {
     private FirebaseDatabase databaseEmpleosFavoritos;
     private DatabaseReference DBEmpleosFav, EmpleosFavoritosDB;
 
-    private AdapterEmpleo adapterEmpleoFav;
+    //private AdapterEmpleo adapterEmpleoFav;
     private ArrayList<Empleos> mDatasetEmpleos = new ArrayList<Empleos>();
 
     private String sIdUserBuscEmp = "";
@@ -48,6 +51,14 @@ public class Main3ActivityProbando extends AppCompatActivity {
             sPersonasAplicaronFav, sImagenEmpleoFav, sIdEmpleadorFav;
 
 
+    private ArrayList<EmpleosFav> empleosFavsArray = new ArrayList<>();
+    private MultiAdapter adapter;
+    AppCompatButton btnGetSelected;
+
+    private String sIdEmpleoE1 ="-Lg4alOTsAzGLKms6tmu";
+    private String sIdEmpleoE2 ="-LgdHslsVo394m0k53Il";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,26 +67,51 @@ public class Main3ActivityProbando extends AppCompatActivity {
         DBEmpleosFav = databaseEmpleosFavoritos.getReference();
         EmpleosFavoritosDB = databaseEmpleosFavoritos.getReference();
 
+        this.btnGetSelected = (AppCompatButton) findViewById(R.id.btnGetSelected);
+
         recyclerViewEmpleosFav = (RecyclerView) findViewById(R.id.ListaEmpleosPruebasR);
 
         recyclerViewEmpleosFav.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerViewEmpleosFav.setLayoutManager(layoutManager);
 
-        adapterEmpleoFav = new AdapterEmpleo(Main3ActivityProbando.this, mDatasetEmpleos);
-        recyclerViewEmpleosFav.setAdapter(adapterEmpleoFav);
+        adapter = new MultiAdapter(Main3ActivityProbando.this, empleosFavsArray);
+        recyclerViewEmpleosFav.setAdapter(adapter);
 
-        mAuthBuscEmp = FirebaseAuth.getInstance();
-        user = mAuthBuscEmp.getCurrentUser();
-        sIdUserBuscEmp= user.getUid();
+//        mAuthBuscEmp = FirebaseAuth.getInstance();
+//        user = mAuthBuscEmp.getCurrentUser();
+//        sIdUserBuscEmp= user.getUid();
 
-        if(sIdUserBuscEmp != null){
-            if(!sIdUserBuscEmp.isEmpty()){
-                Log.d("datafavoritoidpersona", String.valueOf(sIdUserBuscEmp));
+//        if(sIdUserBuscEmp != null){
+//            if(!sIdUserBuscEmp.isEmpty()){
+//                Log.d("datafavoritoidpersona", String.valueOf(sIdUserBuscEmp));
+//
+//                TraerEmpleosFavoritos(sIdUserBuscEmp);
+//            }
+//        }
+        sIdUserBuscEmp = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
+        TraerEmpleosFavoritos(sIdUserBuscEmp);
 
-                TraerEmpleosFavoritos(sIdUserBuscEmp);
+        btnGetSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //goVistaComparacionEmpleo(sIdEmpleoE1,sIdEmpleoE2);
+                if (adapter.getSelected().size() > 0) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int i = 0; i < adapter.getSelected().size(); i++) {
+                        stringBuilder.append(adapter.getSelected().get(i).getsIDEmpleo());
+                        stringBuilder.append("\n");
+                    }
+                    showToast(stringBuilder.toString());
+                } else {
+                    showToast("No Selection");
+                }
             }
-        }
+        });
+    }
+
+    private void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     public boolean onSupportNavigateUp(){
@@ -148,9 +184,9 @@ public class Main3ActivityProbando extends AppCompatActivity {
                     Log.d("DATOSFAV::::", datasnapshot.child("sNombreEmpleoE").getValue(String.class));
                     Log.d("DATOSFAV::::", sNombreEmpleoFav);
 
-                    if(sProvinciaFav.equals("Distrito Nacional")) {
+                    //if(sProvinciaFav.equals("Distrito Nacional")) {
 
-                        final Empleos empleos = new Empleos(sIDEmpleoFav, sNombreEmpleoFav, sNombreEmpresaFav, sProvinciaFav,
+                        final EmpleosFav empleosFav = new EmpleosFav(sIDEmpleoFav, sNombreEmpleoFav, sNombreEmpresaFav, sProvinciaFav,
                                 sDireccionFav, sTelefonoFav, sPaginaWebFav, sEmailFav, sSalarioFav, sOtrosDatosFav,
                                 sHorarioFav, sFechaPublicacionFav, sMostrarIdiomaFav, sAreaFav,
                                 sFormacionAcademicaFav, sAnosExperienciaFav, sSexoRequeridoFav, sRangoFav,
@@ -158,22 +194,23 @@ public class Main3ActivityProbando extends AppCompatActivity {
                                 sPersonasAplicaronFav, sImagenEmpleoFav, sIdEmpleadorFav);
 
 
-                        Main3ActivityProbando.this.mDatasetEmpleos.add(empleos);
-                        adapterEmpleoFav.notifyDataSetChanged();
+                        Main3ActivityProbando.this.empleosFavsArray.add(empleosFav);
 
-                        final Empleos clickItem = empleos;
-                        adapterEmpleoFav.setItemClickListener(new ItemClickListener() {
-                            @Override
-                            public void onClick(View view, int position, boolean isLongClick) {
-                                Intent intent = new Intent(Main3ActivityProbando.this, PantallaDetallesEmpleo.class);
-                                intent.putExtra("sEmpleoIdBuscado", adapterEmpleoFav.mDatasetEmpleo.get(position).getsIDEmpleo());
-                                startActivity(intent);
-                            }
-                        });
-                    }else {
-                        Log.d("CVEMPLEOFAV::::no es ", String.valueOf(dataSnapshot));
+                        adapter.notifyDataSetChanged();
 
-                    }
+//                        final EmpleosFav clickItem = empleosFav;
+//                        adapter.setEmpleosFavs(new ItemClickListener() {
+//                            @Override
+//                            public void onClick(View view, int position, boolean isLongClick) {
+//                                Intent intent = new Intent(Main3ActivityProbando.this, PantallaDetallesEmpleo.class);
+//                                intent.putExtra("sEmpleoIdBuscado", adapter.empleosFavs.get(position).getsIDEmpleo());
+//                                startActivity(intent);
+//                            }
+//                        });
+//                    }else {
+//                        Log.d("CVEMPLEOFAV::::no es ", String.valueOf(dataSnapshot));
+//
+//                    }
                 }
                 Log.d("CVEMPLEOFAV::::", String.valueOf(dataSnapshot));
             }
@@ -183,5 +220,18 @@ public class Main3ActivityProbando extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void goVistaComparacionEmpleo(String sIdPrimerEmpleo, String sIdSegundoEmpleo) {
+
+        Intent intent = new Intent(Main3ActivityProbando.this, PantallaVistaComparacionEmpleos.class);
+        intent.putExtra("sIdEmpleoComparar1", sIdPrimerEmpleo);
+        intent.putExtra("sIdEmpleoComparar2", sIdSegundoEmpleo);
+        startActivity(intent);
+
+    }
+
+    public ArrayList<EmpleosFav> getAll() {
+        return empleosFavsArray;
     }
 }

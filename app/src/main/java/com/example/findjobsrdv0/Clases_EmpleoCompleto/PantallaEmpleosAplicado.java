@@ -145,7 +145,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                     sPersonasAplicaronPEA = DatosEmpleos.getsPersonasAplicaronE();
                     sIdEmpleadorPEA = DatosEmpleos.getsIdEmpleadorE();
                     sImagenEmpleoPEA = DatosEmpleos.getsImagenEmpleoE();
-
+                    sTipoContratoPEA = DatosEmpleos.getsTipoContratoE();
 
                     Log.d("DATOS::::", datasnapshot.child("sNombreEmpleoE").getValue(String.class));
                     Log.d("DATOS::::", sNombreEmpleoPEA);
