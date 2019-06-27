@@ -58,6 +58,8 @@ public class Main3ActivityProbando extends AppCompatActivity {
     private String sIdEmpleoE1 ="-Lg4alOTsAzGLKms6tmu";
     private String sIdEmpleoE2 ="-LgdHslsVo394m0k53Il";
 
+    private ArrayList<String> ListaId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class Main3ActivityProbando extends AppCompatActivity {
         adapter = new MultiAdapter(Main3ActivityProbando.this, empleosFavsArray);
         recyclerViewEmpleosFav.setAdapter(adapter);
 
+        ListaId = new ArrayList<>();
 //        mAuthBuscEmp = FirebaseAuth.getInstance();
 //        user = mAuthBuscEmp.getCurrentUser();
 //        sIdUserBuscEmp= user.getUid();
@@ -96,18 +99,32 @@ public class Main3ActivityProbando extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //goVistaComparacionEmpleo(sIdEmpleoE1,sIdEmpleoE2);
-                if (adapter.getSelected().size() > 0) {
+                if (adapter.getSelected().size() >1 && adapter.getSelected().size() < 3 ) {
                     StringBuilder stringBuilder = new StringBuilder();
+                    ListaId.clear();
                     for (int i = 0; i < adapter.getSelected().size(); i++) {
                         stringBuilder.append(adapter.getSelected().get(i).getsIDEmpleo());
                         stringBuilder.append("\n");
+                        if(i<2) {
+                            ListaId.add(adapter.getSelected().get(i).getsIDEmpleo());
+                            Log.d("idempleo--0",String.valueOf(i));
+                        }
+                       // Log.d("idempleo--1",String.valueOf(ListaId.get(1)));
                     }
+                    Log.d("idempleoposicion",String.valueOf(ListaId));
+//                    Log.d("idempleo--0",String.valueOf(ListaId.get(0)));
+//                    Log.d("idempleo--1",String.valueOf(ListaId.get(1)));
+                    goVistaComparacionEmpleo(ListaId.get(0),ListaId.get(1));
                     showToast(stringBuilder.toString());
                 } else {
                     showToast("No Selection");
+                    showToast("No Selection");
+
                 }
             }
         });
+
+
     }
 
     private void showToast(String msg) {

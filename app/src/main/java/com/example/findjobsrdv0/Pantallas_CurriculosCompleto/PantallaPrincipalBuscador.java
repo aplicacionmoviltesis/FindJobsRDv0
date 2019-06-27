@@ -308,7 +308,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
         if (id == R.id.empleosfavoritos) {
 
-            Intent intent= new Intent(this, Main3ActivityProbando.class);
+            Intent intent= new Intent(this, PantallaListaEmpleosFavoritos.class);
             startActivity(intent);
 
         } else if (id == R.id.empleosAplicadoBuscador) {

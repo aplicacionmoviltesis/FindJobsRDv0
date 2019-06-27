@@ -20,6 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.findjobsrdv0.R.color.md_green_400;
+import static com.example.findjobsrdv0.R.color.md_green_800;
+
 
 public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
 
@@ -37,6 +40,7 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
     private Button btnVerMasE1,btnVerMasE2;
 
     private TextView tvTiCompararEmpleos;
+    private int numeroE1,numeroE2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +110,8 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
             }
         }
 
+
+
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -115,6 +121,15 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
 //            }
 //        });
 
+//        int numeroE1 = Integer.parseInt(tvSalarioE1.getText().toString());
+//        int numeroE2 = Integer.parseInt(tvSalarioE2.getText().toString());
+//
+//        if(numeroE1 > numeroE2){
+//            tvSalarioE1.setBackground(getResources().getDrawable(md_green_400));
+//        }
+//        if(numeroE2 > numeroE1){
+//            tvSalarioE2.setBackground(getResources().getDrawable(md_green_400));
+//        }
 
     }
 
@@ -145,6 +160,7 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
                     tvTipodeContratoE1.setText(sTipodeContratoE1);
                     tvSalarioE1.setText(sSalarioE1);
                     tvOtrosDatosE1.setText(sOtrosDatosE1);
+
                 }
                 Log.d("CVEMPLEO::::", String.valueOf(dataSnapshot));
             }
@@ -176,7 +192,9 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
                     tvTipodeContratoE2.setText(sTipodeContratoE2);
                     tvSalarioE2.setText(sSalarioE2);
                     tvOtrosDatosE2.setText(sOtrosDatosE2);
+
                 }
+
                 Log.d("CVEMPLEO::::", String.valueOf(dataSnapshot));
             }
 
