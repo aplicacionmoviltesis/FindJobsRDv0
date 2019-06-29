@@ -41,7 +41,46 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_margin="5dp"
+                android:inputType="text"
                 android:hint="Nombre Universidad" />
+
+            <TextView
+                android:id="@+id/xmlTiTelefonoUniversidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Telefono Universidad" />
+
+            <EditText
+                android:id="@+id/xmlEditTelefonoUniversidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="phone"
+                android:hint="Telefono Universidad" />
+
+            <TextView
+                android:id="@+id/xmlTiPaginaWebUniversidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Pagina Web Universidad" />
+
+            <EditText
+                android:id="@+id/xmlEditPaginaWebUniversidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="textWebEditText"
+                android:hint="Pagina Web Universidad" />
 
             <TextView
                 android:id="@+id/xmlTiUbicacionUniversidad"
@@ -62,6 +101,24 @@
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
+            <TextView
+                android:id="@+id/xmlTiDireccionUniversidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Direccion Universidad" />
+
+            <EditText
+                android:id="@+id/xmlEditDireccionUniversidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="textWebEditText"
+                android:hint="Direccion Universidad" />
         </LinearLayout>
     </ScrollView>
 
