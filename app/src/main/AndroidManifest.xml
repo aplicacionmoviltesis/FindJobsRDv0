@@ -14,7 +14,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Administradores.PantallaDetalleOpiniones"></activity>
+        <activity android:name=".GeneralesApp.PantallaDetallesUniversidad"></activity>
+        <activity android:name=".Administradores.PantallaDetalleOpiniones" />
         <activity android:name=".Administradores.PantallaListaOpiniones" />
         <activity android:name=".Administradores.PantallaAgregarOpiniones" />
         <activity android:name=".Administradores.PantallaDetalleReportesProblemas" />

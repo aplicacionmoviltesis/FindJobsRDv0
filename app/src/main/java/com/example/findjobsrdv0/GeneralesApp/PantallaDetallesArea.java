@@ -11,10 +11,12 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.findjobsrdv0.Administradores.Universidades;
 import com.example.findjobsrdv0.GeneralesApp.Areas;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -27,7 +29,7 @@ public class PantallaDetallesArea extends AppCompatActivity {
     private String sNombreAreakey = "";
 
     private FirebaseDatabase databaseArea;
-    private Query DBarea;
+    private DatabaseReference DBarea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,36 +53,48 @@ public class PantallaDetallesArea extends AppCompatActivity {
         TvSubAreasA = (TextView) findViewById(R.id.xmlTvSubAreasA);
 
 
-        if (getIntent() != null) {
-            sNombreAreakey = getIntent().getStringExtra("sAreaDE");
-            if (!sNombreAreakey.isEmpty()) {
-                goDetalleArea(sNombreAreakey);
-            }
-        }
+//        if (getIntent() != null) {
+//            sNombreAreakey = getIntent().getStringExtra("sAreaDE");
+//            if (!sNombreAreakey.isEmpty()) {
+//                goDetalleArea(sNombreAreakey);
+//            }
+//        }
+        sNombreAreakey="ingenieria civil";
+        goDetalleArea(sNombreAreakey);
+
     }
 
     private void goDetalleArea(String sNombreAreakey) {
 
-        Query queryArea = DBarea.orderByChild("Nombre_Area").equalTo(sNombreAreakey);
+        Query queryArea = DBarea.orderByChild("sNombreArea").equalTo(sNombreAreakey);
         queryArea.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    Log.d("hola", String.valueOf(dataSnapshot));
+//                    Log.d("hola", String.valueOf(dataSnapshot));
+//
+//                    Areas Dareas = new Areas();
+//                    Dareas.setsNombreArea(snapshot.child("Nombre_Area").getValue().toString());
+//                    Dareas.setsImagenArea(snapshot.child("Imagen_Area").getValue().toString());
+//                    Dareas.setsDescripcionArea(snapshot.child("Descripcion_Area").getValue().toString());
+//                    Dareas.setsSubAreas(snapshot.child("Areas_Relacionadas").getValue().toString());
+//
+//                    TvNombreArea.setText(Dareas.getsNombreArea());
+//                    TvDescripcionArea.setText(Dareas.getsDescripcionArea());
+//                    TvSubAreasA.setText(Dareas.getsSubAreas());
+//
+//                    Log.d("foto", Dareas.getsImagenArea());
+//                    Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);
 
-                    Areas Dareas = new Areas();
-                    Dareas.setsNombreArea(snapshot.child("Nombre_Area").getValue().toString());
-                    Dareas.setsImagenArea(snapshot.child("Imagen_Area").getValue().toString());
-                    Dareas.setsDescripcionArea(snapshot.child("Descripcion_Area").getValue().toString());
-                    Dareas.setsSubAreas(snapshot.child("Areas_Relacionadas").getValue().toString());
+                    Areas areas = snapshot.getValue(Areas.class);
 
-                    TvNombreArea.setText(Dareas.getsNombreArea());
-                    TvDescripcionArea.setText(Dareas.getsDescripcionArea());
-                    TvSubAreasA.setText(Dareas.getsSubAreas());
+                    Picasso.get().load(areas.getsImagenArea()).into(MostImagenArea);
 
-                    Log.d("foto", Dareas.getsImagenArea());
-                    Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);
+                    TvNombreArea.setText(areas.getsNombreArea());
+                    TvDescripcionArea.setText(areas.getsDescripcionArea());
+                    TvSubAreasA.setText(areas.getsSubAreas());
+
                 }
             }
 

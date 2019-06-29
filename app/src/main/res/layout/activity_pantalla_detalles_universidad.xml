@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Administradores.PantallaActualizarArea">
+    tools:context=".GeneralesApp.PantallaDetallesUniversidad">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -18,74 +18,99 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/xmlImagenAreaActualizar"
+            <TextView
+                android:id="@+id/xmlTvNombreUniDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/image_area"
+                android:hint="Nombre Provincia"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_margin="5dp"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:id="@+id/xmlImagenUniDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/image_universidad"
                 android:layout_margin="20dp"/>
 
             <TextView
-                android:id="@+id/xmlTiNombreAreaActualizar"
+                android:id="@+id/xmlTiTelefonoUniDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_margin="5dp"
                 android:textColor="@color/md_blue_900"
-                android:text="Nombre Area" />
-
-            <EditText
-                android:id="@+id/xmlEditNombreAreaActualizar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
-                android:inputType="text"
-
-                android:hint="Nombre Area" />
+                android:text="Telefono Universidad" />
 
             <TextView
-                android:id="@+id/xmlTiDescripcionAreaActualizar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
-                android:textColor="@color/md_blue_900"
-                android:text="Descripcion Area" />
-
-            <EditText
-                android:id="@+id/xmlEdiDescripcionAreaActualizar"
+                android:id="@+id/xmlTvTelefonoUniDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_margin="5dp"
-                android:inputType="text"
-
-                android:hint="Descripcion Area" />
+                android:inputType="phone"
+                android:hint="Telefono Universidad" />
 
             <TextView
-                android:id="@+id/xmlTiSubAreasActualizar"
+                android:id="@+id/xmlTiPaginaWebUniDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/md_blue_900"
                 android:layout_margin="5dp"
-                android:text="Areas Relacionadas" />
+                android:textColor="@color/md_blue_900"
+                android:text="Pagina Web Universidad" />
 
-            <EditText
-                android:id="@+id/xmlEditSubAreasActualizar"
+            <TextView
+                android:id="@+id/xmlTvPaginaWebUniDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="textWebEditText"
+                android:hint="Pagina Web Universidad" />
+
+            <TextView
+                android:id="@+id/xmlTiUbicacionUniDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Ubicacion Universidad" />
+
+            <TextView
+                android:id="@+id/xmlTvUbicacionUniDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:hint="Universidad"
+                android:textColor="@color/md_blue_900"/>
+
+            <TextView
+                android:id="@+id/xmlTiDireccionUniDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:inputType="text"
-                android:hint="Areas Relacionadas" />
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Direccion Universidad" />
 
-
-
+            <TextView
+                android:id="@+id/xmlTvDireccionUniDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="textWebEditText"
+                android:hint="Direccion Universidad" />
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
