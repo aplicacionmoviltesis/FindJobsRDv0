@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:background="@color/accent"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginTop="5dp"
+    android:elevation="100dp"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:radius="25dp"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/CardImage_Prov_Area_Uni"
+            android:layout_width="100sp"
+            android:layout_height="100dp"
+            android:contentDescription="TODO" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:radius="20dp"
+            android:padding="5dp"
+            android:layout_marginStart="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/CardNombre_Prov_Area_Uni"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textAlignment="center"
+                android:inputType="textMultiLine"
+                android:textStyle="bold"
+                android:textColor="@color/md_blue_900"
+                android:textSize="35sp"
+                android:text="Nombre" />
+            <TextView
+                android:id="@+id/CardOtroDato_Prov_Area_Uni"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:textStyle="italic"
+                android:textColor="@color/md_blue_900"
+                android:textSize="25sp"
+                android:text="Nombre Empresa" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

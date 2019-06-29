@@ -6,6 +6,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.findjobsrdv0.Administradores.PantallaListaUniversidades;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos;
 import com.example.findjobsrdv0.Main3ActivityProbando;
 import com.example.findjobsrdv0.Main3ActivityProbandoBusqueda;
@@ -24,7 +25,7 @@ public class PantallaCarga extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(PantallaCarga.this, Main3ActivityProbando.class);
+                Intent intent = new Intent(PantallaCarga.this, PantallaListaUniversidades.class);
                 startActivity(intent);
                 finish();
             }

@@ -322,7 +322,8 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
 
         } else if (id == R.id.compararBuscador) {
-
+            Intent intent= new Intent(this, Main3ActivityProbando.class);
+            startActivity(intent);
 
         } else if (id == R.id.ConfiguracionBuscador) {
             Intent intent = new Intent (this, PantallaConfiguracion.class);

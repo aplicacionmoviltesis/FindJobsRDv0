@@ -214,6 +214,8 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
     }
 
     private void TraerAplicacionesCurriculo(String sIdEmpresaAplico) {
+//        mDatasetEmpleadores.clear();
+//        adapterEmpresa.notifyDataSetChanged();
         Log.d("dataCurriculoklk", String.valueOf(sIdEmpresaAplico));
 
         Query q = dbAplicacionesCurriculo.orderByChild("sIdCurriculoAplico").equalTo(sIdEmpresaAplico);
@@ -221,13 +223,17 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("dataCurriculoAplic", String.valueOf(dataSnapshot));
-
+//                mDatasetEmpleadores.clear();
+//                adapterEmpresa.notifyDataSetChanged();
                 for (DataSnapshot EmpresasSnapshot : dataSnapshot.getChildren()) {
-
+//                    mDatasetEmpleadores.clear();//----------------
+//                    adapterEmpresa.notifyDataSetChanged();
                     String IdEmpresaAplico = EmpresasSnapshot.child("sIdEmpresaAplico").getValue(String.class);
                     loadEmpresa(IdEmpresaAplico);
                     Log.d("dataCEmpresasId", IdEmpresaAplico);
                 }
+//                mDatasetEmpleadores.clear();//-----------
+//                adapterEmpresa.notifyDataSetChanged();
             }
 
             @Override
@@ -241,7 +247,8 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
     private void loadEmpresa(final String sIDEmpresa) {
         Log.d("dataEmpresaAplic", String.valueOf(sIDEmpresa));
         //adapterEmpresa.notifyDataSetChanged();
-
+//        mDatasetEmpleadores.clear();//----------------
+//        adapterEmpresa.notifyDataSetChanged();
         DBEmpleadores.child("Empleadores").orderByChild("sIdEmpleador").equalTo(sIDEmpresa).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
@@ -285,6 +292,8 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
                 }
                 Log.d("CVEMPLEADORES::::", String.valueOf(dataSnapshot));
 //mDatasetEmpleadores.clear();
+                //mDatasetEmpleadores.clear();//----------------
+                //adapterEmpresa.notifyDataSetChanged();
             }
 
             @Override
