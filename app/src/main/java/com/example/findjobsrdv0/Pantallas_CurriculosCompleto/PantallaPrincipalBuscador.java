@@ -8,6 +8,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.example.findjobsrdv0.Administradores.PantallaActualizarUnivesidad;
+import com.example.findjobsrdv0.Administradores.PantallaListaUniversidades;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaEmpleosAplicado;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaEmpresasAplicaronMiCurriculo;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscados;
@@ -317,7 +319,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
 
         } else if (id == R.id.navegadorBuscador) {
-            Intent intent= new Intent(this, PantallaNavegador.class);
+            Intent intent= new Intent(this, PantallaListaUniversidades.class);
             startActivity(intent);
 
 

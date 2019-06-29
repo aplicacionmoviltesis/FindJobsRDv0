@@ -158,7 +158,6 @@ public class PantallaPerfilBuscador extends AppCompatActivity {
                 VerificarBuscador( sIdBuscador );
             }
         }
-
     }
 
 
