@@ -21,7 +21,7 @@
         <activity android:name=".Administradores.PantallaDetalleReportesProblemas" />
         <activity android:name=".Administradores.PantallaListaReportesProblemas" />
         <activity android:name=".Administradores.PantallaListaUniversidades" />
-        <activity android:name=".Administradores.PantallaActualizarUnivesidad" />
+        <activity android:name=".Administradores.PantallaActualizarUniversidad" />
         <activity android:name=".Administradores.PantallaAgregarUniversidades" />
         <activity android:name=".Administradores.PantallaListaProvincias" />
         <activity android:name=".Administradores.PantallaActualizarProvincia" />

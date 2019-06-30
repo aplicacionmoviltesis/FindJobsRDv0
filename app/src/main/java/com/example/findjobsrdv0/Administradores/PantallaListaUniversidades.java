@@ -10,14 +10,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleos;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.EmpleosViewHolder;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaActualizarEmpleo;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosAnadidos;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -76,7 +71,7 @@ public class PantallaListaUniversidades extends AppCompatActivity {
                 uniProvAreaViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent intent = new Intent(PantallaListaUniversidades.this, PantallaActualizarUnivesidad.class);
+                        Intent intent = new Intent(PantallaListaUniversidades.this, PantallaActualizarUniversidad.class);
                         intent.putExtra("sUniversidadId",adapterUniversidades.getRef(position).getKey());
                         startActivity(intent);
                     }
