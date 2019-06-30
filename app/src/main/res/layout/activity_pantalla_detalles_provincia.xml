@@ -11,68 +11,147 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="25dp"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/xmlTvNombreProvincia"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_margin="5dp"
-            android:textSize="40sp"
-            android:hint="Nombre Provincia" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-        <ImageView
-            android:id="@+id/xmlImagenProvincia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp" />
+            <TextView
+                android:id="@+id/xmlTvNombreProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:hint="Nombre Provincia"
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/xmlTiDescripcionProvincia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/md_blue_900"
-            android:layout_margin="5dp"
-            android:text="Descripcion Provincia" />
+            <ImageView
+                android:id="@+id/xmlImagenProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/image_provincias"
+                android:layout_marginBottom="20dp" />
 
-        <TextView
-            android:id="@+id/xmlTvDescripcionProvincia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:textStyle="bold"
-            android:scrollbars = "vertical"
-            android:hint="Descripcion Provincia" />
+            <TextView
+                android:id="@+id/xmlTiDescripcionProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Descripcion Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/xmlTiDivisionProvincia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textColor="@color/md_blue_900"
-            android:text="Division Provincial" />
+            <TextView
+                android:id="@+id/xmlTvDescripcionProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:hint="Descripcion Provincia"
+                android:scrollbars="vertical"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/xmlTvDivisionProvincia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:hint="Division Provincial" />
+            <TextView
+                android:id="@+id/xmlTiDivisionProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Division Provincial"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/xmlTvDivisionProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:hint="Division Provincial"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTiPoblacionProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Poblacion Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTvPoblacionProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:hint="Poblacion Provincia"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTiEconomiaProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Economia Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTvEconomiaProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:hint="Economia Provincia"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTiClimaProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Clima Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTvClimaProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:hint="Clima Provincia"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTiAtractivosProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Atractivos Provincia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/xmlTvAtractivosProvincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:hint="Atractivos Provincia"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

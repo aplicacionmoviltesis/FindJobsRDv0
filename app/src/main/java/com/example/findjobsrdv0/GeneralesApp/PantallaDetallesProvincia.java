@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.findjobsrdv0.Administradores.Universidades;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +23,9 @@ import com.squareup.picasso.Picasso;
 
 public class PantallaDetallesProvincia extends AppCompatActivity {
 
-    TextView TvNombreProvincia, TvDescripcionProvincia, TvDivisionProvincia;
+    TextView TvNombreProvincia, TvDescripcionProvincia, TvDivisionProvincia,
+            TvPoblacionProvincia,TvEconomiaProvincia,TvClimaProvincia,
+            TvAtractivosProvincia;
     ImageView MostImagenProvincia;
     String sNombreProvinciakey = "";
     FirebaseDatabase database;
@@ -35,7 +38,7 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBprovincia = database.getReference("provincias");
+        DBprovincia = database.getReference("Provincias");
 
         TvNombreProvincia = (TextView) findViewById(R.id.xmlTvNombreProvincia);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
@@ -48,42 +51,65 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         MostImagenProvincia = (ImageView) findViewById(R.id.xmlImagenProvincia);
         TvDescripcionProvincia = (TextView) findViewById(R.id.xmlTvDescripcionProvincia);
         TvDivisionProvincia = (TextView) findViewById(R.id.xmlTvDivisionProvincia);
+
         TvDivisionProvincia.setMovementMethod(new ScrollingMovementMethod());
         TvDescripcionProvincia.setMovementMethod(new ScrollingMovementMethod());
 
-        if (getIntent() != null) {
-            sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
-            if (!sNombreProvinciakey.isEmpty()) {
-                goDetalleProvincia(sNombreProvinciakey);
-            }
-        }
+        TvPoblacionProvincia = (TextView) findViewById(R.id.xmlTvPoblacionProvincia);
+        TvEconomiaProvincia = (TextView) findViewById(R.id.xmlTvEconomiaProvincia);
+        TvClimaProvincia = (TextView) findViewById(R.id.xmlTvClimaProvincia);
+        TvAtractivosProvincia = (TextView) findViewById(R.id.xmlTvAtractivosProvincia);
+
+//        if (getIntent() != null) {
+//            sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
+//            if (!sNombreProvinciakey.isEmpty()) {
+//                goDetalleProvincia(sNombreProvinciakey);
+//            }
+//        }
+
+        sNombreProvinciakey = "La vega";
+        goDetalleProvincia(sNombreProvinciakey);
+
     }
 
 
     private void goDetalleProvincia(String sNombreProvinciakey) {
 
-        Query q = DBprovincia.orderByChild("Nombre_Provincia").equalTo(sNombreProvinciakey);
+        Query q = DBprovincia.orderByChild("sNombreProvincia").equalTo(sNombreProvinciakey);
 
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    Log.d("hola", String.valueOf(dataSnapshot));
+//                    Log.d("hola", String.valueOf(dataSnapshot));
+//
+//                    Provincias Dprovincia = new Provincias();
+//                    Dprovincia.setsNombreProvincia(snapshot.child("Nombre_Provincia").getValue().toString());
+//                    Dprovincia.setsImagenProvincia(snapshot.child("Imagen_Provincia").getValue().toString());
+//                    Dprovincia.setsDescripcionProvincia(snapshot.child("Descripcion_Provincia").getValue().toString());
+//                    Dprovincia.setsPoblacionProvincia(snapshot.child("Division_Provincia").getValue().toString());
+//
+//                    Picasso.get().load(Dprovincia.getsImagenProvincia()).into(MostImagenProvincia);
+//
+//                    TvNombreProvincia.setText(Dprovincia.getsNombreProvincia());
+//                    TvDescripcionProvincia.setText(Dprovincia.getsDescripcionProvincia());
+//                    TvDivisionProvincia.setText(Dprovincia.getsPoblacionProvincia());
+//
+//                    Log.d("probando", Dprovincia.getsImagenProvincia());
 
-                    Provincias Dprovincia = new Provincias();
-                    Dprovincia.setsNombreProvincia(snapshot.child("Nombre_Provincia").getValue().toString());
-                    Dprovincia.setsImagenProvincia(snapshot.child("Imagen_Provincia").getValue().toString());
-                    Dprovincia.setsDescripcionProvincia(snapshot.child("Descripcion_Provincia").getValue().toString());
-                    Dprovincia.setsPoblacionProvincia(snapshot.child("Division_Provincia").getValue().toString());
+                    Provincias provincias = snapshot.getValue(Provincias.class);
 
-                    Picasso.get().load(Dprovincia.getsImagenProvincia()).into(MostImagenProvincia);
+                    Picasso.get().load(provincias.getsImagenProvincia()).into(MostImagenProvincia);
 
-                    TvNombreProvincia.setText(Dprovincia.getsNombreProvincia());
-                    TvDescripcionProvincia.setText(Dprovincia.getsDescripcionProvincia());
-                    TvDivisionProvincia.setText(Dprovincia.getsPoblacionProvincia());
+                    TvNombreProvincia.setText(provincias.getsNombreProvincia());
+                    TvDescripcionProvincia.setText(provincias.getsDescripcionProvincia());
+                    TvDivisionProvincia.setText(provincias.getsDivisionTerritorialProvincia());
+                    TvPoblacionProvincia.setText(provincias.getsPoblacionProvincia());
+                    TvEconomiaProvincia.setText(provincias.getsEconomiaProvincia());
+                    TvClimaProvincia.setText(provincias.getsClimaProvincia());
+                    TvAtractivosProvincia.setText(provincias.getsAtractivosProvincia());
 
-                    Log.d("probando", Dprovincia.getsImagenProvincia());
                 }
             }
 

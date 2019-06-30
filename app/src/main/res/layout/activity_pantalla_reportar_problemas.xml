@@ -4,12 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".GeneralesApp.PantallaReportarProblemas">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/xmlTiTituloProblem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:text="Titulo"
+            android:textColor="@color/md_blue_900"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/xmlEditTituloProblem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:hint="Titulo o Palabras Relacionadas al Problema"
+            android:inputType="text"
+            android:textStyle="bold" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -33,10 +54,10 @@
                 android:id="@+id/xmlEditReportarProblema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
                 android:ems="10"
                 android:hint="Describe Tu Problema"
                 android:inputType="textMultiLine"
+                android:padding="3dp"
                 android:textColor="@color/md_black_1000" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,8 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:padding="1dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="1dp">
 
             <ImageView
                 android:id="@+id/xmlImagenUno"
@@ -92,7 +113,7 @@
             android:textColor="@color/md_blue_grey_400"
             android:textSize="15sp" />
 
-
     </LinearLayout>
+
 
 </LinearLayout>

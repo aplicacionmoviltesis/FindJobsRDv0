@@ -7,33 +7,51 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.findjobsrdv0.Administradores.PantallaAgregarUniversidades;
+import com.example.findjobsrdv0.Administradores.ProblemasAppReportar;
+import com.example.findjobsrdv0.Administradores.Universidades;
 import com.example.findjobsrdv0.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PantallaReportarProblemas extends AppCompatActivity {
 
-    ImageView ImagenUno,ImagenDos,ImagenTres;
+    private ImageView ImagenUno,ImagenDos,ImagenTres;
     int IMAGE_REQUEST_CODE = 5;
-
-    ProgressDialog mProgressDialogReportarProblema;
-
     Uri mFilePathUriReportProblem;
 
+    private ProgressDialog mProgressDialogReportarProblema;
+
+    private String sIdProblemAppReport,sTituloProblem,sDescripcionProblem,sFechaProblem,sImagenProblem,sIdUserReport;
+    private EditText editTituloProblem,editDecripcionProblem;
+
+    private DatabaseReference ProblemReportRefRegistrar;
+    private FirebaseDatabase ProblemDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_reportar_problemas);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -43,70 +61,41 @@ public class PantallaReportarProblemas extends AppCompatActivity {
         ImagenDos = (ImageView) findViewById(R.id.xmlImagenDos);
         ImagenTres = (ImageView) findViewById(R.id.xmlImagenTres);
 
-        ImagenUno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mProgressDialogReportarProblema = new ProgressDialog(PantallaReportarProblemas.this);
 
-                Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(galleryIntent, "Seleccionar Imagen"), IMAGE_REQUEST_CODE);
+        editTituloProblem = (EditText) findViewById(R.id.xmlEditTituloProblem);
+        editDecripcionProblem = (EditText) findViewById(R.id.xmlEditReportarProblema);
 
-            }
-        });
+        ProblemDatabase = FirebaseDatabase.getInstance();
+        ProblemReportRefRegistrar = ProblemDatabase.getReference("ProblemasReportadosApp");
 
-        ImagenDos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(galleryIntent, "Seleccionar Imagen"), IMAGE_REQUEST_CODE);
-
-            }
-        });
-
-        ImagenTres.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
-                startActivityForResult(Intent.createChooser(galleryIntent, "Seleccionar Imagen"), IMAGE_REQUEST_CODE);
-
-            }
-        });
-
-
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
+        sFechaProblem = simpleDateFormat.format(new Date());
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IMAGE_REQUEST_CODE
-                && resultCode == RESULT_OK
-                && data != null
-                && data.getData() != null) {
-
-            mFilePathUriReportProblem = data.getData();
-
-            try {
-
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mFilePathUriReportProblem);
-                ImagenDos.setImageBitmap(bitmap);
-                ImagenUno.setImageBitmap(bitmap);
-
-            } catch (Exception e) {
-
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-
-            }
-
-
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == IMAGE_REQUEST_CODE
+//                && resultCode == RESULT_OK
+//                && data != null
+//                && data.getData() != null) {
+//
+//            mFilePathUriReportProblem = data.getData();
+//
+//            try {
+//
+//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mFilePathUriReportProblem);
+//                ImagenDos.setImageBitmap(bitmap);
+//                ImagenUno.setImageBitmap(bitmap);
+//
+//            } catch (Exception e) {
+//
+//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//
+//            }
+//        }
+//    }
 
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -130,81 +119,50 @@ public class PantallaReportarProblemas extends AppCompatActivity {
             EnviarProblema();
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 
     private void EnviarProblema() {
-        Toast.makeText(PantallaReportarProblemas.this, "Se enviooooooooooooo", Toast.LENGTH_LONG).show();
-       /* public void ActualizarPerfilEmpleador(final String sIdEmpleador) {
+        mProgressDialogReportarProblema.setTitle("Reportando Problema...");
+        mProgressDialogReportarProblema.show();
 
-            if (mFilePathUri != null) {
-                mProgressDialogReportarProblema.setTitle("Subiendo Imagen...");
-                mProgressDialogReportarProblema.show();
+        sIdProblemAppReport = ProblemReportRefRegistrar.push().getKey();
 
-                //klk = sIdEmpleador;
+        sTituloProblem = editTituloProblem.getText().toString().trim();
+        sDescripcionProblem = editDecripcionProblem.getText().toString().trim();
 
-                final StorageReference storageReference2do = mStorageReference.child(mStoragePath + System.currentTimeMillis() + "." + getFileExtension(mFilePathUri));
+        //sImagenProblem = "";
+        //sIdUserReport = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //sFechaProblem = "";
 
-                ////////////////////////////////////////
+        sImagenProblem = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Provincia%2Fbonao.jpg?alt=media&token=287c737f-70b4-4e8e-bcf0-11e077edc509";
+        sIdUserReport = "yo";
 
 
-                //final StorageReference storageReference2do = storageReference2do.child("your_REF");
-                UploadTask uploadTask = storageReference2do.putFile(mFilePathUri);
+        if (TextUtils.isEmpty(sTituloProblem)) {
+            Toast.makeText(this, "Por favor, Titula o Agrega alguna palabra relacionada al problema", Toast.LENGTH_LONG).show();
+            mProgressDialogReportarProblema.dismiss();
+            return;
+        }
 
-                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if (!task.isSuccessful()) {
-                            throw task.getException();
-                        }
+        if (TextUtils.isEmpty(sDescripcionProblem)) {
+            Toast.makeText(this, "Por favor, Describe el problema con la mas claridad y brevedad posible", Toast.LENGTH_LONG).show();
+            mProgressDialogReportarProblema.dismiss();
+            return;
+        }
 
-                        // Continue with the task to get the download URL
-                        return storageReference2do.getDownloadUrl();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if (task.isSuccessful()) {
-                            Uri downloadUri = task.getResult();
-                            String downloadURL = downloadUri.toString();
-                            sNombrePerfilE = editNombrePerfilE.getText().toString().trim();
-                            sRncPerfilE = editRncPerfilE.getText().toString().trim();
-                            sPaginaWebPerfilE = editPaginaWebPerfilE.getText().toString().trim();
-                            sTelefonoPerfilE = editTelefonoPerfilE.getText().toString().trim();
-                            sDireccionPerfilE = editDireccionPerfilE.getText().toString().trim();
-                            sCorreoPerfilE = editCorreoPerfilE.getText().toString().trim();
-                            sVerificacion = false;
-                            //sImagenPerfilEmpleador = downloadURL;
-                            mProgressDialog.dismiss();
 
-                            //DeleteImagenAnterior();
-                            mProgressDialogReportarProblema.setTitle("Actualizando...");
-                            mProgressDialogReportarProblema.show();
+        ProblemasAppReportar problemasAppReportar = new ProblemasAppReportar(sIdProblemAppReport, sTituloProblem, sDescripcionProblem,sFechaProblem,sImagenProblem ,sIdUserReport);
+        ProblemReportRefRegistrar.child(sIdProblemAppReport).setValue(problemasAppReportar);
+        Toast.makeText(this, "Su Problema se Reporto exitosamente, le estaremos resolviendo lo mas pronto posible", Toast.LENGTH_LONG).show();
+        LimpiarCampos();
+        mProgressDialogReportarProblema.dismiss();
 
-                            Toast.makeText(PantallaPerfilEmpleador.this, "Imagen subida exitosamente...", Toast.LENGTH_LONG).show();
-                            Empleadores empleadores = new Empleadores(sNombrePerfilE, sRncPerfilE, sPaginaWebPerfilE, sTelefonoPerfilE, sDireccionPerfilE, sCorreoPerfilE, downloadURL, sVerificacion);
-                            DBperfilEmpleadores.child(sIdEmpleador).setValue(empleadores);
-                            mProgressDialogReportarProblema.dismiss();
 
-                        } else {
-                            // Handle failures
-                            // ...
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        mProgressDialogReportarProblema.dismiss();
-                        Toast.makeText(PantallaReportarProblemas.this, e.getMessage(), Toast.LENGTH_LONG).show();
+    }
 
-                    }
-                });
-            } else {
-                Toast.makeText(PantallaReportarProblemas.this, "Por favor, Seleccionar una Imagen", Toast.LENGTH_LONG).show();
-
-            }
-        }*/
+    private void LimpiarCampos() {
+        editTituloProblem.setText("");
+        editDecripcionProblem.setText("");
     }
 }

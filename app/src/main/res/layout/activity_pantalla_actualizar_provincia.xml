@@ -1,9 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Administradores.PantallaActualizarProvincia">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/xmlImagenProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:src="@mipmap/image_provincias" />
+
+            <TextView
+                android:id="@+id/xmlTiNombreProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_blue_900"
+                android:layout_margin="5dp"
+                android:text="Nombre Provincia" />
+
+            <EditText
+                android:id="@+id/xmlEditNombreProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:scrollbars = "vertical"
+                android:inputType="text"
+                android:hint="Nombre Provincia" />
+
+            <TextView
+                android:id="@+id/xmlTiDescripcionProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_blue_900"
+                android:layout_margin="5dp"
+                android:text="Descripcion Provincia" />
+
+            <EditText
+                android:id="@+id/xmlEditDescripcionProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:inputType="text"
+                android:scrollbars = "vertical"
+                android:hint="Descripcion Provincia" />
+
+            <TextView
+                android:id="@+id/xmlTiDivisionProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Division Provincial" />
+
+            <EditText
+                android:id="@+id/xmlEditDivisionProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="text"
+                android:hint="Division Provincial" />
+
+            <TextView
+                android:id="@+id/xmlTiPoblacionProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Poblacion Provincial" />
+
+            <EditText
+                android:id="@+id/xmlEditPoblacionProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="text"
+                android:hint="Poblacion Provincial" />
+
+            <TextView
+                android:id="@+id/xmlTiEconomiaProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Economia Provincia" />
+
+            <EditText
+                android:id="@+id/xmlEditEconomiaProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="text"
+                android:hint="Economia Provincia" />
+
+            <TextView
+                android:id="@+id/xmlTiClimaProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Clima Provincia" />
+
+            <EditText
+                android:id="@+id/xmlEditClimaProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="text"
+                android:hint="Clima Provincia" />
+
+            <TextView
+                android:id="@+id/xmlTiAtractivosProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Atractivos Provincia" />
+
+            <EditText
+                android:id="@+id/xmlEditAtractivosProvinciaAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:inputType="textMultiLine"
+                android:hint="Atractivos Provincia" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -262,7 +262,7 @@ public class PantallaActualizarUnivesidad extends AppCompatActivity {
 
         Universidades universidad = new Universidades(sIdUniversidad,sNombreUniversidad,sUbicacionUniversidad,sImagenUniversidad, sDireccionUni,sTelefonoUni,sPaginaWebUni,sIdUserAdminUni);
         universidadesRefActualizar.child(sIdUniversidad).setValue(universidad);
-        Toast.makeText(this, "La Actualizacion se Actualizo exitosamente", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "La Actualizacion se realizo exitosamente", Toast.LENGTH_LONG).show();
         mProgressDialog.dismiss();
 
         Intent intent = new Intent(PantallaActualizarUnivesidad.this, PantallaListaUniversidades.class);
