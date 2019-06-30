@@ -21,7 +21,7 @@
             android:id="@+id/xmlTvNombreArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre Provincia"
+            android:hint="Nombre Area"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginTop="15dp"
@@ -42,7 +42,7 @@
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textColor="@color/md_blue_900"
-            android:text="Descripcion Provincia" />
+            android:text="Descripcion Area" />
 
         <TextView
             android:id="@+id/xmlTvDescripcionArea"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_margin="5dp"
-            android:hint="Descripcion Provincia" />
+            android:hint="Descripcion Area" />
 
         <TextView
             android:id="@+id/xmlTiSubAreasA"

@@ -75,13 +75,13 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
                     Dprovincia.setsNombreProvincia(snapshot.child("Nombre_Provincia").getValue().toString());
                     Dprovincia.setsImagenProvincia(snapshot.child("Imagen_Provincia").getValue().toString());
                     Dprovincia.setsDescripcionProvincia(snapshot.child("Descripcion_Provincia").getValue().toString());
-                    Dprovincia.setsCoordenadasProvincia(snapshot.child("Division_Provincia").getValue().toString());
+                    Dprovincia.setsPoblacionProvincia(snapshot.child("Division_Provincia").getValue().toString());
 
                     Picasso.get().load(Dprovincia.getsImagenProvincia()).into(MostImagenProvincia);
 
                     TvNombreProvincia.setText(Dprovincia.getsNombreProvincia());
                     TvDescripcionProvincia.setText(Dprovincia.getsDescripcionProvincia());
-                    TvDivisionProvincia.setText(Dprovincia.getsCoordenadasProvincia());
+                    TvDivisionProvincia.setText(Dprovincia.getsPoblacionProvincia());
 
                     Log.d("probando", Dprovincia.getsImagenProvincia());
                 }

@@ -8,9 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+
+import android.content.pm.ActivityInfo;
+
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -76,13 +80,14 @@ public class PantallaActualizarUnivesidad extends AppCompatActivity {
     StorageReference mStorageReference;
     int IMAGE_REQUEST_CODE = 5;
 
-    String userActivo;
+    //String userActivo;
     /////Imagen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_pantalla_actualizar_univesidad );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_actualizar_univesidad);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled( true );
@@ -112,7 +117,7 @@ public class PantallaActualizarUnivesidad extends AppCompatActivity {
             }
         } );
 
-        userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
+       // userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         editNombreUni.setEnabled( false );
@@ -217,7 +222,7 @@ public class PantallaActualizarUnivesidad extends AppCompatActivity {
 
                     Universidades universidades = dataSnapshot.getValue( Universidades.class );
                     Log.d( "holap", String.valueOf( universidades ) );
-                    Log.d( "holap", String.valueOf( universidades ) );
+                    //Log.d( "holap", String.valueOf( universidades ) );
 
                     //Picasso.get().load( universidades.getsImagenUniversidad() ).into( ImageUniversidad );
                     editNombreUni.setText( universidades.getsNombreUniversidad() );
@@ -264,11 +269,11 @@ public class PantallaActualizarUnivesidad extends AppCompatActivity {
         return true;
     }
 
-    private String getFileExtension(Uri uri) {
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType( contentResolver.getType( uri ) );
-    }
+//    private String getFileExtension(Uri uri) {
+//        ContentResolver contentResolver = getContentResolver();
+//        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+//        return mimeTypeMap.getExtensionFromMimeType( contentResolver.getType( uri ) );
+//    }
 
 
     private void DeleteImagenAnterior() {

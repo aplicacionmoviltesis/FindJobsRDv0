@@ -5,18 +5,62 @@ public class Provincias {
     public Provincias() {
     }
 
-    String sIdProvincia;
-    String sNombreProvincia;
-    String sDescripcionProvincia;
-    String sCoordenadasProvincia;
-    String sImagenProvincia;
+    private String sIdProvincia;
+    private String sNombreProvincia;
+    private String sDescripcionProvincia;
+    private String sDivisionTerritorialProvincia;
+    private String sPoblacionProvincia;
+    private String sImagenProvincia;
+    private String sIdUserAdminProvincia;
+    private String sEconomiaProvincia;
+    private String sClimaProvincia;
+    private String sAtractivosProvincia;
 
-    public Provincias(String sIdProvincia, String sNombreProvincia, String sDescripcionProvincia, String sCoordenadasProvincia, String sImagenProvincia) {
+
+    public Provincias(String sIdProvincia, String sNombreProvincia, String sDescripcionProvincia,String sDivisionTerritorialProvincia, String sPoblacionProvincia, String sImagenProvincia,String sIdUserAdminProvincia,
+                      String sEconomiaProvincia,String sClimaProvincia,String sAtractivosProvincia) {
         this.sIdProvincia = sIdProvincia;
         this.sNombreProvincia = sNombreProvincia;
         this.sDescripcionProvincia = sDescripcionProvincia;
-        this.sCoordenadasProvincia = sCoordenadasProvincia;
+        this.sPoblacionProvincia = sPoblacionProvincia;
         this.sImagenProvincia = sImagenProvincia;
+        this.sEconomiaProvincia = sEconomiaProvincia;
+        this.sClimaProvincia = sClimaProvincia;
+        this.sAtractivosProvincia = sAtractivosProvincia;
+        this.sIdUserAdminProvincia = sIdUserAdminProvincia;
+        this.sDivisionTerritorialProvincia = sDivisionTerritorialProvincia;
+
+    }
+    public String getsIdUserAdminProvincia() {
+        return sIdUserAdminProvincia;
+    }
+
+    public void setsIdUserAdminProvincia(String sIdUserAdminProvincia) {
+        this.sIdUserAdminProvincia = sIdUserAdminProvincia;
+    }
+
+    public String getsEconomiaProvincia() {
+        return sEconomiaProvincia;
+    }
+
+    public void setsEconomiaProvincia(String sEconomiaProvincia) {
+        this.sEconomiaProvincia = sEconomiaProvincia;
+    }
+
+    public String getsClimaProvincia() {
+        return sClimaProvincia;
+    }
+
+    public void setsClimaProvincia(String sClimaProvincia) {
+        this.sClimaProvincia = sClimaProvincia;
+    }
+
+    public String getsAtractivosProvincia() {
+        return sAtractivosProvincia;
+    }
+
+    public void setsAtractivosProvincia(String sAtractivosProvincia) {
+        this.sAtractivosProvincia = sAtractivosProvincia;
     }
 
     public String getsIdProvincia() {
@@ -43,12 +87,12 @@ public class Provincias {
         this.sDescripcionProvincia = sDescripcionProvincia;
     }
 
-    public String getsCoordenadasProvincia() {
-        return sCoordenadasProvincia;
+    public String getsPoblacionProvincia() {
+        return sPoblacionProvincia;
     }
 
-    public void setsCoordenadasProvincia(String sCoordenadasProvincia) {
-        this.sCoordenadasProvincia = sCoordenadasProvincia;
+    public void setsPoblacionProvincia(String sPoblacionProvincia) {
+        this.sPoblacionProvincia = sPoblacionProvincia;
     }
 
     public String getsImagenProvincia() {
@@ -59,7 +103,13 @@ public class Provincias {
         this.sImagenProvincia = sImagenProvincia;
     }
 
+    public String getsDivisionTerritorialProvincia() {
+        return sDivisionTerritorialProvincia;
+    }
 
+    public void setsDivisionTerritorialProvincia(String sDivisionTerritorialProvincia) {
+        this.sDivisionTerritorialProvincia = sDivisionTerritorialProvincia;
+    }
 
 
 }

@@ -6,8 +6,12 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.findjobsrdv0.Administradores.PantallaActualizarUnivesidad;
+
+import com.example.findjobsrdv0.Administradores.PantallaAgregarAreaDeTrabajo;
+import com.example.findjobsrdv0.Administradores.PantallaAgregarProvincias;
 import com.example.findjobsrdv0.Administradores.PantallaAgregarUniversidades;
+import com.example.findjobsrdv0.Administradores.PantallaListaAreas;
+import com.example.findjobsrdv0.Administradores.PantallaListaProvincias;
 import com.example.findjobsrdv0.Administradores.PantallaListaUniversidades;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos;
 import com.example.findjobsrdv0.Main3ActivityProbando;
@@ -27,7 +31,8 @@ public class PantallaCarga extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(PantallaCarga.this, PantallaListaUniversidades.class);
+
+                Intent intent = new Intent(PantallaCarga.this, PantallaListaAreas.class);
                 startActivity(intent);
                 finish();
             }

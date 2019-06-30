@@ -10,13 +10,19 @@ public class Areas {
     String sDescripcionArea;
     String sImagenArea;
     String sSubAreas;
+    String sIdUserAdminArea;
 
-    public Areas(String sIdArea, String sNombreArea, String sDescripcionArea, String sImagenArea, String sSubAreas) {
+
+
+
+    public Areas(String sIdArea, String sNombreArea, String sDescripcionArea, String sImagenArea, String sSubAreas, String sIdUserAdminArea) {
         this.sIdArea = sIdArea;
         this.sNombreArea = sNombreArea;
         this.sDescripcionArea = sDescripcionArea;
         this.sImagenArea = sImagenArea;
         this.sSubAreas = sSubAreas;
+        this.sIdUserAdminArea = sIdUserAdminArea;
+
     }
 
     public String getsIdArea() {
@@ -59,5 +65,12 @@ public class Areas {
         this.sSubAreas = sSubAreas;
     }
 
+    public String getsIdUserAdminArea() {
+        return sIdUserAdminArea;
+    }
+
+    public void setsIdUserAdminArea(String sIdUserAdminArea) {
+        this.sIdUserAdminArea = sIdUserAdminArea;
+    }
 
 }

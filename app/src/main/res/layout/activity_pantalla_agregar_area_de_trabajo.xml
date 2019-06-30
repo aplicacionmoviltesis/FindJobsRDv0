@@ -7,5 +7,81 @@
     android:orientation="vertical"
     tools:context=".Administradores.PantallaAgregarAreaDeTrabajo">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/xmlImagenAreaRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/image_area"
+                android:layout_margin="20dp"/>
+
+            <TextView
+                android:id="@+id/xmlTiNombreAreaRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Nombre Area" />
+
+            <EditText
+                android:id="@+id/xmlEditNombreAreaRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:hint="Nombre Area" />
+
+            <TextView
+                android:id="@+id/xmlTiDescripcionAreaRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@color/md_blue_900"
+                android:text="Descripcion Area" />
+
+            <EditText
+                android:id="@+id/xmlEdiDescripcionAreaRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:hint="Descripcion Area" />
+
+            <TextView
+                android:id="@+id/xmlTiSubAreasRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_blue_900"
+                android:layout_margin="5dp"
+                android:text="Areas Relacionadas" />
+
+            <EditText
+                android:id="@+id/xmlEditSubAreasRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:hint="Areas Relacionadas" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
