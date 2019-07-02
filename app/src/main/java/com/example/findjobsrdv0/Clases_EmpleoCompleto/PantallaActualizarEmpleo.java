@@ -233,7 +233,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
+//                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
+                    String provinciaName = provinciaSnapshot.child("sNombreProvincia").getValue(String.class);
                     ListProvincias.add(provinciaName);
                 }
 
@@ -431,7 +432,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
                 final List<String> ListAreas = new ArrayList<String>();
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                    String areaName = areaSnapshot.child("Nombre_Area").getValue(String.class);
+//                    String areaName = areaSnapshot.child("Nombre_Area").getValue(String.class);
+                    String areaName = areaSnapshot.child("sNombreArea").getValue(String.class);
                     ListAreas.add(areaName);
                 }
 
@@ -940,7 +942,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
     private void ObtenerImagen(String sNombreAreakey) {
 
-        Query queryArea = DBarea.orderByChild("Nombre_Area").equalTo(sNombreAreakey);
+        Query queryArea = DBarea.orderByChild("sNombreArea").equalTo(sNombreAreakey);
         queryArea.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -948,7 +950,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                     Log.d("hola", String.valueOf(dataSnapshot));
 
                     Areas Dareas = new Areas();
-                    Dareas.setsImagenArea(snapshot.child("Imagen_Area").getValue().toString());
+                    Dareas.setsImagenArea(snapshot.child("sImagenArea").getValue().toString());
                     sImagenEmpleoE = Dareas.getsImagenArea();
                     Log.d("foto", Dareas.getsImagenArea());
                     //Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);

@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-
+import com.example.findjobsrdv0.Administradores.PantallaAgregarAreaDeTrabajo;
+import com.example.findjobsrdv0.Administradores.PantallaAgregarProvincias;
+import com.example.findjobsrdv0.Administradores.PantallaAgregarUniversidades;
 import com.example.findjobsrdv0.Administradores.PantallaListaAreas;
 
+import com.example.findjobsrdv0.Administradores.PantallaListaProvincias;
 import com.example.findjobsrdv0.R;
 
 
@@ -25,7 +28,7 @@ public class PantallaCarga extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(PantallaCarga.this, PantallaListaAreas.class);
+                Intent intent = new Intent(PantallaCarga.this, PantallaModoUsuario.class);
                 startActivity(intent);
                 finish();
             }

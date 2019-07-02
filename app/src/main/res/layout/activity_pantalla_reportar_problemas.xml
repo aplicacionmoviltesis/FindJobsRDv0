@@ -87,21 +87,21 @@
                 android:padding="1dp"
                 android:src="@mipmap/imagennodisponible" />
 
-            <ImageView
-                android:id="@+id/xmlImagenDos"
-                android:layout_width="105dp"
-                android:layout_height="150dp"
-                android:layout_margin="5dp"
-                android:padding="1dp"
-                android:src="@mipmap/imagennodisponible" />
+            <!--<ImageView-->
+                <!--android:id="@+id/xmlImagenDos"-->
+                <!--android:layout_width="105dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:padding="1dp"-->
+                <!--android:src="@mipmap/imagennodisponible" />-->
 
-            <ImageView
-                android:id="@+id/xmlImagenTres"
-                android:layout_width="105dp"
-                android:layout_height="150dp"
-                android:layout_margin="5dp"
-                android:padding="1dp"
-                android:src="@mipmap/imagennodisponible" />
+            <!--<ImageView-->
+                <!--android:id="@+id/xmlImagenTres"-->
+                <!--android:layout_width="105dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:padding="1dp"-->
+                <!--android:src="@mipmap/imagennodisponible" />-->
 
         </LinearLayout>
 

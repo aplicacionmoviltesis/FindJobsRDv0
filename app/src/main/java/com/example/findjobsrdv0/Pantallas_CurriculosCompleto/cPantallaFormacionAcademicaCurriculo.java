@@ -100,7 +100,7 @@ public class cPantallaFormacionAcademicaCurriculo extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final List<String> ListUniversidades = new ArrayList<String>();
                 for (DataSnapshot UniversidadSnapshot : dataSnapshot.getChildren()) {
-                    String UniversidadName = UniversidadSnapshot.child( "Nombre" ).getValue( String.class );
+                    String UniversidadName = UniversidadSnapshot.child( "sNombreUniversidad" ).getValue( String.class );
                     ListUniversidades.add( UniversidadName );
                 }
                 ArrayAdapter<String> UniversidadesAdapter = new ArrayAdapter<String>( cPantallaFormacionAcademicaCurriculo.this, android.R.layout.simple_spinner_item, ListUniversidades );
