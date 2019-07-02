@@ -14,10 +14,12 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GeneralesApp.PantallaDetallesUniversidad"></activity>
-        <activity android:name=".Administradores.PantallaDetalleOpiniones" />
-        <activity android:name=".Administradores.PantallaListaOpiniones" />
-        <activity android:name=".Administradores.PantallaAgregarOpiniones" />
+        <activity android:name=".GeneralesApp.PantallaListaSugOpiAnadidas"></activity>
+        <activity android:name=".Administradores.PantallaConfiguracionAdministrador" />
+        <activity android:name=".GeneralesApp.PantallaDetallesUniversidad" />
+        <activity android:name=".Administradores.PantallaDetalleOpiniones_Sugerencias" />
+        <activity android:name=".Administradores.PantallaListaOpinionesSugerencias" />
+        <activity android:name=".GeneralesApp.PantallaAgregarOpiniones_Sugerencias" />
         <activity android:name=".Administradores.PantallaDetalleReportesProblemas" />
         <activity android:name=".Administradores.PantallaListaReportesProblemas" />
         <activity android:name=".Administradores.PantallaListaUniversidades" />
@@ -34,14 +36,10 @@
             android:label="@string/title_activity_pantalla_vista_comparacion_empleos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Main3ActivityProbandoBusqueda" />
-        <activity android:name=".Main3ActivityProbando" />
+        <activity android:name=".Clases_EmpleoCompleto.PantallaCompararEmpleos" />
         <activity
             android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador_"
             android:label="@string/title_activity_pantalla_perfil_empleador_"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Clases_EmpleoCompleto.PantallaCompararEmpleos"
-            android:label="@string/title_activity_pantalla_comparar_empleos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaListaCurriculosFavoritos" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos" />
@@ -61,7 +59,6 @@
         <activity android:name=".GeneralesApp.PantallaCambiarContrasena" />
         <activity android:name=".GeneralesApp.PantallaConfiguracion" />
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaPerfilBuscador" />
-        <activity android:name=".like.MainActivity" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaPersonasAplicaronEmpleo" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleOtrosEstudios" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleExperienciaLaboral" />

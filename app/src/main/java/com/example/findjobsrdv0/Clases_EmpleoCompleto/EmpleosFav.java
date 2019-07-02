@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0;
+package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
 import java.io.Serializable;
 

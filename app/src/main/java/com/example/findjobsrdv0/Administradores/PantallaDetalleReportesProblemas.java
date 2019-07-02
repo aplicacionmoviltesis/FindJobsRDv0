@@ -11,13 +11,12 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.findjobsrdv0.GeneralesApp.Areas;
+import com.example.findjobsrdv0.GeneralesApp.ProblemasAppReportar;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 

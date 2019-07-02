@@ -29,6 +29,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
+import com.example.findjobsrdv0.GeneralesApp.Universidades;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

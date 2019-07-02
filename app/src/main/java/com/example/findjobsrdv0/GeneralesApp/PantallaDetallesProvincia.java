@@ -8,11 +8,9 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.findjobsrdv0.Administradores.Universidades;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

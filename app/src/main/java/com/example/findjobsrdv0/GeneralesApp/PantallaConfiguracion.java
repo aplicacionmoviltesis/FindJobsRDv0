@@ -6,16 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.findjobsrdv0.Administradores.PantallaConfiguracionAdministrador;
+import com.example.findjobsrdv0.PantallaBuscarEmpleos;
 import com.example.findjobsrdv0.R;
 
 public class PantallaConfiguracion extends AppCompatActivity {
 
-    Button btnCambiarPass, btnAcercaApp,btnContactoNosotros,btnReportarProblema;
+    private Button btnCambiarPass, btnAcercaApp,btnContactoNosotros,btnReportarProblema,btnConfigAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,14 @@ public class PantallaConfiguracion extends AppCompatActivity {
             }
         });
 
+        btnConfigAdmin = (Button) findViewById(R.id.xmlBtnConfigAdmin);
+        btnConfigAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AccesoAdmin();
+            }
+        });
+
     }
 
     public boolean onSupportNavigateUp() {
@@ -91,5 +105,52 @@ public class PantallaConfiguracion extends AppCompatActivity {
         builder.create();
         builder.show();
 
+    }
+
+    public void AccesoAdmin(){
+        final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.login_acceso_admin, null);
+
+        final TextView TvTiLoginAdmin = (TextView) dialogView.findViewById(R.id.xmlTiLoginAdmin);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        TvTiLoginAdmin.setTypeface(face);
+
+        final EditText editEmailAdmin = (EditText) dialogView.findViewById(R.id.xmlEditEmailAdmin);
+        final EditText editPassAdmin = (EditText) dialogView.findViewById(R.id.xmlEditPassAdmin);
+
+        Button btnSalirAdmin = (Button) dialogView.findViewById(R.id.xmlBtnSalirAdmin);
+        Button btnEntrarAdmin = (Button) dialogView.findViewById(R.id.xmlBtnEntrarAdmin);
+
+
+
+        btnSalirAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogBuilder.dismiss();
+            }
+        });
+        btnEntrarAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // DO SOMETHINGS
+                //dialogBuilder.dismiss();
+                String emailadmin = editEmailAdmin.getText().toString().trim();
+                String passAdmin = editPassAdmin.getText().toString().trim();
+                if(emailadmin.equals("lamf") && passAdmin.equals("123")){
+                    editEmailAdmin.setText("");
+                    editPassAdmin.setText("");
+                    Intent intent = new Intent(PantallaConfiguracion.this, PantallaConfiguracionAdministrador.class);
+                    startActivityForResult(intent, 0);
+                }
+                else {
+                    Toast.makeText(PantallaConfiguracion.this, "Acceso Denegado" , Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.show();
     }
 }

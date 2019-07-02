@@ -5,17 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Main3ActivityProbando">
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnGetSelected"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:text="get"/>
+    tools:context=".GeneralesApp.PantallaListaSugOpiAnadidas">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ListaEmpleosPruebasR"
+        android:id="@+id/ListaOpiSugAnadidasR"
         android:layout_margin="5dp"
         android:padding="5dp"
         android:layout_width="match_parent"

@@ -29,13 +29,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.cPantallaRegistrarCurriculo;
+import com.example.findjobsrdv0.GeneralesApp.Universidades;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

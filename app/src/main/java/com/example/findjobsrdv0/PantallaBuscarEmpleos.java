@@ -101,6 +101,7 @@ public class PantallaBuscarEmpleos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -118,7 +119,6 @@ public class PantallaBuscarEmpleos extends AppCompatActivity {
                 UniversidadesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinUniversidadesC.setAdapter(UniversidadesAdapter);
                 spinUniversidadesC.setTitle("Seleccionar Universidad");
-
             }
 
             @Override

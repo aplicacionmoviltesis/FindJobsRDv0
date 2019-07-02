@@ -14,7 +14,7 @@ import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaEmpresasAplicaronM
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscados;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
-import com.example.findjobsrdv0.Main3ActivityProbando;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaCompararEmpleos;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -322,7 +322,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
 
         } else if (id == R.id.compararBuscador) {
-            Intent intent= new Intent(this, Main3ActivityProbando.class);
+            Intent intent= new Intent(this, PantallaCompararEmpleos.class);
             startActivity(intent);
 
         } else if (id == R.id.ConfiguracionBuscador) {

@@ -10,9 +10,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.findjobsrdv0.GeneralesApp.Areas;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.GeneralesApp.PantallaReportarProblemas;
+import com.example.findjobsrdv0.GeneralesApp.ProblemasAppReportar;
+import com.example.findjobsrdv0.GeneralesApp.Uni_Prov_Area_ViewHolder;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;

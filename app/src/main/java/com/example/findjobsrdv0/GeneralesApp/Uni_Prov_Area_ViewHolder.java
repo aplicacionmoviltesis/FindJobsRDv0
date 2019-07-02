@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Administradores;
+package com.example.findjobsrdv0.GeneralesApp;
 
 import android.view.View;
 import android.widget.ImageView;

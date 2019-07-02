@@ -4,14 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Administradores.PantallaAgregarOpiniones">
+    android:orientation="vertical"
+    tools:context=".GeneralesApp.PantallaAgregarOpiniones_Sugerencias">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/xmlTiTituloOpiSug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:text="Titulo"
+                android:textColor="@color/md_blue_900"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/xmlEditTituloOpiSug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:hint="Titulo de la Sugerencia"
+                android:inputType="text"
+                android:textStyle="bold" />
 
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_margin="20dp"
-        android:layout_weight="1" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlTiOpiSug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="30dp"
+                android:layout_marginTop="0dp"
+                android:background="@color/md_grey_300"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="300"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/xmlEditOpiSug"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Describe Tu Opinion o Sujerencia"
+                    android:inputType="textMultiLine"
+                    android:padding="3dp"
+                    android:textColor="@color/md_black_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Añadir Capturas de Pantalla (Opcional)"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+                <ImageView
+                    android:id="@+id/xmlImagenOpiSug"
+                    android:layout_width="105dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="5dp"
+                    android:padding="1dp"
+                    android:src="@mipmap/imagennodisponible" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="Esta area esta destinada para que nuestros usuarios dejen sus opiniones, sugerencias, cosas que quieren que agreguen, etc"
+                android:textColor="@color/md_blue_grey_400"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>
