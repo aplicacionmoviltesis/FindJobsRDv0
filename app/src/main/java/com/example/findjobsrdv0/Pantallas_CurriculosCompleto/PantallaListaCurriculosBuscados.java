@@ -98,13 +98,13 @@ public class PantallaListaCurriculosBuscados extends AppCompatActivity {
             }
         });
 
-        provinciasRefCurriculo.child("provincias").addValueEventListener(new ValueEventListener() {
+        provinciasRefCurriculo.child("Provincias").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 final List<String> ListProvinciasCurri = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
+                    String provinciaName = provinciaSnapshot.child("sNombreProvincia").getValue(String.class);
                     ListProvinciasCurri.add(provinciaName);
                 }
 

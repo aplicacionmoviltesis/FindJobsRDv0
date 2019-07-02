@@ -18,6 +18,10 @@ import android.widget.ToggleButton;
 
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.AplicarCurriculo;
 
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
+import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesArea;
+import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesProvincia;
+import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +40,7 @@ import java.util.Date;
 public class DetalleCurriculo extends AppCompatActivity {
 
     private TextView txtNombreCurr, txtApellidoCurr, txtCedulaCurr, txtEmailCurr, txtTelefonoCurr, txtCelularCurr, txtprovinciaCurr, txtEstadoCivil, txtDireccionCurr, txtOcupacion, txtIdioma,
-            txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha,TvYaAplicoCurriculo;
+            txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha, TvYaAplicoCurriculo, TVAreaCurr;
 
     private FirebaseDatabase database,prueba;
     private DatabaseReference detalelcurriculo, DbLikesFavCurri;
@@ -99,6 +103,7 @@ public class DetalleCurriculo extends AppCompatActivity {
         txtGradoMayorCurr = (TextView) findViewById(R.id.xmlTvMaestriaDetalleCu);
         txtHabilidades = (TextView) findViewById(R.id.xmlTvHabilidadesDetalleCu);
         txtFecha = (TextView) findViewById(R.id.xmlTvFechaNacimientoDetalleCu);
+        TVAreaCurr = (TextView) findViewById( R.id.xmlTvAreaDetalleCu );
 
 
 
@@ -201,6 +206,30 @@ public class DetalleCurriculo extends AppCompatActivity {
 
             }
         });
+
+
+        txtEmailCurr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goPaginaWeb();
+            }
+        });
+
+        TVAreaCurr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goDetalleArea();
+            }
+        });
+
+        txtprovinciaCurr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goDetalleProvincia();
+            }
+        });
+
+
     }
 
     public boolean onSupportNavigateUp(){
@@ -247,6 +276,7 @@ public class DetalleCurriculo extends AppCompatActivity {
                 txtGradoMayorCurr.setText(vistaCurriculomodel.getsGradoMayorC());
                 txtHabilidades.setText(vistaCurriculomodel.getsHabilidadesC());
                 txtFecha.setText(vistaCurriculomodel.getsFechaC());
+                TVAreaCurr.setText( vistaCurriculomodel.getsAreaC() );
 
             }
 
@@ -346,4 +376,37 @@ public class DetalleCurriculo extends AppCompatActivity {
             }
         });
     }
+
+    public void goPaginaWeb() {
+
+        Intent intent = new Intent( DetalleCurriculo.this, PantallaNavegador.class);
+        intent.putExtra("sEmailC", txtEmailCurr.getText().toString().trim());
+        String hola = txtEmailCurr.getText().toString().trim();
+        Log.d("klkpaginaweb", hola);
+        startActivity(intent);
+
+    }
+
+    public void goDetalleProvincia() {
+
+        Log.d( "klkprov", String.valueOf( txtprovinciaCurr ));
+
+        Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesProvincia.class);
+        intent.putExtra("sProvinciaC", txtprovinciaCurr.getText().toString().trim());
+        String hola = txtprovinciaCurr.getText().toString().trim();
+        Log.d("klkprovincia", hola);
+        startActivity(intent);
+
+    }
+
+    public void goDetalleArea() {
+
+        Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesArea.class);
+        intent.putExtra("sAreaC", TVAreaCurr.getText().toString().trim());
+        String hola = TVAreaCurr.getText().toString().trim();
+        Log.d("klkarea", hola);
+        startActivity(intent);
+
+    }
+
 }

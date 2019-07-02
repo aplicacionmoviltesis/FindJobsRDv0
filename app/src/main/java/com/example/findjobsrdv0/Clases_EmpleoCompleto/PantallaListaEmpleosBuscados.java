@@ -111,7 +111,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                     case R.id.xmlRdAreaBE:
 
                         sReferencia = "Areas";
-                        sCampo = "Nombre_Area";
+                        sCampo = "sNombreArea";
                         sCampoEnEmpleo = "sAreaE";
 
                         botonbuscarprovincia.setText("Buscar Por Area");
@@ -124,8 +124,8 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                         break;
                     case R.id.xmlRdProvinciaBE:
 
-                        sReferencia = "provincias";
-                        sCampo = "Nombre_Provincia";
+                        sReferencia = "Provincias";
+                        sCampo = "sNombreProvincia";
                         botonbuscarprovincia.setText("Buscar Por Provincia");
                         sCampoEnEmpleo = "sProvinciaE";
 

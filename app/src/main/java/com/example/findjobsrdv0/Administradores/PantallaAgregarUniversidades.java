@@ -238,7 +238,7 @@ public class PantallaAgregarUniversidades extends AppCompatActivity {
                     //sUbicacionUniversidad = "";
                     //sImagenUniRegistrar = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Provincia%2Fbonao.jpg?alt=media&token=287c737f-70b4-4e8e-bcf0-11e077edc509";
                     //sIdUserAdminUniRegistrar = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    sIdUserAdminUniRegistrar = "yo";
+                   // sIdUserAdminUniRegistrar = "yo";
 
                     if (TextUtils.isEmpty( sNombreUniRegistrar )) {
                         Toast.makeText( PantallaAgregarUniversidades.this, "Por favor, Ingrese el nombre", Toast.LENGTH_LONG ).show();

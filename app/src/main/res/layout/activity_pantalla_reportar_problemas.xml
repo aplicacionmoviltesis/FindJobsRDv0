@@ -74,38 +74,72 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:orientation="horizontal"
-                android:padding="1dp">
+            <ImageView
+                android:id="@+id/xmlImagenUno"
+                android:layout_width="105dp"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                android:padding="1dp"
+                android:src="@mipmap/imagennodisponible" />
 
-                <ImageView
-                    android:id="@+id/xmlImagenUno"
-                    android:layout_width="105dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="5dp"
-                    android:padding="1dp"
-                    android:src="@mipmap/imagennodisponible" />
+            <!--<ImageView-->
+                <!--android:id="@+id/xmlImagenDos"-->
+                <!--android:layout_width="105dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:padding="1dp"-->
+                <!--android:src="@mipmap/imagennodisponible" />-->
 
-                <ImageView
-                    android:id="@+id/xmlImagenDos"
-                    android:layout_width="105dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="5dp"
-                    android:padding="1dp"
-                    android:src="@mipmap/imagennodisponible" />
+            <!--<ImageView-->
+                <!--android:id="@+id/xmlImagenTres"-->
+                <!--android:layout_width="105dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:padding="1dp"-->
+                <!--android:src="@mipmap/imagennodisponible" />-->
+<!--&gt;>>>>>> origin/master-->
 
-                <ImageView
-                    android:id="@+id/xmlImagenTres"
-                    android:layout_width="105dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="5dp"
-                    android:padding="1dp"
-                    android:src="@mipmap/imagennodisponible" />
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="30dp"-->
+                <!--android:layout_marginEnd="30dp"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="1dp">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/xmlImagenUno"-->
+                    <!--android:layout_width="105dp"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:padding="1dp"-->
+                    <!--android:src="@mipmap/imagennodisponible" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/xmlImagenDos"-->
+                    <!--android:layout_width="105dp"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:padding="1dp"-->
+                    <!--android:src="@mipmap/imagennodisponible" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/xmlImagenTres"-->
+                    <!--android:layout_width="105dp"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:padding="1dp"-->
+                    <!--android:src="@mipmap/imagennodisponible" />-->
 
             </LinearLayout>
 
@@ -118,7 +152,6 @@
                 android:textSize="15sp" />
 
         </LinearLayout>
+
     </ScrollView>
-
-
 </LinearLayout>
