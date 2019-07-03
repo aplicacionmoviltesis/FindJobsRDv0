@@ -18,9 +18,9 @@
         android:radius="25dp">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/CardImageArea"
-            android:layout_width="150sp"
-            android:layout_height="150dp"
+            android:id="@+id/CardImageAreaComp"
+            android:layout_width="90sp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -30,10 +30,10 @@
             android:contentDescription="TODO"
             app:civ_border_color="@color/transparent"
             app:civ_border_width="2dp"
-           />
+            />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:orientation="vertical"
@@ -41,7 +41,7 @@
             android:radius="20dp">
 
             <TextView
-                android:id="@+id/textViewNombreC"
+                android:id="@+id/textViewNombreCComp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -53,7 +53,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewCedulaC"
+                android:id="@+id/textViewCedulaCComp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -64,7 +64,7 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/textViewDireccionC"
+                android:id="@+id/textViewDireccionCComp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -75,7 +75,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewEstadoActualCurr"
+                android:id="@+id/textViewEstadoActualCurrComp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -86,7 +86,7 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/textViewMaestriaC"
+                android:id="@+id/textViewMaestriaCComp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -96,7 +96,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewProvinciaC"
+                android:id="@+id/textViewProvinciaCComp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -119,22 +119,18 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imageViewSelectComp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_empleos_aplico"
+            android:visibility="visible" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

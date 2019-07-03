@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class FormacionAcademica {
 
-   private String sIdFormacionAcademica, sIdCurriculoFormAcad, sIdBuscadorEmpleoFormAcad, sCarreraFormAcad, sNivelPrimarioFormAcad,
+    String sIdFormacionAcademica, sIdCurriculoFormAcad, sIdBuscadorEmpleoFormAcad, sCarreraFormAcad, sNivelPrimarioFormAcad,
            sNivelSecundarioFormAcad, sNivelSuperiorFormAcad, sUniversidadFormAcad;
 
     public FormacionAcademica() {

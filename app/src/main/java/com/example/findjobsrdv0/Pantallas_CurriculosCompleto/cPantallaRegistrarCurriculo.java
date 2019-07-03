@@ -114,6 +114,9 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     List<String> list = new ArrayList<String>();
 
 
+    Button btnregistrarC;
+    Button btnActualizarC;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -201,13 +204,13 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             }
         } );
 
-        provinciasRefCurriculo.child( "provincias" ).addValueEventListener( new ValueEventListener() {
+        provinciasRefCurriculo.child( "Provincias" ).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 final List<String> ListProvinciasCurri = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child( "Nombre_Provincia" ).getValue( String.class );
+                    String provinciaName = provinciaSnapshot.child( "sNombreProvincia" ).getValue( String.class );
                     ListProvinciasCurri.add( provinciaName );
                 }
 
@@ -298,16 +301,39 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
         final String cIdCurriculo = databaseReferenceCurrilo.push().getKey();
 
-        Button btnregistrarC = findViewById( R.id.xmlBtnRegistrarDatosGC );
+        btnregistrarC = findViewById( R.id.xmlBtnRegistrarDatosGC );
         btnregistrarC.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sAreaC = spinAreaC.getSelectedItemsAsString();
-                registrarcurriculo( cIdCurriculo );
+                cedula = etCedula.getText().toString().trim();
+                Log.d( " todo", String.valueOf( cedula ) );
+
+                Query q = databaseReferenceCurrilo.orderByChild( "sCedulaC" ).equalTo( cedula );
+                q.addListenerForSingleValueEvent( new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            Log.d( "rnc no existe", String.valueOf( dataSnapshot ) );
+                            //Toast.makeText(PantallaRegistroEmpleador.this, "Ir a registrar", Toast.LENGTH_LONG).show();
+                            sAreaC = spinAreaC.getSelectedItemsAsString();
+                            registrarcurriculo( cIdCurriculo );
+
+                        } else {
+                            etCedula.setError( "Esta cedula ya a sido registrado" );
+                            Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
+                            //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                } );
             }
         } );
 
-        Button btnActualizarC = findViewById( R.id.xmlBtnActualizarDatosGC );
+        btnActualizarC = findViewById( R.id.xmlBtnActualizarDatosGC );
         btnActualizarC.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -449,9 +475,20 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                Toast.makeText( cPantallaRegistrarCurriculo.this, "entro", Toast.LENGTH_SHORT ).show();
+
+                Log.d( "entro", String.valueOf( dataSnapshot ) );
+
+                if (dataSnapshot.exists()) {
+                    btnregistrarC.setEnabled( false );
+//                        btnActualizarC.setEnabled( true );
+                }else {
+                    btnActualizarC.setEnabled( false );
+                }
+
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
 
-                    sImagenC = datasnapshot.child( "sImagenC" ).getValue(String.class);
+                    sImagenC = datasnapshot.child( "sImagenC" ).getValue( String.class );
 
                     Curriculos curriculos = datasnapshot.getValue( Curriculos.class );
 
@@ -648,8 +685,10 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             } ).addOnFailureListener( new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText( cPantallaRegistrarCurriculo.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                    Toast.makeText( cPantallaRegistrarCurriculo.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
+
                     mProgressDialog.dismiss();
+                    SubirNuevaImagen();
                 }
             } );
         } else {
@@ -677,7 +716,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
-                actualizarcurriculo( userActivo , downloadUri.toString() );
+                actualizarcurriculo( userActivo, downloadUri.toString() );
 
             }
         } ).addOnFailureListener( new OnFailureListener() {

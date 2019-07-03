@@ -18,9 +18,9 @@ import android.widget.ToggleButton;
 
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.AplicarCurriculo;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesArea;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesProvincia;
+import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesUniversidad;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
@@ -110,13 +110,12 @@ public class DetalleCurriculo extends AppCompatActivity {
         if (getIntent() != null)
             detallecurrid = getIntent().getStringExtra("detallecurrID");
 
-        if (!detallecurrid.isEmpty()) {
+
 
             goDetailCurriculo(detallecurrid);
 
-
             VerificarFavorito();
-        }
+
 
         VerificarAplicacionCurriculoExiste(sIdPersonaMarco);
 
@@ -208,12 +207,12 @@ public class DetalleCurriculo extends AppCompatActivity {
         });
 
 
-        txtEmailCurr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goPaginaWeb();
-            }
-        });
+//        txtEmailCurr.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goUniversidad();
+//            }
+//        });
 
         TVAreaCurr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -377,22 +376,12 @@ public class DetalleCurriculo extends AppCompatActivity {
         });
     }
 
-    public void goPaginaWeb() {
-
-        Intent intent = new Intent( DetalleCurriculo.this, PantallaNavegador.class);
-        intent.putExtra("sEmailC", txtEmailCurr.getText().toString().trim());
-        String hola = txtEmailCurr.getText().toString().trim();
-        Log.d("klkpaginaweb", hola);
-        startActivity(intent);
-
-    }
-
     public void goDetalleProvincia() {
 
         Log.d( "klkprov", String.valueOf( txtprovinciaCurr ));
 
         Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesProvincia.class);
-        intent.putExtra("sProvinciaC", txtprovinciaCurr.getText().toString().trim());
+        intent.putExtra("sProvinciaDE", txtprovinciaCurr.getText().toString().trim());
         String hola = txtprovinciaCurr.getText().toString().trim();
         Log.d("klkprovincia", hola);
         startActivity(intent);
@@ -402,7 +391,7 @@ public class DetalleCurriculo extends AppCompatActivity {
     public void goDetalleArea() {
 
         Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesArea.class);
-        intent.putExtra("sAreaC", TVAreaCurr.getText().toString().trim());
+        intent.putExtra("sAreaDE", TVAreaCurr.getText().toString().trim());
         String hola = TVAreaCurr.getText().toString().trim();
         Log.d("klkarea", hola);
         startActivity(intent);

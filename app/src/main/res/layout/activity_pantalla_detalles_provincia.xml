@@ -30,7 +30,7 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/xmlImagenProvincia"
+                android:id="@+id/xmlImageProvincia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/image_provincias"

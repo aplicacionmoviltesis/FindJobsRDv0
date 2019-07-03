@@ -53,14 +53,14 @@ public class PantallaDetallesUniversidad extends AppCompatActivity {
         TvUbicacionUniDetalle = (TextView) findViewById(R.id.xmlTvUbicacionUniDetalle);
         TvDireccionUniDetalle = (TextView) findViewById(R.id.xmlTvDireccionUniDetalle);
 
-//        if (getIntent() != null) {
-//            sNombreUniDetallekey = getIntent().getStringExtra("sNombreUniDetallekey");
-//            if (!sNombreUniDetallekey.isEmpty()) {
-//                goDetalleUniversidad(sNombreUniDetallekey);
-//            }
-//        }
-        sNombreUniDetallekey = "UNPHU";
-        goDetalleUniversidad(sNombreUniDetallekey);
+        if (getIntent() != null) {
+            sNombreUniDetallekey = getIntent().getStringExtra("sNombreUniDetallekey");
+            if (!sNombreUniDetallekey.isEmpty()) {
+                goDetalleUniversidad(sNombreUniDetallekey);
+            }
+        }
+//        sNombreUniDetallekey = "UNPHU";
+//        goDetalleUniversidad(sNombreUniDetallekey);
 
     }
 

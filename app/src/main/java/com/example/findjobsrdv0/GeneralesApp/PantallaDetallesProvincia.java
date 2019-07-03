@@ -29,6 +29,8 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
     FirebaseDatabase database;
     Query DBprovincia;
 
+//    String sProvinciakey = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        MostImagenProvincia = (ImageView) findViewById(R.id.xmlImagenProvincia);
+        MostImagenProvincia = (ImageView) findViewById(R.id.xmlImageProvincia);
         TvDescripcionProvincia = (TextView) findViewById(R.id.xmlTvDescripcionProvincia);
         TvDivisionProvincia = (TextView) findViewById(R.id.xmlTvDivisionProvincia);
 
@@ -58,15 +60,15 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         TvClimaProvincia = (TextView) findViewById(R.id.xmlTvClimaProvincia);
         TvAtractivosProvincia = (TextView) findViewById(R.id.xmlTvAtractivosProvincia);
 
-//        if (getIntent() != null) {
-//            sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
-//            if (!sNombreProvinciakey.isEmpty()) {
-//                goDetalleProvincia(sNombreProvinciakey);
-//            }
-//        }
+        if (getIntent() != null) {
+            sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
+            if (!sNombreProvinciakey.isEmpty()) {
+                goDetalleProvincia(sNombreProvinciakey);
+            }
+        }
 
-        sNombreProvinciakey = "La vega";
-        goDetalleProvincia(sNombreProvinciakey);
+//        sNombreProvinciakey = "La vega";
+//        goDetalleProvincia(sNombreProvinciakey);
 
     }
 

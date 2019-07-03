@@ -256,5 +256,9 @@
     <string name="title_activity_pantalla_vista_comparacion_empleos">
         PantallaVistaComparacionEmpleos
     </string>
+    <string name="title_activity_pantalla_vista_comparacion_curriculo">
+        PantallaVistaComparacionCurriculo
+    </string>
+    <string name="title_activity_pantalla_comparar_curriculo">PantallaCompararCurriculo</string>
 
 </resources>

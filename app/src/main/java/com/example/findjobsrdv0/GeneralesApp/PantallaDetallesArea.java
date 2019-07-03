@@ -50,14 +50,14 @@ public class PantallaDetallesArea extends AppCompatActivity {
         TvSubAreasA = (TextView) findViewById(R.id.xmlTvSubAreasA);
 
 
-//        if (getIntent() != null) {
-//            sNombreAreakey = getIntent().getStringExtra("sAreaDE");
-//            if (!sNombreAreakey.isEmpty()) {
-//                goDetalleArea(sNombreAreakey);
-//            }
-//        }
-        sNombreAreakey="ingenieria civil";
-        goDetalleArea(sNombreAreakey);
+        if (getIntent() != null) {
+            sNombreAreakey = getIntent().getStringExtra("sAreaDE");
+            if (!sNombreAreakey.isEmpty()) {
+                goDetalleArea(sNombreAreakey);
+            }
+        }
+//        sNombreAreakey="ingenieria civil";
+//        goDetalleArea(sNombreAreakey);
 
     }
 

@@ -40,6 +40,31 @@
                  />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarCedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_blue_900"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/etcedula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Cedula"
+                    android:inputType="number"
+                    android:textColor="@color/md_blue_900" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/xmlbregistrarnombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,30 +115,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/xmlbregistrarCedula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textColorHint="@color/md_blue_900"
-                app:counterEnabled="true"
-                app:counterMaxLength="30"
-                app:counterOverflowTextAppearance="@style/CounterOverFlow"
-                app:counterTextAppearance="@style/Counter"
-                app:errorEnabled="true"
-                app:errorTextAppearance="@style/CounterOverFlow"
-                app:hintAnimationEnabled="true">
 
-                <EditText
-                    android:id="@+id/etcedula"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="10dp"
-                    android:ems="10"
-                    android:hint="Cedula"
-                    android:inputType="number"
-                    android:textColor="@color/md_blue_900" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/xmlbregistrarEmail"
