@@ -8,22 +8,106 @@
     tools:context=".Pantallas_CurriculosCompleto.cPantallaFormacionAcademicaCurriculo">
 
     <TextView
-        android:id="@+id/xmlTituloFormAcad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="Formacion Academica"
-        android:textColor="@color/md_blue_900"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:inputType="text"
+        android:text="Nivel Primario:"
+        android:textColor="@color/md_black_1000"
+        android:textSize="20sp"
+        android:textStyle="normal" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDetalleFormAcad"
+    <TextView
+        android:id="@+id/xmlTVprimerNivelDetalleFormAcad"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:padding="5dp"
-        android:scrollbars="vertical" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Nivel Primario"
+        android:textColor="@color/md_blue_900"
+        android:textColorHint="@color/md_blue_900"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Nivel Secundario:"
+        android:textColor="@color/md_black_1000"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+
+    <TextView
+        android:id="@+id/xmlTVSegundoNivelDetalleFormAcad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Nivel Secunadio"
+        android:textColor="@color/md_blue_900"
+        android:textColorHint="@color/md_blue_900"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Nivel Superior:"
+        android:textColor="@color/md_black_1000"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+
+    <TextView
+        android:id="@+id/xmlTVNivelSuperiorDetalleFormAcad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Nivel Superior"
+        android:textColor="@color/md_blue_900"
+        android:textColorHint="@color/md_blue_900"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Universidad:"
+        android:textColor="@color/md_black_1000"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+
+    <TextView
+        android:id="@+id/xmlTVUniversidadDetalleFormAcad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Universidad"
+        android:textColor="@color/md_blue_900"
+        android:textColorHint="@color/md_blue_900"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Carrera:"
+        android:textColor="@color/md_black_1000"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/xmlTVCarreraDetalleFormAcad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Carrera"
+        android:textColor="@color/md_blue_900"
+        android:textColorHint="@color/md_blue_900"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
 
 </LinearLayout>

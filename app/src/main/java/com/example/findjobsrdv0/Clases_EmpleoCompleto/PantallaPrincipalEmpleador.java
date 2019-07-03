@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaCompararCurriculo;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaCurriculosAplicados;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosFavoritos;
@@ -310,7 +311,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
         } else if (id == R.id.compararEmpleador) {
 
-            Intent intent = new Intent(this, PantallaCompararEmpleos.class);
+            Intent intent = new Intent(this, PantallaCompararCurriculo.class);
             startActivity(intent);
 
 

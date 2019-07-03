@@ -138,7 +138,12 @@
     <string name="title_activity_pantalla_detalle_perfil_empresa">PantallaDetallePerfilEmpresa</string>
     <string name="title_activity_pantalla_comparar_empleos">PantallaCompararEmpleos</string>
     <string name="title_activity_pantalla_perfil_empleador_">PantallaPerfilEmpleador_</string>
-    <string name="title_activity_pantalla_vista_comparacion_empleos">PantallaVistaComparacionEmpleos</string>
-
+    <string name="title_activity_pantalla_vista_comparacion_empleos">
+        PantallaVistaComparacionEmpleos
+    </string>
+    <string name="title_activity_pantalla_vista_comparacion_curriculo">
+        PantallaVistaComparacionCurriculo
+    </string>
+    <string name="title_activity_pantalla_comparar_curriculo">PantallaCompararCurriculo</string>
 
 </resources>

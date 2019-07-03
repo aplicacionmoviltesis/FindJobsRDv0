@@ -76,19 +76,19 @@ public class PantallaCompararEmpleos extends AppCompatActivity {
         recyclerViewEmpleosFav.setAdapter(adapter);
 
         ListaId = new ArrayList<>();
-//        mAuthBuscEmp = FirebaseAuth.getInstance();
-//        user = mAuthBuscEmp.getCurrentUser();
-//        sIdUserBuscEmp= user.getUid();
+        mAuthBuscEmp = FirebaseAuth.getInstance();
+        user = mAuthBuscEmp.getCurrentUser();
+        sIdUserBuscEmp= user.getUid();
 
-//        if(sIdUserBuscEmp != null){
-//            if(!sIdUserBuscEmp.isEmpty()){
-//                Log.d("datafavoritoidpersona", String.valueOf(sIdUserBuscEmp));
-//
-//                TraerEmpleosFavoritos(sIdUserBuscEmp);
-//            }
-//        }
-        sIdUserBuscEmp = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
-        TraerEmpleosFavoritos(sIdUserBuscEmp);
+        if(sIdUserBuscEmp != null){
+            if(!sIdUserBuscEmp.isEmpty()){
+                Log.d("datafavoritoidpersona", String.valueOf(sIdUserBuscEmp));
+
+                TraerEmpleosFavoritos(sIdUserBuscEmp);
+            }
+        }
+//        sIdUserBuscEmp = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
+//        TraerEmpleosFavoritos(sIdUserBuscEmp);
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,6 +237,7 @@ public class PantallaCompararEmpleos extends AppCompatActivity {
     public void goVistaComparacionEmpleo(String sIdPrimerEmpleo, String sIdSegundoEmpleo) {
 
         Intent intent = new Intent(PantallaCompararEmpleos.this, PantallaVistaComparacionEmpleos.class);
+
         intent.putExtra("sIdEmpleoComparar1", sIdPrimerEmpleo);
         intent.putExtra("sIdEmpleoComparar2", sIdSegundoEmpleo);
         startActivity(intent);

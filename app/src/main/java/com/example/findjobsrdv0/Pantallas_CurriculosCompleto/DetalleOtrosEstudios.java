@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -56,6 +57,8 @@ public class DetalleOtrosEstudios extends AppCompatActivity {
 
         if (getIntent() != null) {
             detalleotrosestudios = getIntent().getStringExtra("DetalleOtrosEstudiosID");
+
+            Log.d("hola111", String.valueOf(detalleotrosestudios));
             if (!detalleotrosestudios.isEmpty()) {
                 loadOtrosEstudios(detalleotrosestudios);
             }
@@ -73,6 +76,7 @@ public class DetalleOtrosEstudios extends AppCompatActivity {
                 detotrosestudios.orderByChild("sIdCurriculosOtrosCursos").equalTo(detalleotrosestudios)) {
             @Override
             protected void populateViewHolder(DetalleOtrosEstudiosViewHolder ViewHolder, OtrosCursos modelo, int position) {
+
 
                 ViewHolder.txtInstitucion.setText(modelo.getsInstitucionOtrosCursos());
                 ViewHolder.txtAno.setText(modelo.getsAnoOtrosCursos());

@@ -80,7 +80,7 @@ public class PantallaAgregarProvincias extends AppCompatActivity {
         editAtractivosProvReg = (EditText) findViewById( R.id.xmlEditAtractivosProvincia );
 
         mStorageReference = FirebaseStorage.getInstance().getReference();
-        ImageProvReg = (ImageView) findViewById( R.id.xmlImagenProvincia );
+        ImageProvReg = (ImageView) findViewById( R.id.xmlImageProvincia );
         ImageProvReg.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -30,6 +30,8 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
     FirebaseDatabase database;
     Query DBprovincia;
 
+//    String sProvinciakey = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +64,6 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         if (getIntent() != null) {
             sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
             Log.d("provincia", String.valueOf(sNombreProvinciakey));
-
             if (!sNombreProvinciakey.isEmpty()) {
                 goDetalleProvincia(sNombreProvinciakey);
             }
@@ -70,7 +71,6 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
 
         //sNombreProvinciakey = "La vega";
         //goDetalleProvincia(sNombreProvinciakey);
-
     }
 
 
