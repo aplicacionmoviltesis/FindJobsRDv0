@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ import com.squareup.picasso.Picasso;
 public class PantallaDetallesProvincia extends AppCompatActivity {
 
     TextView TvNombreProvincia, TvDescripcionProvincia, TvDivisionProvincia,
-            TvPoblacionProvincia,TvEconomiaProvincia,TvClimaProvincia,
+            TvPoblacionProvincia, TvEconomiaProvincia, TvClimaProvincia,
             TvAtractivosProvincia;
     ImageView MostImagenProvincia;
     String sNombreProvinciakey = "";
@@ -46,7 +47,7 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        MostImagenProvincia = (ImageView) findViewById(R.id.xmlImagenProvincia);
+        MostImagenProvincia = (ImageView) findViewById(R.id.xmlImageProvincia);
         TvDescripcionProvincia = (TextView) findViewById(R.id.xmlTvDescripcionProvincia);
         TvDivisionProvincia = (TextView) findViewById(R.id.xmlTvDivisionProvincia);
 
@@ -58,15 +59,17 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         TvClimaProvincia = (TextView) findViewById(R.id.xmlTvClimaProvincia);
         TvAtractivosProvincia = (TextView) findViewById(R.id.xmlTvAtractivosProvincia);
 
-//        if (getIntent() != null) {
-//            sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
-//            if (!sNombreProvinciakey.isEmpty()) {
-//                goDetalleProvincia(sNombreProvinciakey);
-//            }
-//        }
+        if (getIntent() != null) {
+            sNombreProvinciakey = getIntent().getStringExtra("sProvinciaDE");
+            Log.d("provincia", String.valueOf(sNombreProvinciakey));
 
-        sNombreProvinciakey = "La vega";
-        goDetalleProvincia(sNombreProvinciakey);
+            if (!sNombreProvinciakey.isEmpty()) {
+                goDetalleProvincia(sNombreProvinciakey);
+            }
+        }
+
+        //sNombreProvinciakey = "La vega";
+        //goDetalleProvincia(sNombreProvinciakey);
 
     }
 

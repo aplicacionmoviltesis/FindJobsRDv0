@@ -5,6 +5,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaPerfilEmpleador_;
 import com.example.findjobsrdv0.R;
 
 

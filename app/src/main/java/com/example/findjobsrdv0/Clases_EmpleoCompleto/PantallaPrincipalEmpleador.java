@@ -37,6 +37,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -66,6 +67,9 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal_empleador);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -197,8 +201,12 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     }
 
     public void IrPerfilEmpleador(String EmpleadorConectado) {
+        SharedPreferences preferences = this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
+        String Nombre = preferences.getString("Nombre", "Nombre");
+
         Intent intent = new Intent(this, PantallaPerfilEmpleador_.class);
         intent.putExtra("EmpleadorConectado", EmpleadorConectado);
+        //intent.putExtra("EmpleadorNombre", Nombre);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

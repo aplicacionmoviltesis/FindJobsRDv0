@@ -42,9 +42,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class PantallaRegistrarEmpleos extends AppCompatActivity {
+
+    public static final String URL_REGEX = "^((https?|ftp)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?$";
 
     ImageView fFotoEmpresa;
     Boolean sVerificacionE = false;
@@ -742,6 +746,15 @@ public void limpiarCampor(){
         if (TextUtils.isEmpty(sSexoRequeridoE)) {
             Toast.makeText(this, "Spinner vacío, por favor seleccione el Sexo Requerido", Toast.LENGTH_LONG).show();
             return;
+        }
+//aun no lo e probado
+        if (!TextUtils.isEmpty(sPaginaWebE)) {
+            Pattern p = Pattern.compile(URL_REGEX);
+            Matcher m = p.matcher(sPaginaWebE);//replace with string to compare
+            if(!m.find()) {
+                return;
+            }
+            System.out.println("String contains URL");
         }
 
         if(sEdadMinimaE<18){

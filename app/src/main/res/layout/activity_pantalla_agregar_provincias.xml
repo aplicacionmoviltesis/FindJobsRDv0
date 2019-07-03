@@ -18,7 +18,7 @@
             android:padding="5dp">
 
             <ImageView
-                android:id="@+id/xmlImagenProvincia"
+                android:id="@+id/xmlImageProvincia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"

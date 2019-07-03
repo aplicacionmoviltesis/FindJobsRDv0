@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,8 +34,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import static com.google.android.gms.common.SignInButton.SIZE_WIDE;
 
@@ -52,7 +57,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
     private SignInButton EsignInButton;
     private ProgressBar EprogressBar;
 
-    private DatabaseReference DBReferenceEmpleador;
+    private DatabaseReference DBReferenceEmpleador, dbrncEmpleadores;
     private ProgressDialog progressDialogEmpleador;
 
     private FirebaseAuth firebaseAuthEmpleador;
@@ -61,6 +66,8 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
     public static final int SIGN_IN_CODE = 777;
     private FirebaseAuth mAuthEmpleador;
     private FirebaseAuth.AuthStateListener firebaseAuthListenerEmpleador;
+
+    private String sRncEmpleador;
 
 
     @Override
@@ -75,6 +82,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
 
         firebaseAuthEmpleador = FirebaseAuth.getInstance();
         DBReferenceEmpleador = FirebaseDatabase.getInstance().getReference();
+        dbrncEmpleadores = FirebaseDatabase.getInstance().getReference("Empleadores");
 
         EsignInButton = (SignInButton) findViewById(R.id.EsignInButtonRegistro);
         EsignInButton.setSize(SIZE_WIDE);
@@ -150,6 +158,12 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
             }
         });
 
+        //        ///////////////////////////
+//
+
+//
+//        /////////////////////
+
     }
 
     private void registrarUsuarioEmpleador() {
@@ -168,10 +182,10 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         final String entrada_imagenEmpleador = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesGenerales%2Fonlylogo.png?alt=media&token=0a3e2044-5fe3-4df5-a1b3-a85336c12747";
 
 
-        if (TextUtils.isEmpty(entrada_RNC)) {
-            registroRNC.setError("Campo vacío, por favor escriba el RNC");
-            return;
-        }
+//        if (TextUtils.isEmpty(entrada_RNC)) {
+//            registroRNC.setError("Campo vacío, por favor escriba el RNC");
+//            return;
+//        }
         if (TextUtils.isEmpty(entrada_Nombre)) {
             registroNombreempresa.setError("Campo vacío, por favor escriba el nombre");
             return;
@@ -248,7 +262,35 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        registrarUsuarioEmpleador();
+        sRncEmpleador = registroRNC.getText().toString().trim();
+        Log.d("rnc todo", String.valueOf(sRncEmpleador));
+
+        if (!TextUtils.isEmpty(sRncEmpleador)) {
+            Query q = dbrncEmpleadores.orderByChild("sRncEmpleador").equalTo(sRncEmpleador);
+            q.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        Log.d("rnc no existe", String.valueOf(dataSnapshot));
+                        //Toast.makeText(PantallaRegistroEmpleador.this, "Ir a registrar", Toast.LENGTH_LONG).show();
+                        registrarUsuarioEmpleador();
+
+                    } else {
+                        registroRNC.setError("Este RNC ya a sido registrado");
+                        Log.d("rnc si existe", String.valueOf(dataSnapshot));
+                        //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        } else {
+            //Toast.makeText(this, "Ir a registrar", Toast.LENGTH_LONG).show();
+            registrarUsuarioEmpleador();
+        }
+        //registrarUsuarioEmpleador();
     }
 
     @Override
