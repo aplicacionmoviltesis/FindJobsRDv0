@@ -128,7 +128,7 @@ public class DetalleCurriculo extends AppCompatActivity {
                     marcarFavorito(detallecurrid);
                     Log.d( "estado activo", String.valueOf( b ) );
                 }else {
-                    final Query prueba = DbLikesFavCurri.child( "Empleadores" ).child( sIdPersonaMarco )
+                    final Query prueba = DbLikesFavCurri.child( "EmpleadoresConFavoritos" ).child( sIdPersonaMarco )
                             .child( "likes" ).orderByChild( "IdCurriculoLike" ).equalTo( detallecurrid );
 
                     prueba.addListenerForSingleValueEvent( new ValueEventListener() {
@@ -287,7 +287,7 @@ public class DetalleCurriculo extends AppCompatActivity {
     }
 
     private void VerificarFavorito() {
-        final Query q = DbLikesFavCurri.child( "Empleadores" )//referencia empleadores
+        final Query q = DbLikesFavCurri.child( "EmpleadoresConFavoritos" )//referencia empleadores
                 .child( sIdPersonaMarco )//referencia usuario
                 .child( "likes" )//referencia likes
                 .orderByChild( "IdCurriculoLike" ).equalTo( detallecurrid );
@@ -316,7 +316,7 @@ public class DetalleCurriculo extends AppCompatActivity {
 
     private void marcarFavorito(String sIdCurriculoFav) {
 
-        Query q = DbLikesFavCurri.child("Empleadores")
+        Query q = DbLikesFavCurri.child("EmpleadoresConFavoritos")
                 .child(sIdPersonaMarco)
                 .child("likes")
                 .orderByChild("IdCurriculoLike").equalTo(sIdCurriculoFav);
@@ -327,7 +327,7 @@ public class DetalleCurriculo extends AppCompatActivity {
                     Toast.makeText(DetalleCurriculo.this, "Favorito si", Toast.LENGTH_LONG).show();
                     String newLikeID = DbLikesFavCurri.push().getKey();
 
-                    DbLikesFavCurri.child( "Empleadores" )//referencia empleadores
+                    DbLikesFavCurri.child( "EmpleadoresConFavoritos" )//referencia empleadores
                             .child( sIdPersonaMarco )//referencia usuario
                             .child( "likes" )//referencia likes
                             .child( newLikeID )

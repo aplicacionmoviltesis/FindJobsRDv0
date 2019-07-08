@@ -133,7 +133,7 @@ public class PantallaCompararEmpleos extends AppCompatActivity {
 
     public void TraerEmpleosFavoritos(String sPersonaIdE) {
 
-        Query q = EmpleosFavoritosDB.child("BuscadoresEmpleos")
+        Query q = EmpleosFavoritosDB.child("BuscadoresEmpleosConFavoritos")
                 .child(sPersonaIdE)
                 .child("likes");//referencia likes
 

@@ -96,7 +96,7 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
 
     public void TraerCurriculosFav(String sEmpresaId) {
 
-        Query q = DBCurriculoFavoritos.child("Empleadores")
+        Query q = DBCurriculoFavoritos.child("EmpleadoresConFavoritos")
                 .child(sEmpresaId)
                 .child("likes");
         q.addValueEventListener(new ValueEventListener() {

@@ -178,7 +178,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                     marcarFavorito(sEmpleoIdE);
                     Log.d("estado activo", String.valueOf(b));
                 } else {
-                    final Query prueba = DbLikes.child("BuscadoresEmpleos").child(sIdPersonaAplico)
+                    final Query prueba = DbLikes.child("BuscadoresEmpleosConFavoritos").child(sIdPersonaAplico)
                             .child("likes").orderByChild("IdEmpleoLike").equalTo(sEmpleoIdE);
 
                     prueba.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -416,7 +416,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
     }
 
     private void VerificarFavorito() {
-        final Query q = DbLikes.child("BuscadoresEmpleos")//referencia empleadores
+        final Query q = DbLikes.child("BuscadoresEmpleosConFavoritos")//referencia empleadores
                 .child(sIdPersonaAplico)//referencia usuario
                 .child("likes")//referencia likes
                 .orderByChild("IdEmpleoLike").equalTo(sEmpleoIdE);
@@ -444,7 +444,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
     private void marcarFavorito(String sEmpleoIdEFav) {
 
-        Query q = DbLikes.child("BuscadoresEmpleos")
+        Query q = DbLikes.child("BuscadoresEmpleosConFavoritos")
                 .child(sIdPersonaAplico)
                 .child("likes")
                 .orderByChild("IdEmpleoLike").equalTo(sEmpleoIdEFav);
@@ -454,7 +454,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                 if (!dataSnapshot.exists()) {
                     String newLikeID = DbLikes.push().getKey();
 
-                    DbLikes.child("BuscadoresEmpleos")//referencia empleadores
+                    DbLikes.child("BuscadoresEmpleosConFavoritos")//referencia empleadores
                             .child(sIdPersonaAplico)//referencia usuario
                             .child("likes")//referencia likes
                             .child(newLikeID)
