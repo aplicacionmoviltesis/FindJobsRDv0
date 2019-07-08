@@ -14,7 +14,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Pantallas_CurriculosCompleto.PantallaCompararCurriculo"></activity>
+        <activity android:name=".Administradores.PantallaAdministradorUsuarios"></activity>
+        <activity android:name=".Pantallas_CurriculosCompleto.PantallaCompararCurriculo" />
         <activity
             android:name=".Pantallas_CurriculosCompleto.PantallaVistaComparacionCurriculo"
             android:label="@string/title_activity_pantalla_vista_comparacion_curriculo"
