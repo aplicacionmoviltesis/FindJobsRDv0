@@ -251,7 +251,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
 
     public void beginUpdate() {
 
-        mProgressDialog.setTitle( "Actualizando..." );
+        mProgressDialog.setTitle("Actualizando...");
         mProgressDialog.show();
         DeleteImagenAnterior();
     }

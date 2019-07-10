@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.findjobsrdv0.Administradores.PantallaListaProvincias;
+import com.example.findjobsrdv0.PantallaDetalleAplicacionVerificacionEmpleador;
 import com.example.findjobsrdv0.R;
 
 
@@ -22,7 +23,7 @@ public class PantallaCarga extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(PantallaCarga.this, PantallaModoUsuario.class);
+                Intent intent = new Intent(PantallaCarga.this, PantallaDetalleAplicacionVerificacionEmpleador.class);
                 startActivity(intent);
                 finish();
             }
