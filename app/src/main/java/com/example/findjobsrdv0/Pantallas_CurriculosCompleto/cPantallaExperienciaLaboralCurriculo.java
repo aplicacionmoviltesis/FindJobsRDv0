@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -83,12 +82,12 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         databaseCurriculoAct = FirebaseDatabase.getInstance();
         databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
 
-        Query query = databaseReferenceCurriloAct.orderByChild( "sIdBuscadorEmpleo" ).equalTo( Ukey );
+        Query query = databaseReferenceCurriloAct.orderByChild( "sIdCurriculo" ).equalTo( Ukey );
         query.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
-                    Log.d( "datosdatasnapsht", String.valueOf( dataSnapshot ) );
+//                    Log.d( "datosdatasnapsht", String.valueOf( dataSnapshot ) );
 
                     id = FavdataSnapshot.child( "sIdCurriculo" ).getValue( String.class );
                 }
@@ -131,12 +130,12 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         if (!detalleexperiencialab.isEmpty()) {
             RegistrarExperienciaLaboral( id );
         }
-        loadReferencias( Ukey  );
+        loadExperienciaLab( Ukey  );
     }
 
-    private void loadReferencias(String Ukey ) {
+    private void loadExperienciaLab(String Ukey ) {
         adapter = new FirebaseRecyclerAdapter<ExperienciaLaboral, DetalleExperienciaLaboralViewHolder>( ExperienciaLaboral.class, R.layout.cardview_detalle_experiencia_laboral, DetalleExperienciaLaboralViewHolder.class,
-                experiencialaboralinset.orderByChild( "sIdBuscadorEmpleoExpLab" ).equalTo( Ukey ) ) {
+                experiencialaboralinset.orderByChild( "sIdCurriculoExpLab" ).equalTo( Ukey ) ) {
             @Override
             protected void populateViewHolder(DetalleExperienciaLaboralViewHolder ViewHolder, ExperienciaLaboral model, int position) {
                 ViewHolder.txtNombreempres.setText( model.getsNombreEmpresaExpLab() );
@@ -186,7 +185,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         elFechaEntrada = etFechaEntrada.getText().toString();
         elFechaSalida = etFechaSalida.getText().toString();
         elTelefono = etTelefono.getText().toString();
-        elBuscardorId = id;
+
 
         if (TextUtils.isEmpty( elNombreEmpresa )) {
             etNombreEmpresa.setError( "Campo vacío, por favor escriba el nombre " );
@@ -196,8 +195,8 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         String IdExperienciaLab = mDatabase.push().getKey();
 
         ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral
-                ( IdExperienciaLab, elBuscardorId, elNombreEmpresa,
-                        elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida,usuarioconectado );
+                ( IdExperienciaLab, id, elNombreEmpresa,
+                        elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida );
         mDatabase.child( IdExperienciaLab ).setValue( experienciaLaboral );
         limpiarCampor();
     }
@@ -216,7 +215,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         elFechaEntrada = etFechaEntrada.getText().toString();
         elFechaSalida = etFechaSalida.getText().toString();
         elTelefono = etTelefono.getText().toString();
-        elBuscardorId = id;
+
 
         if (TextUtils.isEmpty( elNombreEmpresa )) {
             etNombreEmpresa.setError( "Campo vacío, por favor escriba el nombre " );
@@ -230,8 +229,8 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         String IdExperienciaLab = IDExperienciaLab;
 
         ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral
-                ( IdExperienciaLab, elBuscardorId, elNombreEmpresa,
-                        elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida,usuarioconectado );
+                ( IdExperienciaLab, id, elNombreEmpresa,
+                        elCargoOcupado, elTelefono, elFechaEntrada, elFechaSalida );
         mDatabase.child( IdExperienciaLab ).setValue( experienciaLaboral );
         limpiarCampor();
     }

@@ -5,15 +5,14 @@ import java.util.Map;
 
 public class OtrosCursos {
 
-   private String sIdOtroCurso, sIdCurriculosOtrosCursos, sIdBuscadorEmpleoOtrosCursos, sInstitucionOtrosCursos, sAnoOtrosCursos, sAreaoTemaOtrosCursos, sTipoEstudioOtrosCursos;
+   private String sIdOtroCurso, sIdCurriculosOtrosCursos, sInstitucionOtrosCursos, sAnoOtrosCursos, sAreaoTemaOtrosCursos, sTipoEstudioOtrosCursos;
 
     public OtrosCursos() {
     }
 
-    public OtrosCursos(String sIdOtroCurso, String sIdCurriculosOtrosCursos, String sIdBuscadorEmpleoOtrosCursos, String sInstitucionOtrosCursos, String sAnoOtrosCursos, String sAreaoTemaOtrosCursos, String sTipoEstudioOtrosCursos) {
+    public OtrosCursos(String sIdOtroCurso, String sIdCurriculosOtrosCursos, String sInstitucionOtrosCursos, String sAnoOtrosCursos, String sAreaoTemaOtrosCursos, String sTipoEstudioOtrosCursos) {
         this.sIdOtroCurso = sIdOtroCurso;
         this.sIdCurriculosOtrosCursos = sIdCurriculosOtrosCursos;
-        this.sIdBuscadorEmpleoOtrosCursos = sIdBuscadorEmpleoOtrosCursos;
         this.sInstitucionOtrosCursos = sInstitucionOtrosCursos;
         this.sAnoOtrosCursos = sAnoOtrosCursos;
         this.sAreaoTemaOtrosCursos = sAreaoTemaOtrosCursos;
@@ -34,14 +33,6 @@ public class OtrosCursos {
 
     public void setsIdCurriculosOtrosCursos(String sIdCurriculosOtrosCursos) {
         this.sIdCurriculosOtrosCursos = sIdCurriculosOtrosCursos;
-    }
-
-    public String getsIdBuscadorEmpleoOtrosCursos() {
-        return sIdBuscadorEmpleoOtrosCursos;
-    }
-
-    public void setsIdBuscadorEmpleoOtrosCursos(String sIdBuscadorEmpleoOtrosCursos) {
-        this.sIdBuscadorEmpleoOtrosCursos = sIdBuscadorEmpleoOtrosCursos;
     }
 
     public String getsInstitucionOtrosCursos() {
@@ -80,7 +71,6 @@ public class OtrosCursos {
 
         HashMap<String,Object> ListOtrosCursos= new HashMap<>();
         ListOtrosCursos.put( "idcodigo", sIdOtroCurso );
-        ListOtrosCursos.put( "idusuarioregistardo", sIdBuscadorEmpleoOtrosCursos );
         ListOtrosCursos.put("institucion", sInstitucionOtrosCursos );
         ListOtrosCursos.put("año", sAnoOtrosCursos );
         ListOtrosCursos.put("areaotema", sAreaoTemaOtrosCursos );

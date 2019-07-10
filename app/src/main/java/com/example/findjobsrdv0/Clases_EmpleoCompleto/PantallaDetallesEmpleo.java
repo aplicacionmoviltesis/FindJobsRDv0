@@ -236,7 +236,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
             }
         });
 
-        CurriculosDataBase.child("Curriculos").orderByChild("sIdBuscadorEmpleo").equalTo(sIdPersonaAplico).addValueEventListener(new ValueEventListener() {
+        CurriculosDataBase.child("Curriculos").orderByChild("sIdCurriculo").equalTo(sIdPersonaAplico).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final List<String> areas = new ArrayList<String>();

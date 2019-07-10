@@ -47,7 +47,7 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
             EmailCurriculoPAE, TelefonoCurriculoPAE, CelularCurriculoPAE,
             ProvinciaCurriculoPAE, EstadoCivilCurriculoPAE, DireccionCurriculoPAE,
             OcupacionCurriculoPAE, IdiomaCurriculoPAE, GradomayorCurriculoPAE,
-            EstadoactualCurriculoPAE, SexoCurriculoPAE, HabilidadesCurriculoPAE, FechaCurriculoPAE;
+            EstadoactualCurriculoPAE, SexoCurriculoPAE, HabilidadesCurriculoPAE, FechaCurriculoPAE, NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad , UniversidadesFormAcad ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,16 +136,19 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
                     HabilidadesCurriculoPAE = DatosCurriculo.getsHabilidadesC();
                     FechaCurriculoPAE = DatosCurriculo.getsFechaC();
                     IdCurriculoPAE = DatosCurriculo.getsIdCurriculo();
-                    IdBuscadorCurriculoPAE = DatosCurriculo.getsIdBuscadorEmpleo();
                     ImagenCurriculoPAE = DatosCurriculo.getsImagenC();
+                    NivelPrimarioFormAcad = DatosCurriculo.getsNivelPrimarioFormAcad();
+                    NivelSecundarioFormAcad = DatosCurriculo.getsNivelSecundarioFormAcad();
+                    CarreraFormAcad = DatosCurriculo.getsCarreraFormAcad();
+                    UniversidadesFormAcad = DatosCurriculo.getsUniversidadFormAcad();
 
 
-                    final Curriculos cv = new Curriculos(IdCurriculoPAE,IdBuscadorCurriculoPAE,ImagenCurriculoPAE,NombreCurriculoPAE, ApellidoCurriculoPAE, CedulaCurriculoPAE,
+                    final Curriculos cv = new Curriculos(IdCurriculoPAE, ImagenCurriculoPAE,NombreCurriculoPAE, ApellidoCurriculoPAE, CedulaCurriculoPAE,
                             EmailCurriculoPAE, TelefonoCurriculoPAE, CelularCurriculoPAE,
                             ProvinciaCurriculoPAE, EstadoCivilCurriculoPAE, DireccionCurriculoPAE,
                             OcupacionCurriculoPAE, IdiomaCurriculoPAE, GradomayorCurriculoPAE,
                             EstadoactualCurriculoPAE, SexoCurriculoPAE, HabilidadesCurriculoPAE,
-                            FechaCurriculoPAE,"aun no funciona");
+                            FechaCurriculoPAE,"aun no funciona", NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad, UniversidadesFormAcad);
 
 
                     PantallaPersonasAplicaronEmpleo.this.mDatasetCurriculo.add(cv);

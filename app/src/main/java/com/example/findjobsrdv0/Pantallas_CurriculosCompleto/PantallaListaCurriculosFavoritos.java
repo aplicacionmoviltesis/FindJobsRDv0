@@ -46,7 +46,7 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
             EmailCurriculoFav, TelefonoCurriculoFav, CelularCurriculoFav,
             ProvinciaCurriculoFav, EstadoCivilCurriculoFav, DireccionCurriculoFav,
             OcupacionCurriculoFav, IdiomaCurriculoFav, GradoMayorCurriculoFav,
-            EstadoActualCurriculoFav, SexoCurriculoFav, HabilidadesCurriculoFav, FechaCurriculoFav;
+            EstadoActualCurriculoFav, SexoCurriculoFav, HabilidadesCurriculoFav, FechaCurriculoFav, NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad , UniversidadesFormAcad ;
 
     private FirebaseAuth mAuthEmpresaFav;
     private FirebaseUser user;
@@ -146,16 +146,19 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
                     HabilidadesCurriculoFav = DatosCurriculoFav.getsHabilidadesC();
                     FechaCurriculoFav = DatosCurriculoFav.getsFechaC();
                     IdCurriculoFavorito = DatosCurriculoFav.getsIdCurriculo();
-                    IdBuscadorCurriculoFav = DatosCurriculoFav.getsIdBuscadorEmpleo();
                     ImagenCurriculoFav = DatosCurriculoFav.getsImagenC();
+                    NivelPrimarioFormAcad = DatosCurriculoFav.getsNivelPrimarioFormAcad();
+                    NivelSecundarioFormAcad = DatosCurriculoFav.getsNivelSecundarioFormAcad();
+                    CarreraFormAcad = DatosCurriculoFav.getsCarreraFormAcad();
+                    UniversidadesFormAcad = DatosCurriculoFav.getsUniversidadFormAcad();
 
 
-                    final Curriculos cvFav = new Curriculos(IdCurriculoFavorito, IdBuscadorCurriculoFav, ImagenCurriculoFav, NombreCurriculoFav, ApellidoCurriculoFav, CedulaCurriculoFav,
+                    final Curriculos cvFav = new Curriculos(IdCurriculoFavorito, ImagenCurriculoFav, NombreCurriculoFav, ApellidoCurriculoFav, CedulaCurriculoFav,
                             EmailCurriculoFav, TelefonoCurriculoFav, CelularCurriculoFav,
                             ProvinciaCurriculoFav, EstadoCivilCurriculoFav, DireccionCurriculoFav,
                             OcupacionCurriculoFav, IdiomaCurriculoFav, GradoMayorCurriculoFav,
                             EstadoActualCurriculoFav, SexoCurriculoFav, HabilidadesCurriculoFav,
-                            FechaCurriculoFav, "aun no funciona");
+                            FechaCurriculoFav, "aun no funciona", NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad, UniversidadesFormAcad );
 
 
                     PantallaListaCurriculosFavoritos.this.mDatasetCurriculo.add(cvFav);

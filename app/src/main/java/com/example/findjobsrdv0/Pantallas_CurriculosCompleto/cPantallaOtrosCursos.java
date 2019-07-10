@@ -67,16 +67,18 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         idusuariosregistrado = Ukey;
 
+        Log.d( "id", String.valueOf( Ukey ) );
+
         loadOtrosEstudios(idusuariosregistrado);
 
-        Query query = databaseReferenceCurriloAct.orderByChild("sIdBuscadorEmpleo").equalTo(Ukey);
+        Query query = databaseReferenceCurriloAct.orderByChild( "sIdCurriculo" ).equalTo(Ukey);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
-                    Log.d("datosdatasnapsht", String.valueOf(dataSnapshot));
+                    Log.d("pedro", String.valueOf(FavdataSnapshot));
                     id = FavdataSnapshot.child("sIdCurriculo").getValue(String.class);
-                    Log.d("datoscurriculos", String.valueOf(id));
+                    Log.d("juan", String.valueOf(id));
                 }
             }
 
@@ -114,7 +116,7 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
     private void loadOtrosEstudios(String idusuariosregistrado) {
         adapter = new FirebaseRecyclerAdapter<OtrosCursos, DetalleOtrosEstudiosViewHolder>(OtrosCursos.class, R.layout.cardview_detalle_otros_estudios, DetalleOtrosEstudiosViewHolder.class,
-                otrosestudiosinset.orderByChild("sIdBuscadorEmpleoOtrosCursos").equalTo(idusuariosregistrado)) {
+                otrosestudiosinset.orderByChild("sIdCurriculosOtrosCursos").equalTo(idusuariosregistrado)) {
             @Override
             protected void populateViewHolder(DetalleOtrosEstudiosViewHolder ViewHolder, OtrosCursos model, int position) {
 
@@ -152,6 +154,8 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         ocTipoEstudio = ssTipodeEstudio.getSelectedItem().toString().trim();
         ocIdBuscardor = id;
 
+//        Log.d( "otrosCursos", ocIdBuscardor );
+
         if (TextUtils.isEmpty(ocInstitucionC)) {
             etInstitucion.setError("Campo vacío, por favor escriba la institucion");
             return;
@@ -161,11 +165,11 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         idusuarioregistrado = Ukey;
 
-        String IdCurriculo = DBOtrosCursosCurriculos.push().getKey();
+        String IdOtrosCursos = DBOtrosCursosCurriculos.push().getKey();
 
-        OtrosCursos otrosCursos = new OtrosCursos(IdCurriculo, id, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio);
+        OtrosCursos otrosCursos = new OtrosCursos(IdOtrosCursos, id,  ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio);
 
-        DBOtrosCursosCurriculos.child(IdCurriculo).setValue(otrosCursos);
+        DBOtrosCursosCurriculos.child(IdOtrosCursos).setValue(otrosCursos);
 
         limpiarCampor();
 
@@ -223,7 +227,7 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         idusuarioregistrado = Ukey;
         String IdCurriculo = IDOtrosEstudiosss;
-        OtrosCursos otrosCursos = new OtrosCursos(IdCurriculo, ocIdBuscardor, idusuarioregistrado, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio);
+        OtrosCursos otrosCursos = new OtrosCursos(IdCurriculo, ocIdBuscardor, ocInstitucionC, ocAnoC, ocAreaoTemaC, ocTipoEstudio);
         DBOtrosCursosCurriculos.child(IdCurriculo).setValue(otrosCursos);
     }
 }

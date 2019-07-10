@@ -7,16 +7,16 @@ public class Curriculos {
 
 
 
-    private String sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC, sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC,
+    private String sIdCurriculo,  sImagenC, sNombreC, sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC,
             sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC, sGradoMayorC,
-            sEstadoActualC, sSexoC, sHabilidadesC,sFechaC, sAreaC;
+            sEstadoActualC, sSexoC, sHabilidadesC,sFechaC, sAreaC, sNivelPrimarioFormAcad,
+            sNivelSecundarioFormAcad, sCarreraFormAcad, sUniversidadFormAcad;
 
     public Curriculos() {
     }
 
-    public Curriculos(String sIdCurriculo, String sIdBuscadorEmpleo, String sImagenC, String sNombreC, String sApellidoC, String sCedulaC, String sEmailC, String sTelefonoC, String sCelularC, String sProvinciaC, String sEstadoCivilC, String sDireccionC, String sOcupacionC, String sIdiomaC, String sGradoMayorC, String sEstadoActualC, String sSexoC, String sHabilidadesC, String sFechaC, String sAreaC) {
+    public Curriculos(String sIdCurriculo, String sImagenC, String sNombreC, String sApellidoC, String sCedulaC, String sEmailC, String sTelefonoC, String sCelularC, String sProvinciaC, String sEstadoCivilC, String sDireccionC, String sOcupacionC, String sIdiomaC, String sGradoMayorC, String sEstadoActualC, String sSexoC, String sHabilidadesC, String sFechaC, String sAreaC, String sNivelPrimarioFormAcad, String sNivelSecundarioFormAcad, String sCarreraFormAcad, String sUniversidadFormAcad) {
         this.sIdCurriculo = sIdCurriculo;
-        this.sIdBuscadorEmpleo = sIdBuscadorEmpleo;
         this.sImagenC = sImagenC;
         this.sNombreC = sNombreC;
         this.sApellidoC = sApellidoC;
@@ -35,6 +35,10 @@ public class Curriculos {
         this.sHabilidadesC = sHabilidadesC;
         this.sFechaC = sFechaC;
         this.sAreaC = sAreaC;
+        this.sNivelPrimarioFormAcad = sNivelPrimarioFormAcad;
+        this.sNivelSecundarioFormAcad = sNivelSecundarioFormAcad;
+        this.sCarreraFormAcad = sCarreraFormAcad;
+        this.sUniversidadFormAcad = sUniversidadFormAcad;
     }
 
     public String getsIdCurriculo() {
@@ -43,14 +47,6 @@ public class Curriculos {
 
     public void setsIdCurriculo(String sIdCurriculo) {
         this.sIdCurriculo = sIdCurriculo;
-    }
-
-    public String getsIdBuscadorEmpleo() {
-        return sIdBuscadorEmpleo;
-    }
-
-    public void setsIdBuscadorEmpleo(String sIdBuscadorEmpleo) {
-        this.sIdBuscadorEmpleo = sIdBuscadorEmpleo;
     }
 
     public String getsImagenC() {
@@ -197,6 +193,38 @@ public class Curriculos {
         this.sAreaC = sAreaC;
     }
 
+    public String getsNivelPrimarioFormAcad() {
+        return sNivelPrimarioFormAcad;
+    }
+
+    public void setsNivelPrimarioFormAcad(String sNivelPrimarioFormAcad) {
+        this.sNivelPrimarioFormAcad = sNivelPrimarioFormAcad;
+    }
+
+    public String getsNivelSecundarioFormAcad() {
+        return sNivelSecundarioFormAcad;
+    }
+
+    public void setsNivelSecundarioFormAcad(String sNivelSecundarioFormAcad) {
+        this.sNivelSecundarioFormAcad = sNivelSecundarioFormAcad;
+    }
+
+    public String getsCarreraFormAcad() {
+        return sCarreraFormAcad;
+    }
+
+    public void setsCarreraFormAcad(String sCarreraFormAcad) {
+        this.sCarreraFormAcad = sCarreraFormAcad;
+    }
+
+    public String getsUniversidadFormAcad() {
+        return sUniversidadFormAcad;
+    }
+
+    public void setsUniversidadFormAcad(String sUniversidadFormAcad) {
+        this.sUniversidadFormAcad = sUniversidadFormAcad;
+    }
+
     public Map<String, Object> CurrtoMap() {
 
         HashMap<String, Object> ListCurriculo = new HashMap<>();
@@ -219,6 +247,10 @@ public class Curriculos {
         ListCurriculo.put( "sHabilidadesC", sHabilidadesC );
         ListCurriculo.put( "sFechaC", sFechaC );
         ListCurriculo.put( "sAreaC", sAreaC );
+        ListCurriculo.put( "sNivelPrimarioFormAcad", sNivelPrimarioFormAcad );
+        ListCurriculo.put( "sNivelSecundarioFormAcad", sNivelSecundarioFormAcad );
+        ListCurriculo.put( "sCarreraFormAcad", sCarreraFormAcad );
+        ListCurriculo.put( "sUniversidadFormAcad", sUniversidadFormAcad );
 
         return ListCurriculo;
     }

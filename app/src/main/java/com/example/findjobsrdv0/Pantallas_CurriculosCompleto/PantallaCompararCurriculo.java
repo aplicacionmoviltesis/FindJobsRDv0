@@ -165,7 +165,6 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
                     Curriculos DatosCurriculoFav = datasnapshot.getValue(Curriculos.class);
 
                     sIdCurriculo = DatosCurriculoFav.getsIdCurriculo();
-                    sIdBuscadorEmpleo = DatosCurriculoFav.getsIdBuscadorEmpleo();
                     sImagenC = DatosCurriculoFav.getsImagenC();
                     sNombreC = DatosCurriculoFav.getsNombreC();
                     sApellidoC = DatosCurriculoFav.getsApellidoC();

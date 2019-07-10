@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class ExperienciaLaboral {
     private String sIdExperienciaLaboral, sIdCurriculoExpLab, sNombreEmpresaExpLab, sCargoOcupadoExpLab, sTelefonoExpLab, sFechaEntradaExpLab,
-            sFechaSalidaExpLab, sIdBuscadorEmpleoExpLab;
+            sFechaSalidaExpLab;
 
     public ExperienciaLaboral() {
     }
 
-    public ExperienciaLaboral(String sIdExperienciaLaboral, String sIdCurriculoExpLab, String sNombreEmpresaExpLab, String sCargoOcupadoExpLab, String sTelefonoExpLab, String sFechaEntradaExpLab, String sFechaSalidaExpLab, String sIdBuscadorEmpleoExpLab) {
+    public ExperienciaLaboral(String sIdExperienciaLaboral, String sIdCurriculoExpLab, String sNombreEmpresaExpLab, String sCargoOcupadoExpLab, String sTelefonoExpLab, String sFechaEntradaExpLab, String sFechaSalidaExpLab) {
         this.sIdExperienciaLaboral = sIdExperienciaLaboral;
         this.sIdCurriculoExpLab = sIdCurriculoExpLab;
         this.sNombreEmpresaExpLab = sNombreEmpresaExpLab;
@@ -18,7 +18,6 @@ public class ExperienciaLaboral {
         this.sTelefonoExpLab = sTelefonoExpLab;
         this.sFechaEntradaExpLab = sFechaEntradaExpLab;
         this.sFechaSalidaExpLab = sFechaSalidaExpLab;
-        this.sIdBuscadorEmpleoExpLab = sIdBuscadorEmpleoExpLab;
     }
 
     public String getsIdExperienciaLaboral() {
@@ -77,14 +76,6 @@ public class ExperienciaLaboral {
         this.sFechaSalidaExpLab = sFechaSalidaExpLab;
     }
 
-    public String getsIdBuscadorEmpleoExpLab() {
-        return sIdBuscadorEmpleoExpLab;
-    }
-
-    public void setsIdBuscadorEmpleoExpLab(String sIdBuscadorEmpleoExpLab) {
-        this.sIdBuscadorEmpleoExpLab = sIdBuscadorEmpleoExpLab;
-    }
-
     public Map<String, Object> ExpLab(){
 
         HashMap<String,Object> ListExpLab= new HashMap<>();
@@ -93,7 +84,6 @@ public class ExperienciaLaboral {
         ListExpLab.put("Telefono", sTelefonoExpLab );
         ListExpLab.put("Fecha_Entrada", sFechaEntradaExpLab );
         ListExpLab.put("Fecha_Salida", sFechaSalidaExpLab );
-        ListExpLab.put( "IdUsuarioConectado", sIdBuscadorEmpleoExpLab );
 
         return ListExpLab;
     }

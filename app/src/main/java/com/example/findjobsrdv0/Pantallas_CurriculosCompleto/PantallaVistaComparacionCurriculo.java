@@ -1,17 +1,10 @@
 package com.example.findjobsrdv0.Pantallas_CurriculosCompleto;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleos;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.ExperienciaLaboral;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.FormacionAcademica;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
