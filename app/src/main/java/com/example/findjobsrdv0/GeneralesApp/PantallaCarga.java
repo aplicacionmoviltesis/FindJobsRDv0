@@ -6,7 +6,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.findjobsrdv0.Administradores.PantallaListaProvincias;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaAplicarVerificacionEmpleador;
 import com.example.findjobsrdv0.R;
 
 

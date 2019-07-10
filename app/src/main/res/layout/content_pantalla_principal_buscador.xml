@@ -48,9 +48,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_toRightOf="@id/imageView"
-                    android:text="Registrar Curriculo"
+                    android:text="Completar/Actualizar Curriculo"
                     android:textColor="@color/md_blue_900"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -66,6 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewTitle"
                     android:layout_marginTop="5dp"
+                    android:padding="5dp"
                     android:gravity="center"
                     android:text="Aquí puedes registrar todos los datos de tu currículo."
                     android:textColor="@color/md_blue_900"

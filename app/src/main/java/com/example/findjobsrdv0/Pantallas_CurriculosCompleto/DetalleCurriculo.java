@@ -156,15 +156,15 @@ public class DetalleCurriculo extends AppCompatActivity {
         sIdEmpresaAplico= user.getUid();
 
 
-        btnIrFormacionAcademica = (Button) findViewById(R.id.xmlBtnFormacionAcademicaDetalleCu);
-        btnIrFormacionAcademica.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DetalleCurriculo.this, DetalleFormacionAcademica.class);
-                intent.putExtra("DetalleFormacionAcademicaID", detallecurrid);
-                startActivity(intent);
-            }
-        });
+//        btnIrFormacionAcademica = (Button) findViewById(R.id.xmlBtnFormacionAcademicaDetalleCu);
+//        btnIrFormacionAcademica.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DetalleCurriculo.this, DetalleFormacionAcademica.class);
+//                intent.putExtra("DetalleFormacionAcademicaID", detallecurrid);
+//                startActivity(intent);
+//            }
+//        });
 
         btnIrReferencia = (Button) findViewById(R.id.xmlBtnReferenciasDetalleCu);
         btnIrReferencia.setOnClickListener(new View.OnClickListener() {

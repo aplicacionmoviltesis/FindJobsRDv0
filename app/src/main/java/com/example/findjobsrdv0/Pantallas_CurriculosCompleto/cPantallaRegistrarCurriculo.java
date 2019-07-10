@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -33,6 +34,7 @@ import com.example.findjobsrdv0.Administradores.PantallaActualizarProvincia;
 import com.example.findjobsrdv0.GeneralesApp.DatePickerFragment;
 
 import com.example.findjobsrdv0.GeneralesApp.MultipleSelectionSpinner;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
 import com.example.findjobsrdv0.R;
@@ -63,10 +65,11 @@ import static com.google.firebase.storage.FirebaseStorage.getInstance;
 public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     private EditText etNombre, etApellido, etCedula, etEmail, etTelefono, etCelular,
-            etDireccion, etOcupacion, etHabilidades;
+            etDireccion, etOcupacion, etHabilidades, etNivelPrimario, etNivelSecundario, etCarrera;
 
     private String nombre, apellido, cedula, email, telefono, celular, provincia, estadoCivil, direccion, ocupacion,
-            idioma, gradomayor, estadoactual, sexo, habilidades, fecha, sAreaC, sImagenC;
+            idioma, gradomayor, estadoactual, sexo, habilidades, fecha, sAreaC, sImagenC, NivelPrimarioFormAcad,
+            NivelSecundarioFormAcad, CarreraFormAcad;
 
     private Button btnIdiomasc;
     private SearchableSpinner spinEstadoCivil, spinGradoMayor, spinEstadoActual;
@@ -117,6 +120,21 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     Button btnregistrarC;
     Button btnActualizarC;
 
+
+    DatabaseReference UniversidadesRef;
+    SearchableSpinner spinUniversidadFormAcad;
+    String UniversidadesFormAcad;
+
+    //----------------------------------------------------------------------------------------
+    private DatabaseReference Areas;
+    private DatabaseReference RegistrarAreas;
+    private SearchableSpinner spinAreaPrincipal, spinAreaSecundaria, spinAreaTerciaria;
+    private String AreaPrincipal, AreaSecundaria, AreaTerciaria;
+
+    private String CodigoArea;
+    private String IdAreas;
+//-----------------------------------------------------------------------------------------
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -153,6 +171,11 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         etDireccion = (EditText) findViewById( R.id.etdireccion );
         etOcupacion = (EditText) findViewById( R.id.etocupacion );
         etHabilidades = (EditText) findViewById( R.id.ethabilidades );
+        etNivelPrimario = (EditText) findViewById( R.id.xmlEditNivelPrimarioNameFA );
+        etNivelSecundario = (EditText) findViewById( R.id.xmlEditNivelSecundarioNameFA );
+        etCarrera = (EditText) findViewById( R.id.xmlEditCarreraNameFA );
+
+
         mEtxtFecha = (TextView) findViewById( R.id.tv );
         mEtxtIdioma = (TextView) findViewById( R.id.tvop );
 
@@ -299,7 +322,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         listItems = getResources().getStringArray( R.array.InfoIdiomas );
         checkedItems = new boolean[listItems.length];
 
-        final String cIdCurriculo = databaseReferenceCurrilo.push().getKey();
+        final String cIdCurriculo = userActivo;
 
         btnregistrarC = findViewById( R.id.xmlBtnRegistrarDatosGC );
         btnregistrarC.setOnClickListener( new View.OnClickListener() {
@@ -317,6 +340,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                             //Toast.makeText(PantallaRegistroEmpleador.this, "Ir a registrar", Toast.LENGTH_LONG).show();
                             sAreaC = spinAreaC.getSelectedItemsAsString();
                             registrarcurriculo( cIdCurriculo );
+
 
                         } else {
                             etCedula.setError( "Esta cedula ya a sido registrado" );
@@ -339,22 +363,24 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             public void onClick(View view) {
                 sAreaC = spinAreaC.getSelectedItemsAsString();
 
-                DeleteImagenAnterior();
+                // DeleteImagenAnterior();
+                actualizarcurriculo( userActivo );
 
             }
         } );
 
         CargarCamposCurriculo( userActivo );
 
-        btnFormacionAcademica = (Button) findViewById( R.id.xmlBtnFormacionAcademicaC );
-        btnFormacionAcademica.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent( cPantallaRegistrarCurriculo.this, cPantallaFormacionAcademicaCurriculo.class );
-                intent.putExtra( "DetalleFormacionAcademicaID", cIdCurriculo );
-                startActivity( intent );
-            }
-        } );
+
+//        btnFormacionAcademica = (Button) findViewById( R.id.xmlBtnFormacionAcademicaC );
+//        btnFormacionAcademica.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent( cPantallaRegistrarCurriculo.this, cPantallaFormacionAcademicaCurriculo.class );
+//                intent.putExtra( "DetalleFormacionAcademicaID", cIdCurriculo );
+//                startActivity( intent );
+//            }
+//        } );
 
         btnOtrosCursosCurriculo = (Button) findViewById( R.id.AbrirOtrosCursos );
         btnOtrosCursosCurriculo.setOnClickListener( new View.OnClickListener() {
@@ -459,6 +485,167 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 }
             }
         } );
+
+
+        UniversidadesRef = FirebaseDatabase.getInstance().getReference();
+        spinUniversidadFormAcad = (SearchableSpinner) findViewById( R.id.xmlspinUniversidadFormAcad );
+        spinUniversidadFormAcad.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!IsFirstTimeClick) {
+                    UniversidadesFormAcad = spinUniversidadFormAcad.getSelectedItem().toString();
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        } );
+
+        UniversidadesRef.child( "Universidades" ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> ListUniversidades = new ArrayList<String>();
+                for (DataSnapshot UniversidadSnapshot : dataSnapshot.getChildren()) {
+                    String UniversidadName = UniversidadSnapshot.child( "sNombreUniversidad" ).getValue( String.class );
+                    ListUniversidades.add( UniversidadName );
+                }
+                ArrayAdapter<String> UniversidadesAdapter = new ArrayAdapter<String>( cPantallaRegistrarCurriculo.this, android.R.layout.simple_spinner_item, ListUniversidades );
+                UniversidadesAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                spinUniversidadFormAcad.setAdapter( UniversidadesAdapter );
+                spinUniversidadFormAcad.setTitle( "Seleccionar Universidad" );
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+
+
+//---------------------------------------------------------------------------------------------
+
+        RegistrarAreas = FirebaseDatabase.getInstance().getReference( "AreasCurriculos" );
+
+        Areas = FirebaseDatabase.getInstance().getReference();
+        spinAreaPrincipal = (SearchableSpinner) findViewById( R.id.xmlspinAreaPrincipal );
+        spinAreaPrincipal.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!IsFirstTimeClick) {
+                    AreaPrincipal = spinAreaPrincipal.getSelectedItem().toString();
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        } );
+
+        Areas.child( "Areas" ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> ListAreas = new ArrayList<String>();
+                for (DataSnapshot AreasSnapshot : dataSnapshot.getChildren()) {
+                    String AreaName = AreasSnapshot.child( "sNombreArea" ).getValue( String.class );
+                    ListAreas.add( AreaName );
+                }
+                ArrayAdapter<String> AreasAdapter = new ArrayAdapter<String>( cPantallaRegistrarCurriculo.this, android.R.layout.simple_spinner_item, ListAreas );
+                AreasAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                spinAreaPrincipal.setAdapter( AreasAdapter );
+                spinAreaPrincipal.setTitle( "Seleccionar Area" );
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+
+        spinAreaSecundaria = (SearchableSpinner) findViewById( R.id.xmlspinAreaSecundario );
+        spinAreaSecundaria.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!IsFirstTimeClick) {
+                    AreaSecundaria = spinAreaSecundaria.getSelectedItem().toString();
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        } );
+
+        Areas.child( "Areas" ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> ListAreas = new ArrayList<String>();
+                for (DataSnapshot AreasSnapshot : dataSnapshot.getChildren()) {
+                    String AreaName = AreasSnapshot.child( "sNombreArea" ).getValue( String.class );
+                    ListAreas.add( AreaName );
+                }
+                ArrayAdapter<String> AreasAdapter = new ArrayAdapter<String>( cPantallaRegistrarCurriculo.this, android.R.layout.simple_spinner_item, ListAreas );
+                AreasAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                spinAreaSecundaria.setAdapter( AreasAdapter );
+                spinAreaSecundaria.setTitle( "Seleccionar Area" );
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+
+        spinAreaTerciaria = (SearchableSpinner) findViewById( R.id.xmlspinAreaTerciaria );
+        spinAreaTerciaria.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!IsFirstTimeClick) {
+                    AreaTerciaria = spinAreaTerciaria.getSelectedItem().toString();
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        } );
+
+        Areas.child( "Areas" ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> ListAreas = new ArrayList<String>();
+                for (DataSnapshot AreasSnapshot : dataSnapshot.getChildren()) {
+                    String AreaName = AreasSnapshot.child( "sNombreArea" ).getValue( String.class );
+                    ListAreas.add( AreaName );
+                }
+                ArrayAdapter<String> AreasAdapter = new ArrayAdapter<String>( cPantallaRegistrarCurriculo.this, android.R.layout.simple_spinner_item, ListAreas );
+                AreasAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                spinAreaTerciaria.setAdapter( AreasAdapter );
+                spinAreaTerciaria.setTitle( "Seleccionar Area" );
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+
+
+//--------------------------------------------------------------------------------------------------
+
+
     }
 
     public void onButtonClicked(View v) {
@@ -466,23 +653,24 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         newFragment.show( getFragmentManager(), "Date Picker" );
     }
 
+
     private void CargarCamposCurriculo(String userActivo) {
 
         cargarCurriculo = FirebaseDatabase.getInstance().getReference( "Curriculos" );
 
-        Query q = cargarCurriculo.orderByChild( "sIdBuscadorEmpleo" ).equalTo( userActivo );
+        Query q = cargarCurriculo.orderByChild( "sIdCurriculo" ).equalTo( userActivo );
         q.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Toast.makeText( cPantallaRegistrarCurriculo.this, "entro", Toast.LENGTH_SHORT ).show();
+                //  Toast.makeText( cPantallaRegistrarCurriculo.this, "entro", Toast.LENGTH_SHORT ).show();
 
-                Log.d( "entro", String.valueOf( dataSnapshot ) );
+                //Log.d( "entro", String.valueOf( dataSnapshot ) );
 
                 if (dataSnapshot.exists()) {
                     btnregistrarC.setEnabled( false );
 //                        btnActualizarC.setEnabled( true );
-                }else {
+                } else {
                     btnActualizarC.setEnabled( false );
                 }
 
@@ -514,7 +702,23 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                     mEtxtFecha.setText( curriculos.getsFechaC() );
                     etHabilidades.setText( curriculos.getsHabilidadesC() );
 
+                    etNivelPrimario.setText( curriculos.getsNivelPrimarioFormAcad() );
+                    etNivelSecundario.setText( curriculos.getsNivelSecundarioFormAcad() );
+                    etCarrera.setText( curriculos.getsCarreraFormAcad() );
+
+                    spinUniversidadFormAcad.setSelection( obtenerPosicionItem( spinUniversidadFormAcad, curriculos.getsUniversidadFormAcad() ) );
+
+
                     CodigoCurriculo = curriculos.getsIdCurriculo();
+
+                    CargarCamposArea( userActivo );
+
+
+                    Log.d( "CodigoCurriculoCurr", String.valueOf( curriculos ) );
+
+                    Log.d( "CodigoCurriculoget", curriculos.getsIdCurriculo() );
+
+                    Log.d( "CodigoCurriculoCodi", CodigoCurriculo );
 
                     RadioGroup RGsexo = (RadioGroup) findViewById( R.id.radiobuttonsexo );
                     RGsexo.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
@@ -552,6 +756,46 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+    }
+
+    private void CargarCamposArea(String userActivo) {
+        Query q = RegistrarAreas.orderByChild( "sIdCurriculo" ).equalTo( userActivo );
+        q.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
+                    AreasCurriculos areasCurriculos = datasnapshot.getValue( AreasCurriculos.class );
+
+                    spinAreaPrincipal.setSelection( obtenerPosicionItem( spinAreaPrincipal, areasCurriculos.getsAreaPrincipalCurr() ) );
+                    spinAreaSecundaria.setSelection( obtenerPosicionItem( spinAreaSecundaria, areasCurriculos.getsAreaSecundariaCurr() ) );
+                    spinAreaTerciaria.setSelection( obtenerPosicionItem( spinAreaTerciaria, areasCurriculos.getsAreaTerciaria() ) );
+
+                    CodigoArea = areasCurriculos.getsIdAreaCurriculo();
+
+                }
+            }
+
+            public int obtenerPosicionItem(Spinner spinner, String fruta) {
+                //Creamos la variable posicion y lo inicializamos en 0
+                int posicion = 0;
+                //Recorre el spinner en busca del ítem que coincida con el parametro `String fruta`
+                //que lo pasaremos posteriormente
+                for (int i = 0; i < spinner.getCount(); i++) {
+                    //Almacena la posición del ítem que coincida con la búsqueda
+                    if (spinner.getItemAtPosition( i ).toString().equalsIgnoreCase( fruta )) {
+                        posicion = i;
+                    }
+                }
+                //Devuelve un valor entero (si encontro una coincidencia devuelve la
+                // posición 0 o N, de lo contrario devuelve 0 = posición inicial)
+                return posicion;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         } );
@@ -602,68 +846,59 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     private void registrarcurriculo(final String cIdCurriculo) {
 
-        if (mFilePathUri != null) {
-            mProgressDialog.setTitle( "Subiendo Curriculo..." );
-            mProgressDialog.show();
+        nombre = etNombre.getText().toString().trim().toLowerCase();
+        apellido = etApellido.getText().toString().trim();
+        cedula = etCedula.getText().toString().trim();
+        email = etEmail.getText().toString().trim();
+        celular = etCelular.getText().toString().trim();
+        telefono = etTelefono.getText().toString().trim();
+        direccion = etDireccion.getText().toString().trim();
+        ocupacion = etOcupacion.getText().toString().trim();
+        idioma = mEtxtIdioma.getText().toString().trim();
+        habilidades = etHabilidades.getText().toString().trim();
+        fecha = mEtxtFecha.getText().toString().trim();
 
-            final StorageReference StorageReference2nd = mStorageReference.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUri ) );
+        NivelPrimarioFormAcad = etNivelPrimario.getText().toString().trim();
+        NivelSecundarioFormAcad = etNivelSecundario.getText().toString().trim();
+        CarreraFormAcad = etCarrera.getText().toString().trim();
 
-            UploadTask uploadTask = StorageReference2nd.putFile( mFilePathUri );
-
-            Task<Uri> urlTask = uploadTask.continueWithTask( new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-                    // Continue with the task to get the download URL
-                    return StorageReference2nd.getDownloadUrl();
-                }
-            } ).addOnCompleteListener( new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-                        String downloadURL = downloadUri.toString();
-                        Log.d( "url", downloadURL );
-                        nombre = etNombre.getText().toString().trim().toLowerCase();
-                        apellido = etApellido.getText().toString().trim();
-                        cedula = etCedula.getText().toString().trim();
-                        email = etEmail.getText().toString().trim();
-                        celular = etCelular.getText().toString().trim();
-                        telefono = etTelefono.getText().toString().trim();
-                        direccion = etDireccion.getText().toString().trim();
-                        ocupacion = etOcupacion.getText().toString().trim();
-                        idioma = mEtxtIdioma.getText().toString().trim();
-                        habilidades = etHabilidades.getText().toString().trim();
-                        fecha = mEtxtFecha.getText().toString().trim();
-
-                        mProgressDialog.dismiss();
-
-                        String cIdBuscardor = userActivo;
-
-                        Curriculos curriculos = new Curriculos( cIdCurriculo, cIdBuscardor,
-                                downloadURL, nombre, apellido, cedula, email, telefono, celular,
-                                provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual,
-                                sexo, habilidades, fecha, sAreaC );
-
-                        databaseReferenceCurrilo.child( cIdCurriculo ).setValue( curriculos );
-                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo subida exitosamente...", Toast.LENGTH_LONG ).show();
-
-                    } else {
-
-                    }
-                }
-            } ).addOnFailureListener( new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    mProgressDialog.dismiss();
-                    Toast.makeText( cPantallaRegistrarCurriculo.this, e.getMessage(), Toast.LENGTH_LONG ).show();
-                }
-            } );
-        } else {
-            Toast.makeText( cPantallaRegistrarCurriculo.this, "Por favor, Seleccionar una Imagen", Toast.LENGTH_LONG ).show();
+        if (TextUtils.isEmpty( cedula )) {
+            etCedula.setError ("Campo vacío, por favor escriba la Cedula ");
+            return;
         }
+//        if (TextUtils.isEmpty(AreaPrincipal)) {
+//            Toast.makeText(this, "Spinner vacío, por favor seleccione una Area", Toast.LENGTH_LONG).show();
+//            return;
+//        }
+
+        mProgressDialog.dismiss();
+
+//                        String cIdBuscardor = userActivo;
+
+        Curriculos curriculos = new Curriculos( cIdCurriculo,
+                "https://s3-us-west-2.amazonaws.com/devcodepro/media/blog/la-fundacion-de-google.png", nombre, apellido, cedula, email, telefono, celular,
+                provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual,
+                sexo, habilidades, fecha, sAreaC, NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad, UniversidadesFormAcad );
+
+        databaseReferenceCurrilo.child( cIdCurriculo ).setValue( curriculos );
+
+        resgistrarAreas( cIdCurriculo );
+
+        Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo subida exitosamente...", Toast.LENGTH_LONG ).show();
+
+    }
+
+    private void resgistrarAreas(final String cIdCurricul) {
+
+        IdAreas = RegistrarAreas.push().getKey();
+
+        AreasCurriculos areasCurriculos = new AreasCurriculos( IdAreas, cIdCurricul,
+                AreaPrincipal, AreaSecundaria, AreaTerciaria );
+
+        RegistrarAreas.child( IdAreas ).setValue( areasCurriculos );
+//        Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo Actualizado exitosamente...", Toast.LENGTH_LONG ).show();
+
+
     }
 
     private String getFileExtension(Uri uri) {
@@ -688,7 +923,6 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                     Toast.makeText( cPantallaRegistrarCurriculo.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
 
                     mProgressDialog.dismiss();
-                    SubirNuevaImagen();
                 }
             } );
         } else {
@@ -716,8 +950,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
-                actualizarcurriculo( userActivo, downloadUri.toString() );
-
+//                actualizarcurriculo( userActivo, downloadUri.toString() );
             }
         } ).addOnFailureListener( new OnFailureListener() {
             @Override
@@ -728,35 +961,52 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         } );
     }
 
-    private void actualizarcurriculo(final String userActivo, String foto) {
-        if (mFilePathUri != null) {
-            mProgressDialog.setTitle( "Actualizando Curriculo..." );
-            mProgressDialog.show();
 
-            nombre = etNombre.getText().toString().trim().toLowerCase();
-            apellido = etApellido.getText().toString().trim();
-            cedula = etCedula.getText().toString().trim();
-            email = etEmail.getText().toString().trim();
-            celular = etCelular.getText().toString().trim();
-            telefono = etTelefono.getText().toString().trim();
-            direccion = etDireccion.getText().toString().trim();
-            ocupacion = etOcupacion.getText().toString().trim();
-            idioma = mEtxtIdioma.getText().toString().trim();
-            habilidades = etHabilidades.getText().toString().trim();
-            fecha = mEtxtFecha.getText().toString().trim();
+    private void actualizarcurriculo(final String IdCurriculoActualizar) {
+        mProgressDialog.setTitle( "Actualizando Curriculo..." );
+        mProgressDialog.show();
 
-            mProgressDialog.dismiss();
+        nombre = etNombre.getText().toString().trim().toLowerCase();
+        apellido = etApellido.getText().toString().trim();
+        cedula = etCedula.getText().toString().trim();
+        email = etEmail.getText().toString().trim();
+        celular = etCelular.getText().toString().trim();
+        telefono = etTelefono.getText().toString().trim();
+        direccion = etDireccion.getText().toString().trim();
+        ocupacion = etOcupacion.getText().toString().trim();
+        idioma = mEtxtIdioma.getText().toString().trim();
+        habilidades = etHabilidades.getText().toString().trim();
+        fecha = mEtxtFecha.getText().toString().trim();
 
-            String cIdBuscardor = userActivo;
+        NivelPrimarioFormAcad = etNivelPrimario.getText().toString().trim();
+        NivelSecundarioFormAcad = etNivelSecundario.getText().toString().trim();
+        CarreraFormAcad = etCarrera.getText().toString().trim();
 
-            Curriculos curriculos = new Curriculos( CodigoCurriculo, cIdBuscardor,
-                    foto, nombre, apellido, cedula, email, telefono, celular,
-                    provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual,
-                    sexo, habilidades, fecha, sAreaC );
+        mProgressDialog.dismiss();
 
-            databaseReferenceCurrilo.child( CodigoCurriculo ).setValue( curriculos );
-            Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo Actualizado exitosamente...", Toast.LENGTH_LONG ).show();
+//            String cIdBuscardor = userActivo;
 
-        }
+        Curriculos curriculos = new Curriculos( IdCurriculoActualizar,
+                "https://s3-us-west-2.amazonaws.com/devcodepro/media/blog/la-fundacion-de-google.png", nombre, apellido, cedula, email, telefono, celular,
+                provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual,
+                sexo, habilidades, fecha, sAreaC, NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad, UniversidadesFormAcad );
+
+        databaseReferenceCurrilo.child( IdCurriculoActualizar ).setValue( curriculos );
+
+        actualizarAreas( CodigoArea );
+
+        Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo Actualizado exitosamente...", Toast.LENGTH_LONG ).show();
+
+
+    }
+
+    private void actualizarAreas(final String CodigoArea) {
+
+        AreasCurriculos areasCurriculos = new AreasCurriculos( CodigoArea, userActivo,
+                AreaPrincipal, AreaSecundaria, AreaTerciaria );
+
+        RegistrarAreas.child( CodigoArea ).setValue( areasCurriculos );
+//        Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo Actualizado exitosamente...", Toast.LENGTH_LONG ).show();
+
     }
 }

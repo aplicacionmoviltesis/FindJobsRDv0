@@ -72,7 +72,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         databaseCurriculoAct = FirebaseDatabase.getInstance();
         databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
 
-        Query query = databaseReferenceCurriloAct.orderByChild( "sIdBuscadorEmpleo" ).equalTo( Ukey );
+        Query query = databaseReferenceCurriloAct.orderByChild( "sIdCurriculo" ).equalTo( Ukey );
         query.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -110,19 +110,19 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             }
         } );
 
-        if (getIntent() != null)
-            detallereferencias = getIntent().getStringExtra( "DetalleReferenciasID" );
-
-        if (!detallereferencias.isEmpty()) {
-            RegistrarReferencia( detallereferencias );
-        }
+//        if (getIntent() != null)
+//            detallereferencias = getIntent().getStringExtra( "DetalleReferenciasID" );
+//
+//        if (!detallereferencias.isEmpty()) {
+//            RegistrarReferencia( detallereferencias );
+//        }
 
         loadReferencias( Ukey );
     }
 
     private void loadReferencias(String Ukey) {
         adapter = new FirebaseRecyclerAdapter<Referencias, DetalleReferenciaViewHolder>( Referencias.class, R.layout.cardview_detalle_referencia, DetalleReferenciaViewHolder.class,
-                mDatabase.orderByChild( "sBuscadorEmpleoRef" ).equalTo( Ukey ) ) {
+                mDatabase.orderByChild( "sIdCurriculorRef" ).equalTo( Ukey ) ) {
             @Override
             protected void populateViewHolder(DetalleReferenciaViewHolder ViewHolder, Referencias model, int position) {
                 ViewHolder.txtInstitucion.setText( model.getsInstitucionRef() );
@@ -189,7 +189,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
    */
         String IdReferencia = mDatabase.push().getKey();
 
-        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
+        Referencias referencias = new Referencias( IdReferencia, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
         mDatabase.child( IdReferencia ).setValue( referencias );
         limpiarCampor();
     }
@@ -212,7 +212,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
    */
         String IdReferencia = IdReferenciasss;
 
-        Referencias referencias = new Referencias( IdReferencia, rBuscadorId, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
+        Referencias referencias = new Referencias( IdReferencia, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
         mDatabase.child( IdReferencia ).setValue( referencias );
     }
 }

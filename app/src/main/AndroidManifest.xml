@@ -14,7 +14,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Administradores.PantallaAdministradorUsuarios"></activity>
+        <activity android:name=".Clases_EmpleoCompleto.PantallaAplicarVerificacionEmpleador"></activity>
+        <activity android:name=".Administradores.RegistrarAdministrador" />
+        <activity android:name=".Administradores.PantallaAdministradorUsuarios" />
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaCompararCurriculo" />
         <activity
             android:name=".Pantallas_CurriculosCompleto.PantallaVistaComparacionCurriculo"
@@ -69,7 +71,6 @@
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleOtrosEstudios" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleExperienciaLaboral" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleReferencias" />
-        <activity android:name=".Pantallas_CurriculosCompleto.DetalleFormacionAcademica" />
         <activity android:name=".Pantallas_CurriculosCompleto.DetalleCurriculo" />
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados" />
         <activity android:name=".Pantallas_CurriculosCompleto.cPantallaReferenciasCurriculo" />
@@ -92,9 +93,6 @@
             android:name=".Clases_EmpleoCompleto.PantallaRegistrarEmpleos"
             android:label="@string/title_activity_pantalla_registrar_empleos"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Pantallas_CurriculosCompleto.cPantallaFormacionAcademicaCurriculo"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".Pantallas_CurriculosCompleto.cPantallaExperienciaLaboralCurriculo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
