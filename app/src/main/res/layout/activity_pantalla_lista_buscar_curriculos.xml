@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PantallaListaBuscarCurriculos">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/xmlTvTiSeleccionaProvincia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Seleccionar Provincia"
+            android:textColor="@color/md_blue_900"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/xmlspinProvinciaBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:completionHintView="@color/md_blue_900"
+            android:dropDownSelector="@color/gradStop"
+            android:textColor="@color/md_blue_900"
+            android:textColorHint="@color/md_blue_900" />
+
+        <TextView
+            android:id="@+id/xmlTvTiSeleccionaArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Seleccionar Area de Trabajo"
+            android:textColor="@color/md_blue_900"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/xmlspinAreaBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:completionHintView="@color/md_blue_900"
+            android:dropDownSelector="@color/gradStop"
+            android:textColor="@color/md_blue_900"
+            android:textColorHint="@color/md_blue_900" />
+
+
+        <Button
+            android:id="@+id/btnBuscarCurriculos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Buscar" />
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ListaCurriculosBuscadosR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:padding="10dp" />
+
+</LinearLayout>

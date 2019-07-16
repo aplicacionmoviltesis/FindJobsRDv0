@@ -377,7 +377,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
             }
         });
 
-        provinciasRef.child("Areas").addValueEventListener(new ValueEventListener() {
+        areasRef.child("Areas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

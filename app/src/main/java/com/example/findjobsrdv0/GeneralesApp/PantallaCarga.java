@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 import com.example.findjobsrdv0.PantallaDetalleAplicacionVerificacionEmpleador;
 
+import com.example.findjobsrdv0.PantallaListaBuscarCurriculos;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados;
 import com.example.findjobsrdv0.R;
 
 
@@ -24,7 +26,7 @@ public class PantallaCarga extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(PantallaCarga.this, PantallaModoUsuario.class);
+                Intent intent = new Intent(PantallaCarga.this, PantallaListaBuscarCurriculos.class);
                 startActivity(intent);
                 finish();
             }
