@@ -12,7 +12,7 @@ import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaCompararCurriculo;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaCurriculosAplicados;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaBuscarCurriculos;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosFavoritos;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
@@ -38,7 +38,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -155,7 +154,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         IrBuscarEmpleosBE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), PantallaListaCurriculosBuscados.class);
+                Intent intent = new Intent(v.getContext(), PantallaListaBuscarCurriculos.class);
                 startActivityForResult(intent, 0);
             }
         });

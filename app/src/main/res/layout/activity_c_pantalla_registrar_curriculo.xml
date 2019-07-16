@@ -36,8 +36,7 @@
                 android:padding="2dp"
                 android:src="@mipmap/onlylogo"
                 app:civ_border_color="@color/transparent"
-                app:civ_border_width="2dp"
-                 />
+                app:civ_border_width="2dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/xmlbregistrarCedula"
@@ -113,8 +112,6 @@
                     android:inputType="text"
                     android:textColor="@color/md_blue_900" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -208,24 +205,23 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
+                <!--<TextView-->
+                <!--android:id="@+id/xmlTiAreaC"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:text="Area"-->
+                <!--android:textColor="@color/md_blue_900"-->
+                <!--android:textSize="15sp" />-->
 
-                <TextView
-                    android:id="@+id/xmlTiAreaC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="Area"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="15sp" />
 
-
-                <com.example.findjobsrdv0.GeneralesApp.MultipleSelectionSpinner
-                    android:id="@+id/spinnerAreaC"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true" />
+                <!--<com.example.findjobsrdv0.GeneralesApp.MultipleSelectionSpinner-->
+                <!--android:id="@+id/spinnerAreaC"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_centerVertical="true" />-->
 
                 <TextView
                     android:id="@+id/xmlTiProvinciaAC"
@@ -249,7 +245,6 @@
                     app:met_floatingLabel="normal" />
 
 
-
                 <TextView
                     android:id="@+id/xmlTiEstadoCivilAC"
                     android:layout_width="match_parent"
@@ -269,7 +264,6 @@
                     android:textColorHint="@color/md_blue_900"
                     app:met_floatingLabel="normal" />
             </LinearLayout>
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -517,21 +511,21 @@
                 android:id="@+id/xmlTituloAreas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_below="@id/xmlbregistrarFechafinEL"
+                android:layout_margin="10dp"
                 android:gravity="center"
-                android:textSize="35sp"
+                android:text="Areas"
                 android:textColor="@color/md_blue_900"
-                android:text="Areas"/>
+                android:textSize="35sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_bg"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:padding="5dp"
-                android:orientation="vertical">
+                android:background="@drawable/btn_bg"
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/AreaPrincipal"
@@ -594,35 +588,36 @@
                     android:textColorHint="@color/md_blue_900" />
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/xmlTituloFormacionAcademica"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_below="@id/xmlbregistrarFechafinEL"
+                android:layout_margin="10dp"
                 android:gravity="center"
-                android:textSize="35sp"
+                android:text="Formacion Acad."
                 android:textColor="@color/md_blue_900"
-                android:text="Formacion Acad."/>
+                android:textSize="35sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_bg"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:padding="5dp"
-                android:orientation="vertical">
+                android:background="@drawable/btn_bg"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/nivelprimario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/xmlbregistrarFechafinEL"
-                    android:inputType="numberDecimal"
-                    android:text="  Nivel Primario"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="15sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/nivelprimario"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/xmlbregistrarFechafinEL"-->
+                    <!--android:inputType="numberDecimal"-->
+                    <!--android:text="  Nivel Primario"-->
+                    <!--android:textColor="@color/md_blue_900"-->
+                    <!--android:textSize="15sp" />-->
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/xmlTiNivelPrimarioNameFA"
@@ -641,15 +636,16 @@
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <TextView
-                    android:id="@+id/nivelsecundario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/xmlbregistrarFechafinEL"
-                    android:inputType="numberDecimal"
-                    android:text="  Nivel Secundario"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="15sp" />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/nivelsecundario"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/xmlbregistrarFechafinEL"-->
+                    <!--android:inputType="numberDecimal"-->
+                    <!--android:text="  Nivel Secundario"-->
+                    <!--android:textColor="@color/md_blue_900"-->
+                    <!--android:textSize="15sp" />-->
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/xmlTiNivelSecundarioNameFA"
@@ -697,15 +693,15 @@
                 <!--android:textColor="@color/md_blue_900" />-->
                 <!--</com.google.android.material.textfield.TextInputLayout>-->
 
-                <TextView
-                    android:id="@+id/Carrera"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/xmlbregistrarFechafinEL"
-                    android:inputType="numberDecimal"
-                    android:text=" Carrera"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="15sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/Carrera"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/xmlbregistrarFechafinEL"-->
+                    <!--android:inputType="numberDecimal"-->
+                    <!--android:text=" Carrera"-->
+                    <!--android:textColor="@color/md_blue_900"-->
+                    <!--android:textSize="15sp" />-->
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/xmlTiCarreraNameFA"
@@ -713,6 +709,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:textColorHint="@color/md_blue_900">
+
                     <EditText
                         android:id="@+id/xmlEditCarreraNameFA"
                         android:layout_width="match_parent"
@@ -729,8 +726,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Universidad"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Universidad" />
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/xmlspinUniversidadFormAcad"
@@ -744,7 +741,7 @@
 
             </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -755,23 +752,21 @@
                     android:id="@+id/xmlBtnRegistrarDatosGC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="02dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/btn_bg"
-                    android:hint="Registrar"
-                    android:padding="4dp"
-                    android:text="Registrar Curriculo" />
+                    android:hint="Actualizar"
+                    android:padding="2dp"
+                    android:text=" Registrar " />
 
                 <Button
                     android:id="@+id/xmlBtnActualizarDatosGC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="02dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/btn_bg"
-                    android:hint="Actualizar"
-                    android:padding="2dp"
-                    android:text="Actualizar Curriculo" />
-
+                    android:padding="4dp"
+                    android:text="Actualizar " />
 
             </LinearLayout>
 
@@ -785,12 +780,12 @@
             android:padding="5dp">
 
             <!--<Button-->
-                <!--android:id="@+id/xmlBtnFormacionAcademicaC"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="3dp"-->
-                <!--android:background="@drawable/btn_bg"-->
-                <!--android:text="Añadir Formacion Academica" />-->
+            <!--android:id="@+id/xmlBtnFormacionAcademicaC"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:background="@drawable/btn_bg"-->
+            <!--android:text="Añadir Formacion Academica" />-->
 
             <Button
                 android:id="@+id/AbrirOtrosCursos"

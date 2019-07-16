@@ -22,6 +22,7 @@ import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesArea;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesProvincia;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesUniversidad;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,11 +41,14 @@ import java.util.Date;
 public class DetalleCurriculo extends AppCompatActivity {
 
     private TextView txtNombreCurr, txtApellidoCurr, txtCedulaCurr, txtEmailCurr, txtTelefonoCurr, txtCelularCurr, txtprovinciaCurr, txtEstadoCivil, txtDireccionCurr, txtOcupacion, txtIdioma,
-            txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha, TvYaAplicoCurriculo, TVAreaCurr;
+            txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha, TVSexo, TvYaAplicoCurriculo, TVAreaCurr, TVNivelPromarioCurr, TVNivelSecundarioCurr, TVCarrera,
+     TVUniversidadCurr, TVAreaPrincipal, TVAreaSecundaria, TVAreaTerciaria;
 
     private FirebaseDatabase database,prueba;
     private DatabaseReference detalelcurriculo, DbLikesFavCurri;
     private DatabaseReference AplicarInteresCurriculoDataBase;
+
+    private DatabaseReference DBAreas;
 
     private String detallecurrid = "";
     private Button btnIrFormacionAcademica, btnIrReferencia, btnIrExperienciaLab, btnOtrosEstudios, btnAplicarCurriculo;
@@ -86,6 +90,8 @@ public class DetalleCurriculo extends AppCompatActivity {
         detalelcurriculo = database.getReference("Curriculos");
         AplicarInteresCurriculoDataBase = database.getReference("CurriculosConSolicitudes");
 
+        DBAreas = FirebaseDatabase.getInstance().getReference("AreasCurriculos");
+
         FotoCurriculo = (ImageView) findViewById(R.id.xmlImagenPerfilCurriculo);
 
         txtNombreCurr = (TextView) findViewById(R.id.xmlTvNombreDetalleCu);
@@ -103,16 +109,27 @@ public class DetalleCurriculo extends AppCompatActivity {
         txtGradoMayorCurr = (TextView) findViewById(R.id.xmlTvMaestriaDetalleCu);
         txtHabilidades = (TextView) findViewById(R.id.xmlTvHabilidadesDetalleCu);
         txtFecha = (TextView) findViewById(R.id.xmlTvFechaNacimientoDetalleCu);
-        TVAreaCurr = (TextView) findViewById( R.id.xmlTvAreaDetalleCu );
+        TVSexo = (TextView) findViewById(R.id.xmlTvSexoDetalleCu);
+//        TVAreaCurr = (TextView) findViewById( R.id.xmlTvAreaDetalleCu );
+
+        TVNivelPromarioCurr = (TextView) findViewById( R.id.xmlTvNivelPrimarioDetalleCu );
+        TVNivelSecundarioCurr = (TextView) findViewById( R.id.xmlTvNivelSecundarioDetalleCu );
+        TVCarrera = (TextView) findViewById( R.id.xmlTvCarreraDetalleCu );
+        TVUniversidadCurr = (TextView) findViewById( R.id.xmlTvUniversidadDetalleCu );
+
+        TVAreaPrincipal = (TextView) findViewById( R.id.xmlTvAreaPrincipalDetalleCu );
+        TVAreaSecundaria= (TextView) findViewById( R.id.xmlTvAreaSecunadriaDetalleCu );
+        TVAreaTerciaria = (TextView) findViewById( R.id.xmlTvAreaTerciariaDetalleCu );
 
 
 
         if (getIntent() != null)
             detallecurrid = getIntent().getStringExtra("detallecurrID");
 
-
-
+        Log.d( "verrr", ( detallecurrid ) );
+        Log.d( "ver", String.valueOf( detallecurrid ) );
             goDetailCurriculo(detallecurrid);
+        CargarAreas(detallecurrid);
 
             VerificarFavorito();
 
@@ -207,17 +224,29 @@ public class DetalleCurriculo extends AppCompatActivity {
         });
 
 
-//        txtEmailCurr.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goUniversidad();
-//            }
-//        });
+        TVUniversidadCurr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goUniversidad();
+            }
+        });
 
-        TVAreaCurr.setOnClickListener(new View.OnClickListener() {
+        TVAreaPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goDetalleArea();
+            }
+        });
+        TVAreaSecundaria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goDetalleArea2();
+            }
+        });
+        TVAreaTerciaria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goDetalleArea3();
             }
         });
 
@@ -274,9 +303,41 @@ public class DetalleCurriculo extends AppCompatActivity {
                 txtEstadoActualCur.setText(vistaCurriculomodel.getsEstadoActualC());
                 txtGradoMayorCurr.setText(vistaCurriculomodel.getsGradoMayorC());
                 txtHabilidades.setText(vistaCurriculomodel.getsHabilidadesC());
+                txtIdioma.setText( vistaCurriculomodel.getsIdiomaC() );
+                TVSexo.setText( vistaCurriculomodel.getsSexoC() );
                 txtFecha.setText(vistaCurriculomodel.getsFechaC());
-                TVAreaCurr.setText( vistaCurriculomodel.getsAreaC() );
+//                TVAreaCurr.setText( vistaCurriculomodel.getsAreaC() );
+                TVNivelPromarioCurr.setText( vistaCurriculomodel.getsNivelPrimarioFormAcad() );
+                TVNivelSecundarioCurr.setText( vistaCurriculomodel.getsNivelSecundarioFormAcad() );
+                TVCarrera.setText( vistaCurriculomodel.getsCarreraFormAcad() );
+                TVUniversidadCurr.setText( vistaCurriculomodel.getsUniversidadFormAcad() );
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void CargarAreas(String detallecurrid){
+
+        Query query = DBAreas.orderByChild( "sIdCurriculo" ).equalTo(detallecurrid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+
+                    Log.d("holaarea", String.valueOf(FavdataSnapshot));
+
+                    AreasCurriculos areasCurriculos = FavdataSnapshot.getValue(AreasCurriculos.class);
+
+                    TVAreaPrincipal.setText( areasCurriculos.getsAreaPrincipalCurr() );
+                    TVAreaSecundaria.setText( areasCurriculos.getsAreaSecundariaCurr() );
+                    TVAreaTerciaria.setText( areasCurriculos.getsAreaTerciaria() );
+                }
             }
 
             @Override
@@ -388,11 +449,40 @@ public class DetalleCurriculo extends AppCompatActivity {
 
     }
 
+    public void goUniversidad() {
+
+        Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesUniversidad.class);
+        intent.putExtra("sNombreUniDetallekey", TVUniversidadCurr.getText().toString().trim());
+        String hola = TVUniversidadCurr.getText().toString().trim();
+        Log.d("klkarea", hola);
+        startActivity(intent);
+
+    }
+
     public void goDetalleArea() {
 
         Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesArea.class);
-        intent.putExtra("sAreaDE", TVAreaCurr.getText().toString().trim());
-        String hola = TVAreaCurr.getText().toString().trim();
+        intent.putExtra("sAreaDE", TVAreaPrincipal.getText().toString().trim());
+        String hola = TVAreaPrincipal.getText().toString().trim();
+        Log.d("klkarea", hola);
+        startActivity(intent);
+
+    }
+
+    public void goDetalleArea2() {
+
+        Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesArea.class);
+        intent.putExtra("sAreaDE", TVAreaSecundaria.getText().toString().trim());
+        String hola = TVAreaSecundaria.getText().toString().trim();
+        Log.d("klkarea", hola);
+        startActivity(intent);
+
+    }
+    public void goDetalleArea3() {
+
+        Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesArea.class);
+        intent.putExtra("sAreaDE", TVAreaTerciaria.getText().toString().trim());
+        String hola = TVAreaTerciaria.getText().toString().trim();
         Log.d("klkarea", hola);
         startActivity(intent);
 

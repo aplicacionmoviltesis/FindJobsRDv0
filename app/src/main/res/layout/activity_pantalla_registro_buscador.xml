@@ -1,257 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@mipmap/fondo1"
-android:gravity="center"
-android:orientation="vertical"
-tools:context=".Pantallas_CurriculosCompleto.PantallaRegistroBuscador">
-
-<TextView
-    android:id="@+id/xmlbtvRegistrar"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:text="Registro Buscador Empleo"
-    android:layout_marginTop="10dp"
-    android:textColor="@color/md_white_1000"
-    android:textSize="30sp"
-    android:textStyle="bold" />
-
-<LinearLayout
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:paddingRight="20dp" >
+    android:layout_height="match_parent"
+    android:background="@mipmap/fondo1"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--tools:context=".Pantallas_CurriculosCompleto.PantallaRegistroBuscador">-->
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlbregistrarnombre"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:hintAnimationEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:counterMaxLength="30"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        android:textColorHint="@color/md_white_1000">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/xmlbeditRegistrarnombre"
+        <TextView
+            android:id="@+id/xmlbtvRegistrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Registro Buscador"
+            android:textColor="@color/md_white_1000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:drawableLeft="@drawable/ic_person_black_24dp"
-            android:drawablePadding="10dp"
-            android:textColor="@color/md_white_1000"
-            android:inputType="text"
-            android:hint="Nombre"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlbregistrarApellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:hintAnimationEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:counterMaxLength="9"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        android:textColorHint="@color/md_white_1000">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbCedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_white_1000"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
 
-        <EditText
-            android:id="@+id/xmlbeditRegistrarApellido"
+                <EditText
+                    android:id="@+id/xmlbeditCedula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Cedula"
+                    android:inputType="text"
+                    android:textColor="@color/md_white_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarnombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_white_1000"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/xmlbeditRegistrarnombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Nombre"
+                    android:inputType="text"
+                    android:textColor="@color/md_white_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_white_1000"
+                app:counterEnabled="true"
+                app:counterMaxLength="9"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/xmlbeditRegistrarApellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Apellido"
+                    android:inputType="text"
+                    android:textColor="@color/md_white_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/xmlbregistraremail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_white_1000"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+
+                    android:id="@+id/xmlbeditregistraremail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/md_white_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrartelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_white_1000"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true">
+
+                <EditText
+                    android:id="@+id/xmlbeditregistrartelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_phone_white_24dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Telefono"
+                    android:inputType="phone"
+                    android:singleLine="true"
+                    android:textColor="@color/md_white_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbregistrarcontrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_white_1000"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/md_white_1000">
+
+                <EditText
+                    android:id="@+id/xmlbeditregistrarcontrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_lock_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="@color/md_white_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/xmlbconfirmarcontrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="@color/md_white_1000"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/Counter"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/CounterOverFlow"
+                app:hintAnimationEnabled="true"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/common_google_signin_btn_text_dark">
+
+                <EditText
+                    android:id="@+id/xmlbeditconfirmarcontrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_lock_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="Repetir Contraseña"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="@color/md_white_1000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/xmlbbtnRegistrarBuscador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:drawableLeft="@drawable/ic_person_black_24dp"
-            android:drawablePadding="10dp"
-            android:inputType="text"
-            android:textColor="@color/md_white_1000"
-            android:hint="Apellido"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_bg"
+            android:padding="10dp"
+            android:text="Registrarse"
+            android:textColor="@color/md_white_1000" />
 
-    <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/xmlbregistraremail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:hintAnimationEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:counterMaxLength="30"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        android:textColorHint="@color/md_white_1000">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <EditText
+            <TextView
+                android:id="@+id/xmlbtvtienescuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Tienes Cuenta?"
+                android:textColor="@color/md_white_1000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-            android:id="@+id/xmlbeditregistraremail"
+        <Button
+            android:id="@+id/xmlbbtniniciarsesion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/md_white_1000"
-            android:drawableLeft="@drawable/ic_email_black_24dp"
-            android:drawablePadding="10dp"
-            android:hint="Email" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_bg"
+            android:padding="10dp"
+            android:text="Iniciar Sesion"
+            android:textColor="@color/md_white_1000" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlbregistrartelefono"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:hintAnimationEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:counterMaxLength="10"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        android:textColorHint="@color/md_white_1000">
-
-        <EditText
-            android:id="@+id/xmlbeditregistrartelefono"
-            android:layout_width="match_parent"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/BsignInButtonRegistro"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:singleLine="true"
-            android:drawableLeft="@drawable/ic_phone_white_24dp"
-            android:drawablePadding="10dp"
-            android:inputType="phone"
-            android:textColor="@color/md_white_1000"
-            android:hint="Telefono"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlbregistrarcontrasena"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="@color/md_white_1000"
-        app:hintAnimationEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:counterMaxLength="30"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/md_white_1000">
-
-        <EditText
-            android:id="@+id/xmlbeditregistrarcontrasena"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/BprogressBarRegistro"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:singleLine="true"
-            android:inputType="textPassword"
-            android:textColor="@color/md_white_1000"
-            android:drawableLeft="@drawable/ic_lock_black_24dp"
-            android:drawablePadding="10dp"
-            android:hint="Contraseña"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/xmlbconfirmarcontrasena"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="@color/md_white_1000"
-        app:hintAnimationEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:errorTextAppearance="@style/CounterOverFlow"
-        app:counterMaxLength="30"
-        app:counterOverflowTextAppearance="@style/CounterOverFlow"
-        app:counterTextAppearance="@style/Counter"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/common_google_signin_btn_text_dark">
+    </LinearLayout>
 
-        <EditText
-            android:id="@+id/xmlbeditconfirmarcontrasena"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:singleLine="true"
-            android:inputType="textPassword"
-            android:textColor="@color/md_white_1000"
-            android:drawableLeft="@drawable/ic_lock_black_24dp"
-            android:drawablePadding="10dp"
-            android:hint="Repetir Contraseña"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-</LinearLayout>
-
-<Button
-    android:id="@+id/xmlbbtnRegistrarBuscador"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/btn_bg"
-    android:layout_gravity="center"
-    android:padding="10dp"
-    android:textColor="@color/md_white_1000"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:text="Registrarse" />
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/xmlbtvtienescuenta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tienes Cuenta?"
-        android:textColor="@color/md_white_1000"
-        android:layout_marginStart="10dp"
-        android:textSize="15dp"
-        android:textStyle="bold" />
-</LinearLayout>
-
-<Button
-    android:id="@+id/xmlbbtniniciarsesion"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/btn_bg"
-    android:layout_gravity="center"
-    android:padding="10dp"
-    android:layout_margin="10dp"
-    android:textColor="@color/md_white_1000"
-    android:text="Iniciar Sesion" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/BsignInButtonRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
-
-    <ProgressBar
-        android:id="@+id/BprogressBarRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone" />
-
-</android.widget.LinearLayout>
+</androidx.core.widget.NestedScrollView>

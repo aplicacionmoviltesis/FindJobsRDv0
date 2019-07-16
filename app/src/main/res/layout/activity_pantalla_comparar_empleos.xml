@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
-        android:text="get"/>
+        android:text="Comparar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListaEmpleosPruebasR"

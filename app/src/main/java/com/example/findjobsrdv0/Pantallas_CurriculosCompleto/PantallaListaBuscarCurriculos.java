@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0;
+package com.example.findjobsrdv0.Pantallas_CurriculosCompleto;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +18,7 @@ import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.DetalleCurriculo;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados;
+import com.example.findjobsrdv0.R;
 import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.AdapterCurriculo;
 import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.VistaCurriculoViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

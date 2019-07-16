@@ -7,10 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-import com.example.findjobsrdv0.PantallaDetalleAplicacionVerificacionEmpleador;
-
-import com.example.findjobsrdv0.PantallaListaBuscarCurriculos;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaCurriculosBuscados;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaBuscarCurriculos;
 import com.example.findjobsrdv0.R;
 
 

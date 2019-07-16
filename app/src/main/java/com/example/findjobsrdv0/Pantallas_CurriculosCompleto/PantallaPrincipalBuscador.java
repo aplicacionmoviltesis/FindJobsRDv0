@@ -100,6 +100,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
             public void onClick(View v) {
 
                 Intent intent = new Intent (v.getContext(), cPantallaRegistrarCurriculo.class);
+                intent.putExtra("BuscadorConectado", buscadoresconectados);
                 startActivityForResult(intent, 0);
 
             }
