@@ -120,16 +120,16 @@
                     android:textColor="@color/md_blue_900" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/cantanos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_below="@id/xmlbregistrarFechafinEL"
-                android:textSize="15sp"
-                android:inputType="numberDecimal"
-                android:textColor="@color/md_blue_900"
-                android:text="  Años"/>
+            <!--<TextView-->
+                <!--android:id="@+id/cantanos"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:layout_below="@id/xmlbregistrarFechafinEL"-->
+                <!--android:textSize="15sp"-->
+                <!--android:inputType="numberDecimal"-->
+                <!--android:textColor="@color/md_blue_900"-->
+                <!--android:text="  Años"/>-->
         </RelativeLayout>
 
         <LinearLayout
@@ -143,7 +143,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_bg"
-
                 android:padding="3dp"
                 android:layout_margin="5dp"
                 android:text="Registrar"/>

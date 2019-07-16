@@ -1,5 +1,7 @@
 package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
 
+import android.widget.ImageView;
+
 import java.util.HashMap;
 import java.util.Map;
 

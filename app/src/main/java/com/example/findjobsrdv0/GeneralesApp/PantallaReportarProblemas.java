@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -203,7 +204,7 @@ public class PantallaReportarProblemas extends AppCompatActivity {
                     sDescripcionProblem = editDecripcionProblem.getText().toString().trim();
 
                     //sImagenProblem = "";
-                    //sIdUserReport = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    sIdUserReport = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     //sFechaProblem = "";
 
 //        sImagenProblem = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Provincia%2Fbonao.jpg?alt=media&token=287c737f-70b4-4e8e-bcf0-11e077edc509";

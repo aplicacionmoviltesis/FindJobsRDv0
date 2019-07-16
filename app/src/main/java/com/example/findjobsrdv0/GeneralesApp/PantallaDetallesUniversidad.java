@@ -23,9 +23,9 @@ import com.squareup.picasso.Picasso;
 
 public class PantallaDetallesUniversidad extends AppCompatActivity {
 
-    private TextView TvNombreUniDetalle, TvTelefonoUniDetalle, TvPaginaWebUniDetalle,TvUbicacionUniDetalle,TvDireccionUniDetalle;
-    private ImageView ImagenUniDetalle;
-    private String sNombreUniDetallekey;
+    TextView TvNombreUniDetalle, TvTelefonoUniDetalle, TvPaginaWebUniDetalle,TvUbicacionUniDetalle,TvDireccionUniDetalle;
+    ImageView ImagenUniDetalle;
+    String sNombreUniDetallekey = "";
 
     private FirebaseDatabase databaseUni;
     private DatabaseReference DbUni;
@@ -46,6 +46,8 @@ public class PantallaDetallesUniversidad extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+
+
 
         ImagenUniDetalle = (ImageView) findViewById(R.id.xmlImagenUniDetalle);
         TvTelefonoUniDetalle = (TextView) findViewById(R.id.xmlTvTelefonoUniDetalle);

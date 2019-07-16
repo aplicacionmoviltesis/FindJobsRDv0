@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -93,11 +94,11 @@ public class PantallaAgregarOpiniones_Sugerencias extends AppCompatActivity {
         sDescripcionOpiSug = editDecripcionOpiSug.getText().toString().trim();
 
 //        sImagenOpiSug = "";
-//        sIdUserOpiSug = FirebaseAuth.getInstance().getCurrentUser().getUid();
+          sIdUserOpiSug = FirebaseAuth.getInstance().getCurrentUser().getUid();
 //        sFechaOpiSug = "";
 
-        sImagenOpiSug = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Provincia%2Fbonao.jpg?alt=media&token=287c737f-70b4-4e8e-bcf0-11e077edc509";
-        sIdUserOpiSug = "yo";
+//        sImagenOpiSug = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Provincia%2Fbonao.jpg?alt=media&token=287c737f-70b4-4e8e-bcf0-11e077edc509";
+//        sIdUserOpiSug = "yo";
 
 
         if (TextUtils.isEmpty(sTituloOpiSug)) {

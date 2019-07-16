@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import com.example.findjobsrdv0.Administradores.RegistrarAdministrador;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaRegistroEmpleador;
 import com.example.findjobsrdv0.PantallaDetalleAplicacionVerificacionEmpleador;
 
 import com.example.findjobsrdv0.R;

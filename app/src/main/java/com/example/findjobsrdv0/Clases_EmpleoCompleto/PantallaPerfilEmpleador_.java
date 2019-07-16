@@ -130,7 +130,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
         Log.d( "CorreoNombre", String.valueOf( NombreEmpleador ) );
         Log.d( "Correotelefono", String.valueOf( TelefonoEmpleador ) );
         Log.d( "CorreoEmail", String.valueOf( EmailEmpleador ) );
-        Log.d( "CorreoFoto", String.valueOf( FotoPerfilCorreo ) );
+       // Log.d( "CorreoFoto", String.valueOf( FotoPerfilCorreo ) );
 
         //setTitle("klk");
 
@@ -179,7 +179,6 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
         if (getIntent() != null) {
             sIdPEmpleador = getIntent().getStringExtra( "EmpleadorConectado" );
             if (!sIdPEmpleador.isEmpty()) {
-
                 LoadDatosEmpleadores( sIdPEmpleador );
             }
         }

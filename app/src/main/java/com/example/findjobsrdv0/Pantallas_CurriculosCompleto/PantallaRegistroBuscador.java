@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -33,17 +35,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class PantallaRegistroBuscador extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private DatabaseReference DBReference;
     private TextView tvBRegistrar;
-    private TextInputLayout BCtilapellido, BCtilregistrarnombre, BCtilregistraremail, BCtilregistrartelefono,
+    private TextInputLayout BCtilcedula,BCtilapellido, BCtilregistrarnombre, BCtilregistraremail, BCtilregistrartelefono,
             BCtilregistrarcontrasena, BCtilconfirmarcontrasena;
 
-    private EditText BregistroApellido, BregistroNombre, BregistroCorreo, BregistroTelefono, BregistroPass, BregistroPass2;
+    private EditText BregistroCedula, BregistroApellido, BregistroNombre, BregistroCorreo, BregistroTelefono, BregistroPass, BregistroPass2;
 
     private Button BbtnRegistrar, BbtnIniciarsesion;
 
@@ -58,6 +64,13 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
     private ProgressBar BprogressBar;
     private SignInButton BsignInButton;
 
+    private DatabaseReference DBCedula;
+    private String entrada_bCedula;
+
+    private DatabaseReference DBAreas;
+    private String userActivo;
+    private String IdAreas;
+//    private String AreaPrincipal, AreaSecundaria, AreaTerciaria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +79,18 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         tvBRegistrar = (TextView) findViewById(R.id.xmlbtvRegistrar);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Chomsky.otf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         tvBRegistrar.setTypeface(face);
+
+        DBAreas = FirebaseDatabase.getInstance().getReference("AreasCurriculos");
+        IdAreas = DBAreas.push().getKey();
+
+        DBCedula = FirebaseDatabase.getInstance().getReference("Curriculos");
 
         firebaseAuth = FirebaseAuth.getInstance();
         DBReference = FirebaseDatabase.getInstance().getReference();
 
+        BregistroCedula = (EditText) findViewById( R.id.xmlbeditCedula );
         BregistroNombre = (EditText) findViewById(R.id.xmlbeditRegistrarnombre);
         BregistroApellido = (EditText) findViewById(R.id.xmlbeditRegistrarApellido);
         BregistroCorreo = (EditText) findViewById(R.id.xmlbeditregistraremail);
@@ -79,6 +98,7 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         BregistroPass = (EditText) findViewById(R.id.xmlbeditregistrarcontrasena);
         BregistroPass2 = (EditText) findViewById(R.id.xmlbeditconfirmarcontrasena);
 
+        BCtilcedula = (TextInputLayout) findViewById( R.id.xmlbCedula );
         BCtilapellido = (TextInputLayout) findViewById(R.id.xmlbregistrarApellido);
         BCtilregistrarnombre = (TextInputLayout) findViewById(R.id.xmlbregistrarnombre);
         BCtilregistraremail = (TextInputLayout) findViewById(R.id.xmlbregistraremail);
@@ -145,6 +165,7 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
 
     private void registrarUsuarioBuscador() {
 
+        entrada_bCedula = BregistroCedula.getText().toString().trim();
         final String entrada_bNombre = BregistroNombre.getText().toString().trim();
         final String entrada_bApellido = BregistroApellido.getText().toString().trim();
         final String bemail = BregistroCorreo.getText().toString().trim();
@@ -152,6 +173,10 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         final String bpassword = BregistroPass.getText().toString().trim();
         final String entrada_bcontrasena2 = BregistroPass2.getText().toString().trim();
 
+        if (TextUtils.isEmpty(entrada_bNombre)) {
+            BregistroCedula.setError("Campo vacío, por favor escriba la cedula");
+            return;
+        }
         if (TextUtils.isEmpty(entrada_bNombre)) {
             BregistroNombre.setError("Campo vacío, por favor escriba el nombre");
             return;
@@ -194,10 +219,25 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
                                 FirebaseUser user = firebaseAuth.getCurrentUser();
                                 String Ukey = user.getUid();
 
+                                userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//                                Log.d( "id", userActivo );
+//                                Log.d( " todo", String.valueOf( userActivo ) );
+
+                                DBReference.child("Curriculos").child(Ukey).child("sCedulaC").setValue(entrada_bCedula);
                                 DBReference.child("Curriculos").child(Ukey).child("sNombreC").setValue(entrada_bNombre);
                                 DBReference.child("Curriculos").child(Ukey).child("sApellidoC").setValue(entrada_bApellido);
                                 DBReference.child("Curriculos").child(Ukey).child("sEmailC").setValue(bemail);
                                 DBReference.child("Curriculos").child(Ukey).child("sTelefonoC").setValue(entrada_btelefono);
+                                DBReference.child("Curriculos").child(Ukey).child("sImagenC").setValue("https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenCurriculo%2F1563082768956.png?alt=media&token=0354bc85-875d-4cd8-8059-8e398d08e932");
+
+                                registrarareas(IdAreas,userActivo);
+//
+//                                DBReference.child("AreasCurriculos").child(Ukey).child("sAreaPrincipalCurr").setValue("");
+//                                DBReference.child("AreasCurriculos").child(Ukey).child("sAreaSecundariaCurr").setValue("");
+//                                DBReference.child("AreasCurriculos").child(Ukey).child("sAreaTerciaria").setValue("");
+//                                DBReference.child("AreasCurriculos").child(Ukey).child("sIdAreaCurriculo").setValue(IdAreas);
+                              //  DBReference.child("AreasCurriculos").child(Ukey).child("sIdCurriculo").setValue(userActivo);
+
                                 DBReference.child( "Curriculos" ).child( Ukey ).child( "sIdCurriculo" ).setValue( Ukey );
                                 // DBReference.child("BuscadoresEmpleos").child(Ukey).child("Contraseña").setValue(bpassword);
 
@@ -227,7 +267,41 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
 
     @Override
     public void onClick(View view) {
-        registrarUsuarioBuscador();
+
+        entrada_bCedula = BregistroCedula.getText().toString().trim();
+        Log.d( " todo", String.valueOf( entrada_bCedula ) );
+
+        Query q = DBCedula.orderByChild( "sCedulaC" ).equalTo( entrada_bCedula );
+        q.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    Log.d( "rnc no existe", String.valueOf( dataSnapshot ) );
+                    //Toast.makeText(PantallaRegistroEmpleador.this, "Ir a registrar", Toast.LENGTH_LONG).show();
+//                            sAreaC = spinAreaC.getSelectedItemsAsString();
+                    registrarUsuarioBuscador();
+
+                } else {
+                    BregistroCedula.setError( "Esta cedula ya a sido registrado" );
+                    Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
+                    //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+
+    }
+
+    public void registrarareas(String IdAreas, String userActivo){
+
+//        Log.d( " todosss", String.valueOf( userActivo ) );
+        AreasCurriculos areasCurriculos = new AreasCurriculos( IdAreas, userActivo,
+                "", "", "" );
+        DBAreas.child( IdAreas ).setValue( areasCurriculos );
     }
 
     @Override
