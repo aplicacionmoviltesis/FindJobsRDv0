@@ -15,45 +15,410 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <WebView
-                android:id="@+id/leerdocu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:ignore="WebViewLayout">
-
-            </WebView>
-
-        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/xmlImagenEmpresaADM"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/transparent"
+            android:padding="2dp"
+            android:src="@mipmap/onlylogo"
+            app:civ_border_color="@color/transparent"
+            app:civ_border_width="2dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:orientation="vertical">
 
-            <com.github.barteksc.pdfviewer.PDFView
-                android:id="@+id/pdfView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </com.github.barteksc.pdfviewer.PDFView>
-
-            <TextView
-                android:id="@+id/tvNombre"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="klk"
-                android:visibility="visible"/>
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="150dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTieditRNCEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditRNCEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_rnc"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="RNC"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="150dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTiNombrePerfilEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditNombreEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_rnc"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Nombre Empleador"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="150dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTiDescEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditDescEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_rnc"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Descripcion de Empresa"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="150dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTieditPaginaWebEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditPagWebEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/icon_pagina_web"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Pagina Web"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="100dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTieditEmailEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditEmailEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/email_black"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Correo Electronico"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="150dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTieditTelefonoEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditTelefonoEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_phone_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Telefono"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="150dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTieditProvEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditProvEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_directions_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Provincia"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/accent"
+                android:elevation="150dp"
+                android:padding="1dp"
+                app:cardCornerRadius="5dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/xmlTieditDireccionEmpleadorADM"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:padding="3dp"
+                    android:textColorHint="@color/md_blue_900"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                    app:counterTextAppearance="@style/Counter"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/CounterOverFlow"
+                    app:hintAnimationEnabled="true">
+
+                    <EditText
+                        android:id="@+id/xmleditDireccionEmpleadorADM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_directions_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="Direccion"
+                        android:inputType="text"
+                        android:textColor="@color/md_blue_900"
+                        android:textColorHint="@color/md_blue_900" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_margin="5dp"
+            android:text="Cambiar Estado verificacion"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/accent"
+            android:elevation="150dp"
+            android:padding="3dp"
+            app:cardCornerRadius="5dp">
+
+        <Spinner
+            android:id="@+id/xmlspinVerificacionEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:popupBackground="@color/md_light_blue_100" />
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/xmlbtnVerEmpleosPublicadosADM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="Ver Empleos Publicados"
+            android:textColor="@color/md_blue_900" />
+
+        <Button
+            android:id="@+id/xmlbtnVerDocumentosEmpleadorADM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="Ver Documentos"
+            android:textColor="@color/md_blue_900" />
+
+        <Button
+            android:id="@+id/xmlbtnCambiarEmpleadorADM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cambiar Estado de Verificacion"
+            android:textColor="@color/md_blue_900" />
     </LinearLayout>
-
 </androidx.core.widget.NestedScrollView>

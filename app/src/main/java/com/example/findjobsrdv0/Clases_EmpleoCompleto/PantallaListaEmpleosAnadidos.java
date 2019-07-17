@@ -36,7 +36,7 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBempleos= database.getReference("empleos");
+        DBempleos= database.getReference("Empleos");
         DBempleos.keepSynced(true);
 
         ActionBar actionBar = getSupportActionBar();

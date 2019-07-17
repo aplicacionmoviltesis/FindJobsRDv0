@@ -138,7 +138,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
         databaseArea = FirebaseDatabase.getInstance();
         DBarea = databaseArea.getReference("Areas");
 
-        DBReferenceEmplos = FirebaseDatabase.getInstance().getReference("empleos");
+        DBReferenceEmplos = FirebaseDatabase.getInstance().getReference("Empleos");
 
         fFotoEmpresa = (ImageView) findViewById(R.id.xmlImagenEmpresaE);
 

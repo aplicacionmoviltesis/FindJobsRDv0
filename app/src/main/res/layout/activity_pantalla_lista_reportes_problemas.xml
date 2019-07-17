@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".Administradores.PantallaListaReportesProblemas">
 
+    <Button
+        android:id="@+id/xmlbtnVerTodosReportes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Ver Todos los Reportes"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListaProblemasReportadosR"
         android:layout_margin="5dp"

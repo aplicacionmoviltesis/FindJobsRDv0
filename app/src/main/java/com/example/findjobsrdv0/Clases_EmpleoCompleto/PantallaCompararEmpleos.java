@@ -159,7 +159,7 @@ public class PantallaCompararEmpleos extends AppCompatActivity {
     }
 
     private void loadEmpleosFav(final String sFavIdEmpleo) {
-        DBEmpleosFav.child("empleos").orderByChild("sIDEmpleo").equalTo(sFavIdEmpleo).addValueEventListener(new ValueEventListener() {
+        DBEmpleosFav.child("Empleos").orderByChild("sIDEmpleo").equalTo(sFavIdEmpleo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 

@@ -55,6 +55,8 @@ public class PantallaReportarProblemas extends AppCompatActivity {
     private EditText editTituloProblem, editDecripcionProblem;
     private ImageView ImagenUno;
 
+    private String sEstadoReportProblem = "Pendiente";
+
     private DatabaseReference ProblemReportRefRegistrar;
     private FirebaseDatabase ProblemDatabase;
 
@@ -72,8 +74,8 @@ public class PantallaReportarProblemas extends AppCompatActivity {
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled( true );
-        actionBar.setDisplayShowHomeEnabled( true );
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
 //        ImagenDos = (ImageView) findViewById(R.id.xmlImagenDos);
 //        ImagenTres = (ImageView) findViewById(R.id.xmlImagenTres);
@@ -224,7 +226,7 @@ public class PantallaReportarProblemas extends AppCompatActivity {
                     }
 
 
-                    ProblemasAppReportar problemasAppReportar = new ProblemasAppReportar( sIdProblemAppReport, sTituloProblem, sDescripcionProblem, sFechaProblem, sImagenProblem, sIdUserReport );
+                    ProblemasAppReportar problemasAppReportar = new ProblemasAppReportar( sIdProblemAppReport, sTituloProblem, sDescripcionProblem, sFechaProblem, sImagenProblem, sIdUserReport,sEstadoReportProblem);
                     ProblemReportRefRegistrar.child( sIdProblemAppReport ).setValue( problemasAppReportar );
                     Toast.makeText( PantallaReportarProblemas.this, "Su Problema se Reporto exitosamente, le estaremos resolviendo lo mas pronto posible", Toast.LENGTH_LONG ).show();
                     LimpiarCampos();

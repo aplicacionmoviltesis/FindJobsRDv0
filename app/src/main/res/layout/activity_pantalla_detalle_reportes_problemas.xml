@@ -91,6 +91,19 @@
                 android:textStyle="bold"
                 android:hint="Id Usuario Reporto Problema" />
 
+            <Spinner
+                android:id="@+id/xmlspinEstadoReporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:popupBackground="@color/md_light_blue_100"/>
+
+            <Button
+                android:id="@+id/xmlbtnCambiarEstadoReporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Guardar Estado del Reporte"/>
             <ImageView
                 android:id="@+id/xmlImagenProblem"
                 android:layout_width="match_parent"

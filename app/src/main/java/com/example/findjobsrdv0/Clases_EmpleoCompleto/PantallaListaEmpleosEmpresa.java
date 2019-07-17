@@ -38,7 +38,7 @@ public class PantallaListaEmpleosEmpresa extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         databaseEmpleosEmpresa = FirebaseDatabase.getInstance();
-        DBlistaEmpleos = databaseEmpleosEmpresa.getReference("empleos");
+        DBlistaEmpleos = databaseEmpleosEmpresa.getReference("Empleos");
         DBlistaEmpleos.keepSynced(true);
 
 

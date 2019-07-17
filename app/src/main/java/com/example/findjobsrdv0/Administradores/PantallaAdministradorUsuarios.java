@@ -6,63 +6,101 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleadores;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
+import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PantallaAdministradorUsuarios extends AppCompatActivity {
 
     private FirebaseDatabase database;
-    private DatabaseReference userAdmin;
+    private DatabaseReference usersAdmin, usersEmpleadores, usersBuscadores;
 
-    private RecyclerView recycler_user_Admin;
+    private RecyclerView recyclerViewAdmin;
     private RecyclerView.LayoutManager layoutManager;
 
-    private  String idUser;
+    private String idUser;
+
+    private Spinner spinTipoUsuario;
+    private Button btnBuscarUsers;
+    private String sTipodeUsuario;
+
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_administrador_usuarios);
 
-        ActionBar actionBar = getSupportActionBar();
+        //idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
         database = FirebaseDatabase.getInstance();
-        userAdmin = database.getReference("AdministradoresApp");
+        usersAdmin = database.getReference("AdministradoresApp");
+        usersBuscadores = database.getReference("Curriculos");
+        usersEmpleadores = database.getReference("Empleadores");
 
-        recycler_user_Admin = (RecyclerView) findViewById(R.id.recyclerViewUserAdmin);
-        recycler_user_Admin.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recycler_user_Admin.setLayoutManager(layoutManager);
+        recyclerViewAdmin = (RecyclerView) findViewById(R.id.recyclerViewUsers);
+        recyclerViewAdmin.setHasFixedSize(true);
+        recyclerViewAdmin.setLayoutManager(layoutManager);
 
-        idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        spinTipoUsuario = (Spinner) findViewById(R.id.xmlspinSeleccionarTipoDeUsuario);
+        ArrayAdapter<CharSequence> adapterTipoUsuario = ArrayAdapter.createFromResource(this,
+                R.array.TipoUsuarioAdmin, android.R.layout.simple_spinner_item);
+        adapterTipoUsuario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinTipoUsuario.setAdapter(adapterTipoUsuario);
 
-        loadReferencias(idUser);
+        btnBuscarUsers = (Button) findViewById(R.id.btnBuscarUsuarioAdmin);
+        btnBuscarUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sTipodeUsuario = spinTipoUsuario.getSelectedItem().toString();
+                Log.d("ValorSpin",sTipodeUsuario);
+
+                if (sTipodeUsuario.equals("Empleadores")) {
+                    actionBar.setTitle("Empleadores");
+                    loadEmpleadores();
+                }
+                if (sTipodeUsuario.equals("Buscadores Empleo")){
+                    actionBar.setTitle("Buscadores Empleo");
+                    loadBuscadores();
+                }
+                if (sTipodeUsuario.equals("Administradores")){
+                    actionBar.setTitle("Administradores");
+                    loadAdministradores();
+                }
+            }
+        });
     }
-    public boolean onSupportNavigateUp(){
+
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
 
-    private void loadReferencias(String idUser) {
-
-        final FirebaseRecyclerAdapter<Administrador, ViewHolderUsuarios> adapter = new FirebaseRecyclerAdapter<Administrador, ViewHolderUsuarios>(Administrador.class,
-                R.layout.cardview_mostrar_usuarios, ViewHolderUsuarios.class, userAdmin ) {
+    private void loadAdministradores() {
+        final FirebaseRecyclerAdapter<Administrador, ViewHolderUsuarios> adapterUsersAdmin = new FirebaseRecyclerAdapter<Administrador, ViewHolderUsuarios>(Administrador.class,
+                R.layout.cardview_mostrar_usuarios, ViewHolderUsuarios.class, usersAdmin) {
             @Override
             protected void populateViewHolder(ViewHolderUsuarios ViewHolder, Administrador administrador, int i) {
 
-                ViewHolder.tvNombreUser.setText( administrador.getsNombreAdmin() );
-                ViewHolder.tvApellidoUser.setText( administrador.getsApellidoAdmin() );
-                ViewHolder.tvEmailUser.setText( administrador.getsEmailAdmin() );
-                ViewHolder.tvTelefonoUser.setText( administrador.getsTelefonAdmin() );
+                ViewHolder.tvNombreUser.setText(administrador.getsNombreAdmin());
+                ViewHolder.tvApellidoUser.setText(administrador.getsApellidoAdmin());
+                ViewHolder.tvEmailUser.setText(administrador.getsEmailAdmin());
+                ViewHolder.tvTelefonoUser.setText(administrador.getsTelefonAdmin());
 
                 final Administrador clickItem = administrador;
 
@@ -74,6 +112,54 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
                 });
             }
         };
-        recycler_user_Admin.setAdapter(adapter);
+        recyclerViewAdmin.setAdapter(adapterUsersAdmin);
+    }
+
+    private void loadEmpleadores() {
+        final FirebaseRecyclerAdapter<Empleadores, ViewHolderUsuarios> adapterEmpleadores = new FirebaseRecyclerAdapter<Empleadores, ViewHolderUsuarios>(Empleadores.class,
+                R.layout.cardview_mostrar_usuarios, ViewHolderUsuarios.class, usersEmpleadores) {
+            @Override
+            protected void populateViewHolder(ViewHolderUsuarios ViewHolder, Empleadores adminEmpleadores, int i) {
+
+                ViewHolder.tvNombreUser.setText(adminEmpleadores.getsNombreEmpleador());
+                ViewHolder.tvApellidoUser.setText(adminEmpleadores.getsDireccionEmpleador());
+                ViewHolder.tvEmailUser.setText(adminEmpleadores.getsCorreoEmpleador());
+                ViewHolder.tvTelefonoUser.setText(adminEmpleadores.getsTelefonoEmpleador());
+
+                final Empleadores clickItem = adminEmpleadores;
+
+                ViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+
+                    }
+                });
+            }
+        };
+        recyclerViewAdmin.setAdapter(adapterEmpleadores);
+    }
+
+    private void loadBuscadores() {
+        final FirebaseRecyclerAdapter<Curriculos, ViewHolderUsuarios> adapterBuscadores = new FirebaseRecyclerAdapter<Curriculos, ViewHolderUsuarios>(Curriculos.class,
+                R.layout.cardview_mostrar_usuarios, ViewHolderUsuarios.class, usersBuscadores) {
+            @Override
+            protected void populateViewHolder(ViewHolderUsuarios ViewHolder, Curriculos buscadoresEmpleo, int i) {
+
+                ViewHolder.tvNombreUser.setText(buscadoresEmpleo.getsNombreC());
+                ViewHolder.tvApellidoUser.setText(buscadoresEmpleo.getsApellidoC());
+                ViewHolder.tvEmailUser.setText(buscadoresEmpleo.getsEmailC());
+                ViewHolder.tvTelefonoUser.setText(buscadoresEmpleo.getsTelefonoC());
+
+                final Curriculos clickItem = buscadoresEmpleo;
+
+                ViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+
+                    }
+                });
+            }
+        };
+        recyclerViewAdmin.setAdapter(adapterBuscadores);
     }
 }

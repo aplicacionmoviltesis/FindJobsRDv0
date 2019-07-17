@@ -5,15 +5,28 @@ public class ProblemasAppReportar {
     public ProblemasAppReportar() {
     }
 
-    private String sIdProblemAppReport,sTituloProblem,sDecripcionProblem,sFechaProblem,sImagenProblem,sIdUserReportProblem;
+    private String sIdProblemAppReport;
+    private String sTituloProblem;
+    private String sDecripcionProblem;
+    private String sFechaProblem;
+    private String sImagenProblem;
+    private String sIdUserReportProblem;
+    private String sEstadoReporte;
 
-    public ProblemasAppReportar(String sIdProblemAppReport, String sTituloProblem, String sDecripcionProblem, String sFechaProblem, String sImagenProblem, String sIdUserReportProblem) {
+
+
+
+
+
+
+    public ProblemasAppReportar(String sIdProblemAppReport, String sTituloProblem, String sDecripcionProblem, String sFechaProblem, String sImagenProblem, String sIdUserReportProblem, String sEstadoReporte) {
         this.sIdProblemAppReport = sIdProblemAppReport;
         this.sTituloProblem = sTituloProblem;
         this.sDecripcionProblem = sDecripcionProblem;
         this.sFechaProblem = sFechaProblem;
         this.sImagenProblem = sImagenProblem;
         this.sIdUserReportProblem = sIdUserReportProblem;
+        this.sEstadoReporte = sEstadoReporte;
     }
 
     public String getsIdProblemAppReport() {
@@ -63,5 +76,13 @@ public class ProblemasAppReportar {
     public void setsIdUserReportProblem(String sIdUserReportProblem) {
         this.sIdUserReportProblem = sIdUserReportProblem;
     }
+    public String getsEstadoReporte() {
+        return sEstadoReporte;
+    }
+
+    public void setsEstadoReporte(String sEstadoReporte) {
+        this.sEstadoReporte = sEstadoReporte;
+    }
+
 
 }

@@ -48,7 +48,7 @@ import java.util.List;
 public class PantallaActualizarEmpleo extends AppCompatActivity {
 
     EditText editNombreEmpleoAE, editNombreEmpresaAE, editDireccionAE, editEmailAE,
-            editTelefonoAE, editPaginaWebAE, editSalarioAE, editOtrosDatosAE,editEdadMaximaAE,editEdadMinimaAE;
+            editTelefonoAE, editPaginaWebAE, editSalarioAE, editOtrosDatosAE, editEdadMaximaAE, editEdadMinimaAE;
 
     TextView tvMostrarIdiomasAE, tvFechaPublicacionAE;
 
@@ -56,28 +56,27 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
     String sIDEmpleoEA, sNombreEmpleoAE, sNombreEmpresaAE, sDireccionAE, sEmailAE,
             sTelefonoAE, sPaginaWebAE, sSalarioAE, sOtrosDatosAE, sProvinciaAE,
             sJornadaAE, sHorarioAE, sTipoContratoAE, sCantidadVacantesAE, sAnoExpAE, sAreaAE,
-            sFormacionAcademicaAE, sMostrarIdiomaAE, sRangoEdadAE, sSexoRequeridoAE,sEstadoEmpleoAE,
+            sFormacionAcademicaAE, sMostrarIdiomaAE, sRangoEdadAE, sSexoRequeridoAE, sEstadoEmpleoAE,
             sFechaPublicacionAE, sIdEmpleadorAE;
 
     SearchableSpinner spinJornadaAE, spinTipoContratoAE, spinCantidadVacantesAE, spinAnoExpAE,
-            spinFormacionAcademicaAE, spinRangoEdadAE, spinSexoAE,spinHorarioAE;
+            spinFormacionAcademicaAE, spinRangoEdadAE, spinSexoAE, spinHorarioAE;
 
-    Button btnIdiomasAE, btnActivarCampoAE,btnPersonasAplicaronAE;
+    Button btnIdiomasAE, btnActivarCampoAE, btnPersonasAplicaronAE;
 
     ImageButton BtnActualizarEmpleoAE;
 
-    RadioButton RdbDisponibleAE,RdbNoDisponibleAE;
+    RadioButton RdbDisponibleAE, RdbNoDisponibleAE;
 
-    String sEdadMaximaAE,sEdadMinimaAE;
-    int sEdadMaxAE,sEdadMinAE;
-
+    String sEdadMaximaAE, sEdadMinimaAE;
+    int sEdadMaxAE, sEdadMinAE;
 
 
     ImageView ImageViewAE;
     String sImagenEmpleoAE;
 
 
-    String  sImagenEmpleoE;
+    String sImagenEmpleoE;
     private DatabaseReference DBRefEmplosActualizar;
     private FirebaseAuth mAuthEmpleador;
     boolean IsFirstTimeClick = true;
@@ -93,7 +92,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 /////Spinner Area de Trabajo
 
     SearchableSpinner spinAreaAE;
-    DatabaseReference areasRefActualizar,DBpersonasAplicaron;
+    DatabaseReference areasRefActualizar, DBpersonasAplicaron;
     List<Provincias> areas;
     boolean IsFirstTimeClickAreas = true;
 
@@ -116,8 +115,8 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 /////Checklist para elegir los idiomas
 
-    String sEmpleoIdE =" ";
-    private TextView tvDatosEmpleoAE,tvDatosEspecificosAE,tvRequisitosAE;
+    String sEmpleoIdE = " ";
+    private TextView tvDatosEmpleoAE, tvDatosEspecificosAE, tvRequisitosAE;
 
 
     @SuppressLint("WrongViewCast")
@@ -142,7 +141,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         tvDatosEmpleoAE = (TextView) findViewById(R.id.xmlTiDatosEmpleosAE);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         tvDatosEmpleoAE.setTypeface(face);
 
         tvDatosEspecificosAE = (TextView) findViewById(R.id.xmlTiDatosEspecificosAE);
@@ -155,8 +154,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         DBarea = databaseArea.getReference("Areas");
 
 
-        DBRefEmplosActualizar = FirebaseDatabase.getInstance().getReference("empleos");
+        DBRefEmplosActualizar = FirebaseDatabase.getInstance().getReference("Empleos");
         DBpersonasAplicaron = databaseArea.getReference();
+
 
         ImageViewAE = (ImageView) findViewById(R.id.xmlImageViewAE);
 
@@ -180,7 +180,6 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
         editEdadMaximaAE = (EditText) findViewById(R.id.xmlEditEdadMaximaAE);
         editEdadMinimaAE = (EditText) findViewById(R.id.xmlEditEdadMinimaAE);
-
 
 
         RdbDisponibleAE = (RadioButton) findViewById(R.id.xmlRdDisponibleAE);
@@ -226,7 +225,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
             }
         });
 
-        provinciasRefActualizar.child("provincias").addValueEventListener(new ValueEventListener() {
+        provinciasRefActualizar.child("Provincias").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -628,9 +627,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
 ///el metodp
 
-        if(getIntent() != null){
+        if (getIntent() != null) {
             sEmpleoIdE = getIntent().getStringExtra("sEmpleoIdAnadidos");
-            if(!sEmpleoIdE.isEmpty()){
+            if (!sEmpleoIdE.isEmpty()) {
 
                 //goDetalleEmpleo(sEmpleoIdE);
                 CargarEmpleoActualizar(sEmpleoIdE);
@@ -641,9 +640,9 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         BtnActualizarEmpleoAE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getIntent() != null){
+                if (getIntent() != null) {
                     sEmpleoIdE = getIntent().getStringExtra("sEmpleoIdAnadidos");
-                    if(!sEmpleoIdE.isEmpty()){
+                    if (!sEmpleoIdE.isEmpty()) {
 
                         //goDetalleEmpleo(sEmpleoIdE);
                         ActualizarEmpleo(sEmpleoIdE);
@@ -662,14 +661,14 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         });*/
 
 
-
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
-    public void ActivarCampos(){
+
+    public void ActivarCampos() {
         editNombreEmpleoAE.setEnabled(true);
         editNombreEmpresaAE.setEnabled(true);
         editDireccionAE.setEnabled(true);
@@ -698,7 +697,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         spinSexoAE.setEnabled(true);
     }
 
-    public void CargarEmpleoActualizar(String sEmpleoIdE){
+    public void CargarEmpleoActualizar(String sEmpleoIdE) {
         DBRefEmplosActualizar.child(sEmpleoIdE).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -724,23 +723,26 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 spinAnoExpAE.setSelection(obtenerPosicionItem(spinAnoExpAE, empleos.getsAnosExperienciaE()));
                 spinFormacionAcademicaAE.setSelection(obtenerPosicionItem(spinFormacionAcademicaAE, empleos.getsFormacionAcademicaE()));
                 tvMostrarIdiomasAE.setText(empleos.getsMostrarIdiomaE());
-                spinSexoAE.setSelection(obtenerPosicionItem(spinSexoAE, empleos.getsRangoE()));
+                spinSexoAE.setSelection(obtenerPosicionItem(spinSexoAE, empleos.getsSexoRequeridoE()));
                 //spinRangoEdadAE.setSelection(obtenerPosicionItem(spinRangoEdadAE, empleos.getsRangoE()));
                 editOtrosDatosAE.setText(empleos.getsOtrosDatosE());
                 sImagenEmpleoAE = empleos.getsImagenEmpleoE();
 
                 sRangoEdadAE = empleos.getsRangoE();
-                sEdadMinimaAE = sRangoEdadAE.substring(0,2);
-                sEdadMaximaAE = sRangoEdadAE.substring(3,5);
+                sEdadMinimaAE = sRangoEdadAE.substring(0, 2);
+                sEdadMaximaAE = sRangoEdadAE.substring(3, 5);
                 editEdadMinimaAE.setText(sEdadMinimaAE);
                 editEdadMaximaAE.setText(sEdadMaximaAE);
 
 
-
-               /* if(empleos.getsEstadoEmpleoE().equals("No Disponible")){
-
+                if (empleos.getsEstadoEmpleoE()!= null && !empleos.getsEstadoEmpleoE().isEmpty()){
                     RdbNoDisponibleAE.setChecked(true);
-                }*/
+                    if (empleos.getsEstadoEmpleoE().equals("No Disponible")) {
+                        RdbNoDisponibleAE.setChecked(true);
+                    } else {
+                        RdbNoDisponibleAE.setChecked(false);
+                    }
+                }
 
                 RadioGroup RGEstadoActualEmpleoE = (RadioGroup) findViewById(R.id.xmlRGEstadoActualEmpleoAE);
                 RGEstadoActualEmpleoE.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -828,7 +830,6 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         //sEstadoEmpleoE = "";
 
 
-
         //String Ukey = "klk45";
         //sIdEmpleadorE=Ukey;
         //sIDEmpleo = "444";
@@ -901,41 +902,40 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         sEdadMaxAE = Integer.parseInt(editEdadMaximaAE.getText().toString().trim());
         sEdadMinAE = Integer.parseInt(editEdadMinimaAE.getText().toString().trim());
 
-        if(sEdadMinAE<18){
+        if (sEdadMinAE < 18) {
             Toast.makeText(this, "La ley establece que las personas menores de 18 Años de edad, no pueden Aplicar a un Empleo, si autorizacion de sus padres, con un contrato especial.", Toast.LENGTH_LONG).show();
             return;
         }
-        if(sEdadMinAE>sEdadMaxAE){
+        if (sEdadMinAE > sEdadMaxAE) {
             Toast.makeText(this, "La edad Minima, no puede ser mayor que la edad Maxima", Toast.LENGTH_LONG).show();
             return;
         }
 
 
-        sRangoEdadAE = sEdadMinAE +"-"+sEdadMaxAE;
-        Log.d("ValorMax",String.valueOf(sEdadMaxAE));
-        Log.d("ValorMin",String.valueOf(sEdadMinAE));
-        Log.d("Valortotal",String.valueOf(sRangoEdadAE));
+        sRangoEdadAE = sEdadMinAE + "-" + sEdadMaxAE;
+        Log.d("ValorMax", String.valueOf(sEdadMaxAE));
+        Log.d("ValorMin", String.valueOf(sEdadMinAE));
+        Log.d("Valortotal", String.valueOf(sRangoEdadAE));
 
 
 //        FirebaseUser user = mAuthEmpleador.getCurrentUser();
         //String Ukey = user.getUid();
         String Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        sIdEmpleadorAE=Ukey;
+        sIdEmpleadorAE = Ukey;
         //String IDEmpleo = provinciasRefActualizar.push().getKey();
         String IDEmpleo = sEmpleoIdE;
-        Empleos empleos = new Empleos(sEmpleoIdE, sNombreEmpleoAE, sNombreEmpresaAE,sDireccionAE,sProvinciaAE,
+        Empleos empleos = new Empleos(sEmpleoIdE, sNombreEmpleoAE, sNombreEmpresaAE, sDireccionAE, sProvinciaAE,
                 sTelefonoAE, sPaginaWebAE, sEmailAE, sSalarioAE, sOtrosDatosAE,
-                sHorarioAE, sFechaPublicacionAE, sMostrarIdiomaAE, sAreaAE,sAnoExpAE,
-                sFormacionAcademicaAE,sSexoRequeridoAE, sRangoEdadAE, sJornadaAE, sCantidadVacantesAE,
+                sHorarioAE, sFechaPublicacionAE, sMostrarIdiomaAE, sAreaAE, sAnoExpAE,
+                sFormacionAcademicaAE, sSexoRequeridoAE, sRangoEdadAE, sJornadaAE, sCantidadVacantesAE,
                 sTipoContratoAE, sEstadoEmpleoAE, sPersonasAplicaronE, sImagenEmpleoE, sIdEmpleadorAE);
         DBRefEmplosActualizar.child(sEmpleoIdE).setValue(empleos);
-                //setValue(empleos);
+        //setValue(empleos);
         Toast.makeText(this, "El Empleo se Actualizo exitosamente", Toast.LENGTH_LONG).show();
 
         //DBReferenceEmplos.child("empleos").child(IDEmpleo).setValue(empleos);
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).setValue(empleos);//para registrarlo dentro del usuario que inicio sesion
         //DBReferenceEmplos.child(Ukey).child(IDEmpleo).child("PersonasAplicaron").setValue("1");//para registrarlo dentro del usuario que inicio sesion
-
 
 
     }
@@ -956,24 +956,25 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                     //Picasso.get().load(Dareas.getsImagenArea()).into(MostImagenArea);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
 
-    public void IrPersonasEmpleo(){
+    public void IrPersonasEmpleo() {
 
         Intent intent = new Intent(PantallaActualizarEmpleo.this, PantallaPersonasAplicaronEmpleo.class);
-        intent.putExtra("sEmpleoIdEAplicados",sEmpleoIdE);
+        intent.putExtra("sEmpleoIdEAplicados", sEmpleoIdE);
 
-        String hola=sEmpleoIdE;
-        Log.d("klkpaginaweb",hola);
+        String hola = sEmpleoIdE;
+        Log.d("klkpaginaweb", hola);
         startActivity(intent);
 
     }
 
-    public void VerPersonasAplicaron(String sEmpleoIdE){
+    public void VerPersonasAplicaron(String sEmpleoIdE) {
         DBpersonasAplicaron.child("EmpleosConCandidatos").orderByChild("sIdEmpleoAplico").equalTo(sEmpleoIdE).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -983,7 +984,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                 final List<String> CurriculosAplico = new ArrayList<String>();
                 Log.d("holaperro", String.valueOf(dataSnapshot));
 
-                for (DataSnapshot CurriculosSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
 
                     String IdCurriculoAplico = CurriculosSnapshot.child("sIdCurriculoAplico").getValue(String.class);
                     //areas.add(areaName);
@@ -991,6 +992,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
                     //sIdCurriculoAplico = areaName;
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

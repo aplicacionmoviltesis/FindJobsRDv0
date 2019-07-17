@@ -7,20 +7,33 @@
     android:orientation="vertical"
     tools:context=".Pantallas_CurriculosCompleto.DetalleReferencias">
 
-
     <TextView
         android:id="@+id/xmlTituloUserAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="Usuario Admin"
+        android:text="Usuarios"
         android:textColor="@color/md_blue_900"
         android:textSize="30sp"
         android:textStyle="bold" />
 
+    <Spinner
+        android:id="@+id/xmlspinSeleccionarTipoDeUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:popupBackground="@color/md_light_blue_100"/>
+
+    <Button
+        android:id="@+id/btnBuscarUsuarioAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        android:layout_margin="20dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUserAdmin"
+        android:id="@+id/recyclerViewUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"

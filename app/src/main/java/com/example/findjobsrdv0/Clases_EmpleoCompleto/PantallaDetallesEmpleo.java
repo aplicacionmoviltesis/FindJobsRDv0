@@ -119,7 +119,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         });*/
 
         database = FirebaseDatabase.getInstance();
-        DBempleos = database.getReference("empleos");
+        DBempleos = database.getReference("Empleos");
         AplicarEmpleoDataBase = database.getReference("EmpleosConCandidatos");
         DbLikes = database.getReference();
         CurriculosDataBase = database.getReference();
