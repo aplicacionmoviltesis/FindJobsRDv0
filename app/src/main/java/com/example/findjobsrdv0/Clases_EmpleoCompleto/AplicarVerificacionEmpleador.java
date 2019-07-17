@@ -3,16 +3,17 @@ package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 import android.net.Uri;
 
 public class AplicarVerificacionEmpleador {
-    private String sIdVerifEmp, sIdEmpleadorVerifEmp, sNombreDocumVerifEmp, sDocumentoVerifEmp, sFechaVerifEmp;
+    private String sIdVerifEmp, sIdEmpleadorVerifEmp, sNombreDocumVerifEmp, sDocumentoVerifEmp, sEstado, sFechaVerifEmp;
 
     public AplicarVerificacionEmpleador() {
     }
 
-    public AplicarVerificacionEmpleador(String sIdVerifEmp, String sIdEmpleadorVerifEmp, String sNombreDocumVerifEmp, String sDocumentoVerifEmp, String sFechaVerifEmp) {
+    public AplicarVerificacionEmpleador(String sIdVerifEmp, String sIdEmpleadorVerifEmp, String sNombreDocumVerifEmp, String sDocumentoVerifEmp, String sEstado, String sFechaVerifEmp) {
         this.sIdVerifEmp = sIdVerifEmp;
         this.sIdEmpleadorVerifEmp = sIdEmpleadorVerifEmp;
         this.sNombreDocumVerifEmp = sNombreDocumVerifEmp;
         this.sDocumentoVerifEmp = sDocumentoVerifEmp;
+        this.sEstado = sEstado;
         this.sFechaVerifEmp = sFechaVerifEmp;
     }
 
@@ -46,6 +47,14 @@ public class AplicarVerificacionEmpleador {
 
     public void setsDocumentoVerifEmp(String sDocumentoVerifEmp) {
         this.sDocumentoVerifEmp = sDocumentoVerifEmp;
+    }
+
+    public String getsEstado() {
+        return sEstado;
+    }
+
+    public void setsEstado(String sEstado) {
+        this.sEstado = sEstado;
     }
 
     public String getsFechaVerifEmp() {

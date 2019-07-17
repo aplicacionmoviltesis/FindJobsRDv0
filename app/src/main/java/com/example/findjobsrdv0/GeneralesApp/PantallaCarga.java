@@ -7,10 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-import com.example.findjobsrdv0.Administradores.PantallaAdministradorUsuarios;
-import com.example.findjobsrdv0.Administradores.PantallaListaReportesProblemas;
-import com.example.findjobsrdv0.PantallaDetalleAplicacionVerificacionEmpleador;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaBuscarCurriculos;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaAplicacionVerificacionEmpleador;
 import com.example.findjobsrdv0.R;
 
 
@@ -25,8 +22,7 @@ public class PantallaCarga extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Intent intent = new Intent(PantallaCarga.this, PantallaDetalleAplicacionVerificacionEmpleador.class);
+                Intent intent = new Intent(PantallaCarga.this, PantallaListaAplicacionVerificacionEmpleador.class);
                 startActivity(intent);
                 finish();
             }

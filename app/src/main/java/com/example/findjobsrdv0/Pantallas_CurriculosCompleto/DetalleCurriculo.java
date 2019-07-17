@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -311,6 +312,7 @@ public class DetalleCurriculo extends AppCompatActivity {
                 TVNivelSecundarioCurr.setText( vistaCurriculomodel.getsNivelSecundarioFormAcad() );
                 TVCarrera.setText( vistaCurriculomodel.getsCarreraFormAcad() );
                 TVUniversidadCurr.setText( vistaCurriculomodel.getsUniversidadFormAcad() );
+
 
             }
 

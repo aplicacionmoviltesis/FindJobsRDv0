@@ -1,10 +1,9 @@
-package com.example.findjobsrdv0;
+package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleadores;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosEmpresa;
+import com.example.findjobsrdv0.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;

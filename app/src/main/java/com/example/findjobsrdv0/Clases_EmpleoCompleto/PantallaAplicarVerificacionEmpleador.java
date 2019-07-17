@@ -106,7 +106,7 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
                 String Id = databaseReference.push().getKey();
 
                 AplicarVerificacionEmpleador aplicarVerificacionEmpleador = new AplicarVerificacionEmpleador( Id, userActivo ,etNombreDocumento.getText().toString(),
-                        sDocumentoVerifEmp.toString(), sFechaVerifEmp );
+                        sDocumentoVerifEmp.toString(), "false", sFechaVerifEmp );
 //                databaseReference.child( databaseReference.push().getKey() ).setValue( aplicarVerificacionEmpleador  );
 
                 databaseReference.child( Id ).setValue( aplicarVerificacionEmpleador );
