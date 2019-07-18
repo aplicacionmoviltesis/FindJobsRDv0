@@ -48,9 +48,9 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         database = FirebaseDatabase.getInstance();
-        usersAdmin = database.getReference("AdministradoresApp");
-        usersBuscadores = database.getReference("Curriculos");
-        usersEmpleadores = database.getReference("Empleadores");
+        usersAdmin = database.getReference(getResources().getString(R.string.Ref_AdministradoresApp));
+        usersBuscadores = database.getReference(getResources().getString(R.string.Ref_Curriculos));
+        usersEmpleadores = database.getReference(getResources().getString(R.string.Ref_Empleadores));
 
         layoutManager = new LinearLayoutManager(this);
         recyclerViewAdmin = (RecyclerView) findViewById(R.id.recyclerViewUsers);

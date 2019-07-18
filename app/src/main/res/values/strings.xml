@@ -253,5 +253,40 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+<!--BASE DE DATOS-->
+    <string name="Ref_AdministradoresApp">AdministradoresApp</string>
 
+    <string name="Ref_Areas">Areas</string>
+
+    <string name="Ref_AreasCurriculos">AreasCurriculos</string>
+
+    <string name="Ref_BuscadoresEmpleosConFavoritos">BuscadoresEmpleosConFavoritos</string>
+
+    <string name="Ref_Curriculos">Curriculos</string>
+
+    <string name="Ref_CurriculosConSolicitudes">CurriculosConSolicitudes</string>
+
+    <string name="Ref_Empleadores">Empleadores</string>
+
+    <string name="Ref_EmpleadoresConFavoritos">EmpleadoresConFavoritos</string>
+
+    <string name="Ref_Empleos">Empleos</string>
+
+    <string name="Ref_EmpleosConCandidatos">EmpleosConCandidatos</string>
+
+    <string name="Ref_Experiencia_Laboral">Experiencia_Laboral</string>
+
+    <string name="Ref_OpinionesSugerenciasApp">OpinionesSugerenciasApp</string>
+
+    <string name="Ref_Otros_Cursos">Otros_Cursos</string>
+
+    <string name="Ref_ProblemasReportadosApp">ProblemasReportadosApp</string>
+
+    <string name="Ref_Provincias">Provincias</string>
+
+    <string name="Ref_Referencia">Referencia</string>
+
+    <string name="Ref_SolicitudVerificacionEmpleador">SolicitudVerificacionEmpleador</string>
+
+    <string name="Ref_Universidades">Universidades</string>
 </resources>

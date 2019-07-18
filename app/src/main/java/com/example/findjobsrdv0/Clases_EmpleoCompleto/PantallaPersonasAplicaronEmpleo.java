@@ -61,7 +61,7 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         vistaCurriculo = database.getReference();
-        DBpersonasAplicaron = database.getReference("EmpleosConCandidatos");
+        DBpersonasAplicaron = database.getReference(getResources().getString(R.string.Ref_EmpleosConCandidatos));
 
         recyclerView = (RecyclerView) findViewById(R.id.ListaCurriculosAplicaronR);
 
@@ -111,7 +111,7 @@ public class PantallaPersonasAplicaronEmpleo extends AppCompatActivity {
     }
 
     private void loadCurriculo(final String sPersonasAplicaron) {
-        vistaCurriculo.child("Curriculos").orderByChild("sIdCurriculo").equalTo(sPersonasAplicaron).addValueEventListener(new ValueEventListener() {
+        vistaCurriculo.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild("sIdCurriculo").equalTo(sPersonasAplicaron).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 

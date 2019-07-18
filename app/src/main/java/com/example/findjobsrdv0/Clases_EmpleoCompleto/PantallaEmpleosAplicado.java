@@ -59,7 +59,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
 
         databaseEmpleosAplico = FirebaseDatabase.getInstance();
         DBEmpleos = databaseEmpleosAplico.getReference();
-        EmpleosAplicadoDB = databaseEmpleosAplico.getReference("EmpleosConCandidatos");
+        EmpleosAplicadoDB = databaseEmpleosAplico.getReference(getResources().getString(R.string.Ref_EmpleosConCandidatos));
 
         recyclerViewEmpleos = (RecyclerView) findViewById(R.id.ListaEmpleosAplicadoR);
 
@@ -111,7 +111,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
     }
 
     private void loadEmpleo(final String sIDEmpleo) {
-        DBEmpleos.child("empleos").orderByChild("sIDEmpleo").equalTo(sIDEmpleo).addValueEventListener(new ValueEventListener() {
+        DBEmpleos.child(getResources().getString(R.string.Ref_Empleos)).orderByChild("sIDEmpleo").equalTo(sIDEmpleo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 

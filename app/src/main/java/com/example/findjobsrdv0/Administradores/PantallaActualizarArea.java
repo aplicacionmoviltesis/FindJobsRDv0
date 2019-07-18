@@ -89,7 +89,7 @@ public class PantallaActualizarArea extends AppCompatActivity {
         editSubAreasActualizar.setEnabled( false );
 
         AreaDatabase = FirebaseDatabase.getInstance();
-        AreaRefActualizar = AreaDatabase.getReference( "Areas" );
+        AreaRefActualizar = AreaDatabase.getReference(getResources().getString(R.string.Ref_Areas));
 
         if (getIntent() != null) {
             sIdAreaActualizar = getIntent().getStringExtra( "sAreaId" );

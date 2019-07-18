@@ -41,7 +41,7 @@ public class PantallaDetallesUniversidad extends AppCompatActivity {
         TvNombreUniDetalle.setTypeface(face);
 
         databaseUni = FirebaseDatabase.getInstance();
-        DbUni = databaseUni.getReference("Universidades");
+        DbUni = databaseUni.getReference(getResources().getString(R.string.Ref_Universidades));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

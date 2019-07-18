@@ -42,7 +42,7 @@ public class PantallaDetalleOpiniones_Sugerencias extends AppCompatActivity {
         TvTituloOpiSug.setTypeface(face);
 
         databaseOpiSug = FirebaseDatabase.getInstance();
-        DBOpiSug = databaseOpiSug.getReference("OpinionesSugerenciasApp");
+        DBOpiSug = databaseOpiSug.getReference(getResources().getString(R.string.Ref_OpinionesSugerenciasApp));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

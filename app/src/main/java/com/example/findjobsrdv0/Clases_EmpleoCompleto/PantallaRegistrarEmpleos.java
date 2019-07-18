@@ -136,7 +136,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
 
         databaseArea = FirebaseDatabase.getInstance();
-        DBarea = databaseArea.getReference("Areas");
+        DBarea = databaseArea.getReference(getResources().getString(R.string.Ref_Areas));
 
         DBReferenceEmplos = FirebaseDatabase.getInstance().getReference("Empleos");
 
@@ -185,7 +185,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
             }
         });
 
-        provinciasRef.child("provincias").addValueEventListener(new ValueEventListener() {
+        provinciasRef.child(getResources().getString(R.string.Ref_Provincias)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

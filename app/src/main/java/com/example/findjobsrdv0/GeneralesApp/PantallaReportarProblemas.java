@@ -86,7 +86,7 @@ public class PantallaReportarProblemas extends AppCompatActivity {
         editDecripcionProblem = (EditText) findViewById( R.id.xmlEditReportarProblema );
 
         ProblemDatabase = FirebaseDatabase.getInstance();
-        ProblemReportRefRegistrar = ProblemDatabase.getReference( "ProblemasReportadosApp" );
+        ProblemReportRefRegistrar = ProblemDatabase.getReference(getResources().getString(R.string.Ref_ProblemasReportadosApp));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "EEE dd MMM yyyy" );
         sFechaProblem = simpleDateFormat.format( new Date() );

@@ -90,7 +90,7 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
 
     public void TraerEmpleosFavoritos(String sPersonaIdE) {
 
-        Query q = EmpleosFavoritosDB.child("BuscadoresEmpleosConFavoritos")
+        Query q = EmpleosFavoritosDB.child(getResources().getString(R.string.Ref_BuscadoresEmpleosConFavoritos))
                 .child(sPersonaIdE)
                 .child("likes");//referencia likes
 
@@ -116,7 +116,7 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
     }
 
     private void loadEmpleosFav(final String sFavIdEmpleo) {
-        DBEmpleosFav.child("Empleos").orderByChild("sIDEmpleo").equalTo(sFavIdEmpleo).addValueEventListener(new ValueEventListener() {
+        DBEmpleosFav.child(getResources().getString(R.string.Ref_Empleos)).orderByChild("sIDEmpleo").equalTo(sFavIdEmpleo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 

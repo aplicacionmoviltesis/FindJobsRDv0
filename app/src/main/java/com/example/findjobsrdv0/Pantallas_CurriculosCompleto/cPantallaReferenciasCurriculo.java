@@ -70,7 +70,7 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         databaseCurriculoAct = FirebaseDatabase.getInstance();
-        databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
+        databaseReferenceCurriloAct = databaseCurriculoAct.getReference(getResources().getString(R.string.Ref_Curriculos));
 
         Query query = databaseReferenceCurriloAct.orderByChild( "sIdCurriculo" ).equalTo( Ukey );
         query.addValueEventListener( new ValueEventListener() {

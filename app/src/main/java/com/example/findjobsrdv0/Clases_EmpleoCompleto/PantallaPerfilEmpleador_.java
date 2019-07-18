@@ -119,7 +119,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
         mProgressDialog = new ProgressDialog( PantallaPerfilEmpleador_.this );
 
         database = FirebaseDatabase.getInstance();
-        DBperfilEmpleadores = database.getReference( "Empleadores" );
+        DBperfilEmpleadores = database.getReference(getResources().getString(R.string.Ref_Empleadores));
 
         user = firebaseAuth.getInstance().getCurrentUser();
         //NombreEmpleador = user.getDisplayName();

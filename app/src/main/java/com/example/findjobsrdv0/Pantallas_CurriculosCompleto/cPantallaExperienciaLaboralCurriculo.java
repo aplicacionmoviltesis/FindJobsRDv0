@@ -72,7 +72,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         usuarioconectado = Ukey;
 
         database = FirebaseDatabase.getInstance();
-        experiencialaboralinset = database.getReference( "Experiencia_Laboral" );
+        experiencialaboralinset = database.getReference(getResources().getString(R.string.Ref_Experiencia_Laboral));
 
         recycler_experiencialaboral = (RecyclerView) findViewById( R.id.recyclerviewExperienciaLaboral );
         recycler_experiencialaboral.setHasFixedSize( true );
@@ -80,7 +80,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
         recycler_experiencialaboral.setLayoutManager( layoutManager );
 
         databaseCurriculoAct = FirebaseDatabase.getInstance();
-        databaseReferenceCurriloAct = databaseCurriculoAct.getReference( "Curriculos" );
+        databaseReferenceCurriloAct = databaseCurriculoAct.getReference(getResources().getString(R.string.Ref_Curriculos));
 
         Query query = databaseReferenceCurriloAct.orderByChild( "sIdCurriculo" ).equalTo( Ukey );
         query.addValueEventListener( new ValueEventListener() {
@@ -99,7 +99,7 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
             }
         } );
 
-        mDatabase = FirebaseDatabase.getInstance().getReference( "Experiencia_Laboral" );
+        mDatabase = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.Ref_Experiencia_Laboral));
         mAuth = FirebaseAuth.getInstance();
 
         etNombreEmpresa = (EditText) findViewById( R.id.xmlbeditRegistrarEmpresaEL );

@@ -64,7 +64,7 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
 
         databaseCurriculo = FirebaseDatabase.getInstance();
         vistaCurriculoSolicitados = databaseCurriculo.getReference();
-        DBCurriculoAplicado = databaseCurriculo.getReference("CurriculosConSolicitudes");
+        DBCurriculoAplicado = databaseCurriculo.getReference(getResources().getString(R.string.Ref_CurriculosConSolicitudes));
 
         recyclerViewCurriculosA = (RecyclerView) findViewById(R.id.ListaCurriculosSolicitadosR);
 

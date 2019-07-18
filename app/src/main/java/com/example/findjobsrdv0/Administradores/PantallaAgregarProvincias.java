@@ -93,7 +93,7 @@ public class PantallaAgregarProvincias extends AppCompatActivity {
 
 
         ProvinciaDatabase = FirebaseDatabase.getInstance();
-        ProvinciaRefRegistrar = ProvinciaDatabase.getReference( "Provincias" );
+        ProvinciaRefRegistrar = ProvinciaDatabase.getReference(getResources().getString(R.string.Ref_Provincias));
     }
 
     @Override

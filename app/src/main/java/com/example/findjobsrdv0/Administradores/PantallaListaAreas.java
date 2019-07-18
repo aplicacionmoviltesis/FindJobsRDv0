@@ -36,7 +36,7 @@ public class PantallaListaAreas extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBAreas= database.getReference("Areas");
+        DBAreas= database.getReference(getResources().getString(R.string.Ref_Areas));
         DBAreas.keepSynced(true);
 
         ActionBar actionBar = getSupportActionBar();

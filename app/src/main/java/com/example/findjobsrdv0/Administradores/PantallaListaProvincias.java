@@ -46,7 +46,7 @@ public class PantallaListaProvincias extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBProvincia = database.getReference("Provincias");
+        DBProvincia = database.getReference(getResources().getString(R.string.Ref_Provincias));
         DBProvincia.keepSynced(true);
 
         ActionBar actionBar = getSupportActionBar();

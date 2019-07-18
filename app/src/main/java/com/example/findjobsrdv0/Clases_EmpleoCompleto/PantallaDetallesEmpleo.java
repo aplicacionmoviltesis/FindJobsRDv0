@@ -119,12 +119,13 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
         });*/
 
         database = FirebaseDatabase.getInstance();
-        DBempleos = database.getReference("Empleos");
-        AplicarEmpleoDataBase = database.getReference("EmpleosConCandidatos");
+        DBempleos = database.getReference(getResources().getString(R.string.Ref_Empleos));
+
+        AplicarEmpleoDataBase = database.getReference(getResources().getString(R.string.Ref_EmpleosConCandidatos));
         DbLikes = database.getReference();
         CurriculosDataBase = database.getReference();
-        verificacionEmpleadores = database.getReference("Empleadores");
-        EmpleosAplicadoAnteriorDB = database.getReference("EmpleosConCandidatos");
+        verificacionEmpleadores = database.getReference(getResources().getString(R.string.Ref_Empleadores));
+        EmpleosAplicadoAnteriorDB = database.getReference(getResources().getString(R.string.Ref_EmpleosConCandidatos));
 
 
         MostImagen = (ImageView) findViewById(R.id.xmlImagenEmpleoE);
@@ -178,7 +179,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                     marcarFavorito(sEmpleoIdE);
                     Log.d("estado activo", String.valueOf(b));
                 } else {
-                    final Query prueba = DbLikes.child("BuscadoresEmpleosConFavoritos").child(sIdPersonaAplico)
+                    final Query prueba = DbLikes.child(getResources().getString(R.string.Ref_BuscadoresEmpleosConFavoritos)).child(sIdPersonaAplico)
                             .child("likes").orderByChild("IdEmpleoLike").equalTo(sEmpleoIdE);
 
                     prueba.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -236,7 +237,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
             }
         });
 
-        CurriculosDataBase.child("Curriculos").orderByChild("sIdCurriculo").equalTo(sIdPersonaAplico).addValueEventListener(new ValueEventListener() {
+        CurriculosDataBase.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild("sIdCurriculo").equalTo(sIdPersonaAplico).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final List<String> areas = new ArrayList<String>();

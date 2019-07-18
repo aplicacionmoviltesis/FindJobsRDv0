@@ -40,7 +40,7 @@ public class PantallaListaReportesProblemas extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBProblemasReportados= database.getReference("ProblemasReportadosApp");
+        DBProblemasReportados= database.getReference(getResources().getString(R.string.Ref_ProblemasReportadosApp));
         DBProblemasReportados.keepSynced(true);
 
         ActionBar actionBar = getSupportActionBar();

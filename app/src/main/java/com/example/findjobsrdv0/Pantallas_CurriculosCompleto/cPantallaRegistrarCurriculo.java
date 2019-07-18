@@ -141,7 +141,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         mProgressDialog = new ProgressDialog( cPantallaRegistrarCurriculo.this );
 
         database = FirebaseDatabase.getInstance();
-        databaseReferenceCurrilo = database.getReference( "Curriculos" );
+        databaseReferenceCurrilo = database.getReference(getResources().getString(R.string.Ref_Curriculos));
 
         userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
         user = firebaseAuth.getInstance().getCurrentUser();
@@ -186,7 +186,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             }
         } );
 
-        provinciasRefCurriculo.child( "Provincias" ).addValueEventListener( new ValueEventListener() {
+        provinciasRefCurriculo.child(getResources().getString(R.string.Ref_Provincias)).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

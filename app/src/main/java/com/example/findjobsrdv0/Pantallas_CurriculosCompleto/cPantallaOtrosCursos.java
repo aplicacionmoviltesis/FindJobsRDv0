@@ -55,9 +55,9 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
         tituloOtrosCursos.setTypeface(face);
 
         database = FirebaseDatabase.getInstance();
-        otrosestudiosinset = database.getReference("Otros_Cursos");
+        otrosestudiosinset = database.getReference(getResources().getString(R.string.Ref_Otros_Cursos));
         databaseCurriculoAct = FirebaseDatabase.getInstance();
-        databaseReferenceCurriloAct = databaseCurriculoAct.getReference("Curriculos");
+        databaseReferenceCurriloAct = databaseCurriculoAct.getReference(getResources().getString(R.string.Ref_Curriculos));
 
         recycler_otrosestudios = (RecyclerView) findViewById(R.id.recyclerviewotroscursos);
         recycler_otrosestudios.setHasFixedSize(true);

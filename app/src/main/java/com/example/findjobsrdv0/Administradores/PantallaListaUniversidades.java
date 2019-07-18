@@ -37,7 +37,7 @@ public class PantallaListaUniversidades extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBUniversidades= database.getReference("Universidades");
+        DBUniversidades= database.getReference(getResources().getString(R.string.Ref_Universidades));
         DBUniversidades.keepSynced(true);
 
         ActionBar actionBar = getSupportActionBar();

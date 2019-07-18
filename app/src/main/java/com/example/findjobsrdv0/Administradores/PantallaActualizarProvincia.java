@@ -104,7 +104,7 @@ public class PantallaActualizarProvincia extends AppCompatActivity {
 
 
         ProvinciaDatabase = FirebaseDatabase.getInstance();
-        ProvinciaRefActualizar = ProvinciaDatabase.getReference("Provincias");
+        ProvinciaRefActualizar = ProvinciaDatabase.getReference(getResources().getString(R.string.Ref_Provincias));
 
         editNombreProvAct.setEnabled(false);
         editDescripcionProvAct.setEnabled(false);

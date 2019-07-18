@@ -86,7 +86,7 @@ public class PantallaAgregarAreaDeTrabajo extends AppCompatActivity {
         editSubAreasRegistrar = (EditText) findViewById( R.id.xmlEditSubAreasRegistrar );
 
         AreaDatabase = FirebaseDatabase.getInstance();
-        AreaRefRegistrar = AreaDatabase.getReference( "Areas" );
+        AreaRefRegistrar = AreaDatabase.getReference(getResources().getString(R.string.Ref_Areas));
     }
 
     @Override

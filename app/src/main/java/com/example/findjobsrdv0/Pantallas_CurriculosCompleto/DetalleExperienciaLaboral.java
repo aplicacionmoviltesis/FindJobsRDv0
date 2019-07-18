@@ -46,7 +46,7 @@ public class DetalleExperienciaLaboral extends AppCompatActivity {
         tvTiExpLab.setTypeface(face);
 
         database = FirebaseDatabase.getInstance();
-        detExperienciaLab = database.getReference("Experiencia_Laboral");
+        detExperienciaLab = database.getReference(getResources().getString(R.string.Ref_Experiencia_Laboral));
 
         recycler_detalle_experiencialab = (RecyclerView) findViewById(R.id.recyclerViewDetalleExperienciaLab);
         recycler_detalle_experiencialab.setHasFixedSize(true);

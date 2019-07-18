@@ -1,13 +1,19 @@
 package com.example.findjobsrdv0.GeneralesApp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,17 +22,47 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.Administradores.PantallaConfiguracionAdministrador;
-import com.example.findjobsrdv0.PantallaBuscarEmpleos;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaPrincipalEmpleador;
 import com.example.findjobsrdv0.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PantallaConfiguracion extends AppCompatActivity {
 
-    private Button btnCambiarPass, btnAcercaApp,btnContactoNosotros,btnReportarProblema,btnConfigAdmin;
+    private Button btnCambiarPass, btnAcercaApp, btnContactoNosotros, btnReportarProblema, btnConfigAdmin;
+
+    private ProgressDialog EprogressDialogAdmin;
+
+    private FirebaseAuth mAuthAdministrador;
+
+    private String emailadmin, passAdmin;
+
+    private FirebaseDatabase fDatabaseAdmin;
+    private DatabaseReference dBReferencesAdmin;
+
+    private EditText editEmailAdmin,editPassAdmin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_configuracion);
+
+        EprogressDialogAdmin = new ProgressDialog(this);
+
+        fDatabaseAdmin = FirebaseDatabase.getInstance();
+        dBReferencesAdmin = fDatabaseAdmin.getReference(getResources().getString(R.string.Ref_AdministradoresApp));
+
+        mAuthAdministrador = FirebaseAuth.getInstance();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -107,7 +143,7 @@ public class PantallaConfiguracion extends AppCompatActivity {
 
     }
 
-    public void AccesoAdmin(){
+    public void AccesoAdmin() {
         final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.login_acceso_admin, null);
@@ -116,12 +152,11 @@ public class PantallaConfiguracion extends AppCompatActivity {
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
         TvTiLoginAdmin.setTypeface(face);
 
-        final EditText editEmailAdmin = (EditText) dialogView.findViewById(R.id.xmlEditEmailAdmin);
-        final EditText editPassAdmin = (EditText) dialogView.findViewById(R.id.xmlEditPassAdmin);
+        editEmailAdmin = (EditText) dialogView.findViewById(R.id.xmlEditEmailAdmin);
+        editPassAdmin = (EditText) dialogView.findViewById(R.id.xmlEditPassAdmin);
 
         Button btnSalirAdmin = (Button) dialogView.findViewById(R.id.xmlBtnSalirAdmin);
         Button btnEntrarAdmin = (Button) dialogView.findViewById(R.id.xmlBtnEntrarAdmin);
-
 
 
         btnSalirAdmin.setOnClickListener(new View.OnClickListener() {
@@ -135,17 +170,21 @@ public class PantallaConfiguracion extends AppCompatActivity {
             public void onClick(View view) {
                 // DO SOMETHINGS
                 //dialogBuilder.dismiss();
-                String emailadmin = editEmailAdmin.getText().toString().trim();
-                String passAdmin = editPassAdmin.getText().toString().trim();
-                if(emailadmin.equals("lamf") && passAdmin.equals("123")){
-                    editEmailAdmin.setText("");
-                    editPassAdmin.setText("");
-                    Intent intent = new Intent(PantallaConfiguracion.this, PantallaConfiguracionAdministrador.class);
-                    startActivityForResult(intent, 0);
+                emailadmin = editEmailAdmin.getText().toString().trim();
+                passAdmin = editPassAdmin.getText().toString().trim();
+
+                if (TextUtils.isEmpty(emailadmin)) {
+                    editEmailAdmin.setError("Campo vacío, por favor escriba el correo");
+                    return;
                 }
-                else {
-                    Toast.makeText(PantallaConfiguracion.this, "Acceso Denegado" , Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(passAdmin)) {
+                    editPassAdmin.setError("Campo vacío, por favor escriba la contraseña");
+                    return;
                 }
+
+                EprogressDialogAdmin.setMessage("Iniciando sesión...");
+                EprogressDialogAdmin.show();
+                LoginAdministrador(emailadmin,passAdmin);
 
             }
         });
@@ -153,4 +192,50 @@ public class PantallaConfiguracion extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
         dialogBuilder.show();
     }
-}
+
+    public void LoginAdministrador(String emailadmin, String passAdmin) {
+        mAuthAdministrador.signInWithEmailAndPassword(emailadmin, passAdmin)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        //checking if success
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuthAdministrador.getCurrentUser();
+                            if (user.isEmailVerified()) {
+                                Log.i("Probando", mAuthAdministrador.getUid());
+
+                                dBReferencesAdmin.child(mAuthAdministrador.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists()) {
+                                            Toast.makeText(PantallaConfiguracion.this, "Bienvenido: " + editEmailAdmin.getText(), Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(PantallaConfiguracion.this, PantallaConfiguracionAdministrador.class);
+                                            startActivityForResult(intent, 0);
+
+                                        } else {
+                                            Toast.makeText(PantallaConfiguracion.this, "El Usuario: " + editEmailAdmin.getText() + " no tiene acceso de Administrador", Toast.LENGTH_LONG).show();
+                                            mAuthAdministrador.signOut();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(PantallaConfiguracion.this, "Correo Electronico no verificado", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(PantallaConfiguracion.this, "No se pudo Iniciar Sesion", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(PantallaConfiguracion.this, "No se pudo Iniciar Sesion", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        EprogressDialogAdmin.dismiss();
+                    }
+                });
+            }
+        }

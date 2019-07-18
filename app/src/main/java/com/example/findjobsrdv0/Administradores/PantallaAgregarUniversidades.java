@@ -100,7 +100,7 @@ public class PantallaAgregarUniversidades extends AppCompatActivity {
         spinProvUniversidadR = (SearchableSpinner) findViewById(R.id.xmlSpinUbicacionUniRegistrar);
 
         UniDatabase = FirebaseDatabase.getInstance();
-        universidadesRefRegistrar = UniDatabase.getReference("Universidades");
+        universidadesRefRegistrar = UniDatabase.getReference(getResources().getString(R.string.Ref_Universidades));
 
         /////Spinner Provincia
         provinciasRefUniRegistrar = FirebaseDatabase.getInstance().getReference();
@@ -134,7 +134,7 @@ public class PantallaAgregarUniversidades extends AppCompatActivity {
             }
         });
 
-        provinciasRefUniRegistrar.child("provincias").addValueEventListener(new ValueEventListener() {
+        provinciasRefUniRegistrar.child(getResources().getString(R.string.Ref_Provincias)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

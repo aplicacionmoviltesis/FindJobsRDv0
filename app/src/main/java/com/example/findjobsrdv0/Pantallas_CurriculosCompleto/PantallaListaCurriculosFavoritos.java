@@ -96,7 +96,7 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
 
     public void TraerCurriculosFav(String sEmpresaId) {
 
-        Query q = DBCurriculoFavoritos.child("EmpleadoresConFavoritos")
+        Query q = DBCurriculoFavoritos.child(getResources().getString(R.string.Ref_EmpleadoresConFavoritos))
                 .child(sEmpresaId)
                 .child("likes");
         q.addValueEventListener(new ValueEventListener() {
@@ -121,7 +121,7 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
     }
 
     private void loadCurriculoFavorito(final String sIdFavCurriculo) {
-        vistaCurriculoFavoritos.child("Curriculos").orderByChild("sIdCurriculo").equalTo(sIdFavCurriculo).addValueEventListener(new ValueEventListener() {
+        vistaCurriculoFavoritos.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild("sIdCurriculo").equalTo(sIdFavCurriculo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 

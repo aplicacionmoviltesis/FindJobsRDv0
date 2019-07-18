@@ -91,7 +91,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         databaseEmpleosBuscados = FirebaseDatabase.getInstance();
-        DBempleosBuscados = databaseEmpleosBuscados.getReference("Empleos");
+        DBempleosBuscados = databaseEmpleosBuscados.getReference(getResources().getString(R.string.Ref_Empleos));
         DBempleosBuscados.keepSynced(true);
 
 

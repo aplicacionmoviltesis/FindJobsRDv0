@@ -139,7 +139,7 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
     }
 
     private void SubirEmpleos(String sIDEmpleoE1, String sIDEmpleoE2) {
-        DBEmpleosComparados.child("Empleos").orderByChild("sIDEmpleo").equalTo(sIDEmpleoE1).addValueEventListener(new ValueEventListener() {
+        DBEmpleosComparados.child(getResources().getString(R.string.Ref_Empleos)).orderByChild("sIDEmpleo").equalTo(sIDEmpleoE1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
@@ -171,7 +171,7 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
             }
         });
 
-        DBEmpleosComparados.child("Empleos").orderByChild("sIDEmpleo").equalTo(sIDEmpleoE2).addValueEventListener(new ValueEventListener() {
+        DBEmpleosComparados.child(getResources().getString(R.string.Ref_Empleos)).orderByChild("sIDEmpleo").equalTo(sIDEmpleoE2).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {

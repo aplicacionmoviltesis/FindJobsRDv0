@@ -88,7 +88,7 @@ public class PantallaListaBuscarCurriculos extends AppCompatActivity {
 
         databaseCurriculoAplico = FirebaseDatabase.getInstance();
         DBCurriculos = databaseCurriculoAplico.getReference();
-        AreaCurriculoDB = databaseCurriculoAplico.getReference("AreasCurriculos");
+        AreaCurriculoDB = databaseCurriculoAplico.getReference(getResources().getString(R.string.Ref_AreasCurriculos));
 
         recyclerViewCurriculo = (RecyclerView) findViewById(R.id.ListaCurriculosBuscadosR);
 
@@ -133,7 +133,7 @@ public class PantallaListaBuscarCurriculos extends AppCompatActivity {
             }
         });
 
-        provinciasRef.child("Provincias").addValueEventListener(new ValueEventListener() {
+        provinciasRef.child(getResources().getString(R.string.Ref_Provincias)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -181,7 +181,7 @@ public class PantallaListaBuscarCurriculos extends AppCompatActivity {
             }
         });
 
-        areasRef.child("Areas").addValueEventListener(new ValueEventListener() {
+        areasRef.child(getResources().getString(R.string.Ref_Areas)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

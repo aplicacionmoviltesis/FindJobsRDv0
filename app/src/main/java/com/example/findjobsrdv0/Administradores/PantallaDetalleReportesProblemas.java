@@ -56,7 +56,7 @@ public class PantallaDetalleReportesProblemas extends AppCompatActivity {
         TvTituloProblem.setTypeface(face);
 
         databaseProblemReport = FirebaseDatabase.getInstance();
-        DBProblemasReportados = databaseProblemReport.getReference("ProblemasReportadosApp");
+        DBProblemasReportados = databaseProblemReport.getReference(getResources().getString(R.string.Ref_ProblemasReportadosApp));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

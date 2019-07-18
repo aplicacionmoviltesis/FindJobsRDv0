@@ -123,7 +123,7 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
         editPaginaWebUni.setEnabled( false );
 
         UniDatabase = FirebaseDatabase.getInstance();
-        universidadesRefActualizar = UniDatabase.getReference( "Universidades" );
+        universidadesRefActualizar = UniDatabase.getReference(getResources().getString(R.string.Ref_Universidades));
 
         /////Spinner Provincia
 

@@ -39,7 +39,7 @@ public class PantallaDetallesArea extends AppCompatActivity {
         TvNombreArea.setTypeface(face);
 
         databaseArea = FirebaseDatabase.getInstance();
-        DBarea = databaseArea.getReference("Areas");
+        DBarea = databaseArea.getReference(getResources().getString(R.string.Ref_Areas));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

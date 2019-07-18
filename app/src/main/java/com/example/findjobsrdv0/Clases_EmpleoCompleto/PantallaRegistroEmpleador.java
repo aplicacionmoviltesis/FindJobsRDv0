@@ -82,7 +82,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
 
         firebaseAuthEmpleador = FirebaseAuth.getInstance();
         DBReferenceEmpleador = FirebaseDatabase.getInstance().getReference();
-        dbrncEmpleadores = FirebaseDatabase.getInstance().getReference("Empleadores");
+        dbrncEmpleadores = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.Ref_Empleadores));
 
         EsignInButton = (SignInButton) findViewById(R.id.EsignInButtonRegistro);
         EsignInButton.setSize(SIZE_WIDE);

@@ -39,7 +39,7 @@ public class PantallaDetallesProvincia extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBprovincia = database.getReference("Provincias");
+        DBprovincia = database.getReference(getResources().getString(R.string.Ref_Provincias));
 
         TvNombreProvincia = (TextView) findViewById(R.id.xmlTvNombreProvincia);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");

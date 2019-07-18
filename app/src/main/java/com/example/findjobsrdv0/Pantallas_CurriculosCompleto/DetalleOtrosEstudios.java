@@ -48,7 +48,7 @@ public class DetalleOtrosEstudios extends AppCompatActivity {
         tvTiOtrosCursos.setTypeface(face);
 
         database = FirebaseDatabase.getInstance();
-        detotrosestudios = database.getReference("Otros_Cursos");
+        detotrosestudios = database.getReference(getResources().getString(R.string.Ref_Otros_Cursos));
 
         recycler_detalle_otrosestudios = (RecyclerView) findViewById(R.id.recyclerViewOtrosEstudiosLab);
         recycler_detalle_otrosestudios.setHasFixedSize(true);

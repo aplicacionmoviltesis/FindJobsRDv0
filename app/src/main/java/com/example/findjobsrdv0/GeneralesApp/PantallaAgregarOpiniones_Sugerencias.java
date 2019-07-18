@@ -53,7 +53,7 @@ public class PantallaAgregarOpiniones_Sugerencias extends AppCompatActivity {
         editDecripcionOpiSug = (EditText) findViewById(R.id.xmlEditOpiSug);
 
         OpiSugDatabase = FirebaseDatabase.getInstance();
-        OpiSugRefRegistrar = OpiSugDatabase.getReference("OpinionesSugerenciasApp");
+        OpiSugRefRegistrar = OpiSugDatabase.getReference(getResources().getString(R.string.Ref_OpinionesSugerenciasApp));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
         sFechaOpiSug = simpleDateFormat.format(new Date());

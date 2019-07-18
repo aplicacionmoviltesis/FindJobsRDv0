@@ -117,7 +117,7 @@ public class PantallaVistaComparacionCurriculo extends AppCompatActivity {
     }
 
     private void SubirEmpleos(String sIDCurriculoC1, String sIDCurriculoC2) {
-        DBCurriculoComparados.child( "Curriculos" ).orderByChild( "sIdCurriculo" ).equalTo( sIDCurriculoC1 ).addValueEventListener( new ValueEventListener() {
+        DBCurriculoComparados.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild( "sIdCurriculo" ).equalTo( sIDCurriculoC1 ).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {

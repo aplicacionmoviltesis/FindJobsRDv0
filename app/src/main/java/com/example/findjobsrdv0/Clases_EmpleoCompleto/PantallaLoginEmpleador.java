@@ -129,7 +129,7 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
                                 final SharedPreferences.Editor editor = preferences.edit();
 
                                 Log.i("Probando", mAuthEmpleador.getUid());
-                                dBReferences = fDatabase.getReference().child("Empleadores").child(mAuthEmpleador.getUid());
+                                dBReferences = fDatabase.getReference().child(getResources().getString(R.string.Ref_Empleadores)).child(mAuthEmpleador.getUid());
 
                                 dBReferences.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override

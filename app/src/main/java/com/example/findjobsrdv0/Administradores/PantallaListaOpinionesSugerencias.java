@@ -37,7 +37,7 @@ public class PantallaListaOpinionesSugerencias extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBOpiSug= database.getReference("OpinionesSugerenciasApp");
+        DBOpiSug= database.getReference(getResources().getString(R.string.Ref_OpinionesSugerenciasApp));
         DBOpiSug.keepSynced(true);
 
         ActionBar actionBar = getSupportActionBar();

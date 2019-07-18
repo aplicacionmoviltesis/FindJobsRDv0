@@ -44,7 +44,7 @@ public class DetalleReferencias extends AppCompatActivity {
         tvTiReferencia.setTypeface(face);
 
         database = FirebaseDatabase.getInstance();
-        detReferencia = database.getReference("Referencia");
+        detReferencia = database.getReference(getResources().getString(R.string.Ref_Referencia));
 
         recycler_detalle_referencia = (RecyclerView) findViewById(R.id.recyclerViewDetalleFormAcad);
         recycler_detalle_referencia.setHasFixedSize(true);

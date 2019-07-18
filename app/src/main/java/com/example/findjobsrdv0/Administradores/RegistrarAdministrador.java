@@ -47,7 +47,7 @@ public class RegistrarAdministrador extends AppCompatActivity {
 
 
         databaseAdmin = FirebaseDatabase.getInstance();
-        databaseReferenceAdmin= databaseAdmin.getReference("AdministradoresApp");
+        databaseReferenceAdmin= databaseAdmin.getReference(getResources().getString(R.string.Ref_AdministradoresApp));
 
         progressDialog = new ProgressDialog(this);
 
