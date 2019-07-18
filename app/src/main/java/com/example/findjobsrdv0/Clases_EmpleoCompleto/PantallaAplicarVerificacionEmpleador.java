@@ -43,6 +43,8 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
 
     String sFechaVerifEmp;
 
+    private String sEstadoReportProblem = "Pendiente";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,7 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
                 String Id = databaseReference.push().getKey();
 
                 AplicarVerificacionEmpleador aplicarVerificacionEmpleador = new AplicarVerificacionEmpleador( Id, userActivo ,etNombreDocumento.getText().toString(),
-                        sDocumentoVerifEmp.toString(), "false", sFechaVerifEmp );
+                        sDocumentoVerifEmp.toString(), sEstadoReportProblem, sFechaVerifEmp );
 //                databaseReference.child( databaseReference.push().getKey() ).setValue( aplicarVerificacionEmpleador  );
 
                 databaseReference.child( Id ).setValue( aplicarVerificacionEmpleador );
