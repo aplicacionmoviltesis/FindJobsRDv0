@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -54,13 +55,10 @@ public class PantallaListaAplicacionVerificacionEmpleador extends AppCompatActiv
                 viewHolder.setItemClickListener( new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-//
-//                        Intent intent = new Intent();
-//                        intent.setData( Uri.parse( model.getsDocumentoVerifEmp() ) );
-//                        startActivity( intent );
-//                        Intent Detalle = new Intent( PantallaListaAplicacionVerificacionEmpleador.this, PantallaDetalleAplicacionVerificacionEmpleador.class);
-//                        Detalle.putExtra("detalleverifID", adapterListaVerifEmp.getRef(position).getKey());
-//                        startActivity(Detalle);
+
+                        Intent Detalle = new Intent( PantallaListaAplicacionVerificacionEmpleador.this, PantallaDetalleAplicacionVerificacionEmpleador.class);
+                        Detalle.putExtra("detalleverifID", adapterListaVerifEmp.getRef( position ).getKey());
+                        startActivity(Detalle);
                     }
                 } );
             }

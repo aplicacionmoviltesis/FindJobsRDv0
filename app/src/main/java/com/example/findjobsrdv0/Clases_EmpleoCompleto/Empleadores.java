@@ -1,5 +1,7 @@
 package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
+import android.widget.ImageView;
+
 public class Empleadores {
 
     String sNombreEmpleador;
@@ -14,9 +16,10 @@ public class Empleadores {
     String sImagenEmpleador;
     Boolean sVerificacionEmpleador;
 
-
     public Empleadores() {
     }
+
+
 
     public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador, boolean sVerificacionEmpleador, String sIdEmpleador, String sDescripcionEmpleador, String sProvinciaEmpleador) {
         this.sNombreEmpleador = sNombreEmpleador;
