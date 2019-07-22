@@ -5,15 +5,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaLoginBuscador;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaRegistroBuscador;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Administrador;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +31,6 @@ public class RegistrarAdministrador extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-
 
     private FirebaseDatabase databaseAdmin;
     private DatabaseReference databaseReferenceAdmin;
@@ -96,7 +93,7 @@ public class RegistrarAdministrador extends AppCompatActivity {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             IdAdmin = user.getUid();
                             Administrador administrador = new Administrador(IdAdmin, NombreAdmin,
-                                    ApellidoAdmin, CorreoAdmin, TelefonoAdmin);
+                                    ApellidoAdmin, CorreoAdmin, TelefonoAdmin,"Activo");
                             databaseReferenceAdmin.child(IdAdmin).setValue(administrador);
 
                             user.sendEmailVerification();

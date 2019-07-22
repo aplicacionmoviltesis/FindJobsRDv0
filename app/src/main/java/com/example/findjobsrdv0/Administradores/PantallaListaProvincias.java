@@ -15,8 +15,8 @@ import android.view.View;
 import android.widget.SearchView;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.GeneralesApp.Provincias;
-import com.example.findjobsrdv0.GeneralesApp.Uni_Prov_Area_ViewHolder;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Provincias;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Uni_Prov_Area_ViewHolder;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;

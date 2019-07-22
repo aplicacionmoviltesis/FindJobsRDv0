@@ -23,7 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.GeneralesApp.Areas;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Areas;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;

@@ -141,7 +141,7 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
                     sJornadaFav = DatosEmpleosFav.getsJornadaE();
                     sCantidadVacantesFav = DatosEmpleosFav.getsCantidadVacantesE();
                     sEstadoEmpleoFav = DatosEmpleosFav.getsEstadoEmpleoE();
-                    sPersonasAplicaronFav = DatosEmpleosFav.getsPersonasAplicaronE();
+                    sPersonasAplicaronFav = DatosEmpleosFav.getsEstadoAdminE();
                     sIdEmpleadorFav = DatosEmpleosFav.getsIdEmpleadorE();
                     sImagenEmpleoFav = DatosEmpleosFav.getsImagenEmpleoE();
                     sTipoContratoFav = DatosEmpleosFav.getsTipoContratoE();

@@ -4,22 +4,20 @@ import android.widget.ImageView;
 
 public class Empleadores {
 
-    String sNombreEmpleador;
-    String sRncEmpleador;
-    String sPaginaWebEmpleador;
-    String sTelefonoEmpleador;
-    String sDireccionEmpleador;
-    String sCorreoEmpleador;
-    String sDescripcionEmpleador;
-    String sProvinciaEmpleador;
-    String sIdEmpleador;
-    String sImagenEmpleador;
-    Boolean sVerificacionEmpleador;
+    private String sNombreEmpleador;
+    private String sRncEmpleador;
+    private String sPaginaWebEmpleador;
+    private String sTelefonoEmpleador;
+    private String sDireccionEmpleador;
+    private String sCorreoEmpleador;
+    private String sDescripcionEmpleador;
+    private String sProvinciaEmpleador;
+    private String sIdEmpleador;
+    private String sImagenEmpleador;
+    private Boolean sVerificacionEmpleador;
 
     public Empleadores() {
     }
-
-
 
     public Empleadores(String sNombreEmpleador, String sRncEmpleador, String sPaginaWebEmpleador, String sTelefonoEmpleador, String sDireccionEmpleador, String sCorreoEmpleador, String sImagenEmpleador, boolean sVerificacionEmpleador, String sIdEmpleador, String sDescripcionEmpleador, String sProvinciaEmpleador) {
         this.sNombreEmpleador = sNombreEmpleador;
@@ -33,7 +31,6 @@ public class Empleadores {
         this.sIdEmpleador = sIdEmpleador;
         this.sProvinciaEmpleador = sProvinciaEmpleador;
         this.sDescripcionEmpleador = sDescripcionEmpleador;
-
     }
 
     public String getsProvinciaEmpleador() {
@@ -125,8 +122,4 @@ public class Empleadores {
     public void setsImagenEmpleador(String sImagenEmpleador) {
         this.sImagenEmpleador = sImagenEmpleador;
     }
-
-
-
-
 }

@@ -13,10 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.modeloCompararCurriculo;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.AdapterCompararCurriculo;
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.ViewHolderCompCurriculo;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.ViewHolderCompCurriculo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,7 +46,7 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
             sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC, sGradoMayorC,
             sEstadoActualC, sSexoC, sHabilidadesC, sFechaC, sAreaC;
 
-    private ArrayList<modeloCompararCurriculo> curriculosFavsArray = new ArrayList<>();
+    private ArrayList<AdapterCompararCurriculo> curriculosFavsArray = new ArrayList<>();
     private ViewHolderCompCurriculo adapter;
     private AppCompatButton btnGetSelected;
 
@@ -174,7 +174,7 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
                     sFechaC = DatosCurriculoFav.getsFechaC();
                     sAreaC = DatosCurriculoFav.getsAreaC();
 
-                    final modeloCompararCurriculo modCompCurriculo = new modeloCompararCurriculo(sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC,
+                    final AdapterCompararCurriculo modCompCurriculo = new AdapterCompararCurriculo(sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC,
                             sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC, sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC,
                             sGradoMayorC, sEstadoActualC, sSexoC, sHabilidadesC, sFechaC, sAreaC);
 
@@ -198,7 +198,7 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
         intent.putExtra("sIdCurriculoComparar2", sSegundoCurriculo);
         startActivity(intent);
     }
-    public ArrayList<modeloCompararCurriculo> getAll() {
+    public ArrayList<AdapterCompararCurriculo> getAll() {
         return curriculosFavsArray;
     }
 }

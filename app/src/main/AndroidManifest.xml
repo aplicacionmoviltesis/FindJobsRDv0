@@ -14,8 +14,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Clases_EmpleoCompleto.PantallaDetalleAplicacionVerificacionEmpleador" />
-        <activity android:name=".Clases_EmpleoCompleto.PantallaListaAplicacionVerificacionEmpleador" />
+        <activity android:name=".Administradores.PantallaDetalleAplicacionVerificacionEmpleador" />
+        <activity android:name=".Administradores.PantallaListaAplicacionVerificacionEmpleador" />
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaListaBuscarCurriculos" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaAplicarVerificacionEmpleador" />
         <activity android:name=".Administradores.RegistrarAdministrador" />
@@ -49,7 +49,7 @@
         <activity android:name=".Main3ActivityProbandoBusqueda" />
         <activity android:name=".Clases_EmpleoCompleto.PantallaCompararEmpleos" />
         <activity
-            android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador_"
+            android:name=".Clases_EmpleoCompleto.PantallaPerfilEmpleador"
             android:label="@string/title_activity_pantalla_perfil_empleador_"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaListaCurriculosFavoritos" />

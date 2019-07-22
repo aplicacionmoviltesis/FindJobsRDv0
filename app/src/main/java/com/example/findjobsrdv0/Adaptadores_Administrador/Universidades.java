@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.GeneralesApp;
+package com.example.findjobsrdv0.Adaptadores_Administrador;
 
 public class Universidades {
 
@@ -14,10 +14,7 @@ public class Universidades {
     private String sPaginaWebUniversidad;
     private String sDireccionUniversidad;
 
-
-
-
-    public Universidades(String sIdUniversidad, String sNombreUniversidad, String sUbicacionUniversidad, String sImagenUniversidad,String sDireccionUniversidad,String sTelefonoUniversidad,String sPaginaWebUniversidad,String sIdUserAdminUniversidad) {
+    public Universidades(String sIdUniversidad, String sNombreUniversidad, String sUbicacionUniversidad, String sImagenUniversidad, String sDireccionUniversidad, String sTelefonoUniversidad, String sPaginaWebUniversidad, String sIdUserAdminUniversidad) {
         this.sIdUniversidad = sIdUniversidad;
         this.sNombreUniversidad = sNombreUniversidad;
         this.sUbicacionUniversidad = sUbicacionUniversidad;

@@ -34,9 +34,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.GeneralesApp.DatePickerFragment;
 
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
-import com.example.findjobsrdv0.GeneralesApp.Provincias;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.AreasCurriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Provincias;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -621,7 +621,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         return true;
     }
 
-    
+
     public void onButtonClicked(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "Date Picker");

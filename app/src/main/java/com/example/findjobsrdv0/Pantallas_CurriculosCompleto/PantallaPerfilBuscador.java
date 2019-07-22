@@ -6,7 +6,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -19,15 +18,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaPerfilEmpleador_;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.PerfilBuscador;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.PerfilBuscador;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

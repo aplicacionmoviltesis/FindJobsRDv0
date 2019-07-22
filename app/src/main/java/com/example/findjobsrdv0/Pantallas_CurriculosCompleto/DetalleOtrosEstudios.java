@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.OtrosCursos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.OtrosCursos;
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.DetalleOtrosEstudiosViewHolder;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.DetalleOtrosEstudiosViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

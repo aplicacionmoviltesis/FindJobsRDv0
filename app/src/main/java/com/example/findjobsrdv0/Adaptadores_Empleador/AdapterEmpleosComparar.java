@@ -79,9 +79,6 @@ public class AdapterEmpleosComparar extends RecyclerView.Adapter{
             imagenEmpleoCardViewAplicado = (ImageView) itemView.findViewById(R.id.CardImageArea);
 
             itemView.setOnClickListener(this);
-
-
-
         }
 
         public void onBind(int position){
@@ -94,7 +91,6 @@ public class AdapterEmpleosComparar extends RecyclerView.Adapter{
             String FechaEmpleo = mDatasetEmpleo.get(position).getsFechaPublicacionE();
             String ImagenEmpleo = mDatasetEmpleo.get(position).getsImagenEmpleoE();
 
-
             NombreEmpleoCardViewAplicado.setText(NombreEmpleo);
             NombreEmpresaCardViewAplicado.setText(NombreEmpresa);
             ProvinciaCardViewAplicado.setText(ProvinciaEmpleo);
@@ -102,8 +98,6 @@ public class AdapterEmpleosComparar extends RecyclerView.Adapter{
             EstadoCardViewAplicado.setText(EstadoEmpleo);
             FechaPublicacionCardViewAplicado.setText(FechaEmpleo);
             Picasso.get().load(ImagenEmpleo).into(imagenEmpleoCardViewAplicado);
-
-
 
         }
 
@@ -113,5 +107,4 @@ public class AdapterEmpleosComparar extends RecyclerView.Adapter{
 
         }
     }
-
 }

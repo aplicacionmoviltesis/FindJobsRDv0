@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Clases_EmpleoCompleto;
+package com.example.findjobsrdv0.Administradores;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.findjobsrdv0.Adaptadores_Empleador.AplicarVerificacionEmpleador;
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosEmpresa;
 import com.example.findjobsrdv0.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;

@@ -1,14 +1,15 @@
-package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import android.net.Uri;
 
-public class modeloPerfilBuscadores {
-    String imagenperfilB, nombreperfilB, apellidoperfilB, correoelectronicoperfilB, telefonoperfilB;
+public class AdapterPerfilBuscadores {
 
-    public modeloPerfilBuscadores() {
+    private String imagenperfilB, nombreperfilB, apellidoperfilB, correoelectronicoperfilB, telefonoperfilB;
+
+    public AdapterPerfilBuscadores() {
     }
 
-    public modeloPerfilBuscadores(String imagenperfilB, String nombreperfilB, String apellidoperfilB, String correoelectronicoperfilB, String telefonoperfilB) {
+    public AdapterPerfilBuscadores(String imagenperfilB, String nombreperfilB, String apellidoperfilB, String correoelectronicoperfilB, String telefonoperfilB) {
         this.imagenperfilB = imagenperfilB;
         this.nombreperfilB = nombreperfilB;
         this.apellidoperfilB = apellidoperfilB;
@@ -16,7 +17,7 @@ public class modeloPerfilBuscadores {
         this.telefonoperfilB = telefonoperfilB;
     }
 
-    public modeloPerfilBuscadores(Uri downloadUri, String nombreperfilB, String apellidoperfilB, String correoelectronicoperfilB, String telefonoperfilB) {
+    public AdapterPerfilBuscadores(Uri downloadUri, String nombreperfilB, String apellidoperfilB, String correoelectronicoperfilB, String telefonoperfilB) {
     }
 
     public String getImagenperfilB() {

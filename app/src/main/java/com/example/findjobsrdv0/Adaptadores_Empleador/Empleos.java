@@ -11,13 +11,13 @@ public class Empleos {
 
     String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
             sHorarioE,sFechaPublicacionE, sMostrarIdiomaE,sAreaE, sFormacionAcademicaE, sAnosExperienciaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
-            sTipoContratoE,sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE, sIdEmpleadorE;
+            sTipoContratoE,sEstadoEmpleoE, sEstadoAdminE,sImagenEmpleoE, sIdEmpleadorE;
 
     public Empleos(String sIDEmpleo, String sNombreEmpleoE, String sNombreEmpresaE, String sDireccionE, String sProvinciaE,
                    String sTelefonoE, String sPaginaWebE, String sEmailE, String sSalarioE, String sOtrosDatosE,
                    String sHorarioE, String sFechaPublicacionE, String sMostrarIdiomaE, String sAreaE, String sAnosExperienciaE, String sFormacionAcademicaE,
                    String sSexoRequeridoE, String sRangoE, String sJornadaE, String sCantidadVacantesE,
-                   String sTipoContratoE, String sEstadoEmpleoE, String sPersonasAplicaronE, String sImagenEmpleoE, String sIdEmpleadorE) {
+                   String sTipoContratoE, String sEstadoEmpleoE, String sEstadoAdminE, String sImagenEmpleoE, String sIdEmpleadorE) {
 
         this.sIDEmpleo = sIDEmpleo;
         this.sNombreEmpleoE = sNombreEmpleoE;
@@ -41,7 +41,7 @@ public class Empleos {
         this.sCantidadVacantesE = sCantidadVacantesE;
         this.sTipoContratoE = sTipoContratoE;
         this.sEstadoEmpleoE = sEstadoEmpleoE;
-        this.sPersonasAplicaronE = sPersonasAplicaronE;
+        this.sEstadoAdminE = sEstadoAdminE;
         this.sImagenEmpleoE = sImagenEmpleoE;
         this.sIdEmpleadorE = sIdEmpleadorE;
 
@@ -130,8 +130,8 @@ public class Empleos {
         return sEstadoEmpleoE;
     }
 
-    public String getsPersonasAplicaronE() {
-        return sPersonasAplicaronE;
+    public String getsEstadoAdminE() {
+        return sEstadoAdminE;
     }
     public String getsImagenEmpleoE() {
         return sImagenEmpleoE;
@@ -144,40 +144,4 @@ public class Empleos {
     public String getsAnosExperienciaE() {
         return sAnosExperienciaE;
     }
-
-
-    public Map<String, Object> toMap(){
-
-        HashMap<String,Object> ListEmpleoss= new HashMap<>();
-        ListEmpleoss.put("FOTO_EMPLEO",sImagenEmpleoE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("sIDEmpleo",sIDEmpleo);
-        ListEmpleoss.put("sNombreEmpleoE",sNombreEmpleoE);
-        ListEmpleoss.put("sNombreEmpresaE",sNombreEmpresaE);
-        ListEmpleoss.put("sProvinciaE",sProvinciaE);
-        ListEmpleoss.put("sDireccionE",sDireccionE);
-        ListEmpleoss.put("sTelefonoE",sTelefonoE);
-        ListEmpleoss.put("sPaginaWebE",sPaginaWebE);
-        ListEmpleoss.put("sEmailE",sEmailE);
-        ListEmpleoss.put("sSalarioE",sSalarioE);
-        ListEmpleoss.put("sOtrosDatosE",sOtrosDatosE);
-        ListEmpleoss.put("sHorarioE",sHorarioE);
-        ListEmpleoss.put("sMostrarIdiomaE", sMostrarIdiomaE);
-        ListEmpleoss.put("EXPERIENCIA",sAreaE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("ESTADO",sSexoRequeridoE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("DIRECCION",sRangoE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("sJornadaE",sJornadaE);
-        ListEmpleoss.put("sCantidadVacantesE",sCantidadVacantesE);
-        ListEmpleoss.put("sTipoContratoE",sTipoContratoE);
-        ListEmpleoss.put("sFechaPublicacionE",sFechaPublicacionE);
-        ListEmpleoss.put("sPersonasAplicaronE",sPersonasAplicaronE);
-        ListEmpleoss.put("sEstadoEmpleoE",sEstadoEmpleoE);
-        ListEmpleoss.put("sIdEmpleadorE",sIdEmpleadorE);
-
-
-
-
-        return ListEmpleoss;
-    }
-
-
 }

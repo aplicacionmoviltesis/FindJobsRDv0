@@ -7,6 +7,55 @@ public class EmpleosFav implements Serializable {
     public EmpleosFav() {
     }
 
+    String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
+            sHorarioE,sFechaPublicacionE, sMostrarIdiomaE,sAreaE, sFormacionAcademicaE, sAnosExperienciaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
+            sTipoContratoE,sEstadoEmpleoE, sEstadoAdminE,sImagenEmpleoE, sIdEmpleadorE;
+
+    public EmpleosFav(String sIDEmpleo, String sNombreEmpleoE, String sNombreEmpresaE, String sDireccionE, String sProvinciaE,
+                      String sTelefonoE, String sPaginaWebE, String sEmailE, String sSalarioE, String sOtrosDatosE,
+                      String sHorarioE, String sFechaPublicacionE, String sMostrarIdiomaE, String sAreaE, String sAnosExperienciaE, String sFormacionAcademicaE,
+                      String sSexoRequeridoE, String sRangoE, String sJornadaE, String sCantidadVacantesE,
+                      String sTipoContratoE, String sEstadoEmpleoE, String sEstadoAdminE, String sImagenEmpleoE, String sIdEmpleadorE) {
+
+        this.sIDEmpleo = sIDEmpleo;
+        this.sNombreEmpleoE = sNombreEmpleoE;
+        this.sNombreEmpresaE = sNombreEmpresaE;
+        this.sProvinciaE = sProvinciaE;
+        this.sDireccionE = sDireccionE;
+        this.sTelefonoE = sTelefonoE;
+        this.sPaginaWebE = sPaginaWebE;
+        this.sEmailE = sEmailE;
+        this.sSalarioE = sSalarioE;
+        this.sOtrosDatosE = sOtrosDatosE;
+        this.sHorarioE = sHorarioE;
+        this.sFechaPublicacionE = sFechaPublicacionE;
+        this.sMostrarIdiomaE = sMostrarIdiomaE;
+        this.sAreaE = sAreaE;
+        this.sFormacionAcademicaE = sFormacionAcademicaE;
+        this.sAnosExperienciaE = sAnosExperienciaE;
+        this.sSexoRequeridoE = sSexoRequeridoE;
+        this.sRangoE = sRangoE;
+        this.sJornadaE = sJornadaE;
+        this.sCantidadVacantesE = sCantidadVacantesE;
+        this.sTipoContratoE = sTipoContratoE;
+        this.sEstadoEmpleoE = sEstadoEmpleoE;
+        this.sEstadoAdminE = sEstadoAdminE;
+        this.sImagenEmpleoE = sImagenEmpleoE;
+        this.sIdEmpleadorE = sIdEmpleadorE;
+
+    }
+
+    private boolean isChecked = false;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+
 
     public void setsIDEmpleo(String sIDEmpleo) {
         this.sIDEmpleo = sIDEmpleo;
@@ -96,8 +145,8 @@ public class EmpleosFav implements Serializable {
         this.sEstadoEmpleoE = sEstadoEmpleoE;
     }
 
-    public void setsPersonasAplicaronE(String sPersonasAplicaronE) {
-        this.sPersonasAplicaronE = sPersonasAplicaronE;
+    public void setsEstadoAdminE(String sEstadoAdminE) {
+        this.sEstadoAdminE = sEstadoAdminE;
     }
 
     public void setsImagenEmpleoE(String sImagenEmpleoE) {
@@ -108,53 +157,6 @@ public class EmpleosFav implements Serializable {
         this.sIdEmpleadorE = sIdEmpleadorE;
     }
 
-    String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
-            sHorarioE,sFechaPublicacionE, sMostrarIdiomaE,sAreaE, sFormacionAcademicaE, sAnosExperienciaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
-            sTipoContratoE,sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE, sIdEmpleadorE;
-
-    public EmpleosFav(String sIDEmpleo, String sNombreEmpleoE, String sNombreEmpresaE, String sDireccionE, String sProvinciaE,
-                   String sTelefonoE, String sPaginaWebE, String sEmailE, String sSalarioE, String sOtrosDatosE,
-                   String sHorarioE, String sFechaPublicacionE, String sMostrarIdiomaE, String sAreaE, String sAnosExperienciaE, String sFormacionAcademicaE,
-                   String sSexoRequeridoE, String sRangoE, String sJornadaE, String sCantidadVacantesE,
-                   String sTipoContratoE, String sEstadoEmpleoE, String sPersonasAplicaronE, String sImagenEmpleoE, String sIdEmpleadorE) {
-
-        this.sIDEmpleo = sIDEmpleo;
-        this.sNombreEmpleoE = sNombreEmpleoE;
-        this.sNombreEmpresaE = sNombreEmpresaE;
-        this.sProvinciaE = sProvinciaE;
-        this.sDireccionE = sDireccionE;
-        this.sTelefonoE = sTelefonoE;
-        this.sPaginaWebE = sPaginaWebE;
-        this.sEmailE = sEmailE;
-        this.sSalarioE = sSalarioE;
-        this.sOtrosDatosE = sOtrosDatosE;
-        this.sHorarioE = sHorarioE;
-        this.sFechaPublicacionE = sFechaPublicacionE;
-        this.sMostrarIdiomaE = sMostrarIdiomaE;
-        this.sAreaE = sAreaE;
-        this.sFormacionAcademicaE = sFormacionAcademicaE;
-        this.sAnosExperienciaE = sAnosExperienciaE;
-        this.sSexoRequeridoE = sSexoRequeridoE;
-        this.sRangoE = sRangoE;
-        this.sJornadaE = sJornadaE;
-        this.sCantidadVacantesE = sCantidadVacantesE;
-        this.sTipoContratoE = sTipoContratoE;
-        this.sEstadoEmpleoE = sEstadoEmpleoE;
-        this.sPersonasAplicaronE = sPersonasAplicaronE;
-        this.sImagenEmpleoE = sImagenEmpleoE;
-        this.sIdEmpleadorE = sIdEmpleadorE;
-
-    }
-
-    private boolean isChecked = false;
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
-    }
 
     public String getsIdEmpleadorE() {
         return sIdEmpleadorE;
@@ -239,13 +241,12 @@ public class EmpleosFav implements Serializable {
         return sEstadoEmpleoE;
     }
 
-    public String getsPersonasAplicaronE() {
-        return sPersonasAplicaronE;
+    public String getsEstadoAdminE() {
+        return sEstadoAdminE;
     }
     public String getsImagenEmpleoE() {
         return sImagenEmpleoE;
     }
-
 
     public String getsFormacionAcademicaE() {
         return sFormacionAcademicaE;

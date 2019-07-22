@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.AdapterEmpresa;
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;

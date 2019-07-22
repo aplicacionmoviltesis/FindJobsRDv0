@@ -63,8 +63,6 @@ public class AdapterEmpleo extends RecyclerView.Adapter{
 
     class EmpleoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-
-
         public EmpleoViewHolder(View itemView) {
             super(itemView);
 
@@ -77,9 +75,6 @@ public class AdapterEmpleo extends RecyclerView.Adapter{
             imagenEmpleoCardViewAplicado = (ImageView) itemView.findViewById(R.id.CardImageArea);
 
             itemView.setOnClickListener(this);
-
-
-
         }
 
         public void onBind(int position){
@@ -92,7 +87,6 @@ public class AdapterEmpleo extends RecyclerView.Adapter{
             String FechaEmpleo = mDatasetEmpleo.get(position).getsFechaPublicacionE();
             String ImagenEmpleo = mDatasetEmpleo.get(position).getsImagenEmpleoE();
 
-
             NombreEmpleoCardViewAplicado.setText(NombreEmpleo);
             NombreEmpresaCardViewAplicado.setText(NombreEmpresa);
             ProvinciaCardViewAplicado.setText(ProvinciaEmpleo);
@@ -101,15 +95,11 @@ public class AdapterEmpleo extends RecyclerView.Adapter{
             FechaPublicacionCardViewAplicado.setText(FechaEmpleo);
             Picasso.get().load(ImagenEmpleo).into(imagenEmpleoCardViewAplicado);
 
-
-
         }
 
         @Override
         public void onClick(View view) {
             itemClickListener.onClick(view,getAdapterPosition(),false );
-
         }
     }
-
 }

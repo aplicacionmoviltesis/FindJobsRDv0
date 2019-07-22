@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.GeneralesApp;
+package com.example.findjobsrdv0.Adaptadores_Administrador;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -23,14 +23,12 @@ public class Uni_Prov_Area_ViewHolder extends RecyclerView.ViewHolder implements
     public Uni_Prov_Area_ViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        Nombre_Uni_Prov_Area_CardView = (TextView)itemView.findViewById(R.id.CardNombre_Prov_Area_Uni);
-        OtroDato_Uni_Prov_Area_CardView = (TextView)itemView.findViewById(R.id.CardOtroDato_Prov_Area_Uni);
+        Nombre_Uni_Prov_Area_CardView = (TextView) itemView.findViewById(R.id.CardNombre_Prov_Area_Uni);
+        OtroDato_Uni_Prov_Area_CardView = (TextView) itemView.findViewById(R.id.CardOtroDato_Prov_Area_Uni);
 
         imagen_Uni_Prov_Area_CardView = (ImageView) itemView.findViewById(R.id.CardImage_Prov_Area_Uni);
 
         itemView.setOnClickListener(this);
-
-
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -40,6 +38,6 @@ public class Uni_Prov_Area_ViewHolder extends RecyclerView.ViewHolder implements
     @Override
     public void onClick(View view) {
 
-        itemClickListener.onClick(view, getAdapterPosition(),false);
+        itemClickListener.onClick(view, getAdapterPosition(), false);
     }
 }

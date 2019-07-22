@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Clases_EmpleoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Empleador;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.squareup.picasso.Picasso;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class AdapterEmpresa extends RecyclerView.Adapter {
 
-    ArrayList<Empleadores> mDatasetEmpleadores;
+    public ArrayList<Empleadores> mDatasetEmpleadores;
     Context context;
 
     private TextView NombreEAplico;
@@ -29,11 +28,8 @@ public class AdapterEmpresa extends RecyclerView.Adapter {
     private TextView DireccionEAplico;
     private TextView CorreoEAplico;
 
-    public ImageView ImagenEAplico;
+    private ImageView ImagenEAplico;
     private Button VerificacionEAplico;
-
-    //private TextView FechaEAplico;
-    //private TextView ProvinciaEAplico;
 
     private ItemClickListener itemClickListener;
 
@@ -64,14 +60,11 @@ public class AdapterEmpresa extends RecyclerView.Adapter {
             return 0;
         }else {
             //mDatasetEmpleadores.clear();
-
             return mDatasetEmpleadores.size();
         }
     }
 
     class EmpresaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
 
         public EmpresaViewHolder(View itemView) {
             super(itemView);
@@ -100,7 +93,6 @@ public class AdapterEmpresa extends RecyclerView.Adapter {
             Boolean VerificacionEmpresa = mDatasetEmpleadores.get(position).getsVerificacionEmpleador();
             String ImagenEmpresa = mDatasetEmpleadores.get(position).getsImagenEmpleador();
 
-
             NombreEAplico.setText(NombreEmpresa);
             CorreoEAplico.setText(CorreoEmpresa);
             DireccionEAplico.setText(DireccionEmpresa);
@@ -117,14 +109,11 @@ public class AdapterEmpresa extends RecyclerView.Adapter {
                     VerificacionEAplico.setVisibility(View.INVISIBLE);
                 }
             }
-
-
         }
 
         @Override
         public void onClick(View view) {
             itemClickListener.onClick(view,getAdapterPosition(),false );
-
         }
     }
 }

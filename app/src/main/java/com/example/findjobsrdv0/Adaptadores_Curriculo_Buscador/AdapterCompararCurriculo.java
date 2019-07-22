@@ -1,10 +1,47 @@
-package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import java.io.Serializable;
 
-public class modeloCompararCurriculo implements Serializable {
+public class AdapterCompararCurriculo implements Serializable {
 
-    public modeloCompararCurriculo() {
+    public AdapterCompararCurriculo() {
+    }
+
+    private String sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC, sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC,
+            sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC, sGradoMayorC,
+            sEstadoActualC, sSexoC, sHabilidadesC,sFechaC, sAreaC;
+
+    public AdapterCompararCurriculo(String sIdCurriculo, String sIdBuscadorEmpleo, String sImagenC, String sNombreC, String sApellidoC, String sCedulaC, String sEmailC, String sTelefonoC, String sCelularC, String sProvinciaC, String sEstadoCivilC, String sDireccionC, String sOcupacionC, String sIdiomaC, String sGradoMayorC, String sEstadoActualC, String sSexoC, String sHabilidadesC, String sFechaC, String sAreaC) {
+        this.sIdCurriculo = sIdCurriculo;
+        this.sIdBuscadorEmpleo = sIdBuscadorEmpleo;
+        this.sImagenC = sImagenC;
+        this.sNombreC = sNombreC;
+        this.sApellidoC = sApellidoC;
+        this.sCedulaC = sCedulaC;
+        this.sEmailC = sEmailC;
+        this.sTelefonoC = sTelefonoC;
+        this.sCelularC = sCelularC;
+        this.sProvinciaC = sProvinciaC;
+        this.sEstadoCivilC = sEstadoCivilC;
+        this.sDireccionC = sDireccionC;
+        this.sOcupacionC = sOcupacionC;
+        this.sIdiomaC = sIdiomaC;
+        this.sGradoMayorC = sGradoMayorC;
+        this.sEstadoActualC = sEstadoActualC;
+        this.sSexoC = sSexoC;
+        this.sHabilidadesC = sHabilidadesC;
+        this.sFechaC = sFechaC;
+        this.sAreaC = sAreaC;
+    }
+
+    private boolean isChecked = false;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public void setsIdCurriculo(String sIdCurriculo) {
@@ -85,43 +122,6 @@ public class modeloCompararCurriculo implements Serializable {
 
     public void setsAreaC(String sAreaC) {
         this.sAreaC = sAreaC;
-    }
-
-    private String sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC, sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC,
-            sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC, sGradoMayorC,
-            sEstadoActualC, sSexoC, sHabilidadesC,sFechaC, sAreaC;
-
-    public modeloCompararCurriculo(String sIdCurriculo, String sIdBuscadorEmpleo, String sImagenC, String sNombreC, String sApellidoC, String sCedulaC, String sEmailC, String sTelefonoC, String sCelularC, String sProvinciaC, String sEstadoCivilC, String sDireccionC, String sOcupacionC, String sIdiomaC, String sGradoMayorC, String sEstadoActualC, String sSexoC, String sHabilidadesC, String sFechaC, String sAreaC) {
-        this.sIdCurriculo = sIdCurriculo;
-        this.sIdBuscadorEmpleo = sIdBuscadorEmpleo;
-        this.sImagenC = sImagenC;
-        this.sNombreC = sNombreC;
-        this.sApellidoC = sApellidoC;
-        this.sCedulaC = sCedulaC;
-        this.sEmailC = sEmailC;
-        this.sTelefonoC = sTelefonoC;
-        this.sCelularC = sCelularC;
-        this.sProvinciaC = sProvinciaC;
-        this.sEstadoCivilC = sEstadoCivilC;
-        this.sDireccionC = sDireccionC;
-        this.sOcupacionC = sOcupacionC;
-        this.sIdiomaC = sIdiomaC;
-        this.sGradoMayorC = sGradoMayorC;
-        this.sEstadoActualC = sEstadoActualC;
-        this.sSexoC = sSexoC;
-        this.sHabilidadesC = sHabilidadesC;
-        this.sFechaC = sFechaC;
-        this.sAreaC = sAreaC;
-    }
-
-    private boolean isChecked = false;
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
     }
 
 

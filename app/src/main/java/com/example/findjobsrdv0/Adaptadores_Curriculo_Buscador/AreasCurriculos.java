@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 public class AreasCurriculos {
 

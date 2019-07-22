@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.ViewHolders_CurriculosCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.squareup.picasso.Picasso;
 
@@ -70,7 +69,6 @@ public class AdapterCurriculo extends RecyclerView.Adapter{
             txtGradoMayor = (TextView) itemView.findViewById( R.id.textViewMaestriaC);
             txtProvincia = (TextView) itemView.findViewById( R.id.textViewProvinciaC);
 
-            //itemView.setOnClickListener(this);
             int p = getAdapterPosition();
             itemView.setOnClickListener(this);
 
@@ -86,7 +84,6 @@ public class AdapterCurriculo extends RecyclerView.Adapter{
             String GradoMayorCurriculo = mDatasetCurriculo.get(position).getsGradoMayorC();
             String ProvinciaCurriculo = mDatasetCurriculo.get(position).getsProvinciaC();
 
-
             txtNombre.setText(NombreCurriculo);
             txtCedula.setText(CedulaCurriculo);
             txtDireccion.setText(DireccionCurriculo);
@@ -96,13 +93,11 @@ public class AdapterCurriculo extends RecyclerView.Adapter{
             Log.d("FOTO::::", ImagenCurriculo);
 
             Picasso.get().load(ImagenCurriculo).into(imagen);
-
         }
 
         @Override
         public void onClick(View view) {
             itemClickListener.onClick(view,getAdapterPosition(),false );
-
         }
     }
 }

@@ -19,20 +19,19 @@ public class ViewHolderVerificacionEmpleador extends RecyclerView.ViewHolder imp
         this.itemClickListener = itemClickListener;
     }
 
-
     public ViewHolderVerificacionEmpleador(@NonNull View itemView) {
-        super( itemView );
+        super(itemView);
 
-        TVNombreDocum = (TextView) itemView.findViewById( R.id.xmlTVNombreDocumentoVerifEmp);
-        TVEstadoEmpleador = (TextView) itemView.findViewById( R.id.xmlTVEstadoVerifEmp );
-        TVFecha = (TextView) itemView.findViewById( R.id.xmlTVFechaVerifEmp );
+        TVNombreDocum = (TextView) itemView.findViewById(R.id.xmlTVNombreDocumentoVerifEmp);
+        TVEstadoEmpleador = (TextView) itemView.findViewById(R.id.xmlTVEstadoVerifEmp);
+        TVFecha = (TextView) itemView.findViewById(R.id.xmlTVFechaVerifEmp);
 
-        itemView.setOnClickListener( this );
+        itemView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
 
-        itemClickListener.onClick( view,getAdapterPosition(),false );
+        itemClickListener.onClick(view, getAdapterPosition(), false);
     }
 }

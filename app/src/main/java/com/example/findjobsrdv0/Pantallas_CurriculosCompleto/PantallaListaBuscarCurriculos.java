@@ -15,12 +15,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.GeneralesApp.Provincias;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Provincias;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.AreasCurriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.AdapterCurriculo;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.VistaCurriculoViewHolder;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.AdapterCurriculo;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.VistaCurriculoViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

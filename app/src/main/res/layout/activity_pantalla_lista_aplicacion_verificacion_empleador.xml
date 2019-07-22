@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Clases_EmpleoCompleto.PantallaListaAplicacionVerificacionEmpleador">
+    tools:context=".Administradores.PantallaListaAplicacionVerificacionEmpleador">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_Lista_Verif_Emp"

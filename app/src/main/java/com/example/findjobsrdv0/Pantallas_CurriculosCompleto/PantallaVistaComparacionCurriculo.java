@@ -3,8 +3,8 @@ package com.example.findjobsrdv0.Pantallas_CurriculosCompleto;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.ExperienciaLaboral;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.ExperienciaLaboral;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;

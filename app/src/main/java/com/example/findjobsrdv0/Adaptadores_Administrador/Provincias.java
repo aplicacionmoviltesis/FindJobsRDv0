@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.GeneralesApp;
+package com.example.findjobsrdv0.Adaptadores_Administrador;
 
 public class Provincias {
 
@@ -15,7 +15,6 @@ public class Provincias {
     private String sEconomiaProvincia;
     private String sClimaProvincia;
     private String sAtractivosProvincia;
-
 
     public Provincias(String sIdProvincia, String sNombreProvincia, String sDescripcionProvincia,String sDivisionTerritorialProvincia, String sPoblacionProvincia, String sImagenProvincia,String sIdUserAdminProvincia,
                       String sEconomiaProvincia,String sClimaProvincia,String sAtractivosProvincia) {
@@ -110,6 +109,4 @@ public class Provincias {
     public void setsDivisionTerritorialProvincia(String sDivisionTerritorialProvincia) {
         this.sDivisionTerritorialProvincia = sDivisionTerritorialProvincia;
     }
-
-
 }

@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.AdapterCurriculo;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.AdapterCurriculo;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

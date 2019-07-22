@@ -1,7 +1,4 @@
-package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 public class Referencias {
 
@@ -65,16 +62,5 @@ public class Referencias {
 
     public void setsTelefonoRef(String sTelefonoRef) {
         this.sTelefonoRef = sTelefonoRef;
-    }
-
-    public Map<String, Object> Referencia() {
-
-        HashMap<String, Object> ListReferencia = new HashMap<>();
-        ListReferencia.put( "Nombre", sNombrePersonaRef );
-        ListReferencia.put( "CargoOcupado", sCargoOcupadoRef );
-        ListReferencia.put( "Institucion", sInstitucionRef );
-        ListReferencia.put( "Telefono", sTelefonoRef );
-
-        return ListReferencia;
     }
 }

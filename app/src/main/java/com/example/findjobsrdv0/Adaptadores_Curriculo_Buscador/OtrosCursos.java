@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,18 +66,4 @@ public class OtrosCursos {
     public void setsTipoEstudioOtrosCursos(String sTipoEstudioOtrosCursos) {
         this.sTipoEstudioOtrosCursos = sTipoEstudioOtrosCursos;
     }
-
-    public Map<String, Object> OtrosCursosMap(){
-
-        HashMap<String,Object> ListOtrosCursos= new HashMap<>();
-        ListOtrosCursos.put( "idcodigo", sIdOtroCurso );
-        ListOtrosCursos.put("institucion", sInstitucionOtrosCursos );
-        ListOtrosCursos.put("año", sAnoOtrosCursos );
-        ListOtrosCursos.put("areaotema", sAreaoTemaOtrosCursos );
-        ListOtrosCursos.put("tipodeestudio", sTipoEstudioOtrosCursos );
-
-
-        return ListOtrosCursos;
-    }
-
 }

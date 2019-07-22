@@ -23,7 +23,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
@@ -185,7 +184,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         SharedPreferences preferences = this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
         String Nombre = preferences.getString("Nombre", "Nombre");
 
-        Intent intent = new Intent(this, PantallaPerfilEmpleador_.class);
+        Intent intent = new Intent(this, PantallaPerfilEmpleador.class);
         intent.putExtra("EmpleadorConectado", EmpleadorConectado);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

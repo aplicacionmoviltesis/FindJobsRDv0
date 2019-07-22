@@ -12,9 +12,8 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaRegistrarEmpleos;
 import com.example.findjobsrdv0.GeneralesApp.MultipleSelectionSpinner;
-import com.example.findjobsrdv0.GeneralesApp.Provincias;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Provincias;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

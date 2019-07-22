@@ -20,11 +20,7 @@ public class EmpleosViewHolder extends RecyclerView.ViewHolder implements View.O
     public TextView FechaPublicacionCardView;
 
     public ImageView imagenEmpleoCardView;
-
-
-
     private ItemClickListener itemClickListener;
-
 
     public EmpleosViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -40,8 +36,6 @@ public class EmpleosViewHolder extends RecyclerView.ViewHolder implements View.O
         imagenEmpleoCardView = (ImageView) itemView.findViewById(R.id.CardImageArea);
 
         itemView.setOnClickListener(this);
-
-
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

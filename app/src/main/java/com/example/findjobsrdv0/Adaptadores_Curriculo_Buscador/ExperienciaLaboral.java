@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -74,17 +74,5 @@ public class ExperienciaLaboral {
 
     public void setsFechaSalidaExpLab(String sFechaSalidaExpLab) {
         this.sFechaSalidaExpLab = sFechaSalidaExpLab;
-    }
-
-    public Map<String, Object> ExpLab(){
-
-        HashMap<String,Object> ListExpLab= new HashMap<>();
-        ListExpLab.put("Nombre_Empresa", sNombreEmpresaExpLab );
-        ListExpLab.put( "Cargo_Ocupado", sCargoOcupadoExpLab );
-        ListExpLab.put("Telefono", sTelefonoExpLab );
-        ListExpLab.put("Fecha_Entrada", sFechaEntradaExpLab );
-        ListExpLab.put("Fecha_Salida", sFechaSalidaExpLab );
-
-        return ListExpLab;
     }
 }

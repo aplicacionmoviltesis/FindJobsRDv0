@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
 
 import java.util.ArrayList;
 

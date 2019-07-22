@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosViewHolder;
-import com.example.findjobsrdv0.GeneralesApp.Provincias;
+import com.example.findjobsrdv0.Adaptadores_Administrador.Provincias;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

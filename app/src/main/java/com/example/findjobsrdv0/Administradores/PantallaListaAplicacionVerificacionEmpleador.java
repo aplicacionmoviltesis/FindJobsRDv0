@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Clases_EmpleoCompleto;
+package com.example.findjobsrdv0.Administradores;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.AreasCurriculos;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

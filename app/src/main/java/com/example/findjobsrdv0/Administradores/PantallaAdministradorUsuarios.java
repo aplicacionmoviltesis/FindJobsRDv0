@@ -17,10 +17,12 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.findjobsrdv0.Adaptadores_Administrador.Administrador;
+import com.example.findjobsrdv0.Adaptadores_Administrador.ViewHolderUsuarios;
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallePerfilEmpresa;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -239,7 +241,7 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
                 sCorreoHAdmin = tvIdUser.getText().toString().trim();
                 sTelefonoHAdmin = tvIdUser.getText().toString().trim();
 
-                Administrador administrador = new Administrador(sIdHAdmin,sNombreHAdmin, sApellidoHAdmin,sCorreoHAdmin,sTelefonoHAdmin);
+                Administrador administrador = new Administrador(sIdHAdmin,sNombreHAdmin, sApellidoHAdmin,sCorreoHAdmin,sTelefonoHAdmin,"Activo");
                 usersAdmin.child(sIdHAdmin).setValue(administrador);
             }
         });
@@ -251,7 +253,7 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
 
     public void HacerUsuarioAdministrador(){
 
-        Administrador administrador = new Administrador(sIdHAdmin,sNombreHAdmin, sApellidoHAdmin,sCorreoHAdmin,sTelefonoHAdmin);
+        Administrador administrador = new Administrador(sIdHAdmin,sNombreHAdmin, sApellidoHAdmin,sCorreoHAdmin,sTelefonoHAdmin,"Activo");
         usersAdmin.child(sIdHAdmin).setValue(administrador);
 
 

@@ -1,19 +1,16 @@
-package com.example.findjobsrdv0.GeneralesApp;
+package com.example.findjobsrdv0.Adaptadores_Administrador;
 
 public class Areas {
 
     public Areas() {
     }
 
-    String sIdArea;
-    String sNombreArea;
-    String sDescripcionArea;
-    String sImagenArea;
-    String sSubAreas;
-    String sIdUserAdminArea;
-
-
-
+    private String sIdArea;
+    private String sNombreArea;
+    private String sDescripcionArea;
+    private String sImagenArea;
+    private String sSubAreas;
+    private String sIdUserAdminArea;
 
     public Areas(String sIdArea, String sNombreArea, String sDescripcionArea, String sImagenArea, String sSubAreas, String sIdUserAdminArea) {
         this.sIdArea = sIdArea;
@@ -22,7 +19,6 @@ public class Areas {
         this.sImagenArea = sImagenArea;
         this.sSubAreas = sSubAreas;
         this.sIdUserAdminArea = sIdUserAdminArea;
-
     }
 
     public String getsIdArea() {
@@ -72,5 +68,4 @@ public class Areas {
     public void setsIdUserAdminArea(String sIdUserAdminArea) {
         this.sIdUserAdminArea = sIdUserAdminArea;
     }
-
 }

@@ -137,7 +137,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                     sJornadaPEA = DatosEmpleos.getsJornadaE();
                     sCantidadVacantesPEA = DatosEmpleos.getsCantidadVacantesE();
                     sEstadoEmpleoPEA = DatosEmpleos.getsEstadoEmpleoE();
-                    sPersonasAplicaronPEA = DatosEmpleos.getsPersonasAplicaronE();
+                    sPersonasAplicaronPEA = DatosEmpleos.getsEstadoAdminE();
                     sIdEmpleadorPEA = DatosEmpleos.getsIdEmpleadorE();
                     sImagenEmpleoPEA = DatosEmpleos.getsImagenEmpleoE();
                     sTipoContratoPEA = DatosEmpleos.getsTipoContratoE();

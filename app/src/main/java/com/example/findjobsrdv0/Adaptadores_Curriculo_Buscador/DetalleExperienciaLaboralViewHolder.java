@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.ViewHolders_CurriculosCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import android.view.View;
 import android.widget.TextView;
@@ -16,26 +16,26 @@ public class DetalleExperienciaLaboralViewHolder extends RecyclerView.ViewHolder
     private ItemClickListener itemClickListener;
 
     public DetalleExperienciaLaboralViewHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
-        super( itemView );
+        super(itemView);
         this.itemClickListener = itemClickListener;
     }
 
     public DetalleExperienciaLaboralViewHolder(@NonNull View itemView) {
-        super( itemView );
+        super(itemView);
 
-        txtNombreempres = (TextView) itemView.findViewById( R.id.xmlTVNombreEmpresaDetalleExpLab );
-        txtCargoocupado = (TextView) itemView.findViewById( R.id.xmlTVCragoocupadoDetalleExpLab );
-        txtTelefono = (TextView) itemView.findViewById( R.id.xmlTVTelefonoDetalleExpLab );
-        txtFechaEntrada = (TextView) itemView.findViewById( R.id.xmlTVFechaEntradaDetalleExpLab );
-        txtFechaSalida = (TextView) itemView.findViewById( R.id.xmlTVFechaSalidaDetalleExpLab );
+        txtNombreempres = (TextView) itemView.findViewById(R.id.xmlTVNombreEmpresaDetalleExpLab);
+        txtCargoocupado = (TextView) itemView.findViewById(R.id.xmlTVCragoocupadoDetalleExpLab);
+        txtTelefono = (TextView) itemView.findViewById(R.id.xmlTVTelefonoDetalleExpLab);
+        txtFechaEntrada = (TextView) itemView.findViewById(R.id.xmlTVFechaEntradaDetalleExpLab);
+        txtFechaSalida = (TextView) itemView.findViewById(R.id.xmlTVFechaSalidaDetalleExpLab);
 
-        itemView.setOnClickListener( this );
+        itemView.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
-        itemClickListener.onClick( view,getAdapterPosition(),false );
+        itemClickListener.onClick(view, getAdapterPosition(), false);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

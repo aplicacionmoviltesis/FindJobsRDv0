@@ -47,7 +47,7 @@ import java.io.ByteArrayOutputStream;
 
 import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
-public class PantallaPerfilEmpleador_ extends AppCompatActivity {
+public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     private EditText editNombrePEmpleador, editRncPEmpleador, editPaginaWebPEmpleador, editTelefonoPEmplador,
             editDireccionPEmpleador, editCorreoPEmpleador, editProvinciaPEmpleador, editDescripcionPEmpleador;
@@ -115,7 +115,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
         w.setTitle( "My title" );
 
         mStorageReference = getInstance().getReference();
-        mProgressDialog = new ProgressDialog( PantallaPerfilEmpleador_.this );
+        mProgressDialog = new ProgressDialog( PantallaPerfilEmpleador.this );
 
         database = FirebaseDatabase.getInstance();
         DBperfilEmpleadores = database.getReference(getResources().getString(R.string.Ref_Empleadores));
@@ -260,20 +260,20 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
             mPictureRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText( PantallaPerfilEmpleador_.this, "Eliminando Imagen...", Toast.LENGTH_LONG ).show();
+                    Toast.makeText( PantallaPerfilEmpleador.this, "Eliminando Imagen...", Toast.LENGTH_LONG ).show();
                     Log.d( "link foto", String.valueOf( mPictureRef ) );
                     SubirNuevaImagen();
                 }
             } ).addOnFailureListener( new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText( PantallaPerfilEmpleador_.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                    Toast.makeText( PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG ).show();
                     mProgressDialog.dismiss();
                 }
             } );
         } else {
 
-            Toast.makeText( PantallaPerfilEmpleador_.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
+            Toast.makeText( PantallaPerfilEmpleador.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
             SubirNuevaImagen();
         }
     }
@@ -294,7 +294,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                Toast.makeText( PantallaPerfilEmpleador_.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG ).show();
+                Toast.makeText( PantallaPerfilEmpleador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG ).show();
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
@@ -306,7 +306,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
         } ).addOnFailureListener( new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText( PantallaPerfilEmpleador_.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                Toast.makeText( PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG ).show();
                 mProgressDialog.dismiss();
             }
         } );
@@ -337,7 +337,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
                     } else {
                         //FotoPerfilCorreo = user.getPhotoUrl();
                         if (user.getPhotoUrl() != null) {
-                            Glide.with( PantallaPerfilEmpleador_.this ).load( user.getPhotoUrl() ).into( ImagePerfilPEmpleador );
+                            Glide.with( PantallaPerfilEmpleador.this ).load( user.getPhotoUrl() ).into( ImagePerfilPEmpleador );
                         }
                     }
 
@@ -411,7 +411,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
                     }
                 } else {
                     if (user.getPhotoUrl() != null) {
-                        Glide.with( PantallaPerfilEmpleador_.this ).load( user.getPhotoUrl() ).into( ImagePerfilPEmpleador );
+                        Glide.with( PantallaPerfilEmpleador.this ).load( user.getPhotoUrl() ).into( ImagePerfilPEmpleador );
                     }
                     NombreEmpleador = user.getDisplayName();
                     if (NombreEmpleador != null && NombreEmpleador != "") {
@@ -430,7 +430,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( PantallaPerfilEmpleador_.this, "Hubo un problema con traer los datos", Toast.LENGTH_LONG ).show();
+                Toast.makeText( PantallaPerfilEmpleador.this, "Hubo un problema con traer los datos", Toast.LENGTH_LONG ).show();
             }
         } );
 
@@ -454,8 +454,8 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
         Empleadores empleadores = new Empleadores( sNombrePEmpleador, sRncPEmpleador, sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador, sCorreoPEmpleador, foto, sVerificacionPEmpleador, sIdPEmpleador, sDescripcionPEmpleador, sProvinciaPEmpleador );
         DBperfilEmpleadores.child( sIdPEmpleador ).setValue( empleadores );
         mProgressDialog.dismiss();
-        Toast.makeText( PantallaPerfilEmpleador_.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG ).show();
-        Intent intent = new Intent( PantallaPerfilEmpleador_.this, PantallaPrincipalEmpleador.class );
+        Toast.makeText( PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG ).show();
+        Intent intent = new Intent( PantallaPerfilEmpleador.this, PantallaPrincipalEmpleador.class );
         startActivity( intent );
 
     }
@@ -481,7 +481,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
 //                    Picasso.get().load(sImagenPEmpleador).into(ImagePerfilPEmpleador);
 //                } else {
 //                    if (FotoPerfilCorreo != null && FotoPerfilCorreo != "") {
-//                        Glide.with(PantallaPerfilEmpleador_.this).load(FotoPerfilCorreo).into(ImagePerfilPEmpleador);
+//                        Glide.with(PantallaPerfilEmpleador.this).load(FotoPerfilCorreo).into(ImagePerfilPEmpleador);
 //                    }
 //                }
 //                sNombrePEmpleador = dataSnapshot.child("sNombreEmpleador").getValue(String.class);
@@ -558,7 +558,7 @@ public class PantallaPerfilEmpleador_ extends AppCompatActivity {
 //
 //            @Override
 //            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Toast.makeText(PantallaPerfilEmpleador_.this, "Hubo un problema con traer los datos", Toast.LENGTH_LONG).show();
+//                Toast.makeText(PantallaPerfilEmpleador.this, "Hubo un problema con traer los datos", Toast.LENGTH_LONG).show();
 //            }
 //        });
 //

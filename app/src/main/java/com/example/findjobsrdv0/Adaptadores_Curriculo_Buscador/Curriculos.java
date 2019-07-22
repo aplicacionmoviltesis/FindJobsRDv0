@@ -1,6 +1,4 @@
-package com.example.findjobsrdv0.Modelos_CurriculoCompleto;
-
-import android.widget.ImageView;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -226,35 +224,4 @@ public class Curriculos {
     public void setsUniversidadFormAcad(String sUniversidadFormAcad) {
         this.sUniversidadFormAcad = sUniversidadFormAcad;
     }
-
-    public Map<String, Object> CurrtoMap() {
-
-        HashMap<String, Object> ListCurriculo = new HashMap<>();
-        ListCurriculo.put( "codigoId", sIdCurriculo );
-        ListCurriculo.put( "sImagenC", sImagenC );
-        ListCurriculo.put( "sNombreC", sNombreC );
-        ListCurriculo.put( "sApellidoC", sApellidoC );
-        ListCurriculo.put( "sCedulaC", sCedulaC );
-        ListCurriculo.put( "sEmailC", sEmailC );
-        ListCurriculo.put( "sTelefonoC", sTelefonoC );
-        ListCurriculo.put( "sCelularC", sCelularC );
-        ListCurriculo.put( "sProvinciaC", sProvinciaC );
-        ListCurriculo.put( "estadocivil", sEstadoCivilC );
-        ListCurriculo.put( "sDireccionC", sDireccionC );
-        ListCurriculo.put( "sOcupacionC", sOcupacionC );
-        ListCurriculo.put( "sIdiomaC", sIdiomaC );
-        ListCurriculo.put( "sGradoMayorC", sGradoMayorC );
-        ListCurriculo.put( "sEstadoActualC", sEstadoActualC );
-        ListCurriculo.put( "sSexoC", sSexoC );
-        ListCurriculo.put( "sHabilidadesC", sHabilidadesC );
-        ListCurriculo.put( "sFechaC", sFechaC );
-        ListCurriculo.put( "sAreaC", sAreaC );
-        ListCurriculo.put( "sNivelPrimarioFormAcad", sNivelPrimarioFormAcad );
-        ListCurriculo.put( "sNivelSecundarioFormAcad", sNivelSecundarioFormAcad );
-        ListCurriculo.put( "sCarreraFormAcad", sCarreraFormAcad );
-        ListCurriculo.put( "sUniversidadFormAcad", sUniversidadFormAcad );
-
-        return ListCurriculo;
-    }
-
 }

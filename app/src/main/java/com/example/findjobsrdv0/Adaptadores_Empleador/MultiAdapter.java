@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Clases_EmpleoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Empleador;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosFav;
 import com.example.findjobsrdv0.R;
 import com.squareup.picasso.Picasso;
 
@@ -75,7 +74,6 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
 
             imageView = itemView.findViewById(R.id.imageViewSelect);
             ImageViewArea = itemView.findViewById(R.id.CardImageAreaSelect);
-
         }
 
         void bind(final EmpleosFav empleosFav) {
@@ -88,8 +86,6 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
             cFecha.setText(empleosFav.getsFechaPublicacionE());
 
             Picasso.get().load(empleosFav.getsImagenEmpleoE()).into(ImageViewArea);
-
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

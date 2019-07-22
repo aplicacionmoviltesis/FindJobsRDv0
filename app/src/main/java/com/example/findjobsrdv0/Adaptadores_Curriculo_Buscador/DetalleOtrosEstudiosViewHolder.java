@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.ViewHolders_CurriculosCompleto;
+package com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador;
 
 import android.view.View;
 import android.widget.TextView;
@@ -11,30 +11,30 @@ import com.example.findjobsrdv0.R;
 
 public class DetalleOtrosEstudiosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtInstitucion,  txtAno, txtAreaoTema, txtTipodeEstudio;
+    public TextView txtInstitucion, txtAno, txtAreaoTema, txtTipodeEstudio;
 
     private ItemClickListener itemClickListener;
 
     public DetalleOtrosEstudiosViewHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
-        super( itemView );
+        super(itemView);
         this.itemClickListener = itemClickListener;
     }
 
     public DetalleOtrosEstudiosViewHolder(@NonNull View itemView) {
-        super( itemView );
+        super(itemView);
 
-        txtInstitucion = (TextView)itemView.findViewById( R.id.xmlTVInstitucionDetalleOtrosEstudios );
-        txtAno = (TextView)itemView.findViewById( R.id.xmlTVanoDetalleOtrosEstudios );
-        txtAreaoTema = (TextView)itemView.findViewById( R.id.xmlTVAreaoTemaDetalleOtrosEstudios );
-        txtTipodeEstudio = (TextView)itemView.findViewById( R.id.xmlTVTipodeEstudioDetalleOtrosEstudios );
+        txtInstitucion = (TextView) itemView.findViewById(R.id.xmlTVInstitucionDetalleOtrosEstudios);
+        txtAno = (TextView) itemView.findViewById(R.id.xmlTVanoDetalleOtrosEstudios);
+        txtAreaoTema = (TextView) itemView.findViewById(R.id.xmlTVAreaoTemaDetalleOtrosEstudios);
+        txtTipodeEstudio = (TextView) itemView.findViewById(R.id.xmlTVTipodeEstudioDetalleOtrosEstudios);
 
-        itemView.setOnClickListener( this );
+        itemView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
 
-        itemClickListener.onClick( view,getAdapterPosition(),false );
+        itemClickListener.onClick(view, getAdapterPosition(), false);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

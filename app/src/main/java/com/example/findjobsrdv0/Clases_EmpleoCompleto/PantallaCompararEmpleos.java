@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosFav;
+import com.example.findjobsrdv0.Adaptadores_Empleador.MultiAdapter;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -182,7 +183,7 @@ public class PantallaCompararEmpleos extends AppCompatActivity {
                     sJornadaFav = DatosEmpleosFav.getsJornadaE();
                     sCantidadVacantesFav = DatosEmpleosFav.getsCantidadVacantesE();
                     sEstadoEmpleoFav = DatosEmpleosFav.getsEstadoEmpleoE();
-                    sPersonasAplicaronFav = DatosEmpleosFav.getsPersonasAplicaronE();
+                    sPersonasAplicaronFav = DatosEmpleosFav.getsEstadoAdminE();
                     sIdEmpleadorFav = DatosEmpleosFav.getsIdEmpleadorE();
                     sImagenEmpleoFav = DatosEmpleosFav.getsImagenEmpleoE();
                     sTipoContratoFav = DatosEmpleosFav.getsTipoContratoE();

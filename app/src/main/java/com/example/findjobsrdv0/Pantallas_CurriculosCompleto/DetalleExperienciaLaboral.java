@@ -12,9 +12,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.ExperienciaLaboral;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.ExperienciaLaboral;
 import com.example.findjobsrdv0.R;
-import com.example.findjobsrdv0.ViewHolders_CurriculosCompleto.DetalleExperienciaLaboralViewHolder;
+import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.DetalleExperienciaLaboralViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
