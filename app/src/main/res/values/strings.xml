@@ -253,6 +253,10 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+    <!--TIPO DE LETRA-->
+    <string name="fonts_robotos">fonts/robotoslab.bold.ttf</string>
+
 <!--BASE DE DATOS-->
     <string name="Ref_AdministradoresApp">AdministradoresApp</string>
 
@@ -264,13 +268,49 @@
 
     <string name="Ref_Curriculos">Curriculos</string>
 
+    <!--//////////CAMPOS CURRICULO///////////-->
+
+    <string name="Campo_sIdCurriculo">sIdCurriculo</string>
+    <string name="Campo_sCedulaC">sCedulaC</string>
+    <string name="Campo_sNombreC">sNombreC</string>
+    <string name="Campo_sApellidoC">sApellidoC</string>
+    <string name="Campo_sEmailC">sEmailC</string>
+    <string name="Campo_sTelefonoC">sTelefonoC</string>
+    <string name="Campo_sImagenC">sImagenC</string>
+
+    <!--///////////////////////////-->
+
     <string name="Ref_CurriculosConSolicitudes">CurriculosConSolicitudes</string>
 
     <string name="Ref_Empleadores">Empleadores</string>
 
+    <!--//////////CAMPOS TABLA EMPLEADOR///////////-->
+
+    <string name="Campo_sRncEmpleador">sRncEmpleador</string>
+    <string name="Campo_sNombreEmpleador">sNombreEmpleador</string>
+    <string name="Campo_sCorreoEmpleador">sCorreoEmpleador</string>
+    <string name="Campo_sTelefonoEmpleador">sTelefonoEmpleador</string>
+    <string name="Campo_sPaginaWebEmpleador">sPaginaWebEmpleador</string>
+    <string name="Campo_sDireccionEmpleador">sDireccionEmpleador</string>
+    <string name="Campo_sVerificacionEmpleador">sVerificacionEmpleador</string>
+    <string name="Campo_sImagenEmpleador">sImagenEmpleador</string>
+    <string name="Campo_sProvinciaEmpleador">sProvinciaEmpleador</string>
+    <string name="Campo_sDescripcionEmpleador">sDescripcionEmpleador</string>
+    <string name="Campo_sIdEmpleador">sIdEmpleador</string>
+
+    <!--///////////////////////////-->
+
     <string name="Ref_EmpleadoresConFavoritos">EmpleadoresConFavoritos</string>
 
     <string name="Ref_Empleos">Empleos</string>
+
+    <!--//////////CAMPOS TABLA EMPLEADOR///////////-->
+
+    <string name="Campo_sIDEmpleo">sIDEmpleo</string>
+    <string name="Campo_sNombreEmpleoE">sNombreEmpleoE</string>
+    <string name="Campo_sIdEmpleadorE">sIdEmpleadorE</string>
+
+    <!--///////////////////////////-->
 
     <string name="Ref_EmpleosConCandidatos">EmpleosConCandidatos</string>
 
@@ -289,4 +329,46 @@
     <string name="Ref_SolicitudVerificacionEmpleador">SolicitudVerificacionEmpleador</string>
 
     <string name="Ref_Universidades">Universidades</string>
+
+    <!--//////////FAVORITOS//////////-->
+
+    <string name="Favoritos_LIKES">likes</string>
+    <string name="Favoritos_IdEmpleoLike">IdEmpleoLike</string>
+    <string name="Favoritos_IdCurriculoLike">IdCurriculoLike</string>
+
+    <!--//////////////////-->
+
+    <!--//////////SolicitudesEmpleosCurriculos//////////-->
+
+    <string name="Aplicacion_sIdEmpresaAplico">sIdEmpresaAplico</string>
+    <string name="Aplicacion_sIdCurriculoAplico">sIdCurriculoAplico</string>
+    <string name="Aplicacion_sIdPersonaAplico">sIdPersonaAplico</string>
+    <string name="Aplicacion_sIdEmpleoAplico">sIdEmpleoAplico</string>
+
+    <!--//////////////////-->
+
+    <!--//////////Imagenes Storage//////////-->
+
+    <string name="Imagenes_Problemas">Imagenes Problemas/</string>
+
+    <!--//////////////////-->
+
+
+
+    <!--//////////Estado, PROBLEMA//////////-->
+
+    <string name="Estado_ReportProblem">Pendiente</string>
+
+    <!--//////////////////-->
+
+
+    <!--//////////TITULO DE PAGINAS//////////-->
+
+    <string name="titulo_ReportProblem">Reportar Problemas</string>
+    <string name="titulo_Configuracion">Configuración</string>
+    <string name="titulo_CompararEmpleos">Comparar Empleos</string>
+    <string name="titulo_CompararCurriculos">Comparar Curriculos</string>
+    <string name="titulo_Opiniones_Sugerencias">Opiniones y Sugerencias</string>
+
+    <!--//////////////////-->
 </resources>

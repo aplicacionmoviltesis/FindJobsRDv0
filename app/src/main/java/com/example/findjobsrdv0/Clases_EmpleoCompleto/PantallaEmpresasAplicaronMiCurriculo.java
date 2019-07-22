@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +23,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
@@ -31,18 +31,16 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
     private DatabaseReference DBEmpleadores, dbAplicacionesCurriculo, dbCurriculos;
 
     private AdapterEmpresa adapterEmpresa;
-    private AdapterEmpresa adapterEmpresaVacio;
     private ArrayList<Empleadores> mDatasetEmpleadores = new ArrayList<Empleadores>();
 
     private String sIdEmpresaAplico = "";
 
-    private String IdCurriculo,sIdCurriculoAplico;
+    private String IdCurriculo, sIdCurriculoAplico;
     private RecyclerView recyclerViewEmpleadores;
     private RecyclerView.LayoutManager layoutManager;
 
     private FirebaseAuth mAuthEmpresaAplico;
     private FirebaseUser user;
-
 
     private String sNombreEAplicoCurriculo;
     private String sRncEmpleadorAplicoCurriculo;
@@ -51,6 +49,8 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
     private String sDireccionEAplicoCurriculo;
     private String sCorreoEAplicoCurriculo;
     private String sImagenEAplicoCurriculo;
+    private String sProvinciaEAplicoCurriculo;
+    private String sDescripcionEmpleadorAplicoCurriculo;
     private Boolean sVerificacionEAplicoCurriculo;
     private String sIdEmpleadorEAplicoCurriculo;
     List<String> CurriculoKlkId;
@@ -65,20 +65,12 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         CurriculoKlkId = new ArrayList<String>();
-
-
         dbCurriculosSolicitudes = FirebaseDatabase.getInstance();
-       // dbCurriculosSolicitudes.setPersistenceEnabled(true);
 
-        //DBEmpleos = dbCurriculosSolicitudes.getReference();
-        dbAplicacionesCurriculo = dbCurriculosSolicitudes.getReference("CurriculosConSolicitudes");
+        dbAplicacionesCurriculo = dbCurriculosSolicitudes.getReference(getResources().getString(R.string.Ref_CurriculosConSolicitudes));
 
-        dbCurriculos = dbCurriculosSolicitudes.getReference("Curriculos");
+        dbCurriculos = dbCurriculosSolicitudes.getReference(getResources().getString(R.string.Ref_Curriculos));
         DBEmpleadores = dbCurriculosSolicitudes.getReference();
-
-        //mDatasetEmpleadores.clear();
-        //HashSet hs = new HashSet();
-
 
         recyclerViewEmpleadores = (RecyclerView) findViewById(R.id.ListaEmpresasAplicaronR);
 
@@ -90,66 +82,22 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
         adapterEmpresa.notifyDataSetChanged();
         recyclerViewEmpleadores.setAdapter(adapterEmpresa);
 
-
-
-
-        //mDatasetEmpleadores.clear();
-
-
         mAuthEmpresaAplico = FirebaseAuth.getInstance();
         user = mAuthEmpresaAplico.getCurrentUser();
         sIdEmpresaAplico = user.getUid();
 
-        /*dbCurriculos.orderByChild("sIdBuscadorEmpleo").equalTo(sIdEmpresaAplico).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Is better to use a List, because you don't know the size
-                // of the iterator returned by dataSnapshot.getChildren() to
-                // initialize the array
-                final List<String> areas = new ArrayList<String>();
-                Log.d("holap", String.valueOf(dataSnapshot));
-
-                for (DataSnapshot areaSnapshot: dataSnapshot.getChildren()) {
-
-                    String areaName = areaSnapshot.child("sIdCurriculo").getValue(String.class);
-                    //areas.add(areaName);
-                    Log.d("holap", areaName);
-                    sIdCurriculoAplico = areaName;
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(PantallaEmpresasAplicaronMiCurriculo.this, "Usted No tiene empleo registrados", Toast.LENGTH_LONG).show();
-
-
-            }
-        });*/
-
         if (sIdEmpresaAplico != null) {
             if (!sIdEmpresaAplico.isEmpty()) {
-
-                Query q = dbCurriculos.orderByChild("sIdBuscadorEmpleo").equalTo(sIdEmpresaAplico);
+                Query q = dbCurriculos.child(sIdEmpresaAplico);
                 q.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Log.d("dataCurriculo", String.valueOf(dataSnapshot));
 
-                        for (DataSnapshot CurriculoSnapshot : dataSnapshot.getChildren()) {
-                            String IdCurriculoExistente = CurriculoSnapshot.child("sIdCurriculo").getValue(String.class);
-                            //recyclerViewEmpleadores.setAdapter(adapterEmpresaVacio);
+                        String IdCurriculoExistente = dataSnapshot.child(getResources().getString(R.string.Campo_sIdCurriculo)).getValue(String.class);
+                        Log.d("dataCurriculohhhhhhh", String.valueOf(IdCurriculoExistente));
 
-                            TraerAplicacionesCurriculo(IdCurriculoExistente);
-
-
-//                            //loadEmpleo(IdEmpleoAplico);
-//                            IdCurriculo = IdCurriculoExistente;
-//                            CurriculoKlkId.add(IdCurriculoExistente);
-//                            Log.d("dataCurriculoIdlllll", String.valueOf(IdCurriculoExistente));
-//
-//                            Log.d("dataCurriculoId", String.valueOf(IdCurriculo));
-                        }
-
-
+                        TraerAplicacionesCurriculo(IdCurriculoExistente);
                     }
 
                     @Override
@@ -157,56 +105,9 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 
                     }
                 });
-                //mDatasetEmpleadores.clear();
-                //ObtenerCurriculo(sIdEmpresaAplico);
             }
         }
-//CurriculoKlkId.add("deddeded");
-//        CurriculoKlkId.add("q4444444444444444q");
-//
-//        String hola = CurriculoKlkId.get(0);
-//
-//        //ObtenerCurriculo(sIdEmpresaAplico);
-//        //Log.d("Curriculoperr", "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-//        Log.d("Curriculoperroooooooo", String.valueOf(CurriculoKlkId));
-//        //IdCurriculo = "-Lh1fK1-fPTCrzX8ibwm";
-//        Log.d("Curriculoperr", String.valueOf(hola));
-//
-//        if (IdCurriculo != null) {
-//            if (!IdCurriculo.isEmpty()) {
-//                Log.d("Curriculoperr9999999999", IdCurriculo);
-//
-//                TraerAplicacionesCurriculo(IdCurriculo);
-//            }
-//        }
-
-
     }
-
-   /* private String ObtenerCurriculo(String sIdUsuario) {
-
-        Query q = dbCurriculos.orderByChild("sIdBuscadorEmpleo").equalTo(sIdUsuario);
-        q.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("dataApliCurriculo", String.valueOf(dataSnapshot));
-
-                for (DataSnapshot CurriculoSnapshot : dataSnapshot.getChildren()) {
-                    IdCurriculo = CurriculoSnapshot.child("sIdCurriculo").getValue(String.class);
-                    //loadEmpleo(IdEmpleoAplico);
-                    Log.d("dataidEmpleos", IdCurriculo);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        return  IdCurriculo;
-    }*/
 
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -214,26 +115,18 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
     }
 
     private void TraerAplicacionesCurriculo(String sIdEmpresaAplico) {
-//        mDatasetEmpleadores.clear();
-//        adapterEmpresa.notifyDataSetChanged();
         Log.d("dataCurriculoklk", String.valueOf(sIdEmpresaAplico));
 
-        Query q = dbAplicacionesCurriculo.orderByChild("sIdCurriculoAplico").equalTo(sIdEmpresaAplico);
+        Query q = dbAplicacionesCurriculo.orderByChild(getResources().getString(R.string.Aplicacion_sIdCurriculoAplico)).equalTo(sIdEmpresaAplico);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("dataCurriculoAplic", String.valueOf(dataSnapshot));
-//                mDatasetEmpleadores.clear();
-//                adapterEmpresa.notifyDataSetChanged();
                 for (DataSnapshot EmpresasSnapshot : dataSnapshot.getChildren()) {
-//                    mDatasetEmpleadores.clear();//----------------
-//                    adapterEmpresa.notifyDataSetChanged();
-                    String IdEmpresaAplico = EmpresasSnapshot.child("sIdEmpresaAplico").getValue(String.class);
+                    String IdEmpresaAplico = EmpresasSnapshot.child(getResources().getString(R.string.Aplicacion_sIdEmpresaAplico)).getValue(String.class);
                     loadEmpresa(IdEmpresaAplico);
                     Log.d("dataCEmpresasId", IdEmpresaAplico);
                 }
-//                mDatasetEmpleadores.clear();//-----------
-//                adapterEmpresa.notifyDataSetChanged();
             }
 
             @Override
@@ -241,23 +134,16 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void loadEmpresa(final String sIDEmpresa) {
         Log.d("dataEmpresaAplic", String.valueOf(sIDEmpresa));
-        //adapterEmpresa.notifyDataSetChanged();
-//        mDatasetEmpleadores.clear();//----------------
-//        adapterEmpresa.notifyDataSetChanged();
-        DBEmpleadores.child("Empleadores").orderByChild("sIdEmpleador").equalTo(sIDEmpresa).addValueEventListener(new ValueEventListener() {
+        DBEmpleadores.child(getResources().getString(R.string.Ref_Empleadores)).orderByChild(getResources().getString(R.string.Campo_sIdEmpleador)).equalTo(sIDEmpresa).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                Log.d("dataEmpresaAplic", String.valueOf(dataSnapshot));
-
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
 
                     Empleadores DatosEmpleadores = datasnapshot.getValue(Empleadores.class);
-
 
                     sNombreEAplicoCurriculo = DatosEmpleadores.getsNombreEmpleador();
                     sRncEmpleadorAplicoCurriculo = DatosEmpleadores.getsRncEmpleador();
@@ -268,16 +154,17 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
                     sImagenEAplicoCurriculo = DatosEmpleadores.getsImagenEmpleador();
                     sVerificacionEAplicoCurriculo = DatosEmpleadores.getsVerificacionEmpleador();
                     sIdEmpleadorEAplicoCurriculo = DatosEmpleadores.getsIdEmpleador();
-                    Log.d("DATOS::::", datasnapshot.child("sNombreEmpleador").getValue(String.class));
+                    sProvinciaEAplicoCurriculo = DatosEmpleadores.getsProvinciaEmpleador();
+                    sDescripcionEmpleadorAplicoCurriculo = DatosEmpleadores.getsDescripcionEmpleador();
+
+                    Log.d("DATOS::::", datasnapshot.child(getResources().getString(R.string.Campo_sNombreEmpleador)).getValue(String.class));
                     Log.d("DATOS::::", sNombreEAplicoCurriculo);
 
-                    final Empleadores empleadores = new Empleadores(sNombreEAplicoCurriculo,sRncEmpleadorAplicoCurriculo,
-                            sPaginaWebEAplicoCurriculo,sTelefonoEAplicoCurriculo,sDireccionEAplicoCurriculo,
-                            sCorreoEAplicoCurriculo,sImagenEAplicoCurriculo,sVerificacionEAplicoCurriculo,sIdEmpleadorEAplicoCurriculo,"descripcion","provincia");
+                    final Empleadores empleadores = new Empleadores(sNombreEAplicoCurriculo, sRncEmpleadorAplicoCurriculo,
+                            sPaginaWebEAplicoCurriculo, sTelefonoEAplicoCurriculo, sDireccionEAplicoCurriculo,
+                            sCorreoEAplicoCurriculo, sImagenEAplicoCurriculo, sVerificacionEAplicoCurriculo, sIdEmpleadorEAplicoCurriculo, sDescripcionEmpleadorAplicoCurriculo, sProvinciaEAplicoCurriculo);
 
-                    //mDatasetEmpleadores.clear();
                     PantallaEmpresasAplicaronMiCurriculo.this.mDatasetEmpleadores.add(empleadores);
-                    //mDatasetEmpleadores.clear();
                     adapterEmpresa.notifyDataSetChanged();
 
                     final Empleadores clickItem = empleadores;
@@ -291,9 +178,6 @@ public class PantallaEmpresasAplicaronMiCurriculo extends AppCompatActivity {
                     });
                 }
                 Log.d("CVEMPLEADORES::::", String.valueOf(dataSnapshot));
-//mDatasetEmpleadores.clear();
-                //mDatasetEmpleadores.clear();//----------------
-                //adapterEmpresa.notifyDataSetChanged();
             }
 
             @Override

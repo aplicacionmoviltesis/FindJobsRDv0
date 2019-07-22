@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.EmpleosFav;
+import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosFav;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.MultiAdapter;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos;
 import com.google.firebase.database.DatabaseReference;

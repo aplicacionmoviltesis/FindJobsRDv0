@@ -24,10 +24,9 @@ public class PantallaModoUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_modo_usuario);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        tvElegirmodo = (TextView) findViewById(R.id.tvRegistrar);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        tvElegirmodo = (TextView) findViewById(R.id.xmlTiElegirModo);
+        Typeface face=Typeface.createFromAsset(getAssets(),getResources().getString(R.string.fonts_robotos));
         tvElegirmodo.setTypeface(face);
-
 
         LinearLayout IrRegistroBuscador = (LinearLayout )findViewById(R.id.lyBuscadorEmpleo);
         IrRegistroBuscador.setOnClickListener(new View.OnClickListener() {

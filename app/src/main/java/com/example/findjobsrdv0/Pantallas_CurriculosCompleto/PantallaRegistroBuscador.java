@@ -70,7 +70,6 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
     private DatabaseReference DBAreas;
     private String userActivo;
     private String IdAreas;
-//    private String AreaPrincipal, AreaSecundaria, AreaTerciaria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +78,13 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         tvBRegistrar = (TextView) findViewById(R.id.xmlbtvRegistrar);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         tvBRegistrar.setTypeface(face);
 
-        DBAreas = FirebaseDatabase.getInstance().getReference("AreasCurriculos");
+        DBAreas = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.Ref_AreasCurriculos));
         IdAreas = DBAreas.push().getKey();
 
-        DBCedula = FirebaseDatabase.getInstance().getReference("Curriculos");
+        DBCedula = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.Ref_Curriculos));
 
         firebaseAuth = FirebaseAuth.getInstance();
         DBReference = FirebaseDatabase.getInstance().getReference();
@@ -151,7 +150,6 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
         };
 
         BprogressBar = (ProgressBar) findViewById(R.id.BprogressBarRegistro);
-
 
         BbtnIniciarsesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,26 +218,17 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
                                 String Ukey = user.getUid();
 
                                 userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                                Log.d( "id", userActivo );
-//                                Log.d( " todo", String.valueOf( userActivo ) );
 
-                                DBReference.child("Curriculos").child(Ukey).child("sCedulaC").setValue(entrada_bCedula);
-                                DBReference.child("Curriculos").child(Ukey).child("sNombreC").setValue(entrada_bNombre);
-                                DBReference.child("Curriculos").child(Ukey).child("sApellidoC").setValue(entrada_bApellido);
-                                DBReference.child("Curriculos").child(Ukey).child("sEmailC").setValue(bemail);
-                                DBReference.child("Curriculos").child(Ukey).child("sTelefonoC").setValue(entrada_btelefono);
-                                DBReference.child("Curriculos").child(Ukey).child("sImagenC").setValue("https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenCurriculo%2F1563082768956.png?alt=media&token=0354bc85-875d-4cd8-8059-8e398d08e932");
+                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sCedulaC)).setValue(entrada_bCedula);
+                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sNombreC)).setValue(entrada_bNombre);
+                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sApellidoC)).setValue(entrada_bApellido);
+                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sEmailC)).setValue(bemail);
+                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sTelefonoC)).setValue(entrada_btelefono);
+                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sImagenC)).setValue("https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenCurriculo%2F1563082768956.png?alt=media&token=0354bc85-875d-4cd8-8059-8e398d08e932");
 
                                 registrarareas(IdAreas,userActivo);
-//
-//                                DBReference.child("AreasCurriculos").child(Ukey).child("sAreaPrincipalCurr").setValue("");
-//                                DBReference.child("AreasCurriculos").child(Ukey).child("sAreaSecundariaCurr").setValue("");
-//                                DBReference.child("AreasCurriculos").child(Ukey).child("sAreaTerciaria").setValue("");
-//                                DBReference.child("AreasCurriculos").child(Ukey).child("sIdAreaCurriculo").setValue(IdAreas);
-                              //  DBReference.child("AreasCurriculos").child(Ukey).child("sIdCurriculo").setValue(userActivo);
 
-                                DBReference.child( "Curriculos" ).child( Ukey ).child( "sIdCurriculo" ).setValue( Ukey );
-                                // DBReference.child("BuscadoresEmpleos").child(Ukey).child("Contraseña").setValue(bpassword);
+                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child( Ukey ).child(getResources().getString(R.string.Campo_sIdCurriculo)).setValue( Ukey );
 
                                 user.sendEmailVerification();
                                 firebaseAuth.signOut();
@@ -269,22 +258,20 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
     public void onClick(View view) {
 
         entrada_bCedula = BregistroCedula.getText().toString().trim();
-        Log.d( " todo", String.valueOf( entrada_bCedula ) );
+        Log.d(" todo", entrada_bCedula);
 
-        Query q = DBCedula.orderByChild( "sCedulaC" ).equalTo( entrada_bCedula );
-        q.addListenerForSingleValueEvent( new ValueEventListener() {
+        Query q = DBCedula.orderByChild(getResources().getString(R.string.Campo_sCedulaC)).equalTo( entrada_bCedula );
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.exists()) {
+                if (!dataSnapshot.exists()){
                     Log.d( "rnc no existe", String.valueOf( dataSnapshot ) );
-                    //Toast.makeText(PantallaRegistroEmpleador.this, "Ir a registrar", Toast.LENGTH_LONG).show();
-//                            sAreaC = spinAreaC.getSelectedItemsAsString();
+
                     registrarUsuarioBuscador();
 
                 } else {
                     BregistroCedula.setError( "Esta cedula ya a sido registrado" );
                     Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
-                    //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -297,8 +284,6 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
     }
 
     public void registrarareas(String IdAreas, String userActivo){
-
-//        Log.d( " todosss", String.valueOf( userActivo ) );
         AreasCurriculos areasCurriculos = new AreasCurriculos( IdAreas, userActivo,
                 "", "", "" );
         DBAreas.child( IdAreas ).setValue( areasCurriculos );
@@ -356,7 +341,6 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
     @Override
     protected void onStop() {
         super.onStop();
-
         if (firebaseAuthListener != null) {
             mAuthBuscador.removeAuthStateListener(firebaseAuthListener);
         }

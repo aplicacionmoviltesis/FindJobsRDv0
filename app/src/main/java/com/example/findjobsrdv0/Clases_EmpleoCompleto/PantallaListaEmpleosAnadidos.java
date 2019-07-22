@@ -10,6 +10,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
+import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosViewHolder;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -43,11 +45,9 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
         listaEmpleosAnadidos = (RecyclerView)findViewById(R.id.ListaEmpleosAnadidosR);
         listaEmpleosAnadidos.setHasFixedSize(true);
         listaEmpleosAnadidos.setLayoutManager(new LinearLayoutManager(this));
-
 
         Ukey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         cargarEmpleos(Ukey);
@@ -61,7 +61,7 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
     private void cargarEmpleos(String Ukey) {
         adapter = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>
                 (Empleos.class,R.layout.cardview_mostrar_empleo, EmpleosViewHolder.class,
-                        DBempleos.orderByChild("sIdEmpleadorE").equalTo(Ukey)) {
+                        DBempleos.orderByChild(getResources().getString(R.string.Campo_sIdEmpleadorE)).equalTo(Ukey)) {
             @Override
             protected void populateViewHolder(EmpleosViewHolder empleosViewHolder, Empleos empleos, int i) {
                 empleosViewHolder.NombreEmpleoCardView.setText(empleos.getsNombreEmpleoE());

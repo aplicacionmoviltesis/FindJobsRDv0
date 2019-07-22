@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
+import com.example.findjobsrdv0.Adaptadores_Empleador.AplicarVerificacionEmpleador;
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
 import com.example.findjobsrdv0.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -271,7 +272,7 @@ public class PantallaDetalleAplicacionVerificacionEmpleador extends AppCompatAct
         valorspinner = spinVerificacionEmpleador.getSelectedItem().toString();
 
         if (!valorspinner.equals( null )) {
-            if (valorspinner.equals( "Verificado" )) {
+            if (valorspinner.equals("Verificado")){
                 Estado = true;
             } else {
                 Estado = false;

@@ -14,7 +14,7 @@ public class PantallaConfiguracionAdministrador extends AppCompatActivity {
 
     private Button btnRegistrarArea,btnRegistrarUniversidad, btnRegistrarProvincia,
             btnActualizarArea,btnActualizarUniversidad,btnActualizarProvincia,
-            btnVerProblemasReportados,btnVerOpinionesSugerencias;
+            btnVerProblemasReportados,btnVerOpinionesSugerencias,btnAdministrarUsuarios,btnCrearUsuarioAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,9 @@ public class PantallaConfiguracionAdministrador extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setTitle("Menu Administrador");
+
+        btnAdministrarUsuarios = (Button) findViewById(R.id.xmlBtnAdministrarUser);
+        btnCrearUsuarioAdmin = (Button) findViewById(R.id.xmlBtnCrearUsuarioAdministrador);
 
         btnRegistrarArea = (Button) findViewById(R.id.xmlBtnAnadirArea);
         btnActualizarArea = (Button) findViewById(R.id.xmlBtnActualizarArea);
@@ -37,6 +40,22 @@ public class PantallaConfiguracionAdministrador extends AppCompatActivity {
 
         btnVerProblemasReportados = (Button) findViewById(R.id.xmlBtnVerProblemasReportados);
         btnVerOpinionesSugerencias = (Button) findViewById(R.id.xmlBtnVerOpiSug);
+
+        btnAdministrarUsuarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PantallaConfiguracionAdministrador.this, PantallaAdministradorUsuarios.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        btnCrearUsuarioAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PantallaConfiguracionAdministrador.this, RegistrarAdministrador.class);
+                startActivityForResult(intent, 0);
+            }
+        });
 
         btnRegistrarArea.setOnClickListener(new View.OnClickListener() {
             @Override

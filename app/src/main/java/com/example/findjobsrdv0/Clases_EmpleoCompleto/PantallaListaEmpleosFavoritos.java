@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.AdapterEmpleo;
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +54,6 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_lista_empleos_favoritos);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
@@ -76,8 +77,7 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
 
         if(sIdUserBuscEmp != null){
             if(!sIdUserBuscEmp.isEmpty()){
-                Log.d("datafavoritoidpersona", String.valueOf(sIdUserBuscEmp));
-
+                Log.d("datafavoritoidpersona", sIdUserBuscEmp);
                 TraerEmpleosFavoritos(sIdUserBuscEmp);
             }
         }
@@ -92,31 +92,27 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
 
         Query q = EmpleosFavoritosDB.child(getResources().getString(R.string.Ref_BuscadoresEmpleosConFavoritos))
                 .child(sPersonaIdE)
-                .child("likes");//referencia likes
+                .child(getResources().getString(R.string.Favoritos_LIKES));//referencia likes
 
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("datafavoritoEmpleo", String.valueOf(dataSnapshot));
-
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
-
-                    String IdEmpleoAplico = CurriculosSnapshot.child("IdEmpleoLike").getValue(String.class);
+                    String IdEmpleoAplico = CurriculosSnapshot.child(getResources().getString(R.string.Favoritos_IdEmpleoLike)).getValue(String.class);
                     loadEmpleosFav(IdEmpleoAplico);
                     Log.d("dataidEmpleos", IdEmpleoAplico);
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
     }
 
     private void loadEmpleosFav(final String sFavIdEmpleo) {
-        DBEmpleosFav.child(getResources().getString(R.string.Ref_Empleos)).orderByChild("sIDEmpleo").equalTo(sFavIdEmpleo).addValueEventListener(new ValueEventListener() {
+        DBEmpleosFav.child(getResources().getString(R.string.Ref_Empleos)).orderByChild(getResources().getString(R.string.Campo_sIDEmpleo)).equalTo(sFavIdEmpleo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 
@@ -150,7 +146,7 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
                     sImagenEmpleoFav = DatosEmpleosFav.getsImagenEmpleoE();
                     sTipoContratoFav = DatosEmpleosFav.getsTipoContratoE();
 
-                    Log.d("DATOSFAV::::", datasnapshot.child("sNombreEmpleoE").getValue(String.class));
+                    Log.d("DATOSFAV::::", datasnapshot.child(getResources().getString(R.string.Campo_sNombreEmpleoE)).getValue(String.class));
                     Log.d("DATOSFAV::::", sNombreEmpleoFav);
 
                     final Empleos empleos = new Empleos(sIDEmpleoFav, sNombreEmpleoFav, sNombreEmpresaFav, sProvinciaFav,
@@ -159,7 +155,6 @@ public class PantallaListaEmpleosFavoritos extends AppCompatActivity {
                             sFormacionAcademicaFav, sAnosExperienciaFav, sSexoRequeridoFav, sRangoFav,
                             sJornadaFav, sCantidadVacantesFav, sTipoContratoFav, sEstadoEmpleoFav,
                             sPersonasAplicaronFav, sImagenEmpleoFav, sIdEmpleadorFav);
-
 
                     PantallaListaEmpleosFavoritos.this.mDatasetEmpleos.add(empleos);
                     adapterEmpleoFav.notifyDataSetChanged();

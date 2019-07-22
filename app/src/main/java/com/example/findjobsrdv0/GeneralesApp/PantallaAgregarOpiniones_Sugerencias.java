@@ -24,8 +24,8 @@ import java.util.Date;
 public class PantallaAgregarOpiniones_Sugerencias extends AppCompatActivity {
 
     private ImageView ImagenOpiSug;
-    int IMAGE_REQUEST_CODE = 5;
-    Uri mFilePathUriOpiSug;
+    private int IMAGE_REQUEST_CODE = 5;
+    private Uri mFilePathUriOpiSug;
 
     private ProgressDialog mProgressDialogOpiSug;
 
@@ -43,7 +43,7 @@ public class PantallaAgregarOpiniones_Sugerencias extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setTitle("Opiniones y Sugerencias");
+        actionBar.setTitle(getResources().getString(R.string.titulo_Opiniones_Sugerencias));
 
         ImagenOpiSug = (ImageView) findViewById(R.id.xmlImagenOpiSug);
 
@@ -100,7 +100,6 @@ public class PantallaAgregarOpiniones_Sugerencias extends AppCompatActivity {
 //        sImagenOpiSug = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Provincia%2Fbonao.jpg?alt=media&token=287c737f-70b4-4e8e-bcf0-11e077edc509";
 //        sIdUserOpiSug = "yo";
 
-
         if (TextUtils.isEmpty(sTituloOpiSug)) {
             Toast.makeText(this, "Por favor, Titula o Agrega alguna palabra relacionada a la opinion o sugerencia", Toast.LENGTH_LONG).show();
             mProgressDialogOpiSug.dismiss();
@@ -113,14 +112,11 @@ public class PantallaAgregarOpiniones_Sugerencias extends AppCompatActivity {
             return;
         }
 
-
         Opiniones_Sugerencias opinionesSugerencias = new Opiniones_Sugerencias(sIdOpiSug, sTituloOpiSug, sDescripcionOpiSug,sFechaOpiSug,sImagenOpiSug ,sIdUserOpiSug);
         OpiSugRefRegistrar.child(sIdOpiSug).setValue(opinionesSugerencias);
         Toast.makeText(this, "Su Problema se Reporto exitosamente, le estaremos resolviendo lo mas pronto posible", Toast.LENGTH_LONG).show();
         LimpiarCampos();
         mProgressDialogOpiSug.dismiss();
-
-
     }
 
     private void LimpiarCampos() {

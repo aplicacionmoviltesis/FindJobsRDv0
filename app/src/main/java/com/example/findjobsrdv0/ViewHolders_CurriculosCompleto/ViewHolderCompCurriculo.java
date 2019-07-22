@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.EmpleosFav;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.modeloCompararCurriculo;
 import com.example.findjobsrdv0.R;
 import com.squareup.picasso.Picasso;

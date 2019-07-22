@@ -9,7 +9,7 @@
     tools:context=".GeneralesApp.PantallaModoUsuario">
 
     <TextView
-        android:id="@+id/tvRegistrar"
+        android:id="@+id/xmlTiElegirModo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="85dp"

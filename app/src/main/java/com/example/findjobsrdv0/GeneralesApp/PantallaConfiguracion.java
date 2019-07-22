@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -49,13 +50,14 @@ public class PantallaConfiguracion extends AppCompatActivity {
     private FirebaseDatabase fDatabaseAdmin;
     private DatabaseReference dBReferencesAdmin;
 
-    private EditText editEmailAdmin,editPassAdmin;
+    private EditText editEmailAdmin, editPassAdmin;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_configuracion);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         EprogressDialogAdmin = new ProgressDialog(this);
 
@@ -67,6 +69,7 @@ public class PantallaConfiguracion extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle(getResources().getString(R.string.titulo_Configuracion));
 
         btnCambiarPass = (Button) findViewById(R.id.xmlBtnCambiarContrasena);
         btnCambiarPass.setOnClickListener(new View.OnClickListener() {
@@ -121,11 +124,8 @@ public class PantallaConfiguracion extends AppCompatActivity {
     public void ContactoNosotros() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(PantallaConfiguracion.this);
-        // Get the layout inflater
         LayoutInflater inflater = (PantallaConfiguracion.this).getLayoutInflater();
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the
-        // dialog layout
+
         builder.setTitle("Contacto Con: ");
         builder.setCancelable(false);
         builder.setIcon(R.drawable.ic_contactocorreo);
@@ -136,11 +136,9 @@ public class PantallaConfiguracion extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
 
                     }
-
                 });
         builder.create();
         builder.show();
-
     }
 
     public void AccesoAdmin() {
@@ -149,7 +147,7 @@ public class PantallaConfiguracion extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.login_acceso_admin, null);
 
         final TextView TvTiLoginAdmin = (TextView) dialogView.findViewById(R.id.xmlTiLoginAdmin);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         TvTiLoginAdmin.setTypeface(face);
 
         editEmailAdmin = (EditText) dialogView.findViewById(R.id.xmlEditEmailAdmin);
@@ -157,7 +155,6 @@ public class PantallaConfiguracion extends AppCompatActivity {
 
         Button btnSalirAdmin = (Button) dialogView.findViewById(R.id.xmlBtnSalirAdmin);
         Button btnEntrarAdmin = (Button) dialogView.findViewById(R.id.xmlBtnEntrarAdmin);
-
 
         btnSalirAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +166,6 @@ public class PantallaConfiguracion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // DO SOMETHINGS
-                //dialogBuilder.dismiss();
                 emailadmin = editEmailAdmin.getText().toString().trim();
                 passAdmin = editPassAdmin.getText().toString().trim();
 
@@ -181,14 +177,11 @@ public class PantallaConfiguracion extends AppCompatActivity {
                     editPassAdmin.setError("Campo vacío, por favor escriba la contraseña");
                     return;
                 }
-
                 EprogressDialogAdmin.setMessage("Iniciando sesión...");
                 EprogressDialogAdmin.show();
-                LoginAdministrador(emailadmin,passAdmin);
-
+                LoginAdministrador(emailadmin, passAdmin);
             }
         });
-
         dialogBuilder.setView(dialogView);
         dialogBuilder.show();
     }
@@ -226,7 +219,6 @@ public class PantallaConfiguracion extends AppCompatActivity {
                             } else {
                                 Toast.makeText(PantallaConfiguracion.this, "Correo Electronico no verificado", Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(PantallaConfiguracion.this, "No se pudo Iniciar Sesion", Toast.LENGTH_LONG).show();
@@ -237,5 +229,5 @@ public class PantallaConfiguracion extends AppCompatActivity {
                         EprogressDialogAdmin.dismiss();
                     }
                 });
-            }
-        }
+    }
+}

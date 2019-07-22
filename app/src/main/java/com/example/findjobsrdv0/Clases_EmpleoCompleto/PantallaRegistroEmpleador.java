@@ -77,7 +77,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         tvRegistrar = (TextView) findViewById(R.id.XMLtvRegistrar);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         tvRegistrar.setTypeface(face);
 
         firebaseAuthEmpleador = FirebaseAuth.getInstance();
@@ -157,13 +157,6 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                 startActivityForResult(intent, 0);
             }
         });
-
-        //        ///////////////////////////
-//
-
-//
-//        /////////////////////
-
     }
 
     private void registrarUsuarioEmpleador() {
@@ -181,11 +174,6 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         final boolean entrada_verificacion = false;
         final String entrada_imagenEmpleador = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesGenerales%2Fonlylogo.png?alt=media&token=0a3e2044-5fe3-4df5-a1b3-a85336c12747";
 
-
-//        if (TextUtils.isEmpty(entrada_RNC)) {
-//            registroRNC.setError("Campo vacío, por favor escriba el RNC");
-//            return;
-//        }
         if (TextUtils.isEmpty(entrada_Nombre)) {
             registroNombreempresa.setError("Campo vacío, por favor escriba el nombre");
             return;
@@ -226,22 +214,21 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                                 FirebaseUser user = mAuthEmpleador.getCurrentUser();
                                 String Ukey = user.getUid();
 
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sRncEmpleador").setValue(entrada_RNC);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sNombreEmpleador").setValue(entrada_Nombre);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sCorreoEmpleador").setValue(entrada_correo);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sTelefonoEmpleador").setValue(entrada_telefono);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sPaginaWebEmpleador").setValue(entrada_paginaweb);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sDireccionEmpleador").setValue(entrada_direccion);
-                                //DBReferenceEmpleador.child("Empleadores").child(Ukey).child("Contraseña").setValue(entrada_contrasena);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sVerificacionEmpleador").setValue(entrada_verificacion);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sImagenEmpleador").setValue(entrada_imagenEmpleador);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sProvinciaEmpleador").setValue(entrada_provincia);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sDescripcionEmpleador").setValue(entrada_descripcion);
-                                DBReferenceEmpleador.child("Empleadores").child(Ukey).child("sIdEmpleador").setValue(Ukey);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sRncEmpleador)).setValue(entrada_RNC);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sNombreEmpleador)).setValue(entrada_Nombre);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sCorreoEmpleador)).setValue(entrada_correo);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sTelefonoEmpleador)).setValue(entrada_telefono);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sPaginaWebEmpleador)).setValue(entrada_paginaweb);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sDireccionEmpleador)).setValue(entrada_direccion);
+                                //DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child("Contraseña").setValue(entrada_contrasena);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sVerificacionEmpleador)).setValue(entrada_verificacion);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sImagenEmpleador)).setValue(entrada_imagenEmpleador);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sProvinciaEmpleador)).setValue(entrada_provincia);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sDescripcionEmpleador)).setValue(entrada_descripcion);
+                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sIdEmpleador)).setValue(Ukey);
 
                                 user.sendEmailVerification();
                                 mAuthEmpleador.signOut();
-
 
                                 Toast.makeText(PantallaRegistroEmpleador.this, "Se ha registrado el usuario con el email: " + registroCorreo.getText() + " Espere el correo de verificacion", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(PantallaRegistroEmpleador.this, PantallaLoginEmpleador.class);
@@ -346,7 +333,6 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
     @Override
     protected void onStop() {
         super.onStop();
-
         if (firebaseAuthListenerEmpleador != null) {
             mAuthEmpleador.removeAuthStateListener(firebaseAuthListenerEmpleador);
         }

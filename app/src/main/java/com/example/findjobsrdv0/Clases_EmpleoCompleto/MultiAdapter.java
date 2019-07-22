@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosFav;
 import com.example.findjobsrdv0.R;
 import com.squareup.picasso.Picasso;
 

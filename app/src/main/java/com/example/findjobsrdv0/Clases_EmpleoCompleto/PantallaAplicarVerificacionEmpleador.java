@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.AplicarVerificacionEmpleador;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

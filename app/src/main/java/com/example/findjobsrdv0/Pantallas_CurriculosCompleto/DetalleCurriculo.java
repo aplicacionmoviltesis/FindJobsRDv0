@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,12 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.AplicarCurriculo;
+import com.example.findjobsrdv0.Adaptadores_Empleador.AplicarCurriculo;
 
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesArea;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesProvincia;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesUniversidad;
-import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.AreasCurriculos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.R;
@@ -43,9 +41,9 @@ public class DetalleCurriculo extends AppCompatActivity {
 
     private TextView txtNombreCurr, txtApellidoCurr, txtCedulaCurr, txtEmailCurr, txtTelefonoCurr, txtCelularCurr, txtprovinciaCurr, txtEstadoCivil, txtDireccionCurr, txtOcupacion, txtIdioma,
             txtEstadoActualCur, txtGradoMayorCurr, txtHabilidades, txtFecha, TVSexo, TvYaAplicoCurriculo, TVAreaCurr, TVNivelPromarioCurr, TVNivelSecundarioCurr, TVCarrera,
-     TVUniversidadCurr, TVAreaPrincipal, TVAreaSecundaria, TVAreaTerciaria;
+            TVUniversidadCurr, TVAreaPrincipal, TVAreaSecundaria, TVAreaTerciaria;
 
-    private FirebaseDatabase database,prueba;
+    private FirebaseDatabase database, prueba;
     private DatabaseReference detalelcurriculo, DbLikesFavCurri;
     private DatabaseReference AplicarInteresCurriculoDataBase;
 
@@ -54,8 +52,8 @@ public class DetalleCurriculo extends AppCompatActivity {
     private String detallecurrid = "";
     private Button btnIrFormacionAcademica, btnIrReferencia, btnIrExperienciaLab, btnOtrosEstudios, btnAplicarCurriculo;
 
-    private FirebaseAuth mAuthEmpresa_Empleador,mFirebaseAuth;
-    private FirebaseUser user,userActivo;
+    private FirebaseAuth mAuthEmpresa_Empleador, mFirebaseAuth;
+    private FirebaseUser user, userActivo;
 
     private String sIdAplicarCurriculo, sIdCurriculoAplico, sIdEmpresaAplico, sFechadeAplicacion;
 
@@ -80,7 +78,7 @@ public class DetalleCurriculo extends AppCompatActivity {
 
         prueba = FirebaseDatabase.getInstance();
         DbLikesFavCurri = prueba.getReference();
-        DbLikesFavCurri.keepSynced( true );
+        DbLikesFavCurri.keepSynced(true);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         userActivo = mFirebaseAuth.getCurrentUser();
@@ -113,43 +111,41 @@ public class DetalleCurriculo extends AppCompatActivity {
         TVSexo = (TextView) findViewById(R.id.xmlTvSexoDetalleCu);
 //        TVAreaCurr = (TextView) findViewById( R.id.xmlTvAreaDetalleCu );
 
-        TVNivelPromarioCurr = (TextView) findViewById( R.id.xmlTvNivelPrimarioDetalleCu );
-        TVNivelSecundarioCurr = (TextView) findViewById( R.id.xmlTvNivelSecundarioDetalleCu );
-        TVCarrera = (TextView) findViewById( R.id.xmlTvCarreraDetalleCu );
-        TVUniversidadCurr = (TextView) findViewById( R.id.xmlTvUniversidadDetalleCu );
+        TVNivelPromarioCurr = (TextView) findViewById(R.id.xmlTvNivelPrimarioDetalleCu);
+        TVNivelSecundarioCurr = (TextView) findViewById(R.id.xmlTvNivelSecundarioDetalleCu);
+        TVCarrera = (TextView) findViewById(R.id.xmlTvCarreraDetalleCu);
+        TVUniversidadCurr = (TextView) findViewById(R.id.xmlTvUniversidadDetalleCu);
 
-        TVAreaPrincipal = (TextView) findViewById( R.id.xmlTvAreaPrincipalDetalleCu );
-        TVAreaSecundaria= (TextView) findViewById( R.id.xmlTvAreaSecunadriaDetalleCu );
-        TVAreaTerciaria = (TextView) findViewById( R.id.xmlTvAreaTerciariaDetalleCu );
-
+        TVAreaPrincipal = (TextView) findViewById(R.id.xmlTvAreaPrincipalDetalleCu);
+        TVAreaSecundaria = (TextView) findViewById(R.id.xmlTvAreaSecunadriaDetalleCu);
+        TVAreaTerciaria = (TextView) findViewById(R.id.xmlTvAreaTerciariaDetalleCu);
 
 
         if (getIntent() != null)
             detallecurrid = getIntent().getStringExtra("detallecurrID");
 
-        Log.d( "verrr", ( detallecurrid ) );
-        Log.d( "ver", String.valueOf( detallecurrid ) );
-            goDetailCurriculo(detallecurrid);
+        Log.d("verid empleo", String.valueOf(detallecurrid));
+        goDetailCurriculo(detallecurrid);
         CargarAreas(detallecurrid);
 
-            VerificarFavorito();
+        VerificarFavorito();
 
 
         VerificarAplicacionCurriculoExiste(sIdPersonaMarco);
 
         btnfavoritoCurriculo = (ToggleButton) findViewById(R.id.btn_CurriculosFavoritos);
-        btnfavoritoCurriculo.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+        btnfavoritoCurriculo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
                 if (b) {
                     marcarFavorito(detallecurrid);
-                    Log.d( "estado activo", String.valueOf( b ) );
-                }else {
-                    final Query prueba = DbLikesFavCurri.child( "EmpleadoresConFavoritos" ).child( sIdPersonaMarco )
-                            .child( "likes" ).orderByChild( "IdCurriculoLike" ).equalTo( detallecurrid );
+                    Log.d("estado activo", String.valueOf(b));
+                } else {
+                    final Query prueba = DbLikesFavCurri.child("EmpleadoresConFavoritos").child(sIdPersonaMarco)
+                            .child("likes").orderByChild("IdCurriculoLike").equalTo(detallecurrid);
 
-                    prueba.addListenerForSingleValueEvent( new ValueEventListener() {
+                    prueba.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot pruebadataSnapshot : dataSnapshot.getChildren()) {
@@ -160,18 +156,18 @@ public class DetalleCurriculo extends AppCompatActivity {
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            Toast.makeText( DetalleCurriculo.this, "no funciono", Toast.LENGTH_SHORT ).show();
+                            Toast.makeText(DetalleCurriculo.this, "no funciono", Toast.LENGTH_SHORT).show();
                         }
-                    } );
+                    });
 
-                    Log.d( "estado inactivo", String.valueOf( b ) );
+                    Log.d("estado inactivo", String.valueOf(b));
                 }
             }
-        } );
+        });
 
         mAuthEmpresa_Empleador = FirebaseAuth.getInstance();
         user = mAuthEmpresa_Empleador.getCurrentUser();
-        sIdEmpresaAplico= user.getUid();
+        sIdEmpresaAplico = user.getUid();
 
 
 //        btnIrFormacionAcademica = (Button) findViewById(R.id.xmlBtnFormacionAcademicaDetalleCu);
@@ -219,7 +215,7 @@ public class DetalleCurriculo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AplicarInteresCurriculo(sIdEmpresaAplico,detallecurrid);
+                AplicarInteresCurriculo(sIdEmpresaAplico, detallecurrid);
 
             }
         });
@@ -261,12 +257,12 @@ public class DetalleCurriculo extends AppCompatActivity {
 
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
 
-    private void AplicarInteresCurriculo(String sIdEmpleadorAplico,String Interes) {
+    private void AplicarInteresCurriculo(String sIdEmpleadorAplico, String Interes) {
 
         sIdCurriculoAplico = Interes;
 
@@ -304,14 +300,14 @@ public class DetalleCurriculo extends AppCompatActivity {
                 txtEstadoActualCur.setText(vistaCurriculomodel.getsEstadoActualC());
                 txtGradoMayorCurr.setText(vistaCurriculomodel.getsGradoMayorC());
                 txtHabilidades.setText(vistaCurriculomodel.getsHabilidadesC());
-                txtIdioma.setText( vistaCurriculomodel.getsIdiomaC() );
-                TVSexo.setText( vistaCurriculomodel.getsSexoC() );
+                txtIdioma.setText(vistaCurriculomodel.getsIdiomaC());
+                TVSexo.setText(vistaCurriculomodel.getsSexoC());
                 txtFecha.setText(vistaCurriculomodel.getsFechaC());
 //                TVAreaCurr.setText( vistaCurriculomodel.getsAreaC() );
-                TVNivelPromarioCurr.setText( vistaCurriculomodel.getsNivelPrimarioFormAcad() );
-                TVNivelSecundarioCurr.setText( vistaCurriculomodel.getsNivelSecundarioFormAcad() );
-                TVCarrera.setText( vistaCurriculomodel.getsCarreraFormAcad() );
-                TVUniversidadCurr.setText( vistaCurriculomodel.getsUniversidadFormAcad() );
+                TVNivelPromarioCurr.setText(vistaCurriculomodel.getsNivelPrimarioFormAcad());
+                TVNivelSecundarioCurr.setText(vistaCurriculomodel.getsNivelSecundarioFormAcad());
+                TVCarrera.setText(vistaCurriculomodel.getsCarreraFormAcad());
+                TVUniversidadCurr.setText(vistaCurriculomodel.getsUniversidadFormAcad());
 
 
             }
@@ -323,9 +319,9 @@ public class DetalleCurriculo extends AppCompatActivity {
         });
     }
 
-    private void CargarAreas(String detallecurrid){
+    private void CargarAreas(String detallecurrid) {
 
-        Query query = DBAreas.orderByChild( "sIdCurriculo" ).equalTo(detallecurrid);
+        Query query = DBAreas.orderByChild("sIdCurriculo").equalTo(detallecurrid);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -336,9 +332,9 @@ public class DetalleCurriculo extends AppCompatActivity {
 
                     AreasCurriculos areasCurriculos = FavdataSnapshot.getValue(AreasCurriculos.class);
 
-                    TVAreaPrincipal.setText( areasCurriculos.getsAreaPrincipalCurr() );
-                    TVAreaSecundaria.setText( areasCurriculos.getsAreaSecundariaCurr() );
-                    TVAreaTerciaria.setText( areasCurriculos.getsAreaTerciaria() );
+                    TVAreaPrincipal.setText(areasCurriculos.getsAreaPrincipalCurr());
+                    TVAreaSecundaria.setText(areasCurriculos.getsAreaSecundariaCurr());
+                    TVAreaTerciaria.setText(areasCurriculos.getsAreaTerciaria());
                 }
             }
 
@@ -350,22 +346,22 @@ public class DetalleCurriculo extends AppCompatActivity {
     }
 
     private void VerificarFavorito() {
-        final Query q = DbLikesFavCurri.child( "EmpleadoresConFavoritos" )//referencia empleadores
-                .child( sIdPersonaMarco )//referencia usuario
-                .child( "likes" )//referencia likes
-                .orderByChild( "IdCurriculoLike" ).equalTo( detallecurrid );
+        final Query q = DbLikesFavCurri.child("EmpleadoresConFavoritos")//referencia empleadores
+                .child(sIdPersonaMarco)//referencia usuario
+                .child("likes")//referencia likes
+                .orderByChild("IdCurriculoLike").equalTo(detallecurrid);
 
-        q.addListenerForSingleValueEvent( new ValueEventListener() {
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d( "fav", String.valueOf( dataSnapshot ) );
+                Log.d("fav", String.valueOf(dataSnapshot));
                 for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
 
                     if (FavdataSnapshot != null) {
-                        btnfavoritoCurriculo.setChecked( true );
+                        btnfavoritoCurriculo.setChecked(true);
 
                     } else {
-                        btnfavoritoCurriculo.setChecked( false );
+                        btnfavoritoCurriculo.setChecked(false);
                     }
                 }
             }
@@ -374,7 +370,7 @@ public class DetalleCurriculo extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
+        });
     }
 
     private void marcarFavorito(String sIdCurriculoFav) {
@@ -390,14 +386,13 @@ public class DetalleCurriculo extends AppCompatActivity {
                     Toast.makeText(DetalleCurriculo.this, "Favorito si", Toast.LENGTH_LONG).show();
                     String newLikeID = DbLikesFavCurri.push().getKey();
 
-                    DbLikesFavCurri.child( "EmpleadoresConFavoritos" )//referencia empleadores
-                            .child( sIdPersonaMarco )//referencia usuario
-                            .child( "likes" )//referencia likes
-                            .child( newLikeID )
-                            .child( "IdCurriculoLike" )
-                            .setValue( detallecurrid );
-                }
-                else {
+                    DbLikesFavCurri.child("EmpleadoresConFavoritos")//referencia empleadores
+                            .child(sIdPersonaMarco)//referencia usuario
+                            .child("likes")//referencia likes
+                            .child(newLikeID)
+                            .child("IdCurriculoLike")
+                            .setValue(detallecurrid);
+                } else {
                     Toast.makeText(DetalleCurriculo.this, "Favorito repetido", Toast.LENGTH_LONG).show();
                 }
             }
@@ -419,14 +414,14 @@ public class DetalleCurriculo extends AppCompatActivity {
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
 
                     String IdCurriculoAplico = CurriculosSnapshot.child("sIdCurriculoAplico").getValue(String.class);
-                    if(IdCurriculoAplico.equals(detallecurrid)){
+                    if (IdCurriculoAplico.equals(detallecurrid)) {
                         btnAplicarCurriculo.setEnabled(false);
                         TvYaAplicoCurriculo.setVisibility(View.VISIBLE);
 
                         //btnAplicarCurriculo.setTextColor(getResources().getColor(R.color.md_red_900));
                         //Toast.makeText(PantallaDetallesEmpleo.this, "Usted ha Aplicado anteriormente a este empleo", Toast.LENGTH_LONG).show();
 
-                    }else{
+                    } else {
                         Log.d("dataidEmpleosAplicar", IdCurriculoAplico);
                     }
                 }
@@ -441,7 +436,7 @@ public class DetalleCurriculo extends AppCompatActivity {
 
     public void goDetalleProvincia() {
 
-        Log.d( "klkprov", String.valueOf( txtprovinciaCurr ));
+        Log.d("klkprov", String.valueOf(txtprovinciaCurr));
 
         Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesProvincia.class);
         intent.putExtra("sProvinciaDE", txtprovinciaCurr.getText().toString().trim());
@@ -480,6 +475,7 @@ public class DetalleCurriculo extends AppCompatActivity {
         startActivity(intent);
 
     }
+
     public void goDetalleArea3() {
 
         Intent intent = new Intent(DetalleCurriculo.this, PantallaDetallesArea.class);

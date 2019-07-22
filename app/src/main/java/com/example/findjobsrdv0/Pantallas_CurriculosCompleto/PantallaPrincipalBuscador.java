@@ -14,6 +14,7 @@ import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscad
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaCompararEmpleos;
+import com.example.findjobsrdv0.GeneralesApp.PantallaModoUsuario;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 
 import com.example.findjobsrdv0.R;
@@ -47,16 +48,16 @@ import android.widget.Toast;
 public class PantallaPrincipalBuscador extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
     private ImageView photoImageView;
-    private TextView nameTextView,tituloelegiropcion;
+    private TextView nameTextView, tituloelegiropcion;
     private TextView emailTextView;
-    FirebaseUser user;
-    FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private FirebaseAuth mAuth;
     private GoogleApiClient googleApiClient;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
-    String buscadoresconectados;
+    private String buscadoresconectados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +68,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-       buscadoresconectados = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        buscadoresconectados = FirebaseAuth.getInstance().getCurrentUser().getUid();
 /*
        View header= navigationView.getHeaderView(0);
        photoImageView = (ImageView)header.findViewById( R.id.fotoperfilbuscador );
@@ -87,91 +79,85 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
 
 */
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        LinearLayout IrRegistrarCurriculo = (LinearLayout )findViewById(R.id.lyRegistrarCurriculo);
+        LinearLayout IrRegistrarCurriculo = (LinearLayout) findViewById(R.id.lyRegistrarCurriculo);
         IrRegistrarCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent (v.getContext(), cPantallaRegistrarCurriculo.class);
+                Intent intent = new Intent(v.getContext(), cPantallaRegistrarCurriculo.class);
                 intent.putExtra("BuscadorConectado", buscadoresconectados);
                 startActivityForResult(intent, 0);
 
             }
         });
 
-        LinearLayout IrVistaCurriculo = (LinearLayout )findViewById(R.id.lyBuscarEmpleoBuscador);
+        LinearLayout IrVistaCurriculo = (LinearLayout) findViewById(R.id.lyBuscarEmpleoBuscador);
         IrVistaCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaListaEmpleosBuscados.class);
+                Intent intent = new Intent(v.getContext(), PantallaListaEmpleosBuscados.class);
                 startActivityForResult(intent, 0);
             }
         });
 
-        LinearLayout IrEmpresaInteresadas = (LinearLayout )findViewById(R.id.lyEmpresasInteresadas);
+        LinearLayout IrEmpresaInteresadas = (LinearLayout) findViewById(R.id.lyEmpresasInteresadas);
         IrEmpresaInteresadas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PantallaEmpresasAplicaronMiCurriculo.class);
+                Intent intent = new Intent(v.getContext(), PantallaEmpresasAplicaronMiCurriculo.class);
                 startActivityForResult(intent, 0);
             }
         });
 
         tituloelegiropcion = (TextView) findViewById(R.id.tvelegiropcionBuscador);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         tituloelegiropcion.setTypeface(face);
 
-        mAuth= FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-
-        user= FirebaseAuth.getInstance().getCurrentUser();
-        SharedPreferences preferences= this.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        SharedPreferences preferences = this.getSharedPreferences("UserPref", Context.MODE_PRIVATE);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View header= navigationView.getHeaderView(0);
+        View header = navigationView.getHeaderView(0);
 
         photoImageView = (ImageView) header.findViewById(R.id.fotoperfilbuscador);
         nameTextView = (TextView) header.findViewById(R.id.nombreperfilbuscador);
         emailTextView = (TextView) header.findViewById(R.id.correoperfilbuscador);
 
-        String Nombre= preferences.getString("Nombre", "Nombre")+" "+preferences.getString("Apellido", "Apellido");
+        String Nombre = preferences.getString("Nombre", "Nombre") + " " + preferences.getString("Apellido", "Apellido");
 
         nameTextView.setText(Nombre);
 
-
-        photoImageView.setOnClickListener( new View.OnClickListener() {
+        photoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 irPerfilBuscador(buscadoresconectados);
             }
-        } );
+        });
 
-        nameTextView.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                irPerfilBuscador(buscadoresconectados);
-
-            }
-        } );
-
-        emailTextView.setOnClickListener( new View.OnClickListener() {
+        nameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 irPerfilBuscador(buscadoresconectados);
 
             }
-        } );
+        });
 
+        emailTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                irPerfilBuscador(buscadoresconectados);
 
+            }
+        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -198,11 +184,9 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
     private void irPerfilBuscador(String buscadorconectado) {
         Intent intent = new Intent(this, cPantallaRegistrarCurriculo.class);
-        //intent.putExtra("BuscadorConectado", buscadorconectado );
-
+        intent.putExtra("BuscadorConectado",buscadorconectado);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-
     }
 
     private void setUserData(FirebaseUser user) {
@@ -214,12 +198,11 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-
         firebaseAuth.addAuthStateListener(firebaseAuthListener);
     }
 
     private void goRegInScreen() {
-        Intent intent = new Intent(this, PantallaRegistroBuscador.class);
+        Intent intent = new Intent(this, PantallaModoUsuario.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -298,7 +281,6 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
             startActivityForResult(intent, 0);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -309,28 +291,24 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.empleosfavoritos) {
-
-            Intent intent= new Intent(this, PantallaListaEmpleosFavoritos.class);
+            Intent intent = new Intent(this, PantallaListaEmpleosFavoritos.class);
             startActivity(intent);
 
         } else if (id == R.id.empleosAplicadoBuscador) {
-            Intent intent= new Intent(this, PantallaEmpleosAplicado.class);
+            Intent intent = new Intent(this, PantallaEmpleosAplicado.class);
             startActivity(intent);
-
 
         } else if (id == R.id.navegadorBuscador) {
-            Intent intent= new Intent(this, PantallaNavegador.class);
+            Intent intent = new Intent(this, PantallaNavegador.class);
             startActivity(intent);
 
-
         } else if (id == R.id.compararBuscador) {
-            Intent intent= new Intent(this, PantallaCompararEmpleos.class);
+            Intent intent = new Intent(this, PantallaCompararEmpleos.class);
             startActivity(intent);
 
         } else if (id == R.id.ConfiguracionBuscador) {
-            Intent intent = new Intent (this, PantallaConfiguracion.class);
+            Intent intent = new Intent(this, PantallaConfiguracion.class);
             startActivityForResult(intent, 0);
-
 
         } else if (id == R.id.compartirBuscador) {
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -354,8 +332,6 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
                     }
                 }
             });
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

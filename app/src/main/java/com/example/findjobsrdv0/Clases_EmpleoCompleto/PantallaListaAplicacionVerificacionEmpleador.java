@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.AplicarVerificacionEmpleador;
+import com.example.findjobsrdv0.Adaptadores_Empleador.ViewHolderVerificacionEmpleador;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

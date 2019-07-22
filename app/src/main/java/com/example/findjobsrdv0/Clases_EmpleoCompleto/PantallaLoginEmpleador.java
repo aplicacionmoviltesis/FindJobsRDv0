@@ -45,14 +45,8 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
     private ProgressDialog EprogressDialog;
 
     private FirebaseAuth mAuthEmpleador;
-
     private FirebaseDatabase fDatabase;
     private DatabaseReference dBReferences;
-
-
-    public void PantallaLoginEmpleador() {
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +55,7 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         EtvLogin = (TextView) findViewById(R.id.XMLEtvLogin);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         EtvLogin.setTypeface(face);
 
         EentradaCorreo = (EditText) findViewById(R.id.XMLEentrada_correoLogin);
@@ -91,10 +85,8 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
             }
         });
 
-
         if (Preferences.Obtener_estado_button(PantallaLoginEmpleador.this, Preferences.Preference_button)) {
             LoginEmpleador();
-
         }
 
     }
@@ -137,7 +129,6 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
                                         String rncRE, nombreempresaRE, correoRE, telefonoRE, paginawebRE, direccionRE, imagenRE;
                                         Boolean verificacionRE;
 
-
                                         Log.i("Prueba", dataSnapshot.toString());
                                         rncRE = "";
                                         nombreempresaRE = "";
@@ -148,14 +139,14 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
                                         verificacionRE = false;
                                         imagenRE = "";
 
-                                        rncRE = dataSnapshot.child("RNC").getValue(String.class);
-                                        nombreempresaRE = dataSnapshot.child("Nombre").getValue(String.class);
-                                        correoRE = dataSnapshot.child("Correo").getValue(String.class);
-                                        telefonoRE = dataSnapshot.child("Telefono").getValue(String.class);
-                                        paginawebRE = dataSnapshot.child("PaginaWeb").getValue(String.class);
-                                        direccionRE = dataSnapshot.child("Direccion").getValue(String.class);
-                                        verificacionRE = dataSnapshot.child("Verificacion").getValue(Boolean.class);
-                                        imagenRE = dataSnapshot.child("ImagenEmpresa").getValue(String.class);
+                                        rncRE = dataSnapshot.child(getResources().getString(R.string.Campo_sRncEmpleador)).getValue(String.class);
+                                        nombreempresaRE = dataSnapshot.child(getResources().getString(R.string.Campo_sNombreEmpleador)).getValue(String.class);
+                                        correoRE = dataSnapshot.child(getResources().getString(R.string.Campo_sCorreoEmpleador)).getValue(String.class);
+                                        telefonoRE = dataSnapshot.child(getResources().getString(R.string.Campo_sTelefonoEmpleador)).getValue(String.class);
+                                        paginawebRE = dataSnapshot.child(getResources().getString(R.string.Campo_sPaginaWebEmpleador)).getValue(String.class);
+                                        direccionRE = dataSnapshot.child(getResources().getString(R.string.Campo_sDireccionEmpleador)).getValue(String.class);
+                                        verificacionRE = dataSnapshot.child(getResources().getString(R.string.Campo_sVerificacionEmpleador)).getValue(Boolean.class);
+                                        imagenRE = dataSnapshot.child(getResources().getString(R.string.Campo_sImagenEmpleador)).getValue(String.class);
 
                                         editor.putString("RNC", rncRE);
                                         editor.putString("Nombre", nombreempresaRE);
@@ -166,8 +157,6 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
                                         //editor.putBoolean("Verificacion", verificacionRE);
                                         editor.putString("ImagenEmpresa", imagenRE);
                                         editor.commit();
-
-
                                     }
 
                                     @Override
@@ -182,7 +171,6 @@ public class PantallaLoginEmpleador extends AppCompatActivity {
                             } else {
                                 Toast.makeText(PantallaLoginEmpleador.this, "Correo electronico no verificado", Toast.LENGTH_SHORT).show();
                             }
-
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(PantallaLoginEmpleador.this, "El usuario ya existe", Toast.LENGTH_LONG).show();

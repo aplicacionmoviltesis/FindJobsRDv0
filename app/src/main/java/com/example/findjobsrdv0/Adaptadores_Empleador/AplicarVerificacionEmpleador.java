@@ -1,4 +1,4 @@
-package com.example.findjobsrdv0.Clases_EmpleoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Empleador;
 
 import android.net.Uri;
 

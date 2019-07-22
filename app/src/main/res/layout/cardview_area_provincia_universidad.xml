@@ -36,19 +36,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:textAlignment="center"
-                android:inputType="textMultiLine"
+                android:inputType="textPersonName"
                 android:textStyle="bold"
                 android:textColor="@color/md_blue_900"
                 android:textSize="25sp"
                 android:text="Nombre" />
+
             <TextView
                 android:id="@+id/CardOtroDato_Prov_Area_Uni"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="textMultiLine"
+                android:inputType="textPersonName"
                 android:textStyle="italic"
                 android:textColor="@color/md_blue_900"
                 android:textSize="15sp"

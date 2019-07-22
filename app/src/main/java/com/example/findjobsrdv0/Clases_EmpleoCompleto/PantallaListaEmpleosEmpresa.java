@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
+import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosViewHolder;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

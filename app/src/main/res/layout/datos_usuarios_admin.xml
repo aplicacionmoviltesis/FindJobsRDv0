@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@mipmap/fondo1">
+
+
+        <TextView
+            android:id="@+id/xmlTiInformacionesUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="Informaciones"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/xmlTiIdUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_white_1000"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="Id User: "/>
+
+            <TextView
+                android:id="@+id/xmlTvIdUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_white_1000"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="ID"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/xmlTiNombreUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:text="Nombre"/>
+
+        <TextView
+            android:id="@+id/xmlTvNombreUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="Nombre"/>
+
+        <TextView
+            android:id="@+id/xmlTiApellidoUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:text="Apellido"/>
+
+        <TextView
+            android:id="@+id/xmlTvApellidoUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="Apellido"/>
+
+        <TextView
+            android:id="@+id/xmlTiCorreoUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:text="Correo Electronico"/>
+
+        <TextView
+            android:id="@+id/xmlTvCorreoUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="Correo Electronico"/>
+
+        <TextView
+            android:id="@+id/xmlTiTelefonoUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:text="Telefono"/>
+
+        <TextView
+            android:id="@+id/xmlTvTelefonoUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="Telefono"/>
+
+        <Button
+            android:id="@+id/xmlbtnAceptarUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:layout_margin="15dp"
+            android:background="@color/md_blue_grey_300"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -55,7 +55,7 @@ public class PantallaLoginBuscador extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         BtvLogin = (TextView) findViewById(R.id.xmlbtvLogin);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         BtvLogin.setTypeface(face);
 
         textRecuperar = findViewById(R.id.textolvidoContrasenal);
@@ -66,14 +66,12 @@ public class PantallaLoginBuscador extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         fDatabaseBuscadores = FirebaseDatabase.getInstance();
 
-
         progressDialogloginBuscador = new ProgressDialog(this);
 
         BbtniniciarsesionBuscador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginBuscador();
-
             }
         });
 
@@ -85,9 +83,7 @@ public class PantallaLoginBuscador extends AppCompatActivity {
                 finish();
             }
         });
-
     }
-
 
     public void LoginBuscador() {
         String entrada_correo = entradaCorreo.getText().toString().trim();
@@ -120,7 +116,7 @@ public class PantallaLoginBuscador extends AppCompatActivity {
                                 final SharedPreferences.Editor editor = preferences.edit();
 
                                 Log.i("Probando", firebaseAuth.getUid());
-                                dBReferencesBuscadores = fDatabaseBuscadores.getReference().child("BuscadoresEmpleos").child(firebaseAuth.getUid());
+                                dBReferencesBuscadores = fDatabaseBuscadores.getReference().child(getResources().getString(R.string.Ref_Curriculos)).child(firebaseAuth.getUid());
 
                                 dBReferencesBuscadores.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
@@ -135,11 +131,11 @@ public class PantallaLoginBuscador extends AppCompatActivity {
                                         TelefonoBuscador = "";
                                         ImagenBuscador = "";
 
-                                        NombreBuscador = dataSnapshot.child("Nombre").getValue(String.class);
-                                        ApellidoBuscador = dataSnapshot.child("Apellido").getValue(String.class);
-                                        CorreoBuscador = dataSnapshot.child("Correo").getValue(String.class);
-                                        TelefonoBuscador = dataSnapshot.child("Telefono").getValue(String.class);
-                                        ImagenBuscador = dataSnapshot.child("ImagenEmpresa").getValue(String.class);
+                                        NombreBuscador = dataSnapshot.child(getResources().getString(R.string.Campo_sNombreC)).getValue(String.class);
+                                        ApellidoBuscador = dataSnapshot.child(getResources().getString(R.string.Campo_sApellidoC)).getValue(String.class);
+                                        CorreoBuscador = dataSnapshot.child(getResources().getString(R.string.Campo_sEmailC)).getValue(String.class);
+                                        TelefonoBuscador = dataSnapshot.child(getResources().getString(R.string.Campo_sTelefonoC)).getValue(String.class);
+                                        ImagenBuscador = dataSnapshot.child(getResources().getString(R.string.Campo_sImagenC)).getValue(String.class);
 
                                         editor.putString("Nombre", NombreBuscador);
                                         editor.putString("Apellido", ApellidoBuscador);

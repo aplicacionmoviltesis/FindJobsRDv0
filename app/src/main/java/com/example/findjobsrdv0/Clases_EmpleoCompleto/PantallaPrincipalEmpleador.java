@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
+import com.example.findjobsrdv0.GeneralesApp.PantallaModoUsuario;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaCompararCurriculo;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaCurriculosAplicados;
@@ -50,17 +51,14 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     private TextView nameTextViewEmpleador;
     private TextView emailTextViewEmpleador;
     private TextView tituloelegiropcionBuscador;
-    FirebaseUser user;
-
+    private FirebaseUser user;
 
     private GoogleApiClient googleApiClientEmpleador;
 
     private FirebaseAuth firebaseAuthEmpleador;
     private FirebaseAuth.AuthStateListener firebaseAuthListenerEmpleador;
 
-
-    String EmpleadorConectado;
-
+    private String EmpleadorConectado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,24 +66,12 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         setContentView(R.layout.activity_pantalla_principal_empleador);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         tituloelegiropcionBuscador = (TextView) findViewById(R.id.tvelegiropcionEmpleador);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         tituloelegiropcionBuscador.setTypeface(face);
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         EmpleadorConectado = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -106,9 +92,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
         TextView TextViewEmpleador = (TextView) header.findViewById(R.id.nombreTextEmpleador);
 
-
         SharedPreferences preferences = this.getSharedPreferences("UserPrefEmpleador", Context.MODE_PRIVATE);
-
 
         photoImageViewEmpleador.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +114,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
             }
         });
-
 
         LinearLayout IrAnadirEmpleo = (LinearLayout) findViewById(R.id.lyAnadirEmpleoEmpleador);
         IrAnadirEmpleo.setOnClickListener(new View.OnClickListener() {
@@ -180,8 +163,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
                 }
             }
         };
-
-
     }
 
     private void setUserData(FirebaseUser user) {
@@ -191,9 +172,9 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         String foto = preferences.getString("ImagenEmpresa", "ImagenEmpresa");
 
         nameTextViewEmpleador.setText(Nombre);
-        //Glide.with(this).load(foto).into(photoImageViewEmpleador);
-        Log.d("apeklk", Nombre);
-
+        if(!foto.equals(null) && !foto.isEmpty()){
+            Glide.with(this).load(foto).into(photoImageViewEmpleador);
+        }
 
         nameTextViewEmpleador.setText(user.getDisplayName());
         emailTextViewEmpleador.setText(user.getEmail());
@@ -206,7 +187,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
 
         Intent intent = new Intent(this, PantallaPerfilEmpleador_.class);
         intent.putExtra("EmpleadorConectado", EmpleadorConectado);
-        //intent.putExtra("EmpleadorNombre", Nombre);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -219,7 +199,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     }
 
     private void goRegInScreenEmpleador() {
-        Intent intent = new Intent(this, PantallaRegistroEmpleador.class);
+        Intent intent = new Intent(this, PantallaModoUsuario.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -248,12 +228,10 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-
         if (firebaseAuthListenerEmpleador != null) {
             firebaseAuthEmpleador.removeAuthStateListener(firebaseAuthListenerEmpleador);
         }
     }
-
 
     @Override
     public void onBackPressed() {
@@ -268,7 +246,7 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.pantalla_principal_empleador, menu);
+        getMenuInflater().inflate(R.menu.menu_aplicar_verificacion, menu);
         return true;
     }
 
@@ -280,8 +258,8 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, PantallaConfiguracion.class);
+        if (id == R.id.action_verificacion) {
+            Intent intent = new Intent(this, PantallaAplicarVerificacionEmpleador.class);
             startActivityForResult(intent, 0);
             return true;
         }
@@ -294,7 +272,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
 
         if (id == R.id.curriculosfavoritos) {
             Intent intent = new Intent(this, PantallaListaCurriculosFavoritos.class);
@@ -309,16 +286,12 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.compararEmpleador) {
-
             Intent intent = new Intent(this, PantallaCompararCurriculo.class);
             startActivity(intent);
 
-
         } else if (id == R.id.ConfiguracionEmpleador) {
-
             Intent intent = new Intent(this, PantallaConfiguracion.class);
             startActivityForResult(intent, 0);
-
 
         } else if (id == R.id.compartirEmpleador) {
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -327,7 +300,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
             startActivity(Intent.createChooser(intent, "Share with"));
 
         } else if (id == R.id.cerrarsesionEmpleador) {
-
             firebaseAuthEmpleador.signOut();
 
             Auth.GoogleSignInApi.signOut(googleApiClientEmpleador).setResultCallback(new ResultCallback<Status>() {
@@ -335,7 +307,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
                 public void onResult(@NonNull Status status) {
                     if (status.isSuccess()) {
                         Toast.makeText(getApplicationContext(), "La sesión se cerro con exito", Toast.LENGTH_SHORT).show();
-
                         goRegInScreenEmpleador();
 
                     } else {
@@ -343,8 +314,6 @@ public class PantallaPrincipalEmpleador extends AppCompatActivity
                     }
                 }
             });
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

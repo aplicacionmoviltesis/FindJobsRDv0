@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0.Administradores;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -25,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrarAdministrador extends AppCompatActivity {
 
-    private EditText registroNombreAdmin, registroApellidoAdmin,  registroCorreoAdmin, registroTelefonoAdmin,
+    private EditText registroNombreAdmin, registroApellidoAdmin, registroCorreoAdmin, registroTelefonoAdmin,
             registroPassAdmin, registroPass2Admin;
 
     private Button BbtnRegistrarAdmin, BbtnIniciarsesionAdmin;
@@ -36,42 +37,44 @@ public class RegistrarAdministrador extends AppCompatActivity {
 
     private FirebaseDatabase databaseAdmin;
     private DatabaseReference databaseReferenceAdmin;
-    private String IdAdmin,NombreAdmin,ApellidoAdmin,CorreoAdmin,TelefonoAdmin,PassAdmin,ConfirmarPass2Admin;
+    private String IdAdmin, NombreAdmin, ApellidoAdmin, CorreoAdmin, TelefonoAdmin, PassAdmin, ConfirmarPass2Admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_administrador);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Crear Usuario Administrador");
+
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         databaseAdmin = FirebaseDatabase.getInstance();
-        databaseReferenceAdmin= databaseAdmin.getReference(getResources().getString(R.string.Ref_AdministradoresApp));
+        databaseReferenceAdmin = databaseAdmin.getReference(getResources().getString(R.string.Ref_AdministradoresApp));
 
         progressDialog = new ProgressDialog(this);
 
+        registroNombreAdmin = (EditText) findViewById(R.id.xmleditRegistrarnombreAdmin);
+        registroApellidoAdmin = (EditText) findViewById(R.id.xmleditRegistrarApellidoAdmin);
+        registroCorreoAdmin = (EditText) findViewById(R.id.xmleditregistraremailAdmin);
+        registroTelefonoAdmin = (EditText) findViewById(R.id.xmleditregistrartelefonoAdmin);
+        registroPassAdmin = (EditText) findViewById(R.id.xmleditregistrarcontrasenaAdmin);
+        registroPass2Admin = (EditText) findViewById(R.id.xmleditconfirmarcontrasenaAdmin);
 
-        registroNombreAdmin = (EditText)findViewById( R.id.xmleditRegistrarnombreAdmin );
-        registroApellidoAdmin = (EditText)findViewById( R.id.xmleditRegistrarApellidoAdmin );
-        registroCorreoAdmin = (EditText)findViewById( R.id.xmleditregistraremailAdmin );
-        registroTelefonoAdmin = (EditText)findViewById( R.id.xmleditregistrartelefonoAdmin );
-        registroPassAdmin = (EditText)findViewById( R.id.xmleditregistrarcontrasenaAdmin );
-        registroPass2Admin = (EditText)findViewById( R.id.xmleditconfirmarcontrasenaAdmin );
+        BbtnRegistrarAdmin = (Button) findViewById(R.id.xmlbtnRegistrarBuscadorAdmin);
 
-        BbtnRegistrarAdmin = (Button) findViewById( R.id.xmlbtnRegistrarBuscadorAdmin );
-        BbtnIniciarsesionAdmin = (Button) findViewById( R.id.xmlbtniniciarsesionAdmin );
-
-        BbtnRegistrarAdmin.setOnClickListener( new View.OnClickListener() {
+        BbtnRegistrarAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegistrarAdmin();
             }
-        } );
+        });
 
     }
 
-    private void RegistrarAdmin(){
+    private void RegistrarAdmin() {
 
         progressDialog.setMessage("Realizando registro en linea...");
         progressDialog.show();
@@ -92,16 +95,15 @@ public class RegistrarAdministrador extends AppCompatActivity {
 
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             IdAdmin = user.getUid();
-                            Administrador administrador = new Administrador( IdAdmin,NombreAdmin,
-                                    ApellidoAdmin,CorreoAdmin,TelefonoAdmin );
-                            databaseReferenceAdmin.child( IdAdmin ).setValue( administrador );
+                            Administrador administrador = new Administrador(IdAdmin, NombreAdmin,
+                                    ApellidoAdmin, CorreoAdmin, TelefonoAdmin);
+                            databaseReferenceAdmin.child(IdAdmin).setValue(administrador);
 
                             user.sendEmailVerification();
                             firebaseAuth.signOut();
 
-                            Toast.makeText( RegistrarAdministrador.this, "Se ha registrado el usuario Administrador con el email: " + CorreoAdmin+ " Espere el correo de verificacion", Toast.LENGTH_LONG).show();
-//                            Intent intent = new Intent(RegistrarAdministrador.this, PantallaLoginBuscador.class);
-//                            startActivity(intent);
+                            Toast.makeText(RegistrarAdministrador.this, "Se ha registrado el usuario Administrador con el email: " + CorreoAdmin + " Espere el correo de verificacion", Toast.LENGTH_LONG).show();
+
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(RegistrarAdministrador.this, "El usuario ya existe", Toast.LENGTH_LONG).show();
@@ -114,18 +116,9 @@ public class RegistrarAdministrador extends AppCompatActivity {
                     }
                 });
     }
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mAuthBuscador.addAuthStateListener(firebaseAuthListener);
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//
-//        if (firebaseAuthListener != null) {
-//            mAuthBuscador.removeAuthStateListener(firebaseAuthListener);
-//        }
-//    }
+
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

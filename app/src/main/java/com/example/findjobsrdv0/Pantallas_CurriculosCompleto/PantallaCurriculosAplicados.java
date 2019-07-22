@@ -29,18 +29,16 @@ import java.util.ArrayList;
 
 public class PantallaCurriculosAplicados extends AppCompatActivity {
 
-    FirebaseDatabase databaseCurriculo;
-    DatabaseReference vistaCurriculoSolicitados, DBCurriculoAplicado;
+    private FirebaseDatabase databaseCurriculo;
+    private DatabaseReference vistaCurriculoSolicitados, DBCurriculoAplicado;
 
-    String sEmpresaId = "";
+    private String sEmpresaId = "";
 
     private AdapterCurriculo adapterCurriculoAplico;
     ArrayList<Curriculos> mDatasetCurriculo = new ArrayList<Curriculos>();
 
-
     private RecyclerView recyclerViewCurriculosA;
     private RecyclerView.LayoutManager layoutManager;
-
 
     private String IdCurriculoSolicitado, IdBuscadorCurriculoS, ImagenCurriculoS,
             NombreCurriculoS, ApellidoCurriculoS, CedulaCurriculoS,
@@ -81,7 +79,6 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
 
         if (sEmpresaId != null) {
             if (!sEmpresaId.isEmpty()) {
-
                 TraerAplicaciones(sEmpresaId);
             }
         }
@@ -94,20 +91,16 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
 
     public void TraerAplicaciones(String sEmpresaId) {
 
-        Query q = DBCurriculoAplicado.orderByChild("sIdEmpresaAplico").equalTo(sEmpresaId);
+        Query q = DBCurriculoAplicado.orderByChild(getResources().getString(R.string.Aplicacion_sIdEmpresaAplico)).equalTo(sEmpresaId);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("dataAplicacionesempresa", String.valueOf(dataSnapshot));
-
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
-
-                    String IdCurriculoAplico = CurriculosSnapshot.child("sIdCurriculoAplico").getValue(String.class);
+                    String IdCurriculoAplico = CurriculosSnapshot.child(getResources().getString(R.string.Aplicacion_sIdCurriculoAplico)).getValue(String.class);
                     loadCurriculo(IdCurriculoAplico);
-                    Log.d("dataidcurriculo", IdCurriculoAplico);
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -117,7 +110,7 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
     }
 
     private void loadCurriculo(final String sPersonasAplicaron) {
-        vistaCurriculoSolicitados.child("Curriculos").orderByChild("sIdCurriculo").equalTo(sPersonasAplicaron).addValueEventListener(new ValueEventListener() {
+        vistaCurriculoSolicitados.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild(getResources().getString(R.string.Campo_sIdCurriculo)).equalTo(sPersonasAplicaron).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 
@@ -148,13 +141,12 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
                     CarreraFormAcad = DatosCurriculo.getsCarreraFormAcad();
                     UniversidadesFormAcad = DatosCurriculo.getsUniversidadFormAcad();
 
-
                     final Curriculos cv = new Curriculos(IdCurriculoSolicitado, ImagenCurriculoS, NombreCurriculoS, ApellidoCurriculoS, CedulaCurriculoS,
                             EmailCurriculoS, TelefonoCurriculoS, CelularCurriculoS,
                             ProvinciaCurriculoS, EstadoCivilCurriculoS, DireccionCurriculoS,
                             OcupacionCurriculoS, IdiomaCurriculoS, GradomayorCurriculoS,
                             EstadoactualCurriculoS, SexoCurriculoS, HabilidadesCurriculoS,
-                            FechaCurriculoS, "aun no funciona", NivelPrimarioFormAcad, NivelSecundarioFormAcad,CarreraFormAcad,UniversidadesFormAcad);
+                            FechaCurriculoS, "Se va a utilizar para manejar lo del estado del curriculo, desde el administrador, etc", NivelPrimarioFormAcad, NivelSecundarioFormAcad,CarreraFormAcad,UniversidadesFormAcad);
 
 
                     PantallaCurriculosAplicados.this.mDatasetCurriculo.add(cv);
@@ -165,11 +157,8 @@ public class PantallaCurriculosAplicados extends AppCompatActivity {
                         @Override
                         public void onClick(View view, int position, boolean isLongClick) {
                             Toast.makeText(PantallaCurriculosAplicados.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG).show();
-
                             Intent intent = new Intent(PantallaCurriculosAplicados.this, DetalleCurriculo.class);
                             intent.putExtra("detallecurrID",adapterCurriculoAplico.mDatasetCurriculo.get(position).getsIdCurriculo());
-
-                            //Log.d("klk",dataSnapshot.getRef().getKey());
                             startActivity(intent);
                         }
                     });

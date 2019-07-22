@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,12 +36,13 @@ public class PantallaCambiarContrasena extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_cambiar_contrasena);
 
         TvTiCambiarPassword = (TextView) findViewById(R.id.xmltvCambiarContraseña);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         TvTiCambiarPassword.setTypeface(face);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Cambiar Contraseña");
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         email = user.getEmail();
@@ -52,8 +54,6 @@ public class PantallaCambiarContrasena extends AppCompatActivity {
         btnUpdatePassword = (Button) findViewById(R.id.xmlBtnActualizarPass);
 
         editEmail.setText(email);
-        sNuevaContrasena = editNuevaContrasena.getText().toString().trim();
-        sViejaContrasena = editViejaContrasena.getText().toString().trim();
 
         btnUpdatePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +69,32 @@ public class PantallaCambiarContrasena extends AppCompatActivity {
     }
 
     public void UpdatePassword() {
-        AuthCredential credential = EmailAuthProvider.getCredential(email, sViejaContrasena);
 
+        sNuevaContrasena = editNuevaContrasena.getText().toString().trim();
+        sViejaContrasena = editViejaContrasena.getText().toString().trim();
+        View focusView;
+
+        if (TextUtils.isEmpty(email)) {
+            editEmail.setError("Campo vacío, por favor escriba el correo");
+            return;
+        }
+
+        if (editEmail.getText().length() == 0 || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editEmail.setError("Correo Invalido");
+            focusView = editEmail;
+            focusView.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(sViejaContrasena)) {
+            editViejaContrasena.setError("Campo vacío, Ingrese Contraseña Actual");
+            return;
+        }
+        if (TextUtils.isEmpty(sNuevaContrasena)) {
+            editNuevaContrasena.setError("Campo vacío, por favor escriba la Nueva Contraseña");
+            return;
+        }
+
+        AuthCredential credential = EmailAuthProvider.getCredential(email, sViejaContrasena);
         user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -86,7 +110,6 @@ public class PantallaCambiarContrasena extends AppCompatActivity {
                         }
                     });
                 } else {
-
                     Toast.makeText(PantallaCambiarContrasena.this, "Authentication Failed", Toast.LENGTH_LONG).show();
                 }
             }

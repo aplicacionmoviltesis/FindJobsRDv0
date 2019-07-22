@@ -38,7 +38,7 @@ public class PantallaDetalleOpiniones_Sugerencias extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         TvTituloOpiSug = (TextView) findViewById(R.id.xmlTvTituloOpiSug);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         TvTituloOpiSug.setTypeface(face);
 
         databaseOpiSug = FirebaseDatabase.getInstance();
@@ -80,7 +80,6 @@ public class PantallaDetalleOpiniones_Sugerencias extends AppCompatActivity {
                     TvDecripcionOpiSug.setText(opiniones_sugerencias.getsDecripcionOpiSug());
                     TvFechaOpiSug.setText(opiniones_sugerencias.getsFechaOpiSug());
                     TvIdUserOpiSug.setText(opiniones_sugerencias.getsIdUserOpiSug());
-
                 }
             }
 

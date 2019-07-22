@@ -14,7 +14,7 @@
         android:id="@+id/xmltvCambiarContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/md_white_1000"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:gravity="center"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textColorHint="@color/md_blue_grey_100"
+        android:textColorHint="@color/md_white_1000"
         app:counterEnabled="true"
         app:counterMaxLength="50"
         android:layout_marginTop="70dp"
@@ -46,8 +46,10 @@
             android:drawablePadding="15dp"
             android:drawableLeft="@drawable/email_white"
             android:ems="10"
+            android:enabled="false"
             android:hint="Email"
             android:inputType="text"
+            android:textColorHint="@color/md_blue_grey_100"
             android:textColor="@color/md_white_1000" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,6 +78,7 @@
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:ems="10"
             android:hint="Contraseña Actual"
+            android:textColorHint="@color/md_blue_grey_100"
             android:inputType="text"
             android:textColor="@color/md_white_1000" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -104,6 +107,7 @@
             android:drawablePadding="15dp"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:ems="10"
+            android:textColorHint="@color/md_blue_grey_100"
             android:hint="Nueva Contraseña"
             android:inputType="text"
             android:textColor="@color/md_white_1000" />

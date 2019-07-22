@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0.Pantallas_CurriculosCompleto;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,10 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleos;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.EmpleosFav;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaCompararEmpleos;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaVistaComparacionEmpleos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.Curriculos;
 import com.example.findjobsrdv0.Modelos_CurriculoCompleto.modeloCompararCurriculo;
 import com.example.findjobsrdv0.R;
@@ -47,19 +44,24 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
 
     private String sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC, sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC,
             sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC, sGradoMayorC,
-            sEstadoActualC, sSexoC, sHabilidadesC,sFechaC, sAreaC;
+            sEstadoActualC, sSexoC, sHabilidadesC, sFechaC, sAreaC;
 
     private ArrayList<modeloCompararCurriculo> curriculosFavsArray = new ArrayList<>();
     private ViewHolderCompCurriculo adapter;
-    AppCompatButton btnGetSelected;
+    private AppCompatButton btnGetSelected;
 
     private ArrayList<String> ListaId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_pantalla_comparar_curriculo );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_comparar_curriculo);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle(getResources().getString(R.string.titulo_CompararCurriculos));
 
         databaseCurriculoFavoritos = FirebaseDatabase.getInstance();
         DBCurriculoFav = databaseCurriculoFavoritos.getReference();
@@ -73,18 +75,17 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerViewCurriculoFav.setLayoutManager(layoutManager);
 
-        adapter = new ViewHolderCompCurriculo( PantallaCompararCurriculo.this, curriculosFavsArray);
+        adapter = new ViewHolderCompCurriculo(PantallaCompararCurriculo.this, curriculosFavsArray);
         recyclerViewCurriculoFav.setAdapter(adapter);
 
         ListaId = new ArrayList<>();
         mAuthBuscCurr = FirebaseAuth.getInstance();
         user = mAuthBuscCurr.getCurrentUser();
-        sIdUserBuscCurr= user.getUid();
+        sIdUserBuscCurr = user.getUid();
 
-        if(sIdUserBuscCurr != null){
-            if(!sIdUserBuscCurr.isEmpty()){
+        if (sIdUserBuscCurr != null) {
+            if (!sIdUserBuscCurr.isEmpty()) {
                 Log.d("datafavoritoidpersona", String.valueOf(sIdUserBuscCurr));
-
                 TraerEmpleosFavoritos(sIdUserBuscCurr);
             }
         }
@@ -92,40 +93,32 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //goVistaComparacionEmpleo(sIdEmpleoE1,sIdEmpleoE2);
-                if (adapter.getSelected().size() >1 && adapter.getSelected().size() < 3 ) {
+                if (adapter.getSelected().size() > 1 && adapter.getSelected().size() < 3) {
                     StringBuilder stringBuilder = new StringBuilder();
                     ListaId.clear();
                     for (int i = 0; i < adapter.getSelected().size(); i++) {
                         stringBuilder.append(adapter.getSelected().get(i).getsIdCurriculo());
                         stringBuilder.append("\n");
-                        if(i<2) {
+                        if (i < 2) {
                             ListaId.add(adapter.getSelected().get(i).getsIdCurriculo());
-                            Log.d("idempleo--0",String.valueOf(i));
+                            Log.d("idempleo--0", String.valueOf(i));
                         }
-                        // Log.d("idempleo--1",String.valueOf(ListaId.get(1)));
                     }
-                    Log.d("idempleoposicion",String.valueOf(ListaId));
-//                    Log.d("idempleo--0",String.valueOf(ListaId.get(0)));
-//                    Log.d("idempleo--1",String.valueOf(ListaId.get(1)));
-                    goVistaComparacionEmpleo(ListaId.get(0),ListaId.get(1));
+                    Log.d("idempleoposicion", String.valueOf(ListaId));
+                    goVistaComparacionEmpleo(ListaId.get(0), ListaId.get(1));
                     showToast(stringBuilder.toString());
                 } else {
                     showToast("No Selection");
-                    showToast("No Selection");
-
                 }
             }
         });
-
     }
 
     private void showToast(String toString) {
         Toast.makeText(this, toString, Toast.LENGTH_SHORT).show();
-
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
@@ -134,17 +127,15 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
 
         Query q = CurriculoFavoritosDB.child(getResources().getString(R.string.Ref_EmpleadoresConFavoritos))
                 .child(sPersonaIdC)
-                .child("likes");//referencia likes
+                .child(getResources().getString(R.string.Favoritos_LIKES));//referencia likes
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("datafavoritoEmpleo", String.valueOf(dataSnapshot));
 
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
-
-                    String IdCurriculoAplico = CurriculosSnapshot.child("IdCurriculoLike").getValue(String.class);
+                    String IdCurriculoAplico = CurriculosSnapshot.child(getResources().getString(R.string.Favoritos_IdCurriculoLike)).getValue(String.class);
                     loadCurriculoFav(IdCurriculoAplico);
-//                    Log.d("dataidEmpleos", IdCurriculoAplico);
                 }
             }
 
@@ -153,11 +144,10 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
 
             }
         });
-
     }
 
-    private void loadCurriculoFav( final String sFavIdCurriculo) {
-        DBCurriculoFav.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild("sIdCurriculo").equalTo(sFavIdCurriculo).addValueEventListener( new ValueEventListener() {
+    private void loadCurriculoFav(final String sFavIdCurriculo) {
+        DBCurriculoFav.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild(getResources().getString(R.string.Campo_sIdCurriculo)).equalTo(sFavIdCurriculo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
@@ -182,20 +172,18 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
                     sSexoC = DatosCurriculoFav.getsSexoC();
                     sHabilidadesC = DatosCurriculoFav.getsHabilidadesC();
                     sFechaC = DatosCurriculoFav.getsFechaC();
-                    sAreaC  = DatosCurriculoFav.getsAreaC();
+                    sAreaC = DatosCurriculoFav.getsAreaC();
 
-                    final modeloCompararCurriculo modCompCurriculo = new  modeloCompararCurriculo (sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC,
-                            sApellidoC, sCedulaC, sEmailC,sTelefonoC, sCelularC, sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC,  sIdiomaC,
-                            sGradoMayorC, sEstadoActualC, sSexoC, sHabilidadesC, sFechaC, sAreaC );
+                    final modeloCompararCurriculo modCompCurriculo = new modeloCompararCurriculo(sIdCurriculo, sIdBuscadorEmpleo, sImagenC, sNombreC,
+                            sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC, sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC,
+                            sGradoMayorC, sEstadoActualC, sSexoC, sHabilidadesC, sFechaC, sAreaC);
 
                     PantallaCompararCurriculo.this.curriculosFavsArray.add(modCompCurriculo);
 
                     adapter.notifyDataSetChanged();
-
                 }
                 Log.d("CVEMPLEOFAV::::", String.valueOf(dataSnapshot));
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -206,17 +194,11 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
     private void goVistaComparacionEmpleo(String sPrimerCurriculo, String sSegundoCurriculo) {
 
         Intent intent = new Intent(PantallaCompararCurriculo.this, PantallaVistaComparacionCurriculo.class);
-        Log.d("klkkkkkkkk", String.valueOf(sPrimerCurriculo));
-        Log.d("klkkkkkkkk", String.valueOf(sSegundoCurriculo));
         intent.putExtra("sIdCurriculoComparar1", sPrimerCurriculo);
         intent.putExtra("sIdCurriculoComparar2", sSegundoCurriculo);
         startActivity(intent);
-
-
     }
-
     public ArrayList<modeloCompararCurriculo> getAll() {
         return curriculosFavsArray;
     }
-
 }

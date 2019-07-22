@@ -20,6 +20,8 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
+import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosViewHolder;
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;

@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.AdapterEmpleo;
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,7 +47,6 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
             sFormacionAcademicaPEA, sAnosExperienciaPEA,sSexoRequeridoPEA,sRangoPEA,
             sJornadaPEA,sCantidadVacantesPEA, sTipoContratoPEA,sEstadoEmpleoPEA,
             sPersonasAplicaronPEA,sImagenEmpleoPEA, sIdEmpleadorPEA;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,15 +89,14 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
 
     public void TraerAplicacionesEmpleo(String sPersonaIdE) {
 
-        Query q = EmpleosAplicadoDB.orderByChild("sIdPersonaAplico").equalTo(sPersonaIdE);
+        Query q = EmpleosAplicadoDB.orderByChild(getResources().getString(R.string.Aplicacion_sIdPersonaAplico)).equalTo(sPersonaIdE);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("dataAplicacionesEmpleo", String.valueOf(dataSnapshot));
 
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
-
-                    String IdEmpleoAplico = CurriculosSnapshot.child("sIdEmpleoAplico").getValue(String.class);
+                    String IdEmpleoAplico = CurriculosSnapshot.child(getResources().getString(R.string.Aplicacion_sIdEmpleoAplico)).getValue(String.class);
                     loadEmpleo(IdEmpleoAplico);
                     Log.d("dataidEmpleos", IdEmpleoAplico);
                 }
@@ -107,19 +107,14 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void loadEmpleo(final String sIDEmpleo) {
-        DBEmpleos.child(getResources().getString(R.string.Ref_Empleos)).orderByChild("sIDEmpleo").equalTo(sIDEmpleo).addValueEventListener(new ValueEventListener() {
+        DBEmpleos.child(getResources().getString(R.string.Ref_Empleos)).orderByChild(getResources().getString(R.string.Campo_sIDEmpleo)).equalTo(sIDEmpleo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
-
-
                     Empleos DatosEmpleos = datasnapshot.getValue(Empleos.class);
-
 
                     sIDEmpleoPEA = DatosEmpleos.getsIDEmpleo();
                     sNombreEmpleoPEA = DatosEmpleos.getsNombreEmpleoE();
@@ -147,7 +142,7 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                     sImagenEmpleoPEA = DatosEmpleos.getsImagenEmpleoE();
                     sTipoContratoPEA = DatosEmpleos.getsTipoContratoE();
 
-                    Log.d("DATOS::::", datasnapshot.child("sNombreEmpleoE").getValue(String.class));
+                    Log.d("DATOS::::", datasnapshot.child(getResources().getString(R.string.Campo_sNombreEmpleoE)).getValue(String.class));
                     Log.d("DATOS::::", sNombreEmpleoPEA);
 
                     final Empleos empleos = new Empleos(sIDEmpleoPEA,sNombreEmpleoPEA, sNombreEmpresaPEA,sProvinciaPEA,
@@ -156,7 +151,6 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                             sFormacionAcademicaPEA, sAnosExperienciaPEA,sSexoRequeridoPEA,sRangoPEA,
                             sJornadaPEA,sCantidadVacantesPEA, sTipoContratoPEA,sEstadoEmpleoPEA,
                             sPersonasAplicaronPEA,sImagenEmpleoPEA, sIdEmpleadorPEA);
-
 
                     PantallaEmpleosAplicado.this.mDatasetEmpleos.add(empleos);
                     adapterEmpleo.notifyDataSetChanged();

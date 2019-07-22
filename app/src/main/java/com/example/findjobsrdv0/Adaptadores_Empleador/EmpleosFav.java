@@ -1,19 +1,118 @@
-package com.example.findjobsrdv0.Clases_EmpleoCompleto;
+package com.example.findjobsrdv0.Adaptadores_Empleador;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
 
-public class Empleos {
+public class EmpleosFav implements Serializable {
 
-    public Empleos() {
+    public EmpleosFav() {
     }
 
+
+    public void setsIDEmpleo(String sIDEmpleo) {
+        this.sIDEmpleo = sIDEmpleo;
+    }
+
+    public void setsNombreEmpleoE(String sNombreEmpleoE) {
+        this.sNombreEmpleoE = sNombreEmpleoE;
+    }
+
+    public void setsNombreEmpresaE(String sNombreEmpresaE) {
+        this.sNombreEmpresaE = sNombreEmpresaE;
+    }
+
+    public void setsProvinciaE(String sProvinciaE) {
+        this.sProvinciaE = sProvinciaE;
+    }
+
+    public void setsDireccionE(String sDireccionE) {
+        this.sDireccionE = sDireccionE;
+    }
+
+    public void setsTelefonoE(String sTelefonoE) {
+        this.sTelefonoE = sTelefonoE;
+    }
+
+    public void setsPaginaWebE(String sPaginaWebE) {
+        this.sPaginaWebE = sPaginaWebE;
+    }
+
+    public void setsEmailE(String sEmailE) {
+        this.sEmailE = sEmailE;
+    }
+
+    public void setsSalarioE(String sSalarioE) {
+        this.sSalarioE = sSalarioE;
+    }
+
+    public void setsOtrosDatosE(String sOtrosDatosE) {
+        this.sOtrosDatosE = sOtrosDatosE;
+    }
+
+    public void setsHorarioE(String sHorarioE) {
+        this.sHorarioE = sHorarioE;
+    }
+
+    public void setsFechaPublicacionE(String sFechaPublicacionE) {
+        this.sFechaPublicacionE = sFechaPublicacionE;
+    }
+
+    public void setsMostrarIdiomaE(String sMostrarIdiomaE) {
+        this.sMostrarIdiomaE = sMostrarIdiomaE;
+    }
+
+    public void setsAreaE(String sAreaE) {
+        this.sAreaE = sAreaE;
+    }
+
+    public void setsFormacionAcademicaE(String sFormacionAcademicaE) {
+        this.sFormacionAcademicaE = sFormacionAcademicaE;
+    }
+
+    public void setsAnosExperienciaE(String sAnosExperienciaE) {
+        this.sAnosExperienciaE = sAnosExperienciaE;
+    }
+
+    public void setsSexoRequeridoE(String sSexoRequeridoE) {
+        this.sSexoRequeridoE = sSexoRequeridoE;
+    }
+
+    public void setsRangoE(String sRangoE) {
+        this.sRangoE = sRangoE;
+    }
+
+    public void setsJornadaE(String sJornadaE) {
+        this.sJornadaE = sJornadaE;
+    }
+
+    public void setsCantidadVacantesE(String sCantidadVacantesE) {
+        this.sCantidadVacantesE = sCantidadVacantesE;
+    }
+
+    public void setsTipoContratoE(String sTipoContratoE) {
+        this.sTipoContratoE = sTipoContratoE;
+    }
+
+    public void setsEstadoEmpleoE(String sEstadoEmpleoE) {
+        this.sEstadoEmpleoE = sEstadoEmpleoE;
+    }
+
+    public void setsPersonasAplicaronE(String sPersonasAplicaronE) {
+        this.sPersonasAplicaronE = sPersonasAplicaronE;
+    }
+
+    public void setsImagenEmpleoE(String sImagenEmpleoE) {
+        this.sImagenEmpleoE = sImagenEmpleoE;
+    }
+
+    public void setsIdEmpleadorE(String sIdEmpleadorE) {
+        this.sIdEmpleadorE = sIdEmpleadorE;
+    }
 
     String sIDEmpleo,sNombreEmpleoE, sNombreEmpresaE,sProvinciaE,sDireccionE, sTelefonoE,sPaginaWebE,sEmailE,sSalarioE,sOtrosDatosE,
             sHorarioE,sFechaPublicacionE, sMostrarIdiomaE,sAreaE, sFormacionAcademicaE, sAnosExperienciaE,sSexoRequeridoE,sRangoE,sJornadaE,sCantidadVacantesE,
             sTipoContratoE,sEstadoEmpleoE,sPersonasAplicaronE,sImagenEmpleoE, sIdEmpleadorE;
 
-    public Empleos(String sIDEmpleo, String sNombreEmpleoE, String sNombreEmpresaE, String sDireccionE, String sProvinciaE,
+    public EmpleosFav(String sIDEmpleo, String sNombreEmpleoE, String sNombreEmpresaE, String sDireccionE, String sProvinciaE,
                    String sTelefonoE, String sPaginaWebE, String sEmailE, String sSalarioE, String sOtrosDatosE,
                    String sHorarioE, String sFechaPublicacionE, String sMostrarIdiomaE, String sAreaE, String sAnosExperienciaE, String sFormacionAcademicaE,
                    String sSexoRequeridoE, String sRangoE, String sJornadaE, String sCantidadVacantesE,
@@ -45,6 +144,16 @@ public class Empleos {
         this.sImagenEmpleoE = sImagenEmpleoE;
         this.sIdEmpleadorE = sIdEmpleadorE;
 
+    }
+
+    private boolean isChecked = false;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public String getsIdEmpleadorE() {
@@ -135,7 +244,7 @@ public class Empleos {
     }
     public String getsImagenEmpleoE() {
         return sImagenEmpleoE;
-}
+    }
 
 
     public String getsFormacionAcademicaE() {
@@ -144,40 +253,5 @@ public class Empleos {
     public String getsAnosExperienciaE() {
         return sAnosExperienciaE;
     }
-
-
-    public Map<String, Object> toMap(){
-
-        HashMap<String,Object> ListEmpleoss= new HashMap<>();
-        ListEmpleoss.put("FOTO_EMPLEO",sImagenEmpleoE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("sIDEmpleo",sIDEmpleo);
-        ListEmpleoss.put("sNombreEmpleoE",sNombreEmpleoE);
-        ListEmpleoss.put("sNombreEmpresaE",sNombreEmpresaE);
-        ListEmpleoss.put("sProvinciaE",sProvinciaE);
-        ListEmpleoss.put("sDireccionE",sDireccionE);
-        ListEmpleoss.put("sTelefonoE",sTelefonoE);
-        ListEmpleoss.put("sPaginaWebE",sPaginaWebE);
-        ListEmpleoss.put("sEmailE",sEmailE);
-        ListEmpleoss.put("sSalarioE",sSalarioE);
-        ListEmpleoss.put("sOtrosDatosE",sOtrosDatosE);
-        ListEmpleoss.put("sHorarioE",sHorarioE);
-        ListEmpleoss.put("sMostrarIdiomaE", sMostrarIdiomaE);
-        ListEmpleoss.put("EXPERIENCIA",sAreaE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("ESTADO",sSexoRequeridoE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("DIRECCION",sRangoE);//-------------------------------------resolver, antes de
-        ListEmpleoss.put("sJornadaE",sJornadaE);
-        ListEmpleoss.put("sCantidadVacantesE",sCantidadVacantesE);
-        ListEmpleoss.put("sTipoContratoE",sTipoContratoE);
-        ListEmpleoss.put("sFechaPublicacionE",sFechaPublicacionE);
-        ListEmpleoss.put("sPersonasAplicaronE",sPersonasAplicaronE);
-        ListEmpleoss.put("sEstadoEmpleoE",sEstadoEmpleoE);
-        ListEmpleoss.put("sIdEmpleadorE",sIdEmpleadorE);
-
-
-
-
-        return ListEmpleoss;
-    }
-
 
 }

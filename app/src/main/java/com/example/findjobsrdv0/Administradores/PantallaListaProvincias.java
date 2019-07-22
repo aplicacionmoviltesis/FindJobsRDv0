@@ -14,10 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.Empleos;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.EmpleosViewHolder;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscados;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
 import com.example.findjobsrdv0.GeneralesApp.Uni_Prov_Area_ViewHolder;

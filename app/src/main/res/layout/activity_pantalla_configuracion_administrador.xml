@@ -19,6 +19,38 @@
         android:padding="2dp">
 
         <Button
+            android:id="@+id/xmlBtnAdministrarUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="fill_vertical"
+            android:textSize="12dp"
+            android:layout_weight="1"
+            android:drawablePadding="15dp"
+            android:paddingStart="20dp"
+            android:elevation="25dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_admin_users"
+            android:text="Administrar Usuarios"/>
+
+        <Button
+            android:id="@+id/xmlBtnCrearUsuarioAdministrador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="fill_vertical"
+            android:textSize="12dp"
+            android:layout_weight="1"
+            android:drawablePadding="15dp"
+            android:paddingStart="20dp"
+            android:elevation="25dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_create_users_admin"
+            android:text="Crear Usuario Administrador"/>
+
+        <Button
             android:id="@+id/xmlBtnAnadirArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

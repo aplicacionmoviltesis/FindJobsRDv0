@@ -38,9 +38,8 @@ public class PantallaRecuperarContrasena extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
         TituloRecuperarPass = (TextView) findViewById(R.id.textrecuperarPass);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
+        Typeface face=Typeface.createFromAsset(getAssets(),getResources().getString(R.string.fonts_robotos));
         TituloRecuperarPass.setTypeface(face);
 
         PasswordEmail=(EditText) findViewById(R.id.entracorreoOlvidado);

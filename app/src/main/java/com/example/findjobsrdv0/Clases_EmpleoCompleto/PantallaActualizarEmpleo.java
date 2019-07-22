@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.GeneralesApp.Areas;
 import com.example.findjobsrdv0.GeneralesApp.Provincias;
 import com.example.findjobsrdv0.R;

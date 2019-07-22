@@ -29,17 +29,16 @@ import java.util.ArrayList;
 
 public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
 
-    FirebaseDatabase databaseCurriculoFav;
-    DatabaseReference vistaCurriculoFavoritos, DBCurriculoFavoritos;
+    private FirebaseDatabase databaseCurriculoFav;
+    private DatabaseReference vistaCurriculoFavoritos, DBCurriculoFavoritos;
 
-    String sEmpresaIdFav = "";
+    private String sEmpresaIdFav = "";
 
     private AdapterCurriculo adapterCurriculoFavorito;
-    ArrayList<Curriculos> mDatasetCurriculo = new ArrayList<Curriculos>();
+    private ArrayList<Curriculos> mDatasetCurriculo = new ArrayList<Curriculos>();
 
     private RecyclerView recyclerViewCurriculosFav;
     private RecyclerView.LayoutManager layoutManager;
-
 
     private String IdCurriculoFavorito, IdBuscadorCurriculoFav, ImagenCurriculoFav,
             NombreCurriculoFav, ApellidoCurriculoFav, CedulaCurriculoFav,
@@ -78,16 +77,13 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
         user = mAuthEmpresaFav.getCurrentUser();
         sEmpresaIdFav = user.getUid();
 
-        //sEmpresaIdFav = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
         if (sEmpresaIdFav != null) {
             if (!sEmpresaIdFav.isEmpty()) {
-                Log.d("dataAplicacionesempresa", String.valueOf(sEmpresaIdFav));
-
+                Log.d("dataAplicacionesempresa", sEmpresaIdFav);
                 TraerCurriculosFav(sEmpresaIdFav);
             }
         }
     }
-
 
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -95,33 +91,28 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
     }
 
     public void TraerCurriculosFav(String sEmpresaId) {
-
         Query q = DBCurriculoFavoritos.child(getResources().getString(R.string.Ref_EmpleadoresConFavoritos))
                 .child(sEmpresaId)
-                .child("likes");
+                .child(getResources().getString(R.string.Favoritos_LIKES));
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("dataAplicacionesempresa", String.valueOf(dataSnapshot));
-
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
-
-                    String IdCurriculoAplico = CurriculosSnapshot.child("IdCurriculoLike").getValue(String.class);
+                    String IdCurriculoAplico = CurriculosSnapshot.child(getResources().getString(R.string.Favoritos_IdCurriculoLike)).getValue(String.class);
                     loadCurriculoFavorito(IdCurriculoAplico);
                     Log.d("dataidcurriculo", IdCurriculoAplico);
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
     }
 
     private void loadCurriculoFavorito(final String sIdFavCurriculo) {
-        vistaCurriculoFavoritos.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild("sIdCurriculo").equalTo(sIdFavCurriculo).addValueEventListener(new ValueEventListener() {
+        vistaCurriculoFavoritos.child(getResources().getString(R.string.Ref_Curriculos)).orderByChild(getResources().getString(R.string.Campo_sIdCurriculo)).equalTo(sIdFavCurriculo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 
@@ -152,14 +143,12 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
                     CarreraFormAcad = DatosCurriculoFav.getsCarreraFormAcad();
                     UniversidadesFormAcad = DatosCurriculoFav.getsUniversidadFormAcad();
 
-
                     final Curriculos cvFav = new Curriculos(IdCurriculoFavorito, ImagenCurriculoFav, NombreCurriculoFav, ApellidoCurriculoFav, CedulaCurriculoFav,
                             EmailCurriculoFav, TelefonoCurriculoFav, CelularCurriculoFav,
                             ProvinciaCurriculoFav, EstadoCivilCurriculoFav, DireccionCurriculoFav,
                             OcupacionCurriculoFav, IdiomaCurriculoFav, GradoMayorCurriculoFav,
                             EstadoActualCurriculoFav, SexoCurriculoFav, HabilidadesCurriculoFav,
-                            FechaCurriculoFav, "aun no funciona", NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad, UniversidadesFormAcad );
-
+                            FechaCurriculoFav, "se utilizara para el estado del curriculo, administrador, etc", NivelPrimarioFormAcad, NivelSecundarioFormAcad, CarreraFormAcad, UniversidadesFormAcad );
 
                     PantallaListaCurriculosFavoritos.this.mDatasetCurriculo.add(cvFav);
                     adapterCurriculoFavorito.notifyDataSetChanged();
@@ -172,15 +161,12 @@ public class PantallaListaCurriculosFavoritos extends AppCompatActivity {
 
                             Intent intent = new Intent(PantallaListaCurriculosFavoritos.this, DetalleCurriculo.class);
                             intent.putExtra("detallecurrID", adapterCurriculoFavorito.mDatasetCurriculo.get(position).getsIdCurriculo());
-
-                            //Log.d("klk",dataSnapshot.getRef().getKey());
                             startActivity(intent);
                         }
                     });
                 }
                 Log.d("CVPERSONASFAV::::", String.valueOf(dataSnapshot));
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

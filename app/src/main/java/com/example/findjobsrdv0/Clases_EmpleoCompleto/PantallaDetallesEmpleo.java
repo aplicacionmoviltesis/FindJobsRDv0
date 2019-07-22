@@ -1,17 +1,17 @@
 package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.AplicarEmpleo;
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesArea;
 import com.example.findjobsrdv0.GeneralesApp.PantallaDetallesProvincia;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
-import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.DetalleCurriculo;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.cPantallaRegistrarCurriculo;
 import com.example.findjobsrdv0.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,8 +42,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PantallaDetallesEmpleo extends AppCompatActivity {
 
