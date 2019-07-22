@@ -200,7 +200,6 @@ public class PantallaDetalleAplicacionVerificacionEmpleador extends AppCompatAct
             }
         } );
 
-
     }
 
     private void goDetalleEmpleador(String IdEmpleador) {
@@ -219,7 +218,6 @@ public class PantallaDetalleAplicacionVerificacionEmpleador extends AppCompatAct
                         Picasso.get().load( empleadores.getsImagenEmpleador() ).into( fotoEmpleador );
                     }
 
-
                     editRNCEmpleadorADM.setText( empleadores.getsRncEmpleador() );
                     editNombreEmpleadorADM.setText( empleadores.getsNombreEmpleador() );
                     editPaginaWebEmpleadorADM.setText( empleadores.getsPaginaWebEmpleador() );
@@ -230,7 +228,6 @@ public class PantallaDetalleAplicacionVerificacionEmpleador extends AppCompatAct
                     editDescEmpleadorADM.setText( empleadores.getsDescripcionEmpleador() );
 
                     EstadoVerificacionEmp = empleadores.getsVerificacionEmpleador();
-
 
                     if (!EstadoVerificacionEmp.equals( null )) {
                         if (EstadoVerificacionEmp.equals( true )) {
@@ -278,7 +275,6 @@ public class PantallaDetalleAplicacionVerificacionEmpleador extends AppCompatAct
                 Estado = false;
             }
         }
-
 
 
         Log.d( "verificacion", String.valueOf( valorspinner ) );
