@@ -198,8 +198,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
 
     private void irPerfilBuscador(String buscadorconectado) {
         Intent intent = new Intent(this, cPantallaRegistrarCurriculo.class);
-        //intent.putExtra("BuscadorConectado", buscadorconectado );
-
+        intent.putExtra("BuscadorConectado", buscadorconectado );
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
