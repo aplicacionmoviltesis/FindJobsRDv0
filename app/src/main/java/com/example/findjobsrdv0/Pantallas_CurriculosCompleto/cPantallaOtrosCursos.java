@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.R;
@@ -157,7 +158,15 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 //        Log.d( "otrosCursos", ocIdBuscardor );
 
         if (TextUtils.isEmpty(ocInstitucionC)) {
-            etInstitucion.setError("Campo vacío, por favor escriba la institucion");
+            etInstitucion.setError("Campo vacío, por favor escriba la Institucion");
+            return;
+        }
+        if (TextUtils.isEmpty(ocAnoC)) {
+            etAno.setError("Campo vacío, por favor escriba el Año");
+            return;
+        }
+        if (TextUtils.isEmpty(ocAreaoTemaC)) {
+            etAreaoTema.setError("Campo vacío, por favor escriba el Area o Tema");
             return;
         }
 
@@ -221,6 +230,14 @@ public class cPantallaOtrosCursos extends AppCompatActivity {
 
         if (TextUtils.isEmpty(ocInstitucionC)) {
             etInstitucion.setError("Campo vacío, por favor escriba la Institucion");
+            return;
+        }
+        if (TextUtils.isEmpty(ocAnoC)) {
+            etAno.setError("Campo vacío, por favor escriba el Año");
+            return;
+        }
+        if (TextUtils.isEmpty(ocAreaoTemaC)) {
+            etAreaoTema.setError("Campo vacío, por favor escriba el Area o Tema");
             return;
         }
 
