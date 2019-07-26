@@ -191,6 +191,23 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
             etNombreEmpresa.setError( "Campo vacío, por favor escriba el nombre " );
             return;
         }
+        if (TextUtils.isEmpty( elCargoOcupado )) {
+            etCargoOcupado.setError( "Campo vacío, por favor escriba el Cargo Ocupado " );
+            return;
+        }
+        if (TextUtils.isEmpty( elFechaEntrada )) {
+            etFechaEntrada.setError( "Campo vacío, por favor escriba la Fecha de Inicio " );
+            return;
+        }
+        if (TextUtils.isEmpty( elFechaSalida )) {
+            etFechaSalida.setError( "Campo vacío, por favor escriba la Fecha de Salida " );
+            return;
+        }
+        if (TextUtils.isEmpty( elTelefono )) {
+            etTelefono.setError( "Campo vacío, por favor escriba el Telefono " );
+            return;
+        }
+
 
         String IdExperienciaLab = mDatabase.push().getKey();
 
@@ -221,11 +238,23 @@ public class cPantallaExperienciaLaboralCurriculo extends AppCompatActivity {
             etNombreEmpresa.setError( "Campo vacío, por favor escriba el nombre " );
             return;
         }
-     /*   if (TextUtils.isEmpty( cApellido )) {
-            etApellido.setError( "Campo vacío, por favor escriba el apellido" );
+        if (TextUtils.isEmpty( elCargoOcupado )) {
+            etCargoOcupado.setError( "Campo vacío, por favor escriba el Cargo Ocupado " );
             return;
         }
-   */
+        if (TextUtils.isEmpty( elFechaEntrada )) {
+            etFechaEntrada.setError( "Campo vacío, por favor escriba la Fecha de Inicio " );
+            return;
+        }
+        if (TextUtils.isEmpty( elFechaSalida )) {
+            etFechaSalida.setError( "Campo vacío, por favor escriba la Fecha de Salida " );
+            return;
+        }
+        if (TextUtils.isEmpty( elTelefono )) {
+            etTelefono.setError( "Campo vacío, por favor escriba el Telefono " );
+            return;
+        }
+
         String IdExperienciaLab = IDExperienciaLab;
 
         ExperienciaLaboral experienciaLaboral = new ExperienciaLaboral

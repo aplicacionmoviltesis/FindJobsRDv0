@@ -181,11 +181,20 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );
             return;
         }
-     /*   if (TextUtils.isEmpty( cApellido )) {
-            etApellido.setError( "Campo vacío, por favor escriba el apellido" );
+
+        if (TextUtils.isEmpty( rInstitucionC )) {
+            etInstitucion.setError( "Campo vacío, por favor escriba la institucion" );
             return;
         }
-   */
+        if (TextUtils.isEmpty( rCargoOcupadoC )) {
+            etCargoOcupado.setError( "Campo vacío, por favor escriba el Cargo Ocupado" );
+            return;
+        }
+        if (TextUtils.isEmpty( rTelefonoC )) {
+            etTelefono.setError( "Campo vacío, por favor escriba el telefono" );
+            return;
+        }
+
         String IdReferencia = mDatabase.push().getKey();
 
         Referencias referencias = new Referencias( IdReferencia, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
@@ -200,15 +209,25 @@ public class cPantallaReferenciasCurriculo extends AppCompatActivity {
         rTelefonoC = etTelefono.getText().toString();
         rBuscadorId = id;
 
+
         if (TextUtils.isEmpty( rNombreC )) {
             etNombre.setError( "Campo vacío, por favor escriba el nombre " );
             return;
         }
-     /*   if (TextUtils.isEmpty( cApellido )) {
-            etApellido.setError( "Campo vacío, por favor escriba el apellido" );
+
+        if (TextUtils.isEmpty( rInstitucionC )) {
+            etInstitucion.setError( "Campo vacío, por favor escriba la institucion" );
             return;
         }
-   */
+        if (TextUtils.isEmpty( rCargoOcupadoC )) {
+            etCargoOcupado.setError( "Campo vacío, por favor escriba el Cargo Ocupado" );
+            return;
+        }
+        if (TextUtils.isEmpty( rTelefonoC )) {
+            etTelefono.setError( "Campo vacío, por favor escriba el telefono" );
+            return;
+        }
+
         String IdReferencia = IdReferenciasss;
 
         Referencias referencias = new Referencias( IdReferencia, Ukey, rNombreC, rCargoOcupadoC, rInstitucionC, rTelefonoC );
