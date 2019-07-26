@@ -126,7 +126,7 @@ public class PantallaListaEmpleosBuscados extends AppCompatActivity {
                         break;
                     case R.id.xmlRdProvinciaBE:
 
-                        sReferencia = "Provincias";
+                        sReferencia = getResources().getString(R.string.Ref_Provincias);
                         sCampo = "sNombreProvincia";
                         botonbuscarprovincia.setText("Buscar Por Provincia");
                         sCampoEnEmpleo = "sProvinciaE";

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,7 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.Adaptadores_Administrador.Areas;
@@ -124,6 +127,14 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_registrar_empleos);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        Toolbar toolbar = (Toolbar) findViewById( R.id.toolbar );
+        setSupportActionBar( toolbar );
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         tvDatosEmpleo = (TextView) findViewById(R.id.xmlTiDatosEmpleosE);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
@@ -134,7 +145,6 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 
         tvRequisitos = (TextView) findViewById(R.id.xmlTiRequisitosE);
         tvRequisitos.setTypeface(face);
-
 
         databaseArea = FirebaseDatabase.getInstance();
         DBarea = databaseArea.getReference(getResources().getString(R.string.Ref_Areas));
@@ -201,7 +211,6 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
                 provinciasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinProvinciaE.setAdapter(provinciasAdapter);
                 spinProvinciaE.setTitle("Seleccionar Provincia");
-
             }
 
             @Override
@@ -612,10 +621,13 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
         editNombreEmpresaE.setText(Nombre);
         editNombreEmpresaE.setText(user.getDisplayName());
 
-
+actionBar.setTitle(user.getDisplayName());
     }
 
-
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
+    }
 
 public void limpiarCampor(){
     editNombreEmpleoE.setText("");

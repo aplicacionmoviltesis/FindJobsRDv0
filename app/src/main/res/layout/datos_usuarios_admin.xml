@@ -8,15 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp"
-        android:background="@mipmap/fondo1">
-
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/xmlTiInformacionesUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
             android:textSize="30sp"
             android:gravity="center"
@@ -32,7 +30,7 @@
                 android:id="@+id/xmlTiIdUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_white_1000"
+                android:textColor="@color/md_blue_900"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -42,7 +40,7 @@
                 android:id="@+id/xmlTvIdUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/md_white_1000"
+                android:textColor="@color/md_blue_900"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:text="ID"/>
@@ -54,9 +52,8 @@
             android:id="@+id/xmlTiNombreUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:layout_margin="10dp"
             android:textSize="20sp"
             android:text="Nombre"/>
 
@@ -64,9 +61,9 @@
             android:id="@+id/xmlTvNombreUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="Nombre"/>
 
@@ -74,9 +71,8 @@
             android:id="@+id/xmlTiApellidoUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:layout_margin="10dp"
             android:textSize="20sp"
             android:text="Apellido"/>
 
@@ -84,9 +80,9 @@
             android:id="@+id/xmlTvApellidoUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="Apellido"/>
 
@@ -94,9 +90,8 @@
             android:id="@+id/xmlTiCorreoUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:layout_margin="10dp"
             android:textSize="20sp"
             android:text="Correo Electronico"/>
 
@@ -104,9 +99,9 @@
             android:id="@+id/xmlTvCorreoUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="Correo Electronico"/>
 
@@ -114,9 +109,8 @@
             android:id="@+id/xmlTiTelefonoUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:layout_margin="10dp"
             android:textSize="20sp"
             android:text="Telefono"/>
 
@@ -124,9 +118,9 @@
             android:id="@+id/xmlTvTelefonoUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/md_blue_900"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:gravity="center"
             android:text="Telefono"/>
 
@@ -134,7 +128,7 @@
             android:id="@+id/xmlbtnAceptarUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aceptar"
+            android:text="Hacer Administrador"
             android:layout_margin="15dp"
             android:background="@color/md_blue_grey_300"/>
     </LinearLayout>

@@ -50,6 +50,7 @@ public class AdapterEmpleo extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ((AdapterEmpleo.EmpleoViewHolder)holder).onBind(position);
+
     }
 
     @Override

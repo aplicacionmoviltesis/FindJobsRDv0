@@ -41,12 +41,12 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
     private FirebaseAuth mAuthPersonaAplico;
     private FirebaseUser user;
 
-    private String sIDEmpleoPEA,sNombreEmpleoPEA, sNombreEmpresaPEA,sProvinciaPEA,
-            sDireccionPEA, sTelefonoPEA, sPaginaWebPEA,sEmailPEA,sSalarioPEA,sOtrosDatosPEA,
-            sHorarioPEA,sFechaPublicacionPEA, sMostrarIdiomaPEA,sAreaPEA,
-            sFormacionAcademicaPEA, sAnosExperienciaPEA,sSexoRequeridoPEA,sRangoPEA,
-            sJornadaPEA,sCantidadVacantesPEA, sTipoContratoPEA,sEstadoEmpleoPEA,
-            sPersonasAplicaronPEA,sImagenEmpleoPEA, sIdEmpleadorPEA;
+    private String sIDEmpleoPEA, sNombreEmpleoPEA, sNombreEmpresaPEA, sProvinciaPEA,
+            sDireccionPEA, sTelefonoPEA, sPaginaWebPEA, sEmailPEA, sSalarioPEA, sOtrosDatosPEA,
+            sHorarioPEA, sFechaPublicacionPEA, sMostrarIdiomaPEA, sAreaPEA,
+            sFormacionAcademicaPEA, sAnosExperienciaPEA, sSexoRequeridoPEA, sRangoPEA,
+            sJornadaPEA, sCantidadVacantesPEA, sTipoContratoPEA, sEstadoEmpleoPEA,
+            sPersonasAplicaronPEA, sImagenEmpleoPEA, sIdEmpleadorPEA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,21 +68,31 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerViewEmpleos.setLayoutManager(layoutManager);
 
+        //adapterEmpleo.mDatasetEmpleo.clear();
+        //adapterEmpleo.notifyDataSetChanged();
+//        mDatasetEmpleos.clear();
+//        recyclerViewEmpleos.setAdapter(null);
+
         adapterEmpleo = new AdapterEmpleo(PantallaEmpleosAplicado.this, mDatasetEmpleos);
         recyclerViewEmpleos.setAdapter(adapterEmpleo);
 
+
         mAuthPersonaAplico = FirebaseAuth.getInstance();
         user = mAuthPersonaAplico.getCurrentUser();
-        sIdPersonaAplico= user.getUid();
+        sIdPersonaAplico = user.getUid();
 
-        if(sIdPersonaAplico != null){
-            if(!sIdPersonaAplico.isEmpty()){
+        if (sIdPersonaAplico != null) {
+            if (!sIdPersonaAplico.isEmpty()) {
+                //recyclerViewEmpleos.setAdapter(null);
+                adapterEmpleo.mDatasetEmpleo.clear();
                 TraerAplicacionesEmpleo(sIdPersonaAplico);
+                //recyclerViewEmpleos.setAdapter(null);
+                adapterEmpleo.mDatasetEmpleo.clear();
             }
         }
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
@@ -90,16 +100,24 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
     public void TraerAplicacionesEmpleo(String sPersonaIdE) {
 
         Query q = EmpleosAplicadoDB.orderByChild(getResources().getString(R.string.Aplicacion_sIdPersonaAplico)).equalTo(sPersonaIdE);
+        //adapterEmpleo.mDatasetEmpleo.clear();
+
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("dataAplicacionesEmpleo", String.valueOf(dataSnapshot));
 
+
+                Log.d("juan", String.valueOf(mDatasetEmpleos));
+                Log.d("juanklk", String.valueOf(adapterEmpleo));
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
                     String IdEmpleoAplico = CurriculosSnapshot.child(getResources().getString(R.string.Aplicacion_sIdEmpleoAplico)).getValue(String.class);
                     loadEmpleo(IdEmpleoAplico);
+                    //recyclerViewEmpleos.setAdapter(null);
                     Log.d("dataidEmpleos", IdEmpleoAplico);
                 }
+                //adapterEmpleo.mDatasetEmpleo.clear();
+                //recyclerViewEmpleos.setAdapter(null);
             }
 
             @Override
@@ -107,6 +125,8 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
 
             }
         });
+        adapterEmpleo.mDatasetEmpleo.clear();
+
     }
 
     private void loadEmpleo(final String sIDEmpleo) {
@@ -145,16 +165,18 @@ public class PantallaEmpleosAplicado extends AppCompatActivity {
                     Log.d("DATOS::::", datasnapshot.child(getResources().getString(R.string.Campo_sNombreEmpleoE)).getValue(String.class));
                     Log.d("DATOS::::", sNombreEmpleoPEA);
 
-                    final Empleos empleos = new Empleos(sIDEmpleoPEA,sNombreEmpleoPEA, sNombreEmpresaPEA,sProvinciaPEA,
-                            sDireccionPEA, sTelefonoPEA, sPaginaWebPEA,sEmailPEA,sSalarioPEA,sOtrosDatosPEA,
-                            sHorarioPEA,sFechaPublicacionPEA, sMostrarIdiomaPEA,sAreaPEA,
-                            sFormacionAcademicaPEA, sAnosExperienciaPEA,sSexoRequeridoPEA,sRangoPEA,
-                            sJornadaPEA,sCantidadVacantesPEA, sTipoContratoPEA,sEstadoEmpleoPEA,
-                            sPersonasAplicaronPEA,sImagenEmpleoPEA, sIdEmpleadorPEA);
+
+                    final Empleos empleos = new Empleos(sIDEmpleoPEA, sNombreEmpleoPEA, sNombreEmpresaPEA, sProvinciaPEA,
+                            sDireccionPEA, sTelefonoPEA, sPaginaWebPEA, sEmailPEA, sSalarioPEA, sOtrosDatosPEA,
+                            sHorarioPEA, sFechaPublicacionPEA, sMostrarIdiomaPEA, sAreaPEA,
+                            sFormacionAcademicaPEA, sAnosExperienciaPEA, sSexoRequeridoPEA, sRangoPEA,
+                            sJornadaPEA, sCantidadVacantesPEA, sTipoContratoPEA, sEstadoEmpleoPEA,
+                            sPersonasAplicaronPEA, sImagenEmpleoPEA, sIdEmpleadorPEA);
+
+                    //recyclerViewEmpleos.setAdapter(null);
 
                     PantallaEmpleosAplicado.this.mDatasetEmpleos.add(empleos);
                     adapterEmpleo.notifyDataSetChanged();
-
                     final Empleos clickItem = empleos;
                     adapterEmpleo.setItemClickListener(new ItemClickListener() {
                         @Override

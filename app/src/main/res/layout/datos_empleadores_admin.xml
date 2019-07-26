@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/xmlTiInformacionesUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:layout_marginBottom="50dp"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="Informacion Empleador"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/xmlTiIdEmpleador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_blue_900"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:text="Id User: "/>
+
+            <TextView
+                android:id="@+id/xmlTvIdEmpleador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_blue_900"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="ID"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/xmlTiRncEmpleador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_blue_900"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:text="RNC: "/>
+
+            <TextView
+                android:id="@+id/xmlTvRncEmpleador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_blue_900"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="RNC"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/xmlTiNombreEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Nombre:"/>
+
+        <TextView
+            android:id="@+id/xmlTvNombreEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Nombre"/>
+
+        <TextView
+            android:id="@+id/xmlTidescripcionEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Descripcion:"/>
+
+        <TextView
+            android:id="@+id/xmlTvdescripcionEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Descripcion"/>
+
+        <TextView
+            android:id="@+id/xmlTiPagWebEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Pagina Web:"/>
+
+        <TextView
+            android:id="@+id/xmlTvPagWebEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Pagina Web"/>
+
+        <TextView
+            android:id="@+id/xmlTiCorreoEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="E-Mail:"/>
+
+        <TextView
+            android:id="@+id/xmlTvCorreoEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Correo Electronico"/>
+
+        <TextView
+            android:id="@+id/xmlTiTelefonoEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Telefono:"/>
+
+        <TextView
+            android:id="@+id/xmlTvTelefonoEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Telefono"/>
+
+        <TextView
+            android:id="@+id/xmlTiDireccionEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Direccion:"/>
+
+        <TextView
+            android:id="@+id/xmlTvDireccionEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Direccion"/>
+
+        <TextView
+            android:id="@+id/xmlTiProvinciaEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Provincia:"/>
+
+        <TextView
+            android:id="@+id/xmlTvProvinciaEmpleador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Provincia"/>
+
+        <Button
+            android:id="@+id/xmlbtnHacerAdminEmpleaador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hacer Administrador"
+            android:layout_marginTop="35dp"
+            android:background="@color/md_blue_grey_300"/>
+    </LinearLayout>
+
+</LinearLayout>

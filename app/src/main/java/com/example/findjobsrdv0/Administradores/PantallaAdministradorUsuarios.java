@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,12 +20,10 @@ import android.widget.TextView;
 import com.example.findjobsrdv0.Adaptadores_Administrador.Administrador;
 import com.example.findjobsrdv0.Adaptadores_Administrador.ViewHolderUsuarios;
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallePerfilEmpresa;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +37,7 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
 
     private FirebaseRecyclerAdapter<Empleadores, ViewHolderUsuarios> adapterEmpleadores;
     private FirebaseRecyclerAdapter<Administrador, ViewHolderUsuarios> adapterUsersAdmin;
+    private FirebaseRecyclerAdapter<Curriculos, ViewHolderUsuarios> adapterBuscadores;
 
     private RecyclerView recyclerViewAdmin;
     private RecyclerView.LayoutManager layoutManager;
@@ -54,14 +53,22 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
     private TextView tvIdUser, tvNombreUser, tvApellidoUser, tvCorreoUser, tvTelefonoUser;
     private Button btnAceptarUser;
 
-    private String sIdHAdmin,sNombreHAdmin, sApellidoHAdmin,sCorreoHAdmin,sTelefonoHAdmin;
+    private TextView tvIdEmpleadorAdm, tvNombreEmpleadorAdm, tvPaginaWebEmpleadorAdm,
+            tvCorreoEmpleadorAdm, tvTelefonoEmpleadorAdm, tvProvinciaEmpleadorAdm,
+            tvDescripcionEmpleadorAdm, tvRncEmpleadorAdm, tvDireccionEmpleadorAdm;
+
+    private Button btnHacerAdmin;
+
+    private TextView tvTiApellido_PagWeb;
+
+    private String sIdHAdmin, sNombreHAdmin, sApellidoHAdmin, sCorreoHAdmin, sTelefonoHAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_administrador_usuarios);
 
-        idUser = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        //idUser = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -128,7 +135,6 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
                 ViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
                         VerInformacionesUsuarios(adapterUsersAdmin.getRef(position).getKey());
                     }
                 });
@@ -153,9 +159,7 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
                 ViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent intent = new Intent(PantallaAdministradorUsuarios.this, PantallaDetallePerfilEmpresa.class);
-                        intent.putExtra("sEmpresaIdAplico", adapterEmpleadores.getRef(position).getKey());
-                        startActivity(intent);
+                        VerInformacionesEmpleadores(adapterEmpleadores.getRef(position).getKey());
                     }
                 });
             }
@@ -164,7 +168,7 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
     }
 
     private void loadBuscadores() {
-        final FirebaseRecyclerAdapter<Curriculos, ViewHolderUsuarios> adapterBuscadores = new FirebaseRecyclerAdapter<Curriculos, ViewHolderUsuarios>(Curriculos.class,
+        adapterBuscadores = new FirebaseRecyclerAdapter<Curriculos, ViewHolderUsuarios>(Curriculos.class,
                 R.layout.cardview_mostrar_usuarios, ViewHolderUsuarios.class, usersBuscadores) {
             @Override
             protected void populateViewHolder(ViewHolderUsuarios ViewHolder, Curriculos buscadoresEmpleo, int i) {
@@ -179,7 +183,9 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
                 ViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
+                        Log.d("curricu",String.valueOf(adapterBuscadores.getRef(position).getKey()));
 
+                        VerInformacionesBuscadores(adapterBuscadores.getRef(position).getKey());
                     }
                 });
             }
@@ -195,7 +201,7 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.datos_usuarios_admin, null);
 
         final TextView TvTiInfoAdmin = (TextView) dialogView.findViewById(R.id.xmlTiInformacionesUser);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
         TvTiInfoAdmin.setTypeface(face);
 
         tvIdUser = (TextView) dialogView.findViewById(R.id.xmlTvIdUser);
@@ -204,6 +210,8 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
         tvCorreoUser = (TextView) dialogView.findViewById(R.id.xmlTvCorreoUser);
         tvTelefonoUser = (TextView) dialogView.findViewById(R.id.xmlTvTelefonoUser);
 
+        tvTiApellido_PagWeb = (TextView) dialogView.findViewById(R.id.xmlTiApellidoUser);
+
         btnAceptarUser = (Button) dialogView.findViewById(R.id.xmlbtnAceptarUser);
 
         usersAdmin.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -211,8 +219,6 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-//                    Log.d("datos",String.valueOf(snapshot));
-//                    tvNombreUser.setText(snapshot.child("sApellidoAdmin").getValue(String.class));
                     Administrador administrador = dataSnapshot.getValue(Administrador.class);
 
                     tvIdUser.setText(administrador.getsIdAdmin());
@@ -220,7 +226,6 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
                     tvApellidoUser.setText(administrador.getsApellidoAdmin());
                     tvCorreoUser.setText(administrador.getsEmailAdmin());
                     tvTelefonoUser.setText(administrador.getsTelefonAdmin());
-
                 }
             }
 
@@ -235,28 +240,141 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
             public void onClick(View view) {
                 dialogBuilder.dismiss();
 
-                sIdHAdmin = tvIdUser.getText().toString().trim();
-                sNombreHAdmin = tvNombreUser.getText().toString().trim();
-                sApellidoHAdmin = tvIdUser.getText().toString().trim();
-                sCorreoHAdmin = tvIdUser.getText().toString().trim();
-                sTelefonoHAdmin = tvIdUser.getText().toString().trim();
-
-                Administrador administrador = new Administrador(sIdHAdmin,sNombreHAdmin, sApellidoHAdmin,sCorreoHAdmin,sTelefonoHAdmin,"Activo");
-                usersAdmin.child(sIdHAdmin).setValue(administrador);
             }
         });
 
         dialogBuilder.setView(dialogView);
         dialogBuilder.show();
-
     }
 
-    public void HacerUsuarioAdministrador(){
+    public void VerInformacionesEmpleadores(String idUser) {
 
-        Administrador administrador = new Administrador(sIdHAdmin,sNombreHAdmin, sApellidoHAdmin,sCorreoHAdmin,sTelefonoHAdmin,"Activo");
-        usersAdmin.child(sIdHAdmin).setValue(administrador);
+        final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.datos_empleadores_admin, null);
 
+        final TextView TvTiInfoAdmin = (TextView) dialogView.findViewById(R.id.xmlTiInformacionesUser);
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
+        TvTiInfoAdmin.setTypeface(face);
 
+        tvIdEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvIdEmpleador);
+        tvNombreEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvRncEmpleador);
+        tvPaginaWebEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvNombreEmpleador);
+        tvCorreoEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvCorreoEmpleador);
+        tvTelefonoEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvTelefonoEmpleador);
+        tvProvinciaEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvProvinciaEmpleador);
+        tvDescripcionEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvdescripcionEmpleador);
+        tvRncEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvRncEmpleador);
+        tvDireccionEmpleadorAdm = (TextView) dialogView.findViewById(R.id.xmlTvDireccionEmpleador);
+
+        btnHacerAdmin = (Button) dialogView.findViewById(R.id.xmlbtnHacerAdminEmpleaador);
+
+        usersEmpleadores.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    Empleadores empleadores = dataSnapshot.getValue(Empleadores.class);
+
+                    tvIdEmpleadorAdm.setText(empleadores.getsIdEmpleador());
+                    tvNombreEmpleadorAdm.setText(empleadores.getsNombreEmpleador());
+                    tvPaginaWebEmpleadorAdm.setText(empleadores.getsPaginaWebEmpleador());
+                    tvCorreoEmpleadorAdm.setText(empleadores.getsCorreoEmpleador());
+                    tvTelefonoEmpleadorAdm.setText(empleadores.getsTelefonoEmpleador());
+                    tvProvinciaEmpleadorAdm.setText(empleadores.getsProvinciaEmpleador());
+                    tvDireccionEmpleadorAdm.setText(empleadores.getsDireccionEmpleador());
+                    tvDescripcionEmpleadorAdm.setText(empleadores.getsDescripcionEmpleador());
+                    tvRncEmpleadorAdm.setText(empleadores.getsRncEmpleador());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        btnHacerAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sIdHAdmin = tvIdEmpleadorAdm.getText().toString().trim();
+                sNombreHAdmin = tvNombreEmpleadorAdm.getText().toString().trim();
+                sApellidoHAdmin = tvDireccionEmpleadorAdm.getText().toString().trim();
+                sCorreoHAdmin = tvCorreoEmpleadorAdm.getText().toString().trim();
+                sTelefonoHAdmin = tvTelefonoEmpleadorAdm.getText().toString().trim();
+
+                Administrador administrador = new Administrador(sIdHAdmin, sNombreHAdmin, sApellidoHAdmin, sCorreoHAdmin, sTelefonoHAdmin, "Activo");
+                usersAdmin.child(sIdHAdmin).setValue(administrador);
+                dialogBuilder.dismiss();
+            }
+        });
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.show();
     }
 
+    public void VerInformacionesBuscadores(String idUser) {
+
+        final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.datos_usuarios_admin, null);
+
+        final TextView TvTiInfoAdmin = (TextView) dialogView.findViewById(R.id.xmlTiInformacionesUser);
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
+        TvTiInfoAdmin.setTypeface(face);
+
+        dialogBuilder.setTitle("Informaciones Buscador");
+        dialogBuilder.setMessage("ooooo");
+
+        tvIdUser = (TextView) dialogView.findViewById(R.id.xmlTvIdUser);
+        tvNombreUser = (TextView) dialogView.findViewById(R.id.xmlTvNombreUser);
+        tvApellidoUser = (TextView) dialogView.findViewById(R.id.xmlTvApellidoUser);
+        tvCorreoUser = (TextView) dialogView.findViewById(R.id.xmlTvCorreoUser);
+        tvTelefonoUser = (TextView) dialogView.findViewById(R.id.xmlTvTelefonoUser);
+
+        tvTiApellido_PagWeb = (TextView) dialogView.findViewById(R.id.xmlTiApellidoUser);
+
+        btnAceptarUser = (Button) dialogView.findViewById(R.id.xmlbtnAceptarUser);
+
+        usersBuscadores.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    Curriculos curriculos = dataSnapshot.getValue(Curriculos.class);
+                    Log.d("curri",String.valueOf(dataSnapshot));
+                    Log.d("curric",String.valueOf(curriculos));
+
+                    tvIdUser.setText(curriculos.getsIdCurriculo());
+                    tvNombreUser.setText(curriculos.getsNombreC());
+                    tvApellidoUser.setText(curriculos.getsApellidoC());
+                    tvCorreoUser.setText(curriculos.getsEmailC());
+                    tvTelefonoUser.setText(curriculos.getsTelefonoC());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        btnAceptarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sIdHAdmin = tvIdUser.getText().toString().trim();
+                sNombreHAdmin = tvNombreUser.getText().toString().trim();
+                sApellidoHAdmin = tvApellidoUser.getText().toString().trim();
+                sCorreoHAdmin = tvCorreoUser.getText().toString().trim();
+                sTelefonoHAdmin = tvTelefonoUser.getText().toString().trim();
+
+                Administrador administrador = new Administrador(sIdHAdmin, sNombreHAdmin, sApellidoHAdmin, sCorreoHAdmin, sTelefonoHAdmin, "Activo");
+                usersAdmin.child(sIdHAdmin).setValue(administrador);
+                dialogBuilder.dismiss();
+            }
+        });
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.show();
+    }
 }
