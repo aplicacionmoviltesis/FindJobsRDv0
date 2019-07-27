@@ -72,9 +72,9 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             NivelSecundarioFormAcad, CarreraFormAcad;
 
     private Button btnIdiomasc;
-    private SearchableSpinner spinEstadoCivil, spinGradoMayor, spinEstadoActual;
+    private SearchableSpinner spinEstadoCivil, spinGradoMayor, spinEstadoActual, spinSexo;
 
-    private RadioButton RdbDisponibleC, RdbNoDisponibleC;
+//    private RadioButton RdbDisponibleC, RdbNoDisponibleC;
 
     private TextView mEtxtFecha, mEtxtIdioma;
 
@@ -171,8 +171,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         mEtxtFecha = (TextView) findViewById( R.id.tv );
         mEtxtIdioma = (TextView) findViewById( R.id.tvop );
 
-        RdbDisponibleC = (RadioButton) findViewById( R.id.maculinoCurri );
-        RdbNoDisponibleC = (RadioButton) findViewById( R.id.femeninaCurri );
+//        RdbDisponibleC = (RadioButton) findViewById( R.id.maculinoCurri );
+//        RdbNoDisponibleC = (RadioButton) findViewById( R.id.femeninaCurri );
 
         btnIdiomasc = (Button) findViewById( R.id.xmlBtnIdioma );
 
@@ -259,8 +259,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             }
         } );
         ArrayAdapter<CharSequence> adapterGradoMayor = ArrayAdapter.createFromResource( this,
-                R.array.GradoMayor, android.R.layout.simple_spinner_item );
-        adapterEstadoCivil.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                R.array.InfoGrado, android.R.layout.simple_spinner_item );
+        adapterGradoMayor.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinGradoMayor.setAdapter( adapterGradoMayor );
         spinGradoMayor.setTitle( "Seleccionar el Grado Mayor" );
 
@@ -284,9 +284,32 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> adapterEstadoActual = ArrayAdapter.createFromResource( this,
                 R.array.EstadoActual, android.R.layout.simple_spinner_item );
-        adapterEstadoCivil.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        adapterEstadoActual.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinEstadoActual.setAdapter( adapterEstadoActual );
         spinEstadoActual.setTitle( "Seleccionar el Estado Actual" );
+
+        spinSexo = (SearchableSpinner) findViewById( R.id.spinnersexo );
+        spinSexo.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                if (!IsFirstTimeClick) {
+                    sexo = spinSexo.getSelectedItem().toString();
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        } );
+
+        ArrayAdapter<CharSequence> adapterSexo = ArrayAdapter.createFromResource( this,
+                R.array.InfoSexo, android.R.layout.simple_spinner_item );
+        adapterSexo.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        spinSexo.setAdapter( adapterSexo );
+        spinSexo.setTitle( "Seleccionar el Estado Actual" );
 
 
         listItems = getResources().getStringArray( R.array.InfoIdiomas );
@@ -400,20 +423,20 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             }
         } );
 
-        RadioGroup RGRegistrarCurriculo = (RadioGroup) findViewById( R.id.radiobuttonsexo );
-        RGRegistrarCurriculo.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.maculinoCurri:
-                        sexo = "Masculino";
-                        break;
-                    case R.id.femeninaCurri:
-                        sexo = "Femenino";
-                        break;
-                }
-            }
-        } );
+//        RadioGroup RGRegistrarCurriculo = (RadioGroup) findViewById( R.id.radiobuttonsexo );
+//        RGRegistrarCurriculo.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+//                switch (checkedId) {
+//                    case R.id.maculinoCurri:
+//                        sexo = "Masculino";
+//                        break;
+//                    case R.id.femeninaCurri:
+//                        sexo = "Femenino";
+//                        break;
+//                }
+//            }
+//        } );
 
 
         UniversidadesRef = FirebaseDatabase.getInstance().getReference();
@@ -796,6 +819,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
                     spinGradoMayor.setSelection( obtenerPosicionItem( spinGradoMayor, Datoscurriculos.getsGradoMayorC() ) );
                     spinEstadoActual.setSelection( obtenerPosicionItem( spinEstadoActual, Datoscurriculos.getsEstadoActualC() ) );
+                    spinSexo.setSelection( obtenerPosicionItem( spinSexo, Datoscurriculos.getsSexoC() ) );
 
                     mEtxtFecha.setText( Datoscurriculos.getsFechaC() );
                     etHabilidades.setText( Datoscurriculos.getsHabilidadesC() );

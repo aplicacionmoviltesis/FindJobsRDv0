@@ -163,7 +163,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         btnVerificacionPEmpleador.setVisibility( View.INVISIBLE );
 
         editNombrePEmpleador.setEnabled( false );
-        editRncPEmpleador.setEnabled( false );
+        editRncPEmpleador.setEnabled( true );
         editPaginaWebPEmpleador.setEnabled( false );
         editTelefonoPEmplador.setEnabled( false );
         editDireccionPEmpleador.setEnabled( false );
@@ -239,7 +239,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         if (id == R.id.menu_ActualizarPerfil) {
             //process your onClick here
             beginUpdate();
-            String klk = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Areas%2Fhotel.jpg?alt=media&token=f89cad1b-ea00-4316-8159-f2803d6b8650";
+            String klk = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesEmpleadores%2F1559761613000.png?alt=media&token=efd7dec7-98ed-4eff-84a4-cfe9cd9fc484";
             //ActualizarDatosEmpleador(klk);
             return true;
         }

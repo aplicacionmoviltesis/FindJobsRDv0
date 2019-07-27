@@ -44,7 +44,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColorHint="@color/md_white_1000"
                 app:counterEnabled="true"
-                app:counterMaxLength="30"
+                app:counterMaxLength="10"
                 app:counterOverflowTextAppearance="@style/CounterOverFlow"
                 app:counterTextAppearance="@style/Counter"
                 app:errorEnabled="true"
