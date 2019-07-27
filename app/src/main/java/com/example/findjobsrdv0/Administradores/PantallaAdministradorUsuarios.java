@@ -3,32 +3,43 @@ package com.example.findjobsrdv0.Administradores;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.findjobsrdv0.Adaptadores_Administrador.Administrador;
 import com.example.findjobsrdv0.Adaptadores_Administrador.ViewHolderUsuarios;
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
+import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
+import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosViewHolder;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
+import com.example.findjobsrdv0.PantallaBuscarEmpleosReal;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class PantallaAdministradorUsuarios extends AppCompatActivity {
 
@@ -117,6 +128,67 @@ public class PantallaAdministradorUsuarios extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menubuscar, menu);
+        MenuItem item = menu.findItem(R.id.menuBuscar);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                firebaseSearch(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                firebaseSearch(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.menuBuscar) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void firebaseSearch(String TextSearch) {
+
+        String query = TextSearch.toLowerCase();
+        Query firebaseSearchQuery = usersBuscadores.orderByChild(getResources().getString(R.string.Campo_sNombreC)).startAt(query).endAt(query + "\uf8ff");
+        adapterBuscadores = new FirebaseRecyclerAdapter<Curriculos, ViewHolderUsuarios>(Curriculos.class,
+                R.layout.cardview_mostrar_usuarios, ViewHolderUsuarios.class, firebaseSearchQuery) {
+            @Override
+            protected void populateViewHolder(ViewHolderUsuarios ViewHolder, Curriculos buscadoresEmpleo, int i) {
+
+                ViewHolder.tvNombreUser.setText(buscadoresEmpleo.getsNombreC());
+                ViewHolder.tvApellidoUser.setText(buscadoresEmpleo.getsApellidoC());
+                ViewHolder.tvEmailUser.setText(buscadoresEmpleo.getsEmailC());
+                ViewHolder.tvTelefonoUser.setText(buscadoresEmpleo.getsTelefonoC());
+
+                final Curriculos clickItem = buscadoresEmpleo;
+
+                ViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Log.d("curricu",String.valueOf(adapterBuscadores.getRef(position).getKey()));
+
+                        VerInformacionesBuscadores(adapterBuscadores.getRef(position).getKey());
+                    }
+                });
+            }
+        };
+        recyclerViewAdmin.setAdapter(adapterBuscadores);
     }
 
     private void loadAdministradores() {

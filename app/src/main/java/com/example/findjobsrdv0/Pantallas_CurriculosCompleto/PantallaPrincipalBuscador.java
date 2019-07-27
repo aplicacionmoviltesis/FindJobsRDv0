@@ -17,6 +17,7 @@ import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaCompararEmpleos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaModoUsuario;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 
+import com.example.findjobsrdv0.PantallaBuscarEmpleosReal;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -100,7 +101,7 @@ public class PantallaPrincipalBuscador extends AppCompatActivity
         IrVistaCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), PantallaListaEmpleosBuscados.class);
+                Intent intent = new Intent(v.getContext(), PantallaBuscarEmpleosReal.class);
                 startActivityForResult(intent, 0);
             }
         });

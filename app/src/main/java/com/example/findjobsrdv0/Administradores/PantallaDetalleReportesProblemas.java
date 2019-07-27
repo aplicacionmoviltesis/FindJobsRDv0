@@ -105,6 +105,7 @@ public class PantallaDetalleReportesProblemas extends AppCompatActivity {
                     if(!problemasAppReportar.getsImagenProblem().equals(null)){
                         Picasso.get().load(problemasAppReportar.getsImagenProblem()).into(ImagenProblem);
                     }
+
                     TvTituloProblem.setText(problemasAppReportar.getsTituloProblem());
                     TvIdProblemAppReport.setText(problemasAppReportar.getsIdProblemAppReport());
                     TvDecripcionProblem.setText(problemasAppReportar.getsDecripcionProblem());

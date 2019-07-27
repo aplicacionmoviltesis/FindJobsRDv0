@@ -90,12 +90,12 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_pantalla_perfil_empleador_ );
-        Toolbar toolbar = (Toolbar) findViewById( R.id.toolbar );
-        setSupportActionBar( toolbar );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_perfil_empleador_);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        this.setTitle( "Perfil Empleador" );
+        this.setTitle("Perfil Empleador");
         //getActivity().setTitle("My Title");
         //getActionBar().setTitle("klk");
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -112,10 +112,10 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 //        TvTiPEmpleador.setTypeface(face);
 
         Window w = getWindow();
-        w.setTitle( "My title" );
+        w.setTitle("My title");
 
         mStorageReference = getInstance().getReference();
-        mProgressDialog = new ProgressDialog( PantallaPerfilEmpleador.this );
+        mProgressDialog = new ProgressDialog(PantallaPerfilEmpleador.this);
 
         database = FirebaseDatabase.getInstance();
         DBperfilEmpleadores = database.getReference(getResources().getString(R.string.Ref_Empleadores));
@@ -126,59 +126,59 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 //        TelefonoEmpleador = user.getPhoneNumber();
 //        FotoPerfilCorreo = String.valueOf(user.getPhotoUrl());
 
-        Log.d( "CorreoNombre", String.valueOf( NombreEmpleador ) );
-        Log.d( "Correotelefono", String.valueOf( TelefonoEmpleador ) );
-        Log.d( "CorreoEmail", String.valueOf( EmailEmpleador ) );
-       // Log.d( "CorreoFoto", String.valueOf( FotoPerfilCorreo ) );
+        Log.d("CorreoNombre", String.valueOf(NombreEmpleador));
+        Log.d("Correotelefono", String.valueOf(TelefonoEmpleador));
+        Log.d("CorreoEmail", String.valueOf(EmailEmpleador));
+        // Log.d( "CorreoFoto", String.valueOf( FotoPerfilCorreo ) );
 
         //setTitle("klk");
 
         actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled( true );
-        actionBar.setDisplayShowHomeEnabled( true );
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
-        editNombrePEmpleador = (EditText) findViewById( R.id.xmleditNombreEmpleador );
-        editRncPEmpleador = (EditText) findViewById( R.id.xmleditRNCEmpleador );
-        editPaginaWebPEmpleador = (EditText) findViewById( R.id.xmleditPagWebEmpleador );
-        editTelefonoPEmplador = (EditText) findViewById( R.id.xmleditTelefonoEmpleador );
-        editDireccionPEmpleador = (EditText) findViewById( R.id.xmleditDireccionEmpleador );
-        editCorreoPEmpleador = (EditText) findViewById( R.id.xmleditEmailEmpleador );
-        editProvinciaPEmpleador = (EditText) findViewById( R.id.xmleditProvEmpleador );
-        editDescripcionPEmpleador = (EditText) findViewById( R.id.xmleditDescEmpleador );
+        editNombrePEmpleador = (EditText) findViewById(R.id.xmleditNombreEmpleador);
+        editRncPEmpleador = (EditText) findViewById(R.id.xmleditRNCEmpleador);
+        editPaginaWebPEmpleador = (EditText) findViewById(R.id.xmleditPagWebEmpleador);
+        editTelefonoPEmplador = (EditText) findViewById(R.id.xmleditTelefonoEmpleador);
+        editDireccionPEmpleador = (EditText) findViewById(R.id.xmleditDireccionEmpleador);
+        editCorreoPEmpleador = (EditText) findViewById(R.id.xmleditEmailEmpleador);
+        editProvinciaPEmpleador = (EditText) findViewById(R.id.xmleditProvEmpleador);
+        editDescripcionPEmpleador = (EditText) findViewById(R.id.xmleditDescEmpleador);
 
-        ImagePerfilPEmpleador = (ImageView) findViewById( R.id.xmlImagePerfilEmpleador );
-        ImagePerfilPEmpleador.setOnClickListener( new View.OnClickListener() {
+        ImagePerfilPEmpleador = (ImageView) findViewById(R.id.xmlImagePerfilEmpleador);
+        ImagePerfilPEmpleador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent galleryIntent = new Intent();
-                galleryIntent.setType( "image/*" );
-                galleryIntent.setAction( Intent.ACTION_GET_CONTENT );
-                startActivityForResult( Intent.createChooser( galleryIntent, "Seleccionar Imagen" ), IMAGE_REQUEST_CODE );
+                galleryIntent.setType("image/*");
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(galleryIntent, "Seleccionar Imagen"), IMAGE_REQUEST_CODE);
 
             }
-        } );
+        });
 
-        btnVerificacionPEmpleador = (Button) findViewById( R.id.xmlBtnVerificacionPerfEmp );
-        btnVerificacionPEmpleador.setVisibility( View.INVISIBLE );
+        btnVerificacionPEmpleador = (Button) findViewById(R.id.xmlBtnVerificacionPerfEmp);
+        btnVerificacionPEmpleador.setVisibility(View.INVISIBLE);
 
-        editNombrePEmpleador.setEnabled( false );
-        editRncPEmpleador.setEnabled( false );
-        editPaginaWebPEmpleador.setEnabled( false );
-        editTelefonoPEmplador.setEnabled( false );
-        editDireccionPEmpleador.setEnabled( false );
-        editCorreoPEmpleador.setEnabled( false );
-        editProvinciaPEmpleador.setEnabled( false );
-        editDescripcionPEmpleador.setEnabled( false );
+        editNombrePEmpleador.setEnabled(false);
+        editRncPEmpleador.setEnabled(false);
+        editPaginaWebPEmpleador.setEnabled(false);
+        editTelefonoPEmplador.setEnabled(false);
+        editDireccionPEmpleador.setEnabled(false);
+        editCorreoPEmpleador.setEnabled(false);
+        editProvinciaPEmpleador.setEnabled(false);
+        editDescripcionPEmpleador.setEnabled(false);
 
         //sIdPEmpleador = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
         //LoadDatosEmpleadores(sIdPEmpleador);
 
 
         if (getIntent() != null) {
-            sIdPEmpleador = getIntent().getStringExtra( "EmpleadorConectado" );
+            sIdPEmpleador = getIntent().getStringExtra("EmpleadorConectado");
             if (!sIdPEmpleador.isEmpty()) {
-                LoadDatosEmpleadores( sIdPEmpleador );
+                LoadDatosEmpleadores(sIdPEmpleador);
             }
         }
 
@@ -191,7 +191,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult( requestCode, resultCode, data );
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IMAGE_REQUEST_CODE
                 && resultCode == RESULT_OK
                 && data != null
@@ -201,11 +201,11 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
             try {
 
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap( getContentResolver(), mFilePathUri );
-                ImagePerfilPEmpleador.setImageBitmap( bitmap );
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mFilePathUri);
+                ImagePerfilPEmpleador.setImageBitmap(bitmap);
             } catch (Exception e) {
 
-                Toast.makeText( this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             }
 
@@ -222,7 +222,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate( R.menu.menuperfil, menu );
+        getMenuInflater().inflate(R.menu.menuperfil, menu);
         return true;
     }
 
@@ -244,7 +244,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
             return true;
         }
 
-        return super.onOptionsItemSelected( item );
+        return super.onOptionsItemSelected(item);
     }
 
     public void beginUpdate() {
@@ -256,24 +256,24 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     public void DeleteImagenAnterior() {
         if (sImagenPEmpleador != null && !sImagenPEmpleador.isEmpty()) {
-            final StorageReference mPictureRef = getInstance().getReferenceFromUrl( sImagenPEmpleador );
-            mPictureRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
+            final StorageReference mPictureRef = getInstance().getReferenceFromUrl(sImagenPEmpleador);
+            mPictureRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText( PantallaPerfilEmpleador.this, "Eliminando Imagen...", Toast.LENGTH_LONG ).show();
-                    Log.d( "link foto", String.valueOf( mPictureRef ) );
+                    Toast.makeText(PantallaPerfilEmpleador.this, "Eliminando Imagen...", Toast.LENGTH_LONG).show();
+                    Log.d("link foto", String.valueOf(mPictureRef));
                     SubirNuevaImagen();
                 }
-            } ).addOnFailureListener( new OnFailureListener() {
+            }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText( PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                    Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     mProgressDialog.dismiss();
                 }
-            } );
+            });
         } else {
 
-            Toast.makeText( PantallaPerfilEmpleador.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
+            Toast.makeText(PantallaPerfilEmpleador.this, "No hay imagen agregada", Toast.LENGTH_LONG).show();
             SubirNuevaImagen();
         }
     }
@@ -282,120 +282,120 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         String imageName = System.currentTimeMillis() + ".png";
         //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
 
-        StorageReference storageReference2do = mStorageReference.child( mStoragePath + imageName );
+        StorageReference storageReference2do = mStorageReference.child(mStoragePath + imageName);
 
         Bitmap bitmap = ((BitmapDrawable) ImagePerfilPEmpleador.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress( Bitmap.CompressFormat.PNG, 100, baos );
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
         byte[] data = baos.toByteArray();
-        UploadTask uploadTask = storageReference2do.putBytes( data );
-        uploadTask.addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        UploadTask uploadTask = storageReference2do.putBytes(data);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                Toast.makeText( PantallaPerfilEmpleador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG ).show();
+                Toast.makeText(PantallaPerfilEmpleador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
-                ActualizarDatosEmpleador( downloadUri.toString() );
+                ActualizarDatosEmpleador(downloadUri.toString());
 
             }
 
 
-        } ).addOnFailureListener( new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText( PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 mProgressDialog.dismiss();
             }
-        } );
+        });
     }
 
     private void ActivarCampor() {
 
-        editNombrePEmpleador.setEnabled( true );
+        editNombrePEmpleador.setEnabled(true);
         //editRncPEmpleador.setEnabled(false);
-        editPaginaWebPEmpleador.setEnabled( true );
-        editTelefonoPEmplador.setEnabled( true );
-        editDireccionPEmpleador.setEnabled( true );
+        editPaginaWebPEmpleador.setEnabled(true);
+        editTelefonoPEmplador.setEnabled(true);
+        editDireccionPEmpleador.setEnabled(true);
         //editCorreoPEmpleador.setEnabled(false);
-        editProvinciaPEmpleador.setEnabled( true );
-        editDescripcionPEmpleador.setEnabled( true );
+        editProvinciaPEmpleador.setEnabled(true);
+        editDescripcionPEmpleador.setEnabled(true);
     }
 
 
     public void LoadDatosEmpleadores(String sIdEmpleador) {
-        DBperfilEmpleadores.child( sIdEmpleador ).addListenerForSingleValueEvent( new ValueEventListener() {
+        DBperfilEmpleadores.child(sIdEmpleador).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    Empleadores Datosempleadores = dataSnapshot.getValue( Empleadores.class );
+                    Empleadores Datosempleadores = dataSnapshot.getValue(Empleadores.class);
                     sImagenPEmpleador = Datosempleadores.getsImagenEmpleador();
                     if (sImagenPEmpleador != null && sImagenPEmpleador != "") {
-                        Picasso.get().load( sImagenPEmpleador ).into( ImagePerfilPEmpleador );
+                        Picasso.get().load(sImagenPEmpleador).into(ImagePerfilPEmpleador);
                     } else {
                         //FotoPerfilCorreo = user.getPhotoUrl();
                         if (user.getPhotoUrl() != null) {
-                            Glide.with( PantallaPerfilEmpleador.this ).load( user.getPhotoUrl() ).into( ImagePerfilPEmpleador );
+                            Glide.with(PantallaPerfilEmpleador.this).load(user.getPhotoUrl()).into(ImagePerfilPEmpleador);
                         }
                     }
 
                     sNombrePEmpleador = Datosempleadores.getsNombreEmpleador();
                     if (sNombrePEmpleador != null && sNombrePEmpleador != "") {
-                        editNombrePEmpleador.setText( sNombrePEmpleador );
+                        editNombrePEmpleador.setText(sNombrePEmpleador);
                         //this.setTitle(sNombrePEmpleador);
                         //this.setTitle("klk");
                     } else {
                         NombreEmpleador = user.getDisplayName();
                         if (NombreEmpleador != null && NombreEmpleador != "") {
-                            editNombrePEmpleador.setText( NombreEmpleador );
+                            editNombrePEmpleador.setText(NombreEmpleador);
                         }
                     }
 
                     sTelefonoPEmpleador = Datosempleadores.getsTelefonoEmpleador();
                     if (sTelefonoPEmpleador != null && sTelefonoPEmpleador != "") {
-                        editTelefonoPEmplador.setText( sTelefonoPEmpleador );
+                        editTelefonoPEmplador.setText(sTelefonoPEmpleador);
                     } else {
                         TelefonoEmpleador = user.getPhoneNumber();
                         if (TelefonoEmpleador != null && TelefonoEmpleador != "") {
-                            editTelefonoPEmplador.setText( TelefonoEmpleador );
+                            editTelefonoPEmplador.setText(TelefonoEmpleador);
                         }
                     }
 
                     sCorreoPEmpleador = Datosempleadores.getsCorreoEmpleador();
                     if (sCorreoPEmpleador != null && sCorreoPEmpleador != "") {
-                        editCorreoPEmpleador.setText( sCorreoPEmpleador );
+                        editCorreoPEmpleador.setText(sCorreoPEmpleador);
                     } else {
                         EmailEmpleador = user.getEmail();
                         if (EmailEmpleador != null && EmailEmpleador != "") {
-                            editCorreoPEmpleador.setText( EmailEmpleador );
+                            editCorreoPEmpleador.setText(EmailEmpleador);
                         }
                     }
 
                     sRncPEmpleador = Datosempleadores.getsRncEmpleador();
                     if (sRncPEmpleador != null && sRncPEmpleador != "") {
-                        editRncPEmpleador.setText( sRncPEmpleador );
+                        editRncPEmpleador.setText(sRncPEmpleador);
                     }
 
                     sPaginaWebPEmpleador = Datosempleadores.getsPaginaWebEmpleador();
                     if (sPaginaWebPEmpleador != null && sPaginaWebPEmpleador != "") {
-                        editPaginaWebPEmpleador.setText( sPaginaWebPEmpleador );
+                        editPaginaWebPEmpleador.setText(sPaginaWebPEmpleador);
                     }
 
                     sDireccionPEmpleador = Datosempleadores.getsDireccionEmpleador();
                     if (sDireccionPEmpleador != null && sDireccionPEmpleador != "") {
-                        editDireccionPEmpleador.setText( sDireccionPEmpleador );
+                        editDireccionPEmpleador.setText(sDireccionPEmpleador);
                     }
 
                     sProvinciaPEmpleador = Datosempleadores.getsProvinciaEmpleador();
                     if (sProvinciaPEmpleador != null && sProvinciaPEmpleador != "") {
-                        editProvinciaPEmpleador.setText( sProvinciaPEmpleador );
+                        editProvinciaPEmpleador.setText(sProvinciaPEmpleador);
                     }
 
                     sDescripcionPEmpleador = Datosempleadores.getsDescripcionEmpleador();
                     if (sDescripcionPEmpleador != null && sDescripcionPEmpleador != "") {
-                        editDescripcionPEmpleador.setText( sDescripcionPEmpleador );
+                        editDescripcionPEmpleador.setText(sDescripcionPEmpleador);
                     }
 
                     sVerificacionPEmpleador = Datosempleadores.getsVerificacionEmpleador();
@@ -403,36 +403,36 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                     if (sVerificacionPEmpleador != null) {
 
                         if (sVerificacionPEmpleador == true) {
-                            btnVerificacionPEmpleador.setVisibility( View.VISIBLE );
+                            btnVerificacionPEmpleador.setVisibility(View.VISIBLE);
                         }
                         if (sVerificacionPEmpleador == false) {
-                            btnVerificacionPEmpleador.setVisibility( View.INVISIBLE );
+                            btnVerificacionPEmpleador.setVisibility(View.INVISIBLE);
                         }
                     }
                 } else {
                     if (user.getPhotoUrl() != null) {
-                        Glide.with( PantallaPerfilEmpleador.this ).load( user.getPhotoUrl() ).into( ImagePerfilPEmpleador );
+                        Glide.with(PantallaPerfilEmpleador.this).load(user.getPhotoUrl()).into(ImagePerfilPEmpleador);
                     }
                     NombreEmpleador = user.getDisplayName();
                     if (NombreEmpleador != null && NombreEmpleador != "") {
-                        editNombrePEmpleador.setText( NombreEmpleador );
+                        editNombrePEmpleador.setText(NombreEmpleador);
                     }
                     EmailEmpleador = user.getEmail();
                     if (EmailEmpleador != null && EmailEmpleador != "") {
-                        editCorreoPEmpleador.setText( EmailEmpleador );
+                        editCorreoPEmpleador.setText(EmailEmpleador);
                     }
                     TelefonoEmpleador = user.getPhoneNumber();
                     if (TelefonoEmpleador != null && TelefonoEmpleador != "") {
-                        editTelefonoPEmplador.setText( TelefonoEmpleador );
+                        editTelefonoPEmplador.setText(TelefonoEmpleador);
                     }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( PantallaPerfilEmpleador.this, "Hubo un problema con traer los datos", Toast.LENGTH_LONG ).show();
+                Toast.makeText(PantallaPerfilEmpleador.this, "Hubo un problema con traer los datos", Toast.LENGTH_LONG).show();
             }
-        } );
+        });
 
     }
 
@@ -451,12 +451,12 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         //sIdPEmpleador = sIdPEmpleador;
         //foto = foto;
 
-        Empleadores empleadores = new Empleadores( sNombrePEmpleador, sRncPEmpleador, sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador, sCorreoPEmpleador, foto, sVerificacionPEmpleador, sIdPEmpleador, sDescripcionPEmpleador, sProvinciaPEmpleador );
-        DBperfilEmpleadores.child( sIdPEmpleador ).setValue( empleadores );
+        Empleadores empleadores = new Empleadores(sNombrePEmpleador, sRncPEmpleador, sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador, sCorreoPEmpleador, foto, sVerificacionPEmpleador, sIdPEmpleador, sDescripcionPEmpleador, sProvinciaPEmpleador);
+        DBperfilEmpleadores.child(sIdPEmpleador).setValue(empleadores);
         mProgressDialog.dismiss();
-        Toast.makeText( PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG ).show();
-        Intent intent = new Intent( PantallaPerfilEmpleador.this, PantallaPrincipalEmpleador.class );
-        startActivity( intent );
+        Toast.makeText(PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(PantallaPerfilEmpleador.this, PantallaPrincipalEmpleador.class);
+        startActivity(intent);
 
     }
 
