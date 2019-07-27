@@ -1,6 +1,7 @@
 package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +30,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
+import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.cPantallaRegistrarCurriculo;
 import com.example.findjobsrdv0.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +43,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -163,7 +169,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         btnVerificacionPEmpleador.setVisibility(View.INVISIBLE);
 
         editNombrePEmpleador.setEnabled(false);
-        editRncPEmpleador.setEnabled(false);
+        editRncPEmpleador.setEnabled(true);
         editPaginaWebPEmpleador.setEnabled(false);
         editTelefonoPEmplador.setEnabled(false);
         editDireccionPEmpleador.setEnabled(false);
@@ -238,8 +244,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         }
         if (id == R.id.menu_ActualizarPerfil) {
             //process your onClick here
-            beginUpdate();
-            String klk = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/Imagenes%20Areas%2Fhotel.jpg?alt=media&token=f89cad1b-ea00-4316-8159-f2803d6b8650";
+            EnviarDatos();
+
+//            String klk = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesEmpleadores%2F1559761613000.png?alt=media&token=efd7dec7-98ed-4eff-84a4-cfe9cd9fc484";
             //ActualizarDatosEmpleador(klk);
             return true;
         }
@@ -436,6 +443,87 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     }
 
+    private void EnviarDatos(){
+        Query q = DBperfilEmpleadores.orderByChild( "sIdEmpleador" ).equalTo(sIdPEmpleador);
+        q.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    RegistrarDatosEmpleador();
+                }else {
+                    beginUpdate();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        } );
+    }
+
+    private void RegistrarDatosEmpleador(){
+        final StorageReference StorageReference2nd = mStorageReference.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUri ) );
+
+        UploadTask uploadTask = StorageReference2nd.putFile( mFilePathUri );
+        Task<Uri> urlTask = uploadTask.continueWithTask( new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+                // Continue with the task to get the download URL
+                return StorageReference2nd.getDownloadUrl();
+            }
+        } ).addOnCompleteListener( new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()){
+                    Uri downloadUri = task.getResult();
+                    String downloadURL = downloadUri.toString();
+                    Log.d( "url", downloadURL );
+                    sNombrePEmpleador = editNombrePEmpleador.getText().toString().trim();
+                    sRncPEmpleador = editRncPEmpleador.getText().toString().trim();
+                    sPaginaWebPEmpleador = editPaginaWebPEmpleador.getText().toString().trim();
+                    sTelefonoPEmpleador = editTelefonoPEmplador.getText().toString().trim();
+                    sDireccionPEmpleador = editDireccionPEmpleador.getText().toString().trim();
+                    sCorreoPEmpleador = editCorreoPEmpleador.getText().toString().trim();
+                    sProvinciaPEmpleador = editProvinciaPEmpleador.getText().toString().trim();
+                    sDescripcionPEmpleador = editDescripcionPEmpleador.getText().toString().trim();
+
+                    //sVerificacionPEmpleador = sVerificacionPEmpleador;
+                    //sIdPEmpleador = sIdPEmpleador;
+                    //foto = foto;
+
+                    Empleadores empleadores = new Empleadores( sNombrePEmpleador, sRncPEmpleador,
+                            sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador,
+                            sCorreoPEmpleador, downloadURL, false, sIdPEmpleador,
+                            sDescripcionPEmpleador, sProvinciaPEmpleador );
+                    DBperfilEmpleadores.child( sIdPEmpleador ).setValue( empleadores );
+                    mProgressDialog.dismiss();
+                    Toast.makeText( PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG ).show();
+//                    Intent intent = new Intent( PantallaPerfilEmpleador.this, PantallaPrincipalEmpleador.class );
+//                    startActivity( intent );
+
+                }else {
+
+                }
+            }
+        }).addOnFailureListener( new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+//                    mProgressDialog.dismiss();
+                Toast.makeText( PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+            }
+        } );
+
+    }
+    private String getFileExtension(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType( contentResolver.getType( uri ) );
+    }
+
     private void ActualizarDatosEmpleador(String foto) {
 
         sNombrePEmpleador = editNombrePEmpleador.getText().toString().trim();
@@ -451,8 +539,11 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         //sIdPEmpleador = sIdPEmpleador;
         //foto = foto;
 
-        Empleadores empleadores = new Empleadores(sNombrePEmpleador, sRncPEmpleador, sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador, sCorreoPEmpleador, foto, sVerificacionPEmpleador, sIdPEmpleador, sDescripcionPEmpleador, sProvinciaPEmpleador);
-        DBperfilEmpleadores.child(sIdPEmpleador).setValue(empleadores);
+        Empleadores empleadores = new Empleadores( sNombrePEmpleador, sRncPEmpleador,
+                sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador,
+                sCorreoPEmpleador, foto, sVerificacionPEmpleador, sIdPEmpleador,
+                sDescripcionPEmpleador, sProvinciaPEmpleador );
+        DBperfilEmpleadores.child( sIdPEmpleador ).setValue( empleadores );
         mProgressDialog.dismiss();
         Toast.makeText(PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(PantallaPerfilEmpleador.this, PantallaPrincipalEmpleador.class);

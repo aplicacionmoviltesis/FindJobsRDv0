@@ -25,8 +25,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,9 +70,9 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             NivelSecundarioFormAcad, CarreraFormAcad;
 
     private Button btnIdiomasc;
-    private SearchableSpinner spinEstadoCivil, spinGradoMayor, spinEstadoActual;
+    private SearchableSpinner spinEstadoCivil, spinGradoMayor, spinEstadoActual, spinSexo;
 
-    private RadioButton RdbDisponibleC, RdbNoDisponibleC;
+//    private RadioButton RdbDisponibleC, RdbNoDisponibleC;
 
     private TextView mEtxtFecha, mEtxtIdioma;
 
@@ -116,8 +114,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     //List which hold multiple selection spinner values
     List<String> list = new ArrayList<String>();
 
-    Button btnregistrarC;
-    Button btnActualizarC;
+    private Button btnActualizarC;
+//    Button btnActualizarC;
 
     DatabaseReference UniversidadesRef;
     SearchableSpinner spinUniversidadFormAcad;
@@ -171,8 +169,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         mEtxtFecha = (TextView) findViewById( R.id.tv );
         mEtxtIdioma = (TextView) findViewById( R.id.tvop );
 
-        RdbDisponibleC = (RadioButton) findViewById( R.id.maculinoCurri );
-        RdbNoDisponibleC = (RadioButton) findViewById( R.id.femeninaCurri );
+//        RdbDisponibleC = (RadioButton) findViewById( R.id.maculinoCurri );
+//        RdbNoDisponibleC = (RadioButton) findViewById( R.id.femeninaCurri );
 
         btnIdiomasc = (Button) findViewById( R.id.xmlBtnIdioma );
 
@@ -259,8 +257,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             }
         } );
         ArrayAdapter<CharSequence> adapterGradoMayor = ArrayAdapter.createFromResource( this,
-                R.array.GradoMayor, android.R.layout.simple_spinner_item );
-        adapterEstadoCivil.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+                R.array.InfoGrado, android.R.layout.simple_spinner_item );
+        adapterGradoMayor.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinGradoMayor.setAdapter( adapterGradoMayor );
         spinGradoMayor.setTitle( "Seleccionar el Grado Mayor" );
 
@@ -284,9 +282,32 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> adapterEstadoActual = ArrayAdapter.createFromResource( this,
                 R.array.EstadoActual, android.R.layout.simple_spinner_item );
-        adapterEstadoCivil.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        adapterEstadoActual.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         spinEstadoActual.setAdapter( adapterEstadoActual );
         spinEstadoActual.setTitle( "Seleccionar el Estado Actual" );
+
+        spinSexo = (SearchableSpinner) findViewById( R.id.spinnersexo );
+        spinSexo.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                if (!IsFirstTimeClick) {
+                    sexo = spinSexo.getSelectedItem().toString();
+                } else {
+                    IsFirstTimeClick = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        } );
+
+        ArrayAdapter<CharSequence> adapterSexo = ArrayAdapter.createFromResource( this,
+                R.array.InfoSexo, android.R.layout.simple_spinner_item );
+        adapterSexo.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        spinSexo.setAdapter( adapterSexo );
+        spinSexo.setTitle( "Seleccionar el Estado Actual" );
 
 
         listItems = getResources().getStringArray( R.array.InfoIdiomas );
@@ -400,20 +421,20 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             }
         } );
 
-        RadioGroup RGRegistrarCurriculo = (RadioGroup) findViewById( R.id.radiobuttonsexo );
-        RGRegistrarCurriculo.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.maculinoCurri:
-                        sexo = "Masculino";
-                        break;
-                    case R.id.femeninaCurri:
-                        sexo = "Femenino";
-                        break;
-                }
-            }
-        } );
+//        RadioGroup RGRegistrarCurriculo = (RadioGroup) findViewById( R.id.radiobuttonsexo );
+//        RGRegistrarCurriculo.setOnCheckedChangeListener( new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+//                switch (checkedId) {
+//                    case R.id.maculinoCurri:
+//                        sexo = "Masculino";
+//                        break;
+//                    case R.id.femeninaCurri:
+//                        sexo = "Femenino";
+//                        break;
+//                }
+//            }
+//        } );
 
 
         UniversidadesRef = FirebaseDatabase.getInstance().getReference();
@@ -572,34 +593,46 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
         IdAreas = RegistrarAreas.push().getKey();
 
-        btnregistrarC = findViewById( R.id.xmlBtnRegistrarDatosGC );
-        btnregistrarC.setOnClickListener( new View.OnClickListener() {
+        btnActualizarC = findViewById( R.id.xmlBtnActualizarGC );
+        btnActualizarC.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cedula = etCedula.getText().toString().trim();
-                Log.d( " todo", String.valueOf( cedula ) );
 
-                Query q = databaseReferenceCurrilo.orderByChild( "sCedulaC" ).equalTo( cedula );
+                Query q = databaseReferenceCurrilo.orderByChild( "sIdCurriculo" ).equalTo( sIdBuscador );
                 q.addListenerForSingleValueEvent( new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (!dataSnapshot.exists()) {
-                            Log.d( "rnc no existe", String.valueOf( dataSnapshot ) );
-                            //Toast.makeText(PantallaRegistroEmpleador.this, "Ir a registrar", Toast.LENGTH_LONG).show();
-//                            sAreaC = spinAreaC.getSelectedItemsAsString();
+                            cedula = etCedula.getText().toString().trim();
 
-                            Query q = DBCedula.orderByChild(getResources().getString(R.string.Campo_sCedulaC)).equalTo( cedula );
-                            q.addListenerForSingleValueEvent(new ValueEventListener() {
+                            Query q = databaseReferenceCurrilo.orderByChild( "sCedulaC" ).equalTo( cedula );
+                            q.addListenerForSingleValueEvent( new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (!dataSnapshot.exists()){
-                                        Log.d( "rnc no existe", String.valueOf( dataSnapshot ) );
+                                    if (!dataSnapshot.exists()) {
 
-                                        registrarcurriculo( sIdBuscador );
+                                        Query q = DBCedula.orderByChild(getResources().getString(R.string.Campo_sCedulaC)).equalTo( cedula );
+                                        q.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                if (!dataSnapshot.exists()){
+                                                    registrarcurriculo( sIdBuscador );
+                                                } else {
+                                                    etCedula.setError( "Esta cedula ya a sido registrado" );
+                                                    Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        } );
 
                                     } else {
                                         etCedula.setError( "Esta cedula ya a sido registrado" );
                                         Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
+                                        //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
                                     }
                                 }
 
@@ -609,10 +642,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                                 }
                             } );
 
-                        } else {
-                            etCedula.setError( "Esta cedula ya a sido registrado" );
-                            Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
-                            //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
+                        }else {
+                            beginUpdate();
                         }
                     }
 
@@ -625,14 +656,14 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         } );
 
 
-        btnActualizarC = findViewById( R.id.xmlBtnActualizarDatosGC );
-        btnActualizarC.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                sAreaC = spinAreaC.getSelectedItemsAsString();
-                beginUpdate();
-            }
-        } );
+//        btnActualizarC = findViewById( R.id.xmlBtnActualizarDatosGC );
+//        btnActualizarC.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                sAreaC = spinAreaC.getSelectedItemsAsString();
+//                beginUpdate();
+//            }
+//        } );
     }
 
 
@@ -738,7 +769,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    btnregistrarC.setEnabled( false );
+//                    btnActualizarC.setEnabled( false );
                     etCedula.setEnabled( false );
 
                     Curriculos Datoscurriculos = dataSnapshot.getValue( Curriculos.class );
@@ -796,6 +827,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
                     spinGradoMayor.setSelection( obtenerPosicionItem( spinGradoMayor, Datoscurriculos.getsGradoMayorC() ) );
                     spinEstadoActual.setSelection( obtenerPosicionItem( spinEstadoActual, Datoscurriculos.getsEstadoActualC() ) );
+                    spinSexo.setSelection( obtenerPosicionItem( spinSexo, Datoscurriculos.getsSexoC() ) );
 
                     mEtxtFecha.setText( Datoscurriculos.getsFechaC() );
                     etHabilidades.setText( Datoscurriculos.getsHabilidadesC() );
@@ -808,7 +840,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
 
                 } else {
-                    btnActualizarC.setEnabled( false );
+//                    btnActualizarC.setEnabled( false );
                     etCedula.setEnabled( true );
                     if (user.getPhotoUrl() != null) {
                         Glide.with( cPantallaRegistrarCurriculo.this ).load( user.getPhotoUrl() ).into( imageViewcurriculo );
@@ -896,8 +928,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     private void registrarcurriculo(final String cIdCurriculo) {
 
-//        mProgressDialog.setTitle( "Subiendo Curriculo..." );
-//        mProgressDialog.show();
+        mProgressDialog.setTitle( "Actualizando Curriculo..." );
+        mProgressDialog.show();
 
         final StorageReference StorageReference2nd = mStorageReference.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUri ) );
 
@@ -989,24 +1021,6 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                         Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG ).show();
                         return;
                     }
-//                    if (TextUtils.isEmpty( estadoCivil )) {
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione el estado civil", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( gradomayor )) {
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione el Grado Mayor", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( estadoactual )) {
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione el Estado Actual", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//
-
-//                    if (TextUtils.isEmpty( UniversidadesFormAcad )) {
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una universidad", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
 
                     mProgressDialog.dismiss();
 
@@ -1028,7 +1042,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         } ).addOnFailureListener( new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                    mProgressDialog.dismiss();
+                    mProgressDialog.dismiss();
                 Toast.makeText( cPantallaRegistrarCurriculo.this, e.getMessage(), Toast.LENGTH_LONG ).show();
 
             }

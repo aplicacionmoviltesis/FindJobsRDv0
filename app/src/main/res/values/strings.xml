@@ -130,8 +130,9 @@
     </string-array>
 
     <string-array name="EstadoCivil">
-        <item>soltero</item>
-        <item>casado</item>
+        <item>Soltero</item>
+        <item>Unión Libre</item>
+        <item>Casado</item>
     </string-array>
 
     <string-array name="EstadoActual">
