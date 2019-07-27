@@ -771,24 +771,24 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/xmlBtnRegistrarDatosGC"
+                    android:id="@+id/xmlBtnActualizarGC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/btn_bg"
                     android:hint="Actualizar"
                     android:padding="2dp"
-                    android:text=" Registrar " />
+                    android:text=" Actualizar curriculo " />
 
-                <Button
-                    android:id="@+id/xmlBtnActualizarDatosGC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="02dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/btn_bg"
-                    android:padding="4dp"
-                    android:text="Actualizar " />
+                <!--<Button-->
+                    <!--android:id="@+id/xmlBtnActualizarDatosGC"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginRight="02dp"-->
+                    <!--android:layout_marginBottom="15dp"-->
+                    <!--android:background="@drawable/btn_bg"-->
+                    <!--android:padding="4dp"-->
+                    <!--android:text="Actualizar " />-->
 
             </LinearLayout>
 
