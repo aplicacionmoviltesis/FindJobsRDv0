@@ -1057,6 +1057,11 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
 //                    mProgressDialog.dismiss();
 
+                    if (cedula.length()!=10) {
+                        Toast.makeText(cPantallaRegistrarCurriculo.this, "La Cédula solo debe contener 10 dígitos", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
                     Curriculos curriculos = new Curriculos(cIdCurriculo,
                             downloadURL, nombre, apellido, cedula, email, telefono, celular,
                             provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual,

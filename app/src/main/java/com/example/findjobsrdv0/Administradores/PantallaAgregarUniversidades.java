@@ -123,7 +123,6 @@ public class PantallaAgregarUniversidades extends AppCompatActivity {
 
                 if (!IsFirstTimeClick) {
                     sUbicacionUniRegistrar = spinProvUniversidadR.getSelectedItem().toString();
-                    Log.d("valorSpinProv", sUbicacionUniRegistrar);
                 } else {
                     IsFirstTimeClick = false;
                 }
@@ -140,7 +139,7 @@ public class PantallaAgregarUniversidades extends AppCompatActivity {
 
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child("Nombre_Provincia").getValue(String.class);
+                    String provinciaName = provinciaSnapshot.child("sNombreProvincia").getValue(String.class);
                     ListProvincias.add(provinciaName);
                 }
 
@@ -230,7 +229,7 @@ public class PantallaAgregarUniversidades extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
                     String sImagenUniRegistrar = downloadUri.toString();
-                    Log.d( "url", sImagenUniRegistrar );
+
                     sNombreUniRegistrar = editNombreUniR.getText().toString().trim();
                     sTelefonoUniRegistrar = editTelefonoUniR.getText().toString().trim();
                     sDireccionUniRegistrar = editDireccionUniR.getText().toString().trim();
