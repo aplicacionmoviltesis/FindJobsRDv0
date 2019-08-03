@@ -69,10 +69,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     private ImageView ImagePerfilPEmpleador;
 
-    private TextView TvTiPEmpleador;
-
     private int IMAGE_REQUEST_CODE = 5;
-
 
     private FirebaseDatabase database;
     private DatabaseReference DBperfilEmpleadores;
@@ -90,8 +87,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     private String TelefonoEmpleador, EmailEmpleador, NombreEmpleador, FotoPerfilCorreo;
 
-    private String nombreEmpleador = "";
-
     private ActionBar actionBar;
 
     @Override
@@ -102,20 +97,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         this.setTitle("Perfil Empleador");
-        //getActivity().setTitle("My Title");
-        //getActionBar().setTitle("klk");
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-//        TvTiPEmpleador = (TextView) findViewById(R.id.xmlTvTiPerfilEmpleadorPE);
-//        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/robotoslab.bold.ttf");
-//        TvTiPEmpleador.setTypeface(face);
 
         Window w = getWindow();
         w.setTitle("My title");
@@ -127,17 +108,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         DBperfilEmpleadores = database.getReference(getResources().getString(R.string.Ref_Empleadores));
 
         user = firebaseAuth.getInstance().getCurrentUser();
-        //NombreEmpleador = user.getDisplayName();
-//        EmailEmpleador = user.getEmail();
-//        TelefonoEmpleador = user.getPhoneNumber();
-//        FotoPerfilCorreo = String.valueOf(user.getPhotoUrl());
-
-        Log.d("CorreoNombre", String.valueOf(NombreEmpleador));
-        Log.d("Correotelefono", String.valueOf(TelefonoEmpleador));
-        Log.d("CorreoEmail", String.valueOf(EmailEmpleador));
-        // Log.d( "CorreoFoto", String.valueOf( FotoPerfilCorreo ) );
-
-        //setTitle("klk");
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -177,22 +147,12 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         editProvinciaPEmpleador.setEnabled(false);
         editDescripcionPEmpleador.setEnabled(false);
 
-        //sIdPEmpleador = "HmAtSRSnxdfxb0Z1kM2qoW1OvNo1";
-        //LoadDatosEmpleadores(sIdPEmpleador);
-
-
         if (getIntent() != null) {
             sIdPEmpleador = getIntent().getStringExtra("EmpleadorConectado");
             if (!sIdPEmpleador.isEmpty()) {
                 LoadDatosEmpleadores(sIdPEmpleador);
             }
         }
-
-
-        //Log.d("Nombre", String.valueOf(sNombrePEmpleador));
-        //this.setTitle(sNombrePEmpleador);
-
-
     }
 
     @Override
@@ -214,8 +174,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             }
-
-
         }
     }
 
@@ -223,7 +181,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -246,8 +203,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
             //process your onClick here
             EnviarDatos();
 
-//            String klk = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesEmpleadores%2F1559761613000.png?alt=media&token=efd7dec7-98ed-4eff-84a4-cfe9cd9fc484";
-            //ActualizarDatosEmpleador(klk);
             return true;
         }
 
@@ -322,7 +277,7 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     private void ActivarCampor() {
 
         editNombrePEmpleador.setEnabled(true);
-        //editRncPEmpleador.setEnabled(false);
+//        editRncPEmpleador.setEnabled(true);
         editPaginaWebPEmpleador.setEnabled(true);
         editTelefonoPEmplador.setEnabled(true);
         editDireccionPEmpleador.setEnabled(true);
@@ -337,6 +292,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+
+                    editRncPEmpleador.setEnabled( false );
+
                     Empleadores Datosempleadores = dataSnapshot.getValue(Empleadores.class);
                     sImagenPEmpleador = Datosempleadores.getsImagenEmpleador();
                     if (sImagenPEmpleador != null && sImagenPEmpleador != "") {
@@ -417,6 +375,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                         }
                     }
                 } else {
+
+//                    editRncPEmpleador.setEnabled( true );
+
                     if (user.getPhotoUrl() != null) {
                         Glide.with(PantallaPerfilEmpleador.this).load(user.getPhotoUrl()).into(ImagePerfilPEmpleador);
                     }
@@ -491,10 +452,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                     sProvinciaPEmpleador = editProvinciaPEmpleador.getText().toString().trim();
                     sDescripcionPEmpleador = editDescripcionPEmpleador.getText().toString().trim();
 
-                    //sVerificacionPEmpleador = sVerificacionPEmpleador;
-                    //sIdPEmpleador = sIdPEmpleador;
-                    //foto = foto;
-
                     Empleadores empleadores = new Empleadores( sNombrePEmpleador, sRncPEmpleador,
                             sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador,
                             sCorreoPEmpleador, downloadURL, false, sIdPEmpleador,
@@ -535,10 +492,6 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         sProvinciaPEmpleador = editProvinciaPEmpleador.getText().toString().trim();
         sDescripcionPEmpleador = editDescripcionPEmpleador.getText().toString().trim();
 
-        //sVerificacionPEmpleador = sVerificacionPEmpleador;
-        //sIdPEmpleador = sIdPEmpleador;
-        //foto = foto;
-
         Empleadores empleadores = new Empleadores( sNombrePEmpleador, sRncPEmpleador,
                 sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador,
                 sCorreoPEmpleador, foto, sVerificacionPEmpleador, sIdPEmpleador,
@@ -550,109 +503,4 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-//    public void LoadDatosEmpleadores(String sIdEmpleador) {
-//        DBperfilEmpleadores.child(sIdEmpleador).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                Empleadores Datosempleadores = dataSnapshot.getValue(Empleadores.class);
-//                Log.d("verificacion", String.valueOf(dataSnapshot));
-//                Log.d("verificaciondat", String.valueOf(Datosempleadores));
-//
-//
-//                //sImagenPEmpleador = String.valueOf(Datosempleadores.getsImagenEmpleador());
-//                sImagenPEmpleador = dataSnapshot.child("sImagenEmpleador").getValue(String.class);
-//
-//                Log.d("Imagenklk", String.valueOf(sImagenPEmpleador));
-//                Log.d("Imagenklk", sImagenPEmpleador+"  /");
-//                //Log.d("Imagenklk", sImagenPEmpleador);
-//
-//                if (sImagenPEmpleador != null && sImagenPEmpleador != "") {
-//                    Picasso.get().load(sImagenPEmpleador).into(ImagePerfilPEmpleador);
-//                } else {
-//                    if (FotoPerfilCorreo != null && FotoPerfilCorreo != "") {
-//                        Glide.with(PantallaPerfilEmpleador.this).load(FotoPerfilCorreo).into(ImagePerfilPEmpleador);
-//                    }
-//                }
-//                sNombrePEmpleador = dataSnapshot.child("sNombreEmpleador").getValue(String.class);
-//                //sNombrePEmpleador = Datosempleadores.getsNombreEmpleador();
-//                if (sNombrePEmpleador != null && sNombrePEmpleador != "") {
-//                    editNombrePEmpleador.setText(sNombrePEmpleador);
-//                    actionBar.setTitle(sNombrePEmpleador);
-//                }else {
-//                    if (NombreEmpleador != null && NombreEmpleador != "") {
-//                        editNombrePEmpleador.setText("jjjj");
-//                    }
-//                }
-//                //sRncPEmpleador = dataSnapshot.child("sRncEmpleador").getValue(String.class);
-//                sRncPEmpleador = Datosempleadores.getsRncEmpleador();
-//                if (sRncPEmpleador != null && sRncPEmpleador != "") {
-//                    editRncPEmpleador.setText(sRncPEmpleador);
-//                }
-//
-//                sPaginaWebPEmpleador = Datosempleadores.getsPaginaWebEmpleador();
-//                if (sPaginaWebPEmpleador != null && sPaginaWebPEmpleador != "") {
-//                    editPaginaWebPEmpleador.setText(sPaginaWebPEmpleador);
-//                }
-//
-//                sTelefonoPEmpleador = Datosempleadores.getsTelefonoEmpleador();
-//                if (sTelefonoPEmpleador != null && sTelefonoPEmpleador != "") {
-//                    editTelefonoPEmplador.setText(sTelefonoPEmpleador);
-//                }else {
-//                    if (TelefonoEmpleador != null && TelefonoEmpleador != "") {
-//                        editTelefonoPEmplador.setText(TelefonoEmpleador);
-//                    }
-//                }
-//
-//
-//                //sCorreoPEmpleador = Datosempleadores.getsCorreoEmpleador();
-//                if (sCorreoPEmpleador != null && sCorreoPEmpleador != "") {
-//                    editCorreoPEmpleador.setText(sCorreoPEmpleador);
-//                }else {
-//                    if (EmailEmpleador != null && EmailEmpleador != "") {
-//                        editCorreoPEmpleador.setText(EmailEmpleador);
-//                    }
-//                }
-//
-//
-//                //sDireccionPEmpleador = Datosempleadores.getsDireccionEmpleador();
-//                if (sDireccionPEmpleador != null && sDireccionPEmpleador != "") {
-//                    editDireccionPEmpleador.setText(sDireccionPEmpleador);
-//                }
-//
-//                //sProvinciaPEmpleador = Datosempleadores.getsProvinciaEmpleador();
-//                if (sProvinciaPEmpleador != null && sProvinciaPEmpleador != "") {
-//                    editProvinciaPEmpleador.setText(sProvinciaPEmpleador);
-//                }
-//
-//
-//                //sDescripcionPEmpleador = Datosempleadores.getsDescripcionEmpleador();
-//                if (sDescripcionPEmpleador != null && sDescripcionPEmpleador != "") {
-//                    editDescripcionPEmpleador.setText(sDescripcionPEmpleador);
-//                }
-//
-//
-//                //sVerificacionPEmpleador = Datosempleadores.getsVerificacionEmpleador();
-//                Log.d("verificacion", String.valueOf(sVerificacionPEmpleador));
-//
-//                if (sVerificacionPEmpleador != null) {
-//
-//                    if (sVerificacionPEmpleador == true) {
-//                        btnVerificacionPEmpleador.setVisibility(View.VISIBLE);
-//                    }
-//                    if (sVerificacionPEmpleador == false) {
-//                        btnVerificacionPEmpleador.setVisibility(View.INVISIBLE);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Toast.makeText(PantallaPerfilEmpleador.this, "Hubo un problema con traer los datos", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//    }
-
 }

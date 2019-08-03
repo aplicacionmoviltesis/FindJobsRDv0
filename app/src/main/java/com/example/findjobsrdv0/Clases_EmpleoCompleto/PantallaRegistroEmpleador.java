@@ -172,7 +172,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         final String entrada_provincia = "";
         final String entrada_descripcion = "";
         final boolean entrada_verificacion = false;
-        final String entrada_imagenEmpleador = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesEmpleadores%2F1564198760430.jpg?alt=media&token=349828ed-d10d-4769-9730-3a9e198a7c95";
+        final String entrada_imagenEmpleador = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesEmpleadores%2F1564230738080.jpg?alt=media&token=4670698b-1284-4ad0-b8a5-fedb344653a0";
 
         if (TextUtils.isEmpty(entrada_Nombre)) {
             registroNombreempresa.setError("Campo vacío, por favor escriba el nombre");

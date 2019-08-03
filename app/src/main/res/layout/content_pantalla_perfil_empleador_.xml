@@ -92,7 +92,7 @@
                     android:gravity="center"
                     android:textColorHint="@color/md_blue_900"
                     app:counterEnabled="true"
-                    app:counterMaxLength="30"
+                    app:counterMaxLength="100"
                     android:padding="3dp"
                     app:counterOverflowTextAppearance="@style/CounterOverFlow"
                     app:counterTextAppearance="@style/Counter"
