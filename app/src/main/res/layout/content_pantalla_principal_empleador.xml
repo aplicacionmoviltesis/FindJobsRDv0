@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_toRightOf="@id/imageView1"
-                    android:text="Buscar Curriculos"
+                    android:text="Buscar Currículos"
                     android:textColor="@color/md_blue_900"
                     android:textSize="30sp"
                     android:textStyle="bold" />

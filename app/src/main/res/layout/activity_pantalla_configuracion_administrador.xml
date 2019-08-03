@@ -177,5 +177,21 @@
             android:background="@color/transparent"
             android:drawableLeft="@drawable/ic_listblue"
             android:text="Opiniones y/o Sugerencias"/>
+
+        <Button
+            android:id="@+id/xmlBtnSolicitudesVerificacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="fill_vertical"
+            android:textSize="12dp"
+            android:layout_weight="1"
+            android:drawablePadding="15dp"
+            android:paddingStart="20dp"
+            android:elevation="25dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_listblue"
+            android:text="Solicitudes Verificaciones Empleadores"/>
     </LinearLayout>
 </LinearLayout>

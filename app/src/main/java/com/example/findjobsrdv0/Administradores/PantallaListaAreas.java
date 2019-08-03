@@ -42,7 +42,7 @@ public class PantallaListaAreas extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-
+        actionBar.setTitle("Lista de Reportes");
 
         listaAreas = (RecyclerView)findViewById(R.id.ListaAreasR);
         listaAreas.setHasFixedSize(true);

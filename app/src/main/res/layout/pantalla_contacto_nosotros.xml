@@ -26,7 +26,7 @@
             android:textStyle="bold"
             android:textSize="15dp"
             android:textColor="@color/md_blue_900"
-            android:text="Emails" />
+            android:text="E-mails" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:textColor="@color/md_blue_900"
-            android:text="Telefonos" />
+            android:text="Teléfonos" />
 
         <TextView
             android:layout_width="wrap_content"

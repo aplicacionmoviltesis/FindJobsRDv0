@@ -22,7 +22,7 @@
             android:textColor="@color/md_blue_900"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="Version 1.0"/>
+            android:text="versión 1.0"/>
 
 
         <TextView

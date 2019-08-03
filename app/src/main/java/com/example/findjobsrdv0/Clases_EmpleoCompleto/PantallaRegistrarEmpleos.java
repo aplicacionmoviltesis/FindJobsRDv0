@@ -765,6 +765,7 @@ public void limpiarCampor(){
             Pattern p = Pattern.compile(URL_REGEX);
             Matcher m = p.matcher(sPaginaWebE);//replace with string to compare
             if(!m.find()) {
+                Toast.makeText(this, "Formato de Url inconrrectp", Toast.LENGTH_LONG).show();
                 return;
             }
             System.out.println("String contains URL");

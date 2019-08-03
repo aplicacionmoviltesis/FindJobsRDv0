@@ -23,6 +23,7 @@ import com.example.findjobsrdv0.Adaptadores_Empleador.AdapterEmpleo;
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
 import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosViewHolder;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscados;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.Pantallas_CurriculosCompleto.PantallaListaBuscarCurriculos;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -90,6 +91,7 @@ public class PantallaBuscarEmpleosReal extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Buscar Empleos");
 
         databaseEmpleosBuscados = FirebaseDatabase.getInstance();
         DBempleosBuscados = databaseEmpleosBuscados.getReference(getResources().getString(R.string.Ref_Empleos));
@@ -255,7 +257,7 @@ public class PantallaBuscarEmpleosReal extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_bar_Ajuste) {
-            Intent intent = new Intent(PantallaBuscarEmpleosReal.this, PantallaListaBuscarCurriculos.class);
+            Intent intent = new Intent(PantallaBuscarEmpleosReal.this, PantallaListaEmpleosBuscados.class);
             startActivityForResult(intent, 0);
             return true;
         }

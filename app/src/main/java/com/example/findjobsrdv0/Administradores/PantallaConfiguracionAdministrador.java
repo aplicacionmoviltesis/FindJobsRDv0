@@ -14,7 +14,8 @@ public class PantallaConfiguracionAdministrador extends AppCompatActivity {
 
     private Button btnRegistrarArea,btnRegistrarUniversidad, btnRegistrarProvincia,
             btnActualizarArea,btnActualizarUniversidad,btnActualizarProvincia,
-            btnVerProblemasReportados,btnVerOpinionesSugerencias,btnAdministrarUsuarios,btnCrearUsuarioAdmin;
+            btnVerProblemasReportados,btnVerOpinionesSugerencias,btnAdministrarUsuarios,
+            btnCrearUsuarioAdmin, btnSolicitudesEmpleadorAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,17 @@ public class PantallaConfiguracionAdministrador extends AppCompatActivity {
 
         btnVerProblemasReportados = (Button) findViewById(R.id.xmlBtnVerProblemasReportados);
         btnVerOpinionesSugerencias = (Button) findViewById(R.id.xmlBtnVerOpiSug);
+
+        btnSolicitudesEmpleadorAdmin = (Button) findViewById(R.id.xmlBtnSolicitudesVerificacion);
+
+        btnSolicitudesEmpleadorAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PantallaConfiguracionAdministrador.this, PantallaListaAplicacionVerificacionEmpleador.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
 
         btnAdministrarUsuarios.setOnClickListener(new View.OnClickListener() {
             @Override

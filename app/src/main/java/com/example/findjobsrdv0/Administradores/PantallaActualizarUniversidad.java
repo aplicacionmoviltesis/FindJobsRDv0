@@ -146,7 +146,7 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
             }
         } );
 
-        provinciasRefUniActualizar.child( "provincias" ).addValueEventListener( new ValueEventListener() {
+        provinciasRefUniActualizar.child(getResources().getString(R.string.Ref_Provincias)).addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

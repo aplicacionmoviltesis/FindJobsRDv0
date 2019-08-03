@@ -1,10 +1,12 @@
 package com.example.findjobsrdv0.Clases_EmpleoCompleto;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,60 +48,75 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
     String sFechaVerifEmp;
 
     private String sEstadoReportProblem = "Pendiente";
-
+    private ActionBar actionBar;
+    private FirebaseAuth mAuthEmpleador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_pantalla_aplicar_verificacion_empleo );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_aplicar_verificacion_empleo);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        mAuthEmpleador = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuthEmpleador.getCurrentUser();
+        actionBar.setTitle(user.getDisplayName());
 
         storageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = FirebaseDatabase.getInstance().getReference( "SolicitudVerificacionEmpleador" );
+        databaseReference = FirebaseDatabase.getInstance().getReference("SolicitudVerificacionEmpleador");
 
         userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        etNombreDocumento = (EditText)findViewById( R.id.NombreArchivoVerEmp );
+        etNombreDocumento = (EditText) findViewById(R.id.NombreArchivoVerEmp);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE dd MMM yyyy");
         sFechaVerifEmp = simpleDateFormat.format(new Date());
 
-        btnRegistrarDocumento = (Button)findViewById( R.id.btnRegistrarArchivo );
-        btnRegistrarDocumento.setOnClickListener( new View.OnClickListener() {
+        btnRegistrarDocumento = (Button) findViewById(R.id.btnRegistrarArchivo);
+        btnRegistrarDocumento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 seleccionArchivoPDF();
             }
-        } );
+        });
+    }
+
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void seleccionArchivoPDF() {
 
         Intent intent = new Intent();
-        intent.setType( "application/pdf" );
-        intent.setAction( Intent.ACTION_GET_CONTENT );
-        startActivityForResult( Intent.createChooser( intent, "Seleccione Archivo PDF" ), 1 );
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Seleccione Archivo PDF"), 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult( requestCode, resultCode, data );
+        super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1 && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
 
-            SubirArchivoPDF( data.getData() );
+            SubirArchivoPDF(data.getData());
         }
     }
 
     private void SubirArchivoPDF(Uri data) {
 
-        final ProgressDialog progressDialog = new ProgressDialog( this );
-        progressDialog.setTitle( "Subiendo Documento..." );
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Subiendo Documento...");
         progressDialog.show();
 
-        StorageReference Reference = storageReference.child( "SolicitudVerificacionEmpleador/" + System.currentTimeMillis() + ".pdf" );
-        Reference.putFile( data ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        StorageReference Reference = storageReference.child("SolicitudVerificacionEmpleador/" + System.currentTimeMillis() + ".pdf");
+        Reference.putFile(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
@@ -108,28 +126,28 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
 
                 String Id = databaseReference.push().getKey();
 
-                AplicarVerificacionEmpleador aplicarVerificacionEmpleador = new AplicarVerificacionEmpleador( Id, userActivo ,etNombreDocumento.getText().toString(),
-                        sDocumentoVerifEmp.toString(), sEstadoReportProblem, sFechaVerifEmp );
+                AplicarVerificacionEmpleador aplicarVerificacionEmpleador = new AplicarVerificacionEmpleador(Id, userActivo, etNombreDocumento.getText().toString(),
+                        sDocumentoVerifEmp.toString(), sEstadoReportProblem, sFechaVerifEmp);
 //                databaseReference.child( databaseReference.push().getKey() ).setValue( aplicarVerificacionEmpleador  );
 
-                databaseReference.child( Id ).setValue( aplicarVerificacionEmpleador );
+                databaseReference.child(Id).setValue(aplicarVerificacionEmpleador);
 
-                Toast.makeText( PantallaAplicarVerificacionEmpleador.this, "Documento subido", Toast.LENGTH_SHORT ).show();
+                Toast.makeText(PantallaAplicarVerificacionEmpleador.this, "Documento subido", Toast.LENGTH_SHORT).show();
 
                 progressDialog.dismiss();
 
                 // registrar();
 
             }
-        } ).addOnProgressListener( new OnProgressListener<UploadTask.TaskSnapshot>() {
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
 
-                double progress = (100.0*taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
-                progressDialog.setMessage( "Subiendo:"+(int) progress+"%");
+                progressDialog.setMessage("Subiendo:" + (int) progress + "%");
             }
-        } );
+        });
     }
 }
 

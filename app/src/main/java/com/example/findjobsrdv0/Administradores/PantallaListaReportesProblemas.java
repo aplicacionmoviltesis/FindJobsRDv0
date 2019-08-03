@@ -46,7 +46,7 @@ public class PantallaListaReportesProblemas extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-
+        actionBar.setTitle("Lista Áreas");
 
         listaProblemasReportados = (RecyclerView)findViewById(R.id.ListaProblemasReportadosR);
         listaProblemasReportados.setHasFixedSize(true);
@@ -114,6 +114,12 @@ public class PantallaListaReportesProblemas extends AppCompatActivity {
             }
         };
         listaProblemasReportados.setAdapter(adapterProblemasReport);
+    }
+
+
+    public boolean onSupportNavigateUp(){
+        onBackPressed();
+        return true;
     }
 }
 
