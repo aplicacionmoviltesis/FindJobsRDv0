@@ -86,7 +86,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     private FirebaseDatabase database;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
+
 
     private String mStoragePath = "Imagenes Curriculo/";
     private Uri mFilePathUri;
@@ -131,14 +131,29 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     private DatabaseReference DBCedula;
 
+    private ActionBar actionBar;
+    private FirebaseAuth mAuthBuscador;
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_c_pantalla_registrar_curriculo );
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled( true );
-        actionBar.setDisplayShowHomeEnabled( true );
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        user = firebaseAuth.getInstance().getCurrentUser();
+
+        mAuthBuscador = FirebaseAuth.getInstance();
+        user = mAuthBuscador.getCurrentUser();
+        actionBar.setTitle(user.getDisplayName());
+
+
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled( true );
+//        actionBar.setDisplayShowHomeEnabled( true );
         //actionBar.setTitle(getResources().getString(R.string.titulo_CompararCurriculos));
 
         DBCedula = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.Ref_Curriculos));
@@ -151,7 +166,6 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         databaseReferenceCurrilo = database.getReference( getResources().getString( R.string.Ref_Curriculos ) );
 
         userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        user = firebaseAuth.getInstance().getCurrentUser();
 
         etNombre = (EditText) findViewById( R.id.etnombre );
         etApellido = (EditText) findViewById( R.id.etapellido );
@@ -605,11 +619,11 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                         if (!dataSnapshot.exists()) {
                             cedula = etCedula.getText().toString().trim();
 
-                            Query q = databaseReferenceCurrilo.orderByChild( "sCedulaC" ).equalTo( cedula );
-                            q.addListenerForSingleValueEvent( new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (!dataSnapshot.exists()) {
+//                            Query q = databaseReferenceCurrilo.orderByChild( "sCedulaC" ).equalTo( cedula );
+//                            q.addListenerForSingleValueEvent( new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(DataSnapshot dataSnapshot) {
+//                                    if (!dataSnapshot.exists()) {
 
                                         Query q = DBCedula.orderByChild(getResources().getString(R.string.Campo_sCedulaC)).equalTo( cedula );
                                         q.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -617,33 +631,37 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 if (!dataSnapshot.exists()){
                                                     registrarcurriculo( sIdBuscador );
+                                                    Toast.makeText( cPantallaRegistrarCurriculo.this, "Espere un momento, subiendo curriculo", Toast.LENGTH_LONG ).show();
                                                 } else {
                                                     etCedula.setError( "Esta cedula ya a sido registrado" );
-                                                    Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
+//                                                    Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
                                                 }
                                             }
-
                                             @Override
                                             public void onCancelled(DatabaseError databaseError) {
 
                                             }
                                         } );
 
-                                    } else {
-                                        etCedula.setError( "Esta cedula ya a sido registrado" );
-                                        Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
-                                        //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            } );
+//                                    } else {
+//                                        etCedula.setError( "Esta cedula ya a sido registrado" );
+//                                        Log.d( "rnc si existe", String.valueOf( dataSnapshot ) );
+//                                        //Toast.makeText(PantallaRegistroEmpleador.this, "El RNC escrito ya existe", Toast.LENGTH_LONG).show();
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(DatabaseError databaseError) {
+//
+//                                }
+//                            } );
 
                         }else {
-                            beginUpdate();
+                            if (provincia != null){
+                                beginUpdate();
+                            }else {
+                                    Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG ).show();
+                            }
                         }
                     }
 
@@ -665,7 +683,6 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 //            }
 //        } );
     }
-
 
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -927,10 +944,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
 
     private void registrarcurriculo(final String cIdCurriculo) {
-
-        mProgressDialog.setTitle( "Actualizando Curriculo..." );
-        mProgressDialog.show();
-
+//        mProgressDialog.setTitle( "Actualizando Curriculo..." );
+//        mProgressDialog.show();
         final StorageReference StorageReference2nd = mStorageReference.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUri ) );
 
         UploadTask uploadTask = StorageReference2nd.putFile( mFilePathUri );
@@ -948,9 +963,10 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             public void onComplete(@NonNull Task<Uri> task) {
 
                 if (task.isSuccessful()) {
+
                     Uri downloadUri = task.getResult();
                     String downloadURL = downloadUri.toString();
-                    Log.d( "url", downloadURL );
+
                     nombre = etNombre.getText().toString().trim().toLowerCase();
                     apellido = etApellido.getText().toString().trim();
                     cedula = etCedula.getText().toString().trim();
@@ -967,62 +983,78 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                     NivelSecundarioFormAcad = etNivelSecundario.getText().toString().trim();
                     CarreraFormAcad = etCarrera.getText().toString().trim();
 
-                    if (TextUtils.isEmpty( cedula )) {
-                        etCedula.setError( "Campo vacío, por favor escriba la Cedula " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( apellido )) {
-                        etApellido.setError( "Campo vacío, por favor escriba el Apellido " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( celular )) {
-                        etCelular.setError( "Campo vacío, por favor escriba el numero de Celular " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( telefono )) {
-                        etTelefono.setError( "Campo vacío, por favor escriba el numero de Telefono " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( direccion )) {
-                        etDireccion.setError( "Campo vacío, por favor escriba la Direccion " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( ocupacion )) {
-                        etOcupacion.setError( "Campo vacío, por favor escriba la Ocupacion " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( idioma )) {
-                        mEtxtIdioma.setError( "Campo vacío, por favor escriba el Idioma " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( habilidades )) {
-                        etHabilidades.setError( "Campo vacío, por favor escriba las Habilidades " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( fecha )) {
-                        mEtxtFecha.setError( "Campo vacío, por favor escriba la Fecha " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( NivelPrimarioFormAcad )) {
-                        etNivelPrimario.setError( "Campo vacío, por favor escriba el Nivel Primario " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( NivelSecundarioFormAcad )) {
-                        etNivelSecundario.setError( "Campo vacío, por favor escriba el Nivel Secundario " );
-                        return;
-                    }
-                    if (TextUtils.isEmpty( CarreraFormAcad )) {
-                        etCarrera.setError( "Campo vacío, por favor escriba la Carrera " );
-                        return;
-                    }
+//                    if (TextUtils.isEmpty( cedula )) {
+//                        etCedula.setError( "Campo vacío, por favor escriba la Cedula " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Cedula vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( apellido )) {
+//                        etApellido.setError( "Campo vacío, por favor escriba el Apellido " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Apellido vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( celular )) {
+//                        etCelular.setError( "Campo vacío, por favor escriba el numero de Celular " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Celular vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( telefono )) {
+//                        etTelefono.setError( "Campo vacío, por favor escriba el numero de Telefono " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Telefono vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( direccion )) {
+//                        etDireccion.setError( "Campo vacío, por favor escriba la Direccion " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Direccion vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( ocupacion )) {
+//                        etOcupacion.setError( "Campo vacío, por favor escriba la Ocupacion " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Ocupacion vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( idioma )) {
+//                        mEtxtIdioma.setError( "Campo vacío, por favor escriba el Idioma " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Idioma vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( habilidades )) {
+//                        etHabilidades.setError( "Campo vacío, por favor escriba las Habilidades " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Habilidades vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( fecha )) {
+//                        mEtxtFecha.setError( "Campo vacío, por favor escriba la Fecha " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Fecha vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( NivelPrimarioFormAcad )) {
+//                        etNivelPrimario.setError( "Campo vacío, por favor escriba el Nivel Primario " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Primario vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( NivelSecundarioFormAcad )) {
+//                        etNivelSecundario.setError( "Campo vacío, por favor escriba el Nivel Secundario " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Secundario vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( CarreraFormAcad )) {
+//                        etCarrera.setError( "Campo vacío, por favor escriba la Carrera " );
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Carrera vacío", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//
+//
+//                    if (TextUtils.isEmpty( provincia )) {
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty( estadoCivil )) {
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione su estado civil", Toast.LENGTH_LONG ).show();
+//                        return;
+//                    }
 
-
-                    if (TextUtils.isEmpty( provincia )) {
-                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG ).show();
-                        return;
-                    }
-
-                    mProgressDialog.dismiss();
+//                    mProgressDialog.dismiss();
 
                     Curriculos curriculos = new Curriculos( cIdCurriculo,
                             downloadURL, nombre, apellido, cedula, email, telefono, celular,
@@ -1042,7 +1074,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         } ).addOnFailureListener( new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                    mProgressDialog.dismiss();
+//                    mProgressDialog.dismiss();
                 Toast.makeText( cPantallaRegistrarCurriculo.this, e.getMessage(), Toast.LENGTH_LONG ).show();
 
             }

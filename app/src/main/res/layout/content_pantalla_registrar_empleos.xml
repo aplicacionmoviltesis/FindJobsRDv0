@@ -428,6 +428,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="18"
+                    android:text="18"
                     android:inputType="number"
                     android:textColor="@color/md_blue_900" />
                 <TextView
@@ -446,6 +447,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:hint="70"
+                    android:text="50"
                     android:inputType="number"
                     android:textColor="@color/md_blue_900" />
             </LinearLayout>
