@@ -106,7 +106,7 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
                     }
                     Log.d("idempleoposicion", String.valueOf(ListaId));
                     goVistaComparacionEmpleo(ListaId.get(0), ListaId.get(1));
-                    showToast(stringBuilder.toString());
+//                    showToast(stringBuilder.toString());
                 } else {
                     showToast("No Selection");
                 }
@@ -115,7 +115,7 @@ public class PantallaCompararCurriculo extends AppCompatActivity {
     }
 
     private void showToast(String toString) {
-        Toast.makeText(this, toString, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Seleccione los curriculos a comparar", Toast.LENGTH_SHORT).show();
     }
 
     public boolean onSupportNavigateUp() {

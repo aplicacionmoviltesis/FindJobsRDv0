@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -143,23 +143,23 @@
                     android:textStyle="bold"
                     android:textColor="@color/md_blue_900"
                     android:textSize="20dp"
-                    android:text="Area" />
+                    android:text="Carrera" />
 
                 <TextView
-                    android:id="@+id/xmlAreaC1"
+                    android:id="@+id/xmlCarreraC1"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:textColor="@color/md_black_1000"
-                    android:text="Area Curriculo 1" />
+                    android:text="Carrera Curriculo 1" />
 
                 <TextView
-                    android:id="@+id/xmlAreaC2"
+                    android:id="@+id/xmlCarreraC2"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:textColor="@color/md_black_1000"
-                    android:text="Horario Curriculo 2" />
+                    android:text="Carrera Curriculo 2" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -278,23 +278,23 @@
                     android:textStyle="bold"
                     android:textColor="@color/md_blue_900"
                     android:textSize="20dp"
-                    android:text="Experiencia Laboral" />
+                    android:text="Grado Mayor" />
 
                 <TextView
-                    android:id="@+id/xmlExperienciaLboC1"
+                    android:id="@+id/xmlGradoMayorC1"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:textColor="@color/md_black_1000"
-                    android:text="Experiencia Laboral Curriculo 1" />
+                    android:text="Grado Mayor Curriculo 1" />
 
                 <TextView
-                    android:id="@+id/xmlExperienciaLboC2"
+                    android:id="@+id/xmlGradoMayorC2"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:textColor="@color/md_black_1000"
-                    android:text="Experiencia Laboral Curriculo 2" />
+                    android:text="Grado Mayor Curriculo 2" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -353,4 +353,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

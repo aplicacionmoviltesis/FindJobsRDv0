@@ -112,16 +112,19 @@ public class PantallaCompararEmpleos extends AppCompatActivity {
                     }
                     Log.d("idempleoposicion", String.valueOf(ListaId));
                     goVistaComparacionEmpleo(ListaId.get(0), ListaId.get(1));
-                    showToast(stringBuilder.toString());
+//                    showToast(stringBuilder.toString());
+//                    Toast.makeText( PantallaCompararEmpleos.this, "Seleccione los empleos a comprar", Toast.LENGTH_SHORT ).show();
+
                 } else {
                     showToast("No Selection");
+//                    Toast.makeText( PantallaCompararEmpleos.this, "Seleccione los empleos a comprar", Toast.LENGTH_SHORT ).show();
                 }
             }
         });
     }
 
     private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Seleccione los empleos a comprar", Toast.LENGTH_SHORT).show();
     }
 
     public boolean onSupportNavigateUp() {

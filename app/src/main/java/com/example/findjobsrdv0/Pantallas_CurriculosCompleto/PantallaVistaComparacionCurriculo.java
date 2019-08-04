@@ -28,11 +28,11 @@ public class PantallaVistaComparacionCurriculo extends AppCompatActivity {
     private FirebaseDatabase databaseCurriculoComparados;
     private DatabaseReference DBCurriculoComparados;
 
-    private String sNombreC1, sProvinciaC1, sAreaC1, sIdiomaC1, sOcupacionC1, sExperienciaLabC1;
-    private TextView tvNombreC1, tvProvinciaC1, tvAreaC1, tvIdiomaC1, tvOcupacionC1, tvExperienciaLabC1;
+    private String sNombreC1, sProvinciaC1, sCarreraFomAcadC1, sIdiomaC1, sOcupacionC1, sGradoMayorC1;
+    private TextView tvNombreC1, tvProvinciaC1, tvCarreraFomAcadC1, tvIdiomaC1, tvOcupacionC1, tvGradoMayorC1;
 
-    private String sNombreC2, sProvinciaC2, sAreaC2, sIdiomaC2, sOcupacionC2, sExperienciaLabC2;
-    private TextView tvNombreC2, tvProvinciaC2, tvAreaC2, tvIdiomaC2, tvOcupacionC2, tvExperienciaLabC2;
+    private String sNombreC2, sProvinciaC2, sCarreraFomAcadC2, sIdiomaC2, sOcupacionC2, sGradoMayorC2;
+    private TextView tvNombreC2, tvProvinciaC2, tvCarreraFomAcadC2, tvIdiomaC2, tvOcupacionC2, tvGradoMayorC2;
 
     private String sIdCurriculoC1 = "", sIdCurriculoC2 = "";
 
@@ -60,18 +60,18 @@ public class PantallaVistaComparacionCurriculo extends AppCompatActivity {
 
         tvNombreC1 = (TextView) findViewById( R.id.xmlNombreC1 );
         tvProvinciaC1 = (TextView) findViewById( R.id.xmlProvinciaC1 );
-        tvAreaC1 = (TextView) findViewById( R.id.xmlAreaC1 );
+        tvCarreraFomAcadC1 = (TextView) findViewById( R.id.xmlCarreraC1 );
         tvIdiomaC1 = (TextView) findViewById( R.id.xmlIdiomaC1 );
         tvOcupacionC1 = (TextView) findViewById( R.id.xmlOcupacionC1 );
-        tvExperienciaLabC1 = (TextView) findViewById( R.id.xmlExperienciaLboC1 );
+        tvGradoMayorC1 = (TextView) findViewById( R.id.xmlGradoMayorC1 );
         btnVerMasC1 = (Button) findViewById( R.id.xmlVerMasC1 );
 
         tvNombreC2 = (TextView) findViewById( R.id.xmlNombreC2 );
         tvProvinciaC2 = (TextView) findViewById( R.id.xmlProvinciaC2 );
-        tvAreaC2 = (TextView) findViewById( R.id.xmlAreaC2 );
+        tvCarreraFomAcadC2 = (TextView) findViewById( R.id.xmlCarreraC2 );
         tvIdiomaC2 = (TextView) findViewById( R.id.xmlIdiomaC2 );
         tvOcupacionC2 = (TextView) findViewById( R.id.xmlOcupacionC2 );
-        tvExperienciaLabC2 = (TextView) findViewById( R.id.xmlExperienciaLboC2 );
+        tvGradoMayorC2 = (TextView) findViewById( R.id.xmlGradoMayorC2 );
         btnVerMasC2 = (Button) findViewById( R.id.xmlVerMasC2 );
 
 
@@ -128,17 +128,17 @@ public class PantallaVistaComparacionCurriculo extends AppCompatActivity {
                     sIdCurriculoC1 = DatosCurriculo.getsIdCurriculo();
                     sNombreC1 = DatosCurriculo.getsNombreC();
                     sProvinciaC1 = DatosCurriculo.getsProvinciaC();
-                    sAreaC1 = DatosCurriculo.getsAreaC();
+                    sCarreraFomAcadC1 = DatosCurriculo.getsCarreraFormAcad();
                     sIdiomaC1 = DatosCurriculo.getsIdiomaC();
                     sOcupacionC1 = DatosCurriculo.getsOcupacionC();
-                    sExperienciaLabC1 = klk.getsNombreEmpresaExpLab();
+                    sGradoMayorC1 = DatosCurriculo.getsGradoMayorC();
 
                     tvNombreC1.setText( sNombreC1.toUpperCase() );
                     tvProvinciaC1.setText( sProvinciaC1 );
-                    tvAreaC1.setText( sAreaC1 );
+                    tvCarreraFomAcadC1.setText( sCarreraFomAcadC1 );
                     tvIdiomaC1.setText( sIdiomaC1 );
                     tvOcupacionC1.setText( sOcupacionC1 );
-                    tvExperienciaLabC1.setText( sExperienciaLabC1 );
+                    tvGradoMayorC1.setText( sGradoMayorC1 );
                 }
 
                 Log.d("CVCurriculo::::", String.valueOf(dataSnapshot));
@@ -157,22 +157,20 @@ public class PantallaVistaComparacionCurriculo extends AppCompatActivity {
                 for (DataSnapshot datasnapshot : dataSnapshot.getChildren()) {
                     Curriculos DatosCurriculo = datasnapshot.getValue( Curriculos.class );
 
-                    ExperienciaLaboral klk = dataSnapshot.getValue( ExperienciaLaboral.class );
-
                     sIdCurriculoC2 = DatosCurriculo.getsIdCurriculo();
                     sNombreC2 = DatosCurriculo.getsNombreC();
                     sProvinciaC2 = DatosCurriculo.getsProvinciaC();
-                    sAreaC2 = DatosCurriculo.getsAreaC();
+                    sCarreraFomAcadC2 = DatosCurriculo.getsCarreraFormAcad();
                     sIdiomaC2 = DatosCurriculo.getsIdiomaC();
                     sOcupacionC2 = DatosCurriculo.getsOcupacionC();
-                    sExperienciaLabC2 = klk.getsNombreEmpresaExpLab();
+                    sGradoMayorC2 = DatosCurriculo.getsGradoMayorC();
 
                     tvNombreC2.setText( sNombreC2.toUpperCase() );
                     tvProvinciaC2.setText( sProvinciaC2 );
-                    tvAreaC2.setText( sAreaC2 );
+                    tvCarreraFomAcadC2.setText( sCarreraFomAcadC2 );
                     tvIdiomaC2.setText( sIdiomaC2 );
                     tvOcupacionC2.setText( sOcupacionC2 );
-                    tvExperienciaLabC2.setText( sExperienciaLabC2 );
+                    tvGradoMayorC2.setText( sGradoMayorC2 );
 
 
                 }

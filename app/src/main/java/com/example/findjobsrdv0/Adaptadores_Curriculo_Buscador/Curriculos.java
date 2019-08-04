@@ -9,7 +9,7 @@ public class Curriculos {
 
     private String sIdCurriculo,  sImagenC, sNombreC, sApellidoC, sCedulaC, sEmailC, sTelefonoC, sCelularC,
             sProvinciaC, sEstadoCivilC, sDireccionC, sOcupacionC, sIdiomaC, sGradoMayorC,
-            sEstadoActualC, sSexoC, sHabilidadesC,sFechaC, sAreaC, sNivelPrimarioFormAcad,
+            sEstadoActualC, sSexoC, sHabilidadesC, sFechaC, sAreaC, sNivelPrimarioFormAcad,
             sNivelSecundarioFormAcad, sCarreraFormAcad, sUniversidadFormAcad;
 
     public Curriculos() {
