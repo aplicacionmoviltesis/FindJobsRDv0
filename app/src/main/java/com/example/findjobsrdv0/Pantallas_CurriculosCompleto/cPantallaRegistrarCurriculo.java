@@ -11,13 +11,16 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -71,8 +74,6 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     private Button btnIdiomasc;
     private SearchableSpinner spinEstadoCivil, spinGradoMayor, spinEstadoActual, spinSexo;
-
-//    private RadioButton RdbDisponibleC, RdbNoDisponibleC;
 
     private TextView mEtxtFecha, mEtxtIdioma;
 
@@ -135,10 +136,23 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     private FirebaseAuth mAuthBuscador;
     FirebaseUser user;
 
+    private TextView tvTiAreas, tvTiFormacionAcademica, tvTiDatosPersonales;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_c_pantalla_registrar_curriculo);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        tvTiAreas = (TextView) findViewById(R.id.xmlTituloAreas);
+        Typeface face = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.fonts_robotos));
+        tvTiAreas.setTypeface(face);
+
+        tvTiFormacionAcademica = (TextView) findViewById(R.id.xmlTituloFormacionAcademica);
+        tvTiFormacionAcademica.setTypeface(face);
+
+        tvTiDatosPersonales = (TextView) findViewById(R.id.xmlTiDatosPersonalesC);
+        tvTiDatosPersonales.setTypeface(face);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -685,6 +699,32 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 //        } );
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_actualizar_curriculo, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.editar_curriculo) {
+            //process your onClick here
+            //ActivarCampor();
+            return true;
+        }
+        if (id == R.id.actualizar_curriculo) {
+            //process your onClick here
+            //EnviarDatos();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
@@ -705,6 +745,8 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 && data != null
                 && data.getData() != null) {
             mFilePathUri = data.getData();
+            Log.d("ggggg foto", String.valueOf(mFilePathUri));
+
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mFilePathUri);
@@ -947,6 +989,13 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     private void registrarcurriculo(final String cIdCurriculo) {
 //        mProgressDialog.setTitle( "Actualizando Curriculo..." );
 //        mProgressDialog.show();
+        Log.d("gggggfoto",String.valueOf(mFilePathUri));
+        if(mFilePathUri==null){
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Favor Seleccionar imagen", Toast.LENGTH_LONG ).show();
+            Log.d("gggggfotoklk","perroooooo2");
+            return;
+        }
+
         final StorageReference StorageReference2nd = mStorageReference.child(mStoragePath + System.currentTimeMillis() + "." + getFileExtension(mFilePathUri));
 
         UploadTask uploadTask = StorageReference2nd.putFile(mFilePathUri);
@@ -1057,6 +1106,12 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
 //                    mProgressDialog.dismiss();
 
+                    if (cedula.length() != 10) {
+                        Toast.makeText(cPantallaRegistrarCurriculo.this, "La Cédula solo debe contener 10 dígitos", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+
                     Curriculos curriculos = new Curriculos(cIdCurriculo,
                             downloadURL, nombre, apellido, cedula, email, telefono, celular,
                             provincia, estadoCivil, direccion, ocupacion, idioma, gradomayor, estadoactual,
@@ -1083,9 +1138,12 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     }
 
     private String getFileExtension(Uri uri) {
+        String extencion = "image/jpeg";
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        //poner una condicion, try/catch
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+
     }
 
     private void resgistrarAreas(final String cIdCurricul) {

@@ -86,41 +86,41 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled( true );
-        actionBar.setDisplayShowHomeEnabled( true );
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
-        mProgressDialog = new ProgressDialog( PantallaActualizarUniversidad.this );
+        mProgressDialog = new ProgressDialog(PantallaActualizarUniversidad.this);
 
-        ImageUniversidad = (ImageView) findViewById( R.id.xmlImagenUniversidad );
+        ImageUniversidad = (ImageView) findViewById(R.id.xmlImagenUniversidad);
 
-        editNombreUni = (EditText) findViewById( R.id.xmlEditNombreUniversidad );
-        editTelefonoUni = (EditText) findViewById( R.id.xmlEditTelefonoUniversidad );
-        editDireccionUni = (EditText) findViewById( R.id.xmlEditDireccionUniversidad );
-        editPaginaWebUni = (EditText) findViewById( R.id.xmlEditPaginaWebUniversidad );
+        editNombreUni = (EditText) findViewById(R.id.xmlEditNombreUniversidad);
+        editTelefonoUni = (EditText) findViewById(R.id.xmlEditTelefonoUniversidad);
+        editDireccionUni = (EditText) findViewById(R.id.xmlEditDireccionUniversidad);
+        editPaginaWebUni = (EditText) findViewById(R.id.xmlEditPaginaWebUniversidad);
 
 
-        spinProvUniversidad = (SearchableSpinner) findViewById( R.id.xmlSpinUbicacionUniversidad );
+        spinProvUniversidad = (SearchableSpinner) findViewById(R.id.xmlSpinUbicacionUniversidad);
 
         mStorageReference = getInstance().getReference();
 
-        ImageUniversidad.setOnClickListener( new View.OnClickListener() {
+        ImageUniversidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent galleryIntent = new Intent();
-                galleryIntent.setType( "image/*" );
-                galleryIntent.setAction( Intent.ACTION_GET_CONTENT );
-                startActivityForResult( Intent.createChooser( galleryIntent, "Seleccionar Imagen" ), IMAGE_REQUEST_CODE );
+                galleryIntent.setType("image/*");
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(galleryIntent, "Seleccionar Imagen"), IMAGE_REQUEST_CODE);
             }
-        } );
+        });
 
-       // userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // userActivo = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-        editNombreUni.setEnabled( false );
-        spinProvUniversidad.setEnabled( false );
-        editTelefonoUni.setEnabled( false );
-        editDireccionUni.setEnabled( false );
-        editPaginaWebUni.setEnabled( false );
+        editNombreUni.setEnabled(false);
+        spinProvUniversidad.setEnabled(false);
+        editTelefonoUni.setEnabled(false);
+        editDireccionUni.setEnabled(false);
+        editPaginaWebUni.setEnabled(false);
 
         UniDatabase = FirebaseDatabase.getInstance();
         universidadesRefActualizar = UniDatabase.getReference(getResources().getString(R.string.Ref_Universidades));
@@ -129,13 +129,13 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
 
         provinciasRefUniActualizar = FirebaseDatabase.getInstance().getReference();
 
-        spinProvUniversidad.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+        spinProvUniversidad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (!IsFirstTimeClick) {
                     sUbicacionUniversidad = spinProvUniversidad.getSelectedItem().toString();
-                    Log.d( "valorSpinProv", sUbicacionUniversidad );
+                    Log.d("valorSpinProv", sUbicacionUniversidad);
                 } else {
                     IsFirstTimeClick = false;
                 }
@@ -144,22 +144,22 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        } );
+        });
 
-        provinciasRefUniActualizar.child(getResources().getString(R.string.Ref_Provincias)).addValueEventListener( new ValueEventListener() {
+        provinciasRefUniActualizar.child(getResources().getString(R.string.Ref_Provincias)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 final List<String> ListProvincias = new ArrayList<String>();
                 for (DataSnapshot provinciaSnapshot : dataSnapshot.getChildren()) {
-                    String provinciaName = provinciaSnapshot.child( "Nombre_Provincia" ).getValue( String.class );
-                    ListProvincias.add( provinciaName );
+                    String provinciaName = provinciaSnapshot.child("sNombreProvincia").getValue(String.class);
+                    ListProvincias.add(provinciaName);
                 }
 
-                ArrayAdapter<String> provinciasAdapter = new ArrayAdapter<String>( PantallaActualizarUniversidad.this, android.R.layout.simple_spinner_item, ListProvincias );
-                provinciasAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-                spinProvUniversidad.setAdapter( provinciasAdapter );
-                spinProvUniversidad.setTitle( "Seleccionar Provincia" );
+                ArrayAdapter<String> provinciasAdapter = new ArrayAdapter<String>(PantallaActualizarUniversidad.this, android.R.layout.simple_spinner_item, ListProvincias);
+                provinciasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinProvUniversidad.setAdapter(provinciasAdapter);
+                spinProvUniversidad.setTitle("Seleccionar Provincia");
 
             }
 
@@ -167,23 +167,23 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        } );
+        });
 
 /////Spinner Provincia
 
         if (getIntent() != null) {
-            sIdUniversidad = getIntent().getStringExtra( "sUniversidadId" );
+            sIdUniversidad = getIntent().getStringExtra("sUniversidadId");
             if (!sIdUniversidad.isEmpty()) {
-                Log.d( "holap", String.valueOf( sIdUniversidad ) );
+                Log.d("holap", sIdUniversidad);
 
-                CargarUniversidad( sIdUniversidad );
+                CargarUniversidad(sIdUniversidad);
             }
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult( requestCode, resultCode, data );
+        super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == IMAGE_REQUEST_CODE
                 && resultCode == RESULT_OK
@@ -194,38 +194,38 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
 
             try {
 
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap( getContentResolver(), mFilePathUri );
-                ImageUniversidad.setImageBitmap( bitmap );
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mFilePathUri);
+                ImageUniversidad.setImageBitmap(bitmap);
             } catch (Exception e) {
 
-                Toast.makeText( this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         }
     }
 
     private void CargarUniversidad(String sIdUniversidad) {
-        Log.d( "holap", String.valueOf( sIdUniversidad ) );
+        Log.d("holap", String.valueOf(sIdUniversidad));
 
-        universidadesRefActualizar.child( sIdUniversidad ).addListenerForSingleValueEvent( new ValueEventListener() {
+        universidadesRefActualizar.child(sIdUniversidad).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d( "holap", String.valueOf( dataSnapshot ) );
-                sImagenUniversidad = dataSnapshot.child( "sImagenUniversidad" ).getValue( String.class );
+                Log.d("holap", String.valueOf(dataSnapshot));
+                sImagenUniversidad = dataSnapshot.child("sImagenUniversidad").getValue(String.class);
                 if (sImagenUniversidad != null && !sImagenUniversidad.isEmpty()) {
-                    Picasso.get().load( sImagenUniversidad ).into( ImageUniversidad );
+                    Picasso.get().load(sImagenUniversidad).into(ImageUniversidad);
 
 
-                    Universidades universidades = dataSnapshot.getValue( Universidades.class );
-                    Log.d( "holap", String.valueOf( universidades ) );
+                    Universidades universidades = dataSnapshot.getValue(Universidades.class);
+                    Log.d("holap", String.valueOf(universidades));
                     //Log.d( "holap", String.valueOf( universidades ) );
 
                     //Picasso.get().load( universidades.getsImagenUniversidad() ).into( ImageUniversidad );
-                    editNombreUni.setText( universidades.getsNombreUniversidad() );
-                    spinProvUniversidad.setSelection( obtenerPosicionItem( spinProvUniversidad, universidades.getsUbicacionUniversidad() ) );
-                    editTelefonoUni.setText( universidades.getsTelefonoUniversidad() );
-                    editDireccionUni.setText( universidades.getsDireccionUniversidad() );
-                    editPaginaWebUni.setText( universidades.getsPaginaWebUniversidad() );
+                    editNombreUni.setText(universidades.getsNombreUniversidad());
+                    spinProvUniversidad.setSelection(obtenerPosicionItem(spinProvUniversidad, universidades.getsUbicacionUniversidad()));
+                    editTelefonoUni.setText(universidades.getsTelefonoUniversidad());
+                    editDireccionUni.setText(universidades.getsDireccionUniversidad());
+                    editPaginaWebUni.setText(universidades.getsPaginaWebUniversidad());
                 }
             }
 
@@ -237,7 +237,7 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
                 //que lo pasaremos posteriormente
                 for (int i = 0; i < spinner.getCount(); i++) {
                     //Almacena la posición del ítem que coincida con la búsqueda
-                    if (spinner.getItemAtPosition( i ).toString().equalsIgnoreCase( fruta )) {
+                    if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(fruta)) {
                         posicion = i;
                     }
                 }
@@ -250,7 +250,7 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        } );
+        });
     }
 
     public boolean onSupportNavigateUp() {
@@ -261,7 +261,7 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate( R.menu.menuperfil, menu );
+        getMenuInflater().inflate(R.menu.menuperfil, menu);
         return true;
     }
 
@@ -274,23 +274,23 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
 
     private void DeleteImagenAnterior() {
         if (sImagenUniversidad != null && !sImagenUniversidad.isEmpty()) {
-            final StorageReference mPitureRef = getInstance().getReferenceFromUrl( sImagenUniversidad );
-            mPitureRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
+            final StorageReference mPitureRef = getInstance().getReferenceFromUrl(sImagenUniversidad);
+            mPitureRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText( PantallaActualizarUniversidad.this, "Eliminando Imagen...", Toast.LENGTH_LONG ).show();
-                    Log.d( "link foto", String.valueOf( mPitureRef ) );
+                    Toast.makeText(PantallaActualizarUniversidad.this, "Eliminando Imagen...", Toast.LENGTH_LONG).show();
+                    Log.d("link foto", String.valueOf(mPitureRef));
                     SubirNuevaImagen();
                 }
-            } ).addOnFailureListener( new OnFailureListener() {
+            }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText( PantallaActualizarUniversidad.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                    Toast.makeText(PantallaActualizarUniversidad.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     mProgressDialog.dismiss();
                 }
-            } );
+            });
         } else {
-            Toast.makeText( PantallaActualizarUniversidad.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
+            Toast.makeText(PantallaActualizarUniversidad.this, "No hay imagen agregada", Toast.LENGTH_LONG).show();
             SubirNuevaImagen();
         }
     }
@@ -299,31 +299,31 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
         String imageName = System.currentTimeMillis() + ".png";
         //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
 
-        StorageReference storageReference2do = mStorageReference.child( mStoragePath + imageName );
+        StorageReference storageReference2do = mStorageReference.child(mStoragePath + imageName);
 
         Bitmap bitmap = ((BitmapDrawable) ImageUniversidad.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress( Bitmap.CompressFormat.PNG, 100, baos );
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
         byte[] data = baos.toByteArray();
-        UploadTask uploadTask = storageReference2do.putBytes( data );
-        uploadTask.addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        UploadTask uploadTask = storageReference2do.putBytes(data);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText( PantallaActualizarUniversidad.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG ).show();
+                Toast.makeText(PantallaActualizarUniversidad.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
-                ActualizarUniversidad( downloadUri.toString() );
+                ActualizarUniversidad(downloadUri.toString());
 
             }
-        } ).addOnFailureListener( new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText( PantallaActualizarUniversidad.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                Toast.makeText(PantallaActualizarUniversidad.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 mProgressDialog.dismiss();
             }
-        } );
+        });
     }
 
     @Override
@@ -338,17 +338,61 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
         }
         if (id == R.id.menu_ActualizarPerfil) {
             //process your onClick here
-            DeleteImagenAnterior();
 
+            Revisando();
             return true;
         }
 
-        return super.onOptionsItemSelected( item );
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void Revisando(){
+
+        sNombreUniversidad = editNombreUni.getText().toString().trim();
+        sTelefonoUni = editTelefonoUni.getText().toString().trim();
+        sDireccionUni = editDireccionUni.getText().toString().trim();
+        sPaginaWebUni = editPaginaWebUni.getText().toString().trim();
+        //sUbicacionUniversidad = "";
+        sIdUserAdminUni = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+        if (TextUtils.isEmpty(sNombreUniversidad)) {
+            Toast.makeText(this, "Por favor, Ingrese el nombre", Toast.LENGTH_LONG).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+
+        if (TextUtils.isEmpty(sUbicacionUniversidad)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione la Ubicacion", Toast.LENGTH_LONG).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty(sTelefonoUni)) {
+            Toast.makeText(this, "Por favor, Ingrese el numero de telefono", Toast.LENGTH_LONG).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+
+        if (TextUtils.isEmpty(sDireccionUni)) {
+            Toast.makeText(this, "Por favor, Ingrese la direccion de la institucion", Toast.LENGTH_LONG).show();
+            mProgressDialog.dismiss();
+
+            return;
+        }
+        if (TextUtils.isEmpty(sPaginaWebUni)) {
+            Toast.makeText(this, "Por favor, Ingrese la pagina web de la institucion", Toast.LENGTH_LONG).show();
+            mProgressDialog.dismiss();
+
+            return;
+        }
+
+        DeleteImagenAnterior();
+
     }
 
 
     private void ActualizarUniversidad(String foto) {
-        mProgressDialog.setTitle( "Actualizando..." );
+        mProgressDialog.setTitle("Actualizando...");
         mProgressDialog.show();
 
         sNombreUniversidad = editNombreUni.getText().toString().trim();
@@ -358,31 +402,31 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
         //sUbicacionUniversidad = "";
         sIdUserAdminUni = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        if (TextUtils.isEmpty( sNombreUniversidad )) {
-            Toast.makeText( this, "Por favor, Ingrese el nombre", Toast.LENGTH_LONG ).show();
+        if (TextUtils.isEmpty(sNombreUniversidad)) {
+            Toast.makeText(this, "Por favor, Ingrese el nombre", Toast.LENGTH_LONG).show();
             mProgressDialog.dismiss();
             return;
         }
 
-        if (TextUtils.isEmpty( sUbicacionUniversidad )) {
-            Toast.makeText( this, "Spinner vacío, por favor seleccione la Ubicacion", Toast.LENGTH_LONG ).show();
+        if (TextUtils.isEmpty(sUbicacionUniversidad)) {
+            Toast.makeText(this, "Spinner vacío, por favor seleccione la Ubicacion", Toast.LENGTH_LONG).show();
             mProgressDialog.dismiss();
             return;
         }
-        if (TextUtils.isEmpty( sTelefonoUni )) {
-            Toast.makeText( this, "Por favor, Ingrese el numero de telefono", Toast.LENGTH_LONG ).show();
+        if (TextUtils.isEmpty(sTelefonoUni)) {
+            Toast.makeText(this, "Por favor, Ingrese el numero de telefono", Toast.LENGTH_LONG).show();
             mProgressDialog.dismiss();
             return;
         }
 
-        if (TextUtils.isEmpty( sDireccionUni )) {
-            Toast.makeText( this, "Por favor, Ingrese la direccion de la institucion", Toast.LENGTH_LONG ).show();
+        if (TextUtils.isEmpty(sDireccionUni)) {
+            Toast.makeText(this, "Por favor, Ingrese la direccion de la institucion", Toast.LENGTH_LONG).show();
             mProgressDialog.dismiss();
 
             return;
         }
-        if (TextUtils.isEmpty( sPaginaWebUni )) {
-            Toast.makeText( this, "Por favor, Ingrese la pagina web de la institucion", Toast.LENGTH_LONG ).show();
+        if (TextUtils.isEmpty(sPaginaWebUni)) {
+            Toast.makeText(this, "Por favor, Ingrese la pagina web de la institucion", Toast.LENGTH_LONG).show();
             mProgressDialog.dismiss();
 
             return;
@@ -394,24 +438,24 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
 //        universidadesRefActualizar.child(sIdUniversidad).setValue(universidad);
 //        Toast.makeText(this, "La Actualizacion se realizo exitosamente", Toast.LENGTH_LONG).show();
 //=======
-        Universidades universidad = new Universidades( sIdUniversidad, sNombreUniversidad, sUbicacionUniversidad, foto, sDireccionUni, sTelefonoUni, sPaginaWebUni, sIdUserAdminUni );
-        universidadesRefActualizar.child( sIdUniversidad ).setValue( universidad );
-        Toast.makeText( this, "La Actualizacion se Actualizo exitosamente", Toast.LENGTH_LONG ).show();
+        Universidades universidad = new Universidades(sIdUniversidad, sNombreUniversidad, sUbicacionUniversidad, foto, sDireccionUni, sTelefonoUni, sPaginaWebUni, sIdUserAdminUni);
+        universidadesRefActualizar.child(sIdUniversidad).setValue(universidad);
+        Toast.makeText(this, "La Actualizacion se Actualizo exitosamente", Toast.LENGTH_LONG).show();
 //>>>>>>> origin/master
         mProgressDialog.dismiss();
 
-        Intent intent = new Intent( PantallaActualizarUniversidad.this, PantallaListaUniversidades.class );
-        startActivity( intent );
+        Intent intent = new Intent(PantallaActualizarUniversidad.this, PantallaListaUniversidades.class);
+        startActivity(intent);
 
     }
 
     private void ActivarCampos() {
 
-        spinProvUniversidad.setEnabled( true );
-        editNombreUni.setEnabled( true );
-        editTelefonoUni.setEnabled( true );
-        editDireccionUni.setEnabled( true );
-        editPaginaWebUni.setEnabled( true );
+        spinProvUniversidad.setEnabled(true);
+        editNombreUni.setEnabled(true);
+        editTelefonoUni.setEnabled(true);
+        editDireccionUni.setEnabled(true);
+        editPaginaWebUni.setEnabled(true);
     }
 
 //    private void VerificarBuscador(String userActivo) {

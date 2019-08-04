@@ -109,7 +109,7 @@
                     android:textColor="@color/md_white_1000"
                     android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:drawablePadding="10dp"
-                    android:hint="Email" />
+                    android:hint="E-mail" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -136,7 +136,7 @@
                     android:drawablePadding="10dp"
                     android:inputType="phone"
                     android:textColor="@color/md_white_1000"
-                    android:hint="Telefono"/>
+                    android:hint="Teléfono"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -237,7 +237,7 @@
             android:padding="10dp"
             android:layout_margin="10dp"
             android:textColor="@color/md_white_1000"
-            android:text="Iniciar Sesion" />
+            android:text="Iniciar Sesión" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/EsignInButtonRegistro"

@@ -178,8 +178,16 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     }
 
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+       // super.onBackPressed();
+        //finish();
+        llmar();
         return true;
+    }
+
+    public void llmar(){
+        Intent intent = new Intent(this, PantallaPrincipalEmpleador.class);
+        startActivity(intent);
+
     }
 
     @Override

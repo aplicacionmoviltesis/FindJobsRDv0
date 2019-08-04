@@ -7,8 +7,6 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,12 +23,8 @@ import android.widget.TextView;
 import com.example.findjobsrdv0.Adaptadores_Administrador.Administrador;
 import com.example.findjobsrdv0.Adaptadores_Administrador.ViewHolderUsuarios;
 import com.example.findjobsrdv0.Adaptadores_Empleador.Empleadores;
-import com.example.findjobsrdv0.Adaptadores_Empleador.Empleos;
-import com.example.findjobsrdv0.Adaptadores_Empleador.EmpleosViewHolder;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaDetallesEmpleo;
 import com.example.findjobsrdv0.GeneralesApp.ItemClickListener;
 import com.example.findjobsrdv0.Adaptadores_Curriculo_Buscador.Curriculos;
-import com.example.findjobsrdv0.PantallaBuscarEmpleosReal;
 import com.example.findjobsrdv0.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +33,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 public class PantallaAdministradorUsuarios extends AppCompatActivity {
 

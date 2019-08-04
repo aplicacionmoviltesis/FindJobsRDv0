@@ -10,14 +10,13 @@ import android.os.Bundle;
 import com.bumptech.glide.Glide;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaEmpleosAplicado;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaEmpresasAplicaronMiCurriculo;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosBuscados;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaListaEmpleosFavoritos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaConfiguracion;
 import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaCompararEmpleos;
 import com.example.findjobsrdv0.GeneralesApp.PantallaModoUsuario;
 import com.example.findjobsrdv0.GeneralesApp.PantallaNavegador;
 
-import com.example.findjobsrdv0.PantallaBuscarEmpleosReal;
+import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaBuscarEmpleosReal;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;

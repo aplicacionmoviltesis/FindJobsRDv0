@@ -56,6 +56,7 @@ public class PantallaVistaComparacionEmpleos extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Vista Datos Empleos");
 
         databaseEmpleosComparados = FirebaseDatabase.getInstance();
         DBEmpleosComparados = databaseEmpleosComparados.getReference();
