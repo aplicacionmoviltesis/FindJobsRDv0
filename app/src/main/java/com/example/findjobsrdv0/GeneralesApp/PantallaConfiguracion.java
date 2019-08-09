@@ -6,12 +6,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,8 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.findjobsrdv0.Adaptadores_Empleador.AplicarVerificacionEmpleador;
 import com.example.findjobsrdv0.Administradores.PantallaConfiguracionAdministrador;
-import com.example.findjobsrdv0.Clases_EmpleoCompleto.PantallaPrincipalEmpleador;
 import com.example.findjobsrdv0.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,11 +34,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class PantallaConfiguracion extends AppCompatActivity {
 
-    private Button btnCambiarPass, btnAcercaApp, btnContactoNosotros, btnReportarProblema, btnConfigAdmin;
+    private Button btnCambiarPass, btnAcercaApp, btnContactoNosotros, btnReportarProblema, btnConfigAdmin, btnAyudaAdmin, btnTermCondAdmin, btnPoliticaPrivAdmin;
 
     private ProgressDialog EprogressDialogAdmin;
 
@@ -52,12 +52,30 @@ public class PantallaConfiguracion extends AppCompatActivity {
 
     private EditText editEmailAdmin, editPassAdmin;
 
+    private DatabaseReference DBVerAyuda;
+    private FirebaseDatabase databaseDBVerAyuda;
+
+    private DatabaseReference DBTermCond;
+    private FirebaseDatabase databaseDBTermCond;
+
+    private DatabaseReference DBPoliticaPriv;
+    private FirebaseDatabase databaseDBPoliticaPriv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_configuracion);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        databaseDBVerAyuda = FirebaseDatabase.getInstance();
+        DBVerAyuda = databaseDBVerAyuda.getReference();
+
+        databaseDBTermCond = FirebaseDatabase.getInstance();
+        DBTermCond = databaseDBTermCond.getReference();
+
+        databaseDBPoliticaPriv = FirebaseDatabase.getInstance();
+        DBPoliticaPriv = databaseDBPoliticaPriv.getReference();
 
         EprogressDialogAdmin = new ProgressDialog(this);
 
@@ -114,6 +132,30 @@ public class PantallaConfiguracion extends AppCompatActivity {
             }
         });
 
+        btnAyudaAdmin = (Button) findViewById(R.id.xmlBtnAyuda);
+        btnAyudaAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AyudaAdmin();
+            }
+        });
+        btnTermCondAdmin = (Button) findViewById(R.id.xmlBtnTerminosCondiciones);
+        btnTermCondAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TermCondAdmin();
+            }
+        });
+
+        btnPoliticaPrivAdmin = (Button) findViewById(R.id.xmlBtnPoliticasPrivacidad);
+        btnPoliticaPrivAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PoliticadePrivacidad();
+            }
+        });
     }
 
     public boolean onSupportNavigateUp() {
@@ -140,6 +182,86 @@ public class PantallaConfiguracion extends AppCompatActivity {
         builder.create();
         builder.show();
     }
+
+    public void AyudaAdmin(){
+
+        DBVerAyuda.child( "Ayuda" ).addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+                    if (FavdataSnapshot.exists()) {
+                        AplicarVerificacionEmpleador Datosempleadores = FavdataSnapshot.getValue( AplicarVerificacionEmpleador.class );
+
+                        Intent intent = new Intent();
+                        intent.setData( Uri.parse( Datosempleadores.getsDocumentoVerifEmp() ) );
+                        startActivity( intent );
+
+                    } else {
+                        Toast.makeText( PantallaConfiguracion.this, "Error", Toast.LENGTH_SHORT ).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }
+
+    public void TermCondAdmin(){
+
+        DBTermCond.child( "TerminosCondiciones" ).addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+                    if (FavdataSnapshot.exists()) {
+                        AplicarVerificacionEmpleador Datosempleadores = FavdataSnapshot.getValue( AplicarVerificacionEmpleador.class );
+
+                        Intent intent = new Intent();
+                        intent.setData( Uri.parse( Datosempleadores.getsDocumentoVerifEmp() ) );
+                        startActivity( intent );
+
+                    } else {
+                        Toast.makeText( PantallaConfiguracion.this, "Error", Toast.LENGTH_SHORT ).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }
+
+    private void PoliticadePrivacidad(){
+
+        DBPoliticaPriv.child( "Politicadeprivacidad" ).addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot FavdataSnapshot : dataSnapshot.getChildren()) {
+                    if (FavdataSnapshot.exists()) {
+                        AplicarVerificacionEmpleador Datosempleadores = FavdataSnapshot.getValue( AplicarVerificacionEmpleador.class );
+
+                        Intent intent = new Intent();
+                        intent.setData( Uri.parse( Datosempleadores.getsDocumentoVerifEmp() ) );
+                        startActivity( intent );
+
+                    } else {
+                        Toast.makeText( PantallaConfiguracion.this, "Error", Toast.LENGTH_SHORT ).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+    }
+
 
     public void AccesoAdmin() {
         final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
