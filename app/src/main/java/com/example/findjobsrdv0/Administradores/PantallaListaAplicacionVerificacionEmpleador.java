@@ -1,5 +1,6 @@
 package com.example.findjobsrdv0.Administradores;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,8 +29,13 @@ public class PantallaListaAplicacionVerificacionEmpleador extends AppCompatActiv
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_pantalla_lista_aplicacion_verificacion_empleador );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantalla_lista_aplicacion_verificacion_empleador);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Lista Solicitudes de Verificación ");
 
         firebaseDatabaseVerifEmp = FirebaseDatabase.getInstance();
         databaseVerificacionEmp = firebaseDatabaseVerifEmp.getReference();
@@ -45,26 +51,31 @@ public class PantallaListaAplicacionVerificacionEmpleador extends AppCompatActiv
 
     private void loadsolicitudesverificacion() {
         adapterListaVerifEmp = new FirebaseRecyclerAdapter<AplicarVerificacionEmpleador, ViewHolderVerificacionEmpleador>(AplicarVerificacionEmpleador.class, R.layout.cardview_verificacion_empleador,
-                ViewHolderVerificacionEmpleador.class, databaseVerificacionEmp.child( "SolicitudVerificacionEmpleador" )) {
+                ViewHolderVerificacionEmpleador.class, databaseVerificacionEmp.child("SolicitudVerificacionEmpleador")) {
             @Override
             protected void populateViewHolder(ViewHolderVerificacionEmpleador viewHolder, AplicarVerificacionEmpleador model, int position) {
 
-                viewHolder.TVNombreDocum.setText( model.getsNombreDocumVerifEmp() );
-                viewHolder.TVEstadoEmpleador.setText( model.getsEstado() );
-                viewHolder.TVFecha.setText( model.getsFechaVerifEmp() );
+                viewHolder.TVNombreDocum.setText(model.getsNombreDocumVerifEmp());
+                viewHolder.TVEstadoEmpleador.setText(model.getsEstado());
+                viewHolder.TVFecha.setText(model.getsFechaVerifEmp());
 
                 final AplicarVerificacionEmpleador clickItem = model;
-                viewHolder.setItemClickListener( new ItemClickListener() {
+                viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
-                        Intent Detalle = new Intent( PantallaListaAplicacionVerificacionEmpleador.this, PantallaDetalleAplicacionVerificacionEmpleador.class);
-                        Detalle.putExtra("detalleverifID", adapterListaVerifEmp.getRef( position ).getKey());
+                        Intent Detalle = new Intent(PantallaListaAplicacionVerificacionEmpleador.this, PantallaDetalleAplicacionVerificacionEmpleador.class);
+                        Detalle.putExtra("detalleverifID", adapterListaVerifEmp.getRef(position).getKey());
                         startActivity(Detalle);
                     }
-                } );
+                });
             }
         };
         recyclerViewVerifEmp.setAdapter(adapterListaVerifEmp);
+    }
+
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

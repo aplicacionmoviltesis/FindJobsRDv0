@@ -80,11 +80,11 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
         btnRegistrarDocumento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if(!NombreEmpresa.isEmpty()){
+            //if(!NombreEmpresa.equals("")){
                 seleccionArchivoPDF();
-            }else {
-                Toast.makeText(PantallaAplicarVerificacionEmpleador.this, "Favor llenar el campo Nombre Empresa", Toast.LENGTH_SHORT).show();
-                }
+//            }else {
+//                Toast.makeText(PantallaAplicarVerificacionEmpleador.this, "Favor llenar el campo Nombre Empresa", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }

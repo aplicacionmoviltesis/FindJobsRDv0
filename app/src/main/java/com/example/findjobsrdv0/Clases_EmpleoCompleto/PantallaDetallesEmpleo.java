@@ -415,13 +415,36 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
             if (!sIdCurriculoAplico.isEmpty()) {
 
-                String sIdAplicarEmpleo = AplicarEmpleoDataBase.push().getKey();
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(PantallaDetallesEmpleo.this);
+                builder1.setMessage("Esta Seguro de querer Aplicar a este Empleo?, Una Vez aplique no podra eliminar la misma.");
+                builder1.setCancelable(true);
 
-                AplicarEmpleo aplicarEmpleo = new AplicarEmpleo(sIdAplicarEmpleo, sIdCurriculoAplico, sIdEmpleoAplico, sIdPersonaAplico, sFechadeAplicacion);
-                AplicarEmpleoDataBase.child(sIdAplicarEmpleo).setValue(aplicarEmpleo);
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                String sIdAplicarEmpleo = AplicarEmpleoDataBase.push().getKey();
 
-                Toast.makeText(this, "Su Aplicacion se realizo exitosamente", Toast.LENGTH_LONG).show();
-            }
+                                AplicarEmpleo aplicarEmpleo = new AplicarEmpleo(sIdAplicarEmpleo, sIdCurriculoAplico, sIdEmpleoAplico, sIdPersonaAplico, sFechadeAplicacion);
+                                AplicarEmpleoDataBase.child(sIdAplicarEmpleo).setValue(aplicarEmpleo);
+
+                                Toast.makeText(PantallaDetallesEmpleo.this, "Su Aplicacion se realizo exitosamente", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+
+                }
         } else {
             Toast.makeText(this, "Usted Aun No tiene Ningun Empleo Registrado", Toast.LENGTH_LONG).show();
             BtnAplicarEmpleoDE.setEnabled(false);
