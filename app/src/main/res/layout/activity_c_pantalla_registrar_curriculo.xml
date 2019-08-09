@@ -94,6 +94,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="Cédula"
                         android:inputType="number"
                         android:textColor="@color/md_blue_900" />
@@ -120,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="30"
+                        android:enabled="false"
                         android:hint="Nombre"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
@@ -145,6 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
+                        android:enabled="false"
                         android:ems="50"
                         android:hint="Apellido"
                         android:inputType="text"
@@ -173,6 +176,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="E-mail"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
@@ -205,6 +209,7 @@
                             android:layout_height="wrap_content"
                             android:drawablePadding="10dp"
                             android:ems="10"
+                            android:enabled="false"
                             android:hint="Teléfono"
                             android:inputType="phone"
                             android:textColor="@color/md_blue_900" />
@@ -231,6 +236,7 @@
                             android:layout_height="wrap_content"
                             android:drawablePadding="10dp"
                             android:ems="10"
+                            android:enabled="false"
                             android:hint="Celular"
                             android:inputType="number"
                             android:textColor="@color/md_blue_900" />
@@ -261,6 +267,7 @@
                         android:layout_marginEnd="5dp"
                         android:baselineAligned="false"
                         android:dropDownSelector="@color/gradStop"
+                        android:enabled="false"
                         android:hint="Provincia"
                         android:textColorHint="@color/md_blue_900"
                         app:met_floatingLabel="normal" />
@@ -281,6 +288,7 @@
                         android:baselineAligned="false"
                         android:dropDownSelector="@color/gradStop"
                         android:entries="@array/EstadoCivil"
+                        android:enabled="false"
                         android:hint="Estado Civil"
                         android:textColorHint="@color/md_blue_900"
                         app:met_floatingLabel="normal" />
@@ -307,6 +315,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="Dirección"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
@@ -333,6 +342,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="Ocupación"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
@@ -399,6 +409,7 @@
                         android:baselineAligned="false"
                         android:dropDownSelector="@color/gradStop"
                         android:entries="@array/GradoMayor"
+                        android:enabled="false"
                         android:hint="Grado Académico"
                         android:textColorHint="@color/md_blue_900"
                         app:met_floatingLabel="normal" />
@@ -419,6 +430,7 @@
                         android:baselineAligned="false"
                         android:dropDownSelector="@color/gradStop"
                         android:entries="@array/EstadoActual"
+                        android:enabled="false"
                         android:hint="Estado Actual"
                         android:textColorHint="@color/md_blue_900"
                         app:met_floatingLabel="normal" />
@@ -440,6 +452,7 @@
                         android:baselineAligned="false"
                         android:dropDownSelector="@color/gradStop"
                         android:entries="@array/InfoSexo"
+                        android:enabled="false"
                         android:hint="Sexo"
                         android:textColorHint="@color/md_blue_900"
                         app:met_floatingLabel="normal" />
@@ -466,6 +479,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="Habilidades"
                         android:inputType="text"
                         android:maxLines="3"
@@ -550,6 +564,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:baselineAligned="false"
+                    android:enabled="false"
                     android:dropDownSelector="@color/gradStop"
                     android:hint="Área Principal"
                     android:textColorHint="@color/md_blue_900" />
@@ -572,6 +587,7 @@
                     android:layout_marginStart="10dp"
                     android:baselineAligned="false"
                     android:dropDownSelector="@color/gradStop"
+                    android:enabled="false"
                     android:hint="Área Secundaria"
                     android:textColorHint="@color/md_blue_900" />
 
@@ -593,6 +609,7 @@
                     android:layout_marginStart="10dp"
                     android:baselineAligned="false"
                     android:dropDownSelector="@color/gradStop"
+                    android:enabled="false"
                     android:hint="Área Terciaria"
                     android:textColorHint="@color/md_blue_900" />
 
@@ -632,6 +649,7 @@
                         android:drawablePadding="3dp"
                         android:ems="10"
                         android:hint="Nivel Primario"
+                        android:enabled="false"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -649,6 +667,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="3dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="Nivel Secundario"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
@@ -667,6 +686,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="3dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:hint="Carrera Universitaria"
                         android:inputType="text"
                         android:textColor="@color/md_blue_900" />
@@ -688,31 +708,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:baselineAligned="false"
+                    android:enabled="false"
                     android:dropDownSelector="@color/gradStop"
                     android:hint="Universidad"
                     android:textColorHint="@color/md_blue_900" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <Button
-                    android:id="@+id/xmlBtnActualizarGC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:background="@color/transparent"
-                    android:hint="Actualizar"
-                    android:padding="2dp"
-                    android:text="Actualizar Currículo"
-                    android:textColor="@color/md_blue_900" />
+                <!--<Button-->
+                    <!--android:id="@+id/xmlBtnActualizarGC"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="15dp"-->
+                    <!--android:background="@color/transparent"-->
+                    <!--android:hint="Actualizar"-->
+                    <!--android:padding="2dp"-->
+                    <!--android:text="Actualizar Currículo"-->
+                    <!--android:textColor="@color/md_blue_900" />-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 

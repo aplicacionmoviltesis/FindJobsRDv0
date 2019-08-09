@@ -166,13 +166,10 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
             mFilePathUri = data.getData();
 
             try {
-
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mFilePathUri);
                 ImagePerfilPEmpleador.setImageBitmap(bitmap);
             } catch (Exception e) {
-
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-
             }
         }
     }
@@ -432,6 +429,12 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     }
 
     private void RegistrarDatosEmpleador(){
+
+        if (mFilePathUri == null) {
+            Toast.makeText( PantallaPerfilEmpleador.this, "Favor Seleccionar imagen", Toast.LENGTH_LONG ).show();
+            return;
+        }
+
         final StorageReference StorageReference2nd = mStorageReference.child( mStoragePath + System.currentTimeMillis() + "." + getFileExtension( mFilePathUri ) );
 
         UploadTask uploadTask = StorageReference2nd.putFile( mFilePathUri );
