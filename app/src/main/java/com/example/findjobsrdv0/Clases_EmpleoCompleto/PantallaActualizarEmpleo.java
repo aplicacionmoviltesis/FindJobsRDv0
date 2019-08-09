@@ -28,6 +28,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -175,7 +177,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         tvFechaPublicacionAE = (TextView) findViewById(R.id.xmlTiFechaPublicacionAE);
 
         btnIdiomasAE = (Button) findViewById(R.id.xmlBtnSeleccionarIdiomasAE);
-        btnActivarCampoAE = (Button) findViewById(R.id.xmlBtnActivarcampos);
+        //btnActivarCampoAE = (Button) findViewById(R.id.xmlBtnActivarcampos);
         btnPersonasAplicaronAE = (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
 
 
@@ -186,17 +188,17 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         RdbDisponibleAE = (RadioButton) findViewById(R.id.xmlRdDisponibleAE);
         RdbNoDisponibleAE = (RadioButton) findViewById(R.id.xmlRdNoDisponibleAE);
 
-        btnActivarCampoAE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivarCampos();
-            }
-        });
+//        btnActivarCampoAE.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivarCampos();
+//            }
+//        });
 /////////////
         btnPersonasAplicaronAE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PantallaActualizarEmpleo.this, "klk no entra", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PantallaActualizarEmpleo.this, "klk no entra", Toast.LENGTH_SHORT).show();
 
                 IrPersonasEmpleo();
             }
@@ -637,21 +639,21 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
 
             }
         }
-        BtnActualizarEmpleoAE = (ImageButton) findViewById(R.id.xmlBtnActualizarEmpleoAE);
-        BtnActualizarEmpleoAE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getIntent() != null) {
-                    sEmpleoIdE = getIntent().getStringExtra("sEmpleoIdAnadidos");
-                    if (!sEmpleoIdE.isEmpty()) {
-
-                        //goDetalleEmpleo(sEmpleoIdE);
-                        ActualizarEmpleo(sEmpleoIdE);
-
-                    }
-                }
-            }
-        });
+//        BtnActualizarEmpleoAE = (ImageButton) findViewById(R.id.xmlBtnActualizarEmpleoAE);
+//        BtnActualizarEmpleoAE.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (getIntent() != null) {
+//                    sEmpleoIdE = getIntent().getStringExtra("sEmpleoIdAnadidos");
+//                    if (!sEmpleoIdE.isEmpty()) {
+//
+//                        //goDetalleEmpleo(sEmpleoIdE);
+//                        ActualizarEmpleo(sEmpleoIdE);
+//
+//                    }
+//                }
+//            }
+//        });
 
         /*BtnPersonasAplicaronEmpleoDE = (Button) findViewById(R.id.xmlBtnPersonasAplicaron);
         BtnPersonasAplicaronEmpleoDE.setOnClickListener(new View.OnClickListener() {
@@ -662,6 +664,42 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         });*/
 
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_update_empleo, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.editar_empleo) {
+            //process your onClick here
+            //ActivarCampor();
+            ActivarCampos();
+
+            return true;
+        }
+        if (id == R.id.actualizar_empleo) {
+            //process your onClick here
+            //EnviarDatos();
+            if (getIntent() != null) {
+                sEmpleoIdE = getIntent().getStringExtra("sEmpleoIdAnadidos");
+                if (!sEmpleoIdE.isEmpty()) {
+
+                    //goDetalleEmpleo(sEmpleoIdE);
+                    ActualizarEmpleo(sEmpleoIdE);
+
+                }
+            }
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public boolean onSupportNavigateUp() {
@@ -685,7 +723,7 @@ public class PantallaActualizarEmpleo extends AppCompatActivity {
         RdbNoDisponibleAE.setEnabled(true);
 
         btnIdiomasAE.setEnabled(true);
-        BtnActualizarEmpleoAE.setEnabled(true);
+//        BtnActualizarEmpleoAE.setEnabled(true);
 
         spinProvinciaAE.setEnabled(true);
         spinAreaAE.setEnabled(true);

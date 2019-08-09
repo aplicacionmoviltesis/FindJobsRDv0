@@ -38,6 +38,7 @@ public class DetalleReferencias extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Referencias");
 
         tvTiReferencia = (TextView) findViewById(R.id.xmlTituloReferenciaDetalle);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");

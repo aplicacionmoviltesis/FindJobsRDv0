@@ -40,6 +40,7 @@ public class DetalleExperienciaLaboral extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Experiencias Laborales");
 
         tvTiExpLab = (TextView) findViewById(R.id.xmlTituloExpLab);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");

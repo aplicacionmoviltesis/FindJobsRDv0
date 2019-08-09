@@ -278,7 +278,7 @@ public class PantallaRegistrarEmpleos extends AppCompatActivity {
 /////Spinner Jornada
 
 /////Spinner Tipo de contrato
-        spinTipoContratoE = findViewById(R.id.xmlspinTipoContratoF);
+        spinTipoContratoE = findViewById(R.id.xmlspinTipoContratoE);
         spinTipoContratoE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

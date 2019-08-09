@@ -14,7 +14,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Clases_EmpleoCompleto.PantallaBuscarEmpleosReal"></activity>
+        <activity android:name=".GeneralesApp.PantallaPoliticasPrivacidad"></activity>
+        <activity android:name=".Clases_EmpleoCompleto.PantallaBuscarEmpleosReal" />
         <activity android:name=".Administradores.PantallaDetalleAplicacionVerificacionEmpleador" />
         <activity android:name=".Administradores.PantallaListaAplicacionVerificacionEmpleador" />
         <activity android:name=".Pantallas_CurriculosCompleto.PantallaListaBuscarCurriculos" />

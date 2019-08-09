@@ -38,14 +38,15 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        DBempleos= database.getReference(getResources().getString(R.string.Ref_Empleos));
+        DBempleos = database.getReference(getResources().getString(R.string.Ref_Empleos));
         DBempleos.keepSynced(true);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Empleos Añadidos");
 
-        listaEmpleosAnadidos = (RecyclerView)findViewById(R.id.ListaEmpleosAnadidosR);
+        listaEmpleosAnadidos = (RecyclerView) findViewById(R.id.ListaEmpleosAnadidosR);
         listaEmpleosAnadidos.setHasFixedSize(true);
         listaEmpleosAnadidos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -53,14 +54,15 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
         cargarEmpleos(Ukey);
 
     }
-    public boolean onSupportNavigateUp(){
+
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
 
     private void cargarEmpleos(String Ukey) {
         adapter = new FirebaseRecyclerAdapter<Empleos, EmpleosViewHolder>
-                (Empleos.class,R.layout.cardview_mostrar_empleo, EmpleosViewHolder.class,
+                (Empleos.class, R.layout.cardview_mostrar_empleo, EmpleosViewHolder.class,
                         DBempleos.orderByChild(getResources().getString(R.string.Campo_sIdEmpleadorE)).equalTo(Ukey)) {
             @Override
             protected void populateViewHolder(EmpleosViewHolder empleosViewHolder, Empleos empleos, int i) {
@@ -69,7 +71,7 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
                 empleosViewHolder.ProvinciaCardView.setText(empleos.getsProvinciaE());
                 empleosViewHolder.AreaCardView.setText(empleos.getsAreaE());
                 empleosViewHolder.EstadoCardView.setText(empleos.getsEstadoEmpleoE());
-                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: "+empleos.getsFechaPublicacionE());
+                empleosViewHolder.FechaPublicacionCardView.setText("Ultima Actualizacion: " + empleos.getsFechaPublicacionE());
                 Picasso.get().load(empleos.getsImagenEmpleoE()).into(empleosViewHolder.imagenEmpleoCardView);
 
                 final Empleos clickItem = empleos;
@@ -78,7 +80,7 @@ public class PantallaListaEmpleosAnadidos extends AppCompatActivity {
                     public void onClick(View view, int position, boolean isLongClick) {
 
                         Intent intent = new Intent(PantallaListaEmpleosAnadidos.this, PantallaActualizarEmpleo.class);
-                        intent.putExtra("sEmpleoIdAnadidos",adapter.getRef(position).getKey());
+                        intent.putExtra("sEmpleoIdAnadidos", adapter.getRef(position).getKey());
                         startActivity(intent);
                     }
                 });

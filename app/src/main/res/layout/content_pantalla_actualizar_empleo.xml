@@ -593,16 +593,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:background="@color/transparent"
+            android:drawablePadding="2dp"
+            android:drawableLeft="@drawable/ic_personas_aplicaron"
             android:text="Personas que Aplicaron"
             android:textColor="@color/md_blue_900" />
 
-        <Button
-            android:id="@+id/xmlBtnActivarcampos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:drawableLeft="@drawable/ic_edit"
-            android:drawablePadding="5dp"
-            android:text="Editar" />
+        <!--<Button-->
+            <!--android:id="@+id/xmlBtnActivarcampos"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:drawableLeft="@drawable/ic_edit"-->
+            <!--android:drawablePadding="5dp"-->
+            <!--android:text="Editar" />-->
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -42,6 +42,7 @@ public class DetalleOtrosEstudios extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Otros Cursos Realizados");
 
         tvTiOtrosCursos = (TextView) findViewById(R.id.xmlTituloOtrosCursos);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/robotoslab.bold.ttf");
@@ -65,7 +66,7 @@ public class DetalleOtrosEstudios extends AppCompatActivity {
         }
     }
 
-    public boolean onSupportNavigateUp(){
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }

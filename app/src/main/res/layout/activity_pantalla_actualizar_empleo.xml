@@ -43,14 +43,14 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <ImageButton
-                android:id="@+id/xmlBtnActualizarEmpleoAE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_update"
-                android:enabled="false"
-                android:layout_margin="2dp"
-                android:layout_gravity="end"/>
+            <!--<ImageButton-->
+                <!--android:id="@+id/xmlBtnActualizarEmpleoAE"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/ic_update"-->
+                <!--android:enabled="false"-->
+                <!--android:layout_margin="2dp"-->
+                <!--android:layout_gravity="end"/>-->
 
         </androidx.appcompat.widget.Toolbar>
 

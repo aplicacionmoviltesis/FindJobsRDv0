@@ -55,7 +55,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
             TvSalarioDE, TvAreaDE, TvAnosExperienciaDE, TvFormacionAcademicaDE, TvIdiomasDE, TvSexoRequeridoDE,
             TvRangoEdadDE, TvNotaDE, TvEstadoEmpleoDE, TvFechaPublicacionDE;
 
-    private Button BtnAplicarEmpleoDE, BtnVerificacionEmpresaDE;
+    private Button BtnAplicarEmpleoDE, BtnVerificacionEmpresaDE, BtnEliminarAplicacionEmpleoDE;
 
     private String sEmpleoIdE = "";
     private String sIdEmpleador = "";
@@ -70,7 +70,7 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
     private FirebaseAuth mAuthEmpleador;
     private FirebaseUser user;
 
-    private TextView TvOtrosDatosDE, TvRequisitosDE, TvtiNotaDE,TvYaAplico;
+    private TextView TvOtrosDatosDE, TvRequisitosDE, TvtiNotaDE, TvYaAplico;
 
     private FirebaseDatabase prueba;
     private ToggleButton btnfavorito;
@@ -165,8 +165,18 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
             if (!sEmpleoIdE.isEmpty()) {
                 goDetalleEmpleo(sEmpleoIdE);
                 VerificarFavorito();
+                VerificarElMismo(sIdPersonaAplico,sEmpleoIdE);
             }
         }
+
+        BtnEliminarAplicacionEmpleoDE = (Button) findViewById(R.id.xmlBtnEliminarAplicarEmpleoDE);
+        BtnEliminarAplicacionEmpleoDE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //EliminarVerificacionEmpleo(sEmpleoIdE, sIdPersonaAplico);
+            }
+        });
+        BtnEliminarAplicacionEmpleoDE.setEnabled(false);
 
         btnfavorito = (ToggleButton) findViewById(R.id.empleosfavoritos);
         btnfavorito.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -363,6 +373,34 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
 
     }
 
+    public void EliminarVerificacionEmpleo(String EmpleoAplico, String CurriculoAplico) {
+        //String hola = "no elimino la app";
+        Log.d("pppppppCurr", CurriculoAplico);
+        Log.d("pppppppEmpl", EmpleoAplico);
+
+        AplicarEmpleoDataBase.orderByChild("sIdEmpleoAplico").equalTo(EmpleoAplico).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String hola = "no elimino la app";
+                Log.d("ppppppp444", String.valueOf(dataSnapshot));
+                for (DataSnapshot aplicacionSnapshot : dataSnapshot.getChildren()) {
+                    String CurriculoAplicoklk = aplicacionSnapshot.child("sIdCurriculoAplico").getValue(String.class);
+                    String Aplicacionklk = aplicacionSnapshot.child("sIdAplicarEmpleo").getValue(String.class);
+                    //String hola = "no elimino la app";
+                    Log.d("ppppppp", hola);
+                    if (CurriculoAplico.equals(CurriculoAplicoklk)) {
+                        AplicarEmpleoDataBase.child(Aplicacionklk).removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Toast.makeText(PantallaDetallesEmpleo.this, "Usted No tiene empleo registrados", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     public void AplicarEmpleo(String sIdPersonaAplico, String sEmpleoIdE) {
 
         //VerificarAplicacionExiste(sIdPersonaAplico);
@@ -483,15 +521,43 @@ public class PantallaDetallesEmpleo extends AppCompatActivity {
                 for (DataSnapshot CurriculosSnapshot : dataSnapshot.getChildren()) {
 
                     String IdEmpleoAplico = CurriculosSnapshot.child("sIdEmpleoAplico").getValue(String.class);
-                    if(IdEmpleoAplico.equals(sEmpleoIdE)){
+                    if (IdEmpleoAplico.equals(sEmpleoIdE)) {
                         BtnAplicarEmpleoDE.setEnabled(false);
                         TvYaAplico.setVisibility(View.VISIBLE);
-
+                        BtnEliminarAplicacionEmpleoDE.setEnabled(true);
                         BtnAplicarEmpleoDE.setTextColor(getResources().getColor(R.color.md_red_900));
                         //Toast.makeText(PantallaDetallesEmpleo.this, "Usted ha Aplicado anteriormente a este empleo", Toast.LENGTH_LONG).show();
 
-                    }else{
+                    } else {
                         Log.d("dataidEmpleosAplicar", IdEmpleoAplico);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void VerificarElMismo(String sIdUsuarioBusc,String EmpleoEnvivo) {
+        Log.d("subidoemplo", String.valueOf(sIdUsuarioBusc));
+
+        DbLikes.child("Empleos")
+                .child(EmpleoEnvivo).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("subido", String.valueOf(dataSnapshot));
+
+                for (DataSnapshot EmpleosSnapshot : dataSnapshot.getChildren()) {
+
+                    String IdEmpleadorMismo = EmpleosSnapshot.child("sIdEmpleadorE").getValue(String.class);
+                    if (sIdUsuarioBusc.equals(IdEmpleadorMismo)) {
+                        BtnAplicarEmpleoDE.setEnabled(false);
+
+                        Toast.makeText(PantallaDetallesEmpleo.this, "Este Empleo fue publicado por Usted", Toast.LENGTH_LONG).show();
+                    } else {
                     }
                 }
             }

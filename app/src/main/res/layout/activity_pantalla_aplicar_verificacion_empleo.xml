@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Aplicar Solicitud, para Verificacion Empleadore "
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textColor="@color/md_blue_900"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Certificación de la DGII"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textColor="@color/md_blue_grey_400"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -53,6 +53,6 @@
         android:drawablePadding="10dp"
         android:drawableLeft="@drawable/ic_archivo_dgii"
         android:background="@color/transparent"
-        android:textSize="20sp"/>
+        android:textSize="15sp"/>
 
 </LinearLayout>

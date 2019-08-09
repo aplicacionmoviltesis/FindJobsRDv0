@@ -89,8 +89,7 @@
                 android:layout_margin="5dp"
                 android:text="Provincia"
                 android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="15sp"/>
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinProvinciaE"
                 android:layout_width="match_parent"
@@ -225,11 +224,10 @@
                 android:id="@+id/xmlTiHorarioE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:text="Horario"
+                android:layout_margin="5dp"
                 android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinHorarioE"
@@ -242,6 +240,15 @@
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
+            <TextView
+                android:id="@+id/xmlTiJornadaE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Jornada"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
+
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinJornadaE"
                 android:layout_width="match_parent"
@@ -253,8 +260,17 @@
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
 
+            <TextView
+                android:id="@+id/xmlTiTipoContratoE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Tipo Contrato"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
+
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/xmlspinTipoContratoF"
+                android:id="@+id/xmlspinTipoContratoE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
@@ -263,6 +279,15 @@
                 app:hintText="Tipo de Cotrato"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiCantidadVacantesE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Cantidad de Vacantes"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinCantidadVacantesE"
@@ -274,6 +299,15 @@
                 app:hintText="Cantidad Vacantes"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiAnosExperienciaE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Anos de Experiencia"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinAnosExperienciaE"
@@ -331,6 +365,14 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <TextView
+                android:id="@+id/xmlTiAreaE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Area"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinAreaE"
@@ -342,6 +384,15 @@
                 app:hintText="Seleccionar Area"
                 android:textColor="@color/md_blue_900"
                 android:textColorHint="@color/md_blue_900" />
+
+            <TextView
+                android:id="@+id/xmlTiFormacionAcademicaE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Formacion Academica"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinFormacionAcademicaE"
@@ -381,6 +432,15 @@
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:text="Selecionar Idiomas" />
+
+            <TextView
+                android:id="@+id/xmlTiSexoRequeridoE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Sexo Requerido"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"/>
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/xmlspinSexoRequeridoE"

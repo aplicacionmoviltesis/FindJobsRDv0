@@ -42,6 +42,7 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
     private String userActivo;
+    String NombreEmpresa;
 
 //    private Uri ur1;
 
@@ -79,8 +80,11 @@ public class PantallaAplicarVerificacionEmpleador extends AppCompatActivity {
         btnRegistrarDocumento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            if(!NombreEmpresa.isEmpty()){
                 seleccionArchivoPDF();
+            }else {
+                Toast.makeText(PantallaAplicarVerificacionEmpleador.this, "Favor llenar el campo Nombre Empresa", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
