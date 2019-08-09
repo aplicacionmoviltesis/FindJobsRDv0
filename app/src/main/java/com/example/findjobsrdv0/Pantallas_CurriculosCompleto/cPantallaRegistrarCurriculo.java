@@ -53,6 +53,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -133,6 +134,9 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
     private DatabaseReference DBCedula;
 
+
+    private DatabaseReference DBImagen;
+
     private ActionBar actionBar;
     private FirebaseAuth mAuthBuscador;
     FirebaseUser user;
@@ -173,6 +177,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 
         DBCedula = FirebaseDatabase.getInstance().getReference( getResources().getString( R.string.Ref_Curriculos ) );
 
+        DBImagen = FirebaseDatabase.getInstance().getReference( "Curriculos" );
 
         mStorageReference = getInstance().getReference();
         mProgressDialog = new ProgressDialog( cPantallaRegistrarCurriculo.this );
@@ -762,35 +767,128 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
 //        return true;
 //    }
 
-    private void ActivarCampor(){
-        etNombre.setEnabled(true);
-        etApellido.setEnabled(true);
-        etCedula.setEnabled(true);
-        etEmail.setEnabled(true);
-        etTelefono.setEnabled(true);
-        etCelular.setEnabled(true);
-        etDireccion.setEnabled(true);
-        etOcupacion.setEnabled(true);
-        etHabilidades.setEnabled(true);
-        etNivelPrimario.setEnabled(true);
-        etNivelSecundario.setEnabled(true);
-        etCarrera.setEnabled(true);
+    private void ActivarCampor() {
+        etNombre.setEnabled( true );
+        etApellido.setEnabled( true );
+        etEmail.setEnabled( true );
+        etTelefono.setEnabled( true );
+        etCelular.setEnabled( true );
+        etDireccion.setEnabled( true );
+        etOcupacion.setEnabled( true );
+        etHabilidades.setEnabled( true );
+        etNivelPrimario.setEnabled( true );
+        etNivelSecundario.setEnabled( true );
+        etCarrera.setEnabled( true );
 
-        spinProvinciaCurriculo.setEnabled(true);
-        spinEstadoCivil.setEnabled(true);
-        spinEstadoActual.setEnabled(true);
-        spinGradoMayor.setEnabled(true);
-        spinSexo.setEnabled(true);
-        spinAreaPrincipal.setEnabled(true);
-        spinAreaSecundaria.setEnabled(true);
-        spinAreaTerciaria.setEnabled(true);
-        spinUniversidadFormAcad.setEnabled(true);
+        spinProvinciaCurriculo.setEnabled( true );
+        spinEstadoCivil.setEnabled( true );
+        spinEstadoActual.setEnabled( true );
+        spinGradoMayor.setEnabled( true );
+        spinSexo.setEnabled( true );
+        spinAreaPrincipal.setEnabled( true );
+        spinAreaSecundaria.setEnabled( true );
+        spinAreaTerciaria.setEnabled( true );
+        spinUniversidadFormAcad.setEnabled( true );
     }
 
     public void beginUpdate() {
         mProgressDialog.setTitle( "Actualizando..." );
         mProgressDialog.show();
+        Revisando();
+    }
+
+    public void Revisando() {
+
+        nombre = etNombre.getText().toString().trim().toLowerCase();
+        apellido = etApellido.getText().toString().trim();
+        cedula = etCedula.getText().toString().trim();
+        email = etEmail.getText().toString().trim();
+        celular = etCelular.getText().toString().trim();
+        telefono = etTelefono.getText().toString().trim();
+        direccion = etDireccion.getText().toString().trim();
+        ocupacion = etOcupacion.getText().toString().trim();
+        idioma = mEtxtIdioma.getText().toString().trim();
+        habilidades = etHabilidades.getText().toString().trim();
+        fecha = mEtxtFecha.getText().toString().trim();
+
+        NivelPrimarioFormAcad = etNivelPrimario.getText().toString().trim();
+        NivelSecundarioFormAcad = etNivelSecundario.getText().toString().trim();
+        CarreraFormAcad = etCarrera.getText().toString().trim();
+
+        if (TextUtils.isEmpty( telefono )) {
+            etTelefono.setError( "Campo vacío, por favor escriba el numero de Telefono " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Telefono vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( cedula )) {
+            etCelular.setError( "Campo vacío, por favor escriba el numero de Telefono " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Celular vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( direccion )) {
+            etDireccion.setError( "Campo vacío, por favor escriba la Direccion " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Direccion vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( ocupacion )) {
+            etOcupacion.setError( "Campo vacío, por favor escriba la Ocupacion " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Ocupacion vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( idioma )) {
+            mEtxtIdioma.setError( "Campo vacío, por favor escriba el Idioma " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Idioma vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( habilidades )) {
+            etHabilidades.setError( "Campo vacío, por favor escriba las Habilidades " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Habilidades vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( fecha )) {
+            mEtxtFecha.setError( "Campo vacío, por favor escriba la Fecha " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Fecha vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( NivelPrimarioFormAcad )) {
+            etNivelPrimario.setError( "Campo vacío, por favor escriba el Nivel Primario " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Primario vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( NivelSecundarioFormAcad )) {
+            etNivelSecundario.setError( "Campo vacío, por favor escriba el Nivel Secundario " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Secundario vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( CarreraFormAcad )) {
+            etCarrera.setError( "Campo vacío, por favor escriba la Carrera " );
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Carrera vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+
+        if (TextUtils.isEmpty( provincia )) {
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( estadoCivil )) {
+            Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione su estado civil", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+
         DeleteImagenAnterior();
+
     }
 
     private void DeleteImagenAnterior() {
@@ -807,43 +905,91 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
             } ).addOnFailureListener( new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText( cPantallaRegistrarCurriculo.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
-
-                    mProgressDialog.dismiss();
+//                    Toast.makeText( cPantallaRegistrarCurriculo.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
+                    SubirNuevaImagen();
+//                    mProgressDialog.dismiss();
                 }
             } );
         } else {
-            Toast.makeText( cPantallaRegistrarCurriculo.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
+//            Toast.makeText( cPantallaRegistrarCurriculo.this, "No hay imagen agregada", Toast.LENGTH_LONG ).show();
             SubirNuevaImagen();
         }
     }
 
     private void SubirNuevaImagen() {
-        String imageName = System.currentTimeMillis() + ".png";
-        //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
 
-        StorageReference storageReference2do = mStorageReference.child( mStoragePath + imageName );
-
-        Bitmap bitmap = ((BitmapDrawable) imageViewcurriculo.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress( Bitmap.CompressFormat.PNG, 100, baos );
-
-        byte[] data = baos.toByteArray();
-        UploadTask uploadTask = storageReference2do.putBytes( data );
-        uploadTask.addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        Query q = DBImagen.orderByChild( "sImagenC" ).equalTo( sImagenC );
+        q.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText( cPantallaRegistrarCurriculo.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG ).show();
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isSuccessful()) ;
-                Uri downloadUri = uriTask.getResult();
-                Actualizarcurriculo( downloadUri.toString() );
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+
+                    String imageName = System.currentTimeMillis() + ".png";
+                    //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
+
+                    StorageReference storageReference2do = mStorageReference.child( mStoragePath + imageName );
+
+                    Bitmap bitmap = ((BitmapDrawable) imageViewcurriculo.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress( Bitmap.CompressFormat.PNG, 100, baos );
+
+                    byte[] data = baos.toByteArray();
+                    UploadTask uploadTask = storageReference2do.putBytes( data );
+                    uploadTask.addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText( cPantallaRegistrarCurriculo.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG ).show();
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isSuccessful()) ;
+                            Uri downloadUri = uriTask.getResult();
+                            Actualizarcurriculo( downloadUri.toString() );
+                        }
+                    } ).addOnFailureListener( new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText( cPantallaRegistrarCurriculo.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                            mProgressDialog.dismiss();
+                        }
+                    } );
+
+                } else {
+
+                    String imageName = System.currentTimeMillis() + ".png";
+                    //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
+
+                    StorageReference storageReference2do = mStorageReference.child( mStoragePath + imageName );
+
+                    Bitmap bitmap = ((BitmapDrawable) imageViewcurriculo.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress( Bitmap.CompressFormat.PNG, 100, baos );
+
+                    byte[] data = baos.toByteArray();
+                    UploadTask uploadTask = storageReference2do.putBytes( data );
+                    uploadTask.addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText( cPantallaRegistrarCurriculo.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG ).show();
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isSuccessful()) ;
+                            Uri downloadUri = uriTask.getResult();
+                            Actualizarcurriculo( downloadUri.toString() );
+                        }
+                    } ).addOnFailureListener( new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText( cPantallaRegistrarCurriculo.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                            mProgressDialog.dismiss();
+                        }
+                    } );
+
+//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Favor Seleccionar imagen", Toast.LENGTH_LONG ).show();
+//                        mProgressDialog.dismiss();
+                }
             }
-        } ).addOnFailureListener( new OnFailureListener() {
+
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText( cPantallaRegistrarCurriculo.this, e.getMessage(), Toast.LENGTH_LONG ).show();
-                mProgressDialog.dismiss();
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         } );
     }
@@ -996,6 +1142,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                 // posición 0 o N, de lo contrario devuelve 0 = posición inicial)
                 return posicion;
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -1004,11 +1151,12 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
     }
 
     private void registrarcurriculo(final String cIdCurriculo) {
-//        mProgressDialog.setTitle( "Actualizando Curriculo..." );
-//        mProgressDialog.show();
+        mProgressDialog.setTitle( "Actualizando Curriculo..." );
+        mProgressDialog.show();
 
         if (mFilePathUri == null) {
             Toast.makeText( cPantallaRegistrarCurriculo.this, "Favor Seleccionar imagen", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
             return;
         }
 
@@ -1050,79 +1198,93 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                     if (TextUtils.isEmpty( cedula )) {
                         etCedula.setError( "Campo vacío, por favor escriba la Cedula " );
                         Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Cedula vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
                         return;
                     }
                     if (TextUtils.isEmpty( apellido )) {
                         etApellido.setError( "Campo vacío, por favor escriba el Apellido " );
                         Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Apellido vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
                         return;
                     }
-//                    if (TextUtils.isEmpty( celular )) {
-//                        etCelular.setError( "Campo vacío, por favor escriba el numero de Celular " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Celular vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( telefono )) {
-//                        etTelefono.setError( "Campo vacío, por favor escriba el numero de Telefono " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Telefono vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( direccion )) {
-//                        etDireccion.setError( "Campo vacío, por favor escriba la Direccion " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Direccion vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( ocupacion )) {
-//                        etOcupacion.setError( "Campo vacío, por favor escriba la Ocupacion " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Ocupacion vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( idioma )) {
-//                        mEtxtIdioma.setError( "Campo vacío, por favor escriba el Idioma " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Idioma vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( habilidades )) {
-//                        etHabilidades.setError( "Campo vacío, por favor escriba las Habilidades " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Habilidades vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( fecha )) {
-//                        mEtxtFecha.setError( "Campo vacío, por favor escriba la Fecha " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Fecha vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( NivelPrimarioFormAcad )) {
-//                        etNivelPrimario.setError( "Campo vacío, por favor escriba el Nivel Primario " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Primario vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( NivelSecundarioFormAcad )) {
-//                        etNivelSecundario.setError( "Campo vacío, por favor escriba el Nivel Secundario " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Secundario vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( CarreraFormAcad )) {
-//                        etCarrera.setError( "Campo vacío, por favor escriba la Carrera " );
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Carrera vacío", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//
-//
-//                    if (TextUtils.isEmpty( provincia )) {
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty( estadoCivil )) {
-//                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione su estado civil", Toast.LENGTH_LONG ).show();
-//                        return;
-//                    }
+                    if (TextUtils.isEmpty( celular )) {
+                        etCelular.setError( "Campo vacío, por favor escriba el numero de Celular " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Celular vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( telefono )) {
+                        etTelefono.setError( "Campo vacío, por favor escriba el numero de Telefono " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Telefono vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( direccion )) {
+                        etDireccion.setError( "Campo vacío, por favor escriba la Direccion " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Direccion vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( ocupacion )) {
+                        etOcupacion.setError( "Campo vacío, por favor escriba la Ocupacion " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Ocupacion vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( idioma )) {
+                        mEtxtIdioma.setError( "Campo vacío, por favor escriba el Idioma " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Idioma vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( habilidades )) {
+                        etHabilidades.setError( "Campo vacío, por favor escriba las Habilidades " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Habilidades vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( fecha )) {
+                        mEtxtFecha.setError( "Campo vacío, por favor escriba la Fecha " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Fecha vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( NivelPrimarioFormAcad )) {
+                        etNivelPrimario.setError( "Campo vacío, por favor escriba el Nivel Primario " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Primario vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( NivelSecundarioFormAcad )) {
+                        etNivelSecundario.setError( "Campo vacío, por favor escriba el Nivel Secundario " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Nivel Secundario vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( CarreraFormAcad )) {
+                        etCarrera.setError( "Campo vacío, por favor escriba la Carrera " );
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Campo Carrera vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+
+
+                    if (TextUtils.isEmpty( provincia )) {
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( estadoCivil )) {
+                        Toast.makeText( cPantallaRegistrarCurriculo.this, "Spinner vacío, por favor seleccione su estado civil", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
 
 //                    mProgressDialog.dismiss();
 
-
                     if (cedula.length() != 10) {
                         Toast.makeText( cPantallaRegistrarCurriculo.this, "La Cédula solo debe contener 10 dígitos", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
                         return;
                     }
                     Curriculos curriculos = new Curriculos( cIdCurriculo,
@@ -1135,7 +1297,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                     resgistrarAreas( cIdCurriculo );
 
                     Toast.makeText( cPantallaRegistrarCurriculo.this, "Curriculo subida exitosamente...", Toast.LENGTH_LONG ).show();
-
+                    mProgressDialog.dismiss();
                 } else {
 
                 }
@@ -1211,25 +1373,6 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
         NivelSecundarioFormAcad = etNivelSecundario.getText().toString().trim();
         CarreraFormAcad = etCarrera.getText().toString().trim();
 
-//        if (TextUtils.isEmpty( direccion )) {
-//            etDireccion.setError( "Campo vacío, por favor escriba la direccion " );
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(provincia)) {
-//            Toast.makeText(this, "Spinner vacío, por favor seleccione una Provincia", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(estadoCivil)) {
-//            Toast.makeText(this, "Spinner vacío, por favor seleccione el estado civil", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(AreaPrincipal)) {
-//            Toast.makeText(this, "Spinner vacío, por favor seleccione una Area", Toast.LENGTH_LONG).show();
-//            return;
-//        }
 
         mProgressDialog.dismiss();
 
@@ -1270,6 +1413,7 @@ public class cPantallaRegistrarCurriculo extends AppCompatActivity {
                                 etCedula.setError( "Esta cedula ya a sido registrado" );
                             }
                         }
+
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 

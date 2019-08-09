@@ -172,7 +172,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
         final String entrada_provincia = "";
         final String entrada_descripcion = "";
         final boolean entrada_verificacion = false;
-        final String entrada_imagenEmpleador = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesEmpleadores%2F1564230738080.jpg?alt=media&token=4670698b-1284-4ad0-b8a5-fedb344653a0";
+//        final String entrada_imagenEmpleador = "https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesEmpleadores%2F1564230738080.jpg?alt=media&token=4670698b-1284-4ad0-b8a5-fedb344653a0";
 
         if (TextUtils.isEmpty(entrada_Nombre)) {
             registroNombreempresa.setError("Campo vacío, por favor escriba el nombre");
@@ -222,7 +222,7 @@ public class PantallaRegistroEmpleador extends AppCompatActivity implements View
                                 DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sDireccionEmpleador)).setValue(entrada_direccion);
                                 //DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child("Contraseña").setValue(entrada_contrasena);
                                 DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sVerificacionEmpleador)).setValue(entrada_verificacion);
-                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sImagenEmpleador)).setValue(entrada_imagenEmpleador);
+//                                DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sImagenEmpleador)).setValue(entrada_imagenEmpleador);
                                 DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sProvinciaEmpleador)).setValue(entrada_provincia);
                                 DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sDescripcionEmpleador)).setValue(entrada_descripcion);
                                 DBReferenceEmpleador.child(getResources().getString(R.string.Ref_Empleadores)).child(Ukey).child(getResources().getString(R.string.Campo_sIdEmpleador)).setValue(Ukey);

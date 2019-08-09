@@ -37,7 +37,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@color/transparent"
                 android:padding="2dp"
-                android:src="@mipmap/onlylogo"
+                android:src="@mipmap/imagennodisponible"
                 app:civ_border_color="@color/transparent"
                 app:civ_border_width="2dp" />
         </LinearLayout>
@@ -94,7 +94,6 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:ems="10"
-                        android:enabled="false"
                         android:hint="Cédula"
                         android:inputType="number"
                         android:textColor="@color/md_blue_900" />
