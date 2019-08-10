@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -74,6 +75,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference DBperfilEmpleadores;
 
+    private DatabaseReference DBImagen;
+
+
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
 
@@ -106,6 +110,9 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         DBperfilEmpleadores = database.getReference(getResources().getString(R.string.Ref_Empleadores));
+
+        DBImagen = FirebaseDatabase.getInstance().getReference( "Empleadores" );
+
 
         user = firebaseAuth.getInstance().getCurrentUser();
 
@@ -218,7 +225,74 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
         mProgressDialog.setTitle("Actualizando...");
         mProgressDialog.show();
+        Revisando();
+    }
+
+    public void Revisando() {
+
+        sNombrePEmpleador = editNombrePEmpleador.getText().toString().trim();
+        sRncPEmpleador = editRncPEmpleador.getText().toString().trim();
+        sPaginaWebPEmpleador = editPaginaWebPEmpleador.getText().toString().trim();
+        sTelefonoPEmpleador = editTelefonoPEmplador.getText().toString().trim();
+        sDireccionPEmpleador = editDireccionPEmpleador.getText().toString().trim();
+        sCorreoPEmpleador = editCorreoPEmpleador.getText().toString().trim();
+        sProvinciaPEmpleador = editProvinciaPEmpleador.getText().toString().trim();
+        sDescripcionPEmpleador = editDescripcionPEmpleador.getText().toString().trim();
+
+
+        if (TextUtils.isEmpty( sNombrePEmpleador )) {
+            editNombrePEmpleador.setError( "Campo vacío, por favor escriba la Cedula " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo Nombre vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+
+        if (TextUtils.isEmpty( sRncPEmpleador )) {
+            editRncPEmpleador.setError( "Campo vacío, por favor escriba el RNC " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo RNC vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( sPaginaWebPEmpleador )) {
+            editPaginaWebPEmpleador.setError( "Campo vacío, por favor escriba la Pagina Web " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo Pagina Web vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( sTelefonoPEmpleador )) {
+            editTelefonoPEmplador.setError( "Campo vacío, por favor escriba el telefono " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo Telefono vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+
+        if (TextUtils.isEmpty( sDireccionPEmpleador )) {
+            editDireccionPEmpleador.setError( "Campo vacío, por favor escriba la direccion " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo direccion vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( sCorreoPEmpleador )) {
+            editCorreoPEmpleador.setError( "Campo vacío, por favor escriba el correo " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo correo vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( sProvinciaPEmpleador )) {
+            editProvinciaPEmpleador.setError( "Campo vacío, por favor escriba la provincia " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo provincia vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+        if (TextUtils.isEmpty( sDescripcionPEmpleador )) {
+            editDescripcionPEmpleador.setError( "Campo vacío, por favor escriba la descripcion " );
+            Toast.makeText( PantallaPerfilEmpleador.this, "Campo descripcion vacío", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
+            return;
+        }
+
         DeleteImagenAnterior();
+
     }
 
     public void DeleteImagenAnterior() {
@@ -234,49 +308,99 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    mProgressDialog.dismiss();
+
+                    SubirNuevaImagen();
+//                    Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                    mProgressDialog.dismiss();
                 }
             });
         } else {
 
-            Toast.makeText(PantallaPerfilEmpleador.this, "No hay imagen agregada", Toast.LENGTH_LONG).show();
+//            Toast.makeText(PantallaPerfilEmpleador.this, "No hay imagen agregada", Toast.LENGTH_LONG).show();
             SubirNuevaImagen();
         }
     }
 
     private void SubirNuevaImagen() {
-        String imageName = System.currentTimeMillis() + ".png";
-        //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
 
-        StorageReference storageReference2do = mStorageReference.child(mStoragePath + imageName);
-
-        Bitmap bitmap = ((BitmapDrawable) ImagePerfilPEmpleador.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-
-        byte[] data = baos.toByteArray();
-        UploadTask uploadTask = storageReference2do.putBytes(data);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        Query q = DBImagen.orderByChild( "sImagenEmpleador" ).equalTo( sImagenPEmpleador );
+        q.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
 
-                Toast.makeText(PantallaPerfilEmpleador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isSuccessful()) ;
-                Uri downloadUri = uriTask.getResult();
-                ActualizarDatosEmpleador(downloadUri.toString());
+                    String imageName = System.currentTimeMillis() + ".png";
+                    //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
 
+                    StorageReference storageReference2do = mStorageReference.child(mStoragePath + imageName);
+
+                    Bitmap bitmap = ((BitmapDrawable) ImagePerfilPEmpleador.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+
+                    byte[] data = baos.toByteArray();
+                    UploadTask uploadTask = storageReference2do.putBytes(data);
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            Toast.makeText(PantallaPerfilEmpleador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isSuccessful()) ;
+                            Uri downloadUri = uriTask.getResult();
+                            ActualizarDatosEmpleador(downloadUri.toString());
+
+                        }
+
+
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            mProgressDialog.dismiss();
+                        }
+                    });
+
+                } else {
+
+                    String imageName = System.currentTimeMillis() + ".png";
+                    //String imageName = System.currentTimeMillis() + getFileExtension(mFilePathUri);
+
+                    StorageReference storageReference2do = mStorageReference.child(mStoragePath + imageName);
+
+                    Bitmap bitmap = ((BitmapDrawable) ImagePerfilPEmpleador.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+
+                    byte[] data = baos.toByteArray();
+                    UploadTask uploadTask = storageReference2do.putBytes(data);
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            Toast.makeText(PantallaPerfilEmpleador.this, "Nueva Imagen Subida...", Toast.LENGTH_LONG).show();
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isSuccessful()) ;
+                            Uri downloadUri = uriTask.getResult();
+                            ActualizarDatosEmpleador(downloadUri.toString());
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            mProgressDialog.dismiss();
+                        }
+                    });
+
+                }
             }
 
-
-        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(PantallaPerfilEmpleador.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                mProgressDialog.dismiss();
+            public void onCancelled(DatabaseError databaseError) {
+
             }
-        });
+        } );
     }
 
     private void ActivarCampor() {
@@ -430,8 +554,12 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
 
     private void RegistrarDatosEmpleador(){
 
+        mProgressDialog.setTitle("Actualizando...");
+        mProgressDialog.show();
+
         if (mFilePathUri == null) {
             Toast.makeText( PantallaPerfilEmpleador.this, "Favor Seleccionar imagen", Toast.LENGTH_LONG ).show();
+            mProgressDialog.dismiss();
             return;
         }
 
@@ -463,6 +591,60 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                     sProvinciaPEmpleador = editProvinciaPEmpleador.getText().toString().trim();
                     sDescripcionPEmpleador = editDescripcionPEmpleador.getText().toString().trim();
 
+                    if (TextUtils.isEmpty( sNombrePEmpleador )) {
+                        editNombrePEmpleador.setError( "Campo vacío, por favor escriba la Cedula " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo Nombre vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty( sRncPEmpleador )) {
+                        editRncPEmpleador.setError( "Campo vacío, por favor escriba el RNC " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo RNC vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( sPaginaWebPEmpleador )) {
+                        editPaginaWebPEmpleador.setError( "Campo vacío, por favor escriba la Pagina Web " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo Pagina Web vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( sTelefonoPEmpleador )) {
+                        editTelefonoPEmplador.setError( "Campo vacío, por favor escriba el telefono " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo Telefono vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty( sDireccionPEmpleador )) {
+                        editDireccionPEmpleador.setError( "Campo vacío, por favor escriba la direccion " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo direccion vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( sCorreoPEmpleador )) {
+                        editCorreoPEmpleador.setError( "Campo vacío, por favor escriba el correo " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo correo vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( sProvinciaPEmpleador )) {
+                        editProvinciaPEmpleador.setError( "Campo vacío, por favor escriba la provincia " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo provincia vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+                    if (TextUtils.isEmpty( sDescripcionPEmpleador )) {
+                        editDescripcionPEmpleador.setError( "Campo vacío, por favor escriba la descripcion " );
+                        Toast.makeText( PantallaPerfilEmpleador.this, "Campo descripcion vacío", Toast.LENGTH_LONG ).show();
+                        mProgressDialog.dismiss();
+                        return;
+                    }
+
+
+
+
                     Empleadores empleadores = new Empleadores( sNombrePEmpleador, sRncPEmpleador,
                             sPaginaWebPEmpleador, sTelefonoPEmpleador, sDireccionPEmpleador,
                             sCorreoPEmpleador, downloadURL, false, sIdPEmpleador,
@@ -472,6 +654,8 @@ public class PantallaPerfilEmpleador extends AppCompatActivity {
                     Toast.makeText( PantallaPerfilEmpleador.this, "Sus Datos han Sido Actualizado", Toast.LENGTH_LONG ).show();
 //                    Intent intent = new Intent( PantallaPerfilEmpleador.this, PantallaPrincipalEmpleador.class );
 //                    startActivity( intent );
+
+                    mProgressDialog.dismiss();
 
                 }else {
 

@@ -226,7 +226,7 @@ public class PantallaRegistroBuscador extends AppCompatActivity implements View.
                                 DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sApellidoC)).setValue(entrada_bApellido);
                                 DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sEmailC)).setValue(bemail);
                                 DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sTelefonoC)).setValue(entrada_btelefono);
-                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sImagenC)).setValue("https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesBuscadores%2F1559055977214.jpeg?alt=media&token=9c185811-dcdf-4f1a-91d0-55d77a1ca441");
+//                                DBReference.child(getResources().getString(R.string.Ref_Curriculos)).child(Ukey).child(getResources().getString(R.string.Campo_sImagenC)).setValue("https://firebasestorage.googleapis.com/v0/b/findjobsrd.appspot.com/o/ImagenesPerfilesBuscadores%2F1559055977214.jpeg?alt=media&token=9c185811-dcdf-4f1a-91d0-55d77a1ca441");
 
                                 registrarareas(IdAreas,userActivo);
 

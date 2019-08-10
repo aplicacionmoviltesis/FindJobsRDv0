@@ -387,9 +387,7 @@ public class PantallaActualizarUniversidad extends AppCompatActivity {
         }
 
         DeleteImagenAnterior();
-
     }
-
 
     private void ActualizarUniversidad(String foto) {
         mProgressDialog.setTitle("Actualizando...");
